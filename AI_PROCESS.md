@@ -95,3 +95,14 @@ Antes de push para remoto:
 - definir branch protection/rulesets;
 - configurar status checks do workflow CI.
 
+Runbook:
+
+```text
+docs/runbooks/github-setup.md
+```
+
+Checagem local:
+
+```bash
+scripts/github-readiness.sh
+```

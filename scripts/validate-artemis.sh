@@ -13,6 +13,7 @@ docs/agents/AGENT_REGISTRY.md
 docs/agents/CAPABILITY_REGISTRY.md
 docs/agents/TOOL_POLICY.md
 docs/agents/HANDOFF_PROTOCOL.md
+docs/runbooks/github-setup.md
 templates/AGENTS.md
 templates/CLAUDE.md
 templates/AI_PROCESS.md
@@ -21,6 +22,7 @@ prompts/context-curator.md
 prompts/implementer.md
 prompts/reviewer.md
 scripts/bootstrap-artemis.sh
+scripts/github-readiness.sh
 "
 
 for file in $required_files; do
@@ -70,6 +72,7 @@ if grep -R "$placeholder_owner" . \
 fi
 
 sh -n scripts/bootstrap-artemis.sh
+sh -n scripts/github-readiness.sh
 sh -n scripts/validate-artemis.sh
 
 echo "ARTEMIS validation passed"

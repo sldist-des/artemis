@@ -25,6 +25,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 
 ```bash
 scripts/validate-artemis.sh
+scripts/github-readiness.sh
 sh -n scripts/bootstrap-artemis.sh
 git status --branch --short --ignored
 ```

@@ -24,6 +24,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 ## Comandos canonicos
 
 ```bash
+scripts/validate-artemis.sh
 sh -n scripts/bootstrap-artemis.sh
 git status --branch --short --ignored
 ```
@@ -57,4 +58,3 @@ Escalar antes de:
 - configurar owners, rulesets ou branch protection reais;
 - introduzir nova dependencia;
 - expandir escopo de forma relevante.
-

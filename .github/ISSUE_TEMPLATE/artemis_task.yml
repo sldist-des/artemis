@@ -1,0 +1,64 @@
+name: ARTEMIS Task
+about: Tarefa operacional para execucao por humano ou IA
+labels: ["artemis:needs-context"]
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objetivo
+      description: O que precisa ser feito?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto
+      description: Links para docs, decisoes, logs ou arquivos relevantes.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Escopo
+      description: O que esta dentro da tarefa?
+    validations:
+      required: true
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Fora de escopo
+      description: O que nao deve ser alterado?
+    validations:
+      required: true
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Risco
+      options:
+        - baixo
+        - medio
+        - alto
+        - seguranca
+        - producao
+    validations:
+      required: true
+  - type: dropdown
+    id: suggested_agent
+    attributes:
+      label: Agente sugerido
+      options:
+        - humano
+        - claude
+        - codex
+        - claude-exec-codex-review
+        - codex-exec-claude-review
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Criterios de aceite
+      description: Como saberemos que esta pronto?
+    validations:
+      required: true
+

@@ -1,0 +1,9 @@
+# CODEOWNERS is intentionally non-enforcing until the GitHub repository owner is defined.
+# Add real owners before enabling CODEOWNERS branch protection.
+#
+# Example:
+# /ARCHITECTURE.md @org/artemis-architects
+# /AGENTS.md @org/artemis-architects
+# /docs/invariants/ @org/artemis-architects
+# /.github/workflows/ @org/artemis-maintainers
+

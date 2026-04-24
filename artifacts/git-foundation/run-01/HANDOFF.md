@@ -14,7 +14,13 @@ Registrar a fundacao Git antes de prosseguir para novas etapas do ARTEMIS.
 
 ## Estado atual
 
-Pendente ate o commit inicial ser concluido.
+Git inicializado e commit inicial criado em `main`.
+
+Commit:
+
+```text
+243c689 Establish ARTEMIS as a versioned operating system
+```
 
 ## Riscos
 
@@ -24,5 +30,4 @@ Pendente ate o commit inicial ser concluido.
 
 ## Proxima acao
 
-Criar commit inicial com mensagem no protocolo Lore.
-
+Configurar remoto GitHub e protecoes quando o humano definir organizacao, repositorio e owners.

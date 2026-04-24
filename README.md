@@ -50,10 +50,16 @@ O diretorio `prompts/` contem prompts prontos para:
 - `implementer.md`
 - `reviewer.md`
 
+## Guia canonico de agentes
+
+Use `AGENTS.md` como fonte canonica para Codex, Claude Code e outros agentes.
+
+Use `CLAUDE.md` apenas como adaptador fino para Claude Code, apontando para `AGENTS.md` e registrando somente diferencas especificas do runtime Claude.
+
 ## Como aplicar em um projeto
 
 1. Copie os templates para a raiz do projeto alvo.
-2. Edite `AGENTS.md`, `CLAUDE.md` e `ARCHITECTURE.md` com o contexto real do projeto.
+2. Edite `AGENTS.md` e `ARCHITECTURE.md` com o contexto real do projeto; ajuste `CLAUDE.md` somente se houver diferencas especificas do Claude Code.
 3. Crie um Exec Pack em `docs/exec-packs/active/` para cada tarefa relevante.
 4. Trabalhe em branch e worktree isoladas.
 5. Rode validacoes e registre evidencias.
@@ -68,4 +74,3 @@ O diretorio `prompts/` contem prompts prontos para:
 ```
 
 O script copia o kit base sem sobrescrever arquivos existentes. Revise manualmente os arquivos criados antes de usar em producao.
-

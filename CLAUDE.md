@@ -20,3 +20,4 @@ Nao duplique aqui workflow, arquitetura, criterios de review ou politicas gerais
 - Use subagents, hooks e skills somente quando reduzirem risco, ruido ou tempo total.
 - Termine sessoes longas com handoff claro.
 - Nao altere escopo fora do Exec Pack sem registrar e escalar.
+

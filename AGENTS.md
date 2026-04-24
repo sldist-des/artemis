@@ -1,0 +1,60 @@
+# AGENTS.md
+
+Este repositorio mantem o metodo ARTEMIS: Arquitetura, Ritmo, Trabalho Estruturado, Memoria, Implementacao e Supervisao.
+
+## Projeto
+
+O objetivo deste repositorio e transformar o ARTEMIS em um kit operacional reutilizavel para humanos, Codex, Claude Code e futuros agentes de codigo.
+
+## Fonte canonica para agentes
+
+Este arquivo e a fonte canonica de orientacao operacional para agentes.
+
+`CLAUDE.md` deve ser apenas um adaptador fino para Claude Code e deve apontar para este arquivo. Nao duplique regras entre `AGENTS.md` e `CLAUDE.md`; quando uma regra vale para Codex e Claude, ela pertence aqui.
+
+## Documentos que agentes devem ler
+
+- `README.md`
+- `ARTEMIS_QUICKSTART.md`
+- `fluxo-artemis-claude-codex-v1.3.md`
+- `artemis-arquitetura-agentes.md`
+- `artemis-github-operating-model.md`
+- Exec Pack ativo em `docs/exec-packs/active/`
+
+## Comandos canonicos
+
+```bash
+sh -n scripts/bootstrap-artemis.sh
+git status --branch --short --ignored
+```
+
+## Workflow ARTEMIS
+
+- Toda tarefa relevante deve ter Exec Pack.
+- Toda mudanca deve ser versionada em Git.
+- Um agente escritor por worktree.
+- Mudancas fora de escopo devem ser registradas e escaladas.
+- Toda entrega deve incluir validacao e handoff.
+- Commits devem seguir o Lore Commit Protocol quando forem feitos por agente.
+
+## Review guidelines
+
+- Trate vazamento de secrets como P0.
+- Trate quebra de autenticacao/autorizacao como P0.
+- Trate violacao de invariantes arquiteturais como P1.
+- Trate mudanca de contrato publico sem documentacao como P1.
+- Trate testes ausentes em codigo critico como P1.
+- Ignore preferencias cosmeticas salvo quando contrariem padrao documentado.
+
+## Escalar para humano
+
+Escalar antes de:
+
+- criar remoto GitHub;
+- fazer push;
+- alterar producao;
+- tocar secrets;
+- configurar owners, rulesets ou branch protection reais;
+- introduzir nova dependencia;
+- expandir escopo de forma relevante.
+

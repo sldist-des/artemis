@@ -10,7 +10,7 @@ git diff --check
 
 ## Resultado
 
-Parcial antes do commit.
+Passou localmente.
 
 ## Evidencia antes do commit
 
@@ -27,4 +27,14 @@ Parcial antes do commit.
 
 ## Validacao final esperada
 
-Rerodar `scripts/github-readiness.sh` depois do commit para confirmar working tree limpo.
+`scripts/github-readiness.sh` foi rerodado depois do commit e retornou sucesso com estes avisos esperados:
+
+- `origin` ainda nao configurado;
+- `gh auth status` nao passou porque o token local esta invalido;
+- CODEOWNERS ainda nao tem owners reais ativos.
+
+## Evidencia pos-commit
+
+- `scripts/github-readiness.sh` confirmou worktree Git, branch `main` e working tree limpo.
+- `scripts/validate-artemis.sh` retornou `ARTEMIS validation passed`.
+- `git status --branch --short --ignored` mostrou `## main` com apenas `.codex` e `.omx/` ignorados.

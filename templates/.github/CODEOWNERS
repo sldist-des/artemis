@@ -1,0 +1,13 @@
+# Ajuste os owners reais antes de ativar branch protection.
+
+# Arquitetura e governanca
+/ARCHITECTURE.md @owner
+/AI_PROCESS.md @owner
+/docs/decisions/ @owner
+/docs/invariants/ @owner
+/docs/agents/ @owner
+
+# CI e seguranca
+/.github/workflows/ @owner
+/SECURITY.md @owner
+

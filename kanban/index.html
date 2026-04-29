@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ARTEMIS Kanban</title>
+  <style>
+    :root {
+      --paper: #f4f1ea;
+      --ink: #1d211d;
+      --muted: #62685e;
+      --line: #d7d1c4;
+      --panel: #fcfaf5;
+      --panel-strong: #ebe4d6;
+      --green: #2f6f55;
+      --red: #9f3e35;
+      --blue: #315f7d;
+      --gold: #8a671f;
+      --shadow: 0 18px 44px rgba(48, 42, 31, .10);
+      --radius: 6px;
+      --font-display: Georgia, "Times New Roman", serif;
+      --font-body: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, rgba(29, 33, 29, .045) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(29, 33, 29, .035) 1px, transparent 1px),
+        var(--paper);
+      background-size: 32px 32px;
+      color: var(--ink);
+      font-family: var(--font-body);
+      letter-spacing: 0;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .shell {
+      width: min(1760px, calc(100vw - 28px));
+      margin: 0 auto;
+      padding: 22px 0 32px;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: minmax(280px, 1.2fr) minmax(320px, .8fr);
+      gap: 22px;
+      align-items: stretch;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 18px;
+    }
+
+    .mark {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .sigil {
+      width: 64px;
+      aspect-ratio: 1;
+      border: 2px solid var(--ink);
+      display: grid;
+      place-items: center;
+      background: var(--panel);
+      box-shadow: 5px 5px 0 var(--ink);
+      font-family: var(--font-display);
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(36px, 6vw, 82px);
+      line-height: .86;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      max-width: 760px;
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .control-panel {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+      border-left: 2px solid var(--ink);
+      padding-left: 22px;
+    }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .principle {
+      min-height: 88px;
+      border: 1px solid var(--ink);
+      background: var(--panel);
+      padding: 10px;
+      display: grid;
+      align-content: space-between;
+    }
+
+    .principle strong {
+      font-family: var(--font-display);
+      font-size: 19px;
+    }
+
+    .principle span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .actions button,
+    .actions input {
+      height: 36px;
+      border: 1px solid var(--ink);
+      background: var(--panel);
+      color: var(--ink);
+      border-radius: 0;
+      padding: 0 12px;
+    }
+
+    .actions button {
+      cursor: pointer;
+      box-shadow: 3px 3px 0 var(--ink);
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+
+    .actions button:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+
+    .actions input {
+      flex: 1 1 180px;
+      min-width: 0;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .metric {
+      border-top: 2px solid var(--ink);
+      padding-top: 8px;
+    }
+
+    .metric b {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 32px;
+      line-height: 1;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(210px, 1fr));
+      gap: 12px;
+      overflow-x: auto;
+      padding: 8px 0 18px;
+      scroll-snap-type: x proximity;
+    }
+
+    .column {
+      min-height: 560px;
+      background: color-mix(in srgb, var(--panel) 88%, var(--paper));
+      border: 1px solid var(--line);
+      scroll-snap-align: start;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .column[data-state="human"] {
+      background: color-mix(in srgb, var(--panel) 76%, #f3d6bf);
+    }
+
+    .column[data-state="done"] {
+      background: color-mix(in srgb, var(--panel) 80%, #d8e5d2);
+    }
+
+    .column-header {
+      min-height: 118px;
+      border-bottom: 1px solid var(--line);
+      padding: 12px;
+      display: grid;
+      align-content: space-between;
+      gap: 10px;
+    }
+
+    .column-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .column-title h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 25px;
+      line-height: 1;
+    }
+
+    .count {
+      min-width: 28px;
+      height: 28px;
+      border: 1px solid var(--ink);
+      display: grid;
+      place-items: center;
+      background: var(--panel-strong);
+      font-weight: 700;
+    }
+
+    .column-header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .lane {
+      min-height: 420px;
+      padding: 10px;
+      display: grid;
+      align-content: start;
+      gap: 10px;
+    }
+
+    .lane.drag-over {
+      outline: 2px dashed var(--blue);
+      outline-offset: -6px;
+      background: rgba(49, 95, 125, .08);
+    }
+
+    .card {
+      border: 1px solid var(--ink);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      padding: 12px;
+      cursor: grab;
+      display: grid;
+      gap: 10px;
+    }
+
+    .card:active {
+      cursor: grabbing;
+    }
+
+    .card[hidden] {
+      display: none;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .ticket {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+
+    .risk {
+      font-size: 11px;
+      text-transform: uppercase;
+      border: 1px solid var(--line);
+      padding: 3px 6px;
+    }
+
+    .risk.high {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .risk.medium {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .risk.low {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.18;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .meta span {
+      border-top: 1px solid var(--line);
+      padding-top: 6px;
+      min-width: 0;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .tag {
+      background: var(--panel-strong);
+      color: var(--ink);
+      font-size: 11px;
+      padding: 4px 6px;
+      border: 1px solid var(--line);
+    }
+
+    .footer-note {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: end;
+      border-top: 2px solid var(--ink);
+      margin-top: 10px;
+      padding-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .source-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .source-links a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+    }
+
+    @media (max-width: 980px) {
+      .topbar {
+        grid-template-columns: 1fr;
+      }
+
+      .control-panel {
+        border-left: 0;
+        padding-left: 0;
+      }
+
+      .metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .shell {
+        width: min(100vw - 18px, 1760px);
+        padding-top: 14px;
+      }
+
+      .mark {
+        grid-template-columns: 1fr;
+      }
+
+      .sigil {
+        width: 50px;
+      }
+
+      .principles,
+      .metrics,
+      .footer-note {
+        grid-template-columns: 1fr;
+      }
+
+      .source-links {
+        justify-content: flex-start;
+      }
+
+      .actions input,
+      .actions button {
+        width: 100%;
+        flex-basis: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="topbar" aria-labelledby="page-title">
+      <div class="mark">
+        <div class="sigil" aria-hidden="true">A</div>
+        <div>
+          <h1 id="page-title">ARTEMIS Kanban</h1>
+          <p class="subtitle">Uma superficie visual para governar trabalho agentic: intencao, contexto, execucao, evidencia, revisao e decisao humana no mesmo quadro.</p>
+        </div>
+      </div>
+
+      <aside class="control-panel" aria-label="Controles do Kanban">
+        <div class="principles" aria-label="Principios ARTEMIS">
+          <div class="principle"><strong>Simples</strong><span>Menos estados, menos rituais, proxima acao clara.</span></div>
+          <div class="principle"><strong>State-of-the-art</strong><span>Inspirado em app-server e Symphony, sem copiar complexidade cedo demais.</span></div>
+          <div class="principle"><strong>Completude</strong><span>Uma tarefa termina com evidencia, revisao e handoff.</span></div>
+        </div>
+        <div class="actions">
+          <input id="search" type="search" placeholder="Filtrar por ticket, titulo, owner ou tag" aria-label="Filtrar cards">
+          <button id="reset" type="button">Resetar quadro</button>
+        </div>
+      </aside>
+    </section>
+
+    <section class="metrics" aria-label="Resumo do fluxo">
+      <div class="metric"><b id="metric-total">0</b><span>cards</span></div>
+      <div class="metric"><b id="metric-active">0</b><span>ativos</span></div>
+      <div class="metric"><b id="metric-human">0</b><span>decisao humana</span></div>
+      <div class="metric"><b id="metric-done">0</b><span>concluidos</span></div>
+    </section>
+
+    <section id="board" class="board" aria-label="Quadro ARTEMIS"></section>
+
+    <footer class="footer-note">
+      <div>
+        O quadro salva movimentos neste navegador via localStorage. Exec Packs e artifacts continuam sendo a fonte documental do processo.
+      </div>
+      <nav class="source-links" aria-label="Referencias">
+        <a href="../docs/kanban/artemis-kanban.md">Spec do Kanban</a>
+        <a href="../docs/principles/artemis-principles.md">Principios</a>
+        <a href="https://developers.openai.com/codex/app-server">Codex app-server</a>
+        <a href="https://openai.com/index/open-source-codex-orchestration-symphony/">Symphony</a>
+      </nav>
+    </footer>
+  </main>
+
+  <script>
+    const storageKey = "artemis-kanban-v1";
+
+    const columns = [
+      { id: "intake", title: "Intake", help: "Ideia ou pedido bruto. Ainda nao tem contrato." },
+      { id: "context", title: "Context", help: "Exec Pack, risco, invariantes e validacao." },
+      { id: "ready", title: "Ready", help: "Pronto para agente, branch ou worktree." },
+      { id: "executing", title: "Executing", help: "Implementacao ou investigacao em andamento." },
+      { id: "review", title: "Review", help: "Revisao tecnica, CI, evidencia e retrabalho." },
+      { id: "human", title: "Human", help: "Decisao de arquitetura, produto, risco ou merge." },
+      { id: "done", title: "Done", help: "Handoff feito e memoria preservada." }
+    ];
+
+    const seedCards = [
+      {
+        id: "tkt-000",
+        state: "done",
+        ticket: "TKT-000",
+        title: "Starter kit ARTEMIS",
+        summary: "Templates, prompts, bootstrap e evidencias iniciais.",
+        owner: "Codex",
+        risk: "low",
+        evidence: "artifacts/artemis-bootstrap/run-01",
+        tags: ["template", "memoria", "bootstrap"]
+      },
+      {
+        id: "tkt-001",
+        state: "done",
+        ticket: "TKT-001",
+        title: "Fundacao Git",
+        summary: "Repositorio local, branch main, commits Lore e ignore seguro.",
+        owner: "Codex",
+        risk: "low",
+        evidence: "artifacts/git-foundation/run-01",
+        tags: ["git", "rastreabilidade"]
+      },
+      {
+        id: "tkt-002",
+        state: "done",
+        ticket: "TKT-002",
+        title: "AGENTS canonico",
+        summary: "AGENTS.md como contrato comum e CLAUDE.md como adaptador fino.",
+        owner: "Codex",
+        risk: "low",
+        evidence: "artifacts/agent-guide-canon/run-01",
+        tags: ["agents", "claude", "codex"]
+      },
+      {
+        id: "tkt-003",
+        state: "done",
+        ticket: "TKT-003",
+        title: "Repositorio auto-operacional",
+        summary: "GitHub templates, arquitetura, invariants, agents e CI local.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "artifacts/repository-operationalization/run-01",
+        tags: ["github", "ci", "governanca"]
+      },
+      {
+        id: "tkt-004",
+        state: "human",
+        ticket: "TKT-004",
+        title: "Prontidao GitHub",
+        summary: "Remoto criado; falta acertar gh auth, owners e protections.",
+        owner: "Humano",
+        risk: "medium",
+        evidence: "artifacts/github-remote-readiness/run-01",
+        tags: ["remote", "auth", "rulesets"]
+      },
+      {
+        id: "tkt-005",
+        state: "executing",
+        ticket: "TKT-005",
+        title: "Kanban visual ARTEMIS",
+        summary: "Painel local para estado, evidencia e decisao humana.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "artifacts/artemis-kanban/run-01",
+        tags: ["kanban", "visual", "control-plane"]
+      },
+      {
+        id: "next-symphony",
+        state: "intake",
+        ticket: "NEXT",
+        title: "Orquestrador ARTEMIS",
+        summary: "Avaliar daemon estilo Symphony apos validar o Kanban manual.",
+        owner: "Humano",
+        risk: "high",
+        evidence: "docs/kanban/artemis-kanban.md",
+        tags: ["symphony", "daemon", "future"]
+      }
+    ];
+
+    const board = document.querySelector("#board");
+    const search = document.querySelector("#search");
+    const reset = document.querySelector("#reset");
+
+    function loadCards() {
+      const saved = localStorage.getItem(storageKey);
+      if (!saved) return structuredClone(seedCards);
+      try {
+        const parsed = JSON.parse(saved);
+        if (!Array.isArray(parsed)) return structuredClone(seedCards);
+        return parsed;
+      } catch {
+        return structuredClone(seedCards);
+      }
+    }
+
+    let cards = loadCards();
+
+    function saveCards() {
+      localStorage.setItem(storageKey, JSON.stringify(cards));
+    }
+
+    function render() {
+      board.innerHTML = "";
+      for (const column of columns) {
+        const columnCards = cards.filter((card) => card.state === column.id);
+        const section = document.createElement("section");
+        section.className = "column";
+        section.dataset.state = column.id;
+        section.innerHTML = `
+          <header class="column-header">
+            <div class="column-title">
+              <h2>${column.title}</h2>
+              <span class="count">${columnCards.length}</span>
+            </div>
+            <p>${column.help}</p>
+          </header>
+          <div class="lane" data-lane="${column.id}" aria-label="${column.title}"></div>
+        `;
+        board.appendChild(section);
+
+        const lane = section.querySelector(".lane");
+        for (const card of columnCards) {
+          lane.appendChild(renderCard(card));
+        }
+      }
+      attachLaneEvents();
+      applyFilter();
+      updateMetrics();
+    }
+
+    function renderCard(card) {
+      const article = document.createElement("article");
+      article.className = "card";
+      article.draggable = true;
+      article.dataset.cardId = card.id;
+      article.dataset.search = `${card.ticket} ${card.title} ${card.owner} ${card.tags.join(" ")} ${card.summary}`.toLowerCase();
+      article.innerHTML = `
+        <div class="card-top">
+          <span class="ticket">${card.ticket}</span>
+          <span class="risk ${card.risk}">${card.risk}</span>
+        </div>
+        <h3>${card.title}</h3>
+        <p>${card.summary}</p>
+        <div class="meta">
+          <span><b>Owner</b><br>${card.owner}</span>
+          <span><b>Evidencia</b><br>${card.evidence}</span>
+        </div>
+        <div class="tags">${card.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}</div>
+      `;
+      article.addEventListener("dragstart", (event) => {
+        event.dataTransfer.setData("text/plain", card.id);
+        event.dataTransfer.effectAllowed = "move";
+      });
+      return article;
+    }
+
+    function attachLaneEvents() {
+      document.querySelectorAll(".lane").forEach((lane) => {
+        lane.addEventListener("dragover", (event) => {
+          event.preventDefault();
+          lane.classList.add("drag-over");
+        });
+        lane.addEventListener("dragleave", () => lane.classList.remove("drag-over"));
+        lane.addEventListener("drop", (event) => {
+          event.preventDefault();
+          lane.classList.remove("drag-over");
+          const id = event.dataTransfer.getData("text/plain");
+          const card = cards.find((item) => item.id === id);
+          if (!card) return;
+          card.state = lane.dataset.lane;
+          saveCards();
+          render();
+        });
+      });
+    }
+
+    function applyFilter() {
+      const value = search.value.trim().toLowerCase();
+      document.querySelectorAll(".card").forEach((card) => {
+        card.hidden = value && !card.dataset.search.includes(value);
+      });
+    }
+
+    function updateMetrics() {
+      document.querySelector("#metric-total").textContent = cards.length;
+      document.querySelector("#metric-active").textContent = cards.filter((card) => !["done", "human"].includes(card.state)).length;
+      document.querySelector("#metric-human").textContent = cards.filter((card) => card.state === "human").length;
+      document.querySelector("#metric-done").textContent = cards.filter((card) => card.state === "done").length;
+    }
+
+    search.addEventListener("input", applyFilter);
+    reset.addEventListener("click", () => {
+      cards = structuredClone(seedCards);
+      saveCards();
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>

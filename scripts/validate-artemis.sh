@@ -18,6 +18,8 @@ docs/agents/HANDOFF_PROTOCOL.md
 docs/control-plane/artemis-control-plane.md
 docs/principles/artemis-principles.md
 docs/runbooks/github-setup.md
+docs/schemas/artemis-event.schema.json
+docs/schemas/artemis-event-log.schema.json
 control-plane/index.html
 control-plane/tasks.json
 templates/AGENTS.md
@@ -36,6 +38,7 @@ scripts/artemis-validation-gate.sh
 scripts/artemis-github-issues.sh
 scripts/artemis-codex-app-server.sh
 scripts/artemis-claude-code.sh
+scripts/artemis-event-log.sh
 "
 
 for file in $required_files; do
@@ -93,6 +96,7 @@ sh -n scripts/artemis-validation-gate.sh
 sh -n scripts/artemis-github-issues.sh
 sh -n scripts/artemis-codex-app-server.sh
 sh -n scripts/artemis-claude-code.sh
+sh -n scripts/artemis-event-log.sh
 sh -n scripts/validate-artemis.sh
 
 scripts/artemis-tasks.sh >/tmp/artemis-tasks.json
@@ -159,6 +163,12 @@ fi
 scripts/artemis-claude-code.sh --artifact-root /tmp/artemis-claude-code --json >/tmp/artemis-claude-code.json
 if ! grep -q '"overall": "passed"' /tmp/artemis-claude-code.json; then
   echo "scripts/artemis-claude-code.sh did not report the expected passed status" >&2
+  exit 1
+fi
+
+scripts/artemis-event-log.sh --artifact-root /tmp/artemis-event-log --json >/tmp/artemis-event-log.json
+if ! grep -q '"event_type": "validation.completed"' /tmp/artemis-event-log.json; then
+  echo "scripts/artemis-event-log.sh did not emit expected validation event" >&2
   exit 1
 fi
 

@@ -364,7 +364,7 @@ Aceite:
 
 Objetivo: unificar eventos vindos de Exec Packs, GitHub Issues, Codex app-server e Claude Code.
 
-Estado: proximo corte em TKT-016.
+Estado: concluido como schema e exemplo read-only em TKT-016.
 
 Aceite:
 
@@ -372,6 +372,20 @@ Aceite:
 - adapters produzem campos compativeis;
 - Control Plane consegue consumir eventos sem virar fonte canonica;
 - Human Gates e evidencias ficam rastreaveis por ticket, tentativa e runner.
+
+### Fase 10 - Adapters emitindo eventos canonicos
+
+Objetivo: fazer os adapters existentes emitirem `events.json` no schema ARTEMIS.
+
+Estado: proximo corte em TKT-017.
+
+Aceite:
+
+- GitHub Issues adapter emite eventos canonicos;
+- Codex app-server adapter emite eventos canonicos;
+- Claude Code adapter emite eventos canonicos;
+- Validation Gate valida existencia dos eventos;
+- JSON especifico de cada adapter continua disponivel para diagnostico.
 
 ## 10. Gatilhos de confiabilidade
 

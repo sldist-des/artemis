@@ -1,0 +1,479 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-04-30T19:54:36Z",
+  "source": "scripts/artemis-event-log.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-016_task_discovered",
+      "event_type": "task.discovered",
+      "generated_at": "2026-04-30T19:54:36Z",
+      "producer": {
+        "adapter": "exec_pack",
+        "name": "scripts/artemis-tasks.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-016",
+        "task_id": "tkt-016",
+        "title": "Definir schema canonico de eventos ARTEMIS",
+        "exec_pack": "docs/exec-packs/active/TKT-016-artemis-event-log-schema.md",
+        "artifact_root": "artifacts/artemis-event-log-schema/run-01/STATUS.md"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": null,
+        "to": "ready",
+        "reason": "Active Exec Pack discovered by local task source."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-event-log-schema/run-01/STATUS.md",
+        "status_path": "artifacts/artemis-event-log-schema/run-01/STATUS.md/STATUS.md",
+        "validation_path": "artifacts/artemis-event-log-schema/run-01/STATUS.md/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-event-log-schema/run-01/STATUS.md/HANDOFF.md"
+      },
+      "links": {
+        "correlation_id": "tkt-016"
+      },
+      "payload": {
+        "summary": "Um schema local versionado deve definir eventos de tarefa, tentativa, runner, tool use, approval, Human Gate, validacao, evidencia e handoff, com campos minimos para o Control Plane consumir sem virar fonte canonica.",
+        "risk": "medium",
+        "owner": "Architect",
+        "tags": [
+          "exec-pack",
+          "active"
+        ],
+        "reason": "Active Exec Pack discovered by local task source."
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-013_github_issues_readiness",
+      "event_type": "runner.readiness_checked",
+      "generated_at": "2026-04-30T19:54:36Z",
+      "producer": {
+        "adapter": "github_issues",
+        "name": "scripts/artemis-github-issues.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-013",
+        "task_id": "tkt-013",
+        "title": "Criar GitHub Issues adapter",
+        "exec_pack": "docs/exec-packs/done/TKT-013-github-issues-adapter.md",
+        "artifact_root": "artifacts/artemis-github-issues-adapter/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "ready",
+        "to": "human_gate",
+        "reason": "gh auth status did not pass."
+      },
+      "gate": {
+        "kind": "human",
+        "status": "human_gate",
+        "reason": "gh auth status did not pass.",
+        "options": [
+          "authenticate gh",
+          "configure CODEOWNERS",
+          "continue local-only"
+        ]
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-github-issues-adapter/run-01",
+        "status_path": "artifacts/artemis-github-issues-adapter/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-github-issues-adapter/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-github-issues-adapter/run-01/HANDOFF.md"
+      },
+      "links": {
+        "correlation_id": "tkt-013"
+      },
+      "payload": {
+        "overall": "human_gate",
+        "reason": "gh auth status did not pass.",
+        "repo": "sldist-des/artemis",
+        "issue_count": 0,
+        "contract": {
+          "issue_defines": "intent",
+          "exec_pack_defines": "contract",
+          "control_plane_shows": "state",
+          "remote_writes": "human_gate_only",
+          "labels": [
+            "artemis",
+            "artemis:intake",
+            "artemis:ready",
+            "artemis:running",
+            "artemis:human-gate",
+            "artemis:done"
+          ]
+        }
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-014_codex_app_server_contract",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-04-30T19:54:36Z",
+      "producer": {
+        "adapter": "codex_app_server",
+        "name": "scripts/artemis-codex-app-server.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-014",
+        "task_id": "tkt-014",
+        "title": "Preparar Codex app-server adapter",
+        "exec_pack": "docs/exec-packs/done/TKT-014-codex-app-server-adapter.md",
+        "artifact_root": "artifacts/artemis-codex-app-server-adapter/run-01"
+      },
+      "runner": {
+        "kind": "codex_app_server"
+      },
+      "state": {
+        "from": "handoff",
+        "to": "done",
+        "reason": "Codex app-server local contract check passed."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-codex-app-server-adapter/run-01",
+        "status_path": "artifacts/artemis-codex-app-server-adapter/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-codex-app-server-adapter/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-codex-app-server-adapter/run-01/HANDOFF.md"
+      },
+      "links": {
+        "correlation_id": "tkt-014"
+      },
+      "payload": {
+        "overall": "passed",
+        "reason": "Codex app-server local contract check passed.",
+        "mapping_count": 6,
+        "event_contract": {
+          "required_fields": [
+            "event_id",
+            "generated_at",
+            "ticket",
+            "exec_pack",
+            "thread_id",
+            "turn_id",
+            "item_id",
+            "event_type",
+            "state",
+            "artifact_path"
+          ],
+          "states": [
+            "ready",
+            "running",
+            "validating",
+            "review",
+            "human_gate",
+            "handoff",
+            "done",
+            "blocked"
+          ],
+          "approval_event_types": [
+            "item/commandExecution/requestApproval",
+            "item/fileChange/requestApproval",
+            "item/tool/requestUserInput",
+            "mcp_tool_side_effect_approval"
+          ]
+        },
+        "contract": {
+          "terminal_first": true,
+          "app_server_role": "event_source_and_rich_client_protocol",
+          "not_owner_of_method": true,
+          "remote_writes": "human_gate_only",
+          "daemon": "out_of_scope",
+          "default_transport": "stdio",
+          "websocket_transport": "future_human_gate",
+          "non_loopback_listener": "forbidden_without_explicit_human_gate",
+          "thread_shell_command": "human_gate_required_because_it_runs_outside_thread_sandbox"
+        }
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-015_claude_code_contract",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-04-30T19:54:36Z",
+      "producer": {
+        "adapter": "claude_code",
+        "name": "scripts/artemis-claude-code.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-015",
+        "task_id": "tkt-015",
+        "title": "Preparar Claude Code adapter",
+        "exec_pack": "docs/exec-packs/done/TKT-015-claude-code-adapter.md",
+        "artifact_root": "artifacts/artemis-claude-code-adapter/run-01"
+      },
+      "runner": {
+        "kind": "claude_code"
+      },
+      "state": {
+        "from": "handoff",
+        "to": "done",
+        "reason": "Claude Code local contract check passed."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-claude-code-adapter/run-01",
+        "status_path": "artifacts/artemis-claude-code-adapter/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-claude-code-adapter/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-claude-code-adapter/run-01/HANDOFF.md"
+      },
+      "links": {
+        "correlation_id": "tkt-015"
+      },
+      "payload": {
+        "overall": "passed",
+        "reason": "Claude Code local contract check passed.",
+        "mapping_count": 12,
+        "event_contract": {
+          "required_fields": [
+            "event_id",
+            "generated_at",
+            "ticket",
+            "exec_pack",
+            "session_id",
+            "turn_index",
+            "hook_event",
+            "tool_name",
+            "agent_name",
+            "event_type",
+            "state",
+            "artifact_path"
+          ],
+          "human_gate_events": [
+            "Notification",
+            "UserPromptSubmit:block",
+            "PreToolUse:ask",
+            "PreToolUse:deny",
+            "Stop:block",
+            "SubagentStop:block",
+            "dangerous_permission_mode_requested",
+            "remote_control_requested"
+          ],
+          "protected_tools": [
+            "Bash",
+            "Edit",
+            "Write",
+            "WebFetch",
+            "WebSearch",
+            "Agent",
+            "MCP tools"
+          ]
+        },
+        "contract": {
+          "agents_md_canonical": true,
+          "claude_md_role": "thin_runtime_adapter",
+          "runner_role": "headless_or_sdk_runner_adapter",
+          "terminal_first": true,
+          "remote_writes": "human_gate_only",
+          "daemon": "out_of_scope",
+          "remote_control": "human_gate_only",
+          "dangerously_skip_permissions": "forbidden",
+          "default_first_cut": "claude -p with json or stream-json output under supervised runner",
+          "production_automation": "prefer_agent_sdk_after_contract_is_stable"
+        }
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_validation_gate_current",
+      "event_type": "validation.completed",
+      "generated_at": "2026-04-30T19:54:36Z",
+      "producer": {
+        "adapter": "validation_gate",
+        "name": "scripts/artemis-validation-gate.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TASK",
+        "task_id": "task",
+        "title": "ARTEMIS Validation Gate",
+        "exec_pack": "ARTEMIS_WORKFLOW.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "validating",
+        "to": "human_gate",
+        "reason": "Validation Gate completed with structured technical and Human Gate results."
+      },
+      "gate": {
+        "kind": "validation",
+        "status": "human_gate",
+        "reason": "Validation Gate result."
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01",
+        "status_path": "artifacts/artemis-validation-gate/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/HANDOFF.md"
+      },
+      "links": {
+        "correlation_id": "task"
+      },
+      "payload": {
+        "overall": "human_gate",
+        "summary": {
+          "passed": 16,
+          "failed": 0,
+          "human_gate": 2
+        },
+        "checks": [
+          {
+            "name": "shell_bootstrap",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_bootstrap.txt"
+          },
+          {
+            "name": "shell_github_readiness",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_github_readiness.txt"
+          },
+          {
+            "name": "shell_tasks",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_tasks.txt"
+          },
+          {
+            "name": "shell_dry_run",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_dry_run.txt"
+          },
+          {
+            "name": "shell_runner",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt"
+          },
+          {
+            "name": "shell_validation_gate",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_validation_gate.txt"
+          },
+          {
+            "name": "shell_github_issues",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_github_issues.txt"
+          },
+          {
+            "name": "shell_codex_app_server",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_codex_app_server.txt"
+          },
+          {
+            "name": "shell_claude_code",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_claude_code.txt"
+          },
+          {
+            "name": "task_source",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/task_source.txt"
+          },
+          {
+            "name": "dry_run",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/dry_run.txt"
+          },
+          {
+            "name": "runner_plan",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt"
+          },
+          {
+            "name": "required_files",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/required_files.txt"
+          },
+          {
+            "name": "git_diff_check",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/git_diff_check.txt"
+          },
+          {
+            "name": "codex_app_server",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/codex_app_server.txt"
+          },
+          {
+            "name": "claude_code",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/claude_code.txt"
+          },
+          {
+            "name": "github_issues",
+            "kind": "human_gate",
+            "status": "human_gate",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/github_issues.txt"
+          },
+          {
+            "name": "github_auth",
+            "kind": "human_gate",
+            "status": "human_gate",
+            "exit_code": 1,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/github_auth.txt"
+          }
+        ],
+        "reason": "Validation Gate completed with structured technical and Human Gate results."
+      }
+    }
+  ]
+}

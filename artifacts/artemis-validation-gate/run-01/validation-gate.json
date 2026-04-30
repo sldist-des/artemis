@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-30T19:45:13Z",
+  "generated_at": "2026-04-30T19:56:09Z",
   "overall": "human_gate",
   "summary": {
-    "passed": 16,
+    "passed": 18,
     "failed": 0,
     "human_gate": 2
   },
@@ -72,6 +72,13 @@
       "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_claude_code.txt"
     },
     {
+      "name": "shell_event_log",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_event_log.txt"
+    },
+    {
       "name": "task_source",
       "kind": "technical",
       "status": "passed",
@@ -119,6 +126,13 @@
       "status": "passed",
       "exit_code": 0,
       "log": "artifacts/artemis-validation-gate/run-01/check-logs/claude_code.txt"
+    },
+    {
+      "name": "event_log",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/event_log.txt"
     },
     {
       "name": "github_issues",

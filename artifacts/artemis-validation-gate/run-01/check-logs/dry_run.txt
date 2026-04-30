@@ -2,20 +2,20 @@
   "schema_version": 1,
   "source": "artifacts/artemis-validation-gate/run-01/task-source.json",
   "summary": {
-    "eligible": 1,
+    "eligible": 0,
     "blocked": 0,
-    "human_gate": 0,
-    "done": 16
+    "human_gate": 1,
+    "done": 17
   },
   "decisions": [
     {
-      "ticket": "TKT-016",
-      "decision": "eligible",
-      "runner": "codex-cli",
-      "reason": "Task has Exec Pack, owner, evidence target, and no human-gate terms.",
-      "title": "Definir schema canonico de eventos ARTEMIS",
+      "ticket": "TKT-017",
+      "decision": "human_gate",
+      "runner": "human",
+      "reason": "Human gate term matched: github.",
+      "title": "Fazer adapters emitirem eventos canonicos ARTEMIS",
       "state": "ready",
-      "exec_pack": "docs/exec-packs/active/TKT-016-artemis-event-log-schema.md"
+      "exec_pack": "docs/exec-packs/active/TKT-017-adapters-emit-canonical-events.md"
     },
     {
       "ticket": "TKT-000",
@@ -160,6 +160,15 @@
       "title": "Preparar Claude Code adapter",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-015-claude-code-adapter.md"
+    },
+    {
+      "ticket": "TKT-016",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Definir schema canonico de eventos ARTEMIS",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-016-artemis-event-log-schema.md"
     }
   ]
 }

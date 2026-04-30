@@ -678,14 +678,25 @@
       },
       {
         id: "tkt-016",
-        state: "ready",
+        state: "done",
         ticket: "TKT-016",
         title: "Schema de eventos ARTEMIS",
-        summary: "Unificar eventos de Exec Packs, GitHub, Codex app-server e Claude Code.",
+        summary: "Schema canonico criado para unificar eventos de Exec Packs, GitHub, Codex e Claude.",
         owner: "Codex",
         risk: "medium",
-        evidence: "docs/exec-packs/active/TKT-016-artemis-event-log-schema.md",
+        evidence: "artifacts/artemis-event-log-schema/run-01",
         tags: ["events", "schema", "adapters"]
+      },
+      {
+        id: "tkt-017",
+        state: "ready",
+        ticket: "TKT-017",
+        title: "Adapters emitindo eventos",
+        summary: "Fazer adapters existentes emitirem eventos canonicos ARTEMIS.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "docs/exec-packs/active/TKT-017-adapters-emit-canonical-events.md",
+        tags: ["events", "adapters", "schema"]
       },
       {
         id: "github-auth",

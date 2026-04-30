@@ -24,4 +24,4 @@ O gate consolida checks locais e separa falha tecnica de Human Gate.
 
 ## Proxima acao
 
-Executar TKT-016: definir schema canonico de eventos ARTEMIS.
+Executar TKT-017: fazer adapters emitirem eventos canonicos ARTEMIS.

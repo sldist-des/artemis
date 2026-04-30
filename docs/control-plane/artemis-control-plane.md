@@ -81,3 +81,21 @@ The first cut is stdio-only and read-only. WebSocket, non-loopback listeners, au
 - Subagents / Agent tool -> specialist agents under `AGENTS.md` authority.
 
 The first cut is read-only. Remote control, broad tool permission, bypass permission modes, unreviewed MCP, plugins and remote writes require Human Gate.
+
+## Canonical event log
+
+`docs/schemas/artemis-event.schema.json` defines the shared ARTEMIS event envelope for adapters.
+
+Stable fields include:
+
+- producer;
+- subject;
+- runner;
+- state;
+- gate;
+- severity;
+- evidence;
+- links;
+- payload.
+
+`scripts/artemis-event-log.sh` generates a local example from current Exec Pack and adapter artifacts. The Control Plane may consume these events in a future cut, but Exec Packs, artifacts and Git remain canonical.

@@ -113,6 +113,12 @@ Verifique o contrato read-only do Claude Code com:
 scripts/artemis-claude-code.sh
 ```
 
+Gere um event log ARTEMIS local de exemplo com:
+
+```bash
+scripts/artemis-event-log.sh
+```
+
 ## Como aplicar em um projeto
 
 1. Copie os templates para a raiz do projeto alvo.

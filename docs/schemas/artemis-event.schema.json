@@ -1,0 +1,311 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://artemis.local/schemas/artemis-event.schema.json",
+  "title": "ARTEMIS Event",
+  "description": "Canonical event envelope for ARTEMIS task, runner, gate, validation, evidence and handoff events.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "event_id",
+    "event_type",
+    "generated_at",
+    "producer",
+    "subject",
+    "state",
+    "severity",
+    "evidence",
+    "payload"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "event_id": {
+      "type": "string",
+      "pattern": "^evt_[a-z0-9][a-z0-9_.-]*$"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "task.discovered",
+        "task.state_changed",
+        "runner.readiness_checked",
+        "runner.attempt_planned",
+        "runner.attempt_started",
+        "runner.attempt_completed",
+        "tool.started",
+        "tool.completed",
+        "approval.requested",
+        "approval.resolved",
+        "human_gate.opened",
+        "human_gate.resolved",
+        "validation.started",
+        "validation.completed",
+        "evidence.recorded",
+        "handoff.recorded",
+        "adapter.contract_recorded"
+      ]
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "adapter",
+        "name"
+      ],
+      "properties": {
+        "adapter": {
+          "type": "string",
+          "enum": [
+            "exec_pack",
+            "github_issues",
+            "codex_app_server",
+            "claude_code",
+            "validation_gate",
+            "control_plane",
+            "manual"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string"
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "read_only",
+            "dry_run",
+            "supervised",
+            "manual",
+            "runtime"
+          ]
+        }
+      }
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ticket",
+        "exec_pack"
+      ],
+      "properties": {
+        "ticket": {
+          "type": "string",
+          "pattern": "^[A-Z]+-[0-9]+|GIT|TASK$"
+        },
+        "task_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "exec_pack": {
+          "type": "string"
+        },
+        "artifact_root": {
+          "type": "string"
+        },
+        "issue_url": {
+          "type": "string"
+        },
+        "branch": {
+          "type": "string"
+        },
+        "worktree": {
+          "type": "string"
+        }
+      }
+    },
+    "runner": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "human",
+            "codex_cli",
+            "codex_app_server",
+            "claude_code",
+            "github_actions",
+            "none"
+          ]
+        },
+        "attempt_id": {
+          "type": "string"
+        },
+        "thread_id": {
+          "type": "string"
+        },
+        "turn_id": {
+          "type": "string"
+        },
+        "session_id": {
+          "type": "string"
+        },
+        "agent_name": {
+          "type": "string"
+        },
+        "tool_name": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        }
+      }
+    },
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "from",
+        "to"
+      ],
+      "properties": {
+        "from": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            null,
+            "intake",
+            "context",
+            "ready",
+            "running",
+            "validating",
+            "review",
+            "human_gate",
+            "handoff",
+            "done",
+            "blocked"
+          ]
+        },
+        "to": {
+          "type": "string",
+          "enum": [
+            "intake",
+            "context",
+            "ready",
+            "running",
+            "validating",
+            "review",
+            "human_gate",
+            "handoff",
+            "done",
+            "blocked"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "none",
+            "human",
+            "policy",
+            "validation",
+            "security"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "not_applicable",
+            "opened",
+            "resolved",
+            "passed",
+            "failed",
+            "human_gate"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "info",
+        "warning",
+        "error",
+        "critical"
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_path"
+      ],
+      "properties": {
+        "artifact_path": {
+          "type": "string"
+        },
+        "status_path": {
+          "type": "string"
+        },
+        "validation_path": {
+          "type": "string"
+        },
+        "handoff_path": {
+          "type": "string"
+        },
+        "logs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "links": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "commit": {
+          "type": "string"
+        },
+        "issue": {
+          "type": "string"
+        },
+        "pull_request": {
+          "type": "string"
+        },
+        "parent_event_id": {
+          "type": "string"
+        },
+        "correlation_id": {
+          "type": "string"
+        }
+      }
+    },
+    "payload": {
+      "type": "object"
+    }
+  }
+}

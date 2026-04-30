@@ -233,6 +233,15 @@ scripts/artemis-claude-code.sh --json
 
 O adapter e read-only. Ele verifica disponibilidade local da CLI, auth, agents e flags relevantes, e mapeia headless runs, `json`/`stream-json`, hooks, subagents e tool events para tentativa, evento, Human Gate e evidencia ARTEMIS. Nao executa `claude -p`, nao habilita remote control, nao altera settings, agents, hooks, MCP, arquivos ou Git.
 
+Eventos ARTEMIS usam envelope canonico versionado:
+
+```bash
+scripts/artemis-event-log.sh
+scripts/artemis-event-log.sh --json
+```
+
+O schema vive em `docs/schemas/artemis-event.schema.json` e `docs/schemas/artemis-event-log.schema.json`. O envelope comum registra produtor, sujeito, runner, estado, gate, severidade, evidencia, links e payload. Campos especificos de GitHub, Codex app-server ou Claude Code ficam em `payload`, para que o Control Plane consuma eventos sem virar fonte canonica.
+
 ## Completion checklist
 
 Antes de mover uma tarefa para `Done`, confirme:

@@ -11,13 +11,13 @@ Criar um Validation Gate local que consolide checks obrigatorios, registre evide
 ## Acoes realizadas
 
 - Criado `scripts/artemis-validation-gate.sh`.
-- Gate executa checks shell, task source, dry-run, runner plan, arquivos obrigatorios e `git diff --check`.
+- Gate executa checks shell, task source, dry-run, runner plan, GitHub Issues adapter, arquivos obrigatorios e `git diff --check`.
 - Gate registra `validation-gate.json`, `VALIDATION_GATE.md`, `results.tsv` e logs por check.
 - `scripts/validate-artemis.sh` passou a exigir o Validation Gate.
 - TKT-012 movido para `done`.
-- TKT-013 aberto como proximo corte para GitHub Issues adapter.
+- TKT-013 executado como GitHub Issues adapter read-only.
 
 ## Resultado
 
 - Checks tecnicos: passaram.
-- Human Gate: `github_auth`, por token `gh` invalido e CODEOWNERS sem owner real.
+- Human Gate: `github_issues` e `github_auth`, por token `gh` invalido e CODEOWNERS sem owner real.

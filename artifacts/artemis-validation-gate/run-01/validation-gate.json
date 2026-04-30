@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-30T19:14:31Z",
+  "generated_at": "2026-04-30T19:19:40Z",
   "overall": "human_gate",
   "summary": {
-    "passed": 11,
+    "passed": 12,
     "failed": 0,
-    "human_gate": 1
+    "human_gate": 2
   },
   "checks": [
     {
@@ -51,6 +51,13 @@
       "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_validation_gate.txt"
     },
     {
+      "name": "shell_github_issues",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_github_issues.txt"
+    },
+    {
       "name": "task_source",
       "kind": "technical",
       "status": "passed",
@@ -84,6 +91,13 @@
       "status": "passed",
       "exit_code": 0,
       "log": "artifacts/artemis-validation-gate/run-01/check-logs/git_diff_check.txt"
+    },
+    {
+      "name": "github_issues",
+      "kind": "human_gate",
+      "status": "human_gate",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/github_issues.txt"
     },
     {
       "name": "github_auth",

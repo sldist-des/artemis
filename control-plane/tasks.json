@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-30T19:11:17Z",
+  "generated_at": "2026-04-30T19:19:31Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
-      "id": "tkt-013",
-      "ticket": "TKT-013",
-      "title": "Criar GitHub Issues adapter",
+      "id": "tkt-014",
+      "ticket": "TKT-014",
+      "title": "Preparar Codex app-server adapter",
       "state": "ready",
       "owner": "Architect",
       "risk": "medium",
-      "summary": "Um adapter local deve conseguir verificar readiness de GitHub, documentar labels/contrato minimo e, quando houver autenticacao valida, listar issues ARTEMIS sem alterar estado remoto.",
-      "exec_pack": "docs/exec-packs/active/TKT-013-github-issues-adapter.md",
-      "evidence": "artifacts/artemis-github-issues-adapter/run-01/STATUS.md",
+      "summary": "Um contrato local deve mapear threads, turns, items e approvals do Codex app-server para tarefas, tentativas, eventos, Human Gates e evidencias ARTEMIS.",
+      "exec_pack": "docs/exec-packs/active/TKT-014-codex-app-server-adapter.md",
+      "evidence": "artifacts/artemis-codex-app-server-adapter/run-01/STATUS.md",
       "tags": ["exec-pack", "active"]
     },
     {
@@ -169,6 +169,18 @@
       "summary": "Um comando local executa os checks canonicos do ARTEMIS, registra resultado estruturado e diferencia falha tecnica de Human Gate.",
       "exec_pack": "docs/exec-packs/done/TKT-012-validation-gate.md",
       "evidence": "artifacts/artemis-validation-gate/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-013",
+      "ticket": "TKT-013",
+      "title": "Criar GitHub Issues adapter",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "Um adapter local deve conseguir verificar readiness de GitHub, documentar labels/contrato minimo e, quando houver autenticacao valida, listar issues ARTEMIS sem alterar estado remoto.",
+      "exec_pack": "docs/exec-packs/done/TKT-013-github-issues-adapter.md",
+      "evidence": "artifacts/artemis-github-issues-adapter/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

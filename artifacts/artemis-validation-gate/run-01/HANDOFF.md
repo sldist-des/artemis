@@ -24,4 +24,4 @@ O gate consolida checks locais e separa falha tecnica de Human Gate.
 
 ## Proxima acao
 
-Executar TKT-013: GitHub Issues adapter, apos resolver ou explicitar a autenticacao GitHub.
+Executar TKT-014: preparar Codex app-server adapter.

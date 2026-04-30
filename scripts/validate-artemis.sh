@@ -33,6 +33,7 @@ scripts/artemis-tasks.sh
 scripts/artemis-dry-run.sh
 scripts/artemis-runner.sh
 scripts/artemis-validation-gate.sh
+scripts/artemis-github-issues.sh
 "
 
 for file in $required_files; do
@@ -87,6 +88,7 @@ sh -n scripts/artemis-tasks.sh
 sh -n scripts/artemis-dry-run.sh
 sh -n scripts/artemis-runner.sh
 sh -n scripts/artemis-validation-gate.sh
+sh -n scripts/artemis-github-issues.sh
 sh -n scripts/validate-artemis.sh
 
 scripts/artemis-tasks.sh >/tmp/artemis-tasks.json
@@ -135,6 +137,12 @@ fi
 scripts/artemis-validation-gate.sh --artifact-root /tmp/artemis-validation-gate --json >/tmp/artemis-validation-gate.json
 if ! grep -q '"overall": "human_gate"' /tmp/artemis-validation-gate.json; then
   echo "scripts/artemis-validation-gate.sh did not report the expected Human Gate status" >&2
+  exit 1
+fi
+
+scripts/artemis-github-issues.sh --artifact-root /tmp/artemis-github-issues --json >/tmp/artemis-github-issues.json
+if ! grep -q '"overall": "human_gate"' /tmp/artemis-github-issues.json; then
+  echo "scripts/artemis-github-issues.sh did not report the expected Human Gate status" >&2
   exit 1
 fi
 

@@ -206,6 +206,15 @@ scripts/artemis-validation-gate.sh --json
 
 O gate retorna `passed`, `failed` ou `human_gate`. Resultado `failed` impede Done. Resultado `human_gate` exige decisao humana documentada.
 
+GitHub Issues sao fonte complementar de intencao, nao substituem Exec Packs:
+
+```bash
+scripts/artemis-github-issues.sh
+scripts/artemis-github-issues.sh --json
+```
+
+O adapter e read-only. Se `gh auth`, CODEOWNERS, labels ou rulesets estiverem pendentes, o resultado deve ser `human_gate`.
+
 ## Completion checklist
 
 Antes de mover uma tarefa para `Done`, confirme:

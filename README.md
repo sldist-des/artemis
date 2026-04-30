@@ -95,6 +95,12 @@ Rode o Validation Gate antes de handoff:
 scripts/artemis-validation-gate.sh
 ```
 
+Verifique o adapter read-only de GitHub Issues com:
+
+```bash
+scripts/artemis-github-issues.sh
+```
+
 ## Como aplicar em um projeto
 
 1. Copie os templates para a raiz do projeto alvo.

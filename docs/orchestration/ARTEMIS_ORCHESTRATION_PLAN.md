@@ -317,7 +317,7 @@ Aceite:
 
 Objetivo: usar GitHub como task source sem abandonar Exec Packs.
 
-Estado: proximo corte em TKT-013; depende de Human Gate para autenticacao GitHub real.
+Estado: concluido localmente em TKT-013; segue em Human Gate para autenticacao GitHub real.
 
 Regra:
 
@@ -336,6 +336,8 @@ Aceite:
 ### Fase 7 - Codex app-server adapter
 
 Objetivo: capturar eventos ricos de Codex.
+
+Estado: proximo corte em TKT-014.
 
 Aceite:
 
@@ -433,4 +435,4 @@ O caminho em fases permite usar o melhor de Symphony e app-server sem abrir mao 
 
 ### Follow-ups
 
-- TKT-013: criar GitHub Issues adapter.
+- TKT-014: preparar Codex app-server adapter.

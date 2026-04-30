@@ -24,4 +24,4 @@ O Control Plane pode consumir `control-plane/tasks.json` gerado a partir dos Exe
 
 ## Proxima acao
 
-Executar TKT-011: criar runner local supervisionado.
+Executar TKT-012: criar Validation Gate forte.

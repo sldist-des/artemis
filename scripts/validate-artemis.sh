@@ -31,6 +31,7 @@ scripts/bootstrap-artemis.sh
 scripts/github-readiness.sh
 scripts/artemis-tasks.sh
 scripts/artemis-dry-run.sh
+scripts/artemis-runner.sh
 "
 
 for file in $required_files; do
@@ -83,6 +84,7 @@ sh -n scripts/bootstrap-artemis.sh
 sh -n scripts/github-readiness.sh
 sh -n scripts/artemis-tasks.sh
 sh -n scripts/artemis-dry-run.sh
+sh -n scripts/artemis-runner.sh
 sh -n scripts/validate-artemis.sh
 
 scripts/artemis-tasks.sh >/tmp/artemis-tasks.json
@@ -99,6 +101,32 @@ fi
 scripts/artemis-dry-run.sh --json >/tmp/artemis-dry-run.json
 if ! grep -q '"decisions": \[' /tmp/artemis-dry-run.json; then
   echo "scripts/artemis-dry-run.sh did not emit dry-run decisions" >&2
+  exit 1
+fi
+
+cat >/tmp/artemis-runner-task-source.json <<'JSON'
+{
+  "schema_version": 1,
+  "source": "scripts/validate-artemis.sh",
+  "tasks": [
+    {
+      "id": "tkt-validate",
+      "ticket": "TKT-VALIDATE",
+      "title": "Validate supervised runner",
+      "state": "ready",
+      "owner": "Codex",
+      "risk": "low",
+      "summary": "Synthetic task used by validation to verify runner artifacts.",
+      "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md",
+      "evidence": "artifacts/validate-runner/run-01/STATUS.md",
+      "tags": ["exec-pack", "validation"]
+    }
+  ]
+}
+JSON
+scripts/artemis-runner.sh --input /tmp/artemis-runner-task-source.json --ticket TKT-VALIDATE --command "scripts/artemis-dry-run.sh --input /tmp/artemis-runner-task-source.json" --artifact-root /tmp/artemis-runner-validation >/tmp/artemis-runner.out
+if ! grep -q '/tmp/artemis-runner-validation/attempts/' /tmp/artemis-runner.out; then
+  echo "scripts/artemis-runner.sh did not create a supervised attempt artifact" >&2
   exit 1
 fi
 

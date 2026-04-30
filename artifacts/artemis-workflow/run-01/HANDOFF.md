@@ -24,4 +24,4 @@ Workflow criado localmente e usado como contrato do TKT-009.
 
 ## Proxima acao
 
-Executar TKT-011: criar runner local supervisionado.
+Executar TKT-012: criar Validation Gate forte.

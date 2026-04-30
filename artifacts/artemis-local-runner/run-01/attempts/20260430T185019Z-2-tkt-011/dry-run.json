@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "source": "control-plane/tasks.json",
+  "summary": {
+    "eligible": 1,
+    "blocked": 0,
+    "human_gate": 0,
+    "done": 11
+  },
+  "decisions": [
+    {
+      "ticket": "TKT-011",
+      "decision": "eligible",
+      "runner": "codex-cli",
+      "reason": "Task has Exec Pack, owner, evidence target, and no human-gate terms.",
+      "title": "Criar runner local supervisionado",
+      "state": "ready",
+      "exec_pack": "docs/exec-packs/active/TKT-011-local-supervised-runner.md"
+    },
+    {
+      "ticket": "TKT-000",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Montar starter kit ARTEMIS",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-000-artemis-starter-kit.md"
+    },
+    {
+      "ticket": "TKT-001",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Criar base Git do ARTEMIS",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-001-git-foundation.md"
+    },
+    {
+      "ticket": "TKT-002",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Canonizar AGENTS.md como guia comum",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-002-agent-guide-canon.md"
+    },
+    {
+      "ticket": "TKT-003",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Operacionalizar o proprio repositorio ARTEMIS",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-003-repository-operationalization.md"
+    },
+    {
+      "ticket": "TKT-004",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Preparar criacao do remoto GitHub",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-004-github-remote-readiness.md"
+    },
+    {
+      "ticket": "TKT-005",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Implementar ARTEMIS Control Plane",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-005-artemis-control-plane.md"
+    },
+    {
+      "ticket": "TKT-006",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Planejar ARTEMIS Orchestrator",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-006-artemis-orchestration-plan.md"
+    },
+    {
+      "ticket": "TKT-007",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Renomear superficie visual para ARTEMIS Control Plane",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-007-control-plane-rename.md"
+    },
+    {
+      "ticket": "TKT-008",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Criar ARTEMIS_WORKFLOW.md",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-008-artemis-workflow.md"
+    },
+    {
+      "ticket": "TKT-009",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Criar task source local para Exec Packs",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-009-local-task-source.md"
+    },
+    {
+      "ticket": "TKT-010",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Criar orchestrator dry-run",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-010-orchestrator-dry-run.md"
+    }
+  ]
+}

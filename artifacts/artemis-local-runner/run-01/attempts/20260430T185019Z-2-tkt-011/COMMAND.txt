@@ -1,0 +1,41 @@
+ARTEMIS Orchestrator Dry Run
+source: control-plane/tasks.json
+summary: eligible=1 blocked=0 human_gate=0 done=11
+
+- TKT-011 [eligible] runner=codex-cli
+  title: Criar runner local supervisionado
+  reason: Task has Exec Pack, owner, evidence target, and no human-gate terms.
+  would_dispatch: codex-cli --exec-pack docs/exec-packs/active/TKT-011-local-supervised-runner.md
+- TKT-000 [done] runner=none
+  title: Montar starter kit ARTEMIS
+  reason: Task already archived in done state.
+- TKT-001 [done] runner=none
+  title: Criar base Git do ARTEMIS
+  reason: Task already archived in done state.
+- TKT-002 [done] runner=none
+  title: Canonizar AGENTS.md como guia comum
+  reason: Task already archived in done state.
+- TKT-003 [done] runner=none
+  title: Operacionalizar o proprio repositorio ARTEMIS
+  reason: Task already archived in done state.
+- TKT-004 [done] runner=none
+  title: Preparar criacao do remoto GitHub
+  reason: Task already archived in done state.
+- TKT-005 [done] runner=none
+  title: Implementar ARTEMIS Control Plane
+  reason: Task already archived in done state.
+- TKT-006 [done] runner=none
+  title: Planejar ARTEMIS Orchestrator
+  reason: Task already archived in done state.
+- TKT-007 [done] runner=none
+  title: Renomear superficie visual para ARTEMIS Control Plane
+  reason: Task already archived in done state.
+- TKT-008 [done] runner=none
+  title: Criar ARTEMIS_WORKFLOW.md
+  reason: Task already archived in done state.
+- TKT-009 [done] runner=none
+  title: Criar task source local para Exec Packs
+  reason: Task already archived in done state.
+- TKT-010 [done] runner=none
+  title: Criar orchestrator dry-run
+  reason: Task already archived in done state.

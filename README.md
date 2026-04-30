@@ -82,6 +82,13 @@ Simule dispatch sem iniciar agentes com:
 scripts/artemis-dry-run.sh
 ```
 
+Prepare ou execute uma tentativa local supervisionada com:
+
+```bash
+scripts/artemis-runner.sh --ticket TKT-000 --command "scripts/validate-artemis.sh"
+scripts/artemis-runner.sh --ticket TKT-000 --command "scripts/validate-artemis.sh" --execute
+```
+
 ## Como aplicar em um projeto
 
 1. Copie os templates para a raiz do projeto alvo.

@@ -24,4 +24,4 @@ Plano criado em `docs/orchestration/ARTEMIS_ORCHESTRATION_PLAN.md`.
 
 ## Proxima acao
 
-Executar TKT-011: criar runner local supervisionado.
+Executar TKT-012: criar Validation Gate forte.

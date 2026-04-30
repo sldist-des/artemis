@@ -274,7 +274,7 @@ Aceite:
 
 Objetivo: permitir iniciar uma tarefa local com controle terminal-first.
 
-Estado: proximo corte em TKT-011.
+Estado: concluido em TKT-011.
 
 Primeiro runner:
 
@@ -295,6 +295,8 @@ Aceite:
 ### Fase 5 - Validation Gate forte
 
 Objetivo: tornar confiabilidade mensuravel.
+
+Estado: proximo corte em TKT-012.
 
 Gates:
 
@@ -429,4 +431,4 @@ O caminho em fases permite usar o melhor de Symphony e app-server sem abrir mao 
 
 ### Follow-ups
 
-- TKT-011: criar runner local supervisionado.
+- TKT-012: criar Validation Gate forte.

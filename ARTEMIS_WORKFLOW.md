@@ -188,6 +188,15 @@ scripts/artemis-dry-run.sh --json
 
 O dry-run nunca inicia agentes, nao cria worktrees e nao altera Exec Packs. Ele apenas classifica tarefas como `eligible`, `blocked`, `human_gate` ou `done`.
 
+Para preparar uma execucao local supervisionada, use:
+
+```bash
+scripts/artemis-runner.sh --ticket TKT-000 --command "scripts/validate-artemis.sh"
+scripts/artemis-runner.sh --ticket TKT-000 --command "scripts/validate-artemis.sh" --execute
+```
+
+Sem `--execute`, o runner apenas registra o plano. Com `--execute`, ele roda o comando depois de validar elegibilidade e bloquear comandos remotos, destrutivos ou de deploy.
+
 ## Completion checklist
 
 Antes de mover uma tarefa para `Done`, confirme:

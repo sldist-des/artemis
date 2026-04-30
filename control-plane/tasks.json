@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-30T18:28:10Z",
+  "generated_at": "2026-04-30T18:51:38Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
-      "id": "tkt-011",
-      "ticket": "TKT-011",
-      "title": "Criar runner local supervisionado",
+      "id": "tkt-012",
+      "ticket": "TKT-012",
+      "title": "Criar Validation Gate forte",
       "state": "ready",
       "owner": "Architect",
       "risk": "medium",
-      "summary": "Um comando local prepara o contexto de execucao para uma tarefa elegivel sem fazer merge, push ou alteracao remota. O runner deve ser explicito, auditavel e reversivel.",
-      "exec_pack": "docs/exec-packs/active/TKT-011-local-supervised-runner.md",
-      "evidence": "artifacts/artemis-local-runner/run-01/STATUS.md",
+      "summary": "Um comando local executa os checks canonicos do ARTEMIS, registra resultado estruturado e diferencia falha tecnica de Human Gate.",
+      "exec_pack": "docs/exec-packs/active/TKT-012-validation-gate.md",
+      "evidence": "artifacts/artemis-validation-gate/run-01/STATUS.md",
       "tags": ["exec-pack", "active"]
     },
     {
@@ -145,6 +145,18 @@
       "summary": "Um comando local le o task source e mostra quais tarefas seriam elegiveis, bloqueadas ou aguardando humano, com razao explicita.",
       "exec_pack": "docs/exec-packs/done/TKT-010-orchestrator-dry-run.md",
       "evidence": "artifacts/artemis-dry-run/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-011",
+      "ticket": "TKT-011",
+      "title": "Criar runner local supervisionado",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "Um comando local prepara o contexto de execucao para uma tarefa elegivel sem fazer merge, push ou alteracao remota. O runner deve ser explicito, auditavel e reversivel.",
+      "exec_pack": "docs/exec-packs/done/TKT-011-local-supervised-runner.md",
+      "evidence": "artifacts/artemis-local-runner/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

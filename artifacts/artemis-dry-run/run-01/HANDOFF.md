@@ -24,4 +24,4 @@ O dry-run le `control-plane/tasks.json`, classifica tarefas e imprime razoes sem
 
 ## Proxima acao
 
-Executar TKT-011: criar runner local supervisionado.
+Executar TKT-012: criar Validation Gate forte.

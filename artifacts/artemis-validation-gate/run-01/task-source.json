@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-30T19:38:17Z",
+  "generated_at": "2026-04-30T19:45:11Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
-      "id": "tkt-015",
-      "ticket": "TKT-015",
-      "title": "Preparar Claude Code adapter",
+      "id": "tkt-016",
+      "ticket": "TKT-016",
+      "title": "Definir schema canonico de eventos ARTEMIS",
       "state": "ready",
       "owner": "Architect",
       "risk": "medium",
-      "summary": "Um contrato local deve mapear Claude Code headless, hooks, subagents, logs e eventos de tool use para Runner Adapter, eventos, Human Gates e evidencias ARTEMIS.",
-      "exec_pack": "docs/exec-packs/active/TKT-015-claude-code-adapter.md",
-      "evidence": "artifacts/artemis-claude-code-adapter/run-01/STATUS.md",
+      "summary": "Um schema local versionado deve definir eventos de tarefa, tentativa, runner, tool use, approval, Human Gate, validacao, evidencia e handoff, com campos minimos para o Control Plane consumir sem virar fonte canonica.",
+      "exec_pack": "docs/exec-packs/active/TKT-016-artemis-event-log-schema.md",
+      "evidence": "artifacts/artemis-event-log-schema/run-01/STATUS.md",
       "tags": ["exec-pack", "active"]
     },
     {
@@ -193,6 +193,18 @@
       "summary": "Um contrato local deve mapear threads, turns, items e approvals do Codex app-server para tarefas, tentativas, eventos, Human Gates e evidencias ARTEMIS.",
       "exec_pack": "docs/exec-packs/done/TKT-014-codex-app-server-adapter.md",
       "evidence": "artifacts/artemis-codex-app-server-adapter/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-015",
+      "ticket": "TKT-015",
+      "title": "Preparar Claude Code adapter",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "Um contrato local deve mapear Claude Code headless, hooks, subagents, logs e eventos de tool use para Runner Adapter, eventos, Human Gates e evidencias ARTEMIS.",
+      "exec_pack": "docs/exec-packs/done/TKT-015-claude-code-adapter.md",
+      "evidence": "artifacts/artemis-claude-code-adapter/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

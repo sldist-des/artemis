@@ -17,9 +17,9 @@ Passou com Human Gate esperado.
 ## Evidencia
 
 - `scripts/artemis-validation-gate.sh --artifact-root artifacts/artemis-validation-gate/run-01 --json` retornou `overall=human_gate`.
-- `validation-gate.json` registrou `passed=14`, `failed=0`, `human_gate=2`.
+- `validation-gate.json` registrou `passed=16`, `failed=0`, `human_gate=2`.
 - `scripts/validate-artemis.sh` retornou `ARTEMIS validation passed`.
-- `scripts/artemis-dry-run.sh --json` classificou TKT-015 como `eligible`.
+- `scripts/artemis-dry-run.sh --json` classificou TKT-016 como `eligible`.
 - `git diff --check` passou.
 
 ## Human Gate

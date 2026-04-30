@@ -107,6 +107,12 @@ Verifique o contrato read-only do Codex app-server com:
 scripts/artemis-codex-app-server.sh
 ```
 
+Verifique o contrato read-only do Claude Code com:
+
+```bash
+scripts/artemis-claude-code.sh
+```
+
 ## Como aplicar em um projeto
 
 1. Copie os templates para a raiz do projeto alvo.

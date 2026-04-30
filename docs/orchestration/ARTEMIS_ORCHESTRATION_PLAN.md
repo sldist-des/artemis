@@ -351,7 +351,7 @@ Aceite:
 
 Objetivo: tratar Claude Code como runner de mesmo nivel.
 
-Estado: proximo corte em TKT-015.
+Estado: concluido como contrato local read-only em TKT-015.
 
 Aceite:
 
@@ -359,6 +359,19 @@ Aceite:
 - hooks registram tool calls e stop/subagent stop;
 - subagents especializados documentados;
 - artifacts equivalentes aos do Codex runner.
+
+### Fase 9 - Event log canonico
+
+Objetivo: unificar eventos vindos de Exec Packs, GitHub Issues, Codex app-server e Claude Code.
+
+Estado: proximo corte em TKT-016.
+
+Aceite:
+
+- schema versionado para eventos ARTEMIS;
+- adapters produzem campos compativeis;
+- Control Plane consegue consumir eventos sem virar fonte canonica;
+- Human Gates e evidencias ficam rastreaveis por ticket, tentativa e runner.
 
 ## 10. Gatilhos de confiabilidade
 

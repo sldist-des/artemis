@@ -5,17 +5,17 @@
     "eligible": 1,
     "blocked": 0,
     "human_gate": 0,
-    "done": 15
+    "done": 16
   },
   "decisions": [
     {
-      "ticket": "TKT-015",
+      "ticket": "TKT-016",
       "decision": "eligible",
       "runner": "codex-cli",
       "reason": "Task has Exec Pack, owner, evidence target, and no human-gate terms.",
-      "title": "Preparar Claude Code adapter",
+      "title": "Definir schema canonico de eventos ARTEMIS",
       "state": "ready",
-      "exec_pack": "docs/exec-packs/active/TKT-015-claude-code-adapter.md"
+      "exec_pack": "docs/exec-packs/active/TKT-016-artemis-event-log-schema.md"
     },
     {
       "ticket": "TKT-000",
@@ -151,6 +151,15 @@
       "title": "Preparar Codex app-server adapter",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-014-codex-app-server-adapter.md"
+    },
+    {
+      "ticket": "TKT-015",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Preparar Claude Code adapter",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-015-claude-code-adapter.md"
     }
   ]
 }

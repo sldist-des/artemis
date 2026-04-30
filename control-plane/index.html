@@ -667,14 +667,25 @@
       },
       {
         id: "tkt-015",
-        state: "ready",
+        state: "done",
         ticket: "TKT-015",
         title: "Claude Code adapter",
-        summary: "Mapear headless, hooks, subagents e logs para eventos ARTEMIS.",
+        summary: "Contrato read-only criado para mapear headless, hooks, subagents e logs para ARTEMIS.",
         owner: "Codex",
         risk: "medium",
-        evidence: "docs/exec-packs/active/TKT-015-claude-code-adapter.md",
+        evidence: "artifacts/artemis-claude-code-adapter/run-01",
         tags: ["claude", "adapter", "hooks"]
+      },
+      {
+        id: "tkt-016",
+        state: "ready",
+        ticket: "TKT-016",
+        title: "Schema de eventos ARTEMIS",
+        summary: "Unificar eventos de Exec Packs, GitHub, Codex app-server e Claude Code.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "docs/exec-packs/active/TKT-016-artemis-event-log-schema.md",
+        tags: ["events", "schema", "adapters"]
       },
       {
         id: "github-auth",

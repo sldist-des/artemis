@@ -1,0 +1,3 @@
+Login method: Claude Max account
+Organization: <redacted-email>'s Organization
+Email: <redacted-email>

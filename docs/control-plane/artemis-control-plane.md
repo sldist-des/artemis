@@ -12,7 +12,7 @@ From Codex app-server, ARTEMIS borrows the idea that rich clients should model w
 
 From Symphony, ARTEMIS borrows the idea that the task board is the control plane, tasks are a state machine, and each active unit of work should map to an isolated workspace with visible status and evidence.
 
-ARTEMIS deliberately does not implement the full Symphony daemon yet. The current version can read a generated local JSON task source from Exec Packs, inspect GitHub Issues readiness, and probe the Codex app-server protocol contract without starting a daemon.
+ARTEMIS deliberately does not implement the full Symphony daemon yet. The current version can read a generated local JSON task source from Exec Packs, inspect GitHub Issues readiness, and probe Codex app-server and Claude Code adapter contracts without starting a daemon.
 
 Sources:
 
@@ -67,3 +67,17 @@ No backend is introduced in this phase.
 - Thread metadata -> workspace and task state pointers.
 
 The first cut is stdio-only and read-only. WebSocket, non-loopback listeners, auth changes, config writes, filesystem writes and `thread/shellCommand` require Human Gate.
+
+## Claude Code adapter contract
+
+`scripts/artemis-claude-code.sh` records the local first-cut mapping:
+
+- Claude `-p` / `--print` -> supervised attempt.
+- `--output-format json` -> attempt result.
+- `--output-format stream-json` -> event stream.
+- `--include-hook-events` -> guardrail event stream.
+- `SessionStart` / `SessionEnd` -> context and evidence lifecycle.
+- `UserPromptSubmit`, `PreToolUse`, `Stop`, `SubagentStop` -> policy gate or Human Gate.
+- Subagents / Agent tool -> specialist agents under `AGENTS.md` authority.
+
+The first cut is read-only. Remote control, broad tool permission, bypass permission modes, unreviewed MCP, plugins and remote writes require Human Gate.

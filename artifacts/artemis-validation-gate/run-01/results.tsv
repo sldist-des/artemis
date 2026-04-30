@@ -6,11 +6,13 @@ shell_runner	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-l
 shell_validation_gate	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_validation_gate.txt
 shell_github_issues	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_github_issues.txt
 shell_codex_app_server	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_codex_app_server.txt
+shell_claude_code	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_claude_code.txt
 task_source	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/task_source.txt
 dry_run	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/dry_run.txt
 runner_plan	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt
 required_files	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/required_files.txt
 git_diff_check	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/git_diff_check.txt
 codex_app_server	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/codex_app_server.txt
+claude_code	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/claude_code.txt
 github_issues	human_gate	human_gate	0	artifacts/artemis-validation-gate/run-01/check-logs/github_issues.txt
 github_auth	human_gate	human_gate	1	artifacts/artemis-validation-gate/run-01/check-logs/github_auth.txt

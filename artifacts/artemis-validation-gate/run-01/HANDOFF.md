@@ -24,4 +24,4 @@ O gate consolida checks locais e separa falha tecnica de Human Gate.
 
 ## Proxima acao
 
-Executar TKT-015: preparar Claude Code adapter.
+Executar TKT-016: definir schema canonico de eventos ARTEMIS.

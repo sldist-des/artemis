@@ -1,0 +1,15 @@
+8 active agents
+
+User agents:
+  planner · sonnet
+  reviewer · sonnet
+  spec-writer · haiku
+
+Plugin agents:
+  superpowers:code-reviewer · inherit
+
+Built-in agents:
+  Explore · haiku
+  general-purpose · inherit
+  Plan · inherit
+  statusline-setup · sonnet

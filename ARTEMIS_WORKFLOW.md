@@ -224,6 +224,15 @@ scripts/artemis-codex-app-server.sh --json
 
 O adapter e read-only. Ele verifica disponibilidade local do protocolo, gera contrato ARTEMIS e mapeia `thread`, `turn`, `item`, approvals e notifications para tarefa, tentativa, evento, Human Gate e Control Plane. Nao inicia daemon, nao abre WebSocket e nao altera auth/config/plugins/arquivos remotos.
 
+Claude Code e runner futuro de mesmo nivel, mas segue `AGENTS.md` como fonte canonica:
+
+```bash
+scripts/artemis-claude-code.sh
+scripts/artemis-claude-code.sh --json
+```
+
+O adapter e read-only. Ele verifica disponibilidade local da CLI, auth, agents e flags relevantes, e mapeia headless runs, `json`/`stream-json`, hooks, subagents e tool events para tentativa, evento, Human Gate e evidencia ARTEMIS. Nao executa `claude -p`, nao habilita remote control, nao altera settings, agents, hooks, MCP, arquivos ou Git.
+
 ## Completion checklist
 
 Antes de mover uma tarefa para `Done`, confirme:

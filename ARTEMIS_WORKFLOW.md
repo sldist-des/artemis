@@ -186,7 +186,16 @@ scripts/artemis-dry-run.sh
 scripts/artemis-dry-run.sh --json
 ```
 
-O dry-run nunca inicia agentes, nao cria worktrees e nao altera Exec Packs. Ele apenas classifica tarefas como `eligible`, `blocked`, `human_gate` ou `done`.
+O dry-run nunca inicia agentes, nao cria worktrees e nao altera Exec Packs. Ele classifica tarefas como `eligible`, `blocked`, `human_gate` ou `done` e inclui o plano de workspace quando a tarefa for elegivel.
+
+Antes de executar uma tentativa, verifique o workspace planejado:
+
+```bash
+scripts/artemis-workspace.sh
+scripts/artemis-workspace.sh --ticket TKT-020 --json
+```
+
+O Workspace Manager calcula branch, worktree, lock, artifact root e dono escritor sem criar worktree. Lock existente, worktree existente ou branch ocupada exigem Human Gate. O contrato detalhado vive em `docs/workspaces/artemis-workspace-manager.md`.
 
 Para preparar uma execucao local supervisionada, use:
 
@@ -195,7 +204,7 @@ scripts/artemis-runner.sh --ticket TKT-000 --command "scripts/validate-artemis.s
 scripts/artemis-runner.sh --ticket TKT-000 --command "scripts/validate-artemis.sh" --execute
 ```
 
-Sem `--execute`, o runner apenas registra o plano. Com `--execute`, ele roda o comando depois de validar elegibilidade e bloquear comandos remotos, destrutivos ou de deploy.
+Sem `--execute`, o runner apenas registra o plano. Com `--execute`, ele roda o comando depois de validar elegibilidade, readiness de workspace e bloquear comandos remotos, destrutivos ou de deploy. Cada tentativa registra `workspace.json`.
 
 Antes de mover uma tarefa para Handoff ou Done, execute o Validation Gate:
 

@@ -1,7 +1,7 @@
 # VALIDATION GATE RESULT
 
 - Overall: human_gate
-- Passed: 19
+- Passed: 21
 - Failed: 0
 - Human Gate: 2
 
@@ -11,6 +11,7 @@
 - shell_github_readiness: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_github_readiness.txt`
 - shell_tasks: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_tasks.txt`
 - shell_dry_run: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_dry_run.txt`
+- shell_workspace: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace.txt`
 - shell_runner: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt`
 - shell_validation_gate: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_validation_gate.txt`
 - shell_github_issues: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_github_issues.txt`
@@ -19,6 +20,7 @@
 - shell_event_log: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_event_log.txt`
 - task_source: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/task_source.txt`
 - dry_run: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/dry_run.txt`
+- workspace_check: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/workspace_check.txt`
 - runner_plan: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt`
 - required_files: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/required_files.txt`
 - git_diff_check: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/git_diff_check.txt`

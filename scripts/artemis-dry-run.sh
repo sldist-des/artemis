@@ -48,6 +48,8 @@ import json
 import re
 import sys
 
+from scripts.artemis_workspace_common import plan_workspace
+
 input_path = sys.argv[1]
 output_format = sys.argv[2]
 
@@ -212,6 +214,16 @@ for task in tasks:
     decision["title"] = str(original.get("title", ""))
     decision["state"] = str(original.get("state", ""))
     decision["exec_pack"] = str(original.get("exec_pack", ""))
+    if decision["decision"] == "eligible":
+        workspace_plan = plan_workspace(original)
+        decision["workspace"] = workspace_plan
+        if workspace_plan["readiness"] != "ready":
+            decision["decision"] = workspace_plan["readiness"]
+            decision["runner"] = "human" if workspace_plan["readiness"] == "human_gate" else "none"
+            decision["reason"] = (
+                f"Workspace readiness {workspace_plan['readiness']}: "
+                f"{workspace_plan['reason']}."
+            )
     decisions.append(decision)
 
 summary = {
@@ -245,6 +257,12 @@ else:
         print(f"- {item['ticket']} [{item['decision']}] runner={item['runner']}")
         print(f"  title: {item['title']}")
         print(f"  reason: {item['reason']}")
+        if "workspace" in item:
+            workspace = item["workspace"]["workspace"]
+            print(f"  workspace_readiness: {item['workspace']['readiness']}")
+            print(f"  branch: {workspace['branch']}")
+            print(f"  worktree: {workspace['worktree_path']}")
+            print(f"  lock: {workspace['lock_path']}")
         if item["decision"] == "eligible":
             print(f"  would_dispatch: {item['runner']} --exec-pack {item['exec_pack']}")
 PY

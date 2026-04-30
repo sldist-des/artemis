@@ -1,6 +1,7 @@
 # ARTEMIS local runtime state
 /.omx/
 /.codex
+/.artemis/
 
 # Secrets and local environment
 .env
@@ -34,4 +35,3 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
-

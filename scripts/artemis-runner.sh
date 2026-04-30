@@ -81,7 +81,16 @@ case "$command" in
 esac
 
 tmp=$(mktemp "${TMPDIR:-/tmp}/artemis-runner.XXXXXX.json")
+workspace_tmp=$(mktemp "${TMPDIR:-/tmp}/artemis-workspace.XXXXXX.json")
 scripts/artemis-dry-run.sh --input "$input" --json >"$tmp"
+scripts/artemis-workspace.sh --input "$input" --ticket "$ticket" --json >"$workspace_tmp"
+
+if ! grep -q '"readiness": "ready"' "$workspace_tmp"; then
+  echo "ticket $ticket does not have ready workspace readiness; see workspace plan:" >&2
+  cat "$workspace_tmp" >&2
+  rm -f "$tmp" "$workspace_tmp"
+  exit 3
+fi
 
 metadata=$(python3 - "$tmp" "$input" "$ticket" <<'PY'
 import json
@@ -139,7 +148,8 @@ attempt_dir="$ARTIFACT_ROOT/attempts/$timestamp-$$-$SAFE_TICKET"
 mkdir -p "$attempt_dir"
 
 cp "$tmp" "$attempt_dir/dry-run.json"
-rm -f "$tmp"
+cp "$workspace_tmp" "$attempt_dir/workspace.json"
+rm -f "$tmp" "$workspace_tmp"
 
 cat >"$attempt_dir/ENVIRONMENT.md" <<EOF
 # ENVIRONMENT - $ticket
@@ -152,6 +162,7 @@ cat >"$attempt_dir/ENVIRONMENT.md" <<EOF
 - Branch: $(git branch --show-current 2>/dev/null || true)
 - Head: $(git rev-parse --short HEAD 2>/dev/null || true)
 - Worktree status before: $(git status --short | wc -l | tr -d ' ')
+- Workspace plan: $attempt_dir/workspace.json
 EOF
 
 cat >"$attempt_dir/RUNNER.md" <<EOF
@@ -174,6 +185,7 @@ $(if [ "$execute" -eq 1 ]; then echo "execute"; else echo "plan-only"; fi)
 ## Guardrails
 
 - Dry-run eligibility required.
+- Workspace readiness required.
 - Remote, merge, deployment and destructive commands are blocked.
 - Human Gate still owns push, merge, secrets, production and real owners/rulesets.
 EOF

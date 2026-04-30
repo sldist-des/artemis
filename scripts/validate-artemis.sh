@@ -33,6 +33,7 @@ scripts/bootstrap-artemis.sh
 scripts/github-readiness.sh
 scripts/artemis-tasks.sh
 scripts/artemis-dry-run.sh
+scripts/artemis-workspace.sh
 scripts/artemis-runner.sh
 scripts/artemis-validation-gate.sh
 scripts/artemis-github-issues.sh
@@ -40,6 +41,7 @@ scripts/artemis-codex-app-server.sh
 scripts/artemis-claude-code.sh
 scripts/artemis-event-log.sh
 scripts/artemis_event_common.py
+scripts/artemis_workspace_common.py
 "
 
 for file in $required_files; do
@@ -92,6 +94,7 @@ sh -n scripts/bootstrap-artemis.sh
 sh -n scripts/github-readiness.sh
 sh -n scripts/artemis-tasks.sh
 sh -n scripts/artemis-dry-run.sh
+sh -n scripts/artemis-workspace.sh
 sh -n scripts/artemis-runner.sh
 sh -n scripts/artemis-validation-gate.sh
 sh -n scripts/artemis-github-issues.sh
@@ -116,6 +119,10 @@ if ! grep -q '"decisions": \[' /tmp/artemis-dry-run.json; then
   echo "scripts/artemis-dry-run.sh did not emit dry-run decisions" >&2
   exit 1
 fi
+if ! grep -q '"workspace": {' /tmp/artemis-dry-run.json; then
+  echo "scripts/artemis-dry-run.sh did not include workspace readiness for eligible work" >&2
+  exit 1
+fi
 
 cat >/tmp/artemis-runner-task-source.json <<'JSON'
 {
@@ -137,9 +144,18 @@ cat >/tmp/artemis-runner-task-source.json <<'JSON'
   ]
 }
 JSON
+scripts/artemis-workspace.sh --input /tmp/artemis-runner-task-source.json --ticket TKT-VALIDATE --json >/tmp/artemis-workspace.json
+if ! grep -q '"readiness": "ready"' /tmp/artemis-workspace.json; then
+  echo "scripts/artemis-workspace.sh did not report ready workspace readiness" >&2
+  exit 1
+fi
 scripts/artemis-runner.sh --input /tmp/artemis-runner-task-source.json --ticket TKT-VALIDATE --command "scripts/artemis-dry-run.sh --input /tmp/artemis-runner-task-source.json" --artifact-root /tmp/artemis-runner-validation >/tmp/artemis-runner.out
 if ! grep -q '/tmp/artemis-runner-validation/attempts/' /tmp/artemis-runner.out; then
   echo "scripts/artemis-runner.sh did not create a supervised attempt artifact" >&2
+  exit 1
+fi
+if ! find /tmp/artemis-runner-validation/attempts -name workspace.json -type f | grep -q workspace.json; then
+  echo "scripts/artemis-runner.sh did not record workspace readiness in the attempt" >&2
   exit 1
 fi
 

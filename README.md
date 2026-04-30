@@ -84,6 +84,12 @@ Simule dispatch sem iniciar agentes com:
 scripts/artemis-dry-run.sh
 ```
 
+Verifique o workspace planejado antes de executar:
+
+```bash
+scripts/artemis-workspace.sh --ticket TKT-020
+```
+
 Prepare ou execute uma tentativa local supervisionada com:
 
 ```bash

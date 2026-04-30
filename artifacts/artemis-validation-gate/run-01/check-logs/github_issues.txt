@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-30T20:22:22Z",
+  "generated_at": "2026-04-30T20:37:39Z",
   "overall": "human_gate",
   "reason": "gh auth status did not pass.",
   "mode": "read_only",

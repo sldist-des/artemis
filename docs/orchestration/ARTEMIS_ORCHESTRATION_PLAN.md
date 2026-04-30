@@ -405,7 +405,7 @@ Aceite:
 
 Objetivo: definir o contrato local para worktrees, branches, locks e artifacts por tarefa antes de automatizar execucao paralela.
 
-Estado: proximo corte em TKT-019.
+Estado: concluido em TKT-019.
 
 Aceite:
 
@@ -414,6 +414,20 @@ Aceite:
 - conflitos e mudancas fora de escopo geram Human Gate;
 - limpeza de workspace e handoff ficam auditaveis;
 - dry-run consegue explicar por que uma tarefa pode ou nao iniciar.
+
+### Fase 13 - Eventos de tentativa do runner
+
+Objetivo: fazer o runner supervisionado registrar ciclo de tentativa como eventos canonicos.
+
+Estado: proximo corte em TKT-020.
+
+Aceite:
+
+- tentativa planejada gera `runner.attempt_planned`;
+- tentativa executada gera `runner.attempt_started` e `runner.attempt_completed`;
+- `workspace.json`, `dry-run.json`, comando e resultado aparecem como evidencia;
+- falha tecnica vira evento com severidade adequada;
+- Control Plane consegue consumir o ciclo sem editar estado canonico.
 
 ## 10. Gatilhos de confiabilidade
 

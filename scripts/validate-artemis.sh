@@ -14,10 +14,10 @@ docs/agents/AGENT_REGISTRY.md
 docs/agents/CAPABILITY_REGISTRY.md
 docs/agents/TOOL_POLICY.md
 docs/agents/HANDOFF_PROTOCOL.md
-docs/kanban/artemis-kanban.md
+docs/control-plane/artemis-control-plane.md
 docs/principles/artemis-principles.md
 docs/runbooks/github-setup.md
-kanban/index.html
+control-plane/index.html
 templates/AGENTS.md
 templates/CLAUDE.md
 templates/AI_PROCESS.md
@@ -79,8 +79,8 @@ sh -n scripts/bootstrap-artemis.sh
 sh -n scripts/github-readiness.sh
 sh -n scripts/validate-artemis.sh
 
-if ! grep -q "ARTEMIS Kanban" kanban/index.html; then
-  echo "kanban/index.html does not look like the ARTEMIS Kanban" >&2
+if ! grep -q "ARTEMIS Control Plane" control-plane/index.html; then
+  echo "control-plane/index.html does not look like the ARTEMIS Control Plane" >&2
   exit 1
 fi
 

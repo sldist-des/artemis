@@ -56,15 +56,15 @@ Use `AGENTS.md` como fonte canonica para Codex, Claude Code e outros agentes.
 
 Use `CLAUDE.md` apenas como adaptador fino para Claude Code, apontando para `AGENTS.md` e registrando somente diferencas especificas do runtime Claude.
 
-## Kanban visual
+## ARTEMIS Control Plane
 
 O ARTEMIS agora inclui uma primeira superficie visual local:
 
 ```text
-kanban/index.html
+control-plane/index.html
 ```
 
-Abra esse arquivo no navegador para acompanhar o fluxo por estados: intake, contexto, pronto, execucao, revisao, decisao humana e concluido. O quadro e intencionalmente estatico e sem dependencias; ele salva movimentos no navegador via `localStorage`.
+Abra esse arquivo no navegador para acompanhar o fluxo por estados: intake, contexto, pronto, execucao, revisao, decisao humana e concluido. O Control Plane e intencionalmente estatico e sem dependencias; ele salva movimentos no navegador via `localStorage`.
 
 ## Como aplicar em um projeto
 

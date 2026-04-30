@@ -1,4 +1,4 @@
-# STATUS - ARTEMIS Kanban Run 01
+# STATUS - ARTEMIS Control Plane Run 01
 
 ## Estado
 
@@ -6,7 +6,7 @@ Concluido.
 
 ## Objetivo
 
-Implementar o primeiro Kanban visual ARTEMIS como superficie local, simples e sem dependencias.
+Implementar o primeiro ARTEMIS Control Plane como superficie local, simples e sem dependencias.
 
 ## Corte adotado
 
@@ -14,8 +14,8 @@ Implementar somente a superficie visual estatica. O daemon/orquestrador no estil
 
 ## Acoes realizadas
 
-- Criado `kanban/index.html` como Kanban local, self-contained e sem dependencias.
+- Criado `control-plane/index.html` como Control Plane local, self-contained e sem dependencias.
 - Criado `docs/principles/artemis-principles.md`.
-- Criado `docs/kanban/artemis-kanban.md`.
+- Criado `docs/control-plane/artemis-control-plane.md`.
 - Criado contexto de design em `.impeccable.md`.
 - Atualizados `README.md` e `scripts/validate-artemis.sh`.

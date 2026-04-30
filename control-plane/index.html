@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ARTEMIS Kanban</title>
+  <title>ARTEMIS Control Plane</title>
   <style>
     :root {
       --paper: #f4f1ea;
@@ -444,12 +444,12 @@
       <div class="mark">
         <div class="sigil" aria-hidden="true">A</div>
         <div>
-          <h1 id="page-title">ARTEMIS Kanban</h1>
+          <h1 id="page-title">ARTEMIS Control Plane</h1>
           <p class="subtitle">Uma superficie visual para governar trabalho agentic: intencao, contexto, execucao, evidencia, revisao e decisao humana no mesmo quadro.</p>
         </div>
       </div>
 
-      <aside class="control-panel" aria-label="Controles do Kanban">
+      <aside class="control-panel" aria-label="Controles do Control Plane">
         <div class="principles" aria-label="Principios ARTEMIS">
           <div class="principle"><strong>Simples</strong><span>Menos estados, menos rituais, proxima acao clara.</span></div>
           <div class="principle"><strong>State-of-the-art</strong><span>Inspirado em app-server e Symphony, sem copiar complexidade cedo demais.</span></div>
@@ -476,7 +476,7 @@
         O quadro salva movimentos neste navegador via localStorage. Exec Packs e artifacts continuam sendo a fonte documental do processo.
       </div>
       <nav class="source-links" aria-label="Referencias">
-        <a href="../docs/kanban/artemis-kanban.md">Spec do Kanban</a>
+        <a href="../docs/control-plane/artemis-control-plane.md">Spec do Control Plane</a>
         <a href="../docs/principles/artemis-principles.md">Principios</a>
         <a href="https://developers.openai.com/codex/app-server">Codex app-server</a>
         <a href="https://openai.com/index/open-source-codex-orchestration-symphony/">Symphony</a>
@@ -485,7 +485,8 @@
   </main>
 
   <script>
-    const storageKey = "artemis-kanban-v1";
+    const storageKey = "artemis-control-plane-v1";
+    const legacyStorageKey = "artemis-kanban-v1";
 
     const columns = [
       { id: "intake", title: "Intake", help: "Ideia ou pedido bruto. Ainda nao tem contrato." },
@@ -557,22 +558,22 @@
         id: "tkt-005",
         state: "executing",
         ticket: "TKT-005",
-        title: "Kanban visual ARTEMIS",
-        summary: "Painel local para estado, evidencia e decisao humana.",
+        title: "ARTEMIS Control Plane",
+        summary: "Superficie local para estado, evidencia e decisao humana.",
         owner: "Codex",
         risk: "medium",
-        evidence: "artifacts/artemis-kanban/run-01",
-        tags: ["kanban", "visual", "control-plane"]
+        evidence: "artifacts/artemis-control-plane/run-01",
+        tags: ["control-plane", "visual", "estado"]
       },
       {
         id: "next-symphony",
         state: "intake",
         ticket: "NEXT",
         title: "Orquestrador ARTEMIS",
-        summary: "Avaliar daemon estilo Symphony apos validar o Kanban manual.",
+        summary: "Avaliar daemon estilo Symphony apos validar o Control Plane manual.",
         owner: "Humano",
         risk: "high",
-        evidence: "docs/kanban/artemis-kanban.md",
+        evidence: "docs/control-plane/artemis-control-plane.md",
         tags: ["symphony", "daemon", "future"]
       }
     ];
@@ -583,9 +584,14 @@
 
     function loadCards() {
       const saved = localStorage.getItem(storageKey);
-      if (!saved) return structuredClone(seedCards);
+      const legacy = localStorage.getItem(legacyStorageKey);
+      if (!saved && legacy) {
+        localStorage.setItem(storageKey, legacy);
+      }
+      const source = saved || legacy;
+      if (!source) return structuredClone(seedCards);
       try {
-        const parsed = JSON.parse(saved);
+        const parsed = JSON.parse(source);
         if (!Array.isArray(parsed)) return structuredClone(seedCards);
         return parsed;
       } catch {

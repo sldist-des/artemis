@@ -28,7 +28,7 @@ Nivel 1 - planejamento arquitetural com evidencia.
 ## Contexto minimo
 
 - `docs/principles/artemis-principles.md`
-- `docs/kanban/artemis-kanban.md`
+- `docs/control-plane/artemis-control-plane.md`
 - `docs/agents/TOOL_POLICY.md`
 - `AI_PROCESS.md`
 - `ARCHITECTURE.md`
@@ -40,7 +40,7 @@ Nivel 1 - planejamento arquitetural com evidencia.
 ## Escopo
 
 - Criar plano de orquestracao ARTEMIS.
-- Definir nomes corretos: Control Plane, nao Kanban como conceito principal.
+- Definir nomes corretos: Control Plane como conceito principal.
 - Definir fases antes de implementar daemon.
 - Definir matriz Codex/Claude.
 - Definir gates de confiabilidade.

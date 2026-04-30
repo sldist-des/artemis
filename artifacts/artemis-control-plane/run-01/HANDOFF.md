@@ -1,4 +1,4 @@
-# HANDOFF - ARTEMIS Kanban Run 01
+# HANDOFF - ARTEMIS Control Plane Run 01
 
 ## De
 
@@ -10,15 +10,15 @@ Humano Arquiteto.
 
 ## Objetivo
 
-Entregar o Kanban visual inicial do metodo ARTEMIS.
+Entregar o Control Plane visual inicial do metodo ARTEMIS.
 
 ## Estado atual
 
-Kanban implementado e validado localmente.
+Control Plane implementado e validado localmente.
 
 ## Riscos
 
-- Kanban ainda e local e manual.
+- Control Plane ainda e local e manual.
 - Estado salvo em `localStorage`, nao em GitHub Issues.
 - Sem integracao app-server nesta rodada.
 

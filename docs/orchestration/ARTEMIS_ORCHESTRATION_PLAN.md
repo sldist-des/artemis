@@ -16,7 +16,7 @@ Nome da superficie visual:
 ARTEMIS Control Plane
 ```
 
-Evitar chamar a superficie principal de Kanban. O quadro visual pode ter colunas, mas a funcao real e controle operacional: estado, dono, evidencia, validacao, bloqueio e decisao humana.
+Tratar a superficie principal como ARTEMIS Control Plane. O quadro visual pode ter colunas, mas a funcao real e controle operacional: estado, dono, evidencia, validacao, bloqueio e decisao humana.
 
 ## 2. Tese
 
@@ -197,18 +197,18 @@ Claude deve seguir `AGENTS.md` como contrato comum. `CLAUDE.md` continua apenas 
 
 ### Fase 0 - Renomear e alinhar linguagem
 
-Objetivo: trocar “Kanban” por “Control Plane” onde for conceito principal.
+Objetivo: consolidar ARTEMIS Control Plane como nome da superficie visual e operacional.
 
 Entregas:
 
 - `control-plane/index.html`;
 - docs atualizadas;
-- redirect ou nota de compatibilidade para `kanban/index.html`;
+- nota de compatibilidade somente se uma URL publica antiga existir;
 - validacao local.
 
 Aceite:
 
-- nenhuma referencia conceitual nova chama o produto de Kanban;
+- nenhuma referencia conceitual nova usa vocabulario de quadro generico como nome do produto;
 - o quadro ainda abre localmente.
 
 ### Fase 1 - Spec do workflow
@@ -368,7 +368,7 @@ Uma tarefa deve parar em Human Gate se:
 ## 11. Acceptance criteria do plano
 
 - Existe plano versionado de orquestracao.
-- Existe decisao de nomenclatura: Control Plane, nao Kanban.
+- Existe decisao de nomenclatura: ARTEMIS Control Plane.
 - Existem fases antes do daemon.
 - Codex e Claude entram por adapters, nao por acoplamento direto ao metodo.
 - Validacao e evidencia sao gates obrigatorios.
@@ -415,13 +415,13 @@ O caminho em fases permite usar o melhor de Symphony e app-server sem abrir mao 
 
 ### Consequencias
 
-- O proximo trabalho deve ser renomear Kanban para Control Plane.
+- O proximo trabalho deve concluir a renomeacao para ARTEMIS Control Plane.
 - O daemon so entra depois de dry-run e validation gates.
 - Toda integracao com Codex/Claude deve passar por Runner Adapter.
 
 ### Follow-ups
 
-- TKT-007: renomear Kanban para ARTEMIS Control Plane.
+- TKT-007: consolidar ARTEMIS Control Plane.
 - TKT-008: criar `ARTEMIS_WORKFLOW.md`.
 - TKT-009: criar task source local para Exec Packs.
 - TKT-010: criar orchestrator dry-run.

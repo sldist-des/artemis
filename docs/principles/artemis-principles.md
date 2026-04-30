@@ -8,7 +8,7 @@ The method must minimize moving parts.
 
 - One canonical agent contract: `AGENTS.md`.
 - One execution contract per task: Exec Pack.
-- One visible state model: Kanban.
+- One visible state model: ARTEMIS Control Plane.
 - One evidence path per run: `artifacts/<ticket>/run-XX/`.
 
 Simplicity does not mean weak process. It means the next action is obvious.

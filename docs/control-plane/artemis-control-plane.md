@@ -1,10 +1,10 @@
-# ARTEMIS Kanban
+# ARTEMIS Control Plane
 
-The ARTEMIS Kanban is the visual control plane for the method.
+The ARTEMIS Control Plane is the visual operating surface for the method.
 
 ## Purpose
 
-The board shows the state of each meaningful ARTEMIS task from idea to archival. It is intentionally smaller than a full orchestrator: it lets the human architect see flow, evidence, and blocked decisions without requiring a daemon, database, issue tracker integration, or app-server client.
+The Control Plane shows the state of each meaningful ARTEMIS task from idea to archival. It is intentionally smaller than a full orchestrator: it lets the human architect see flow, evidence, and blocked decisions without requiring a daemon, database, issue tracker integration, or app-server client.
 
 ## Reference cuts from OpenAI materials
 
@@ -45,6 +45,6 @@ Each card should show:
 
 ## First implementation
 
-`kanban/index.html` is self-contained and can be opened directly in a browser. It persists local card moves in `localStorage` and includes a reset action.
+`control-plane/index.html` is self-contained and can be opened directly in a browser. It persists local card moves in `localStorage` and includes a reset action.
 
 No backend is introduced in this phase.

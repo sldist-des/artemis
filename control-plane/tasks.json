@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-30T18:07:20Z",
+  "generated_at": "2026-04-30T18:28:10Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
-      "id": "tkt-010",
-      "ticket": "TKT-010",
-      "title": "Criar orchestrator dry-run",
+      "id": "tkt-011",
+      "ticket": "TKT-011",
+      "title": "Criar runner local supervisionado",
       "state": "ready",
       "owner": "Architect",
       "risk": "medium",
-      "summary": "Um comando local le o task source e mostra quais tarefas seriam elegiveis, bloqueadas ou aguardando humano, com razao explicita.",
-      "exec_pack": "docs/exec-packs/active/TKT-010-orchestrator-dry-run.md",
-      "evidence": "artifacts/artemis-dry-run/run-01/STATUS.md",
+      "summary": "Um comando local prepara o contexto de execucao para uma tarefa elegivel sem fazer merge, push ou alteracao remota. O runner deve ser explicito, auditavel e reversivel.",
+      "exec_pack": "docs/exec-packs/active/TKT-011-local-supervised-runner.md",
+      "evidence": "artifacts/artemis-local-runner/run-01/STATUS.md",
       "tags": ["exec-pack", "active"]
     },
     {
@@ -133,6 +133,18 @@
       "summary": "Um comando local gera JSON com tarefas, estados, owners, riscos, evidencias e caminhos dos Exec Packs.",
       "exec_pack": "docs/exec-packs/done/TKT-009-local-task-source.md",
       "evidence": "artifacts/artemis-task-source/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-010",
+      "ticket": "TKT-010",
+      "title": "Criar orchestrator dry-run",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "Um comando local le o task source e mostra quais tarefas seriam elegiveis, bloqueadas ou aguardando humano, com razao explicita.",
+      "exec_pack": "docs/exec-packs/done/TKT-010-orchestrator-dry-run.md",
+      "evidence": "artifacts/artemis-dry-run/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

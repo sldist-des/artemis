@@ -76,6 +76,12 @@ Gere a fonte local de tarefas com:
 scripts/artemis-tasks.sh --output control-plane/tasks.json
 ```
 
+Simule dispatch sem iniciar agentes com:
+
+```bash
+scripts/artemis-dry-run.sh
+```
+
 ## Como aplicar em um projeto
 
 1. Copie os templates para a raiz do projeto alvo.

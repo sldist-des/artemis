@@ -256,7 +256,7 @@ Aceite:
 
 Objetivo: simular dispatch sem iniciar agentes.
 
-Estado: proximo corte em TKT-010.
+Estado: concluido em TKT-010.
 
 Entregas:
 
@@ -273,6 +273,8 @@ Aceite:
 ### Fase 4 - Runner local supervisionado
 
 Objetivo: permitir iniciar uma tarefa local com controle terminal-first.
+
+Estado: proximo corte em TKT-011.
 
 Primeiro runner:
 
@@ -427,4 +429,4 @@ O caminho em fases permite usar o melhor de Symphony e app-server sem abrir mao 
 
 ### Follow-ups
 
-- TKT-010: criar orchestrator dry-run.
+- TKT-011: criar runner local supervisionado.

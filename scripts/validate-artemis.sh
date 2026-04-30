@@ -30,6 +30,7 @@ prompts/reviewer.md
 scripts/bootstrap-artemis.sh
 scripts/github-readiness.sh
 scripts/artemis-tasks.sh
+scripts/artemis-dry-run.sh
 "
 
 for file in $required_files; do
@@ -81,6 +82,7 @@ fi
 sh -n scripts/bootstrap-artemis.sh
 sh -n scripts/github-readiness.sh
 sh -n scripts/artemis-tasks.sh
+sh -n scripts/artemis-dry-run.sh
 sh -n scripts/validate-artemis.sh
 
 scripts/artemis-tasks.sh >/tmp/artemis-tasks.json
@@ -91,6 +93,12 @@ fi
 
 if ! grep -q '"ticket": "TKT-' control-plane/tasks.json; then
   echo "control-plane/tasks.json does not contain ARTEMIS tasks" >&2
+  exit 1
+fi
+
+scripts/artemis-dry-run.sh --json >/tmp/artemis-dry-run.json
+if ! grep -q '"decisions": \[' /tmp/artemis-dry-run.json; then
+  echo "scripts/artemis-dry-run.sh did not emit dry-run decisions" >&2
   exit 1
 fi
 

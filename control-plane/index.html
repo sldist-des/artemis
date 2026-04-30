@@ -612,14 +612,25 @@
       },
       {
         id: "tkt-010",
-        state: "ready",
+        state: "done",
         ticket: "TKT-010",
         title: "Orchestrator dry-run",
-        summary: "Simular dispatch sem iniciar agentes, worktrees ou runners.",
+        summary: "Dispatch simulado sem iniciar agentes, worktrees ou runners.",
         owner: "Codex",
         risk: "medium",
-        evidence: "docs/exec-packs/active/TKT-010-orchestrator-dry-run.md",
+        evidence: "artifacts/artemis-dry-run/run-01",
         tags: ["dry-run", "dispatch", "orquestracao"]
+      },
+      {
+        id: "tkt-011",
+        state: "ready",
+        ticket: "TKT-011",
+        title: "Runner local supervisionado",
+        summary: "Preparar execucao local auditavel com logs, artifacts e Human Gate.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "docs/exec-packs/active/TKT-011-local-supervised-runner.md",
+        tags: ["runner", "local", "supervisao"]
       },
       {
         id: "github-auth",

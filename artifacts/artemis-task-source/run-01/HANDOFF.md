@@ -24,4 +24,4 @@ O Control Plane pode consumir `control-plane/tasks.json` gerado a partir dos Exe
 
 ## Proxima acao
 
-Executar TKT-010: criar orchestrator dry-run sem iniciar agentes.
+Executar TKT-011: criar runner local supervisionado.

@@ -24,4 +24,4 @@ Plano criado em `docs/orchestration/ARTEMIS_ORCHESTRATION_PLAN.md`.
 
 ## Proxima acao
 
-Executar TKT-010: criar orchestrator dry-run sem iniciar agentes.
+Executar TKT-011: criar runner local supervisionado.

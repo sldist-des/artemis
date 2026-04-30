@@ -179,6 +179,15 @@ scripts/artemis-tasks.sh --output control-plane/tasks.json
 
 Esse script le Exec Packs de `docs/exec-packs/active/` e `docs/exec-packs/done/` sem alterar os arquivos de origem. O Control Plane pode consumir `control-plane/tasks.json` quando servido por HTTP e deve tratar qualquer movimento manual como visualizacao temporaria.
 
+Antes de iniciar qualquer runner, simule a decisao de dispatch:
+
+```bash
+scripts/artemis-dry-run.sh
+scripts/artemis-dry-run.sh --json
+```
+
+O dry-run nunca inicia agentes, nao cria worktrees e nao altera Exec Packs. Ele apenas classifica tarefas como `eligible`, `blocked`, `human_gate` ou `done`.
+
 ## Completion checklist
 
 Antes de mover uma tarefa para `Done`, confirme:

@@ -24,4 +24,4 @@ Workflow criado localmente e usado como contrato do TKT-009.
 
 ## Proxima acao
 
-Executar TKT-010: criar orchestrator dry-run sem iniciar agentes.
+Executar TKT-011: criar runner local supervisionado.

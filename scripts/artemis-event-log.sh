@@ -50,16 +50,19 @@ events = []
 
 tasks = read_json("control-plane/tasks.json")
 for task in tasks.get("tasks", []):
-    if task.get("ticket") == "TKT-017":
+    if task.get("state") == "ready" and "active" in task.get("tags", []):
+        artifact_root = task.get("evidence", "")
+        if artifact_root.endswith("/STATUS.md"):
+            artifact_root = artifact_root.removesuffix("/STATUS.md")
         events.append(event(
-            event_id="evt_tkt-017_task_discovered",
+            event_id=f"evt_{task['id']}_task_discovered",
             event_type="task.discovered",
             generated_at=generated_at,
             producer={"adapter": "exec_pack", "name": "scripts/artemis-tasks.sh", "mode": "read_only"},
             ticket=task["ticket"],
             title=task.get("title", ""),
             exec_pack=task.get("exec_pack", ""),
-            artifact_root=task.get("evidence", ""),
+            artifact_root=artifact_root,
             state_to="ready",
             payload={
                 "summary": task.get("summary", ""),

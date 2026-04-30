@@ -1,24 +1,24 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-30T20:05:15Z",
+  "generated_at": "2026-04-30T20:22:22Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
-      "event_id": "evt_tkt-017_task_discovered",
+      "event_id": "evt_tkt-019_task_discovered",
       "event_type": "task.discovered",
-      "generated_at": "2026-04-30T20:05:15Z",
+      "generated_at": "2026-04-30T20:22:22Z",
       "producer": {
         "adapter": "exec_pack",
         "name": "scripts/artemis-tasks.sh",
         "mode": "read_only"
       },
       "subject": {
-        "ticket": "TKT-017",
-        "task_id": "tkt-017",
-        "title": "Fazer adapters emitirem eventos canonicos ARTEMIS",
-        "exec_pack": "docs/exec-packs/done/TKT-017-adapters-emit-canonical-events.md",
-        "artifact_root": "artifacts/artemis-adapter-events/run-01/STATUS.md"
+        "ticket": "TKT-019",
+        "task_id": "tkt-019",
+        "title": "Definir Workspace Manager ARTEMIS",
+        "exec_pack": "docs/exec-packs/active/TKT-019-artemis-workspace-manager.md",
+        "artifact_root": "artifacts/artemis-workspace-manager/run-01"
       },
       "runner": {
         "kind": "none"
@@ -34,22 +34,22 @@
       },
       "severity": "info",
       "evidence": {
-        "artifact_path": "artifacts/artemis-adapter-events/run-01/STATUS.md",
-        "status_path": "artifacts/artemis-adapter-events/run-01/STATUS.md/STATUS.md",
-        "validation_path": "artifacts/artemis-adapter-events/run-01/STATUS.md/VALIDATION.md",
-        "handoff_path": "artifacts/artemis-adapter-events/run-01/STATUS.md/HANDOFF.md",
+        "artifact_path": "artifacts/artemis-workspace-manager/run-01",
+        "status_path": "artifacts/artemis-workspace-manager/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-workspace-manager/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-workspace-manager/run-01/HANDOFF.md",
         "logs": []
       },
       "links": {
-        "correlation_id": "tkt-017"
+        "correlation_id": "tkt-019"
       },
       "payload": {
-        "summary": "O adapter de issues, Codex app-server, Claude Code e Validation Gate devem produzir artifacts `events.json` ou `event-log.example.json` compativeis com `docs/schemas/artemis-event.schema.json`.",
+        "summary": "ARTEMIS deve ter uma especificacao e um primeiro check local que expliquem quando uma tarefa pode abrir um workspace isolado, quando deve parar em Human Gate e como registrar evidencias sem iniciar agentes automaticamente.",
         "risk": "medium",
         "owner": "Architect",
         "tags": [
           "exec-pack",
-          "done"
+          "active"
         ],
         "reason": "Active Exec Pack discovered by local task source."
       }
@@ -58,7 +58,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-04-30T20:05:15Z",
+      "generated_at": "2026-04-30T20:22:22Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -125,7 +125,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-04-30T20:05:15Z",
+      "generated_at": "2026-04-30T20:22:22Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -212,7 +212,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-04-30T20:05:15Z",
+      "generated_at": "2026-04-30T20:22:22Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -305,7 +305,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-04-30T20:05:15Z",
+      "generated_at": "2026-04-30T20:22:22Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -323,15 +323,15 @@
       },
       "state": {
         "from": "validating",
-        "to": "failed",
+        "to": "human_gate",
         "reason": "Validation Gate completed with structured technical and Human Gate results."
       },
       "gate": {
         "kind": "validation",
-        "status": "failed",
+        "status": "human_gate",
         "reason": "Validation Gate result."
       },
-      "severity": "info",
+      "severity": "warning",
       "evidence": {
         "artifact_path": "artifacts/artemis-validation-gate/run-01",
         "status_path": "artifacts/artemis-validation-gate/run-01/STATUS.md",
@@ -343,10 +343,10 @@
         "correlation_id": "task"
       },
       "payload": {
-        "overall": "failed",
+        "overall": "human_gate",
         "summary": {
-          "passed": 18,
-          "failed": 1,
+          "passed": 19,
+          "failed": 0,
           "human_gate": 2
         },
         "checks": [
@@ -486,8 +486,8 @@
           {
             "name": "canonical_events",
             "kind": "technical",
-            "status": "failed",
-            "exit_code": 1,
+            "status": "passed",
+            "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/canonical_events.txt"
           },
           {

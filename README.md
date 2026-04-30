@@ -70,6 +70,8 @@ control-plane/index.html
 
 Abra esse arquivo no navegador para acompanhar o fluxo por estados: intake, contexto, pronto, execucao, revisao, decisao humana e concluido. Quando servido por HTTP, ele tenta carregar `control-plane/tasks.json`; quando aberto diretamente sem acesso ao JSON, usa o seed local e `localStorage`.
 
+Quando servido por HTTP, o Control Plane tambem tenta carregar o event log local em `artifacts/artemis-event-log-schema/run-01/event-log.example.json` e renderiza uma timeline read-only de eventos, estados, produtores e evidencias. A timeline nao altera estado canonico.
+
 Gere a fonte local de tarefas com:
 
 ```bash

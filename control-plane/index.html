@@ -37,6 +37,7 @@
       color: var(--ink);
       font-family: var(--font-body);
       letter-spacing: 0;
+      overflow-x: hidden;
     }
 
     button,
@@ -48,6 +49,7 @@
       width: min(1760px, calc(100vw - 28px));
       margin: 0 auto;
       padding: 22px 0 32px;
+      min-width: 0;
     }
 
     .topbar {
@@ -57,6 +59,7 @@
       align-items: stretch;
       border-bottom: 2px solid var(--ink);
       padding-bottom: 18px;
+      min-width: 0;
     }
 
     .mark {
@@ -94,6 +97,7 @@
       color: var(--muted);
       font-size: 15px;
       line-height: 1.45;
+      overflow-wrap: anywhere;
     }
 
     .control-panel {
@@ -102,6 +106,7 @@
       align-content: start;
       border-left: 2px solid var(--ink);
       padding-left: 22px;
+      min-width: 0;
     }
 
     .principles {
@@ -117,6 +122,7 @@
       padding: 10px;
       display: grid;
       align-content: space-between;
+      min-width: 0;
     }
 
     .principle strong {
@@ -125,9 +131,12 @@
     }
 
     .principle span {
+      display: block;
       color: var(--muted);
       font-size: 12px;
       line-height: 1.25;
+      min-width: 0;
+      overflow-wrap: anywhere;
     }
 
     .actions {
@@ -161,6 +170,8 @@
     .actions input {
       flex: 1 1 180px;
       min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .metrics {
@@ -187,6 +198,129 @@
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: .08em;
+    }
+
+    .timeline-section {
+      border-top: 2px solid var(--ink);
+      border-bottom: 1px solid var(--line);
+      margin: 0 0 18px;
+      padding: 14px 0 16px;
+    }
+
+    .timeline-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+
+    .timeline-header h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .timeline-header span {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .timeline-list {
+      display: grid;
+      gap: 7px;
+    }
+
+    .timeline-row {
+      display: grid;
+      grid-template-columns: 12px minmax(82px, .22fr) minmax(0, 1fr) minmax(92px, auto);
+      gap: 10px;
+      align-items: center;
+      min-height: 52px;
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel) 86%, var(--paper));
+      padding: 8px 10px;
+      min-width: 0;
+    }
+
+    .timeline-dot {
+      width: 9px;
+      aspect-ratio: 1;
+      border: 1px solid var(--ink);
+      background: var(--blue);
+    }
+
+    .timeline-row[data-severity="warning"] .timeline-dot {
+      background: var(--gold);
+    }
+
+    .timeline-row[data-state="done"] .timeline-dot,
+    .timeline-row[data-state="passed"] .timeline-dot {
+      background: var(--green);
+    }
+
+    .timeline-row[data-state="human_gate"] .timeline-dot,
+    .timeline-row[data-state="blocked"] .timeline-dot {
+      background: var(--red);
+    }
+
+    .timeline-ticket {
+      display: grid;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .timeline-ticket b {
+      color: var(--blue);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .timeline-ticket span,
+    .timeline-meta {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.25;
+    }
+
+    .timeline-main {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .timeline-main strong {
+      display: block;
+      font-size: 14px;
+      line-height: 1.15;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .timeline-meta {
+      display: block;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .timeline-link {
+      justify-self: end;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      white-space: nowrap;
+    }
+
+    .timeline-empty {
+      border: 1px dashed var(--line);
+      color: var(--muted);
+      padding: 12px;
+      font-size: 13px;
     }
 
     .board {
@@ -253,6 +387,7 @@
       color: var(--muted);
       font-size: 12px;
       line-height: 1.35;
+      overflow-wrap: anywhere;
     }
 
     .lane {
@@ -335,6 +470,7 @@
       color: var(--muted);
       font-size: 13px;
       line-height: 1.4;
+      overflow-wrap: anywhere;
     }
 
     .meta {
@@ -349,6 +485,7 @@
       border-top: 1px solid var(--line);
       padding-top: 6px;
       min-width: 0;
+      overflow-wrap: anywhere;
     }
 
     .tags {
@@ -404,12 +541,33 @@
       .metrics {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+
+      .timeline-row {
+        grid-template-columns: 12px minmax(72px, .28fr) minmax(0, 1fr);
+      }
+
+      .timeline-link {
+        grid-column: 3;
+        justify-self: start;
+      }
     }
 
     @media (max-width: 680px) {
       .shell {
-        width: min(100vw - 18px, 1760px);
+        width: calc(100vw - 18px);
         padding-top: 14px;
+      }
+
+      h1 {
+        max-width: 100%;
+        font-size: 32px;
+        line-height: .96;
+        text-wrap: balance;
+      }
+
+      .subtitle {
+        max-width: 34ch;
+        font-size: 14px;
       }
 
       .mark {
@@ -428,6 +586,26 @@
 
       .source-links {
         justify-content: flex-start;
+      }
+
+      .timeline-header {
+        display: grid;
+        align-items: start;
+      }
+
+      .timeline-header span {
+        text-align: left;
+      }
+
+      .timeline-row {
+        grid-template-columns: 12px 1fr;
+        align-items: start;
+      }
+
+      .timeline-ticket,
+      .timeline-main,
+      .timeline-link {
+        grid-column: 2;
       }
 
       .actions input,
@@ -452,7 +630,7 @@
       <aside class="control-panel" aria-label="Controles do Control Plane">
         <div class="principles" aria-label="Principios ARTEMIS">
           <div class="principle"><strong>Simples</strong><span>Menos estados, menos rituais, proxima acao clara.</span></div>
-          <div class="principle"><strong>State-of-the-art</strong><span>Inspirado em app-server e Symphony, sem copiar complexidade cedo demais.</span></div>
+          <div class="principle"><strong>State-of-the-art</strong><span>App-server e Symphony, sem complexidade prematura.</span></div>
           <div class="principle"><strong>Completude</strong><span>Uma tarefa termina com evidencia, revisao e handoff.</span></div>
         </div>
         <div class="actions">
@@ -467,6 +645,14 @@
       <div class="metric"><b id="metric-active">0</b><span>ativos</span></div>
       <div class="metric"><b id="metric-human">0</b><span>decisao humana</span></div>
       <div class="metric"><b id="metric-done">0</b><span>concluidos</span></div>
+    </section>
+
+    <section class="timeline-section" aria-labelledby="timeline-title">
+      <header class="timeline-header">
+        <h2 id="timeline-title">Timeline de eventos</h2>
+        <span id="timeline-status">Fonte: seed de eventos.</span>
+      </header>
+      <div id="event-timeline" class="timeline-list" aria-live="polite"></div>
     </section>
 
     <section id="board" class="board" aria-label="Quadro ARTEMIS"></section>
@@ -488,6 +674,7 @@
     const storageKey = "artemis-control-plane-v1";
     const legacyStorageKey = "artemis-kanban-v1";
     const taskSourceUrl = "tasks.json";
+    const eventSourceUrl = "../artifacts/artemis-event-log-schema/run-01/event-log.example.json";
 
     const columns = [
       { id: "intake", title: "Intake", help: "Ideia ou pedido bruto. Ainda nao tem contrato." },
@@ -700,14 +887,25 @@
       },
       {
         id: "tkt-018",
-        state: "ready",
+        state: "done",
         ticket: "TKT-018",
         title: "Timeline de eventos",
-        summary: "Renderizar event log canonico no Control Plane como timeline read-only.",
+        summary: "Event log canonico renderizado no Control Plane como timeline read-only.",
         owner: "Codex",
         risk: "medium",
-        evidence: "docs/exec-packs/active/TKT-018-control-plane-event-timeline.md",
+        evidence: "artifacts/artemis-control-plane-events/run-01",
         tags: ["events", "control-plane", "timeline"]
+      },
+      {
+        id: "tkt-019",
+        state: "ready",
+        ticket: "TKT-019",
+        title: "Workspace Manager ARTEMIS",
+        summary: "Definir contrato local para worktrees, branches, locks, artifacts e handoff.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "docs/exec-packs/active/TKT-019-artemis-workspace-manager.md",
+        tags: ["workspace", "worktree", "runner"]
       },
       {
         id: "github-auth",
@@ -736,10 +934,54 @@
       }
     ];
 
+    const seedEvents = [
+      {
+        event_id: "evt_tkt-019_task_discovered",
+        event_type: "task.discovered",
+        generated_at: "2026-04-30T20:13:08Z",
+        producer: { adapter: "exec_pack", name: "scripts/artemis-tasks.sh", mode: "read_only" },
+        subject: {
+          ticket: "TKT-019",
+          title: "Definir Workspace Manager ARTEMIS"
+        },
+        state: { from: null, to: "ready", reason: "Active Exec Pack discovered by local task source." },
+        severity: "info",
+        evidence: { artifact_path: "artifacts/artemis-workspace-manager/run-01" }
+      },
+      {
+        event_id: "evt_tkt-017_adapter_events",
+        event_type: "adapter.events_emitted",
+        generated_at: "2026-04-30T19:54:36Z",
+        producer: { adapter: "validation_gate", name: "scripts/artemis-validation-gate.sh", mode: "read_only" },
+        subject: {
+          ticket: "TKT-017",
+          title: "Adapters emitindo eventos"
+        },
+        state: { from: "review", to: "done", reason: "Adapter event artifacts passed validation." },
+        severity: "info",
+        evidence: { artifact_path: "artifacts/artemis-adapter-events/run-01" }
+      },
+      {
+        event_id: "evt_tkt-013_github_issues_readiness",
+        event_type: "runner.readiness_checked",
+        generated_at: "2026-04-30T19:54:36Z",
+        producer: { adapter: "github_issues", name: "scripts/artemis-github-issues.sh", mode: "read_only" },
+        subject: {
+          ticket: "TKT-013",
+          title: "Criar GitHub Issues adapter"
+        },
+        state: { from: "ready", to: "human_gate", reason: "gh auth status did not pass." },
+        severity: "warning",
+        evidence: { artifact_path: "artifacts/artemis-github-issues-adapter/run-01" }
+      }
+    ];
+
     const board = document.querySelector("#board");
     const search = document.querySelector("#search");
     const reset = document.querySelector("#reset");
     const sourceStatus = document.querySelector("#source-status");
+    const eventTimeline = document.querySelector("#event-timeline");
+    const timelineStatus = document.querySelector("#timeline-status");
 
     function cloneCards(source) {
       return JSON.parse(JSON.stringify(source));
@@ -768,6 +1010,83 @@
         evidence: String(item.evidence || item.exec_pack || ""),
         tags: Array.isArray(item.tags) ? item.tags.map(String) : ["exec-pack"]
       };
+    }
+
+    function normalizeEvent(item) {
+      const state = item.state || {};
+      const subject = item.subject || {};
+      const producer = item.producer || {};
+      const evidence = item.evidence || {};
+      return {
+        id: String(item.event_id || item.id || item.event_type || "event"),
+        type: String(item.event_type || "event"),
+        generatedAt: String(item.generated_at || ""),
+        producer: String(producer.adapter || producer.name || "unknown"),
+        producerName: String(producer.name || producer.adapter || "unknown"),
+        ticket: String(subject.ticket || "TASK"),
+        title: String(subject.title || item.event_type || "Evento ARTEMIS"),
+        stateFrom: state.from == null ? "" : String(state.from),
+        stateTo: String(state.to || "observed"),
+        reason: String(state.reason || ""),
+        severity: String(item.severity || "info"),
+        evidence: String(evidence.artifact_path || subject.artifact_root || subject.exec_pack || "")
+      };
+    }
+
+    function eventEvidenceHref(path) {
+      if (!path) return "";
+      if (/^(https?:|\/|#)/.test(path)) return path;
+      if (path.startsWith("../")) return path;
+      return `../${path}`;
+    }
+
+    function eventStateLabel(event) {
+      if (!event.stateFrom) return event.stateTo;
+      return `${event.stateFrom} -> ${event.stateTo}`;
+    }
+
+    function renderTimeline(events) {
+      const normalized = events.map(normalizeEvent).slice(0, 8);
+      eventTimeline.innerHTML = "";
+      if (!normalized.length) {
+        eventTimeline.innerHTML = '<div class="timeline-empty">Sem eventos locais.</div>';
+        return;
+      }
+
+      for (const event of normalized) {
+        const row = document.createElement("article");
+        row.className = "timeline-row";
+        row.dataset.state = event.stateTo;
+        row.dataset.severity = event.severity;
+        const evidenceHref = eventEvidenceHref(event.evidence);
+        row.innerHTML = `
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <span class="timeline-ticket">
+            <b>${escapeHtml(event.ticket)}</b>
+            <span>${escapeHtml(event.stateTo)}</span>
+          </span>
+          <span class="timeline-main">
+            <strong>${escapeHtml(event.type)}</strong>
+            <span class="timeline-meta">${escapeHtml(event.producer)} | ${escapeHtml(eventStateLabel(event))}</span>
+          </span>
+          ${evidenceHref ? `<a class="timeline-link" href="${escapeHtml(evidenceHref)}">evidencia</a>` : '<span class="timeline-meta">sem evidencia</span>'}
+        `;
+        eventTimeline.appendChild(row);
+      }
+    }
+
+    async function loadEventSource() {
+      try {
+        const response = await fetch(eventSourceUrl, { cache: "no-store" });
+        if (!response.ok) return null;
+        const payload = await response.json();
+        const events = Array.isArray(payload.events) ? payload.events : null;
+        if (!events) return null;
+        timelineStatus.textContent = `Fonte: ${payload.source || eventSourceUrl}`;
+        return events;
+      } catch {
+        return null;
+      }
     }
 
     function mergeOperationalCards(source) {
@@ -920,6 +1239,8 @@
       initialCards = taskSourceCards || storedCards || cloneCards(seedCards);
       cards = cloneCards(initialCards);
       render();
+      const loadedEvents = await loadEventSource();
+      renderTimeline(loadedEvents || seedEvents);
     }
 
     boot();

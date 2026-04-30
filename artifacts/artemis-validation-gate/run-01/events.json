@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-30T20:05:15Z",
+  "generated_at": "2026-04-30T20:22:22Z",
   "source": "scripts/artemis-validation-gate.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-04-30T20:05:15Z",
+      "generated_at": "2026-04-30T20:22:22Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",

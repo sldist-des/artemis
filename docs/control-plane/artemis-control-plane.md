@@ -98,6 +98,14 @@ Stable fields include:
 - links;
 - payload.
 
-`scripts/artemis-event-log.sh` generates a local example from current Exec Pack and adapter artifacts. The Control Plane may consume these events in a future cut, but Exec Packs, artifacts and Git remain canonical.
+`scripts/artemis-event-log.sh` generates a local example from current Exec Pack and adapter artifacts. When served over HTTP, the Control Plane loads:
+
+```text
+artifacts/artemis-event-log-schema/run-01/event-log.example.json
+```
+
+and renders the events as a compact read-only timeline with ticket, event type, producer, state transition and evidence link. If the event log cannot be fetched, the page keeps a local seed timeline so the surface still opens without a server.
+
+The timeline is observational only. Dragging cards can still adjust the local visual board, but event data does not mutate canonical state. Exec Packs, artifacts and Git remain canonical.
 
 Adapters that support the canonical event contract write `events.json` beside their adapter-specific JSON. This gives the Control Plane one future read-only stream without forcing every adapter to expose the same internal diagnostics.

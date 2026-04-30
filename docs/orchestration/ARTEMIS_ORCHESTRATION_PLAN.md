@@ -391,7 +391,7 @@ Aceite:
 
 Objetivo: renderizar o event log canonico no Control Plane como timeline read-only.
 
-Estado: proximo corte em TKT-018.
+Estado: concluido em TKT-018.
 
 Aceite:
 
@@ -400,6 +400,20 @@ Aceite:
 - timeline aponta para artifacts;
 - timeline nao permite alterar estado canonico;
 - fallback continua funcional quando `events.json` nao existe.
+
+### Fase 12 - Workspace Manager ARTEMIS
+
+Objetivo: definir o contrato local para worktrees, branches, locks e artifacts por tarefa antes de automatizar execucao paralela.
+
+Estado: proximo corte em TKT-019.
+
+Aceite:
+
+- cada tarefa elegivel tem estrategia explicita de workspace;
+- um agente escritor por worktree continua garantido;
+- conflitos e mudancas fora de escopo geram Human Gate;
+- limpeza de workspace e handoff ficam auditaveis;
+- dry-run consegue explicar por que uma tarefa pode ou nao iniciar.
 
 ## 10. Gatilhos de confiabilidade
 

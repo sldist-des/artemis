@@ -5,17 +5,17 @@
     "eligible": 1,
     "blocked": 0,
     "human_gate": 0,
-    "done": 18
+    "done": 19
   },
   "decisions": [
     {
-      "ticket": "TKT-018",
+      "ticket": "TKT-019",
       "decision": "eligible",
       "runner": "codex-cli",
       "reason": "Task has Exec Pack, owner, evidence target, and no human-gate terms.",
-      "title": "Renderizar timeline de eventos no Control Plane",
+      "title": "Definir Workspace Manager ARTEMIS",
       "state": "ready",
-      "exec_pack": "docs/exec-packs/active/TKT-018-control-plane-event-timeline.md"
+      "exec_pack": "docs/exec-packs/active/TKT-019-artemis-workspace-manager.md"
     },
     {
       "ticket": "TKT-000",
@@ -178,6 +178,15 @@
       "title": "Fazer adapters emitirem eventos canonicos ARTEMIS",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-017-adapters-emit-canonical-events.md"
+    },
+    {
+      "ticket": "TKT-018",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Renderizar timeline de eventos no Control Plane",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-018-control-plane-event-timeline.md"
     }
   ]
 }

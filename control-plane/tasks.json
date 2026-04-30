@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-30T20:04:46Z",
+  "generated_at": "2026-04-30T20:12:44Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
-      "id": "tkt-018",
-      "ticket": "TKT-018",
-      "title": "Renderizar timeline de eventos no Control Plane",
+      "id": "tkt-019",
+      "ticket": "TKT-019",
+      "title": "Definir Workspace Manager ARTEMIS",
       "state": "ready",
-      "owner": "Designer",
+      "owner": "Architect",
       "risk": "medium",
-      "summary": "O Control Plane deve carregar um JSON de eventos local quando servido por HTTP e mostrar uma timeline compacta com evento, estado, produtor, ticket e link de evidencia, sem permitir alterar a fonte canonica.",
-      "exec_pack": "docs/exec-packs/active/TKT-018-control-plane-event-timeline.md",
-      "evidence": "artifacts/artemis-control-plane-events/run-01/STATUS.md",
+      "summary": "ARTEMIS deve ter uma especificacao e um primeiro check local que expliquem quando uma tarefa pode abrir um workspace isolado, quando deve parar em Human Gate e como registrar evidencias sem iniciar agentes automaticamente.",
+      "exec_pack": "docs/exec-packs/active/TKT-019-artemis-workspace-manager.md",
+      "evidence": "artifacts/artemis-workspace-manager/run-01/STATUS.md",
       "tags": ["exec-pack", "active"]
     },
     {
@@ -229,6 +229,18 @@
       "summary": "O adapter de issues, Codex app-server, Claude Code e Validation Gate devem produzir artifacts `events.json` ou `event-log.example.json` compativeis com `docs/schemas/artemis-event.schema.json`.",
       "exec_pack": "docs/exec-packs/done/TKT-017-adapters-emit-canonical-events.md",
       "evidence": "artifacts/artemis-adapter-events/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-018",
+      "ticket": "TKT-018",
+      "title": "Renderizar timeline de eventos no Control Plane",
+      "state": "done",
+      "owner": "Designer",
+      "risk": "medium",
+      "summary": "O Control Plane deve carregar um JSON de eventos local quando servido por HTTP e mostrar uma timeline compacta com evento, estado, produtor, ticket e link de evidencia, sem permitir alterar a fonte canonica.",
+      "exec_pack": "docs/exec-packs/done/TKT-018-control-plane-event-timeline.md",
+      "evidence": "artifacts/artemis-control-plane-events/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

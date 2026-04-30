@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-30T19:56:06Z",
+  "generated_at": "2026-04-30T20:05:13Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
-      "id": "tkt-017",
-      "ticket": "TKT-017",
-      "title": "Fazer adapters emitirem eventos canonicos ARTEMIS",
+      "id": "tkt-018",
+      "ticket": "TKT-018",
+      "title": "Renderizar timeline de eventos no Control Plane",
       "state": "ready",
-      "owner": "Architect",
+      "owner": "Designer",
       "risk": "medium",
-      "summary": "GitHub Issues, Codex app-server, Claude Code e Validation Gate devem produzir artifacts `events.json` ou `event-log.example.json` compativeis com `docs/schemas/artemis-event.schema.json`.",
-      "exec_pack": "docs/exec-packs/active/TKT-017-adapters-emit-canonical-events.md",
-      "evidence": "artifacts/artemis-adapter-events/run-01/STATUS.md",
+      "summary": "O Control Plane deve carregar um JSON de eventos local quando servido por HTTP e mostrar uma timeline compacta com evento, estado, produtor, ticket e link de evidencia, sem permitir alterar a fonte canonica.",
+      "exec_pack": "docs/exec-packs/active/TKT-018-control-plane-event-timeline.md",
+      "evidence": "artifacts/artemis-control-plane-events/run-01/STATUS.md",
       "tags": ["exec-pack", "active"]
     },
     {
@@ -217,6 +217,18 @@
       "summary": "Um schema local versionado deve definir eventos de tarefa, tentativa, runner, tool use, approval, Human Gate, validacao, evidencia e handoff, com campos minimos para o Control Plane consumir sem virar fonte canonica.",
       "exec_pack": "docs/exec-packs/done/TKT-016-artemis-event-log-schema.md",
       "evidence": "artifacts/artemis-event-log-schema/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-017",
+      "ticket": "TKT-017",
+      "title": "Fazer adapters emitirem eventos canonicos ARTEMIS",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "O adapter de issues, Codex app-server, Claude Code e Validation Gate devem produzir artifacts `events.json` ou `event-log.example.json` compativeis com `docs/schemas/artemis-event.schema.json`.",
+      "exec_pack": "docs/exec-packs/done/TKT-017-adapters-emit-canonical-events.md",
+      "evidence": "artifacts/artemis-adapter-events/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

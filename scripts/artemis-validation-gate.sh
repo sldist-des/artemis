@@ -109,6 +109,7 @@ run_check codex_app_server technical "scripts/artemis-codex-app-server.sh --arti
 run_check claude_code technical "scripts/artemis-claude-code.sh --artifact-root '$artifact_root/claude-code-check' --json"
 run_check event_log technical "scripts/artemis-event-log.sh --artifact-root '$artifact_root/event-log-check' --json"
 run_check github_issues human_gate "scripts/artemis-github-issues.sh --artifact-root '$artifact_root/github-issues-check' --json"
+run_check canonical_events technical "test -f '$artifact_root/codex-app-server-check/events.json' && test -f '$artifact_root/claude-code-check/events.json' && test -f '$artifact_root/github-issues-check/events.json'"
 run_check github_auth human_gate "scripts/github-readiness.sh"
 
 python3 - "$results_file" "$artifact_root" "$format" <<'PY'
@@ -116,10 +117,12 @@ import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from scripts.artemis_event_common import event, event_log, write_event_log
 
 results_path = Path(sys.argv[1])
 artifact_root = Path(sys.argv[2])
 output_format = sys.argv[3]
+generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 checks = []
 for line in results_path.read_text(encoding="utf-8").splitlines():
@@ -143,7 +146,7 @@ overall = "failed" if technical_failed else ("human_gate" if human_gates else "p
 
 payload = {
     "schema_version": 1,
-    "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+    "generated_at": generated_at,
     "overall": overall,
     "summary": summary,
     "checks": checks,
@@ -169,6 +172,33 @@ for item in checks:
     lines.append(f"- {item['name']}: {item['status']} (exit {item['exit_code']}) -> `{item['log']}`")
 
 (artifact_root / "VALIDATION_GATE.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+event_payload = {
+    "overall": overall,
+    "summary": summary,
+    "checks": checks,
+    "reason": "Validation Gate completed with structured technical and Human Gate results.",
+}
+events = [
+    event(
+        event_id="evt_validation_gate_current",
+        event_type="validation.completed",
+        generated_at=generated_at,
+        producer={"adapter": "validation_gate", "name": "scripts/artemis-validation-gate.sh", "mode": "read_only"},
+        ticket="TASK",
+        title="ARTEMIS Validation Gate",
+        exec_pack="ARTEMIS_WORKFLOW.md",
+        artifact_root=str(artifact_root),
+        state_from="validating",
+        state_to="human_gate" if overall == "human_gate" else overall,
+        runner={"kind": "none"},
+        gate={"kind": "validation", "status": overall, "reason": "Validation Gate result."},
+        severity="warning" if overall == "human_gate" else ("error" if overall == "failed" else "info"),
+        logs=[item["log"] for item in checks],
+        payload=event_payload,
+    )
+]
+write_event_log(artifact_root / "events.json", event_log(source="scripts/artemis-validation-gate.sh", generated_at=generated_at, events=events))
 
 if output_format == "json":
     print(json.dumps(payload, ensure_ascii=False, indent=2))

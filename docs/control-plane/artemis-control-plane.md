@@ -99,3 +99,5 @@ Stable fields include:
 - payload.
 
 `scripts/artemis-event-log.sh` generates a local example from current Exec Pack and adapter artifacts. The Control Plane may consume these events in a future cut, but Exec Packs, artifacts and Git remain canonical.
+
+Adapters that support the canonical event contract write `events.json` beside their adapter-specific JSON. This gives the Control Plane one future read-only stream without forcing every adapter to expose the same internal diagnostics.

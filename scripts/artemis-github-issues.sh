@@ -200,6 +200,7 @@ if [ -n "$artifact_root" ]; then
 import json
 import sys
 from pathlib import Path
+from scripts.artemis_event_common import event, event_log, write_event_log
 
 root = Path(sys.argv[1])
 payload = json.loads((root / "github-issues.json").read_text(encoding="utf-8"))
@@ -228,6 +229,56 @@ for label in payload["contract"]["labels"]:
 (root / "GITHUB_ISSUES.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 (root / "check-logs" / "gh-auth.txt").write_text(payload["logs"]["auth"] + "\n", encoding="utf-8")
 (root / "check-logs" / "gh-issues.txt").write_text(payload["logs"]["issues"] + "\n", encoding="utf-8")
+
+state_to = "done"
+severity = "info"
+gate = {"kind": "none", "status": "not_applicable"}
+if payload["overall"] == "human_gate":
+    state_to = "human_gate"
+    severity = "warning"
+    gate = {
+        "kind": "human",
+        "status": "human_gate",
+        "reason": payload["reason"],
+        "options": ["authenticate gh", "configure CODEOWNERS", "continue local-only"],
+    }
+elif payload["overall"] == "failed":
+    state_to = "blocked"
+    severity = "error"
+    gate = {"kind": "validation", "status": "failed", "reason": payload["reason"]}
+
+event_payload = {
+    "overall": payload["overall"],
+    "reason": payload["reason"],
+    "repo": payload["repo"],
+    "label": payload["label"],
+    "issue_count": len(payload["issues"]),
+    "checks": payload["checks"],
+    "contract": payload["contract"],
+}
+events = [
+    event(
+        event_id="evt_tkt-013_github_issues_readiness",
+        event_type="runner.readiness_checked",
+        generated_at=payload["generated_at"],
+        producer={"adapter": "github_issues", "name": "scripts/artemis-github-issues.sh", "mode": "read_only"},
+        ticket="TKT-013",
+        title="Criar GitHub Issues adapter",
+        exec_pack="docs/exec-packs/done/TKT-013-github-issues-adapter.md",
+        artifact_root=str(root),
+        state_from="ready",
+        state_to=state_to,
+        runner={"kind": "none"},
+        gate=gate,
+        severity=severity,
+        logs=[
+            str(root / "check-logs" / "gh-auth.txt"),
+            str(root / "check-logs" / "gh-issues.txt"),
+        ],
+        payload=event_payload,
+    )
+]
+write_event_log(root / "events.json", event_log(source="scripts/artemis-github-issues.sh", generated_at=payload["generated_at"], events=events))
 PY
 fi
 

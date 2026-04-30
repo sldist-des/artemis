@@ -1,24 +1,24 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-30T19:56:08Z",
+  "generated_at": "2026-04-30T20:05:15Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
-      "event_id": "evt_tkt-016_task_discovered",
+      "event_id": "evt_tkt-017_task_discovered",
       "event_type": "task.discovered",
-      "generated_at": "2026-04-30T19:56:08Z",
+      "generated_at": "2026-04-30T20:05:15Z",
       "producer": {
         "adapter": "exec_pack",
         "name": "scripts/artemis-tasks.sh",
         "mode": "read_only"
       },
       "subject": {
-        "ticket": "TKT-016",
-        "task_id": "tkt-016",
-        "title": "Definir schema canonico de eventos ARTEMIS",
-        "exec_pack": "docs/exec-packs/done/TKT-016-artemis-event-log-schema.md",
-        "artifact_root": "artifacts/artemis-event-log-schema/run-01/STATUS.md"
+        "ticket": "TKT-017",
+        "task_id": "tkt-017",
+        "title": "Fazer adapters emitirem eventos canonicos ARTEMIS",
+        "exec_pack": "docs/exec-packs/done/TKT-017-adapters-emit-canonical-events.md",
+        "artifact_root": "artifacts/artemis-adapter-events/run-01/STATUS.md"
       },
       "runner": {
         "kind": "none"
@@ -34,16 +34,17 @@
       },
       "severity": "info",
       "evidence": {
-        "artifact_path": "artifacts/artemis-event-log-schema/run-01/STATUS.md",
-        "status_path": "artifacts/artemis-event-log-schema/run-01/STATUS.md/STATUS.md",
-        "validation_path": "artifacts/artemis-event-log-schema/run-01/STATUS.md/VALIDATION.md",
-        "handoff_path": "artifacts/artemis-event-log-schema/run-01/STATUS.md/HANDOFF.md"
+        "artifact_path": "artifacts/artemis-adapter-events/run-01/STATUS.md",
+        "status_path": "artifacts/artemis-adapter-events/run-01/STATUS.md/STATUS.md",
+        "validation_path": "artifacts/artemis-adapter-events/run-01/STATUS.md/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-adapter-events/run-01/STATUS.md/HANDOFF.md",
+        "logs": []
       },
       "links": {
-        "correlation_id": "tkt-016"
+        "correlation_id": "tkt-017"
       },
       "payload": {
-        "summary": "Um schema local versionado deve definir eventos de tarefa, tentativa, runner, tool use, approval, Human Gate, validacao, evidencia e handoff, com campos minimos para o Control Plane consumir sem virar fonte canonica.",
+        "summary": "O adapter de issues, Codex app-server, Claude Code e Validation Gate devem produzir artifacts `events.json` ou `event-log.example.json` compativeis com `docs/schemas/artemis-event.schema.json`.",
         "risk": "medium",
         "owner": "Architect",
         "tags": [
@@ -57,7 +58,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-04-30T19:56:08Z",
+      "generated_at": "2026-04-30T20:05:15Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -93,7 +94,8 @@
         "artifact_path": "artifacts/artemis-github-issues-adapter/run-01",
         "status_path": "artifacts/artemis-github-issues-adapter/run-01/STATUS.md",
         "validation_path": "artifacts/artemis-github-issues-adapter/run-01/VALIDATION.md",
-        "handoff_path": "artifacts/artemis-github-issues-adapter/run-01/HANDOFF.md"
+        "handoff_path": "artifacts/artemis-github-issues-adapter/run-01/HANDOFF.md",
+        "logs": []
       },
       "links": {
         "correlation_id": "tkt-013"
@@ -123,7 +125,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-04-30T19:56:08Z",
+      "generated_at": "2026-04-30T20:05:15Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -153,7 +155,8 @@
         "artifact_path": "artifacts/artemis-codex-app-server-adapter/run-01",
         "status_path": "artifacts/artemis-codex-app-server-adapter/run-01/STATUS.md",
         "validation_path": "artifacts/artemis-codex-app-server-adapter/run-01/VALIDATION.md",
-        "handoff_path": "artifacts/artemis-codex-app-server-adapter/run-01/HANDOFF.md"
+        "handoff_path": "artifacts/artemis-codex-app-server-adapter/run-01/HANDOFF.md",
+        "logs": []
       },
       "links": {
         "correlation_id": "tkt-014"
@@ -209,7 +212,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-04-30T19:56:08Z",
+      "generated_at": "2026-04-30T20:05:15Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -239,7 +242,8 @@
         "artifact_path": "artifacts/artemis-claude-code-adapter/run-01",
         "status_path": "artifacts/artemis-claude-code-adapter/run-01/STATUS.md",
         "validation_path": "artifacts/artemis-claude-code-adapter/run-01/VALIDATION.md",
-        "handoff_path": "artifacts/artemis-claude-code-adapter/run-01/HANDOFF.md"
+        "handoff_path": "artifacts/artemis-claude-code-adapter/run-01/HANDOFF.md",
+        "logs": []
       },
       "links": {
         "correlation_id": "tkt-015"
@@ -301,7 +305,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-04-30T19:56:08Z",
+      "generated_at": "2026-04-30T20:05:15Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -319,29 +323,30 @@
       },
       "state": {
         "from": "validating",
-        "to": "human_gate",
+        "to": "failed",
         "reason": "Validation Gate completed with structured technical and Human Gate results."
       },
       "gate": {
         "kind": "validation",
-        "status": "human_gate",
+        "status": "failed",
         "reason": "Validation Gate result."
       },
-      "severity": "warning",
+      "severity": "info",
       "evidence": {
         "artifact_path": "artifacts/artemis-validation-gate/run-01",
         "status_path": "artifacts/artemis-validation-gate/run-01/STATUS.md",
         "validation_path": "artifacts/artemis-validation-gate/run-01/VALIDATION.md",
-        "handoff_path": "artifacts/artemis-validation-gate/run-01/HANDOFF.md"
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/HANDOFF.md",
+        "logs": []
       },
       "links": {
         "correlation_id": "task"
       },
       "payload": {
-        "overall": "human_gate",
+        "overall": "failed",
         "summary": {
-          "passed": 16,
-          "failed": 0,
+          "passed": 18,
+          "failed": 1,
           "human_gate": 2
         },
         "checks": [
@@ -409,6 +414,13 @@
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_claude_code.txt"
           },
           {
+            "name": "shell_event_log",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_event_log.txt"
+          },
+          {
             "name": "task_source",
             "kind": "technical",
             "status": "passed",
@@ -458,11 +470,25 @@
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/claude_code.txt"
           },
           {
+            "name": "event_log",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/event_log.txt"
+          },
+          {
             "name": "github_issues",
             "kind": "human_gate",
             "status": "human_gate",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/github_issues.txt"
+          },
+          {
+            "name": "canonical_events",
+            "kind": "technical",
+            "status": "failed",
+            "exit_code": 1,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/canonical_events.txt"
           },
           {
             "name": "github_auth",

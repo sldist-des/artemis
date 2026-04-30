@@ -17,4 +17,5 @@ codex_app_server	technical	passed	0	artifacts/artemis-validation-gate/run-01/che
 claude_code	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/claude_code.txt
 event_log	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/event_log.txt
 github_issues	human_gate	human_gate	0	artifacts/artemis-validation-gate/run-01/check-logs/github_issues.txt
+canonical_events	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/canonical_events.txt
 github_auth	human_gate	human_gate	1	artifacts/artemis-validation-gate/run-01/check-logs/github_auth.txt

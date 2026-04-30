@@ -242,6 +242,14 @@ scripts/artemis-event-log.sh --json
 
 O schema vive em `docs/schemas/artemis-event.schema.json` e `docs/schemas/artemis-event-log.schema.json`. O envelope comum registra produtor, sujeito, runner, estado, gate, severidade, evidencia, links e payload. Campos especificos de GitHub, Codex app-server ou Claude Code ficam em `payload`, para que o Control Plane consuma eventos sem virar fonte canonica.
 
+Adapters devem emitir eventos canonicos junto com seus JSONs especificos:
+
+```text
+artifacts/<adapter>/run-<nn>/events.json
+```
+
+`events.json` e um artifact de interoperabilidade. Ele nao substitui `STATUS.md`, `VALIDATION.md`, `HANDOFF.md`, o JSON especifico do adapter, Exec Packs ou Git.
+
 ## Completion checklist
 
 Antes de mover uma tarefa para `Done`, confirme:

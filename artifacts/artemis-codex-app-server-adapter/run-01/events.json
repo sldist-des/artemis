@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-04-30T20:03:24Z",
+  "source": "scripts/artemis-codex-app-server.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-014_codex_app_server_contract",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-04-30T20:03:24Z",
+      "producer": {
+        "adapter": "codex_app_server",
+        "name": "scripts/artemis-codex-app-server.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-014",
+        "task_id": "tkt-014",
+        "title": "Preparar Codex app-server adapter",
+        "exec_pack": "docs/exec-packs/done/TKT-014-codex-app-server-adapter.md",
+        "artifact_root": "artifacts/artemis-codex-app-server-adapter/run-01"
+      },
+      "runner": {
+        "kind": "codex_app_server"
+      },
+      "state": {
+        "from": "handoff",
+        "to": "done",
+        "reason": "Codex app-server local contract check passed."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-codex-app-server-adapter/run-01",
+        "status_path": "artifacts/artemis-codex-app-server-adapter/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-codex-app-server-adapter/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-codex-app-server-adapter/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-codex-app-server-adapter/run-01/check-logs/codex-version.txt",
+          "artifacts/artemis-codex-app-server-adapter/run-01/check-logs/codex-app-server-help.txt",
+          "artifacts/artemis-codex-app-server-adapter/run-01/check-logs/codex-app-server-schema.txt"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-014"
+      },
+      "payload": {
+        "overall": "passed",
+        "reason": "Codex app-server local contract check passed.",
+        "checks": {
+          "codex_installed": true,
+          "codex_path": "/usr/bin/codex",
+          "codex_version_exit_code": 0,
+          "app_server_help_exit_code": 0,
+          "schema_generation_exit_code": 0,
+          "generated_schema_files": 227,
+          "supports_listen": true,
+          "supports_ws_auth": true,
+          "supports_schema_generation": true
+        },
+        "contract": {
+          "terminal_first": true,
+          "app_server_role": "event_source_and_rich_client_protocol",
+          "not_owner_of_method": true,
+          "remote_writes": "human_gate_only",
+          "daemon": "out_of_scope",
+          "default_transport": "stdio",
+          "websocket_transport": "future_human_gate",
+          "non_loopback_listener": "forbidden_without_explicit_human_gate",
+          "thread_shell_command": "human_gate_required_because_it_runs_outside_thread_sandbox"
+        },
+        "mapping_count": 6,
+        "event_contract": {
+          "required_fields": [
+            "event_id",
+            "generated_at",
+            "ticket",
+            "exec_pack",
+            "thread_id",
+            "turn_id",
+            "item_id",
+            "event_type",
+            "state",
+            "artifact_path"
+          ],
+          "states": [
+            "ready",
+            "running",
+            "validating",
+            "review",
+            "human_gate",
+            "handoff",
+            "done",
+            "blocked"
+          ],
+          "approval_event_types": [
+            "item/commandExecution/requestApproval",
+            "item/fileChange/requestApproval",
+            "item/tool/requestUserInput",
+            "mcp_tool_side_effect_approval"
+          ]
+        },
+        "blocked_or_human_gate_methods": [
+          "thread/shellCommand",
+          "config/value/write",
+          "config/batchWrite",
+          "fs/writeFile",
+          "fs/remove",
+          "marketplace/install",
+          "plugin/install",
+          "plugin/uninstall",
+          "account/login/start",
+          "account/logout"
+        ]
+      }
+    }
+  ]
+}

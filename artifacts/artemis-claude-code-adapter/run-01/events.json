@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-04-30T20:03:25Z",
+  "source": "scripts/artemis-claude-code.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-015_claude_code_contract",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-04-30T20:03:25Z",
+      "producer": {
+        "adapter": "claude_code",
+        "name": "scripts/artemis-claude-code.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-015",
+        "task_id": "tkt-015",
+        "title": "Preparar Claude Code adapter",
+        "exec_pack": "docs/exec-packs/done/TKT-015-claude-code-adapter.md",
+        "artifact_root": "artifacts/artemis-claude-code-adapter/run-01"
+      },
+      "runner": {
+        "kind": "claude_code"
+      },
+      "state": {
+        "from": "handoff",
+        "to": "done",
+        "reason": "Claude Code local contract check passed."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-claude-code-adapter/run-01",
+        "status_path": "artifacts/artemis-claude-code-adapter/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-claude-code-adapter/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-claude-code-adapter/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-claude-code-adapter/run-01/check-logs/claude-version.txt",
+          "artifacts/artemis-claude-code-adapter/run-01/check-logs/claude-help.txt",
+          "artifacts/artemis-claude-code-adapter/run-01/check-logs/claude-auth.txt",
+          "artifacts/artemis-claude-code-adapter/run-01/check-logs/claude-agents.txt"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-015"
+      },
+      "payload": {
+        "overall": "passed",
+        "reason": "Claude Code local contract check passed.",
+        "checks": {
+          "claude_installed": true,
+          "claude_path": "/root/.local/bin/claude",
+          "claude_version_exit_code": 0,
+          "claude_help_exit_code": 0,
+          "claude_auth_exit_code": 0,
+          "claude_agents_exit_code": 0,
+          "project_claude_adapter": "thin_adapter",
+          "supports_print": true,
+          "supports_output_format": true,
+          "supports_stream_json": true,
+          "supports_input_format": true,
+          "supports_hook_events": true,
+          "supports_agents": true,
+          "supports_allowed_tools": true,
+          "supports_disallowed_tools": true,
+          "supports_permission_mode": true,
+          "supports_debug_file": true,
+          "supports_worktree": true,
+          "supports_setting_sources": true
+        },
+        "contract": {
+          "agents_md_canonical": true,
+          "claude_md_role": "thin_runtime_adapter",
+          "runner_role": "headless_or_sdk_runner_adapter",
+          "terminal_first": true,
+          "remote_writes": "human_gate_only",
+          "daemon": "out_of_scope",
+          "remote_control": "human_gate_only",
+          "dangerously_skip_permissions": "forbidden",
+          "default_first_cut": "claude -p with json or stream-json output under supervised runner",
+          "production_automation": "prefer_agent_sdk_after_contract_is_stable"
+        },
+        "mapping_count": 12,
+        "event_contract": {
+          "required_fields": [
+            "event_id",
+            "generated_at",
+            "ticket",
+            "exec_pack",
+            "session_id",
+            "turn_index",
+            "hook_event",
+            "tool_name",
+            "agent_name",
+            "event_type",
+            "state",
+            "artifact_path"
+          ],
+          "human_gate_events": [
+            "Notification",
+            "UserPromptSubmit:block",
+            "PreToolUse:ask",
+            "PreToolUse:deny",
+            "Stop:block",
+            "SubagentStop:block",
+            "dangerous_permission_mode_requested",
+            "remote_control_requested"
+          ],
+          "protected_tools": [
+            "Bash",
+            "Edit",
+            "Write",
+            "WebFetch",
+            "WebSearch",
+            "Agent",
+            "MCP tools"
+          ]
+        },
+        "blocked_or_human_gate_flags": [
+          "--dangerously-skip-permissions",
+          "--allow-dangerously-skip-permissions",
+          "--remote",
+          "--remote-control",
+          "--mcp-config with unreviewed server",
+          "--allowedTools with broad Bash/Edit/Write",
+          "--permission-mode bypassPermissions",
+          "--plugin-dir with unreviewed plugins"
+        ]
+      }
+    }
+  ]
+}

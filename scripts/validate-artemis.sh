@@ -39,6 +39,7 @@ scripts/artemis-github-issues.sh
 scripts/artemis-codex-app-server.sh
 scripts/artemis-claude-code.sh
 scripts/artemis-event-log.sh
+scripts/artemis_event_common.py
 "
 
 for file in $required_files; do
@@ -147,10 +148,18 @@ if ! grep -q '"overall": "human_gate"' /tmp/artemis-validation-gate.json; then
   echo "scripts/artemis-validation-gate.sh did not report the expected Human Gate status" >&2
   exit 1
 fi
+if ! grep -q '"event_type": "validation.completed"' /tmp/artemis-validation-gate/events.json; then
+  echo "scripts/artemis-validation-gate.sh did not emit canonical events" >&2
+  exit 1
+fi
 
 scripts/artemis-github-issues.sh --artifact-root /tmp/artemis-github-issues --json >/tmp/artemis-github-issues.json
 if ! grep -q '"overall": "human_gate"' /tmp/artemis-github-issues.json; then
   echo "scripts/artemis-github-issues.sh did not report the expected Human Gate status" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "runner.readiness_checked"' /tmp/artemis-github-issues/events.json; then
+  echo "scripts/artemis-github-issues.sh did not emit canonical events" >&2
   exit 1
 fi
 
@@ -159,10 +168,18 @@ if ! grep -q '"overall": "passed"' /tmp/artemis-codex-app-server.json; then
   echo "scripts/artemis-codex-app-server.sh did not report the expected passed status" >&2
   exit 1
 fi
+if ! grep -q '"event_type": "adapter.contract_recorded"' /tmp/artemis-codex-app-server/events.json; then
+  echo "scripts/artemis-codex-app-server.sh did not emit canonical events" >&2
+  exit 1
+fi
 
 scripts/artemis-claude-code.sh --artifact-root /tmp/artemis-claude-code --json >/tmp/artemis-claude-code.json
 if ! grep -q '"overall": "passed"' /tmp/artemis-claude-code.json; then
   echo "scripts/artemis-claude-code.sh did not report the expected passed status" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "adapter.contract_recorded"' /tmp/artemis-claude-code/events.json; then
+  echo "scripts/artemis-claude-code.sh did not emit canonical events" >&2
   exit 1
 fi
 

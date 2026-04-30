@@ -1,7 +1,7 @@
 # VALIDATION GATE RESULT
 
 - Overall: human_gate
-- Passed: 18
+- Passed: 19
 - Failed: 0
 - Human Gate: 2
 
@@ -26,4 +26,5 @@
 - claude_code: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/claude_code.txt`
 - event_log: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/event_log.txt`
 - github_issues: human_gate (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/github_issues.txt`
+- canonical_events: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/canonical_events.txt`
 - github_auth: human_gate (exit 1) -> `artifacts/artemis-validation-gate/run-01/check-logs/github_auth.txt`

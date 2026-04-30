@@ -24,4 +24,4 @@ O gate consolida checks locais e separa falha tecnica de Human Gate.
 
 ## Proxima acao
 
-Executar TKT-017: fazer adapters emitirem eventos canonicos ARTEMIS.
+Executar TKT-018: renderizar timeline de eventos no Control Plane.

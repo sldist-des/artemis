@@ -119,6 +119,8 @@ Gere um event log ARTEMIS local de exemplo com:
 scripts/artemis-event-log.sh
 ```
 
+Adapters tambem registram `events.json` nos seus artifacts quando executados com `--artifact-root`.
+
 ## Como aplicar em um projeto
 
 1. Copie os templates para a raiz do projeto alvo.

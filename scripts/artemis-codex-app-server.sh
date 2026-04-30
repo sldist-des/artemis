@@ -294,6 +294,7 @@ if [ -n "$artifact_root" ]; then
 import json
 import sys
 from pathlib import Path
+from scripts.artemis_event_common import event, event_log, write_event_log
 
 root = Path(sys.argv[1])
 payload = json.loads((root / "codex-app-server-adapter.json").read_text(encoding="utf-8"))
@@ -356,6 +357,46 @@ for schema_file in payload["schema_files_sample"]:
     lines.append(f"- `{schema_file}`")
 
 (root / "CODEX_APP_SERVER_ADAPTER.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+state_to = "done" if payload["overall"] == "passed" else "blocked"
+severity = "info" if payload["overall"] == "passed" else "error"
+gate = {"kind": "none", "status": "not_applicable"}
+if payload["overall"] == "failed":
+    gate = {"kind": "validation", "status": "failed", "reason": payload["reason"]}
+
+event_payload = {
+    "overall": payload["overall"],
+    "reason": payload["reason"],
+    "checks": payload["checks"],
+    "contract": payload["contract"],
+    "mapping_count": len(payload["mapping"]),
+    "event_contract": payload["event_contract"],
+    "blocked_or_human_gate_methods": payload["blocked_or_human_gate_methods"],
+}
+events = [
+    event(
+        event_id="evt_tkt-014_codex_app_server_contract",
+        event_type="adapter.contract_recorded",
+        generated_at=payload["generated_at"],
+        producer={"adapter": "codex_app_server", "name": "scripts/artemis-codex-app-server.sh", "mode": "read_only"},
+        ticket="TKT-014",
+        title="Preparar Codex app-server adapter",
+        exec_pack="docs/exec-packs/done/TKT-014-codex-app-server-adapter.md",
+        artifact_root=str(root),
+        state_from="handoff",
+        state_to=state_to,
+        runner={"kind": "codex_app_server"},
+        gate=gate,
+        severity=severity,
+        logs=[
+            str(root / "check-logs" / "codex-version.txt"),
+            str(root / "check-logs" / "codex-app-server-help.txt"),
+            str(root / "check-logs" / "codex-app-server-schema.txt"),
+        ],
+        payload=event_payload,
+    )
+]
+write_event_log(root / "events.json", event_log(source="scripts/artemis-codex-app-server.sh", generated_at=payload["generated_at"], events=events))
 PY
 fi
 

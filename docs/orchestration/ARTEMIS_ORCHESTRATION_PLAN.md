@@ -377,7 +377,7 @@ Aceite:
 
 Objetivo: fazer os adapters existentes emitirem `events.json` no schema ARTEMIS.
 
-Estado: proximo corte em TKT-017.
+Estado: concluido em TKT-017.
 
 Aceite:
 
@@ -386,6 +386,20 @@ Aceite:
 - Claude Code adapter emite eventos canonicos;
 - Validation Gate valida existencia dos eventos;
 - JSON especifico de cada adapter continua disponivel para diagnostico.
+
+### Fase 11 - Timeline de eventos no Control Plane
+
+Objetivo: renderizar o event log canonico no Control Plane como timeline read-only.
+
+Estado: proximo corte em TKT-018.
+
+Aceite:
+
+- Control Plane carrega event log local quando servido por HTTP;
+- eventos aparecem como timeline compacta;
+- timeline aponta para artifacts;
+- timeline nao permite alterar estado canonico;
+- fallback continua funcional quando `events.json` nao existe.
 
 ## 10. Gatilhos de confiabilidade
 

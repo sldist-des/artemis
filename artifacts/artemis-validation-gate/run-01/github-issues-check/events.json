@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-04-30T20:05:15Z",
+  "source": "scripts/artemis-github-issues.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-013_github_issues_readiness",
+      "event_type": "runner.readiness_checked",
+      "generated_at": "2026-04-30T20:05:15Z",
+      "producer": {
+        "adapter": "github_issues",
+        "name": "scripts/artemis-github-issues.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-013",
+        "task_id": "tkt-013",
+        "title": "Criar GitHub Issues adapter",
+        "exec_pack": "docs/exec-packs/done/TKT-013-github-issues-adapter.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/github-issues-check"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "ready",
+        "to": "human_gate",
+        "reason": "gh auth status did not pass."
+      },
+      "gate": {
+        "kind": "human",
+        "status": "human_gate",
+        "reason": "gh auth status did not pass.",
+        "options": [
+          "authenticate gh",
+          "configure CODEOWNERS",
+          "continue local-only"
+        ]
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/github-issues-check",
+        "status_path": "artifacts/artemis-validation-gate/run-01/github-issues-check/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/github-issues-check/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/github-issues-check/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-validation-gate/run-01/github-issues-check/check-logs/gh-auth.txt",
+          "artifacts/artemis-validation-gate/run-01/github-issues-check/check-logs/gh-issues.txt"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-013"
+      },
+      "payload": {
+        "overall": "human_gate",
+        "reason": "gh auth status did not pass.",
+        "repo": "sldist-des/artemis",
+        "label": "artemis",
+        "issue_count": 0,
+        "checks": {
+          "gh_installed": true,
+          "gh_auth_exit_code": 1,
+          "codeowners": "human_gate",
+          "issue_list_exit_code": 0
+        },
+        "contract": {
+          "issue_defines": "intent",
+          "exec_pack_defines": "contract",
+          "control_plane_shows": "state",
+          "remote_writes": "human_gate_only",
+          "labels": [
+            "artemis",
+            "artemis:intake",
+            "artemis:ready",
+            "artemis:running",
+            "artemis:human-gate",
+            "artemis:done"
+          ]
+        }
+      }
+    }
+  ]
+}

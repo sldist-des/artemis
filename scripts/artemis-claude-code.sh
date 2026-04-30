@@ -363,6 +363,7 @@ if [ -n "$artifact_root" ]; then
 import json
 import sys
 from pathlib import Path
+from scripts.artemis_event_common import event, event_log, write_event_log
 
 root = Path(sys.argv[1])
 payload = json.loads((root / "claude-code-adapter.json").read_text(encoding="utf-8"))
@@ -417,6 +418,53 @@ for flag in payload["blocked_or_human_gate_flags"]:
     lines.append(f"- `{flag}`")
 
 (root / "CLAUDE_CODE_ADAPTER.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+state_to = "done"
+severity = "info"
+gate = {"kind": "none", "status": "not_applicable"}
+if payload["overall"] == "human_gate":
+    state_to = "human_gate"
+    severity = "warning"
+    gate = {"kind": "human", "status": "human_gate", "reason": payload["reason"]}
+elif payload["overall"] == "failed":
+    state_to = "blocked"
+    severity = "error"
+    gate = {"kind": "validation", "status": "failed", "reason": payload["reason"]}
+
+event_payload = {
+    "overall": payload["overall"],
+    "reason": payload["reason"],
+    "checks": payload["checks"],
+    "contract": payload["contract"],
+    "mapping_count": len(payload["mapping"]),
+    "event_contract": payload["event_contract"],
+    "blocked_or_human_gate_flags": payload["blocked_or_human_gate_flags"],
+}
+events = [
+    event(
+        event_id="evt_tkt-015_claude_code_contract",
+        event_type="adapter.contract_recorded",
+        generated_at=payload["generated_at"],
+        producer={"adapter": "claude_code", "name": "scripts/artemis-claude-code.sh", "mode": "read_only"},
+        ticket="TKT-015",
+        title="Preparar Claude Code adapter",
+        exec_pack="docs/exec-packs/done/TKT-015-claude-code-adapter.md",
+        artifact_root=str(root),
+        state_from="handoff",
+        state_to=state_to,
+        runner={"kind": "claude_code"},
+        gate=gate,
+        severity=severity,
+        logs=[
+            str(root / "check-logs" / "claude-version.txt"),
+            str(root / "check-logs" / "claude-help.txt"),
+            str(root / "check-logs" / "claude-auth.txt"),
+            str(root / "check-logs" / "claude-agents.txt"),
+        ],
+        payload=event_payload,
+    )
+]
+write_event_log(root / "events.json", event_log(source="scripts/artemis-claude-code.sh", generated_at=payload["generated_at"], events=events))
 PY
 fi
 

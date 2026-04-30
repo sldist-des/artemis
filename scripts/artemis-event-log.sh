@@ -42,65 +42,26 @@ fi
 
 payload=$(python3 - <<'PY'
 import json
-from datetime import datetime, timezone
-from pathlib import Path
+from scripts.artemis_event_common import event, event_log, now_utc, read_json
 
-ROOT = Path(".")
-generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-
-def load_json(path):
-    with Path(path).open("r", encoding="utf-8") as handle:
-        return json.load(handle)
-
-def base_event(event_id, event_type, producer, ticket, title, exec_pack, artifact_root, state_to, payload, *, state_from=None, runner=None, gate=None, severity="info"):
-    return {
-        "schema_version": 1,
-        "event_id": event_id,
-        "event_type": event_type,
-        "generated_at": generated_at,
-        "producer": producer,
-        "subject": {
-            "ticket": ticket,
-            "task_id": ticket.lower(),
-            "title": title,
-            "exec_pack": exec_pack,
-            "artifact_root": artifact_root,
-        },
-        "runner": runner or {"kind": "none"},
-        "state": {
-            "from": state_from,
-            "to": state_to,
-            "reason": payload.get("reason", ""),
-        },
-        "gate": gate or {"kind": "none", "status": "not_applicable"},
-        "severity": severity,
-        "evidence": {
-            "artifact_path": artifact_root,
-            "status_path": f"{artifact_root}/STATUS.md",
-            "validation_path": f"{artifact_root}/VALIDATION.md",
-            "handoff_path": f"{artifact_root}/HANDOFF.md",
-        },
-        "links": {
-            "correlation_id": ticket.lower(),
-        },
-        "payload": payload,
-    }
+generated_at = now_utc()
 
 events = []
 
-tasks = load_json("control-plane/tasks.json")
+tasks = read_json("control-plane/tasks.json")
 for task in tasks.get("tasks", []):
-    if task.get("ticket") == "TKT-016":
-        events.append(base_event(
-            "evt_tkt-016_task_discovered",
-            "task.discovered",
-            {"adapter": "exec_pack", "name": "scripts/artemis-tasks.sh", "mode": "read_only"},
-            task["ticket"],
-            task.get("title", ""),
-            task.get("exec_pack", ""),
-            task.get("evidence", ""),
-            "ready",
-            {
+    if task.get("ticket") == "TKT-017":
+        events.append(event(
+            event_id="evt_tkt-017_task_discovered",
+            event_type="task.discovered",
+            generated_at=generated_at,
+            producer={"adapter": "exec_pack", "name": "scripts/artemis-tasks.sh", "mode": "read_only"},
+            ticket=task["ticket"],
+            title=task.get("title", ""),
+            exec_pack=task.get("exec_pack", ""),
+            artifact_root=task.get("evidence", ""),
+            state_to="ready",
+            payload={
                 "summary": task.get("summary", ""),
                 "risk": task.get("risk", ""),
                 "owner": task.get("owner", ""),
@@ -110,17 +71,18 @@ for task in tasks.get("tasks", []):
         ))
         break
 
-github = load_json("artifacts/artemis-github-issues-adapter/run-01/github-issues.json")
-events.append(base_event(
-    "evt_tkt-013_github_issues_readiness",
-    "runner.readiness_checked",
-    {"adapter": "github_issues", "name": "scripts/artemis-github-issues.sh", "mode": "read_only"},
-    "TKT-013",
-    "Criar GitHub Issues adapter",
-    "docs/exec-packs/done/TKT-013-github-issues-adapter.md",
-    "artifacts/artemis-github-issues-adapter/run-01",
-    "human_gate" if github.get("overall") == "human_gate" else "done",
-    {
+github = read_json("artifacts/artemis-github-issues-adapter/run-01/github-issues.json")
+events.append(event(
+    event_id="evt_tkt-013_github_issues_readiness",
+    event_type="runner.readiness_checked",
+    generated_at=generated_at,
+    producer={"adapter": "github_issues", "name": "scripts/artemis-github-issues.sh", "mode": "read_only"},
+    ticket="TKT-013",
+    title="Criar GitHub Issues adapter",
+    exec_pack="docs/exec-packs/done/TKT-013-github-issues-adapter.md",
+    artifact_root="artifacts/artemis-github-issues-adapter/run-01",
+    state_to="human_gate" if github.get("overall") == "human_gate" else "done",
+    payload={
         "overall": github.get("overall"),
         "reason": github.get("reason"),
         "repo": github.get("repo"),
@@ -138,17 +100,18 @@ events.append(base_event(
     severity="warning" if github.get("overall") == "human_gate" else "info",
 ))
 
-codex = load_json("artifacts/artemis-codex-app-server-adapter/run-01/codex-app-server-adapter.json")
-events.append(base_event(
-    "evt_tkt-014_codex_app_server_contract",
-    "adapter.contract_recorded",
-    {"adapter": "codex_app_server", "name": "scripts/artemis-codex-app-server.sh", "mode": "read_only"},
-    "TKT-014",
-    "Preparar Codex app-server adapter",
-    "docs/exec-packs/done/TKT-014-codex-app-server-adapter.md",
-    "artifacts/artemis-codex-app-server-adapter/run-01",
-    "done",
-    {
+codex = read_json("artifacts/artemis-codex-app-server-adapter/run-01/codex-app-server-adapter.json")
+events.append(event(
+    event_id="evt_tkt-014_codex_app_server_contract",
+    event_type="adapter.contract_recorded",
+    generated_at=generated_at,
+    producer={"adapter": "codex_app_server", "name": "scripts/artemis-codex-app-server.sh", "mode": "read_only"},
+    ticket="TKT-014",
+    title="Preparar Codex app-server adapter",
+    exec_pack="docs/exec-packs/done/TKT-014-codex-app-server-adapter.md",
+    artifact_root="artifacts/artemis-codex-app-server-adapter/run-01",
+    state_to="done",
+    payload={
         "overall": codex.get("overall"),
         "reason": codex.get("reason"),
         "mapping_count": len(codex.get("mapping", [])),
@@ -159,17 +122,18 @@ events.append(base_event(
     runner={"kind": "codex_app_server"},
 ))
 
-claude = load_json("artifacts/artemis-claude-code-adapter/run-01/claude-code-adapter.json")
-events.append(base_event(
-    "evt_tkt-015_claude_code_contract",
-    "adapter.contract_recorded",
-    {"adapter": "claude_code", "name": "scripts/artemis-claude-code.sh", "mode": "read_only"},
-    "TKT-015",
-    "Preparar Claude Code adapter",
-    "docs/exec-packs/done/TKT-015-claude-code-adapter.md",
-    "artifacts/artemis-claude-code-adapter/run-01",
-    "done",
-    {
+claude = read_json("artifacts/artemis-claude-code-adapter/run-01/claude-code-adapter.json")
+events.append(event(
+    event_id="evt_tkt-015_claude_code_contract",
+    event_type="adapter.contract_recorded",
+    generated_at=generated_at,
+    producer={"adapter": "claude_code", "name": "scripts/artemis-claude-code.sh", "mode": "read_only"},
+    ticket="TKT-015",
+    title="Preparar Claude Code adapter",
+    exec_pack="docs/exec-packs/done/TKT-015-claude-code-adapter.md",
+    artifact_root="artifacts/artemis-claude-code-adapter/run-01",
+    state_to="done",
+    payload={
         "overall": claude.get("overall"),
         "reason": claude.get("reason"),
         "mapping_count": len(claude.get("mapping", [])),
@@ -180,17 +144,18 @@ events.append(base_event(
     runner={"kind": "claude_code"},
 ))
 
-validation = load_json("artifacts/artemis-validation-gate/run-01/validation-gate.json")
-events.append(base_event(
-    "evt_validation_gate_current",
-    "validation.completed",
-    {"adapter": "validation_gate", "name": "scripts/artemis-validation-gate.sh", "mode": "read_only"},
-    "TASK",
-    "ARTEMIS Validation Gate",
-    "ARTEMIS_WORKFLOW.md",
-    "artifacts/artemis-validation-gate/run-01",
-    "human_gate" if validation.get("overall") == "human_gate" else validation.get("overall", "done"),
-    {
+validation = read_json("artifacts/artemis-validation-gate/run-01/validation-gate.json")
+events.append(event(
+    event_id="evt_validation_gate_current",
+    event_type="validation.completed",
+    generated_at=generated_at,
+    producer={"adapter": "validation_gate", "name": "scripts/artemis-validation-gate.sh", "mode": "read_only"},
+    ticket="TASK",
+    title="ARTEMIS Validation Gate",
+    exec_pack="ARTEMIS_WORKFLOW.md",
+    artifact_root="artifacts/artemis-validation-gate/run-01",
+    state_to="human_gate" if validation.get("overall") == "human_gate" else validation.get("overall", "done"),
+    payload={
         "overall": validation.get("overall"),
         "summary": validation.get("summary"),
         "checks": validation.get("checks", []),
@@ -206,12 +171,7 @@ events.append(base_event(
     severity="warning" if validation.get("overall") == "human_gate" else "info",
 ))
 
-event_log = {
-    "schema_version": 1,
-    "generated_at": generated_at,
-    "source": "scripts/artemis-event-log.sh",
-    "events": events,
-}
+event_log = event_log(source="scripts/artemis-event-log.sh", generated_at=generated_at, events=events)
 
 print(json.dumps(event_log, ensure_ascii=False, indent=2))
 PY

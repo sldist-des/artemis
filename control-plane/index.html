@@ -545,18 +545,18 @@
       },
       {
         id: "tkt-004",
-        state: "human",
+        state: "done",
         ticket: "TKT-004",
         title: "Prontidao GitHub",
-        summary: "Remoto criado; falta acertar gh auth, owners e protections.",
-        owner: "Humano",
+        summary: "Runbook, readiness e evidencias criados; push ficou como Human Gate.",
+        owner: "Codex",
         risk: "medium",
         evidence: "artifacts/github-remote-readiness/run-01",
         tags: ["remote", "auth", "rulesets"]
       },
       {
         id: "tkt-005",
-        state: "executing",
+        state: "done",
         ticket: "TKT-005",
         title: "ARTEMIS Control Plane",
         summary: "Superficie local para estado, evidencia e decisao humana.",
@@ -566,15 +566,59 @@
         tags: ["control-plane", "visual", "estado"]
       },
       {
-        id: "next-symphony",
-        state: "intake",
-        ticket: "NEXT",
-        title: "Orquestrador ARTEMIS",
-        summary: "Avaliar daemon estilo Symphony apos validar o Control Plane manual.",
+        id: "tkt-006",
+        state: "done",
+        ticket: "TKT-006",
+        title: "Plano do Orquestrador",
+        summary: "Fases definidas: workflow, task source, dry-run, runners e gates.",
+        owner: "Codex",
+        risk: "high",
+        evidence: "artifacts/artemis-orchestration-plan/run-01",
+        tags: ["symphony", "orquestracao", "plano"]
+      },
+      {
+        id: "tkt-007",
+        state: "done",
+        ticket: "TKT-007",
+        title: "Nome Control Plane",
+        summary: "Superficie visual consolidada como ARTEMIS Control Plane.",
+        owner: "Codex",
+        risk: "low",
+        evidence: "artifacts/artemis-control-plane-rename/run-01",
+        tags: ["control-plane", "nomenclatura"]
+      },
+      {
+        id: "tkt-008",
+        state: "done",
+        ticket: "TKT-008",
+        title: "ARTEMIS Workflow",
+        summary: "Contrato operacional de estados, dispatch, parada, gates e evidencias.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "artifacts/artemis-workflow/run-01",
+        tags: ["workflow", "gates", "runners"]
+      },
+      {
+        id: "tkt-009",
+        state: "ready",
+        ticket: "TKT-009",
+        title: "Task source local",
+        summary: "Gerar JSON dos Exec Packs para alimentar o Control Plane sem daemon.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "docs/exec-packs/active/TKT-009-local-task-source.md",
+        tags: ["exec-packs", "json", "control-plane"]
+      },
+      {
+        id: "github-auth",
+        state: "human",
+        ticket: "GIT",
+        title: "Autenticacao GitHub",
+        summary: "Push bloqueado por credencial HTTPS ausente; branch local esta ahead.",
         owner: "Humano",
         risk: "high",
-        evidence: "docs/control-plane/artemis-control-plane.md",
-        tags: ["symphony", "daemon", "future"]
+        evidence: "artifacts/artemis-workflow/run-01/VALIDATION.md",
+        tags: ["git", "auth", "push"]
       }
     ];
 

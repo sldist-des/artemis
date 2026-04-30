@@ -8,6 +8,7 @@ ARCHITECTURE.md
 AI_PROCESS.md
 README.md
 ARTEMIS_QUICKSTART.md
+ARTEMIS_WORKFLOW.md
 .impeccable.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md

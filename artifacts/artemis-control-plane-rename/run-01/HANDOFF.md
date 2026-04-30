@@ -24,4 +24,4 @@ Renomeacao concluida e validada localmente.
 
 ## Proxima acao
 
-Criar commit local e, quando a autenticacao GitHub estiver corrigida, fazer push.
+Executar TKT-008 e, quando a autenticacao GitHub estiver corrigida, fazer push.

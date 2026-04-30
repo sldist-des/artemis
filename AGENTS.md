@@ -16,6 +16,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 
 - `README.md`
 - `ARTEMIS_QUICKSTART.md`
+- `ARTEMIS_WORKFLOW.md`
 - `fluxo-artemis-claude-codex-v1.3.md`
 - `artemis-arquitetura-agentes.md`
 - `artemis-github-operating-model.md`

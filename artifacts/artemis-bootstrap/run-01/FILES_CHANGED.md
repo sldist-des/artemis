@@ -4,7 +4,7 @@
 
 - `README.md`
 - `ARTEMIS_QUICKSTART.md`
-- `docs/exec-packs/active/TKT-000-artemis-starter-kit.md`
+- `docs/exec-packs/done/TKT-000-artemis-starter-kit.md`
 - `templates/AGENTS.md`
 - `templates/CLAUDE.md`
 - `templates/ARCHITECTURE.md`

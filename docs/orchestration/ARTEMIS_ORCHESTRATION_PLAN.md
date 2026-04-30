@@ -215,6 +215,8 @@ Aceite:
 
 Objetivo: criar `ARTEMIS_WORKFLOW.md`, equivalente ARTEMIS ao `WORKFLOW.md` do Symphony.
 
+Estado: concluido em TKT-008.
+
 Conteudo minimo:
 
 - estados elegiveis;
@@ -233,6 +235,8 @@ Aceite:
 ### Fase 2 - Task source local
 
 Objetivo: ler Exec Packs locais e gerar estado do Control Plane.
+
+Estado: proximo corte em TKT-009.
 
 Sem daemon ainda.
 
@@ -421,7 +425,5 @@ O caminho em fases permite usar o melhor de Symphony e app-server sem abrir mao 
 
 ### Follow-ups
 
-- TKT-007: consolidar ARTEMIS Control Plane.
-- TKT-008: criar `ARTEMIS_WORKFLOW.md`.
 - TKT-009: criar task source local para Exec Packs.
 - TKT-010: criar orchestrator dry-run.

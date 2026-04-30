@@ -56,6 +56,10 @@ Use `AGENTS.md` como fonte canonica para Codex, Claude Code e outros agentes.
 
 Use `CLAUDE.md` apenas como adaptador fino para Claude Code, apontando para `AGENTS.md` e registrando somente diferencas especificas do runtime Claude.
 
+## Workflow operacional
+
+Use `ARTEMIS_WORKFLOW.md` como contrato de execucao: estados, dispatch, regras de parada, validation gates, evidencias e escalonamento humano.
+
 ## ARTEMIS Control Plane
 
 O ARTEMIS agora inclui uma primeira superficie visual local:

@@ -24,4 +24,4 @@ Plano criado em `docs/orchestration/ARTEMIS_ORCHESTRATION_PLAN.md`.
 
 ## Proxima acao
 
-Executar TKT-007: renomear Kanban para ARTEMIS Control Plane e ajustar nomenclatura do metodo.
+Executar TKT-009: criar task source local para Exec Packs e preparar o Control Plane para consumir JSON.

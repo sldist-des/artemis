@@ -15,6 +15,7 @@ Descreva aqui, em poucas linhas:
 
 - `ARCHITECTURE.md`
 - `AI_PROCESS.md`
+- `ARTEMIS_WORKFLOW.md`
 - `docs/invariants/core.md`
 - Exec Pack ativo em `docs/exec-packs/active/`
 - ADRs relevantes em `docs/decisions/`
@@ -62,4 +63,3 @@ Escalar antes de:
 - introduzir nova dependencia;
 - mudar contrato publico;
 - expandir escopo de forma relevante.
-

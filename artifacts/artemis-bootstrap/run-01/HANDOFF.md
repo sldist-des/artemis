@@ -22,7 +22,7 @@ Leia:
 
 - `README.md`
 - `ARTEMIS_QUICKSTART.md`
-- `docs/exec-packs/active/TKT-000-artemis-starter-kit.md`
+- `docs/exec-packs/done/TKT-000-artemis-starter-kit.md`
 - `templates/`
 - `prompts/`
 
@@ -49,4 +49,3 @@ Revisar o kit e decidir se a proxima rodada deve:
 ## Criterios de parada
 
 Escalar para humano antes de configurar GitHub real, owners, branch protection, Actions ou automacoes com permissao externa.
-

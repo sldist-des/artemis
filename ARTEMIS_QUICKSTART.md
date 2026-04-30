@@ -2,6 +2,8 @@
 
 Este guia e a versao curta para iniciar um projeto no fluxo ARTEMIS.
 
+Para a regra operacional completa, leia `ARTEMIS_WORKFLOW.md`.
+
 ## Fluxo minimo
 
 ```text
@@ -52,4 +54,3 @@ Demanda humana
 ## Regra de ouro
 
 Nao transforme prompt em governanca. Regra importante deve virar arquivo, hook, invariant, template, teste ou policy.
-

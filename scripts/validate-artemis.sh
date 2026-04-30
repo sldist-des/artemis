@@ -19,6 +19,7 @@ docs/control-plane/artemis-control-plane.md
 docs/principles/artemis-principles.md
 docs/runbooks/github-setup.md
 control-plane/index.html
+control-plane/tasks.json
 templates/AGENTS.md
 templates/CLAUDE.md
 templates/AI_PROCESS.md
@@ -28,6 +29,7 @@ prompts/implementer.md
 prompts/reviewer.md
 scripts/bootstrap-artemis.sh
 scripts/github-readiness.sh
+scripts/artemis-tasks.sh
 "
 
 for file in $required_files; do
@@ -78,7 +80,19 @@ fi
 
 sh -n scripts/bootstrap-artemis.sh
 sh -n scripts/github-readiness.sh
+sh -n scripts/artemis-tasks.sh
 sh -n scripts/validate-artemis.sh
+
+scripts/artemis-tasks.sh >/tmp/artemis-tasks.json
+if ! grep -q '"tasks": \[' /tmp/artemis-tasks.json; then
+  echo "scripts/artemis-tasks.sh did not emit the expected tasks JSON" >&2
+  exit 1
+fi
+
+if ! grep -q '"ticket": "TKT-' control-plane/tasks.json; then
+  echo "control-plane/tasks.json does not contain ARTEMIS tasks" >&2
+  exit 1
+fi
 
 if ! grep -q "ARTEMIS Control Plane" control-plane/index.html; then
   echo "control-plane/index.html does not look like the ARTEMIS Control Plane" >&2

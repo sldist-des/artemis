@@ -473,7 +473,7 @@
 
     <footer class="footer-note">
       <div>
-        O quadro salva movimentos neste navegador via localStorage. Exec Packs e artifacts continuam sendo a fonte documental do processo.
+        <span id="source-status">Fonte: seed local.</span> Exec Packs e artifacts continuam sendo a fonte documental do processo.
       </div>
       <nav class="source-links" aria-label="Referencias">
         <a href="../docs/control-plane/artemis-control-plane.md">Spec do Control Plane</a>
@@ -487,6 +487,7 @@
   <script>
     const storageKey = "artemis-control-plane-v1";
     const legacyStorageKey = "artemis-kanban-v1";
+    const taskSourceUrl = "tasks.json";
 
     const columns = [
       { id: "intake", title: "Intake", help: "Ideia ou pedido bruto. Ainda nao tem contrato." },
@@ -600,15 +601,40 @@
       },
       {
         id: "tkt-009",
-        state: "ready",
+        state: "done",
         ticket: "TKT-009",
         title: "Task source local",
-        summary: "Gerar JSON dos Exec Packs para alimentar o Control Plane sem daemon.",
+        summary: "JSON local dos Exec Packs gerado para alimentar o Control Plane.",
         owner: "Codex",
         risk: "medium",
-        evidence: "docs/exec-packs/active/TKT-009-local-task-source.md",
+        evidence: "artifacts/artemis-task-source/run-01",
         tags: ["exec-packs", "json", "control-plane"]
       },
+      {
+        id: "tkt-010",
+        state: "ready",
+        ticket: "TKT-010",
+        title: "Orchestrator dry-run",
+        summary: "Simular dispatch sem iniciar agentes, worktrees ou runners.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "docs/exec-packs/active/TKT-010-orchestrator-dry-run.md",
+        tags: ["dry-run", "dispatch", "orquestracao"]
+      },
+      {
+        id: "github-auth",
+        state: "human",
+        ticket: "GIT",
+        title: "Autenticacao GitHub",
+        summary: "Push bloqueado por credencial HTTPS ausente; branch local esta ahead.",
+        owner: "Humano",
+        risk: "high",
+        evidence: "artifacts/artemis-workflow/run-01/VALIDATION.md",
+        tags: ["git", "auth", "push"]
+      }
+    ];
+
+    const operationalCards = [
       {
         id: "github-auth",
         state: "human",
@@ -625,25 +651,80 @@
     const board = document.querySelector("#board");
     const search = document.querySelector("#search");
     const reset = document.querySelector("#reset");
+    const sourceStatus = document.querySelector("#source-status");
 
-    function loadCards() {
+    function cloneCards(source) {
+      return JSON.parse(JSON.stringify(source));
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function normalizeCard(item) {
+      const states = new Set(columns.map((column) => column.id));
+      const state = states.has(item.state) ? item.state : "ready";
+      return {
+        id: String(item.id || item.ticket || item.title || "task").toLowerCase(),
+        state,
+        ticket: String(item.ticket || "TASK"),
+        title: String(item.title || "Tarefa sem titulo"),
+        summary: String(item.summary || item.exec_pack || "Sem resumo registrado."),
+        owner: String(item.owner || "Codex"),
+        risk: ["low", "medium", "high"].includes(item.risk) ? item.risk : "medium",
+        evidence: String(item.evidence || item.exec_pack || ""),
+        tags: Array.isArray(item.tags) ? item.tags.map(String) : ["exec-pack"]
+      };
+    }
+
+    function mergeOperationalCards(source) {
+      const ids = new Set(source.map((card) => card.id));
+      const merged = [...source];
+      for (const card of operationalCards) {
+        if (!ids.has(card.id)) merged.push(card);
+      }
+      return merged;
+    }
+
+    async function loadTaskSourceCards() {
+      try {
+        const response = await fetch(taskSourceUrl, { cache: "no-store" });
+        if (!response.ok) return null;
+        const payload = await response.json();
+        if (!Array.isArray(payload.tasks)) return null;
+        const cards = payload.tasks.map(normalizeCard);
+        sourceStatus.textContent = `Fonte: ${payload.source || taskSourceUrl}`;
+        return mergeOperationalCards(cards);
+      } catch {
+        return null;
+      }
+    }
+
+    function loadStoredCards() {
       const saved = localStorage.getItem(storageKey);
       const legacy = localStorage.getItem(legacyStorageKey);
       if (!saved && legacy) {
         localStorage.setItem(storageKey, legacy);
       }
       const source = saved || legacy;
-      if (!source) return structuredClone(seedCards);
+      if (!source) return null;
       try {
         const parsed = JSON.parse(source);
-        if (!Array.isArray(parsed)) return structuredClone(seedCards);
-        return parsed;
+        if (!Array.isArray(parsed)) return null;
+        sourceStatus.textContent = "Fonte: localStorage.";
+        return parsed.map(normalizeCard);
       } catch {
-        return structuredClone(seedCards);
+        return null;
       }
     }
 
-    let cards = loadCards();
+    let initialCards = cloneCards(seedCards);
+    let cards = cloneCards(seedCards);
 
     function saveCards() {
       localStorage.setItem(storageKey, JSON.stringify(cards));
@@ -686,16 +767,16 @@
       article.dataset.search = `${card.ticket} ${card.title} ${card.owner} ${card.tags.join(" ")} ${card.summary}`.toLowerCase();
       article.innerHTML = `
         <div class="card-top">
-          <span class="ticket">${card.ticket}</span>
-          <span class="risk ${card.risk}">${card.risk}</span>
+          <span class="ticket">${escapeHtml(card.ticket)}</span>
+          <span class="risk ${escapeHtml(card.risk)}">${escapeHtml(card.risk)}</span>
         </div>
-        <h3>${card.title}</h3>
-        <p>${card.summary}</p>
+        <h3>${escapeHtml(card.title)}</h3>
+        <p>${escapeHtml(card.summary)}</p>
         <div class="meta">
-          <span><b>Owner</b><br>${card.owner}</span>
-          <span><b>Evidencia</b><br>${card.evidence}</span>
+          <span><b>Owner</b><br>${escapeHtml(card.owner)}</span>
+          <span><b>Evidencia</b><br>${escapeHtml(card.evidence)}</span>
         </div>
-        <div class="tags">${card.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}</div>
+        <div class="tags">${card.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
       `;
       article.addEventListener("dragstart", (event) => {
         event.dataTransfer.setData("text/plain", card.id);
@@ -740,12 +821,20 @@
 
     search.addEventListener("input", applyFilter);
     reset.addEventListener("click", () => {
-      cards = structuredClone(seedCards);
+      cards = cloneCards(initialCards);
       saveCards();
       render();
     });
 
-    render();
+    async function boot() {
+      const taskSourceCards = await loadTaskSourceCards();
+      const storedCards = taskSourceCards ? null : loadStoredCards();
+      initialCards = taskSourceCards || storedCards || cloneCards(seedCards);
+      cards = cloneCards(initialCards);
+      render();
+    }
+
+    boot();
   </script>
 </body>
 </html>

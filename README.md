@@ -68,7 +68,13 @@ O ARTEMIS agora inclui uma primeira superficie visual local:
 control-plane/index.html
 ```
 
-Abra esse arquivo no navegador para acompanhar o fluxo por estados: intake, contexto, pronto, execucao, revisao, decisao humana e concluido. O Control Plane e intencionalmente estatico e sem dependencias; ele salva movimentos no navegador via `localStorage`.
+Abra esse arquivo no navegador para acompanhar o fluxo por estados: intake, contexto, pronto, execucao, revisao, decisao humana e concluido. Quando servido por HTTP, ele tenta carregar `control-plane/tasks.json`; quando aberto diretamente sem acesso ao JSON, usa o seed local e `localStorage`.
+
+Gere a fonte local de tarefas com:
+
+```bash
+scripts/artemis-tasks.sh --output control-plane/tasks.json
+```
 
 ## Como aplicar em um projeto
 

@@ -14,14 +14,14 @@ Entregar o workflow operacional do metodo ARTEMIS.
 
 ## Estado atual
 
-Workflow criado localmente e pronto para ser usado como contrato do TKT-009.
+Workflow criado localmente e usado como contrato do TKT-009.
 
 ## Riscos
 
 - Push remoto continua bloqueado por autenticacao GitHub.
-- O Control Plane ainda usa cards estaticos ate TKT-009.
+- O Control Plane passa a ter task source local a partir do TKT-009.
 - O workflow ainda nao foi exercitado por um runner automatico.
 
 ## Proxima acao
 
-Executar TKT-009: gerar task source local a partir dos Exec Packs.
+Executar TKT-010: criar orchestrator dry-run sem iniciar agentes.

@@ -236,7 +236,7 @@ Aceite:
 
 Objetivo: ler Exec Packs locais e gerar estado do Control Plane.
 
-Estado: proximo corte em TKT-009.
+Estado: concluido em TKT-009.
 
 Sem daemon ainda.
 
@@ -255,6 +255,8 @@ Aceite:
 ### Fase 3 - Orchestrator dry-run
 
 Objetivo: simular dispatch sem iniciar agentes.
+
+Estado: proximo corte em TKT-010.
 
 Entregas:
 
@@ -425,5 +427,4 @@ O caminho em fases permite usar o melhor de Symphony e app-server sem abrir mao 
 
 ### Follow-ups
 
-- TKT-009: criar task source local para Exec Packs.
 - TKT-010: criar orchestrator dry-run.

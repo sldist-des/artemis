@@ -171,7 +171,13 @@ Push, merge e configuracoes remotas exigem permissao humana e credenciais valida
 
 O Control Plane mostra estado operacional. Ele nao substitui Exec Packs, artifacts, Git ou validacao.
 
-Enquanto nao houver task source automatico, cards podem ser atualizados manualmente. Quando `scripts/artemis-tasks.sh` existir, o Control Plane deve passar a consumir dados gerados a partir dos Exec Packs.
+O task source local e gerado por:
+
+```bash
+scripts/artemis-tasks.sh --output control-plane/tasks.json
+```
+
+Esse script le Exec Packs de `docs/exec-packs/active/` e `docs/exec-packs/done/` sem alterar os arquivos de origem. O Control Plane pode consumir `control-plane/tasks.json` quando servido por HTTP e deve tratar qualquer movimento manual como visualizacao temporaria.
 
 ## Completion checklist
 

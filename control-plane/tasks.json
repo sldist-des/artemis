@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-04-30T18:07:20Z",
+  "source": "scripts/artemis-tasks.sh",
+  "tasks": [
+    {
+      "id": "tkt-010",
+      "ticket": "TKT-010",
+      "title": "Criar orchestrator dry-run",
+      "state": "ready",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "Um comando local le o task source e mostra quais tarefas seriam elegiveis, bloqueadas ou aguardando humano, com razao explicita.",
+      "exec_pack": "docs/exec-packs/active/TKT-010-orchestrator-dry-run.md",
+      "evidence": "artifacts/artemis-dry-run/run-01/STATUS.md",
+      "tags": ["exec-pack", "active"]
+    },
+    {
+      "id": "tkt-000",
+      "ticket": "TKT-000",
+      "title": "Montar starter kit ARTEMIS",
+      "state": "done",
+      "owner": "Context Curator",
+      "risk": "medium",
+      "summary": "Um humano ou AI coder usando Codex/Claude Code deve conseguir copiar o kit para um projeto novo e iniciar o fluxo com Context Pack, agentes, evidencias e PR.",
+      "exec_pack": "docs/exec-packs/done/TKT-000-artemis-starter-kit.md",
+      "evidence": "docs/exec-packs/done/TKT-000-artemis-starter-kit.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-001",
+      "ticket": "TKT-001",
+      "title": "Criar base Git do ARTEMIS",
+      "state": "done",
+      "owner": "Implementer",
+      "risk": "low",
+      "summary": "O diretorio `/srv/veri` deve ser um repositorio Git em `main`, com arquivos relevantes preparados para commit e arquivos runtime locais ignorados.",
+      "exec_pack": "docs/exec-packs/done/TKT-001-git-foundation.md",
+      "evidence": "artifacts/git-foundation/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-002",
+      "ticket": "TKT-002",
+      "title": "Canonizar AGENTS.md como guia comum",
+      "state": "done",
+      "owner": "Implementer",
+      "risk": "low",
+      "summary": "O projeto e o starter kit devem evitar duplicacao entre `AGENTS.md` e `CLAUDE.md`, reduzindo risco de drift entre agentes.",
+      "exec_pack": "docs/exec-packs/done/TKT-002-agent-guide-canon.md",
+      "evidence": "artifacts/agent-guide-canon/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-003",
+      "ticket": "TKT-003",
+      "title": "Operacionalizar o proprio repositorio ARTEMIS",
+      "state": "done",
+      "owner": "Context Curator",
+      "risk": "medium",
+      "summary": "O repositorio deve conter camada operacional real para GitHub, arquitetura, processo, invariantes, agentes e validacao automatizada minima.",
+      "exec_pack": "docs/exec-packs/done/TKT-003-repository-operationalization.md",
+      "evidence": "artifacts/repository-operationalization/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-004",
+      "ticket": "TKT-004",
+      "title": "Preparar criacao do remoto GitHub",
+      "state": "done",
+      "owner": "Context Curator",
+      "risk": "medium",
+      "summary": "O repositorio deve ter um runbook claro e um script de prontidao que mostre o que falta para criar/pushar o remoto com seguranca.",
+      "exec_pack": "docs/exec-packs/done/TKT-004-github-remote-readiness.md",
+      "evidence": "artifacts/github-remote-readiness/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-005",
+      "ticket": "TKT-005",
+      "title": "Implementar ARTEMIS Control Plane",
+      "state": "done",
+      "owner": "Context Curator",
+      "risk": "medium",
+      "summary": "Um arquivo `control-plane/index.html` deve abrir diretamente no navegador, mostrar os estados ARTEMIS, permitir mover cards e preservar o estado localmente.",
+      "exec_pack": "docs/exec-packs/done/TKT-005-artemis-control-plane.md",
+      "evidence": "artifacts/artemis-control-plane/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-006",
+      "ticket": "TKT-006",
+      "title": "Planejar ARTEMIS Orchestrator",
+      "state": "done",
+      "owner": "Context Curator",
+      "risk": "medium",
+      "summary": "Um plano versionado deve deixar claro:",
+      "exec_pack": "docs/exec-packs/done/TKT-006-artemis-orchestration-plan.md",
+      "evidence": "artifacts/artemis-orchestration-plan/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-007",
+      "ticket": "TKT-007",
+      "title": "Renomear superficie visual para ARTEMIS Control Plane",
+      "state": "done",
+      "owner": "Implementer",
+      "risk": "low",
+      "summary": "Arquivos e documentacao corrente devem usar `control-plane/` e ARTEMIS Control Plane. Referencias antigas podem permanecer apenas em artifacts historicos.",
+      "exec_pack": "docs/exec-packs/done/TKT-007-control-plane-rename.md",
+      "evidence": "artifacts/artemis-control-plane-rename/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-008",
+      "ticket": "TKT-008",
+      "title": "Criar ARTEMIS_WORKFLOW.md",
+      "state": "done",
+      "owner": "Context Curator",
+      "risk": "low",
+      "summary": "`ARTEMIS_WORKFLOW.md` deve permitir que humano, Codex e Claude entendam quando uma tarefa pode ser executada, quando deve parar, como validar e quando escalar.",
+      "exec_pack": "docs/exec-packs/done/TKT-008-artemis-workflow.md",
+      "evidence": "artifacts/artemis-workflow/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-009",
+      "ticket": "TKT-009",
+      "title": "Criar task source local para Exec Packs",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "Um comando local gera JSON com tarefas, estados, owners, riscos, evidencias e caminhos dos Exec Packs.",
+      "exec_pack": "docs/exec-packs/done/TKT-009-local-task-source.md",
+      "evidence": "artifacts/artemis-task-source/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    }
+  ]
+}

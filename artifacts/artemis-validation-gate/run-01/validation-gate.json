@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-04-30T19:14:31Z",
+  "overall": "human_gate",
+  "summary": {
+    "passed": 11,
+    "failed": 0,
+    "human_gate": 1
+  },
+  "checks": [
+    {
+      "name": "shell_bootstrap",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_bootstrap.txt"
+    },
+    {
+      "name": "shell_github_readiness",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_github_readiness.txt"
+    },
+    {
+      "name": "shell_tasks",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_tasks.txt"
+    },
+    {
+      "name": "shell_dry_run",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_dry_run.txt"
+    },
+    {
+      "name": "shell_runner",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt"
+    },
+    {
+      "name": "shell_validation_gate",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_validation_gate.txt"
+    },
+    {
+      "name": "task_source",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/task_source.txt"
+    },
+    {
+      "name": "dry_run",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/dry_run.txt"
+    },
+    {
+      "name": "runner_plan",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt"
+    },
+    {
+      "name": "required_files",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/required_files.txt"
+    },
+    {
+      "name": "git_diff_check",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/git_diff_check.txt"
+    },
+    {
+      "name": "github_auth",
+      "kind": "human_gate",
+      "status": "human_gate",
+      "exit_code": 1,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/github_auth.txt"
+    }
+  ]
+}

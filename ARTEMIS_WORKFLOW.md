@@ -197,6 +197,15 @@ scripts/artemis-runner.sh --ticket TKT-000 --command "scripts/validate-artemis.s
 
 Sem `--execute`, o runner apenas registra o plano. Com `--execute`, ele roda o comando depois de validar elegibilidade e bloquear comandos remotos, destrutivos ou de deploy.
 
+Antes de mover uma tarefa para Handoff ou Done, execute o Validation Gate:
+
+```bash
+scripts/artemis-validation-gate.sh
+scripts/artemis-validation-gate.sh --json
+```
+
+O gate retorna `passed`, `failed` ou `human_gate`. Resultado `failed` impede Done. Resultado `human_gate` exige decisao humana documentada.
+
 ## Completion checklist
 
 Antes de mover uma tarefa para `Done`, confirme:

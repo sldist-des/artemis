@@ -24,4 +24,4 @@ O runner prepara e executa comandos locais elegiveis com artifacts e guardrails.
 
 ## Proxima acao
 
-Executar TKT-012: criar Validation Gate forte.
+Executar TKT-013: criar GitHub Issues adapter.

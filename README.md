@@ -89,6 +89,12 @@ scripts/artemis-runner.sh --ticket TKT-000 --command "scripts/validate-artemis.s
 scripts/artemis-runner.sh --ticket TKT-000 --command "scripts/validate-artemis.sh" --execute
 ```
 
+Rode o Validation Gate antes de handoff:
+
+```bash
+scripts/artemis-validation-gate.sh
+```
+
 ## Como aplicar em um projeto
 
 1. Copie os templates para a raiz do projeto alvo.

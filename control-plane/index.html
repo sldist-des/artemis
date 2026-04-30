@@ -634,14 +634,25 @@
       },
       {
         id: "tkt-012",
-        state: "ready",
+        state: "done",
         ticket: "TKT-012",
         title: "Validation Gate forte",
-        summary: "Consolidar checks obrigatorios antes de Handoff ou Done.",
+        summary: "Checks obrigatorios consolidados antes de Handoff ou Done.",
         owner: "Codex",
         risk: "medium",
-        evidence: "docs/exec-packs/active/TKT-012-validation-gate.md",
+        evidence: "artifacts/artemis-validation-gate/run-01",
         tags: ["validacao", "gate", "qualidade"]
+      },
+      {
+        id: "tkt-013",
+        state: "ready",
+        ticket: "TKT-013",
+        title: "GitHub Issues adapter",
+        summary: "Preparar adapter read-only para issues ARTEMIS com Human Gate.",
+        owner: "Humano",
+        risk: "high",
+        evidence: "docs/exec-packs/active/TKT-013-github-issues-adapter.md",
+        tags: ["github", "issues", "adapter"]
       },
       {
         id: "github-auth",

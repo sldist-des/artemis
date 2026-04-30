@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": "scripts/artemis-validation-gate.sh",
+  "tasks": [
+    {
+      "id": "tkt-validate",
+      "ticket": "TKT-VALIDATE",
+      "title": "Validate supervised runner",
+      "state": "ready",
+      "owner": "Codex",
+      "risk": "low",
+      "summary": "Synthetic task used by validation to verify runner artifacts.",
+      "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md",
+      "evidence": "artifacts/validate-runner/run-01/STATUS.md",
+      "tags": ["exec-pack", "validation"]
+    }
+  ]
+}

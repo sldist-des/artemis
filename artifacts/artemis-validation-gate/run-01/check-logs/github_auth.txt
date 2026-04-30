@@ -1,0 +1,16 @@
+ok: inside git worktree
+ok: current branch is main
+fail: working tree has uncommitted changes
+ok: origin remote configured: https://github.com/sldist-des/artemis.git
+ok: gh is installed: gh version 2.88.1 (2026-03-12)
+warn: gh auth status did not pass
+  github.com
+    X Failed to log in to github.com account sldist-des (/root/.config/gh/hosts.yml)
+    - Active account: true
+    - The token in /root/.config/gh/hosts.yml is invalid.
+    - To re-authenticate, run: gh auth login -h github.com
+    - To forget about this account, run: gh auth logout -h github.com -u sldist-des
+ok: GitHub CI workflow exists
+ok: pull request template exists
+ok: ARTEMIS issue template exists
+warn: CODEOWNERS has no active owner entries yet

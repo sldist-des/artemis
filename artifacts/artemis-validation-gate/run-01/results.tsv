@@ -1,0 +1,12 @@
+shell_bootstrap	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_bootstrap.txt
+shell_github_readiness	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_github_readiness.txt
+shell_tasks	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_tasks.txt
+shell_dry_run	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_dry_run.txt
+shell_runner	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt
+shell_validation_gate	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_validation_gate.txt
+task_source	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/task_source.txt
+dry_run	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/dry_run.txt
+runner_plan	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt
+required_files	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/required_files.txt
+git_diff_check	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/git_diff_check.txt
+github_auth	human_gate	human_gate	1	artifacts/artemis-validation-gate/run-01/check-logs/github_auth.txt

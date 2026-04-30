@@ -296,7 +296,7 @@ Aceite:
 
 Objetivo: tornar confiabilidade mensuravel.
 
-Estado: proximo corte em TKT-012.
+Estado: concluido em TKT-012.
 
 Gates:
 
@@ -316,6 +316,8 @@ Aceite:
 ### Fase 6 - GitHub Issues adapter
 
 Objetivo: usar GitHub como task source sem abandonar Exec Packs.
+
+Estado: proximo corte em TKT-013; depende de Human Gate para autenticacao GitHub real.
 
 Regra:
 
@@ -431,4 +433,4 @@ O caminho em fases permite usar o melhor de Symphony e app-server sem abrir mao 
 
 ### Follow-ups
 
-- TKT-012: criar Validation Gate forte.
+- TKT-013: criar GitHub Issues adapter.

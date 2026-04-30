@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "source": "artifacts/artemis-validation-gate/run-01/runner-task-source.json",
+  "summary": {
+    "eligible": 1,
+    "blocked": 0,
+    "human_gate": 0,
+    "done": 0
+  },
+  "decisions": [
+    {
+      "ticket": "TKT-VALIDATE",
+      "decision": "eligible",
+      "runner": "codex-cli",
+      "reason": "Task has Exec Pack, owner, evidence target, and no human-gate terms.",
+      "title": "Validate supervised runner",
+      "state": "ready",
+      "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md"
+    }
+  ]
+}

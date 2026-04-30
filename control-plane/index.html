@@ -656,14 +656,25 @@
       },
       {
         id: "tkt-014",
-        state: "ready",
+        state: "done",
         ticket: "TKT-014",
         title: "Codex app-server adapter",
-        summary: "Mapear threads, turns, items e approvals para eventos ARTEMIS.",
+        summary: "Contrato read-only criado para mapear threads, turns, items e approvals para ARTEMIS.",
         owner: "Codex",
         risk: "medium",
-        evidence: "docs/exec-packs/active/TKT-014-codex-app-server-adapter.md",
+        evidence: "artifacts/artemis-codex-app-server-adapter/run-01",
         tags: ["codex", "app-server", "adapter"]
+      },
+      {
+        id: "tkt-015",
+        state: "ready",
+        ticket: "TKT-015",
+        title: "Claude Code adapter",
+        summary: "Mapear headless, hooks, subagents e logs para eventos ARTEMIS.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "docs/exec-packs/active/TKT-015-claude-code-adapter.md",
+        tags: ["claude", "adapter", "hooks"]
       },
       {
         id: "github-auth",

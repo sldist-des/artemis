@@ -337,7 +337,7 @@ Aceite:
 
 Objetivo: capturar eventos ricos de Codex.
 
-Estado: proximo corte em TKT-014.
+Estado: concluido como contrato local read-only em TKT-014.
 
 Aceite:
 
@@ -350,6 +350,8 @@ Aceite:
 ### Fase 8 - Claude Code adapter
 
 Objetivo: tratar Claude Code como runner de mesmo nivel.
+
+Estado: proximo corte em TKT-015.
 
 Aceite:
 

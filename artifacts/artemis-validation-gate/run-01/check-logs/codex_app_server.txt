@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-04-30T19:38:17Z",
+  "overall": "passed",
+  "reason": "Codex app-server local contract check passed.",
+  "mode": "read_only_contract_probe",
+  "sources": [
+    "https://developers.openai.com/codex/app-server",
+    "https://openai.com/index/open-source-codex-orchestration-symphony/"
+  ],
+  "checks": {
+    "codex_installed": true,
+    "codex_path": "/usr/bin/codex",
+    "codex_version_exit_code": 0,
+    "app_server_help_exit_code": 0,
+    "schema_generation_exit_code": 0,
+    "generated_schema_files": 227,
+    "supports_listen": true,
+    "supports_ws_auth": true,
+    "supports_schema_generation": true
+  },
+  "contract": {
+    "terminal_first": true,
+    "app_server_role": "event_source_and_rich_client_protocol",
+    "not_owner_of_method": true,
+    "remote_writes": "human_gate_only",
+    "daemon": "out_of_scope",
+    "default_transport": "stdio",
+    "websocket_transport": "future_human_gate",
+    "non_loopback_listener": "forbidden_without_explicit_human_gate",
+    "thread_shell_command": "human_gate_required_because_it_runs_outside_thread_sandbox"
+  },
+  "mapping": [
+    {
+      "codex": "thread",
+      "artemis": "task_exec_pack",
+      "rule": "One durable thread may be linked to one Exec Pack or task workspace."
+    },
+    {
+      "codex": "turn",
+      "artemis": "attempt",
+      "rule": "Each turn maps to a supervised attempt with STATUS, VALIDATION, and HANDOFF evidence."
+    },
+    {
+      "codex": "item",
+      "artemis": "event",
+      "rule": "Items become append-only observable events for Control Plane and artifacts."
+    },
+    {
+      "codex": "approval_request",
+      "artemis": "human_gate_or_policy_gate",
+      "rule": "Command, file-change, user-input, and side-effecting tool approvals must stop for explicit decision."
+    },
+    {
+      "codex": "notification",
+      "artemis": "control_plane_event",
+      "rule": "Notifications update visible state but do not replace Exec Packs or Git history."
+    },
+    {
+      "codex": "thread_metadata",
+      "artemis": "workspace_task_state",
+      "rule": "Metadata may store task, workspace, branch, artifact path, and validation pointers."
+    }
+  ],
+  "event_contract": {
+    "required_fields": [
+      "event_id",
+      "generated_at",
+      "ticket",
+      "exec_pack",
+      "thread_id",
+      "turn_id",
+      "item_id",
+      "event_type",
+      "state",
+      "artifact_path"
+    ],
+    "states": [
+      "ready",
+      "running",
+      "validating",
+      "review",
+      "human_gate",
+      "handoff",
+      "done",
+      "blocked"
+    ],
+    "approval_event_types": [
+      "item/commandExecution/requestApproval",
+      "item/fileChange/requestApproval",
+      "item/tool/requestUserInput",
+      "mcp_tool_side_effect_approval"
+    ]
+  },
+  "allowed_first_cut": [
+    "initialize",
+    "initialized",
+    "model/list",
+    "thread/start",
+    "thread/resume",
+    "thread/read",
+    "thread/list",
+    "turn/start",
+    "turn/steer",
+    "turn/interrupt"
+  ],
+  "blocked_or_human_gate_methods": [
+    "thread/shellCommand",
+    "config/value/write",
+    "config/batchWrite",
+    "fs/writeFile",
+    "fs/remove",
+    "marketplace/install",
+    "plugin/install",
+    "plugin/uninstall",
+    "account/login/start",
+    "account/logout"
+  ],
+  "schema_files_sample": [
+    "ApplyPatchApprovalParams.json",
+    "ApplyPatchApprovalResponse.json",
+    "ChatgptAuthTokensRefreshParams.json",
+    "ChatgptAuthTokensRefreshResponse.json",
+    "ClientNotification.json",
+    "ClientRequest.json",
+    "CommandExecutionRequestApprovalParams.json",
+    "CommandExecutionRequestApprovalResponse.json",
+    "DynamicToolCallParams.json",
+    "DynamicToolCallResponse.json",
+    "ExecCommandApprovalParams.json",
+    "ExecCommandApprovalResponse.json",
+    "FileChangeRequestApprovalParams.json",
+    "FileChangeRequestApprovalResponse.json",
+    "FuzzyFileSearchParams.json",
+    "FuzzyFileSearchResponse.json",
+    "FuzzyFileSearchSessionCompletedNotification.json",
+    "FuzzyFileSearchSessionUpdatedNotification.json",
+    "JSONRPCError.json",
+    "JSONRPCErrorError.json",
+    "JSONRPCMessage.json",
+    "JSONRPCNotification.json",
+    "JSONRPCRequest.json",
+    "JSONRPCResponse.json",
+    "McpServerElicitationRequestParams.json"
+  ],
+  "logs": {
+    "version": "WARNING: proceeding, even though we could not update PATH: Read-only file system (os error 30)\ncodex-cli 0.125.0\n",
+    "help": "WARNING: proceeding, even though we could not update PATH: Read-only file system (os error 30)\n[experimental] Run the app server or related tooling\n\nUsage: codex app-server [OPTIONS] [COMMAND]\n\nCommands:\n  proxy                 Proxy stdio bytes to the running app-server control socket\n  generate-ts           [experimental] Generate TypeScript bindings for the app server protocol\n  generate-json-schema  [experimental] Generate JSON Schema for the app server protocol\n  help                  Print this message or the help of the given subcommand(s)\n\nOptions:\n  -c, --config <key=value>\n          Override a configuration value that would otherwise be loaded from `~/.codex/config.toml`.\n          Use a dotted path (`foo.bar.baz`) to override nested values. The `value` portion is parsed\n          as TOML. If it fails to parse as TOML, the raw string is used as a literal.\n\n          Examples: - `-c model=\"o3\"` - `-c 'sandbox_permissions=[\"disk-full-read-access\"]'` - `-c\n          shell_environment_policy.inherit=all`\n\n      --enable <FEATURE>\n          Enable a feature (repeatable). Equivalent to `-c features.<name>=true`\n\n      --disable <FEATURE>\n          Disable a feature (repeatable). Equivalent to `-c features.<name>=false`\n\n      --listen <URL>\n          Transport endpoint URL. Supported values: `stdio://` (default), `unix://`, `unix://PATH`,\n          `ws://IP:PORT`, `off`\n\n          [default: stdio://]\n\n      --analytics-default-enabled\n          Controls whether analytics are enabled by default.\n\n          Analytics are disabled by default for app-server. Users have to explicitly opt in via the\n          `analytics` section in the config.toml file.\n\n          However, for first-party use cases like the VSCode IDE extension, we default analytics to\n          be enabled by default by setting this flag. Users can still opt out by setting this in\n          their config.toml:\n\n          ```toml [analytics] enabled = false ```\n\n          See https://developers.openai.com/codex/config-advanced/#metrics for more details.\n\n      --ws-auth <MODE>\n          Websocket auth mode for non-loopback listeners\n\n          [possible values: capability-token, signed-bearer-token]\n\n      --ws-token-file <PATH>\n          Absolute path to the capability-token file\n\n      --ws-token-sha256 <HEX>\n          Hex-encoded SHA-256 digest of the capability token\n\n      --ws-shared-secret-file <PATH>\n          Absolute path to the shared secret file for signed JWT bearer tokens\n\n      --ws-issuer <ISSUER>\n          Expected issuer for signed JWT bearer tokens\n\n      --ws-audience <AUDIENCE>\n          Expected audience for signed JWT bearer tokens\n\n      --ws-max-clock-skew-seconds <SECONDS>\n          Maximum clock skew when validating signed JWT bearer tokens\n\n  -h, --help\n          Print help (see a summary with '-h')\n",
+    "schema_generation": "WARNING: proceeding, even though we could not update PATH: Read-only file system (os error 30)\n"
+  }
+}

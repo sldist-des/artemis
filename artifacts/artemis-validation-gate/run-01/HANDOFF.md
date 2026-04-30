@@ -24,4 +24,4 @@ O gate consolida checks locais e separa falha tecnica de Human Gate.
 
 ## Proxima acao
 
-Executar TKT-014: preparar Codex app-server adapter.
+Executar TKT-015: preparar Claude Code adapter.

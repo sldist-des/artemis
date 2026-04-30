@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-30T19:19:31Z",
+  "generated_at": "2026-04-30T19:35:37Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
-      "id": "tkt-014",
-      "ticket": "TKT-014",
-      "title": "Preparar Codex app-server adapter",
+      "id": "tkt-015",
+      "ticket": "TKT-015",
+      "title": "Preparar Claude Code adapter",
       "state": "ready",
       "owner": "Architect",
       "risk": "medium",
-      "summary": "Um contrato local deve mapear threads, turns, items e approvals do Codex app-server para tarefas, tentativas, eventos, Human Gates e evidencias ARTEMIS.",
-      "exec_pack": "docs/exec-packs/active/TKT-014-codex-app-server-adapter.md",
-      "evidence": "artifacts/artemis-codex-app-server-adapter/run-01/STATUS.md",
+      "summary": "Um contrato local deve mapear Claude Code headless, hooks, subagents, logs e eventos de tool use para Runner Adapter, eventos, Human Gates e evidencias ARTEMIS.",
+      "exec_pack": "docs/exec-packs/active/TKT-015-claude-code-adapter.md",
+      "evidence": "artifacts/artemis-claude-code-adapter/run-01/STATUS.md",
       "tags": ["exec-pack", "active"]
     },
     {
@@ -181,6 +181,18 @@
       "summary": "Um adapter local deve conseguir verificar readiness de GitHub, documentar labels/contrato minimo e, quando houver autenticacao valida, listar issues ARTEMIS sem alterar estado remoto.",
       "exec_pack": "docs/exec-packs/done/TKT-013-github-issues-adapter.md",
       "evidence": "artifacts/artemis-github-issues-adapter/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-014",
+      "ticket": "TKT-014",
+      "title": "Preparar Codex app-server adapter",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "Um contrato local deve mapear threads, turns, items e approvals do Codex app-server para tarefas, tentativas, eventos, Human Gates e evidencias ARTEMIS.",
+      "exec_pack": "docs/exec-packs/done/TKT-014-codex-app-server-adapter.md",
+      "evidence": "artifacts/artemis-codex-app-server-adapter/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

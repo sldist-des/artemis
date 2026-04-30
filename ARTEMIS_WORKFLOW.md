@@ -215,6 +215,15 @@ scripts/artemis-github-issues.sh --json
 
 O adapter e read-only. Se `gh auth`, CODEOWNERS, labels ou rulesets estiverem pendentes, o resultado deve ser `human_gate`.
 
+Codex app-server e fonte futura de eventos ricos, nao substitui controle terminal-first:
+
+```bash
+scripts/artemis-codex-app-server.sh
+scripts/artemis-codex-app-server.sh --json
+```
+
+O adapter e read-only. Ele verifica disponibilidade local do protocolo, gera contrato ARTEMIS e mapeia `thread`, `turn`, `item`, approvals e notifications para tarefa, tentativa, evento, Human Gate e Control Plane. Nao inicia daemon, nao abre WebSocket e nao altera auth/config/plugins/arquivos remotos.
+
 ## Completion checklist
 
 Antes de mover uma tarefa para `Done`, confirme:

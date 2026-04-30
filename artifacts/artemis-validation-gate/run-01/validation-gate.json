@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-30T19:19:40Z",
+  "generated_at": "2026-04-30T19:38:18Z",
   "overall": "human_gate",
   "summary": {
-    "passed": 12,
+    "passed": 14,
     "failed": 0,
     "human_gate": 2
   },
@@ -58,6 +58,13 @@
       "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_github_issues.txt"
     },
     {
+      "name": "shell_codex_app_server",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_codex_app_server.txt"
+    },
+    {
       "name": "task_source",
       "kind": "technical",
       "status": "passed",
@@ -91,6 +98,13 @@
       "status": "passed",
       "exit_code": 0,
       "log": "artifacts/artemis-validation-gate/run-01/check-logs/git_diff_check.txt"
+    },
+    {
+      "name": "codex_app_server",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/codex_app_server.txt"
     },
     {
       "name": "github_issues",

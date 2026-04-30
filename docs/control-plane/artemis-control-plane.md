@@ -12,7 +12,7 @@ From Codex app-server, ARTEMIS borrows the idea that rich clients should model w
 
 From Symphony, ARTEMIS borrows the idea that the task board is the control plane, tasks are a state machine, and each active unit of work should map to an isolated workspace with visible status and evidence.
 
-ARTEMIS deliberately does not implement the full Symphony daemon yet. The current version can read a generated local JSON task source from Exec Packs and can later be connected to GitHub Issues or Codex app-server events.
+ARTEMIS deliberately does not implement the full Symphony daemon yet. The current version can read a generated local JSON task source from Exec Packs, inspect GitHub Issues readiness, and probe the Codex app-server protocol contract without starting a daemon.
 
 Sources:
 
@@ -54,3 +54,16 @@ scripts/artemis-tasks.sh --output control-plane/tasks.json
 If the JSON cannot be loaded, the Control Plane falls back to local seed cards. Local card moves are intentionally visual only; Exec Packs and artifacts remain canonical.
 
 No backend is introduced in this phase.
+
+## Codex app-server adapter contract
+
+`scripts/artemis-codex-app-server.sh` records the local first-cut mapping:
+
+- Codex thread -> ARTEMIS task / Exec Pack.
+- Codex turn -> supervised attempt.
+- Codex item -> observable event.
+- Approval request -> Human Gate or policy gate.
+- Notification -> Control Plane event.
+- Thread metadata -> workspace and task state pointers.
+
+The first cut is stdio-only and read-only. WebSocket, non-loopback listeners, auth changes, config writes, filesystem writes and `thread/shellCommand` require Human Gate.

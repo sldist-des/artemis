@@ -5,17 +5,17 @@
     "eligible": 1,
     "blocked": 0,
     "human_gate": 0,
-    "done": 14
+    "done": 15
   },
   "decisions": [
     {
-      "ticket": "TKT-014",
+      "ticket": "TKT-015",
       "decision": "eligible",
       "runner": "codex-cli",
       "reason": "Task has Exec Pack, owner, evidence target, and no human-gate terms.",
-      "title": "Preparar Codex app-server adapter",
+      "title": "Preparar Claude Code adapter",
       "state": "ready",
-      "exec_pack": "docs/exec-packs/active/TKT-014-codex-app-server-adapter.md"
+      "exec_pack": "docs/exec-packs/active/TKT-015-claude-code-adapter.md"
     },
     {
       "ticket": "TKT-000",
@@ -142,6 +142,15 @@
       "title": "Criar GitHub Issues adapter",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-013-github-issues-adapter.md"
+    },
+    {
+      "ticket": "TKT-014",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Preparar Codex app-server adapter",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-014-codex-app-server-adapter.md"
     }
   ]
 }

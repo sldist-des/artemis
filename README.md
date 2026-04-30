@@ -101,6 +101,12 @@ Verifique o adapter read-only de GitHub Issues com:
 scripts/artemis-github-issues.sh
 ```
 
+Verifique o contrato read-only do Codex app-server com:
+
+```bash
+scripts/artemis-codex-app-server.sh
+```
+
 ## Como aplicar em um projeto
 
 1. Copie os templates para a raiz do projeto alvo.

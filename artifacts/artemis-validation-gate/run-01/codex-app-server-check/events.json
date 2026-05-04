@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T14:47:17Z",
+  "generated_at": "2026-05-04T16:01:18Z",
   "source": "scripts/artemis-codex-app-server.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-04T14:47:17Z",
+      "generated_at": "2026-05-04T16:01:18Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",

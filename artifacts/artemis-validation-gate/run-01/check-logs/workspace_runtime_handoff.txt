@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T16:01:17Z",
+  "source": "scripts/artemis-workspace-runtime-handoff.sh",
+  "mode": "read_only",
+  "summary": {
+    "total": 3,
+    "cleaned": 0,
+    "kept": 0,
+    "pending": 3,
+    "needs_decision": 0
+  },
+  "workspaces": [
+    {
+      "ticket": "TKT-021",
+      "title": "Materializar workspace ARTEMIS controlado",
+      "final_state": "pending",
+      "reason": "cleanup decision remains gated by human approval",
+      "lifecycle_state": "review_ready",
+      "cleanup_status": "human_gate",
+      "cleanup_executed": false,
+      "worktree_path": "../veri-artemis-worktrees/tkt-021",
+      "worktree_exists": true,
+      "worktree_registered": true,
+      "lock_path": ".artemis/locks/tkt-021.lock",
+      "branch": "artemis/tkt-021-materializar-workspace-artemis-contr",
+      "branch_exists": true,
+      "artifact_root": "artifacts/artemis-workspace-materialization/run-01",
+      "evidence": {
+        "lifecycle": "artifacts/artemis-validation-gate/run-01/workspace-lifecycle-check/workspace-lifecycle.json",
+        "cleanup": "artifacts/artemis-validation-gate/run-01/approved-workspace-cleanup-check/approved-cleanup.json",
+        "status": "artifacts/artemis-workspace-materialization/run-01/STATUS.md",
+        "validation": "artifacts/artemis-workspace-materialization/run-01/VALIDATION.md",
+        "handoff": "artifacts/artemis-workspace-materialization/run-01/HANDOFF.md"
+      },
+      "blockers": [
+        "decision is pending, not approved",
+        "decided_by is missing",
+        "decided_at is missing",
+        "decision reason is missing",
+        "approved_commands do not exactly match expected cleanup commands"
+      ]
+    },
+    {
+      "ticket": "TKT-022",
+      "title": "Executar runner no workspace materializado",
+      "final_state": "pending",
+      "reason": "cleanup decision remains gated by human approval",
+      "lifecycle_state": "review_ready",
+      "cleanup_status": "human_gate",
+      "cleanup_executed": false,
+      "worktree_path": "../veri-artemis-worktrees/tkt-022",
+      "worktree_exists": true,
+      "worktree_registered": true,
+      "lock_path": ".artemis/locks/tkt-022.lock",
+      "branch": "artemis/tkt-022-executar-runner-no-workspace-materia",
+      "branch_exists": true,
+      "artifact_root": "artifacts/artemis-runner-workspace-execution/run-01",
+      "evidence": {
+        "lifecycle": "artifacts/artemis-validation-gate/run-01/workspace-lifecycle-check/workspace-lifecycle.json",
+        "cleanup": "artifacts/artemis-validation-gate/run-01/approved-workspace-cleanup-check/approved-cleanup.json",
+        "status": "artifacts/artemis-runner-workspace-execution/run-01/STATUS.md",
+        "validation": "artifacts/artemis-runner-workspace-execution/run-01/VALIDATION.md",
+        "handoff": "artifacts/artemis-runner-workspace-execution/run-01/HANDOFF.md"
+      },
+      "blockers": [
+        "decision is pending, not approved",
+        "decided_by is missing",
+        "decided_at is missing",
+        "decision reason is missing",
+        "approved_commands do not exactly match expected cleanup commands"
+      ]
+    },
+    {
+      "ticket": "TKT-023",
+      "title": "Loop de validacao e fix em workspace isolado",
+      "final_state": "pending",
+      "reason": "cleanup decision remains gated by human approval",
+      "lifecycle_state": "review_ready",
+      "cleanup_status": "human_gate",
+      "cleanup_executed": false,
+      "worktree_path": "../veri-artemis-worktrees/tkt-023",
+      "worktree_exists": true,
+      "worktree_registered": true,
+      "lock_path": ".artemis/locks/tkt-023.lock",
+      "branch": "artemis/tkt-023-loop-de-validacao-e-fix-em-workspace",
+      "branch_exists": true,
+      "artifact_root": "artifacts/artemis-validation-fix-loop/run-01",
+      "evidence": {
+        "lifecycle": "artifacts/artemis-validation-gate/run-01/workspace-lifecycle-check/workspace-lifecycle.json",
+        "cleanup": "artifacts/artemis-validation-gate/run-01/approved-workspace-cleanup-check/approved-cleanup.json",
+        "status": "artifacts/artemis-validation-fix-loop/run-01/STATUS.md",
+        "validation": "artifacts/artemis-validation-fix-loop/run-01/VALIDATION.md",
+        "handoff": "artifacts/artemis-validation-fix-loop/run-01/HANDOFF.md"
+      },
+      "blockers": [
+        "decision is pending, not approved",
+        "decided_by is missing",
+        "decided_at is missing",
+        "decision reason is missing",
+        "approved_commands do not exactly match expected cleanup commands"
+      ]
+    }
+  ],
+  "invariants": [
+    "This handoff does not remove worktrees, branches, locks, or artifacts.",
+    "Artifacts are the durable memory of local runtime decisions.",
+    "A workspace with pending cleanup remains visible in lifecycle inventory.",
+    "A cleaned workspace must still appear in handoff evidence."
+  ]
+}

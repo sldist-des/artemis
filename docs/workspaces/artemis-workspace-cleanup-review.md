@@ -57,3 +57,18 @@ O modo padrao e dry-run. O executor so considera um ticket pronto quando:
 - cada comando esta na allowlist local.
 
 Sem `--execute`, nenhum comando e executado. Com `--execute`, qualquer decisao nao aprovada ou divergente interrompe a execucao antes de tocar no workspace.
+
+## Handoff de runtime
+
+`scripts/artemis-workspace-runtime-handoff.sh` registra o estado final local depois da revisao ou tentativa de cleanup.
+
+```bash
+scripts/artemis-workspace-runtime-handoff.sh --artifact-root artifacts/artemis-workspace-runtime-handoff/run-01 --json
+```
+
+Estados de handoff:
+
+- `cleaned`: cleanup aprovado foi executado e reportou sucesso;
+- `kept`: workspace permanece presente e revisavel;
+- `pending`: decisao humana ainda esta aberta;
+- `needs_decision`: ha falha, divergencia ou evidencia insuficiente.

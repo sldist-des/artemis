@@ -986,14 +986,25 @@
       },
       {
         id: "tkt-027",
-        state: "ready",
+        state: "done",
         ticket: "TKT-027",
         title: "Handoff runtime workspace",
-        summary: "Registrar workspaces limpos, mantidos, pendentes ou bloqueados apos decisao humana.",
+        summary: "Handoff read-only registra workspaces pendentes sem depender apenas de runtime local.",
         owner: "Codex",
         risk: "medium",
-        evidence: "docs/exec-packs/active/TKT-027-workspace-runtime-handoff.md",
+        evidence: "artifacts/artemis-workspace-runtime-handoff/run-01",
         tags: ["workspace", "handoff", "runtime"]
+      },
+      {
+        id: "tkt-028",
+        state: "ready",
+        ticket: "TKT-028",
+        title: "Contrato aprovacao cleanup",
+        summary: "Formalizar campos e estados de decisao humana para aprovar cleanup local.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "docs/exec-packs/active/TKT-028-human-cleanup-approval-contract.md",
+        tags: ["workspace", "approval", "cleanup"]
       },
       {
         id: "github-auth",
@@ -1024,17 +1035,17 @@
 
     const seedEvents = [
       {
-        event_id: "evt_tkt-027_task_discovered",
+        event_id: "evt_tkt-028_task_discovered",
         event_type: "task.discovered",
-        generated_at: "2026-05-04T14:46:00Z",
+        generated_at: "2026-05-04T16:01:00Z",
         producer: { adapter: "exec_pack", name: "scripts/artemis-tasks.sh", mode: "read_only" },
         subject: {
-          ticket: "TKT-027",
-          title: "Handoff de runtime local de workspaces"
+          ticket: "TKT-028",
+          title: "Contrato de aprovacao humana para cleanup"
         },
         state: { from: null, to: "ready", reason: "Active Exec Pack discovered by local task source." },
         severity: "info",
-        evidence: { artifact_path: "docs/exec-packs/active/TKT-027-workspace-runtime-handoff.md" }
+        evidence: { artifact_path: "docs/exec-packs/active/TKT-028-human-cleanup-approval-contract.md" }
       },
       {
         event_id: "evt_tkt-017_adapter_events",

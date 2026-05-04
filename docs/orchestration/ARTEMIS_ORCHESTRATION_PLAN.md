@@ -517,7 +517,7 @@ Aceite:
 
 Objetivo: decidir como registrar que workspaces locais foram limpos ou mantidos depois de uma decisao humana.
 
-Estado: proximo corte em TKT-027.
+Estado: concluido em TKT-027.
 
 Aceite:
 
@@ -526,6 +526,20 @@ Aceite:
 - nenhuma memoria local e apagada sem registro;
 - Control Plane mostra workspace limpo, mantido ou pendente;
 - push e sincronizacao remota continuam Human Gate.
+
+### Fase 21 - Politica de aprovacao humana para cleanup
+
+Objetivo: definir o formato minimo da decisao humana aprovada para que um executor local possa sair de `pending`.
+
+Estado: proximo corte em TKT-028.
+
+Aceite:
+
+- template de decisao vira schema ou contrato validavel;
+- aprovacao exige identidade, timestamp e razao;
+- comandos aprovados devem ser exatos e auditaveis;
+- decisao parcial mantem workspace pendente;
+- execucao continua fora ate decisao real existir.
 
 ## 10. Gatilhos de confiabilidade
 

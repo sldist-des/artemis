@@ -114,6 +114,12 @@ Valide uma decisao de cleanup aprovada em dry-run:
 scripts/artemis-approved-workspace-cleanup.sh --decision artifacts/artemis-workspace-cleanup-review/run-01/cleanup-review.json --artifact-root artifacts/artemis-approved-workspace-cleanup/run-01
 ```
 
+Registre o handoff do runtime local:
+
+```bash
+scripts/artemis-workspace-runtime-handoff.sh --artifact-root artifacts/artemis-workspace-runtime-handoff/run-01
+```
+
 Prepare ou execute uma tentativa local supervisionada com:
 
 ```bash

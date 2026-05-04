@@ -230,6 +230,14 @@ scripts/artemis-approved-workspace-cleanup.sh --decision artifacts/artemis-works
 
 O modo padrao e dry-run. `pending`, `deferred`, comandos fora da allowlist ou lista de comandos diferente do pacote de revisao param em Human Gate. Execucao real exige `--execute` e continua restrita a comandos locais aprovados explicitamente.
 
+Para registrar o estado final local dos workspaces:
+
+```bash
+scripts/artemis-workspace-runtime-handoff.sh --artifact-root artifacts/artemis-workspace-runtime-handoff/run-01 --json
+```
+
+Esse handoff e read-only e consolida `cleaned`, `kept`, `pending` ou `needs_decision` usando o inventario e o resultado do executor aprovado. Workspaces pendentes continuam visiveis ate nova decisao humana.
+
 Para preparar uma execucao local supervisionada, use:
 
 ```bash

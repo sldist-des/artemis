@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T14:47:02Z",
+  "generated_at": "2026-05-04T16:00:46Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
-      "id": "tkt-027",
-      "ticket": "TKT-027",
-      "title": "Handoff de runtime local de workspaces",
+      "id": "tkt-028",
+      "ticket": "TKT-028",
+      "title": "Contrato de aprovacao humana para cleanup",
       "state": "ready",
       "owner": "Architect",
       "risk": "medium",
-      "summary": "Um artifact deve mostrar o estado final local de cada workspace apos a revisao ou execucao de cleanup: `cleaned`, `kept`, `pending` ou `needs_decision`, sem depender de memoria implicita em `.artemis/`.",
-      "exec_pack": "docs/exec-packs/active/TKT-027-workspace-runtime-handoff.md",
-      "evidence": "artifacts/artemis-workspace-runtime-handoff/run-01/STATUS.md",
+      "summary": "Um artifact ou schema deve deixar claro como registrar `approved`, `deferred` ou `rejected`, quais campos sao obrigatorios e como o executor valida que os comandos aprovados sao exatamente os esperados.",
+      "exec_pack": "docs/exec-packs/active/TKT-028-human-cleanup-approval-contract.md",
+      "evidence": "artifacts/artemis-human-cleanup-approval-contract/run-01/STATUS.md",
       "tags": ["exec-pack", "active"]
     },
     {
@@ -337,6 +337,18 @@
       "summary": "Um comando deve conseguir validar uma decisao humana preenchida e, somente quando aprovado, executar cleanup local de worktree, lock e branch com dry-run e evidencia. O padrao deve continuar read-only.",
       "exec_pack": "docs/exec-packs/done/TKT-026-approved-workspace-cleanup-executor.md",
       "evidence": "artifacts/artemis-approved-workspace-cleanup/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-027",
+      "ticket": "TKT-027",
+      "title": "Handoff de runtime local de workspaces",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "Um artifact deve mostrar o estado final local de cada workspace apos a revisao ou execucao de cleanup: `cleaned`, `kept`, `pending` ou `needs_decision`, sem depender de memoria implicita em `.artemis/`.",
+      "exec_pack": "docs/exec-packs/done/TKT-027-workspace-runtime-handoff.md",
+      "evidence": "artifacts/artemis-workspace-runtime-handoff/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

@@ -38,6 +38,7 @@ scripts/artemis-workspace.sh
 scripts/artemis-workspace-lifecycle.sh
 scripts/artemis-workspace-cleanup-review.sh
 scripts/artemis-approved-workspace-cleanup.sh
+scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
 scripts/artemis-validation-gate.sh
 scripts/artemis-github-issues.sh
@@ -102,6 +103,7 @@ sh -n scripts/artemis-workspace.sh
 sh -n scripts/artemis-workspace-lifecycle.sh
 sh -n scripts/artemis-workspace-cleanup-review.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
+sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
 sh -n scripts/artemis-validation-gate.sh
 sh -n scripts/artemis-github-issues.sh
@@ -181,6 +183,15 @@ if ! grep -q '"overall": "human_gate"' /tmp/artemis-approved-workspace-cleanup.j
 fi
 if ! grep -q '"executed_commands": 0' /tmp/artemis-approved-workspace-cleanup.json; then
   echo "scripts/artemis-approved-workspace-cleanup.sh executed commands during dry-run" >&2
+  exit 1
+fi
+scripts/artemis-workspace-runtime-handoff.sh --lifecycle /tmp/artemis-workspace-lifecycle/workspace-lifecycle.json --cleanup /tmp/artemis-approved-workspace-cleanup/approved-cleanup.json --artifact-root /tmp/artemis-workspace-runtime-handoff --json >/tmp/artemis-workspace-runtime-handoff.json
+if ! grep -q '"pending":' /tmp/artemis-workspace-runtime-handoff.json; then
+  echo "scripts/artemis-workspace-runtime-handoff.sh did not emit runtime handoff summary" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-workspace-runtime-handoff/RUNTIME_HANDOFF.md; then
+  echo "scripts/artemis-workspace-runtime-handoff.sh did not write runtime handoff artifact" >&2
   exit 1
 fi
 scripts/artemis-runner.sh --input /tmp/artemis-runner-task-source.json --ticket TKT-VALIDATE --command "scripts/artemis-dry-run.sh --input /tmp/artemis-runner-task-source.json" --artifact-root /tmp/artemis-runner-validation >/tmp/artemis-runner.out

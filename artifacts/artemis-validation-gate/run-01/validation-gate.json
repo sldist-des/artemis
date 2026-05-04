@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T14:47:20Z",
+  "generated_at": "2026-05-04T16:01:19Z",
   "overall": "human_gate",
   "summary": {
-    "passed": 28,
+    "passed": 30,
     "failed": 0,
     "human_gate": 2
   },
@@ -63,6 +63,13 @@
       "status": "passed",
       "exit_code": 0,
       "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt"
+    },
+    {
+      "name": "shell_workspace_runtime_handoff",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt"
     },
     {
       "name": "shell_runner",
@@ -147,6 +154,13 @@
       "status": "passed",
       "exit_code": 0,
       "log": "artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt"
+    },
+    {
+      "name": "workspace_runtime_handoff",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt"
     },
     {
       "name": "runner_plan",

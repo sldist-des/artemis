@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T17:10:04Z",
+  "source": "scripts/artemis-approved-workspace-cleanup.sh",
+  "mode": "dry_run",
+  "decision": "artifacts/artemis-human-decision-fixtures/run-01/fixtures/deferred.json",
+  "ticket_filter": null,
+  "overall": "human_gate",
+  "summary": {
+    "reviewed": 1,
+    "ready_to_execute": 0,
+    "human_gate": 1,
+    "failed": 0,
+    "executed_commands": 0
+  },
+  "results": [
+    {
+      "ticket": "TKT-FIX-DEFERRED",
+      "status": "human_gate",
+      "contract_status": "deferred",
+      "execute_requested": false,
+      "executed": false,
+      "blockers": [
+        "decision is deferred, not approved for cleanup execution"
+      ],
+      "expected_commands": [
+        "git worktree remove ../artemis-fixtures/worktrees/deferred",
+        "rm .artemis/locks/tkt-fix-deferred.lock",
+        "git branch -d artemis/fixture-deferred"
+      ],
+      "approved_commands": [],
+      "command_results": []
+    }
+  ],
+  "invariants": [
+    "Default mode is dry-run.",
+    "pending and deferred decisions never execute.",
+    "rejected decisions never execute.",
+    "approval requires identity, timestamp, reason, and exact commands.",
+    "approved_commands must exactly match the generated cleanup review commands.",
+    "Only local git worktree remove, lock rm, and git branch -d commands are allowlisted.",
+    "Remote GitHub operations are out of scope."
+  ]
+}

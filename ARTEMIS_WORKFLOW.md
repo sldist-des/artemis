@@ -230,6 +230,14 @@ scripts/artemis-human-cleanup-approval-contract.sh --decision artifacts/artemis-
 
 Decisoes validas sao `pending`, `approved`, `deferred` e `rejected`. `approved` exige `decided_by`, `decided_at` em ISO-8601, `reason` e todos os comandos exatamente iguais a `commands_after_approval`. Aprovacao parcial nao executa cleanup; registre como `deferred` com razao.
 
+Para gerar fixtures sinteticas de decisao humana:
+
+```bash
+scripts/artemis-human-decision-fixtures.sh --artifact-root artifacts/artemis-human-decision-fixtures/run-01 --json
+```
+
+As fixtures cobrem aprovacao exata, deferimento, rejeicao, aprovacao parcial invalida e metadata ausente. Elas servem para validar contrato e dry-run; nao devem ser usadas com `--execute`.
+
 Para validar uma decisao humana ja preenchida sem executar cleanup:
 
 ```bash

@@ -38,6 +38,7 @@ scripts/artemis-workspace.sh
 scripts/artemis-workspace-lifecycle.sh
 scripts/artemis-workspace-cleanup-review.sh
 scripts/artemis-human-cleanup-approval-contract.sh
+scripts/artemis-human-decision-fixtures.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -104,6 +105,7 @@ sh -n scripts/artemis-workspace.sh
 sh -n scripts/artemis-workspace-lifecycle.sh
 sh -n scripts/artemis-workspace-cleanup-review.sh
 sh -n scripts/artemis-human-cleanup-approval-contract.sh
+sh -n scripts/artemis-human-decision-fixtures.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -212,6 +214,64 @@ PY
 scripts/artemis-human-cleanup-approval-contract.sh --decision /tmp/artemis-approved-cleanup-decision.json --artifact-root /tmp/artemis-human-cleanup-approval-contract-approved --json >/tmp/artemis-human-cleanup-approval-contract-approved.json
 if ! grep -q '"approved_ready": 3' /tmp/artemis-human-cleanup-approval-contract-approved.json; then
   echo "scripts/artemis-human-cleanup-approval-contract.sh did not accept exact approved commands" >&2
+  exit 1
+fi
+scripts/artemis-human-decision-fixtures.sh --artifact-root /tmp/artemis-human-decision-fixtures --json >/tmp/artemis-human-decision-fixtures.json
+if ! grep -q '"fixtures": 5' /tmp/artemis-human-decision-fixtures.json; then
+  echo "scripts/artemis-human-decision-fixtures.sh did not emit five fixtures" >&2
+  exit 1
+fi
+if ! grep -q '"execute_allowed": 0' /tmp/artemis-human-decision-fixtures.json; then
+  echo "scripts/artemis-human-decision-fixtures.sh produced executable fixtures" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-human-decision-fixtures/HUMAN_DECISION_FIXTURES.md; then
+  echo "scripts/artemis-human-decision-fixtures.sh did not write fixtures documentation" >&2
+  exit 1
+fi
+if grep -R '../veri-artemis-worktrees' /tmp/artemis-human-decision-fixtures >/tmp/artemis-fixture-real-worktrees.matches 2>/dev/null; then
+  echo "scripts/artemis-human-decision-fixtures.sh referenced real worktrees:" >&2
+  cat /tmp/artemis-fixture-real-worktrees.matches >&2
+  exit 1
+fi
+for fixture in approved-exact deferred rejected invalid-partial-approval invalid-missing-metadata; do
+  if ! test -f "/tmp/artemis-human-decision-fixtures/fixtures/$fixture.json"; then
+    echo "scripts/artemis-human-decision-fixtures.sh did not write fixture: $fixture" >&2
+    exit 1
+  fi
+done
+scripts/artemis-human-cleanup-approval-contract.sh --decision /tmp/artemis-human-decision-fixtures/fixtures/approved-exact.json --json >/tmp/artemis-fixture-approved-contract.json
+if ! grep -q '"approved_ready": 1' /tmp/artemis-fixture-approved-contract.json; then
+  echo "approved-exact fixture did not validate as approved_ready" >&2
+  exit 1
+fi
+scripts/artemis-approved-workspace-cleanup.sh --decision /tmp/artemis-human-decision-fixtures/fixtures/approved-exact.json --json >/tmp/artemis-fixture-approved-cleanup.json
+if ! grep -q '"ready_to_execute": 1' /tmp/artemis-fixture-approved-cleanup.json; then
+  echo "approved-exact fixture did not reach ready_to_execute in dry-run" >&2
+  exit 1
+fi
+if ! grep -q '"executed_commands": 0' /tmp/artemis-fixture-approved-cleanup.json; then
+  echo "approved-exact fixture executed commands during dry-run" >&2
+  exit 1
+fi
+scripts/artemis-human-cleanup-approval-contract.sh --decision /tmp/artemis-human-decision-fixtures/fixtures/deferred.json --json >/tmp/artemis-fixture-deferred-contract.json
+if ! grep -q '"deferred": 1' /tmp/artemis-fixture-deferred-contract.json; then
+  echo "deferred fixture did not validate as deferred" >&2
+  exit 1
+fi
+scripts/artemis-human-cleanup-approval-contract.sh --decision /tmp/artemis-human-decision-fixtures/fixtures/rejected.json --json >/tmp/artemis-fixture-rejected-contract.json
+if ! grep -q '"rejected": 1' /tmp/artemis-fixture-rejected-contract.json; then
+  echo "rejected fixture did not validate as rejected" >&2
+  exit 1
+fi
+scripts/artemis-human-cleanup-approval-contract.sh --decision /tmp/artemis-human-decision-fixtures/fixtures/invalid-partial-approval.json --json >/tmp/artemis-fixture-invalid-partial-contract.json
+if ! grep -q '"invalid": 1' /tmp/artemis-fixture-invalid-partial-contract.json; then
+  echo "invalid-partial-approval fixture did not validate as invalid" >&2
+  exit 1
+fi
+scripts/artemis-human-cleanup-approval-contract.sh --decision /tmp/artemis-human-decision-fixtures/fixtures/invalid-missing-metadata.json --json >/tmp/artemis-fixture-invalid-missing-contract.json
+if ! grep -q '"invalid": 1' /tmp/artemis-fixture-invalid-missing-contract.json; then
+  echo "invalid-missing-metadata fixture did not validate as invalid" >&2
   exit 1
 fi
 scripts/artemis-approved-workspace-cleanup.sh --decision /tmp/artemis-workspace-cleanup-review/cleanup-review.json --artifact-root /tmp/artemis-approved-workspace-cleanup --json >/tmp/artemis-approved-workspace-cleanup.json

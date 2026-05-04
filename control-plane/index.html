@@ -1019,14 +1019,25 @@
       },
       {
         id: "tkt-030",
-        state: "ready",
+        state: "done",
         ticket: "TKT-030",
         title: "Fixtures decisao humana",
-        summary: "Criar exemplos validaveis de approved, deferred, rejected e invalidos.",
+        summary: "Fixtures sinteticas validam approved, deferred, rejected e invalidos.",
         owner: "Codex",
         risk: "medium",
-        evidence: "docs/exec-packs/active/TKT-030-human-decision-fixtures.md",
+        evidence: "artifacts/artemis-human-decision-fixtures/run-01",
         tags: ["workspace", "fixtures", "decision"]
+      },
+      {
+        id: "tkt-031",
+        state: "ready",
+        ticket: "TKT-031",
+        title: "Pacote decisao real",
+        summary: "Preparar artifact preenchivel para decisoes reais de cleanup pendente.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "docs/exec-packs/active/TKT-031-real-cleanup-decision-package.md",
+        tags: ["workspace", "human-gate", "cleanup"]
       },
       {
         id: "github-auth",
@@ -1057,17 +1068,17 @@
 
     const seedEvents = [
       {
-        event_id: "evt_tkt-030_task_discovered",
+        event_id: "evt_tkt-031_task_discovered",
         event_type: "task.discovered",
-        generated_at: "2026-05-04T16:57:00Z",
+        generated_at: "2026-05-04T17:10:00Z",
         producer: { adapter: "exec_pack", name: "scripts/artemis-tasks.sh", mode: "read_only" },
         subject: {
-          ticket: "TKT-030",
-          title: "Fixtures de decisao humana"
+          ticket: "TKT-031",
+          title: "Pacote de decisao humana real"
         },
         state: { from: null, to: "ready", reason: "Active Exec Pack discovered by local task source." },
         severity: "info",
-        evidence: { artifact_path: "docs/exec-packs/active/TKT-030-human-decision-fixtures.md" }
+        evidence: { artifact_path: "docs/exec-packs/active/TKT-031-real-cleanup-decision-package.md" }
       },
       {
         event_id: "evt_tkt-017_adapter_events",

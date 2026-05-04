@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T17:12:03Z",
+  "source": "scripts/artemis-human-decision-fixtures.sh",
+  "mode": "fixture_read_only",
+  "fixture": "invalid-partial-approval",
+  "reviews": [
+    {
+      "title": "Fixture invalid partial approval",
+      "lifecycle_state": "review_ready",
+      "recommendation": "eligible_for_human_cleanup_approval",
+      "cleanup_allowed_by_script": false,
+      "human_decision_required": true,
+      "blockers": [],
+      "ticket": "TKT-FIX-PARTIAL",
+      "required_evidence": [
+        "artifacts/fixtures/TKT-FIX-PARTIAL/STATUS.md",
+        "artifacts/fixtures/TKT-FIX-PARTIAL/VALIDATION.md",
+        "artifacts/fixtures/TKT-FIX-PARTIAL/HANDOFF.md",
+        ".artemis/locks/tkt-fix-partial.lock",
+        "../artemis-fixtures/worktrees/partial",
+        "artemis/fixture-partial"
+      ],
+      "commands_after_approval": [
+        "git worktree remove ../artemis-fixtures/worktrees/partial",
+        "rm .artemis/locks/tkt-fix-partial.lock",
+        "git branch -d artemis/fixture-partial"
+      ],
+      "decision_record": {
+        "decision": "approved",
+        "decided_by": "ARTEMIS fixture",
+        "decided_at": "2026-01-01T00:00:00Z",
+        "reason": "Synthetic invalid approval proving partial cleanup is rejected.",
+        "approved_commands": [
+          "git worktree remove ../artemis-fixtures/worktrees/partial"
+        ]
+      }
+    }
+  ],
+  "invariants": [
+    "Fixture paths are synthetic and must not be used with --execute.",
+    "Fixtures prove contract behavior only.",
+    "Approved fixtures do not authorize cleanup of real workspaces."
+  ]
+}

@@ -558,7 +558,7 @@ Aceite:
 
 Objetivo: criar fixtures documentadas para `approved`, `deferred`, `rejected` e casos invalidos sem tocar workspaces reais.
 
-Estado: proximo corte em TKT-030.
+Estado: concluido em TKT-030.
 
 Aceite:
 
@@ -566,6 +566,19 @@ Aceite:
 - validacao cobre decisao aprovada exata, parcial invalida, deferida e rejeitada;
 - executor continua dry-run por padrao;
 - fixtures nao referenciam worktrees reais como alvo de execucao.
+
+### Fase 24 - Pacote de decisao humana real
+
+Objetivo: preparar um pacote de decisao real para TKT-021, TKT-022 e TKT-023 sem executar cleanup automaticamente.
+
+Estado: proximo corte em TKT-031.
+
+Aceite:
+
+- pacote mostra opcoes `approved`, `deferred` e `rejected` por workspace;
+- humano consegue preencher identidade, timestamp e razao;
+- comando de validacao informa exatamente o que ficaria pronto;
+- execucao real continua fora ate aprovacao humana explicita.
 
 ## 10. Gatilhos de confiabilidade
 

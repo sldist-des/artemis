@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T17:12:03Z",
+  "source": "scripts/artemis-human-decision-fixtures.sh",
+  "mode": "fixture_read_only",
+  "fixture": "deferred",
+  "reviews": [
+    {
+      "title": "Fixture deferred cleanup decision",
+      "lifecycle_state": "review_ready",
+      "recommendation": "eligible_for_human_cleanup_approval",
+      "cleanup_allowed_by_script": false,
+      "human_decision_required": true,
+      "blockers": [],
+      "ticket": "TKT-FIX-DEFERRED",
+      "required_evidence": [
+        "artifacts/fixtures/TKT-FIX-DEFERRED/STATUS.md",
+        "artifacts/fixtures/TKT-FIX-DEFERRED/VALIDATION.md",
+        "artifacts/fixtures/TKT-FIX-DEFERRED/HANDOFF.md",
+        ".artemis/locks/tkt-fix-deferred.lock",
+        "../artemis-fixtures/worktrees/deferred",
+        "artemis/fixture-deferred"
+      ],
+      "commands_after_approval": [
+        "git worktree remove ../artemis-fixtures/worktrees/deferred",
+        "rm .artemis/locks/tkt-fix-deferred.lock",
+        "git branch -d artemis/fixture-deferred"
+      ],
+      "decision_record": {
+        "decision": "deferred",
+        "decided_by": "ARTEMIS fixture",
+        "decided_at": "2026-01-01T00:00:00Z",
+        "reason": "Synthetic deferral preserving the workspace for later review.",
+        "approved_commands": []
+      }
+    }
+  ],
+  "invariants": [
+    "Fixture paths are synthetic and must not be used with --execute.",
+    "Fixtures prove contract behavior only.",
+    "Approved fixtures do not authorize cleanup of real workspaces."
+  ]
+}

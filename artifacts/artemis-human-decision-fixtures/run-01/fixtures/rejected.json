@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T17:09:39Z",
+  "source": "scripts/artemis-human-decision-fixtures.sh",
+  "mode": "fixture_read_only",
+  "fixture": "rejected",
+  "reviews": [
+    {
+      "title": "Fixture rejected cleanup decision",
+      "lifecycle_state": "review_ready",
+      "recommendation": "eligible_for_human_cleanup_approval",
+      "cleanup_allowed_by_script": false,
+      "human_decision_required": true,
+      "blockers": [],
+      "ticket": "TKT-FIX-REJECTED",
+      "required_evidence": [
+        "artifacts/fixtures/TKT-FIX-REJECTED/STATUS.md",
+        "artifacts/fixtures/TKT-FIX-REJECTED/VALIDATION.md",
+        "artifacts/fixtures/TKT-FIX-REJECTED/HANDOFF.md",
+        ".artemis/locks/tkt-fix-rejected.lock",
+        "../artemis-fixtures/worktrees/rejected",
+        "artemis/fixture-rejected"
+      ],
+      "commands_after_approval": [
+        "git worktree remove ../artemis-fixtures/worktrees/rejected",
+        "rm .artemis/locks/tkt-fix-rejected.lock",
+        "git branch -d artemis/fixture-rejected"
+      ],
+      "decision_record": {
+        "decision": "rejected",
+        "decided_by": "ARTEMIS fixture",
+        "decided_at": "2026-01-01T00:00:00Z",
+        "reason": "Synthetic rejection proving cleanup can be explicitly refused.",
+        "approved_commands": []
+      }
+    }
+  ],
+  "invariants": [
+    "Fixture paths are synthetic and must not be used with --execute.",
+    "Fixtures prove contract behavior only.",
+    "Approved fixtures do not authorize cleanup of real workspaces."
+  ]
+}

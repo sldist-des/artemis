@@ -128,6 +128,14 @@ scripts/artemis-workspace-runtime-handoff.sh --artifact-root artifacts/artemis-w
 
 O handoff distingue `pending`, `approved_ready`, `deferred`, `rejected`, `cleaned`, `kept` e `needs_decision`. Apenas `cleaned` indica execucao registrada.
 
+Gere fixtures sinteticas de decisao humana:
+
+```bash
+scripts/artemis-human-decision-fixtures.sh --artifact-root artifacts/artemis-human-decision-fixtures/run-01
+```
+
+Essas fixtures existem para validar contrato e dry-run. Nao use com `--execute`.
+
 Prepare ou execute uma tentativa local supervisionada com:
 
 ```bash

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T17:12:03Z",
+  "source": "scripts/artemis-human-decision-fixtures.sh",
+  "mode": "fixture_read_only",
+  "fixture": "approved-exact",
+  "reviews": [
+    {
+      "title": "Fixture approved exact cleanup decision",
+      "lifecycle_state": "review_ready",
+      "recommendation": "eligible_for_human_cleanup_approval",
+      "cleanup_allowed_by_script": false,
+      "human_decision_required": true,
+      "blockers": [],
+      "ticket": "TKT-FIX-APPROVED",
+      "required_evidence": [
+        "artifacts/fixtures/TKT-FIX-APPROVED/STATUS.md",
+        "artifacts/fixtures/TKT-FIX-APPROVED/VALIDATION.md",
+        "artifacts/fixtures/TKT-FIX-APPROVED/HANDOFF.md",
+        ".artemis/locks/tkt-fix-approved.lock",
+        "../artemis-fixtures/worktrees/approved-exact",
+        "artemis/fixture-approved-exact"
+      ],
+      "commands_after_approval": [
+        "git worktree remove ../artemis-fixtures/worktrees/approved-exact",
+        "rm .artemis/locks/tkt-fix-approved.lock",
+        "git branch -d artemis/fixture-approved-exact"
+      ],
+      "decision_record": {
+        "decision": "approved",
+        "decided_by": "ARTEMIS fixture",
+        "decided_at": "2026-01-01T00:00:00Z",
+        "reason": "Synthetic approval proving exact command matching.",
+        "approved_commands": [
+          "git worktree remove ../artemis-fixtures/worktrees/approved-exact",
+          "rm .artemis/locks/tkt-fix-approved.lock",
+          "git branch -d artemis/fixture-approved-exact"
+        ]
+      }
+    }
+  ],
+  "invariants": [
+    "Fixture paths are synthetic and must not be used with --execute.",
+    "Fixtures prove contract behavior only.",
+    "Approved fixtures do not authorize cleanup of real workspaces."
+  ]
+}

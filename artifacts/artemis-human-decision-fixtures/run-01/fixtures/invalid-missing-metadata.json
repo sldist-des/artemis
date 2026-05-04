@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T17:09:39Z",
+  "source": "scripts/artemis-human-decision-fixtures.sh",
+  "mode": "fixture_read_only",
+  "fixture": "invalid-missing-metadata",
+  "reviews": [
+    {
+      "title": "Fixture invalid missing metadata",
+      "lifecycle_state": "review_ready",
+      "recommendation": "eligible_for_human_cleanup_approval",
+      "cleanup_allowed_by_script": false,
+      "human_decision_required": true,
+      "blockers": [],
+      "ticket": "TKT-FIX-MISSING",
+      "required_evidence": [
+        "artifacts/fixtures/TKT-FIX-MISSING/STATUS.md",
+        "artifacts/fixtures/TKT-FIX-MISSING/VALIDATION.md",
+        "artifacts/fixtures/TKT-FIX-MISSING/HANDOFF.md",
+        ".artemis/locks/tkt-fix-missing.lock",
+        "../artemis-fixtures/worktrees/missing-metadata",
+        "artemis/fixture-missing-metadata"
+      ],
+      "commands_after_approval": [
+        "git worktree remove ../artemis-fixtures/worktrees/missing-metadata",
+        "rm .artemis/locks/tkt-fix-missing.lock",
+        "git branch -d artemis/fixture-missing-metadata"
+      ],
+      "decision_record": {
+        "decision": "approved",
+        "decided_by": "",
+        "decided_at": "",
+        "reason": "",
+        "approved_commands": [
+          "git worktree remove ../artemis-fixtures/worktrees/missing-metadata",
+          "rm .artemis/locks/tkt-fix-missing.lock",
+          "git branch -d artemis/fixture-missing-metadata"
+        ]
+      }
+    }
+  ],
+  "invariants": [
+    "Fixture paths are synthetic and must not be used with --execute.",
+    "Fixtures prove contract behavior only.",
+    "Approved fixtures do not authorize cleanup of real workspaces."
+  ]
+}

@@ -66,6 +66,8 @@ scripts/artemis-workspace.sh --ticket TKT-019 --artifact-root artifacts/<ticket>
 
 `scripts/artemis-human-cleanup-approval-contract.sh` valida o contrato da decisao humana antes do executor: estados aceitos, metadata obrigatoria, timestamp ISO-8601 e comandos exatos.
 
+`scripts/artemis-human-decision-fixtures.sh` gera exemplos sinteticos para testar `approved`, `deferred`, `rejected` e decisoes invalidas sem tocar workspaces reais.
+
 `scripts/artemis-approved-workspace-cleanup.sh` valida decisoes aprovadas e usa dry-run por padrao. Execucao real exige `--execute`, decisao `approved` e comandos locais exatamente iguais aos gerados pela revisao.
 
 `scripts/artemis-workspace-runtime-handoff.sh` consolida o estado final local em artifact duravel para que workspace limpo, mantido, pendente, aprovado, deferido ou rejeitado nao dependa apenas de `.artemis/`.

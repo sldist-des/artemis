@@ -58,6 +58,14 @@ Decisoes validas:
 
 `approved_commands` so pode aparecer em `approved`, e precisa ser identico a `commands_after_approval`. Aprovacao parcial deve ser `deferred`.
 
+Para exemplos sinteticos:
+
+```bash
+scripts/artemis-human-decision-fixtures.sh --artifact-root artifacts/artemis-human-decision-fixtures/run-01 --json
+```
+
+As fixtures usam caminhos sinteticos e nao devem ser usadas com `--execute`.
+
 `scripts/artemis-approved-workspace-cleanup.sh` valida `cleanup-review.json` ou um artifact equivalente com decisoes preenchidas.
 
 ```bash

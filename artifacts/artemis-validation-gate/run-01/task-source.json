@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T16:57:49Z",
+  "generated_at": "2026-05-04T17:12:02Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
-      "id": "tkt-030",
-      "ticket": "TKT-030",
-      "title": "Fixtures de decisao humana",
+      "id": "tkt-031",
+      "ticket": "TKT-031",
+      "title": "Pacote de decisao humana real",
       "state": "ready",
       "owner": "Architect",
       "risk": "medium",
-      "summary": "O repositorio deve ter exemplos validaveis de `approved`, `deferred`, `rejected` e casos invalidos para orientar humanos e agentes.",
-      "exec_pack": "docs/exec-packs/active/TKT-030-human-decision-fixtures.md",
-      "evidence": "artifacts/artemis-human-decision-fixtures/run-01/STATUS.md",
+      "summary": "O repositorio deve oferecer um artifact preenchivel que mostre as opcoes `approved`, `deferred` e `rejected` por workspace, com campos obrigatorios e comando de validacao claro.",
+      "exec_pack": "docs/exec-packs/active/TKT-031-real-cleanup-decision-package.md",
+      "evidence": "artifacts/artemis-real-cleanup-decision-package/run-01/STATUS.md",
       "tags": ["exec-pack", "active"]
     },
     {
@@ -373,6 +373,18 @@
       "summary": "O handoff de runtime deve diferenciar decisao aberta, decisao deferida e decisao rejeitada, preservando evidencia e evitando qualquer sugestao de cleanup automatico.",
       "exec_pack": "docs/exec-packs/done/TKT-029-runtime-handoff-decision-states.md",
       "evidence": "artifacts/artemis-runtime-handoff-decision-states/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-030",
+      "ticket": "TKT-030",
+      "title": "Fixtures de decisao humana",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "O repositorio deve ter exemplos validaveis de `approved`, `deferred`, `rejected` e casos invalidos para orientar humanos e agentes.",
+      "exec_pack": "docs/exec-packs/done/TKT-030-human-decision-fixtures.md",
+      "evidence": "artifacts/artemis-human-decision-fixtures/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

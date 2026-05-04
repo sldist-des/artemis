@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T17:12:03Z",
+  "source": "scripts/artemis-human-decision-fixtures.sh",
+  "mode": "read_only",
+  "artifact_root": "artifacts/artemis-validation-gate/run-01/human-decision-fixtures-check",
+  "summary": {
+    "fixtures": 5,
+    "valid": 3,
+    "invalid": 2,
+    "execute_allowed": 0
+  },
+  "fixtures": [
+    {
+      "name": "approved-exact",
+      "description": "Valid approval with exact commands.",
+      "path": "artifacts/artemis-validation-gate/run-01/human-decision-fixtures-check/fixtures/approved-exact.json",
+      "expected_contract_state": "approved_ready",
+      "expected_executor_status": "ready_to_execute",
+      "expected_overall": "passed",
+      "execute_allowed": false
+    },
+    {
+      "name": "deferred",
+      "description": "Valid deferral with metadata and no approved commands.",
+      "path": "artifacts/artemis-validation-gate/run-01/human-decision-fixtures-check/fixtures/deferred.json",
+      "expected_contract_state": "deferred",
+      "expected_executor_status": "human_gate",
+      "expected_overall": "passed",
+      "execute_allowed": false
+    },
+    {
+      "name": "rejected",
+      "description": "Valid rejection with metadata and no approved commands.",
+      "path": "artifacts/artemis-validation-gate/run-01/human-decision-fixtures-check/fixtures/rejected.json",
+      "expected_contract_state": "rejected",
+      "expected_executor_status": "human_gate",
+      "expected_overall": "passed",
+      "execute_allowed": false
+    },
+    {
+      "name": "invalid-partial-approval",
+      "description": "Invalid approval because only part of the command list is approved.",
+      "path": "artifacts/artemis-validation-gate/run-01/human-decision-fixtures-check/fixtures/invalid-partial-approval.json",
+      "expected_contract_state": "invalid",
+      "expected_executor_status": "human_gate",
+      "expected_overall": "failed",
+      "execute_allowed": false
+    },
+    {
+      "name": "invalid-missing-metadata",
+      "description": "Invalid approval because required human metadata is missing.",
+      "path": "artifacts/artemis-validation-gate/run-01/human-decision-fixtures-check/fixtures/invalid-missing-metadata.json",
+      "expected_contract_state": "invalid",
+      "expected_executor_status": "human_gate",
+      "expected_overall": "failed",
+      "execute_allowed": false
+    }
+  ],
+  "invariants": [
+    "Fixtures are synthetic and read-only.",
+    "Fixtures must not be passed to cleanup with --execute.",
+    "Approved fixtures prove exact command matching, not real cleanup authorization.",
+    "Invalid fixtures must fail the contract before execution."
+  ]
+}

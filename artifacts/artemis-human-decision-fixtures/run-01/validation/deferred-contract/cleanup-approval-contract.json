@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T17:09:50Z",
+  "source": "scripts/artemis-human-cleanup-approval-contract.sh",
+  "mode": "read_only",
+  "decision": "artifacts/artemis-human-decision-fixtures/run-01/fixtures/deferred.json",
+  "ticket_filter": null,
+  "overall": "passed",
+  "contract": {
+    "valid_decisions": [
+      "pending",
+      "approved",
+      "deferred",
+      "rejected"
+    ],
+    "metadata_required_for": [
+      "approved",
+      "deferred",
+      "rejected"
+    ],
+    "required_metadata_fields": [
+      "decided_by",
+      "decided_at",
+      "reason"
+    ],
+    "approved_requires_exact_commands": true,
+    "partial_approval_executes": false,
+    "non_approved_commands_allowed": false,
+    "timestamp_format": "ISO-8601",
+    "execution_scope": [
+      "git worktree remove <review worktree>",
+      "rm <review lock>",
+      "git branch -d <review branch>"
+    ]
+  },
+  "summary": {
+    "reviewed": 1,
+    "pending": 0,
+    "approved_ready": 0,
+    "deferred": 1,
+    "rejected": 0,
+    "invalid": 0,
+    "execution_allowed": 0
+  },
+  "results": [
+    {
+      "ticket": "TKT-FIX-DEFERRED",
+      "decision": "deferred",
+      "contract_state": "deferred",
+      "execution_allowed": false,
+      "required_fields": [
+        "decided_by",
+        "decided_at",
+        "reason"
+      ],
+      "expected_commands": [
+        "git worktree remove ../artemis-fixtures/worktrees/deferred",
+        "rm .artemis/locks/tkt-fix-deferred.lock",
+        "git branch -d artemis/fixture-deferred"
+      ],
+      "approved_commands": [],
+      "blockers": [],
+      "warnings": []
+    }
+  ],
+  "invariants": [
+    "Approval requires identity, timestamp, reason, and exact commands.",
+    "Deferred and rejected are explicit human decisions but never execute cleanup.",
+    "Partial command approval is not executable approval.",
+    "Pending remains an open Human Gate.",
+    "Remote operations are out of scope."
+  ]
+}

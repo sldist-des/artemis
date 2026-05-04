@@ -260,6 +260,14 @@ Para validar que o runbook nao divergiu do pacote real:
 scripts/artemis-human-decision-runbook-consistency.sh --artifact-root artifacts/artemis-human-decision-runbook-consistency/run-01 --json
 ```
 
+Para consolidar a camada de decisao humana como checkpoint local:
+
+```bash
+scripts/artemis-human-decision-release-checkpoint.sh --artifact-root artifacts/artemis-human-decision-release-checkpoint/run-01 --json
+```
+
+Esse checkpoint e read-only. Ele confirma evidencias, Human Gate, Control Plane e Validation Gate, mas nao preenche decisao humana e nao executa cleanup.
+
 Para validar uma decisao humana ja preenchida sem executar cleanup:
 
 ```bash

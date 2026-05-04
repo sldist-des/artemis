@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T18:29:38Z",
+  "source": "scripts/artemis-human-decision-release-checkpoint.sh",
+  "overall": "passed",
+  "artifact_root": "artifacts/artemis-validation-gate/run-01/human-decision-release-checkpoint-check",
+  "release_scope": "local_read_only_checkpoint",
+  "cleanup_execution_allowed": false,
+  "release_ready_for_supervised_human_decision": true,
+  "human_gate": {
+    "real_cleanup_decisions": 3,
+    "pending": 3,
+    "approved": 0,
+    "approved_commands": 0,
+    "execute_allowed": 0
+  },
+  "consistency": {
+    "overall": "passed",
+    "commands_checked": 9,
+    "evidence_checked": 18,
+    "blockers": []
+  },
+  "validation_gate": {
+    "overall": "human_gate",
+    "passed": 40,
+    "failed": 0,
+    "human_gate": 2
+  },
+  "evidence_inventory": [
+    {
+      "label": "real cleanup decision file",
+      "path": "artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json",
+      "exists": true
+    },
+    {
+      "label": "real cleanup decision package guide",
+      "path": "artifacts/artemis-real-cleanup-decision-package/run-01/REAL_CLEANUP_DECISION_PACKAGE.md",
+      "exists": true
+    },
+    {
+      "label": "real cleanup decision template",
+      "path": "artifacts/artemis-real-cleanup-decision-package/run-01/REAL_CLEANUP_DECISION_TEMPLATE.md",
+      "exists": true
+    },
+    {
+      "label": "real cleanup decision checklist",
+      "path": "artifacts/artemis-real-cleanup-decision-package/run-01/REAL_CLEANUP_DECISION_CHECKLIST.md",
+      "exists": true
+    },
+    {
+      "label": "real cleanup decision validation",
+      "path": "artifacts/artemis-real-cleanup-decision-package/run-01/VALIDATION.md",
+      "exists": true
+    },
+    {
+      "label": "assisted human decision runbook",
+      "path": "artifacts/artemis-assisted-human-decision-runbook/run-01/RUNBOOK.md",
+      "exists": true
+    },
+    {
+      "label": "assisted human decision criteria",
+      "path": "artifacts/artemis-assisted-human-decision-runbook/run-01/DECISION_CRITERIA.md",
+      "exists": true
+    },
+    {
+      "label": "assisted human decision examples",
+      "path": "artifacts/artemis-assisted-human-decision-runbook/run-01/HUMAN_DECISION_EXAMPLES.md",
+      "exists": true
+    },
+    {
+      "label": "assisted human decision validation",
+      "path": "artifacts/artemis-assisted-human-decision-runbook/run-01/VALIDATION.md",
+      "exists": true
+    },
+    {
+      "label": "runbook consistency JSON",
+      "path": "artifacts/artemis-human-decision-runbook-consistency/run-01/runbook-consistency.json",
+      "exists": true
+    },
+    {
+      "label": "runbook consistency report",
+      "path": "artifacts/artemis-human-decision-runbook-consistency/run-01/RUNBOOK_CONSISTENCY.md",
+      "exists": true
+    },
+    {
+      "label": "runbook consistency validation",
+      "path": "artifacts/artemis-human-decision-runbook-consistency/run-01/VALIDATION.md",
+      "exists": true
+    },
+    {
+      "label": "Control Plane Human Gate status",
+      "path": "artifacts/artemis-control-plane-real-cleanup-human-gate/run-01/STATUS.md",
+      "exists": true
+    },
+    {
+      "label": "Control Plane Human Gate validation",
+      "path": "artifacts/artemis-control-plane-real-cleanup-human-gate/run-01/VALIDATION.md",
+      "exists": true
+    },
+    {
+      "label": "Control Plane Human Gate handoff",
+      "path": "artifacts/artemis-control-plane-real-cleanup-human-gate/run-01/HANDOFF.md",
+      "exists": true
+    },
+    {
+      "label": "Control Plane UI file",
+      "path": "control-plane/index.html",
+      "exists": true
+    },
+    {
+      "label": "Validation Gate JSON",
+      "path": "artifacts/artemis-validation-gate/run-01/validation-gate.json",
+      "exists": true
+    },
+    {
+      "label": "Validation Gate report",
+      "path": "artifacts/artemis-validation-gate/run-01/VALIDATION_GATE.md",
+      "exists": true
+    },
+    {
+      "label": "Validation Gate validation summary",
+      "path": "artifacts/artemis-validation-gate/run-01/VALIDATION.md",
+      "exists": true
+    }
+  ],
+  "residual_risks": [
+    {
+      "risk": "real_cleanup_requires_human_decision",
+      "severity": "medium",
+      "status": "open",
+      "mitigation": "Keep real-cleanup-decision.json pending until a human fills identity, timestamp, rationale, and exact commands."
+    },
+    {
+      "risk": "remote_writes_remain_blocked",
+      "severity": "medium",
+      "status": "open",
+      "mitigation": "Authenticate gh and configure CODEOWNERS before push, PR, branch protection, or remote automation."
+    },
+    {
+      "risk": "workspace_cleanup_not_executed",
+      "severity": "low",
+      "status": "accepted",
+      "mitigation": "Preserve worktrees until a later supervised intake validates a human-filled decision."
+    }
+  ],
+  "next_cuts": [
+    {
+      "ticket": "TKT-036",
+      "title": "Intake supervisionado da decisao humana preenchida",
+      "reason": "Before any cleanup executor, the project needs a read-only intake that validates a human-filled decision package and stages evidence for review."
+    }
+  ],
+  "warnings": [],
+  "blockers": []
+}

@@ -156,6 +156,14 @@ Valide a consistencia entre runbook e pacote real:
 scripts/artemis-human-decision-runbook-consistency.sh --artifact-root artifacts/artemis-human-decision-runbook-consistency/run-01
 ```
 
+Consolide o checkpoint local do pacote de decisao humana:
+
+```bash
+scripts/artemis-human-decision-release-checkpoint.sh --artifact-root artifacts/artemis-human-decision-release-checkpoint/run-01
+```
+
+Esse checkpoint reune pacote real, runbook, consistencia, Control Plane e Validation Gate. Ele nao autoriza cleanup e mantem `cleanup_execution_allowed=false`.
+
 Prepare ou execute uma tentativa local supervisionada com:
 
 ```bash

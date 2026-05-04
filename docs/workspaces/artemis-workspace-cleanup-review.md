@@ -86,6 +86,14 @@ Depois de alterar o runbook ou o pacote real, valide consistencia:
 scripts/artemis-human-decision-runbook-consistency.sh --artifact-root artifacts/artemis-human-decision-runbook-consistency/run-01 --json
 ```
 
+Antes de tratar o pacote como pronto para decisao humana supervisionada, consolide o checkpoint local:
+
+```bash
+scripts/artemis-human-decision-release-checkpoint.sh --artifact-root artifacts/artemis-human-decision-release-checkpoint/run-01 --json
+```
+
+O checkpoint nao e aprovacao. Ele apenas confirma que pacote real, runbook, consistencia, Control Plane e Validation Gate estao alinhados antes de uma etapa futura de intake humano.
+
 `scripts/artemis-approved-workspace-cleanup.sh` valida `cleanup-review.json` ou um artifact equivalente com decisoes preenchidas.
 
 ```bash

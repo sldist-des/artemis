@@ -41,6 +41,7 @@ scripts/artemis-human-cleanup-approval-contract.sh
 scripts/artemis-human-decision-fixtures.sh
 scripts/artemis-real-cleanup-decision-package.sh
 scripts/artemis-human-decision-runbook-consistency.sh
+scripts/artemis-human-decision-release-checkpoint.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -110,6 +111,7 @@ sh -n scripts/artemis-human-cleanup-approval-contract.sh
 sh -n scripts/artemis-human-decision-fixtures.sh
 sh -n scripts/artemis-real-cleanup-decision-package.sh
 sh -n scripts/artemis-human-decision-runbook-consistency.sh
+sh -n scripts/artemis-human-decision-release-checkpoint.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -325,6 +327,21 @@ if [ -d artifacts/artemis-assisted-human-decision-runbook/run-01 ]; then
   fi
   if ! grep -q '"evidence_checked": 18' /tmp/artemis-human-decision-runbook-consistency.json; then
     echo "runbook consistency did not check all evidence entries" >&2
+    exit 1
+  fi
+fi
+if [ -d artifacts/artemis-human-decision-release-checkpoint/run-01 ]; then
+  scripts/artemis-human-decision-release-checkpoint.sh --artifact-root /tmp/artemis-human-decision-release-checkpoint --json >/tmp/artemis-human-decision-release-checkpoint.json
+  if ! grep -q '"overall": "passed"' /tmp/artemis-human-decision-release-checkpoint.json; then
+    echo "scripts/artemis-human-decision-release-checkpoint.sh did not pass" >&2
+    exit 1
+  fi
+  if ! grep -q '"cleanup_execution_allowed": false' /tmp/artemis-human-decision-release-checkpoint.json; then
+    echo "human decision release checkpoint allowed cleanup execution" >&2
+    exit 1
+  fi
+  if ! grep -q '"pending": 3' /tmp/artemis-human-decision-release-checkpoint.json; then
+    echo "human decision release checkpoint did not preserve three pending decisions" >&2
     exit 1
   fi
 fi

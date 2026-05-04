@@ -623,7 +623,7 @@ Aceite:
 
 Objetivo: consolidar a camada de decisao humana de cleanup como pacote local pronto para uso supervisionado.
 
-Estado: proximo corte em TKT-035.
+Estado: concluido em TKT-035.
 
 Aceite:
 
@@ -631,6 +631,19 @@ Aceite:
 - riscos residuais sao registrados;
 - cleanup real continua Human Gate;
 - proximo corte fica claro antes de qualquer execucao.
+
+### Fase 29 - Intake supervisionado da decisao humana
+
+Objetivo: validar uma decisao humana preenchida em modo read-only antes de qualquer executor de cleanup.
+
+Estado: proximo corte em TKT-036.
+
+Aceite:
+
+- decisao preenchida e classificada como `approved_ready`, `deferred`, `rejected`, `pending` ou `invalid`;
+- nenhum comando com `--execute` e emitido;
+- aprovacao parcial segue bloqueada;
+- handoff aponta explicitamente se o proximo passo e executor supervisionado ou novo Human Gate.
 
 ## 10. Gatilhos de confiabilidade
 

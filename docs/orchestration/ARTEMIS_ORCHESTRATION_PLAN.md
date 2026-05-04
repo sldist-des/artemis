@@ -597,7 +597,7 @@ Aceite:
 
 Objetivo: orientar o humano a preencher o pacote real de decisao sem que o agente aprove ou execute cleanup.
 
-Estado: proximo corte em TKT-033.
+Estado: concluido em TKT-033.
 
 Aceite:
 
@@ -605,6 +605,19 @@ Aceite:
 - timestamp, identidade e razao ficam obrigatorios;
 - comandos exatos sao destacados como requisito de aprovacao;
 - validacao continua antes de qualquer executor.
+
+### Fase 27 - Consistencia do runbook de decisao humana
+
+Objetivo: validar que o runbook assistido nao diverge do pacote real de decisao.
+
+Estado: proximo corte em TKT-034.
+
+Aceite:
+
+- comandos documentados batem com `real-cleanup-decision.json`;
+- tickets e evidencias esperadas sao conferidos;
+- exemplos continuam claramente nao-executaveis;
+- checagem permanece read-only e sem `--execute`.
 
 ## 10. Gatilhos de confiabilidade
 

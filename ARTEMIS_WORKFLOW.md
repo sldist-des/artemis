@@ -246,6 +246,14 @@ scripts/artemis-real-cleanup-decision-package.sh --source artifacts/artemis-work
 
 Esse pacote grava `real-cleanup-decision.json`, instrucoes de preenchimento e comandos de validacao. Ele nao aprova cleanup e nao emite comando com `--execute`.
 
+Para orientar o preenchimento humano:
+
+```bash
+artifacts/artemis-assisted-human-decision-runbook/run-01/RUNBOOK.md
+```
+
+O runbook explica quando usar `approved`, `deferred` e `rejected`, como preencher metadata humana e como copiar comandos exatos sem executar cleanup.
+
 Para validar uma decisao humana ja preenchida sem executar cleanup:
 
 ```bash

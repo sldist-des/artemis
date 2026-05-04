@@ -70,6 +70,8 @@ scripts/artemis-workspace.sh --ticket TKT-019 --artifact-root artifacts/<ticket>
 
 `scripts/artemis-real-cleanup-decision-package.sh` gera um pacote real preenchivel a partir da revisao de cleanup, mantendo todas as decisoes como `pending` e deixando validacoes claras para o humano.
 
+O artifact `artifacts/artemis-assisted-human-decision-runbook/run-01/RUNBOOK.md` orienta o humano a preencher o pacote real sem que o agente aprove ou execute cleanup.
+
 `scripts/artemis-approved-workspace-cleanup.sh` valida decisoes aprovadas e usa dry-run por padrao. Execucao real exige `--execute`, decisao `approved` e comandos locais exatamente iguais aos gerados pela revisao.
 
 `scripts/artemis-workspace-runtime-handoff.sh` consolida o estado final local em artifact duravel para que workspace limpo, mantido, pendente, aprovado, deferido ou rejeitado nao dependa apenas de `.artemis/`.

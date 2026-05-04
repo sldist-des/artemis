@@ -74,6 +74,12 @@ scripts/artemis-real-cleanup-decision-package.sh --source artifacts/artemis-work
 
 O pacote grava `real-cleanup-decision.json` com todas as decisoes como `pending`. O humano deve preencher `decision_record` por workspace e validar o arquivo antes de qualquer executor.
 
+O preenchimento humano deve seguir:
+
+```bash
+artifacts/artemis-assisted-human-decision-runbook/run-01/RUNBOOK.md
+```
+
 `scripts/artemis-approved-workspace-cleanup.sh` valida `cleanup-review.json` ou um artifact equivalente com decisoes preenchidas.
 
 ```bash

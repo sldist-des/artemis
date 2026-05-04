@@ -144,6 +144,12 @@ scripts/artemis-real-cleanup-decision-package.sh --source artifacts/artemis-work
 
 O pacote grava `real-cleanup-decision.json` com decisoes `pending` para preenchimento humano e validacao posterior.
 
+Use o runbook assistido para preencher decisoes reais sem executar cleanup:
+
+```bash
+artifacts/artemis-assisted-human-decision-runbook/run-01/RUNBOOK.md
+```
+
 Prepare ou execute uma tentativa local supervisionada com:
 
 ```bash

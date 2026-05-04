@@ -1207,14 +1207,25 @@
       },
       {
         id: "tkt-033",
-        state: "ready",
+        state: "done",
         ticket: "TKT-033",
         title: "Runbook decisao humana",
-        summary: "Orientar preenchimento humano de real-cleanup-decision.json sem executar cleanup.",
+        summary: "Runbook orienta approved, deferred e rejected sem decisao por agente.",
         owner: "Codex",
         risk: "medium",
-        evidence: "docs/exec-packs/active/TKT-033-assisted-human-decision-runbook.md",
+        evidence: "artifacts/artemis-assisted-human-decision-runbook/run-01",
         tags: ["workspace", "human-gate", "runbook"]
+      },
+      {
+        id: "tkt-034",
+        state: "ready",
+        ticket: "TKT-034",
+        title: "Consistencia do runbook",
+        summary: "Validar que runbook e pacote real nao divergem em comandos e evidencias.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "docs/exec-packs/active/TKT-034-human-decision-runbook-consistency.md",
+        tags: ["workspace", "validation", "runbook"]
       },
       {
         id: "github-auth",
@@ -1275,17 +1286,17 @@
 
     const seedEvents = [
       {
-        event_id: "evt_tkt-033_task_discovered",
+        event_id: "evt_tkt-034_task_discovered",
         event_type: "task.discovered",
-        generated_at: "2026-05-04T17:31:00Z",
+        generated_at: "2026-05-04T17:37:54Z",
         producer: { adapter: "exec_pack", name: "scripts/artemis-tasks.sh", mode: "read_only" },
         subject: {
-          ticket: "TKT-033",
-          title: "Runbook assistido de decisao humana"
+          ticket: "TKT-034",
+          title: "Consistencia do runbook de decisao humana"
         },
         state: { from: null, to: "ready", reason: "Active Exec Pack discovered by local task source." },
         severity: "info",
-        evidence: { artifact_path: "artifacts/artemis-assisted-human-decision-runbook/run-01" }
+        evidence: { artifact_path: "artifacts/artemis-human-decision-runbook-consistency/run-01" }
       },
       {
         event_id: "evt_tkt-017_adapter_events",

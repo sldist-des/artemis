@@ -102,9 +102,10 @@ Prepare ou execute uma tentativa local supervisionada com:
 scripts/artemis-runner.sh --ticket TKT-000 --command "scripts/validate-artemis.sh"
 scripts/artemis-runner.sh --ticket TKT-000 --command "scripts/validate-artemis.sh" --execute
 scripts/artemis-runner.sh --ticket TKT-022 --command "pwd" --execute --use-workspace
+scripts/artemis-runner.sh --ticket TKT-023 --command "pwd" --execute --use-workspace --attempt-purpose retry --retry-of <attempt-id>
 ```
 
-Cada tentativa registra `dry-run.json`, `workspace.json`, `COMMAND.txt`, `RESULT.md`, `events.json` e, quando `--use-workspace` e usado, o `cwd` real de execucao.
+Cada tentativa registra `dry-run.json`, `workspace.json`, `COMMAND.txt`, `RESULT.md`, `events.json`, `cwd` real de execucao e metadados de retry quando informados.
 
 Rode o Validation Gate antes de handoff:
 

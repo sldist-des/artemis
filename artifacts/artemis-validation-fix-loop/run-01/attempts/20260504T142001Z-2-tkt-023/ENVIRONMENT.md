@@ -1,0 +1,21 @@
+# ENVIRONMENT - TKT-023
+
+- Generated at: 20260504T142001Z
+- Repository: /srv/veri
+- Ticket: TKT-023
+- Exec Pack: docs/exec-packs/active/TKT-023-validation-fix-loop.md
+- Execute mode: 1
+- Use materialized workspace: 1
+- Attempt purpose: retry
+- Retry of: 20260504T141956Z-2-tkt-023
+- Execution cwd: /srv/veri-artemis-worktrees/tkt-023
+- Main branch: main
+- Main head: 3b4c171
+- Main worktree status before: 2
+- Execution branch: artemis/tkt-023-loop-de-validacao-e-fix-em-workspace
+- Execution head: 3b4c171
+- Execution worktree status before: 0
+- Workspace readiness: human_gate
+- Workspace mode: materialized
+- Workspace lock ticket: TKT-023
+- Workspace plan: artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T142001Z-2-tkt-023/workspace.json

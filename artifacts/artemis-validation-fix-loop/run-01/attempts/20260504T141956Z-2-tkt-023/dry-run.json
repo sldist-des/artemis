@@ -1,35 +1,35 @@
 {
   "schema_version": 1,
-  "source": "artifacts/artemis-validation-gate/run-01/task-source.json",
+  "source": "control-plane/tasks.json",
   "summary": {
-    "eligible": 1,
+    "eligible": 0,
     "blocked": 0,
-    "human_gate": 0,
-    "done": 24
+    "human_gate": 1,
+    "done": 23
   },
   "decisions": [
     {
-      "ticket": "TKT-024",
-      "decision": "eligible",
-      "runner": "codex-cli",
-      "reason": "Task has Exec Pack, owner, evidence target, and no human-gate terms.",
-      "title": "Inventario e lifecycle de workspaces ARTEMIS",
+      "ticket": "TKT-023",
+      "decision": "human_gate",
+      "runner": "human",
+      "reason": "Workspace readiness human_gate: existing lock requires owner confirmation.",
+      "title": "Loop de validacao e fix em workspace isolado",
       "state": "ready",
-      "exec_pack": "docs/exec-packs/active/TKT-024-workspace-lifecycle-inventory.md",
+      "exec_pack": "docs/exec-packs/active/TKT-023-validation-fix-loop.md",
       "workspace": {
-        "ticket": "TKT-024",
-        "task_id": "tkt-024",
-        "title": "Inventario e lifecycle de workspaces ARTEMIS",
-        "readiness": "ready",
-        "reason": "Workspace can be planned without creating a worktree.",
+        "ticket": "TKT-023",
+        "task_id": "tkt-023",
+        "title": "Loop de validacao e fix em workspace isolado",
+        "readiness": "human_gate",
+        "reason": "existing lock requires owner confirmation",
         "workspace": {
-          "mode": "planned",
-          "branch": "artemis/tkt-024-inventario-e-lifecycle-de-workspaces",
-          "worktree_path": "../veri-artemis-worktrees/tkt-024",
-          "lock_path": ".artemis/locks/tkt-024.lock",
-          "artifact_root": "artifacts/artemis-workspace-lifecycle/run-01",
+          "mode": "materialized",
+          "branch": "artemis/tkt-023-loop-de-validacao-e-fix-em-workspace",
+          "worktree_path": "../veri-artemis-worktrees/tkt-023",
+          "lock_path": ".artemis/locks/tkt-023.lock",
+          "artifact_root": "artifacts/artemis-validation-fix-loop/run-01",
           "writer": "Architect",
-          "cleanup_state": "not_created"
+          "cleanup_state": "active"
         },
         "checks": [
           {
@@ -45,55 +45,55 @@
           {
             "name": "risk",
             "status": "passed",
-            "reason": "risk=medium"
+            "reason": "risk=high"
           },
           {
             "name": "exec_pack",
             "status": "passed",
             "reason": "Exec Pack is declared",
-            "path": "docs/exec-packs/active/TKT-024-workspace-lifecycle-inventory.md"
+            "path": "docs/exec-packs/active/TKT-023-validation-fix-loop.md"
           },
           {
             "name": "exec_pack_file",
             "status": "passed",
             "reason": "Exec Pack file exists",
-            "path": "docs/exec-packs/active/TKT-024-workspace-lifecycle-inventory.md"
+            "path": "docs/exec-packs/active/TKT-023-validation-fix-loop.md"
           },
           {
             "name": "artifact_root",
             "status": "passed",
-            "reason": "artifact_root=artifacts/artemis-workspace-lifecycle/run-01",
-            "path": "artifacts/artemis-workspace-lifecycle/run-01"
+            "reason": "artifact_root=artifacts/artemis-validation-fix-loop/run-01",
+            "path": "artifacts/artemis-validation-fix-loop/run-01"
           },
           {
             "name": "writer_lock",
-            "status": "passed",
-            "reason": "no existing writer lock",
-            "path": ".artemis/locks/tkt-024.lock"
+            "status": "human_gate",
+            "reason": "existing lock requires owner confirmation",
+            "path": ".artemis/locks/tkt-023.lock"
           },
           {
             "name": "worktree_path",
-            "status": "passed",
-            "reason": "planned worktree path is free",
-            "path": "../veri-artemis-worktrees/tkt-024"
+            "status": "human_gate",
+            "reason": "planned worktree path already exists",
+            "path": "../veri-artemis-worktrees/tkt-023"
           },
           {
             "name": "branch",
-            "status": "passed",
-            "reason": "planned branch is new",
-            "name_ref": "artemis/tkt-024-inventario-e-lifecycle-de-workspaces"
+            "status": "warning",
+            "reason": "branch already exists and must be inspected before reuse",
+            "name_ref": "artemis/tkt-023-loop-de-validacao-e-fix-em-workspace"
           },
           {
             "name": "branch_worktree_occupancy",
-            "status": "passed",
-            "reason": "planned branch is not checked out elsewhere",
-            "name_ref": "artemis/tkt-024-inventario-e-lifecycle-de-workspaces"
+            "status": "human_gate",
+            "reason": "planned branch is already checked out in a worktree",
+            "name_ref": "artemis/tkt-023-loop-de-validacao-e-fix-em-workspace"
           },
           {
             "name": "current_worktree_dirty",
             "status": "warning",
-            "reason": "current worktree has 31 pending item(s)",
-            "dirty_count": 31
+            "reason": "current worktree has 2 pending item(s)",
+            "dirty_count": 2
           }
         ]
       }
@@ -304,15 +304,6 @@
       "title": "Executar runner no workspace materializado",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-022-runner-workspace-execution.md"
-    },
-    {
-      "ticket": "TKT-023",
-      "decision": "done",
-      "runner": "none",
-      "reason": "Task already archived in done state.",
-      "title": "Loop de validacao e fix em workspace isolado",
-      "state": "done",
-      "exec_pack": "docs/exec-packs/done/TKT-023-validation-fix-loop.md"
     }
   ]
 }

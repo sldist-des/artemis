@@ -461,7 +461,7 @@ Aceite:
 
 Objetivo: formalizar nova tentativa de fix/retry no workspace isolado quando uma validacao falha.
 
-Estado: proximo corte em TKT-023.
+Estado: concluido em TKT-023.
 
 Aceite:
 
@@ -470,6 +470,20 @@ Aceite:
 - nova tentativa registra eventos canonicos;
 - handoff explica o que falhou, o que mudou e o que foi revalidado;
 - Human Gate vence quando escopo, risco ou conflito crescem.
+
+### Fase 17 - Inventario de lifecycle de workspaces
+
+Objetivo: listar workspaces, branches, locks e artifact roots ARTEMIS sem executar limpeza automatica.
+
+Estado: proximo corte em TKT-024.
+
+Aceite:
+
+- inventario le locks e worktrees locais;
+- cada workspace mostra branch, lock, artifact root e estado de revisao;
+- divergencias viram decisao humana documentada;
+- nenhum worktree ou lock e removido automaticamente;
+- artifacts registram o estado local antes de qualquer decisao de limpeza.
 
 ## 10. Gatilhos de confiabilidade
 

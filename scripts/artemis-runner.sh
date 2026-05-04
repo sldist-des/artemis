@@ -10,14 +10,17 @@ execute=0
 input="control-plane/tasks.json"
 artifact_root_override=""
 use_workspace=0
+attempt_purpose="run"
+retry_of=""
 
 usage() {
   cat >&2 <<'EOF'
-usage: scripts/artemis-runner.sh --ticket TKT-000 --command "cmd" [--execute] [--use-workspace] [--input path] [--artifact-root path]
+usage: scripts/artemis-runner.sh --ticket TKT-000 --command "cmd" [--execute] [--use-workspace] [--attempt-purpose run|validation|fix|retry] [--retry-of attempt] [--input path] [--artifact-root path]
 
 Without --execute, the runner only records a supervised execution plan.
 With --execute, it runs the command after dry-run eligibility and guard checks.
 With --use-workspace, --execute runs the command inside the materialized worktree for the ticket.
+With --retry-of, the attempt records the previous attempt it is responding to.
 EOF
 }
 
@@ -46,6 +49,25 @@ while [ "$#" -gt 0 ]; do
     --use-workspace)
       use_workspace=1
       shift
+      ;;
+    --attempt-purpose)
+      attempt_purpose="${2:-}"
+      case "$attempt_purpose" in
+        run|validation|fix|retry) ;;
+        *)
+          usage
+          exit 2
+          ;;
+      esac
+      shift 2
+      ;;
+    --retry-of)
+      retry_of="${2:-}"
+      if [ -z "$retry_of" ]; then
+        usage
+        exit 2
+      fi
+      shift 2
       ;;
     --input)
       input="${2:-}"
@@ -197,6 +219,7 @@ if [ -n "$artifact_root_override" ]; then
   ARTIFACT_ROOT="$artifact_root_override"
 fi
 workspace_lock_ticket_display="${WORKSPACE_LOCK_TICKET:-none}"
+retry_of_display="${retry_of:-none}"
 
 timestamp=$(date -u +"%Y%m%dT%H%M%SZ")
 attempt_dir="$ARTIFACT_ROOT/attempts/$timestamp-$$-$SAFE_TICKET"
@@ -219,6 +242,8 @@ cat >"$attempt_dir/ENVIRONMENT.md" <<EOF
 - Exec Pack: $EXEC_PACK
 - Execute mode: $execute
 - Use materialized workspace: $use_workspace
+- Attempt purpose: $attempt_purpose
+- Retry of: $retry_of_display
 - Execution cwd: $EXECUTION_CWD
 - Main branch: $(git branch --show-current 2>/dev/null || true)
 - Main head: $(git rev-parse --short HEAD 2>/dev/null || true)
@@ -248,6 +273,18 @@ $command
 ## Mode
 
 $(if [ "$execute" -eq 1 ]; then echo "execute"; else echo "plan-only"; fi)
+
+## Attempt purpose
+
+\`\`\`text
+$attempt_purpose
+\`\`\`
+
+## Retry of
+
+\`\`\`text
+$retry_of_display
+\`\`\`
 
 ## Execution cwd
 
@@ -280,9 +317,11 @@ cat >"$attempt_dir/RESULT.md" <<EOF
 - Exit code: $code
 - Command log: $attempt_dir/COMMAND.txt
 - Execution cwd: $EXECUTION_CWD
+- Attempt purpose: $attempt_purpose
+- Retry of: $retry_of_display
 EOF
 
-python3 - "$attempt_dir" "$ticket" "$SAFE_TICKET" "$TITLE" "$EXEC_PACK" "$ARTIFACT_ROOT" "$timestamp" "$execute" "$code" "$command" "$EXECUTION_CWD" "$use_workspace" <<'PY'
+python3 - "$attempt_dir" "$ticket" "$SAFE_TICKET" "$TITLE" "$EXEC_PACK" "$ARTIFACT_ROOT" "$timestamp" "$execute" "$code" "$command" "$EXECUTION_CWD" "$use_workspace" "$attempt_purpose" "$retry_of" <<'PY'
 import json
 import sys
 from pathlib import Path
@@ -302,7 +341,9 @@ from scripts.artemis_event_common import event, event_log, now_utc, write_event_
     command,
     execution_cwd,
     use_workspace,
-) = sys.argv[1:13]
+    attempt_purpose,
+    retry_of,
+) = sys.argv[1:15]
 
 attempt_path = Path(attempt_dir)
 attempt_id = attempt_path.name
@@ -339,6 +380,8 @@ common_payload = {
     "command": command,
     "execution_cwd": execution_cwd,
     "use_workspace": use_workspace == "1",
+    "attempt_purpose": attempt_purpose,
+    "retry_of": retry_of or None,
     "workspace": workspace,
     "artifact_root": artifact_root,
 }
@@ -427,6 +470,7 @@ write_event_log(
 PY
 
 if [ "$code" -ne 0 ]; then
+  echo "$attempt_dir"
   echo "runner command failed with exit code $code; see $attempt_dir/COMMAND.txt" >&2
   exit "$code"
 fi

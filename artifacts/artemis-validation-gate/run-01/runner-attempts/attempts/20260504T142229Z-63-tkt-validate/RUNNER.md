@@ -14,6 +14,18 @@ scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runn
 
 plan-only
 
+## Attempt purpose
+
+```text
+run
+```
+
+## Retry of
+
+```text
+none
+```
+
 ## Execution cwd
 
 ```text

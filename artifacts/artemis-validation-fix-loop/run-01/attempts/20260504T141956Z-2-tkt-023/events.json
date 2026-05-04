@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T14:19:56Z",
+  "source": "scripts/artemis-runner.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_20260504t141956z-2-tkt-023_planned",
+      "event_type": "runner.attempt_planned",
+      "generated_at": "2026-05-04T14:19:56Z",
+      "producer": {
+        "adapter": "local_runner",
+        "name": "scripts/artemis-runner.sh",
+        "mode": "supervised"
+      },
+      "subject": {
+        "ticket": "TKT-023",
+        "task_id": "tkt-023",
+        "title": "Loop de validacao e fix em workspace isolado",
+        "exec_pack": "docs/exec-packs/active/TKT-023-validation-fix-loop.md",
+        "artifact_root": "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023",
+        "branch": "artemis/tkt-023-loop-de-validacao-e-fix-em-workspace",
+        "worktree": "../veri-artemis-worktrees/tkt-023"
+      },
+      "runner": {
+        "kind": "codex_cli",
+        "attempt_id": "20260504T141956Z-2-tkt-023",
+        "command": "false"
+      },
+      "state": {
+        "from": "ready",
+        "to": "running",
+        "reason": "Supervised runner attempt planned with workspace readiness."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023",
+        "status_path": "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/dry-run.json",
+          "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/workspace.json",
+          "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/RUNNER.md",
+          "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/ENVIRONMENT.md",
+          "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/COMMAND.txt",
+          "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/RESULT.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-023"
+      },
+      "payload": {
+        "attempt_id": "20260504T141956Z-2-tkt-023",
+        "execute": true,
+        "command": "false",
+        "execution_cwd": "/srv/veri-artemis-worktrees/tkt-023",
+        "use_workspace": true,
+        "attempt_purpose": "validation",
+        "retry_of": null,
+        "workspace": {
+          "mode": "materialized",
+          "branch": "artemis/tkt-023-loop-de-validacao-e-fix-em-workspace",
+          "worktree_path": "../veri-artemis-worktrees/tkt-023",
+          "lock_path": ".artemis/locks/tkt-023.lock",
+          "artifact_root": "artifacts/artemis-validation-fix-loop/run-01",
+          "writer": "Architect",
+          "cleanup_state": "active"
+        },
+        "artifact_root": "artifacts/artemis-validation-fix-loop/run-01",
+        "reason": "Supervised runner attempt planned with workspace readiness."
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_20260504t141956z-2-tkt-023_started",
+      "event_type": "runner.attempt_started",
+      "generated_at": "2026-05-04T14:19:56Z",
+      "producer": {
+        "adapter": "local_runner",
+        "name": "scripts/artemis-runner.sh",
+        "mode": "supervised"
+      },
+      "subject": {
+        "ticket": "TKT-023",
+        "task_id": "tkt-023",
+        "title": "Loop de validacao e fix em workspace isolado",
+        "exec_pack": "docs/exec-packs/active/TKT-023-validation-fix-loop.md",
+        "artifact_root": "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023",
+        "branch": "artemis/tkt-023-loop-de-validacao-e-fix-em-workspace",
+        "worktree": "../veri-artemis-worktrees/tkt-023"
+      },
+      "runner": {
+        "kind": "codex_cli",
+        "attempt_id": "20260504T141956Z-2-tkt-023",
+        "command": "false"
+      },
+      "state": {
+        "from": "running",
+        "to": "running",
+        "reason": "Supervised runner command started."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023",
+        "status_path": "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/dry-run.json",
+          "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/workspace.json",
+          "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/RUNNER.md",
+          "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/ENVIRONMENT.md",
+          "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/COMMAND.txt",
+          "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/RESULT.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-023"
+      },
+      "payload": {
+        "attempt_id": "20260504T141956Z-2-tkt-023",
+        "execute": true,
+        "command": "false",
+        "execution_cwd": "/srv/veri-artemis-worktrees/tkt-023",
+        "use_workspace": true,
+        "attempt_purpose": "validation",
+        "retry_of": null,
+        "workspace": {
+          "mode": "materialized",
+          "branch": "artemis/tkt-023-loop-de-validacao-e-fix-em-workspace",
+          "worktree_path": "../veri-artemis-worktrees/tkt-023",
+          "lock_path": ".artemis/locks/tkt-023.lock",
+          "artifact_root": "artifacts/artemis-validation-fix-loop/run-01",
+          "writer": "Architect",
+          "cleanup_state": "active"
+        },
+        "artifact_root": "artifacts/artemis-validation-fix-loop/run-01",
+        "reason": "Supervised runner command started."
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_20260504t141956z-2-tkt-023_completed",
+      "event_type": "runner.attempt_completed",
+      "generated_at": "2026-05-04T14:19:56Z",
+      "producer": {
+        "adapter": "local_runner",
+        "name": "scripts/artemis-runner.sh",
+        "mode": "supervised"
+      },
+      "subject": {
+        "ticket": "TKT-023",
+        "task_id": "tkt-023",
+        "title": "Loop de validacao e fix em workspace isolado",
+        "exec_pack": "docs/exec-packs/active/TKT-023-validation-fix-loop.md",
+        "artifact_root": "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023",
+        "branch": "artemis/tkt-023-loop-de-validacao-e-fix-em-workspace",
+        "worktree": "../veri-artemis-worktrees/tkt-023"
+      },
+      "runner": {
+        "kind": "codex_cli",
+        "attempt_id": "20260504T141956Z-2-tkt-023",
+        "command": "false"
+      },
+      "state": {
+        "from": "running",
+        "to": "blocked",
+        "reason": "Supervised runner command completed."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "error",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023",
+        "status_path": "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/dry-run.json",
+          "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/workspace.json",
+          "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/RUNNER.md",
+          "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/ENVIRONMENT.md",
+          "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/COMMAND.txt",
+          "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/RESULT.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-023"
+      },
+      "payload": {
+        "attempt_id": "20260504T141956Z-2-tkt-023",
+        "execute": true,
+        "command": "false",
+        "execution_cwd": "/srv/veri-artemis-worktrees/tkt-023",
+        "use_workspace": true,
+        "attempt_purpose": "validation",
+        "retry_of": null,
+        "workspace": {
+          "mode": "materialized",
+          "branch": "artemis/tkt-023-loop-de-validacao-e-fix-em-workspace",
+          "worktree_path": "../veri-artemis-worktrees/tkt-023",
+          "lock_path": ".artemis/locks/tkt-023.lock",
+          "artifact_root": "artifacts/artemis-validation-fix-loop/run-01",
+          "writer": "Architect",
+          "cleanup_state": "active"
+        },
+        "artifact_root": "artifacts/artemis-validation-fix-loop/run-01",
+        "exit_code": 1,
+        "command_log": "artifacts/artemis-validation-fix-loop/run-01/attempts/20260504T141956Z-2-tkt-023/COMMAND.txt",
+        "reason": "Supervised runner command completed."
+      }
+    }
+  ]
+}

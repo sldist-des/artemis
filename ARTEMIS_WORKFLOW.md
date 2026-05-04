@@ -211,9 +211,10 @@ Para preparar uma execucao local supervisionada, use:
 scripts/artemis-runner.sh --ticket TKT-000 --command "scripts/validate-artemis.sh"
 scripts/artemis-runner.sh --ticket TKT-000 --command "scripts/validate-artemis.sh" --execute
 scripts/artemis-runner.sh --ticket TKT-022 --command "pwd" --execute --use-workspace
+scripts/artemis-runner.sh --ticket TKT-023 --command "pwd" --execute --use-workspace --attempt-purpose retry --retry-of <attempt-id>
 ```
 
-Sem `--execute`, o runner apenas registra o plano. Com `--execute`, ele roda o comando depois de validar elegibilidade, readiness de workspace e bloquear comandos remotos, destrutivos ou de deploy. Com `--use-workspace`, ele exige worktree e lock materializados para o ticket e executa com `cwd` no worktree. Cada tentativa registra `workspace.json`.
+Sem `--execute`, o runner apenas registra o plano. Com `--execute`, ele roda o comando depois de validar elegibilidade, readiness de workspace e bloquear comandos remotos, destrutivos ou de deploy. Com `--use-workspace`, ele exige worktree e lock materializados para o ticket e executa com `cwd` no worktree. `--attempt-purpose` e `--retry-of` registram o papel da tentativa dentro de um loop de validacao/fix. Cada tentativa registra `workspace.json`.
 
 Cada tentativa tambem registra `events.json` com eventos canonicos:
 
@@ -221,7 +222,7 @@ Cada tentativa tambem registra `events.json` com eventos canonicos:
 - `runner.attempt_started`, quando `--execute` for usado;
 - `runner.attempt_completed`.
 
-Esses eventos sao observacionais e apontam para `dry-run.json`, `workspace.json`, comando, resultado e `execution_cwd`.
+Esses eventos sao observacionais e apontam para `dry-run.json`, `workspace.json`, comando, resultado, `execution_cwd`, `attempt_purpose` e `retry_of`.
 
 Antes de mover uma tarefa para Handoff ou Done, execute o Validation Gate:
 

@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T18:34:12Z",
+  "source": "scripts/artemis-human-decision-intake.sh",
+  "mode": "read_only",
+  "decision": "artifacts/artemis-validation-gate/run-01/real-cleanup-decision-package-check/real-cleanup-decision.json",
+  "checkpoint_root": "artifacts/artemis-validation-gate/run-01/human-decision-release-checkpoint-check",
+  "artifact_root": "artifacts/artemis-validation-gate/run-01/human-decision-intake-check",
+  "overall": "human_gate",
+  "cleanup_execution_allowed": false,
+  "summary": {
+    "reviewed": 3,
+    "approved_ready": 0,
+    "deferred": 0,
+    "rejected": 0,
+    "pending": 3,
+    "invalid": 0,
+    "executed_commands": 0
+  },
+  "results": [
+    {
+      "ticket": "TKT-021",
+      "title": "Materializar workspace ARTEMIS controlado",
+      "decision": "pending",
+      "intake_state": "pending",
+      "contract_state": "pending",
+      "cleanup_status": "human_gate",
+      "execution_allowed_by_contract": false,
+      "cleanup_execute_requested": false,
+      "cleanup_executed": false,
+      "approved_commands": [],
+      "expected_commands": [
+        "git worktree remove ../veri-artemis-worktrees/tkt-021",
+        "rm .artemis/locks/tkt-021.lock",
+        "git branch -d artemis/tkt-021-materializar-workspace-artemis-contr"
+      ],
+      "blockers": [],
+      "warnings": [
+        "pending is an open human decision and cannot execute cleanup"
+      ],
+      "next_action": "human_decision_required"
+    },
+    {
+      "ticket": "TKT-022",
+      "title": "Executar runner no workspace materializado",
+      "decision": "pending",
+      "intake_state": "pending",
+      "contract_state": "pending",
+      "cleanup_status": "human_gate",
+      "execution_allowed_by_contract": false,
+      "cleanup_execute_requested": false,
+      "cleanup_executed": false,
+      "approved_commands": [],
+      "expected_commands": [
+        "git worktree remove ../veri-artemis-worktrees/tkt-022",
+        "rm .artemis/locks/tkt-022.lock",
+        "git branch -d artemis/tkt-022-executar-runner-no-workspace-materia"
+      ],
+      "blockers": [],
+      "warnings": [
+        "pending is an open human decision and cannot execute cleanup"
+      ],
+      "next_action": "human_decision_required"
+    },
+    {
+      "ticket": "TKT-023",
+      "title": "Loop de validacao e fix em workspace isolado",
+      "decision": "pending",
+      "intake_state": "pending",
+      "contract_state": "pending",
+      "cleanup_status": "human_gate",
+      "execution_allowed_by_contract": false,
+      "cleanup_execute_requested": false,
+      "cleanup_executed": false,
+      "approved_commands": [],
+      "expected_commands": [
+        "git worktree remove ../veri-artemis-worktrees/tkt-023",
+        "rm .artemis/locks/tkt-023.lock",
+        "git branch -d artemis/tkt-023-loop-de-validacao-e-fix-em-workspace"
+      ],
+      "blockers": [],
+      "warnings": [
+        "pending is an open human decision and cannot execute cleanup"
+      ],
+      "next_action": "human_decision_required"
+    }
+  ],
+  "subchecks": {
+    "release_checkpoint": {
+      "overall": "passed",
+      "cleanup_execution_allowed": false
+    },
+    "approval_contract": {
+      "overall": "human_gate",
+      "summary": {
+        "reviewed": 3,
+        "pending": 3,
+        "approved_ready": 0,
+        "deferred": 0,
+        "rejected": 0,
+        "invalid": 0,
+        "execution_allowed": 0
+      },
+      "artifact_root": "artifacts/artemis-validation-gate/run-01/human-decision-intake-check/approval-contract"
+    },
+    "cleanup_dry_run": {
+      "overall": "human_gate",
+      "summary": {
+        "reviewed": 3,
+        "ready_to_execute": 0,
+        "human_gate": 3,
+        "failed": 0,
+        "executed_commands": 0
+      },
+      "artifact_root": "artifacts/artemis-validation-gate/run-01/human-decision-intake-check/cleanup-dry-run"
+    }
+  },
+  "blockers": [],
+  "invariants": [
+    "Intake is read-only and never runs --execute.",
+    "Decision records remain human-owned.",
+    "approved_ready means eligible for a later supervised executor, not executed.",
+    "pending, deferred, rejected, and invalid states do not execute cleanup.",
+    "Remote writes remain Human Gate."
+  ]
+}

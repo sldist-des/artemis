@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T18:34:11Z",
+  "source": "scripts/artemis-approved-workspace-cleanup.sh",
+  "mode": "dry_run",
+  "decision": "artifacts/artemis-validation-gate/run-01/real-cleanup-decision-package-check/real-cleanup-decision.json",
+  "ticket_filter": null,
+  "overall": "human_gate",
+  "summary": {
+    "reviewed": 3,
+    "ready_to_execute": 0,
+    "human_gate": 3,
+    "failed": 0,
+    "executed_commands": 0
+  },
+  "results": [
+    {
+      "ticket": "TKT-021",
+      "status": "human_gate",
+      "contract_status": "pending",
+      "execute_requested": false,
+      "executed": false,
+      "blockers": [
+        "decision is pending, not approved for cleanup execution"
+      ],
+      "expected_commands": [
+        "git worktree remove ../veri-artemis-worktrees/tkt-021",
+        "rm .artemis/locks/tkt-021.lock",
+        "git branch -d artemis/tkt-021-materializar-workspace-artemis-contr"
+      ],
+      "approved_commands": [],
+      "command_results": []
+    },
+    {
+      "ticket": "TKT-022",
+      "status": "human_gate",
+      "contract_status": "pending",
+      "execute_requested": false,
+      "executed": false,
+      "blockers": [
+        "decision is pending, not approved for cleanup execution"
+      ],
+      "expected_commands": [
+        "git worktree remove ../veri-artemis-worktrees/tkt-022",
+        "rm .artemis/locks/tkt-022.lock",
+        "git branch -d artemis/tkt-022-executar-runner-no-workspace-materia"
+      ],
+      "approved_commands": [],
+      "command_results": []
+    },
+    {
+      "ticket": "TKT-023",
+      "status": "human_gate",
+      "contract_status": "pending",
+      "execute_requested": false,
+      "executed": false,
+      "blockers": [
+        "decision is pending, not approved for cleanup execution"
+      ],
+      "expected_commands": [
+        "git worktree remove ../veri-artemis-worktrees/tkt-023",
+        "rm .artemis/locks/tkt-023.lock",
+        "git branch -d artemis/tkt-023-loop-de-validacao-e-fix-em-workspace"
+      ],
+      "approved_commands": [],
+      "command_results": []
+    }
+  ],
+  "invariants": [
+    "Default mode is dry-run.",
+    "pending and deferred decisions never execute.",
+    "rejected decisions never execute.",
+    "approval requires identity, timestamp, reason, and exact commands.",
+    "approved_commands must exactly match the generated cleanup review commands.",
+    "Only local git worktree remove, lock rm, and git branch -d commands are allowlisted.",
+    "Remote GitHub operations are out of scope."
+  ]
+}

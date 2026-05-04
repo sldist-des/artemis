@@ -268,6 +268,14 @@ scripts/artemis-human-decision-release-checkpoint.sh --artifact-root artifacts/a
 
 Esse checkpoint e read-only. Ele confirma evidencias, Human Gate, Control Plane e Validation Gate, mas nao preenche decisao humana e nao executa cleanup.
 
+Para fazer o intake read-only de uma decisao humana preenchida:
+
+```bash
+scripts/artemis-human-decision-intake.sh --artifact-root artifacts/artemis-human-decision-intake/run-01 --json
+```
+
+O intake reaproveita o contrato humano e o dry-run de cleanup para classificar cada workspace como `approved_ready`, `deferred`, `rejected`, `pending` ou `invalid`. `approved_ready` ainda nao executa nada; apenas permite um corte futuro de executor supervisionado.
+
 Para validar uma decisao humana ja preenchida sem executar cleanup:
 
 ```bash

@@ -1,24 +1,24 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T18:30:04Z",
+  "generated_at": "2026-05-04T18:39:33Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
-      "event_id": "evt_tkt-036_task_discovered",
+      "event_id": "evt_tkt-037_task_discovered",
       "event_type": "task.discovered",
-      "generated_at": "2026-05-04T18:30:04Z",
+      "generated_at": "2026-05-04T18:39:33Z",
       "producer": {
         "adapter": "exec_pack",
         "name": "scripts/artemis-tasks.sh",
         "mode": "read_only"
       },
       "subject": {
-        "ticket": "TKT-036",
-        "task_id": "tkt-036",
-        "title": "Intake supervisionado da decisao humana preenchida",
-        "exec_pack": "docs/exec-packs/active/TKT-036-human-decision-intake.md",
-        "artifact_root": "artifacts/artemis-human-decision-intake/run-01"
+        "ticket": "TKT-037",
+        "task_id": "tkt-037",
+        "title": "Human Gate da decisao humana pendente",
+        "exec_pack": "docs/exec-packs/active/TKT-037-human-decision-pending-gate.md",
+        "artifact_root": "artifacts/artemis-human-decision-pending-gate/run-01"
       },
       "runner": {
         "kind": "none"
@@ -34,17 +34,17 @@
       },
       "severity": "info",
       "evidence": {
-        "artifact_path": "artifacts/artemis-human-decision-intake/run-01",
-        "status_path": "artifacts/artemis-human-decision-intake/run-01/STATUS.md",
-        "validation_path": "artifacts/artemis-human-decision-intake/run-01/VALIDATION.md",
-        "handoff_path": "artifacts/artemis-human-decision-intake/run-01/HANDOFF.md",
+        "artifact_path": "artifacts/artemis-human-decision-pending-gate/run-01",
+        "status_path": "artifacts/artemis-human-decision-pending-gate/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-human-decision-pending-gate/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-human-decision-pending-gate/run-01/HANDOFF.md",
         "logs": []
       },
       "links": {
-        "correlation_id": "tkt-036"
+        "correlation_id": "tkt-037"
       },
       "payload": {
-        "summary": "O repositorio deve ter um artifact que diga se uma decisao humana preenchida esta pronta, deferida, rejeitada ou bloqueada, sem executar comandos de cleanup.",
+        "summary": "O repositorio deve ter um artifact de pausa operacional que diga o que o humano precisa preencher, quais comandos validar depois e por que nenhum executor pode seguir agora.",
         "risk": "medium",
         "owner": "Reviewer",
         "tags": [
@@ -58,7 +58,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-04T18:30:04Z",
+      "generated_at": "2026-05-04T18:39:33Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -125,7 +125,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-04T18:30:04Z",
+      "generated_at": "2026-05-04T18:39:33Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -212,7 +212,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-04T18:30:04Z",
+      "generated_at": "2026-05-04T18:39:33Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -305,7 +305,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-04T18:30:04Z",
+      "generated_at": "2026-05-04T18:39:33Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -345,7 +345,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 40,
+          "passed": 42,
           "failed": 0,
           "human_gate": 2
         },
@@ -433,6 +433,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_human_decision_release_checkpoint.txt"
+          },
+          {
+            "name": "shell_human_decision_intake",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_human_decision_intake.txt"
           },
           {
             "name": "shell_approved_workspace_cleanup",
@@ -559,6 +566,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/human_decision_release_checkpoint.txt"
+          },
+          {
+            "name": "human_decision_intake",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/human_decision_intake.txt"
           },
           {
             "name": "approved_workspace_cleanup",

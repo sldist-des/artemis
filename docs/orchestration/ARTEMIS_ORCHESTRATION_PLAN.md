@@ -636,7 +636,7 @@ Aceite:
 
 Objetivo: validar uma decisao humana preenchida em modo read-only antes de qualquer executor de cleanup.
 
-Estado: proximo corte em TKT-036.
+Estado: concluido em TKT-036.
 
 Aceite:
 
@@ -644,6 +644,19 @@ Aceite:
 - nenhum comando com `--execute` e emitido;
 - aprovacao parcial segue bloqueada;
 - handoff aponta explicitamente se o proximo passo e executor supervisionado ou novo Human Gate.
+
+### Fase 30 - Human Gate de decisao pendente
+
+Objetivo: registrar a pausa operacional enquanto a decisao humana real continua pendente.
+
+Estado: proximo corte em TKT-037.
+
+Aceite:
+
+- artifact declara que `pending` nao autoriza cleanup;
+- campos humanos obrigatorios ficam listados;
+- comandos de validacao apos preenchimento ficam claros;
+- reentrada segura aponta de volta para o intake antes de qualquer executor.
 
 ## 10. Gatilhos de confiabilidade
 

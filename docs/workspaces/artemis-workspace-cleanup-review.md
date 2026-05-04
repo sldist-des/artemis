@@ -94,6 +94,14 @@ scripts/artemis-human-decision-release-checkpoint.sh --artifact-root artifacts/a
 
 O checkpoint nao e aprovacao. Ele apenas confirma que pacote real, runbook, consistencia, Control Plane e Validation Gate estao alinhados antes de uma etapa futura de intake humano.
 
+Depois que uma decisao humana estiver preenchida, rode o intake read-only:
+
+```bash
+scripts/artemis-human-decision-intake.sh --artifact-root artifacts/artemis-human-decision-intake/run-01 --json
+```
+
+O intake classifica cada workspace sem executar cleanup. `approved_ready` significa elegivel para um corte futuro de executor supervisionado; `pending`, `deferred`, `rejected` e `invalid` continuam sem execucao.
+
 `scripts/artemis-approved-workspace-cleanup.sh` valida `cleanup-review.json` ou um artifact equivalente com decisoes preenchidas.
 
 ```bash

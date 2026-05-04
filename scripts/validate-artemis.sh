@@ -42,6 +42,7 @@ scripts/artemis-human-decision-fixtures.sh
 scripts/artemis-real-cleanup-decision-package.sh
 scripts/artemis-human-decision-runbook-consistency.sh
 scripts/artemis-human-decision-release-checkpoint.sh
+scripts/artemis-human-decision-intake.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -112,6 +113,7 @@ sh -n scripts/artemis-human-decision-fixtures.sh
 sh -n scripts/artemis-real-cleanup-decision-package.sh
 sh -n scripts/artemis-human-decision-runbook-consistency.sh
 sh -n scripts/artemis-human-decision-release-checkpoint.sh
+sh -n scripts/artemis-human-decision-intake.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -344,6 +346,23 @@ if [ -d artifacts/artemis-human-decision-release-checkpoint/run-01 ]; then
     echo "human decision release checkpoint did not preserve three pending decisions" >&2
     exit 1
   fi
+fi
+scripts/artemis-human-decision-intake.sh --decision /tmp/artemis-real-cleanup-decision-package/real-cleanup-decision.json --checkpoint-root artifacts/artemis-human-decision-release-checkpoint/run-01 --artifact-root /tmp/artemis-human-decision-intake --json >/tmp/artemis-human-decision-intake.json
+if ! grep -q '"overall": "human_gate"' /tmp/artemis-human-decision-intake.json; then
+  echo "scripts/artemis-human-decision-intake.sh did not stop pending decision at Human Gate" >&2
+  exit 1
+fi
+if ! grep -q '"pending": 3' /tmp/artemis-human-decision-intake.json; then
+  echo "human decision intake did not preserve three pending decisions" >&2
+  exit 1
+fi
+if ! grep -q '"executed_commands": 0' /tmp/artemis-human-decision-intake.json; then
+  echo "human decision intake executed cleanup commands" >&2
+  exit 1
+fi
+if ! grep -q '"cleanup_execution_allowed": false' /tmp/artemis-human-decision-intake.json; then
+  echo "human decision intake allowed cleanup execution" >&2
+  exit 1
 fi
 scripts/artemis-approved-workspace-cleanup.sh --decision /tmp/artemis-workspace-cleanup-review/cleanup-review.json --artifact-root /tmp/artemis-approved-workspace-cleanup --json >/tmp/artemis-approved-workspace-cleanup.json
 if ! grep -q '"overall": "human_gate"' /tmp/artemis-approved-workspace-cleanup.json; then

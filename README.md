@@ -164,6 +164,14 @@ scripts/artemis-human-decision-release-checkpoint.sh --artifact-root artifacts/a
 
 Esse checkpoint reune pacote real, runbook, consistencia, Control Plane e Validation Gate. Ele nao autoriza cleanup e mantem `cleanup_execution_allowed=false`.
 
+Faca o intake read-only da decisao humana preenchida:
+
+```bash
+scripts/artemis-human-decision-intake.sh --artifact-root artifacts/artemis-human-decision-intake/run-01
+```
+
+O intake classifica cada workspace como `approved_ready`, `deferred`, `rejected`, `pending` ou `invalid`. Ele nao aceita `--execute` e nao remove worktrees, locks ou branches.
+
 Prepare ou execute uma tentativa local supervisionada com:
 
 ```bash

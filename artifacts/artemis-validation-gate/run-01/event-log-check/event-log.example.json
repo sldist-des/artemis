@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T18:29:40Z",
+  "generated_at": "2026-05-04T18:34:14Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-036_task_discovered",
       "event_type": "task.discovered",
-      "generated_at": "2026-05-04T18:29:40Z",
+      "generated_at": "2026-05-04T18:34:14Z",
       "producer": {
         "adapter": "exec_pack",
         "name": "scripts/artemis-tasks.sh",
@@ -58,7 +58,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-04T18:29:40Z",
+      "generated_at": "2026-05-04T18:34:14Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -125,7 +125,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-04T18:29:40Z",
+      "generated_at": "2026-05-04T18:34:14Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -212,7 +212,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-04T18:29:40Z",
+      "generated_at": "2026-05-04T18:34:14Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -305,7 +305,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-04T18:29:40Z",
+      "generated_at": "2026-05-04T18:34:14Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",

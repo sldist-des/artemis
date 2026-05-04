@@ -1,6 +1,6 @@
 # ENVIRONMENT - TKT-VALIDATE
 
-- Generated at: 20260504T182938Z
+- Generated at: 20260504T183412Z
 - Repository: /srv/veri
 - Ticket: TKT-VALIDATE
 - Exec Pack: docs/exec-packs/active/TKT-VALIDATE.md
@@ -10,12 +10,12 @@
 - Retry of: none
 - Execution cwd: /srv/veri
 - Main branch: main
-- Main head: 4000e7c
-- Main worktree status before: 89
+- Main head: b6c29e3
+- Main worktree status before: 65
 - Execution branch: main
-- Execution head: 4000e7c
-- Execution worktree status before: 89
+- Execution head: b6c29e3
+- Execution worktree status before: 65
 - Workspace readiness: ready
 - Workspace mode: planned
 - Workspace lock ticket: none
-- Workspace plan: artifacts/artemis-validation-gate/run-01/runner-attempts/attempts/20260504T182938Z-182-tkt-validate/workspace.json
+- Workspace plan: artifacts/artemis-validation-gate/run-01/runner-attempts/attempts/20260504T183412Z-206-tkt-validate/workspace.json

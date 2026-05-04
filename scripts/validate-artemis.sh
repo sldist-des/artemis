@@ -34,6 +34,7 @@ scripts/github-readiness.sh
 scripts/artemis-tasks.sh
 scripts/artemis-dry-run.sh
 scripts/artemis-workspace.sh
+scripts/artemis-workspace-lifecycle.sh
 scripts/artemis-runner.sh
 scripts/artemis-validation-gate.sh
 scripts/artemis-github-issues.sh
@@ -95,6 +96,7 @@ sh -n scripts/github-readiness.sh
 sh -n scripts/artemis-tasks.sh
 sh -n scripts/artemis-dry-run.sh
 sh -n scripts/artemis-workspace.sh
+sh -n scripts/artemis-workspace-lifecycle.sh
 sh -n scripts/artemis-runner.sh
 sh -n scripts/artemis-validation-gate.sh
 sh -n scripts/artemis-github-issues.sh
@@ -147,6 +149,15 @@ JSON
 scripts/artemis-workspace.sh --input /tmp/artemis-runner-task-source.json --ticket TKT-VALIDATE --json >/tmp/artemis-workspace.json
 if ! grep -q '"readiness": "ready"' /tmp/artemis-workspace.json; then
   echo "scripts/artemis-workspace.sh did not report ready workspace readiness" >&2
+  exit 1
+fi
+scripts/artemis-workspace-lifecycle.sh --artifact-root /tmp/artemis-workspace-lifecycle --json >/tmp/artemis-workspace-lifecycle.json
+if ! grep -q '"locks":' /tmp/artemis-workspace-lifecycle.json; then
+  echo "scripts/artemis-workspace-lifecycle.sh did not emit lifecycle summary" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-workspace-lifecycle/WORKSPACE_LIFECYCLE.md; then
+  echo "scripts/artemis-workspace-lifecycle.sh did not write lifecycle artifact" >&2
   exit 1
 fi
 scripts/artemis-runner.sh --input /tmp/artemis-runner-task-source.json --ticket TKT-VALIDATE --command "scripts/artemis-dry-run.sh --input /tmp/artemis-runner-task-source.json" --artifact-root /tmp/artemis-runner-validation >/tmp/artemis-runner.out

@@ -205,6 +205,15 @@ scripts/artemis-workspace.sh --ticket TKT-021 --artifact-root artifacts/artemis-
 
 Esse modo cria branch, worktree e lock locais, registra `materialization.json` e `MATERIALIZATION.md`, e nao inicia agentes automaticamente.
 
+Para inventariar workspaces locais antes de qualquer decisao de limpeza:
+
+```bash
+scripts/artemis-workspace-lifecycle.sh
+scripts/artemis-workspace-lifecycle.sh --artifact-root artifacts/artemis-workspace-lifecycle/run-01 --json
+```
+
+O inventario e read-only. Ele lista locks, worktrees, branches, artifact roots, limpeza pendente e criterio de revisao. `review_ready` nao autoriza limpeza automatica; significa apenas que o workspace pode ir para revisao humana antes de remover worktree ou lock.
+
 Para preparar uma execucao local supervisionada, use:
 
 ```bash

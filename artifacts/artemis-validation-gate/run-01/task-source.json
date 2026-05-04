@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T14:22:28Z",
+  "generated_at": "2026-05-04T14:31:27Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
-      "id": "tkt-024",
-      "ticket": "TKT-024",
-      "title": "Inventario e lifecycle de workspaces ARTEMIS",
+      "id": "tkt-025",
+      "ticket": "TKT-025",
+      "title": "Revisao manual de cleanup de workspaces",
       "state": "ready",
       "owner": "Architect",
       "risk": "medium",
-      "summary": "Um comando local deve listar worktrees, branches, locks e artifact roots ARTEMIS, mostrando quais estao ativos, quais estao prontos para revisao humana e quais precisam de decisao antes de limpeza.",
-      "exec_pack": "docs/exec-packs/active/TKT-024-workspace-lifecycle-inventory.md",
-      "evidence": "artifacts/artemis-workspace-lifecycle/run-01/STATUS.md",
+      "summary": "Um humano deve conseguir decidir se um workspace `review_ready` pode ser removido localmente, quais evidencias precisam existir antes da remocao e como registrar a decisao sem automatizar cleanup.",
+      "exec_pack": "docs/exec-packs/active/TKT-025-workspace-cleanup-review.md",
+      "evidence": "artifacts/artemis-workspace-cleanup-review/run-01/STATUS.md",
       "tags": ["exec-pack", "active"]
     },
     {
@@ -301,6 +301,18 @@
       "summary": "Uma tarefa deve poder falhar em validacao, registrar parada tecnica, executar uma tentativa de fix no workspace materializado e produzir nova evidencia antes de handoff.",
       "exec_pack": "docs/exec-packs/done/TKT-023-validation-fix-loop.md",
       "evidence": "artifacts/artemis-validation-fix-loop/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-024",
+      "ticket": "TKT-024",
+      "title": "Inventario e lifecycle de workspaces ARTEMIS",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "Um comando local deve listar worktrees, branches, locks e artifact roots ARTEMIS, mostrando quais estao ativos, quais estao prontos para revisao humana e quais precisam de decisao antes de limpeza.",
+      "exec_pack": "docs/exec-packs/done/TKT-024-workspace-lifecycle-inventory.md",
+      "evidence": "artifacts/artemis-workspace-lifecycle/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

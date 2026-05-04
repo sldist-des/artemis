@@ -60,6 +60,8 @@ scripts/artemis-workspace.sh --ticket TKT-019 --artifact-root artifacts/<ticket>
 
 `scripts/artemis-runner.sh` grava `workspace.json` em cada tentativa supervisionada e bloqueia a tentativa quando o workspace nao esta `ready`.
 
+`scripts/artemis-workspace-lifecycle.sh` lista locks, worktrees, branches e artifact roots ja materializados. O comando e somente leitura e classifica cada workspace como `active`, `review_ready` ou `decision_required`; nenhuma classificacao remove worktree ou lock automaticamente.
+
 ## Invariantes
 
 - Um agente escritor por worktree.

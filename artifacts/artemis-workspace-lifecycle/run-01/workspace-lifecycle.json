@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T14:31:27Z",
+  "source": "scripts/artemis-workspace-lifecycle.sh",
+  "mode": "read_only",
+  "summary": {
+    "locks": 3,
+    "worktrees": 3,
+    "active": 0,
+    "review_ready": 3,
+    "decision_required": 0
+  },
+  "locks": [
+    {
+      "ticket": "TKT-021",
+      "title": "Materializar workspace ARTEMIS controlado",
+      "writer": "Architect",
+      "lock_path": ".artemis/locks/tkt-021.lock",
+      "lock_parse_error": "",
+      "branch": "artemis/tkt-021-materializar-workspace-artemis-contr",
+      "branch_exists": true,
+      "branch_merged_into_head": true,
+      "worktree_path": "../veri-artemis-worktrees/tkt-021",
+      "worktree_exists": true,
+      "worktree_registered": true,
+      "worktree_head": "233ae0b54609474f7aef732491d24f38ca56fdc1",
+      "artifact_root": "artifacts/artemis-workspace-materialization/run-01",
+      "artifact_root_exists": true,
+      "status_md_exists": true,
+      "dirty": false,
+      "dirty_count": 0,
+      "lifecycle_state": "review_ready",
+      "cleanup_decision": "human_review_before_cleanup",
+      "reason": "branch is merged, worktree is clean, lock and artifacts are present"
+    },
+    {
+      "ticket": "TKT-022",
+      "title": "Executar runner no workspace materializado",
+      "writer": "Architect",
+      "lock_path": ".artemis/locks/tkt-022.lock",
+      "lock_parse_error": "",
+      "branch": "artemis/tkt-022-executar-runner-no-workspace-materia",
+      "branch_exists": true,
+      "branch_merged_into_head": true,
+      "worktree_path": "../veri-artemis-worktrees/tkt-022",
+      "worktree_exists": true,
+      "worktree_registered": true,
+      "worktree_head": "8bb45b3b40bf7d636a5ad4ffa3d4533a0aeb7360",
+      "artifact_root": "artifacts/artemis-runner-workspace-execution/run-01",
+      "artifact_root_exists": true,
+      "status_md_exists": true,
+      "dirty": false,
+      "dirty_count": 0,
+      "lifecycle_state": "review_ready",
+      "cleanup_decision": "human_review_before_cleanup",
+      "reason": "branch is merged, worktree is clean, lock and artifacts are present"
+    },
+    {
+      "ticket": "TKT-023",
+      "title": "Loop de validacao e fix em workspace isolado",
+      "writer": "Architect",
+      "lock_path": ".artemis/locks/tkt-023.lock",
+      "lock_parse_error": "",
+      "branch": "artemis/tkt-023-loop-de-validacao-e-fix-em-workspace",
+      "branch_exists": true,
+      "branch_merged_into_head": true,
+      "worktree_path": "../veri-artemis-worktrees/tkt-023",
+      "worktree_exists": true,
+      "worktree_registered": true,
+      "worktree_head": "3b4c17131ec2c48dfa29dc881ce5a0f1d4bcd02d",
+      "artifact_root": "artifacts/artemis-validation-fix-loop/run-01",
+      "artifact_root_exists": true,
+      "status_md_exists": true,
+      "dirty": false,
+      "dirty_count": 0,
+      "lifecycle_state": "review_ready",
+      "cleanup_decision": "human_review_before_cleanup",
+      "reason": "branch is merged, worktree is clean, lock and artifacts are present"
+    }
+  ],
+  "artemis_worktrees": [
+    {
+      "path": "/srv/veri-artemis-worktrees/tkt-021",
+      "branch": "artemis/tkt-021-materializar-workspace-artemis-contr",
+      "head": "233ae0b54609474f7aef732491d24f38ca56fdc1"
+    },
+    {
+      "path": "/srv/veri-artemis-worktrees/tkt-022",
+      "branch": "artemis/tkt-022-executar-runner-no-workspace-materia",
+      "head": "8bb45b3b40bf7d636a5ad4ffa3d4533a0aeb7360"
+    },
+    {
+      "path": "/srv/veri-artemis-worktrees/tkt-023",
+      "branch": "artemis/tkt-023-loop-de-validacao-e-fix-em-workspace",
+      "head": "3b4c17131ec2c48dfa29dc881ce5a0f1d4bcd02d"
+    }
+  ],
+  "review_criteria": [
+    "Never remove a worktree or lock automatically.",
+    "Review-ready means branch is already merged into current HEAD, worktree is clean, lock exists, and artifact STATUS.md exists.",
+    "Decision-required means missing metadata, missing branch/worktree, dirty worktree, or unreadable lock.",
+    "Active means the workspace should stay available until its branch and handoff are reviewed."
+  ]
+}

@@ -475,7 +475,7 @@ Aceite:
 
 Objetivo: listar workspaces, branches, locks e artifact roots ARTEMIS sem executar limpeza automatica.
 
-Estado: proximo corte em TKT-024.
+Estado: concluido em TKT-024.
 
 Aceite:
 
@@ -484,6 +484,20 @@ Aceite:
 - divergencias viram decisao humana documentada;
 - nenhum worktree ou lock e removido automaticamente;
 - artifacts registram o estado local antes de qualquer decisao de limpeza.
+
+### Fase 18 - Revisao de cleanup de workspace
+
+Objetivo: definir o procedimento humano para remover worktrees, branches locais e locks depois do inventario.
+
+Estado: proximo corte em TKT-025.
+
+Aceite:
+
+- cleanup continua manual e auditavel;
+- inventario de lifecycle e pre-condicao;
+- workspace sujo ou branch nao integrada exige decisao humana;
+- remocao local registra artifact de decisao;
+- push, merge e PR continuam fora do fluxo automatico.
 
 ## 10. Gatilhos de confiabilidade
 

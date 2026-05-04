@@ -953,14 +953,25 @@
       },
       {
         id: "tkt-024",
-        state: "ready",
+        state: "done",
         ticket: "TKT-024",
         title: "Inventario de workspaces",
-        summary: "Listar worktrees, branches, locks e artifact roots ARTEMIS para lifecycle local.",
+        summary: "Inventario read-only classifica workspaces materializados por estado de lifecycle.",
         owner: "Codex",
-        risk: "high",
-        evidence: "docs/exec-packs/active/TKT-024-workspace-lifecycle-inventory.md",
+        risk: "medium",
+        evidence: "artifacts/artemis-workspace-lifecycle/run-01",
         tags: ["workspace", "lifecycle", "inventory"]
+      },
+      {
+        id: "tkt-025",
+        state: "ready",
+        ticket: "TKT-025",
+        title: "Revisao de cleanup",
+        summary: "Definir protocolo humano para cleanup local de worktrees, branches e locks.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "docs/exec-packs/active/TKT-025-workspace-cleanup-review.md",
+        tags: ["workspace", "cleanup", "review"]
       },
       {
         id: "github-auth",
@@ -991,17 +1002,17 @@
 
     const seedEvents = [
       {
-        event_id: "evt_tkt-024_task_discovered",
+        event_id: "evt_tkt-025_task_discovered",
         event_type: "task.discovered",
-        generated_at: "2026-05-04T14:22:00Z",
+        generated_at: "2026-05-04T14:31:00Z",
         producer: { adapter: "exec_pack", name: "scripts/artemis-tasks.sh", mode: "read_only" },
         subject: {
-          ticket: "TKT-024",
-          title: "Inventario e lifecycle de workspaces ARTEMIS"
+          ticket: "TKT-025",
+          title: "Revisao manual de cleanup de workspaces"
         },
         state: { from: null, to: "ready", reason: "Active Exec Pack discovered by local task source." },
         severity: "info",
-        evidence: { artifact_path: "artifacts/artemis-workspace-lifecycle/run-01" }
+        evidence: { artifact_path: "docs/exec-packs/active/TKT-025-workspace-cleanup-review.md" }
       },
       {
         event_id: "evt_tkt-017_adapter_events",

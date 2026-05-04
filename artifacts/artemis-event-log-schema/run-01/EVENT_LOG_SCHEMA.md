@@ -6,7 +6,7 @@
 
 ## Event Types
 
-- `task.discovered`: `evt_tkt-024_task_discovered` -> ready
+- `task.discovered`: `evt_tkt-025_task_discovered` -> ready
 - `runner.readiness_checked`: `evt_tkt-013_github_issues_readiness` -> human_gate
 - `adapter.contract_recorded`: `evt_tkt-014_codex_app_server_contract` -> done
 - `adapter.contract_recorded`: `evt_tkt-015_claude_code_contract` -> done

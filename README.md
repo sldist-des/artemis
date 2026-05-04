@@ -96,6 +96,12 @@ Materialize um workspace apenas com flag explicita:
 scripts/artemis-workspace.sh --ticket TKT-021 --artifact-root artifacts/artemis-workspace-materialization/run-01 --materialize
 ```
 
+Inventarie o lifecycle local de workspaces sem limpar nada:
+
+```bash
+scripts/artemis-workspace-lifecycle.sh --artifact-root artifacts/artemis-workspace-lifecycle/run-01
+```
+
 Prepare ou execute uma tentativa local supervisionada com:
 
 ```bash

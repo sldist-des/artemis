@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T17:20:47Z",
+  "generated_at": "2026-05-04T17:31:27Z",
   "source": "scripts/artemis-human-decision-fixtures.sh",
   "mode": "fixture_read_only",
   "fixture": "invalid-partial-approval",

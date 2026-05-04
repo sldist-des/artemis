@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T17:20:47Z",
+  "generated_at": "2026-05-04T17:31:26Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
-      "id": "tkt-032",
-      "ticket": "TKT-032",
-      "title": "Control Plane para decisao real de cleanup",
+      "id": "tkt-033",
+      "ticket": "TKT-033",
+      "title": "Runbook assistido de decisao humana",
       "state": "ready",
-      "owner": "Designer",
+      "owner": "Architect",
       "risk": "medium",
-      "summary": "O Control Plane deve mostrar que TKT-021, TKT-022 e TKT-023 ainda estao em `pending`, com evidencia do pacote real e Human Gate explicito.",
-      "exec_pack": "docs/exec-packs/active/TKT-032-control-plane-real-cleanup-human-gate.md",
-      "evidence": "artifacts/artemis-control-plane-real-cleanup-human-gate/run-01/STATUS.md",
+      "summary": "O repositorio deve explicar como escolher `approved`, `deferred` ou `rejected` por workspace, como copiar comandos exatos quando houver aprovacao e como validar o arquivo preenchido.",
+      "exec_pack": "docs/exec-packs/active/TKT-033-assisted-human-decision-runbook.md",
+      "evidence": "artifacts/artemis-assisted-human-decision-runbook/run-01/STATUS.md",
       "tags": ["exec-pack", "active"]
     },
     {
@@ -397,6 +397,18 @@
       "summary": "O repositorio deve oferecer um artifact preenchivel que mostre as opcoes `approved`, `deferred` e `rejected` por workspace, com campos obrigatorios e comando de validacao claro.",
       "exec_pack": "docs/exec-packs/done/TKT-031-real-cleanup-decision-package.md",
       "evidence": "artifacts/artemis-real-cleanup-decision-package/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-032",
+      "ticket": "TKT-032",
+      "title": "Control Plane para decisao real de cleanup",
+      "state": "done",
+      "owner": "Designer",
+      "risk": "medium",
+      "summary": "O Control Plane deve mostrar que TKT-021, TKT-022 e TKT-023 ainda estao em `pending`, com evidencia do pacote real e Human Gate explicito.",
+      "exec_pack": "docs/exec-packs/done/TKT-032-control-plane-real-cleanup-human-gate.md",
+      "evidence": "artifacts/artemis-control-plane-real-cleanup-human-gate/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

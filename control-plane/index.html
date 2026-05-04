@@ -323,6 +323,129 @@
       font-size: 13px;
     }
 
+    .decision-gate {
+      border-top: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+      margin: 0 0 18px;
+      padding: 12px 0;
+      display: grid;
+      grid-template-columns: minmax(220px, .42fr) minmax(0, 1fr);
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .decision-gate header {
+      display: grid;
+      align-content: start;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .decision-gate h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .decision-gate p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+    }
+
+    .gate-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .gate-stat {
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel) 88%, #f3d6bf);
+      padding: 8px;
+      min-width: 0;
+    }
+
+    .gate-stat b {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 25px;
+      line-height: 1;
+    }
+
+    .gate-stat span {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.25;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .gate-table {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .gate-row {
+      display: grid;
+      grid-template-columns: minmax(82px, .18fr) minmax(0, 1fr) minmax(90px, .2fr) minmax(110px, auto);
+      gap: 10px;
+      align-items: center;
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel) 90%, var(--paper));
+      padding: 8px 10px;
+      min-height: 48px;
+      min-width: 0;
+    }
+
+    .gate-row b,
+    .gate-row strong {
+      font-size: 12px;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+
+    .gate-row b {
+      color: var(--blue);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .gate-row span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.25;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .gate-pill {
+      justify-self: start;
+      border: 1px solid var(--red);
+      color: var(--red);
+      background: color-mix(in srgb, var(--panel) 78%, #f3d6bf);
+      padding: 4px 7px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .gate-evidence {
+      justify-self: end;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      white-space: nowrap;
+    }
+
     .board {
       display: grid;
       grid-template-columns: repeat(7, minmax(210px, 1fr));
@@ -550,6 +673,19 @@
         grid-column: 3;
         justify-self: start;
       }
+
+      .decision-gate {
+        grid-template-columns: 1fr;
+      }
+
+      .gate-row {
+        grid-template-columns: minmax(72px, .22fr) minmax(0, 1fr) minmax(80px, auto);
+      }
+
+      .gate-evidence {
+        grid-column: 2 / -1;
+        justify-self: start;
+      }
     }
 
     @media (max-width: 680px) {
@@ -608,6 +744,16 @@
         grid-column: 2;
       }
 
+      .gate-stats,
+      .gate-row {
+        grid-template-columns: 1fr;
+      }
+
+      .gate-pill,
+      .gate-evidence {
+        justify-self: start;
+      }
+
       .actions input,
       .actions button {
         width: 100%;
@@ -643,8 +789,17 @@
     <section class="metrics" aria-label="Resumo do fluxo">
       <div class="metric"><b id="metric-total">0</b><span>cards</span></div>
       <div class="metric"><b id="metric-active">0</b><span>ativos</span></div>
-      <div class="metric"><b id="metric-human">0</b><span>decisao humana</span></div>
+      <div class="metric"><b id="metric-human">0</b><span>decisoes humanas</span></div>
       <div class="metric"><b id="metric-done">0</b><span>concluidos</span></div>
+    </section>
+
+    <section class="decision-gate" aria-labelledby="decision-gate-title">
+      <header>
+        <h2 id="decision-gate-title">Human Gate cleanup</h2>
+        <p id="decision-gate-summary">Decisoes reais de cleanup aguardam revisao humana.</p>
+        <div id="decision-gate-stats" class="gate-stats" aria-label="Resumo das decisoes de cleanup"></div>
+      </header>
+      <div id="decision-gate-table" class="gate-table" aria-live="polite"></div>
     </section>
 
     <section class="timeline-section" aria-labelledby="timeline-title">
@@ -1041,14 +1196,25 @@
       },
       {
         id: "tkt-032",
-        state: "ready",
+        state: "done",
         ticket: "TKT-032",
         title: "Human Gate cleanup visual",
-        summary: "Expor decisoes reais pendentes no Control Plane sem sugerir execucao automatica.",
+        summary: "Control Plane mostra cleanup real como Human Gate com tres decisoes pending.",
         owner: "Codex",
         risk: "medium",
-        evidence: "docs/exec-packs/active/TKT-032-control-plane-real-cleanup-human-gate.md",
+        evidence: "artifacts/artemis-control-plane-real-cleanup-human-gate/run-01",
         tags: ["workspace", "human-gate", "control-plane"]
+      },
+      {
+        id: "tkt-033",
+        state: "ready",
+        ticket: "TKT-033",
+        title: "Runbook decisao humana",
+        summary: "Orientar preenchimento humano de real-cleanup-decision.json sem executar cleanup.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "docs/exec-packs/active/TKT-033-assisted-human-decision-runbook.md",
+        tags: ["workspace", "human-gate", "runbook"]
       },
       {
         id: "github-auth",
@@ -1077,19 +1243,49 @@
       }
     ];
 
+    const realCleanupGate = {
+      decisionFile: "artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json",
+      packageRoot: "artifacts/artemis-real-cleanup-decision-package/run-01",
+      summary: {
+        reviewed: 3,
+        pending: 3,
+        executeAllowed: 0
+      },
+      decisions: [
+        {
+          ticket: "TKT-021",
+          title: "Materializar workspace ARTEMIS controlado",
+          decision: "pending",
+          evidence: "artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json"
+        },
+        {
+          ticket: "TKT-022",
+          title: "Executar runner no workspace materializado",
+          decision: "pending",
+          evidence: "artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json"
+        },
+        {
+          ticket: "TKT-023",
+          title: "Loop de validacao e fix em workspace isolado",
+          decision: "pending",
+          evidence: "artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json"
+        }
+      ]
+    };
+
     const seedEvents = [
       {
-        event_id: "evt_tkt-032_task_discovered",
+        event_id: "evt_tkt-033_task_discovered",
         event_type: "task.discovered",
-        generated_at: "2026-05-04T17:20:21Z",
+        generated_at: "2026-05-04T17:31:00Z",
         producer: { adapter: "exec_pack", name: "scripts/artemis-tasks.sh", mode: "read_only" },
         subject: {
-          ticket: "TKT-032",
-          title: "Control Plane para decisao real de cleanup"
+          ticket: "TKT-033",
+          title: "Runbook assistido de decisao humana"
         },
         state: { from: null, to: "ready", reason: "Active Exec Pack discovered by local task source." },
         severity: "info",
-        evidence: { artifact_path: "artifacts/artemis-control-plane-real-cleanup-human-gate/run-01" }
+        evidence: { artifact_path: "artifacts/artemis-assisted-human-decision-runbook/run-01" }
       },
       {
         event_id: "evt_tkt-017_adapter_events",
@@ -1218,6 +1414,28 @@
       }
     }
 
+    function renderDecisionGate(gate) {
+      const stats = document.querySelector("#decision-gate-stats");
+      const table = document.querySelector("#decision-gate-table");
+      const summary = document.querySelector("#decision-gate-summary");
+      const pending = gate.decisions.filter((item) => item.decision === "pending").length;
+      const executeAllowed = Number(gate.summary.executeAllowed || 0);
+      summary.textContent = `${pending} workspaces pendentes; execucao liberada agora: ${executeAllowed}.`;
+      stats.innerHTML = `
+        <div class="gate-stat"><b>${gate.summary.reviewed}</b><span>workspaces</span></div>
+        <div class="gate-stat"><b>${pending}</b><span>pending</span></div>
+        <div class="gate-stat"><b>${executeAllowed}</b><span>execute allowed</span></div>
+      `;
+      table.innerHTML = gate.decisions.map((item) => `
+        <article class="gate-row">
+          <b>${escapeHtml(item.ticket)}</b>
+          <strong>${escapeHtml(item.title)}</strong>
+          <span class="gate-pill">${escapeHtml(item.decision)}</span>
+          <a class="gate-evidence" href="../${escapeHtml(item.evidence)}">decisao</a>
+        </article>
+      `).join("");
+    }
+
     async function loadEventSource() {
       try {
         const response = await fetch(eventSourceUrl, { cache: "no-store" });
@@ -1307,6 +1525,7 @@
       attachLaneEvents();
       applyFilter();
       updateMetrics();
+      renderDecisionGate(realCleanupGate);
     }
 
     function renderCard(card) {
@@ -1365,7 +1584,7 @@
     function updateMetrics() {
       document.querySelector("#metric-total").textContent = cards.length;
       document.querySelector("#metric-active").textContent = cards.filter((card) => !["done", "human"].includes(card.state)).length;
-      document.querySelector("#metric-human").textContent = cards.filter((card) => card.state === "human").length;
+      document.querySelector("#metric-human").textContent = cards.filter((card) => card.state === "human").length + realCleanupGate.summary.pending;
       document.querySelector("#metric-done").textContent = cards.filter((card) => card.state === "done").length;
     }
 

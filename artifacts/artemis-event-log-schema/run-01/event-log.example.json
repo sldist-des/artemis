@@ -1,24 +1,24 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T17:20:59Z",
+  "generated_at": "2026-05-04T17:31:37Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
-      "event_id": "evt_tkt-032_task_discovered",
+      "event_id": "evt_tkt-033_task_discovered",
       "event_type": "task.discovered",
-      "generated_at": "2026-05-04T17:20:59Z",
+      "generated_at": "2026-05-04T17:31:37Z",
       "producer": {
         "adapter": "exec_pack",
         "name": "scripts/artemis-tasks.sh",
         "mode": "read_only"
       },
       "subject": {
-        "ticket": "TKT-032",
-        "task_id": "tkt-032",
-        "title": "Control Plane para decisao real de cleanup",
-        "exec_pack": "docs/exec-packs/active/TKT-032-control-plane-real-cleanup-human-gate.md",
-        "artifact_root": "artifacts/artemis-control-plane-real-cleanup-human-gate/run-01"
+        "ticket": "TKT-033",
+        "task_id": "tkt-033",
+        "title": "Runbook assistido de decisao humana",
+        "exec_pack": "docs/exec-packs/active/TKT-033-assisted-human-decision-runbook.md",
+        "artifact_root": "artifacts/artemis-assisted-human-decision-runbook/run-01"
       },
       "runner": {
         "kind": "none"
@@ -34,19 +34,19 @@
       },
       "severity": "info",
       "evidence": {
-        "artifact_path": "artifacts/artemis-control-plane-real-cleanup-human-gate/run-01",
-        "status_path": "artifacts/artemis-control-plane-real-cleanup-human-gate/run-01/STATUS.md",
-        "validation_path": "artifacts/artemis-control-plane-real-cleanup-human-gate/run-01/VALIDATION.md",
-        "handoff_path": "artifacts/artemis-control-plane-real-cleanup-human-gate/run-01/HANDOFF.md",
+        "artifact_path": "artifacts/artemis-assisted-human-decision-runbook/run-01",
+        "status_path": "artifacts/artemis-assisted-human-decision-runbook/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-assisted-human-decision-runbook/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-assisted-human-decision-runbook/run-01/HANDOFF.md",
         "logs": []
       },
       "links": {
-        "correlation_id": "tkt-032"
+        "correlation_id": "tkt-033"
       },
       "payload": {
-        "summary": "O Control Plane deve mostrar que TKT-021, TKT-022 e TKT-023 ainda estao em `pending`, com evidencia do pacote real e Human Gate explicito.",
+        "summary": "O repositorio deve explicar como escolher `approved`, `deferred` ou `rejected` por workspace, como copiar comandos exatos quando houver aprovacao e como validar o arquivo preenchido.",
         "risk": "medium",
-        "owner": "Designer",
+        "owner": "Architect",
         "tags": [
           "exec-pack",
           "active"
@@ -58,7 +58,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-04T17:20:59Z",
+      "generated_at": "2026-05-04T17:31:37Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -125,7 +125,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-04T17:20:59Z",
+      "generated_at": "2026-05-04T17:31:37Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -212,7 +212,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-04T17:20:59Z",
+      "generated_at": "2026-05-04T17:31:37Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -305,7 +305,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-04T17:20:59Z",
+      "generated_at": "2026-05-04T17:31:37Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",

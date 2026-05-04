@@ -584,7 +584,7 @@ Aceite:
 
 Objetivo: expor o estado do pacote real de decisao no Control Plane sem sugerir execucao automatica.
 
-Estado: proximo corte em TKT-032.
+Estado: concluido em TKT-032.
 
 Aceite:
 
@@ -592,6 +592,19 @@ Aceite:
 - evidencia aponta para o pacote real preenchivel;
 - UI nao apresenta cleanup como acao automatica;
 - validacao continua mostrando Human Gate ate decisao humana preenchida.
+
+### Fase 26 - Runbook assistido de decisao humana
+
+Objetivo: orientar o humano a preencher o pacote real de decisao sem que o agente aprove ou execute cleanup.
+
+Estado: proximo corte em TKT-033.
+
+Aceite:
+
+- runbook deixa claro quando usar `approved`, `deferred` e `rejected`;
+- timestamp, identidade e razao ficam obrigatorios;
+- comandos exatos sao destacados como requisito de aprovacao;
+- validacao continua antes de qualquer executor.
 
 ## 10. Gatilhos de confiabilidade
 

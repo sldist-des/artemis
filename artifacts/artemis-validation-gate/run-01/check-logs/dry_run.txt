@@ -5,30 +5,30 @@
     "eligible": 1,
     "blocked": 0,
     "human_gate": 0,
-    "done": 31
+    "done": 32
   },
   "decisions": [
     {
-      "ticket": "TKT-031",
+      "ticket": "TKT-032",
       "decision": "eligible",
       "runner": "codex-cli",
       "reason": "Task has Exec Pack, owner, evidence target, and no human-gate terms.",
-      "title": "Pacote de decisao humana real",
+      "title": "Control Plane para decisao real de cleanup",
       "state": "ready",
-      "exec_pack": "docs/exec-packs/active/TKT-031-real-cleanup-decision-package.md",
+      "exec_pack": "docs/exec-packs/active/TKT-032-control-plane-real-cleanup-human-gate.md",
       "workspace": {
-        "ticket": "TKT-031",
-        "task_id": "tkt-031",
-        "title": "Pacote de decisao humana real",
+        "ticket": "TKT-032",
+        "task_id": "tkt-032",
+        "title": "Control Plane para decisao real de cleanup",
         "readiness": "ready",
         "reason": "Workspace can be planned without creating a worktree.",
         "workspace": {
           "mode": "planned",
-          "branch": "artemis/tkt-031-pacote-de-decisao-humana-real",
-          "worktree_path": "../veri-artemis-worktrees/tkt-031",
-          "lock_path": ".artemis/locks/tkt-031.lock",
-          "artifact_root": "artifacts/artemis-real-cleanup-decision-package/run-01",
-          "writer": "Architect",
+          "branch": "artemis/tkt-032-control-plane-para-decisao-real-de-c",
+          "worktree_path": "../veri-artemis-worktrees/tkt-032",
+          "lock_path": ".artemis/locks/tkt-032.lock",
+          "artifact_root": "artifacts/artemis-control-plane-real-cleanup-human-gate/run-01",
+          "writer": "Designer",
           "cleanup_state": "not_created"
         },
         "checks": [
@@ -51,49 +51,49 @@
             "name": "exec_pack",
             "status": "passed",
             "reason": "Exec Pack is declared",
-            "path": "docs/exec-packs/active/TKT-031-real-cleanup-decision-package.md"
+            "path": "docs/exec-packs/active/TKT-032-control-plane-real-cleanup-human-gate.md"
           },
           {
             "name": "exec_pack_file",
             "status": "passed",
             "reason": "Exec Pack file exists",
-            "path": "docs/exec-packs/active/TKT-031-real-cleanup-decision-package.md"
+            "path": "docs/exec-packs/active/TKT-032-control-plane-real-cleanup-human-gate.md"
           },
           {
             "name": "artifact_root",
             "status": "passed",
-            "reason": "artifact_root=artifacts/artemis-real-cleanup-decision-package/run-01",
-            "path": "artifacts/artemis-real-cleanup-decision-package/run-01"
+            "reason": "artifact_root=artifacts/artemis-control-plane-real-cleanup-human-gate/run-01",
+            "path": "artifacts/artemis-control-plane-real-cleanup-human-gate/run-01"
           },
           {
             "name": "writer_lock",
             "status": "passed",
             "reason": "no existing writer lock",
-            "path": ".artemis/locks/tkt-031.lock"
+            "path": ".artemis/locks/tkt-032.lock"
           },
           {
             "name": "worktree_path",
             "status": "passed",
             "reason": "planned worktree path is free",
-            "path": "../veri-artemis-worktrees/tkt-031"
+            "path": "../veri-artemis-worktrees/tkt-032"
           },
           {
             "name": "branch",
             "status": "passed",
             "reason": "planned branch is new",
-            "name_ref": "artemis/tkt-031-pacote-de-decisao-humana-real"
+            "name_ref": "artemis/tkt-032-control-plane-para-decisao-real-de-c"
           },
           {
             "name": "branch_worktree_occupancy",
             "status": "passed",
             "reason": "planned branch is not checked out elsewhere",
-            "name_ref": "artemis/tkt-031-pacote-de-decisao-humana-real"
+            "name_ref": "artemis/tkt-032-control-plane-para-decisao-real-de-c"
           },
           {
             "name": "current_worktree_dirty",
             "status": "warning",
-            "reason": "current worktree has 41 pending item(s)",
-            "dirty_count": 41
+            "reason": "current worktree has 44 pending item(s)",
+            "dirty_count": 44
           }
         ]
       }
@@ -376,6 +376,15 @@
       "title": "Fixtures de decisao humana",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-030-human-decision-fixtures.md"
+    },
+    {
+      "ticket": "TKT-031",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Pacote de decisao humana real",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-031-real-cleanup-decision-package.md"
     }
   ]
 }

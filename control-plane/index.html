@@ -1030,14 +1030,25 @@
       },
       {
         id: "tkt-031",
-        state: "ready",
+        state: "done",
         ticket: "TKT-031",
         title: "Pacote decisao real",
-        summary: "Preparar artifact preenchivel para decisoes reais de cleanup pendente.",
+        summary: "Pacote real preenchivel mantem TKT-021, TKT-022 e TKT-023 pending.",
         owner: "Codex",
         risk: "medium",
-        evidence: "docs/exec-packs/active/TKT-031-real-cleanup-decision-package.md",
+        evidence: "artifacts/artemis-real-cleanup-decision-package/run-01",
         tags: ["workspace", "human-gate", "cleanup"]
+      },
+      {
+        id: "tkt-032",
+        state: "ready",
+        ticket: "TKT-032",
+        title: "Human Gate cleanup visual",
+        summary: "Expor decisoes reais pendentes no Control Plane sem sugerir execucao automatica.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "docs/exec-packs/active/TKT-032-control-plane-real-cleanup-human-gate.md",
+        tags: ["workspace", "human-gate", "control-plane"]
       },
       {
         id: "github-auth",
@@ -1068,17 +1079,17 @@
 
     const seedEvents = [
       {
-        event_id: "evt_tkt-031_task_discovered",
+        event_id: "evt_tkt-032_task_discovered",
         event_type: "task.discovered",
-        generated_at: "2026-05-04T17:10:00Z",
+        generated_at: "2026-05-04T17:20:21Z",
         producer: { adapter: "exec_pack", name: "scripts/artemis-tasks.sh", mode: "read_only" },
         subject: {
-          ticket: "TKT-031",
-          title: "Pacote de decisao humana real"
+          ticket: "TKT-032",
+          title: "Control Plane para decisao real de cleanup"
         },
         state: { from: null, to: "ready", reason: "Active Exec Pack discovered by local task source." },
         severity: "info",
-        evidence: { artifact_path: "docs/exec-packs/active/TKT-031-real-cleanup-decision-package.md" }
+        evidence: { artifact_path: "artifacts/artemis-control-plane-real-cleanup-human-gate/run-01" }
       },
       {
         event_id: "evt_tkt-017_adapter_events",

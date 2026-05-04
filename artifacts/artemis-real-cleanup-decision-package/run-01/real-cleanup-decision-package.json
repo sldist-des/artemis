@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T17:19:24Z",
+  "source": "scripts/artemis-real-cleanup-decision-package.sh",
+  "mode": "read_only",
+  "source_review": "artifacts/artemis-workspace-cleanup-review/run-01/cleanup-review.json",
+  "artifact_root": "artifacts/artemis-real-cleanup-decision-package/run-01",
+  "decision_file": "artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json",
+  "summary": {
+    "reviewed": 3,
+    "pending": 3,
+    "approved": 0,
+    "deferred": 0,
+    "rejected": 0,
+    "execute_allowed": 0
+  },
+  "validation_commands": [
+    "scripts/artemis-human-cleanup-approval-contract.sh --decision artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json --artifact-root artifacts/artemis-real-cleanup-decision-package/run-01/validation/approval-contract --json",
+    "scripts/artemis-approved-workspace-cleanup.sh --decision artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json --artifact-root artifacts/artemis-real-cleanup-decision-package/run-01/validation/approved-cleanup-dry-run --json"
+  ],
+  "human_fill_instructions": [
+    "Choose exactly one decision per workspace: pending, approved, deferred, or rejected.",
+    "For approved, deferred, and rejected, fill decided_by, decided_at, and reason.",
+    "For approved, copy every commands_after_approval entry into approved_commands in the same order.",
+    "Leave approved_commands empty for pending, deferred, and rejected.",
+    "Run the validation commands before any cleanup executor is considered."
+  ],
+  "reviews": [
+    {
+      "ticket": "TKT-021",
+      "title": "Materializar workspace ARTEMIS controlado",
+      "recommendation": "eligible_for_human_cleanup_approval",
+      "lifecycle_state": "review_ready",
+      "decision": "pending",
+      "commands_after_approval": [
+        "git worktree remove ../veri-artemis-worktrees/tkt-021",
+        "rm .artemis/locks/tkt-021.lock",
+        "git branch -d artemis/tkt-021-materializar-workspace-artemis-contr"
+      ],
+      "required_evidence": [
+        "artifacts/artemis-workspace-materialization/run-01/STATUS.md",
+        "artifacts/artemis-workspace-materialization/run-01/VALIDATION.md",
+        "artifacts/artemis-workspace-materialization/run-01/HANDOFF.md",
+        ".artemis/locks/tkt-021.lock",
+        "../veri-artemis-worktrees/tkt-021",
+        "artemis/tkt-021-materializar-workspace-artemis-contr"
+      ]
+    },
+    {
+      "ticket": "TKT-022",
+      "title": "Executar runner no workspace materializado",
+      "recommendation": "eligible_for_human_cleanup_approval",
+      "lifecycle_state": "review_ready",
+      "decision": "pending",
+      "commands_after_approval": [
+        "git worktree remove ../veri-artemis-worktrees/tkt-022",
+        "rm .artemis/locks/tkt-022.lock",
+        "git branch -d artemis/tkt-022-executar-runner-no-workspace-materia"
+      ],
+      "required_evidence": [
+        "artifacts/artemis-runner-workspace-execution/run-01/STATUS.md",
+        "artifacts/artemis-runner-workspace-execution/run-01/VALIDATION.md",
+        "artifacts/artemis-runner-workspace-execution/run-01/HANDOFF.md",
+        ".artemis/locks/tkt-022.lock",
+        "../veri-artemis-worktrees/tkt-022",
+        "artemis/tkt-022-executar-runner-no-workspace-materia"
+      ]
+    },
+    {
+      "ticket": "TKT-023",
+      "title": "Loop de validacao e fix em workspace isolado",
+      "recommendation": "eligible_for_human_cleanup_approval",
+      "lifecycle_state": "review_ready",
+      "decision": "pending",
+      "commands_after_approval": [
+        "git worktree remove ../veri-artemis-worktrees/tkt-023",
+        "rm .artemis/locks/tkt-023.lock",
+        "git branch -d artemis/tkt-023-loop-de-validacao-e-fix-em-workspace"
+      ],
+      "required_evidence": [
+        "artifacts/artemis-validation-fix-loop/run-01/STATUS.md",
+        "artifacts/artemis-validation-fix-loop/run-01/VALIDATION.md",
+        "artifacts/artemis-validation-fix-loop/run-01/HANDOFF.md",
+        ".artemis/locks/tkt-023.lock",
+        "../veri-artemis-worktrees/tkt-023",
+        "artemis/tkt-023-loop-de-validacao-e-fix-em-workspace"
+      ]
+    }
+  ],
+  "invariants": [
+    "No worktree, lock, or branch is removed by this package generator.",
+    "The generated decision file is pending by default.",
+    "Validation may report Human Gate; that is expected until a human fills a final decision.",
+    "The package never emits --execute commands."
+  ]
+}

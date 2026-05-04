@@ -66,6 +66,14 @@ scripts/artemis-human-decision-fixtures.sh --artifact-root artifacts/artemis-hum
 
 As fixtures usam caminhos sinteticos e nao devem ser usadas com `--execute`.
 
+Para preparar um pacote real preenchivel, sem executar cleanup:
+
+```bash
+scripts/artemis-real-cleanup-decision-package.sh --source artifacts/artemis-workspace-cleanup-review/run-01/cleanup-review.json --artifact-root artifacts/artemis-real-cleanup-decision-package/run-01 --json
+```
+
+O pacote grava `real-cleanup-decision.json` com todas as decisoes como `pending`. O humano deve preencher `decision_record` por workspace e validar o arquivo antes de qualquer executor.
+
 `scripts/artemis-approved-workspace-cleanup.sh` valida `cleanup-review.json` ou um artifact equivalente com decisoes preenchidas.
 
 ```bash

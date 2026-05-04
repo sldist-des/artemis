@@ -571,7 +571,7 @@ Aceite:
 
 Objetivo: preparar um pacote de decisao real para TKT-021, TKT-022 e TKT-023 sem executar cleanup automaticamente.
 
-Estado: proximo corte em TKT-031.
+Estado: concluido em TKT-031.
 
 Aceite:
 
@@ -579,6 +579,19 @@ Aceite:
 - humano consegue preencher identidade, timestamp e razao;
 - comando de validacao informa exatamente o que ficaria pronto;
 - execucao real continua fora ate aprovacao humana explicita.
+
+### Fase 25 - Human Gate visual para cleanup real
+
+Objetivo: expor o estado do pacote real de decisao no Control Plane sem sugerir execucao automatica.
+
+Estado: proximo corte em TKT-032.
+
+Aceite:
+
+- Control Plane mostra que decisoes reais continuam `pending`;
+- evidencia aponta para o pacote real preenchivel;
+- UI nao apresenta cleanup como acao automatica;
+- validacao continua mostrando Human Gate ate decisao humana preenchida.
 
 ## 10. Gatilhos de confiabilidade
 

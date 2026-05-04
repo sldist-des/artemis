@@ -39,6 +39,7 @@ scripts/artemis-workspace-lifecycle.sh
 scripts/artemis-workspace-cleanup-review.sh
 scripts/artemis-human-cleanup-approval-contract.sh
 scripts/artemis-human-decision-fixtures.sh
+scripts/artemis-real-cleanup-decision-package.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -106,6 +107,7 @@ sh -n scripts/artemis-workspace-lifecycle.sh
 sh -n scripts/artemis-workspace-cleanup-review.sh
 sh -n scripts/artemis-human-cleanup-approval-contract.sh
 sh -n scripts/artemis-human-decision-fixtures.sh
+sh -n scripts/artemis-real-cleanup-decision-package.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -272,6 +274,41 @@ fi
 scripts/artemis-human-cleanup-approval-contract.sh --decision /tmp/artemis-human-decision-fixtures/fixtures/invalid-missing-metadata.json --json >/tmp/artemis-fixture-invalid-missing-contract.json
 if ! grep -q '"invalid": 1' /tmp/artemis-fixture-invalid-missing-contract.json; then
   echo "invalid-missing-metadata fixture did not validate as invalid" >&2
+  exit 1
+fi
+scripts/artemis-real-cleanup-decision-package.sh --source /tmp/artemis-workspace-cleanup-review/cleanup-review.json --artifact-root /tmp/artemis-real-cleanup-decision-package --json >/tmp/artemis-real-cleanup-decision-package.json
+if ! grep -q '"pending": 3' /tmp/artemis-real-cleanup-decision-package.json; then
+  echo "scripts/artemis-real-cleanup-decision-package.sh did not emit three pending decisions" >&2
+  exit 1
+fi
+if ! grep -q '"execute_allowed": 0' /tmp/artemis-real-cleanup-decision-package.json; then
+  echo "scripts/artemis-real-cleanup-decision-package.sh produced executable decisions" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-real-cleanup-decision-package/real-cleanup-decision.json; then
+  echo "scripts/artemis-real-cleanup-decision-package.sh did not write the fillable decision JSON" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-real-cleanup-decision-package/REAL_CLEANUP_DECISION_PACKAGE.md; then
+  echo "scripts/artemis-real-cleanup-decision-package.sh did not write package documentation" >&2
+  exit 1
+fi
+scripts/artemis-human-cleanup-approval-contract.sh --decision /tmp/artemis-real-cleanup-decision-package/real-cleanup-decision.json --json >/tmp/artemis-real-cleanup-decision-contract.json
+if ! grep -q '"pending": 3' /tmp/artemis-real-cleanup-decision-contract.json; then
+  echo "real cleanup decision package did not validate as three pending decisions" >&2
+  exit 1
+fi
+if ! grep -q '"execution_allowed": 0' /tmp/artemis-real-cleanup-decision-contract.json; then
+  echo "real cleanup decision package allowed execution before human approval" >&2
+  exit 1
+fi
+scripts/artemis-approved-workspace-cleanup.sh --decision /tmp/artemis-real-cleanup-decision-package/real-cleanup-decision.json --json >/tmp/artemis-real-cleanup-decision-dry-run.json
+if ! grep -q '"overall": "human_gate"' /tmp/artemis-real-cleanup-decision-dry-run.json; then
+  echo "real cleanup decision package did not stop at Human Gate" >&2
+  exit 1
+fi
+if ! grep -q '"executed_commands": 0' /tmp/artemis-real-cleanup-decision-dry-run.json; then
+  echo "real cleanup decision package executed commands during dry-run" >&2
   exit 1
 fi
 scripts/artemis-approved-workspace-cleanup.sh --decision /tmp/artemis-workspace-cleanup-review/cleanup-review.json --artifact-root /tmp/artemis-approved-workspace-cleanup --json >/tmp/artemis-approved-workspace-cleanup.json

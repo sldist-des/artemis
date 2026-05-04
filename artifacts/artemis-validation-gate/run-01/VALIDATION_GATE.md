@@ -1,7 +1,7 @@
 # VALIDATION GATE RESULT
 
 - Overall: human_gate
-- Passed: 34
+- Passed: 36
 - Failed: 0
 - Human Gate: 2
 
@@ -16,6 +16,7 @@
 - shell_workspace_cleanup_review: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_cleanup_review.txt`
 - shell_human_cleanup_approval_contract: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_human_cleanup_approval_contract.txt`
 - shell_human_decision_fixtures: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_human_decision_fixtures.txt`
+- shell_real_cleanup_decision_package: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_real_cleanup_decision_package.txt`
 - shell_approved_workspace_cleanup: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt`
 - shell_workspace_runtime_handoff: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt`
 - shell_runner: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt`
@@ -31,6 +32,7 @@
 - workspace_cleanup_review: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/workspace_cleanup_review.txt`
 - human_cleanup_approval_contract: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/human_cleanup_approval_contract.txt`
 - human_decision_fixtures: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/human_decision_fixtures.txt`
+- real_cleanup_decision_package: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/real_cleanup_decision_package.txt`
 - approved_workspace_cleanup: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt`
 - workspace_runtime_handoff: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt`
 - runner_plan: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt`

@@ -136,6 +136,14 @@ scripts/artemis-human-decision-fixtures.sh --artifact-root artifacts/artemis-hum
 
 Essas fixtures existem para validar contrato e dry-run. Nao use com `--execute`.
 
+Prepare um pacote real preenchivel de decisao humana, ainda sem executar cleanup:
+
+```bash
+scripts/artemis-real-cleanup-decision-package.sh --source artifacts/artemis-workspace-cleanup-review/run-01/cleanup-review.json --artifact-root artifacts/artemis-real-cleanup-decision-package/run-01
+```
+
+O pacote grava `real-cleanup-decision.json` com decisoes `pending` para preenchimento humano e validacao posterior.
+
 Prepare ou execute uma tentativa local supervisionada com:
 
 ```bash

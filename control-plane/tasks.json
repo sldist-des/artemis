@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T17:11:35Z",
+  "generated_at": "2026-05-04T17:20:21Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
-      "id": "tkt-031",
-      "ticket": "TKT-031",
-      "title": "Pacote de decisao humana real",
+      "id": "tkt-032",
+      "ticket": "TKT-032",
+      "title": "Control Plane para decisao real de cleanup",
       "state": "ready",
-      "owner": "Architect",
+      "owner": "Designer",
       "risk": "medium",
-      "summary": "O repositorio deve oferecer um artifact preenchivel que mostre as opcoes `approved`, `deferred` e `rejected` por workspace, com campos obrigatorios e comando de validacao claro.",
-      "exec_pack": "docs/exec-packs/active/TKT-031-real-cleanup-decision-package.md",
-      "evidence": "artifacts/artemis-real-cleanup-decision-package/run-01/STATUS.md",
+      "summary": "O Control Plane deve mostrar que TKT-021, TKT-022 e TKT-023 ainda estao em `pending`, com evidencia do pacote real e Human Gate explicito.",
+      "exec_pack": "docs/exec-packs/active/TKT-032-control-plane-real-cleanup-human-gate.md",
+      "evidence": "artifacts/artemis-control-plane-real-cleanup-human-gate/run-01/STATUS.md",
       "tags": ["exec-pack", "active"]
     },
     {
@@ -385,6 +385,18 @@
       "summary": "O repositorio deve ter exemplos validaveis de `approved`, `deferred`, `rejected` e casos invalidos para orientar humanos e agentes.",
       "exec_pack": "docs/exec-packs/done/TKT-030-human-decision-fixtures.md",
       "evidence": "artifacts/artemis-human-decision-fixtures/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-031",
+      "ticket": "TKT-031",
+      "title": "Pacote de decisao humana real",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "O repositorio deve oferecer um artifact preenchivel que mostre as opcoes `approved`, `deferred` e `rejected` por workspace, com campos obrigatorios e comando de validacao claro.",
+      "exec_pack": "docs/exec-packs/done/TKT-031-real-cleanup-decision-package.md",
+      "evidence": "artifacts/artemis-real-cleanup-decision-package/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

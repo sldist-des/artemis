@@ -238,6 +238,14 @@ scripts/artemis-human-decision-fixtures.sh --artifact-root artifacts/artemis-hum
 
 As fixtures cobrem aprovacao exata, deferimento, rejeicao, aprovacao parcial invalida e metadata ausente. Elas servem para validar contrato e dry-run; nao devem ser usadas com `--execute`.
 
+Para preparar um pacote real preenchivel, mantendo todas as decisoes abertas:
+
+```bash
+scripts/artemis-real-cleanup-decision-package.sh --source artifacts/artemis-workspace-cleanup-review/run-01/cleanup-review.json --artifact-root artifacts/artemis-real-cleanup-decision-package/run-01 --json
+```
+
+Esse pacote grava `real-cleanup-decision.json`, instrucoes de preenchimento e comandos de validacao. Ele nao aprova cleanup e nao emite comando com `--execute`.
+
 Para validar uma decisao humana ja preenchida sem executar cleanup:
 
 ```bash

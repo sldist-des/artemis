@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T17:19:24Z",
+  "source": "scripts/artemis-real-cleanup-decision-package.sh",
+  "mode": "human_fillable_pending",
+  "based_on": "artifacts/artemis-workspace-cleanup-review/run-01/cleanup-review.json",
+  "summary": {
+    "reviewed": 3,
+    "pending": 3,
+    "approved": 0,
+    "deferred": 0,
+    "rejected": 0,
+    "execute_allowed": 0
+  },
+  "reviews": [
+    {
+      "ticket": "TKT-021",
+      "title": "Materializar workspace ARTEMIS controlado",
+      "lifecycle_state": "review_ready",
+      "recommendation": "eligible_for_human_cleanup_approval",
+      "cleanup_allowed_by_script": false,
+      "human_decision_required": true,
+      "required_evidence": [
+        "artifacts/artemis-workspace-materialization/run-01/STATUS.md",
+        "artifacts/artemis-workspace-materialization/run-01/VALIDATION.md",
+        "artifacts/artemis-workspace-materialization/run-01/HANDOFF.md",
+        ".artemis/locks/tkt-021.lock",
+        "../veri-artemis-worktrees/tkt-021",
+        "artemis/tkt-021-materializar-workspace-artemis-contr"
+      ],
+      "blockers": [],
+      "commands_after_approval": [
+        "git worktree remove ../veri-artemis-worktrees/tkt-021",
+        "rm .artemis/locks/tkt-021.lock",
+        "git branch -d artemis/tkt-021-materializar-workspace-artemis-contr"
+      ],
+      "decision_record": {
+        "decision": "pending",
+        "decided_by": "",
+        "decided_at": "",
+        "reason": "",
+        "approved_commands": []
+      },
+      "human_decision_options": {
+        "pending": "Decision still open; no cleanup can execute.",
+        "approved": "Requires decided_by, decided_at, reason, and exact approved_commands.",
+        "deferred": "Requires metadata and reason; keeps workspace for later review.",
+        "rejected": "Requires metadata and reason; refuses cleanup while preserving the record."
+      },
+      "fillable_fields": [
+        "decision_record.decision",
+        "decision_record.decided_by",
+        "decision_record.decided_at",
+        "decision_record.reason",
+        "decision_record.approved_commands"
+      ]
+    },
+    {
+      "ticket": "TKT-022",
+      "title": "Executar runner no workspace materializado",
+      "lifecycle_state": "review_ready",
+      "recommendation": "eligible_for_human_cleanup_approval",
+      "cleanup_allowed_by_script": false,
+      "human_decision_required": true,
+      "required_evidence": [
+        "artifacts/artemis-runner-workspace-execution/run-01/STATUS.md",
+        "artifacts/artemis-runner-workspace-execution/run-01/VALIDATION.md",
+        "artifacts/artemis-runner-workspace-execution/run-01/HANDOFF.md",
+        ".artemis/locks/tkt-022.lock",
+        "../veri-artemis-worktrees/tkt-022",
+        "artemis/tkt-022-executar-runner-no-workspace-materia"
+      ],
+      "blockers": [],
+      "commands_after_approval": [
+        "git worktree remove ../veri-artemis-worktrees/tkt-022",
+        "rm .artemis/locks/tkt-022.lock",
+        "git branch -d artemis/tkt-022-executar-runner-no-workspace-materia"
+      ],
+      "decision_record": {
+        "decision": "pending",
+        "decided_by": "",
+        "decided_at": "",
+        "reason": "",
+        "approved_commands": []
+      },
+      "human_decision_options": {
+        "pending": "Decision still open; no cleanup can execute.",
+        "approved": "Requires decided_by, decided_at, reason, and exact approved_commands.",
+        "deferred": "Requires metadata and reason; keeps workspace for later review.",
+        "rejected": "Requires metadata and reason; refuses cleanup while preserving the record."
+      },
+      "fillable_fields": [
+        "decision_record.decision",
+        "decision_record.decided_by",
+        "decision_record.decided_at",
+        "decision_record.reason",
+        "decision_record.approved_commands"
+      ]
+    },
+    {
+      "ticket": "TKT-023",
+      "title": "Loop de validacao e fix em workspace isolado",
+      "lifecycle_state": "review_ready",
+      "recommendation": "eligible_for_human_cleanup_approval",
+      "cleanup_allowed_by_script": false,
+      "human_decision_required": true,
+      "required_evidence": [
+        "artifacts/artemis-validation-fix-loop/run-01/STATUS.md",
+        "artifacts/artemis-validation-fix-loop/run-01/VALIDATION.md",
+        "artifacts/artemis-validation-fix-loop/run-01/HANDOFF.md",
+        ".artemis/locks/tkt-023.lock",
+        "../veri-artemis-worktrees/tkt-023",
+        "artemis/tkt-023-loop-de-validacao-e-fix-em-workspace"
+      ],
+      "blockers": [],
+      "commands_after_approval": [
+        "git worktree remove ../veri-artemis-worktrees/tkt-023",
+        "rm .artemis/locks/tkt-023.lock",
+        "git branch -d artemis/tkt-023-loop-de-validacao-e-fix-em-workspace"
+      ],
+      "decision_record": {
+        "decision": "pending",
+        "decided_by": "",
+        "decided_at": "",
+        "reason": "",
+        "approved_commands": []
+      },
+      "human_decision_options": {
+        "pending": "Decision still open; no cleanup can execute.",
+        "approved": "Requires decided_by, decided_at, reason, and exact approved_commands.",
+        "deferred": "Requires metadata and reason; keeps workspace for later review.",
+        "rejected": "Requires metadata and reason; refuses cleanup while preserving the record."
+      },
+      "fillable_fields": [
+        "decision_record.decision",
+        "decision_record.decided_by",
+        "decision_record.decided_at",
+        "decision_record.reason",
+        "decision_record.approved_commands"
+      ]
+    }
+  ],
+  "invariants": [
+    "This file is a human-fillable decision package, not approval.",
+    "All generated decisions start as pending.",
+    "Agents must not approve cleanup on behalf of humans.",
+    "Real execution remains out of scope until a human fills and validates the package."
+  ]
+}

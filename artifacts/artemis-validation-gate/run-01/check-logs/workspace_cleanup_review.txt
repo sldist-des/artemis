@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T17:12:03Z",
+  "generated_at": "2026-05-04T17:20:47Z",
   "source": "scripts/artemis-workspace-cleanup-review.sh",
   "mode": "read_only",
   "ticket_filter": null,

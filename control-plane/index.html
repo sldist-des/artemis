@@ -975,14 +975,25 @@
       },
       {
         id: "tkt-026",
-        state: "ready",
+        state: "done",
         ticket: "TKT-026",
         title: "Executor de cleanup aprovado",
-        summary: "Definir executor local que so roda comandos aprovados explicitamente em decisao humana.",
+        summary: "Executor dry-run valida decisoes aprovadas e recusa pending sem remover nada.",
         owner: "Codex",
         risk: "high",
-        evidence: "docs/exec-packs/active/TKT-026-approved-workspace-cleanup-executor.md",
+        evidence: "artifacts/artemis-approved-workspace-cleanup/run-01",
         tags: ["workspace", "cleanup", "human-gate"]
+      },
+      {
+        id: "tkt-027",
+        state: "ready",
+        ticket: "TKT-027",
+        title: "Handoff runtime workspace",
+        summary: "Registrar workspaces limpos, mantidos, pendentes ou bloqueados apos decisao humana.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "docs/exec-packs/active/TKT-027-workspace-runtime-handoff.md",
+        tags: ["workspace", "handoff", "runtime"]
       },
       {
         id: "github-auth",
@@ -1013,17 +1024,17 @@
 
     const seedEvents = [
       {
-        event_id: "evt_tkt-026_task_discovered",
+        event_id: "evt_tkt-027_task_discovered",
         event_type: "task.discovered",
-        generated_at: "2026-05-04T14:38:00Z",
+        generated_at: "2026-05-04T14:46:00Z",
         producer: { adapter: "exec_pack", name: "scripts/artemis-tasks.sh", mode: "read_only" },
         subject: {
-          ticket: "TKT-026",
-          title: "Executor local de cleanup aprovado"
+          ticket: "TKT-027",
+          title: "Handoff de runtime local de workspaces"
         },
         state: { from: null, to: "ready", reason: "Active Exec Pack discovered by local task source." },
         severity: "info",
-        evidence: { artifact_path: "docs/exec-packs/active/TKT-026-approved-workspace-cleanup-executor.md" }
+        evidence: { artifact_path: "docs/exec-packs/active/TKT-027-workspace-runtime-handoff.md" }
       },
       {
         event_id: "evt_tkt-017_adapter_events",

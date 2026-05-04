@@ -222,6 +222,14 @@ scripts/artemis-workspace-cleanup-review.sh --artifact-root artifacts/artemis-wo
 
 Esse comando gera `cleanup-review.json`, `CLEANUP_REVIEW.md` e `DECISION_TEMPLATE.md`. Ele nunca executa `git worktree remove`, `rm` ou `git branch -d`; apenas lista comandos que podem ser aprovados explicitamente por humano.
 
+Para validar uma decisao humana ja preenchida sem executar cleanup:
+
+```bash
+scripts/artemis-approved-workspace-cleanup.sh --decision artifacts/artemis-workspace-cleanup-review/run-01/cleanup-review.json --artifact-root artifacts/artemis-approved-workspace-cleanup/run-01 --json
+```
+
+O modo padrao e dry-run. `pending`, `deferred`, comandos fora da allowlist ou lista de comandos diferente do pacote de revisao param em Human Gate. Execucao real exige `--execute` e continua restrita a comandos locais aprovados explicitamente.
+
 Para preparar uma execucao local supervisionada, use:
 
 ```bash

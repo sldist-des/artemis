@@ -5,6 +5,7 @@ shell_dry_run	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-
 shell_workspace	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace.txt
 shell_workspace_lifecycle	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_lifecycle.txt
 shell_workspace_cleanup_review	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_cleanup_review.txt
+shell_approved_workspace_cleanup	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt
 shell_runner	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt
 shell_validation_gate	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_validation_gate.txt
 shell_github_issues	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_github_issues.txt
@@ -16,6 +17,7 @@ dry_run	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/d
 workspace_check	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/workspace_check.txt
 workspace_lifecycle	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/workspace_lifecycle.txt
 workspace_cleanup_review	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/workspace_cleanup_review.txt
+approved_workspace_cleanup	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt
 runner_plan	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt
 runner_events	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/runner_events.txt
 required_files	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/required_files.txt

@@ -503,7 +503,7 @@ Aceite:
 
 Objetivo: definir se ARTEMIS deve ter um executor local de cleanup que so rode comandos aprovados explicitamente no artifact de decisao humana.
 
-Estado: proximo corte em TKT-026.
+Estado: concluido em TKT-026.
 
 Aceite:
 
@@ -512,6 +512,20 @@ Aceite:
 - remocao de worktree, lock e branch local e auditada;
 - dry-run continua disponivel antes de qualquer execucao;
 - GitHub remoto continua Human Gate.
+
+### Fase 20 - Handoff de runtime local limpo
+
+Objetivo: decidir como registrar que workspaces locais foram limpos ou mantidos depois de uma decisao humana.
+
+Estado: proximo corte em TKT-027.
+
+Aceite:
+
+- resultado de cleanup vira artifact duravel;
+- workspaces mantidos continuam listados no inventario;
+- nenhuma memoria local e apagada sem registro;
+- Control Plane mostra workspace limpo, mantido ou pendente;
+- push e sincronizacao remota continuam Human Gate.
 
 ## 10. Gatilhos de confiabilidade
 

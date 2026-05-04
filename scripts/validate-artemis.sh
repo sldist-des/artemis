@@ -37,6 +37,7 @@ scripts/artemis-dry-run.sh
 scripts/artemis-workspace.sh
 scripts/artemis-workspace-lifecycle.sh
 scripts/artemis-workspace-cleanup-review.sh
+scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-runner.sh
 scripts/artemis-validation-gate.sh
 scripts/artemis-github-issues.sh
@@ -100,6 +101,7 @@ sh -n scripts/artemis-dry-run.sh
 sh -n scripts/artemis-workspace.sh
 sh -n scripts/artemis-workspace-lifecycle.sh
 sh -n scripts/artemis-workspace-cleanup-review.sh
+sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-runner.sh
 sh -n scripts/artemis-validation-gate.sh
 sh -n scripts/artemis-github-issues.sh
@@ -170,6 +172,15 @@ if ! grep -q '"cleanup_allowed_by_script": false' /tmp/artemis-workspace-cleanup
 fi
 if ! test -f /tmp/artemis-workspace-cleanup-review/DECISION_TEMPLATE.md; then
   echo "scripts/artemis-workspace-cleanup-review.sh did not write decision template" >&2
+  exit 1
+fi
+scripts/artemis-approved-workspace-cleanup.sh --decision /tmp/artemis-workspace-cleanup-review/cleanup-review.json --artifact-root /tmp/artemis-approved-workspace-cleanup --json >/tmp/artemis-approved-workspace-cleanup.json
+if ! grep -q '"overall": "human_gate"' /tmp/artemis-approved-workspace-cleanup.json; then
+  echo "scripts/artemis-approved-workspace-cleanup.sh did not stop pending decisions at Human Gate" >&2
+  exit 1
+fi
+if ! grep -q '"executed_commands": 0' /tmp/artemis-approved-workspace-cleanup.json; then
+  echo "scripts/artemis-approved-workspace-cleanup.sh executed commands during dry-run" >&2
   exit 1
 fi
 scripts/artemis-runner.sh --input /tmp/artemis-runner-task-source.json --ticket TKT-VALIDATE --command "scripts/artemis-dry-run.sh --input /tmp/artemis-runner-task-source.json" --artifact-root /tmp/artemis-runner-validation >/tmp/artemis-runner.out

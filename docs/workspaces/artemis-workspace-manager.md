@@ -64,6 +64,8 @@ scripts/artemis-workspace.sh --ticket TKT-019 --artifact-root artifacts/<ticket>
 
 `scripts/artemis-workspace-cleanup-review.sh` transforma o inventario em um pacote de decisao humana com checklist, bloqueios e comandos candidatos. Ele nao executa cleanup.
 
+`scripts/artemis-approved-workspace-cleanup.sh` valida decisoes aprovadas e usa dry-run por padrao. Execucao real exige `--execute`, decisao `approved` e comandos locais exatamente iguais aos gerados pela revisao.
+
 ## Invariantes
 
 - Um agente escritor por worktree.

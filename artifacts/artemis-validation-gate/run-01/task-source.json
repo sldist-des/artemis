@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T14:38:08Z",
+  "generated_at": "2026-05-04T14:47:12Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
-      "id": "tkt-026",
-      "ticket": "TKT-026",
-      "title": "Executor local de cleanup aprovado",
+      "id": "tkt-027",
+      "ticket": "TKT-027",
+      "title": "Handoff de runtime local de workspaces",
       "state": "ready",
       "owner": "Architect",
-      "risk": "high",
-      "summary": "Um comando deve conseguir validar uma decisao humana preenchida e, somente quando aprovado, executar cleanup local de worktree, lock e branch com dry-run e evidencia. O padrao deve continuar read-only.",
-      "exec_pack": "docs/exec-packs/active/TKT-026-approved-workspace-cleanup-executor.md",
-      "evidence": "artifacts/artemis-approved-workspace-cleanup/run-01/STATUS.md",
+      "risk": "medium",
+      "summary": "Um artifact deve mostrar o estado final local de cada workspace apos a revisao ou execucao de cleanup: `cleaned`, `kept`, `pending` ou `needs_decision`, sem depender de memoria implicita em `.artemis/`.",
+      "exec_pack": "docs/exec-packs/active/TKT-027-workspace-runtime-handoff.md",
+      "evidence": "artifacts/artemis-workspace-runtime-handoff/run-01/STATUS.md",
       "tags": ["exec-pack", "active"]
     },
     {
@@ -325,6 +325,18 @@
       "summary": "Um humano deve conseguir decidir se um workspace `review_ready` pode ser removido localmente, quais evidencias precisam existir antes da remocao e como registrar a decisao sem automatizar cleanup.",
       "exec_pack": "docs/exec-packs/done/TKT-025-workspace-cleanup-review.md",
       "evidence": "artifacts/artemis-workspace-cleanup-review/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-026",
+      "ticket": "TKT-026",
+      "title": "Executor local de cleanup aprovado",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "high",
+      "summary": "Um comando deve conseguir validar uma decisao humana preenchida e, somente quando aprovado, executar cleanup local de worktree, lock e branch com dry-run e evidencia. O padrao deve continuar read-only.",
+      "exec_pack": "docs/exec-packs/done/TKT-026-approved-workspace-cleanup-executor.md",
+      "evidence": "artifacts/artemis-approved-workspace-cleanup/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

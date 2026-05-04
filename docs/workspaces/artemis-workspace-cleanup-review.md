@@ -40,3 +40,20 @@ scripts/artemis-workspace-cleanup-review.sh --artifact-root artifacts/artemis-wo
 - Comandos de cleanup precisam aparecer explicitamente na decisao humana.
 - Workspace sujo, branch nao integrada ou evidencia ausente interrompem o cleanup.
 - Push, merge remoto e PR continuam fora deste protocolo.
+
+## Executor aprovado
+
+`scripts/artemis-approved-workspace-cleanup.sh` valida `cleanup-review.json` ou um artifact equivalente com decisoes preenchidas.
+
+```bash
+scripts/artemis-approved-workspace-cleanup.sh --decision artifacts/artemis-workspace-cleanup-review/run-01/cleanup-review.json --artifact-root artifacts/artemis-approved-workspace-cleanup/run-01 --json
+```
+
+O modo padrao e dry-run. O executor so considera um ticket pronto quando:
+
+- `decision_record.decision` e `approved`;
+- `decided_by`, `decided_at` e `reason` estao preenchidos;
+- `approved_commands` corresponde exatamente aos comandos gerados pelo pacote de revisao;
+- cada comando esta na allowlist local.
+
+Sem `--execute`, nenhum comando e executado. Com `--execute`, qualquer decisao nao aprovada ou divergente interrompe a execucao antes de tocar no workspace.

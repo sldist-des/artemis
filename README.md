@@ -108,6 +108,12 @@ Prepare a decisao humana de cleanup, ainda sem remover nada:
 scripts/artemis-workspace-cleanup-review.sh --artifact-root artifacts/artemis-workspace-cleanup-review/run-01
 ```
 
+Valide uma decisao de cleanup aprovada em dry-run:
+
+```bash
+scripts/artemis-approved-workspace-cleanup.sh --decision artifacts/artemis-workspace-cleanup-review/run-01/cleanup-review.json --artifact-root artifacts/artemis-approved-workspace-cleanup/run-01
+```
+
 Prepare ou execute uma tentativa local supervisionada com:
 
 ```bash

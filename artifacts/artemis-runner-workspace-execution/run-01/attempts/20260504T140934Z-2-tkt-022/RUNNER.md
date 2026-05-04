@@ -1,22 +1,29 @@
-# RUNNER - TKT-VALIDATE
+# RUNNER - TKT-022
 
 ## Title
 
-Validate supervised runner
+Executar runner no workspace materializado
 
 ## Command
 
 ```bash
-scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json
+pwd
 ```
 
 ## Mode
 
-plan-only
+execute
+
+## Execution cwd
+
+```text
+/srv/veri-artemis-worktrees/tkt-022
+```
 
 ## Guardrails
 
 - Dry-run eligibility required.
 - Workspace readiness required.
+- Materialized workspace execution requires --use-workspace and a matching lock.
 - Remote, merge, deployment and destructive commands are blocked.
 - Human Gate still owns push, merge, secrets, production and real owners/rulesets.

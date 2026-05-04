@@ -931,14 +931,25 @@
       },
       {
         id: "tkt-022",
-        state: "ready",
+        state: "done",
         ticket: "TKT-022",
         title: "Runner no workspace materializado",
-        summary: "Executar tentativas supervisionadas dentro do worktree materializado quando solicitado.",
+        summary: "Runner supervisionado executa comandos dentro do worktree materializado com lock validado.",
         owner: "Codex",
         risk: "high",
-        evidence: "docs/exec-packs/active/TKT-022-runner-workspace-execution.md",
+        evidence: "artifacts/artemis-runner-workspace-execution/run-01",
         tags: ["runner", "workspace", "worktree"]
+      },
+      {
+        id: "tkt-023",
+        state: "ready",
+        ticket: "TKT-023",
+        title: "Loop validacao e fix",
+        summary: "Formalizar retry/fix auditavel quando uma validacao falhar em workspace isolado.",
+        owner: "Codex",
+        risk: "high",
+        evidence: "docs/exec-packs/active/TKT-023-validation-fix-loop.md",
+        tags: ["validation", "retry", "workspace"]
       },
       {
         id: "github-auth",
@@ -969,17 +980,17 @@
 
     const seedEvents = [
       {
-        event_id: "evt_tkt-022_task_discovered",
+        event_id: "evt_tkt-023_task_discovered",
         event_type: "task.discovered",
-        generated_at: "2026-05-04T14:00:00Z",
+        generated_at: "2026-05-04T14:10:00Z",
         producer: { adapter: "exec_pack", name: "scripts/artemis-tasks.sh", mode: "read_only" },
         subject: {
-          ticket: "TKT-022",
-          title: "Executar runner no workspace materializado"
+          ticket: "TKT-023",
+          title: "Loop de validacao e fix em workspace isolado"
         },
         state: { from: null, to: "ready", reason: "Active Exec Pack discovered by local task source." },
         severity: "info",
-        evidence: { artifact_path: "artifacts/artemis-runner-workspace-execution/run-01" }
+        evidence: { artifact_path: "artifacts/artemis-validation-fix-loop/run-01" }
       },
       {
         event_id: "evt_tkt-017_adapter_events",

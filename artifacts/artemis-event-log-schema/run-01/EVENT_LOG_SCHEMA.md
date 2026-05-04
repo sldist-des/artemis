@@ -1,12 +1,12 @@
 # ARTEMIS EVENT LOG SCHEMA
 
 - Schema version: 1
-- Events: 10
+- Events: 13
 - Source: scripts/artemis-event-log.sh
 
 ## Event Types
 
-- `task.discovered`: `evt_tkt-022_task_discovered` -> ready
+- `task.discovered`: `evt_tkt-023_task_discovered` -> ready
 - `runner.readiness_checked`: `evt_tkt-013_github_issues_readiness` -> human_gate
 - `adapter.contract_recorded`: `evt_tkt-014_codex_app_server_contract` -> done
 - `adapter.contract_recorded`: `evt_tkt-015_claude_code_contract` -> done
@@ -16,6 +16,9 @@
 - `runner.attempt_planned`: `evt_20260504t134653z-2-tkt-021_planned` -> running
 - `runner.attempt_started`: `evt_20260504t134653z-2-tkt-021_started` -> running
 - `runner.attempt_completed`: `evt_20260504t134653z-2-tkt-021_completed` -> review
+- `runner.attempt_planned`: `evt_20260504t140934z-2-tkt-022_planned` -> running
+- `runner.attempt_started`: `evt_20260504t140934z-2-tkt-022_started` -> running
+- `runner.attempt_completed`: `evt_20260504t140934z-2-tkt-022_completed` -> review
 
 ## Invariants
 

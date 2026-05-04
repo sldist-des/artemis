@@ -9,13 +9,15 @@ command=""
 execute=0
 input="control-plane/tasks.json"
 artifact_root_override=""
+use_workspace=0
 
 usage() {
   cat >&2 <<'EOF'
-usage: scripts/artemis-runner.sh --ticket TKT-000 --command "cmd" [--execute] [--input path] [--artifact-root path]
+usage: scripts/artemis-runner.sh --ticket TKT-000 --command "cmd" [--execute] [--use-workspace] [--input path] [--artifact-root path]
 
 Without --execute, the runner only records a supervised execution plan.
 With --execute, it runs the command after dry-run eligibility and guard checks.
+With --use-workspace, --execute runs the command inside the materialized worktree for the ticket.
 EOF
 }
 
@@ -39,6 +41,10 @@ while [ "$#" -gt 0 ]; do
       ;;
     --execute)
       execute=1
+      shift
+      ;;
+    --use-workspace)
+      use_workspace=1
       shift
       ;;
     --input)
@@ -73,6 +79,11 @@ if [ -z "$ticket" ] || [ -z "$command" ]; then
   exit 2
 fi
 
+if [ "$use_workspace" -eq 1 ] && [ "$execute" -ne 1 ]; then
+  echo "--use-workspace requires --execute" >&2
+  exit 2
+fi
+
 case "$command" in
   *"git push"*|*"git merge"*|*"git pull"*|*"gh "*|*"gh	"*|*"curl "*|*"wget "*|*"scp "*|*"ssh "*|*"rsync "*|*"rm -rf"*|*"rm -fr"*|*"docker push"*|*"kubectl "*|*"terraform apply"*|*"firebase deploy"*|*"vercel "*|*"netlify "*)
     echo "blocked command: remote, destructive, or deployment-like command requires Human Gate" >&2
@@ -85,24 +96,22 @@ workspace_tmp=$(mktemp "${TMPDIR:-/tmp}/artemis-workspace.XXXXXX.json")
 scripts/artemis-dry-run.sh --input "$input" --json >"$tmp"
 scripts/artemis-workspace.sh --input "$input" --ticket "$ticket" --json >"$workspace_tmp"
 
-if ! grep -q '"readiness": "ready"' "$workspace_tmp"; then
-  echo "ticket $ticket does not have ready workspace readiness; see workspace plan:" >&2
-  cat "$workspace_tmp" >&2
-  rm -f "$tmp" "$workspace_tmp"
-  exit 3
-fi
-
-metadata=$(python3 - "$tmp" "$input" "$ticket" <<'PY'
+metadata=$(python3 - "$tmp" "$workspace_tmp" "$input" "$ticket" "$use_workspace" <<'PY'
 import json
 import os
+from pathlib import Path
 import re
 import shlex
 import sys
 
-dry_run_path, input_path, ticket = sys.argv[1:4]
+dry_run_path, workspace_path, input_path, ticket, use_workspace = sys.argv[1:6]
+workspace_requested = use_workspace == "1"
 
 with open(dry_run_path, "r", encoding="utf-8") as handle:
     dry_run = json.load(handle)
+
+with open(workspace_path, "r", encoding="utf-8") as handle:
+    workspace_payload = json.load(handle)
 
 with open(input_path, "r", encoding="utf-8") as handle:
     tasks_payload = json.load(handle)
@@ -113,9 +122,49 @@ task = next((item for item in tasks_payload.get("tasks", []) if item.get("ticket
 if decision is None or task is None:
     raise SystemExit(f"ticket not found in task source: {ticket}")
 
-if decision.get("decision") != "eligible":
+workspace_plan = workspace_payload.get("workspaces", [None])[0]
+if not workspace_plan:
+    raise SystemExit(f"workspace plan not found for ticket: {ticket}")
+
+workspace = workspace_plan["workspace"]
+workspace_readiness = workspace_plan.get("readiness")
+workspace_reason = workspace_plan.get("reason", "")
+
+if decision.get("decision") != "eligible" and not (
+    workspace_requested
+    and decision.get("decision") == "human_gate"
+    and str(decision.get("reason", "")).startswith("Workspace readiness human_gate:")
+):
     raise SystemExit(
         f"ticket {ticket} is not eligible: {decision.get('decision')} - {decision.get('reason')}"
+    )
+
+execution_cwd = os.getcwd()
+workspace_lock = {}
+if workspace_requested:
+    worktree_path = Path(workspace["worktree_path"])
+    lock_path = Path(workspace["lock_path"])
+    if workspace_readiness not in {"human_gate", "ready"}:
+        raise SystemExit(f"ticket {ticket} workspace is not usable: {workspace_readiness} - {workspace_reason}")
+    if not worktree_path.is_dir():
+        raise SystemExit(f"materialized worktree not found: {worktree_path}")
+    if not lock_path.is_file():
+        raise SystemExit(f"workspace lock not found: {lock_path}")
+    with lock_path.open("r", encoding="utf-8") as handle:
+        workspace_lock = json.load(handle)
+    if str(workspace_lock.get("ticket")) != ticket:
+        raise SystemExit(
+            f"workspace lock belongs to {workspace_lock.get('ticket')}, not {ticket}"
+        )
+    if str(workspace_lock.get("branch")) != str(workspace.get("branch")):
+        raise SystemExit("workspace lock branch does not match workspace plan")
+    if str(workspace_lock.get("worktree_path")) != str(workspace.get("worktree_path")):
+        raise SystemExit("workspace lock worktree path does not match workspace plan")
+    execution_cwd = str(worktree_path.resolve())
+elif workspace_readiness != "ready":
+    raise SystemExit(
+        f"ticket {ticket} does not have ready workspace readiness: "
+        f"{workspace_readiness} - {workspace_reason}"
     )
 
 evidence = str(task.get("evidence", "artifacts/artemis-local-runner/run-01/STATUS.md"))
@@ -132,6 +181,11 @@ for key, value in {
     "SAFE_TICKET": safe_ticket,
     "EXEC_PACK": task.get("exec_pack", ""),
     "TITLE": task.get("title", ""),
+    "EXECUTION_CWD": execution_cwd,
+    "WORKSPACE_REQUESTED": "1" if workspace_requested else "0",
+    "WORKSPACE_READINESS": workspace_readiness,
+    "WORKSPACE_MODE": workspace.get("mode", ""),
+    "WORKSPACE_LOCK_TICKET": workspace_lock.get("ticket", ""),
 }.items():
     print(f"{key}={shlex.quote(str(value))}")
 PY
@@ -142,9 +196,14 @@ eval "$metadata"
 if [ -n "$artifact_root_override" ]; then
   ARTIFACT_ROOT="$artifact_root_override"
 fi
+workspace_lock_ticket_display="${WORKSPACE_LOCK_TICKET:-none}"
 
 timestamp=$(date -u +"%Y%m%dT%H%M%SZ")
 attempt_dir="$ARTIFACT_ROOT/attempts/$timestamp-$$-$SAFE_TICKET"
+case "$attempt_dir" in
+  /*) attempt_dir_abs="$attempt_dir" ;;
+  *) attempt_dir_abs="$root/$attempt_dir" ;;
+esac
 mkdir -p "$attempt_dir"
 
 cp "$tmp" "$attempt_dir/dry-run.json"
@@ -159,9 +218,17 @@ cat >"$attempt_dir/ENVIRONMENT.md" <<EOF
 - Ticket: $ticket
 - Exec Pack: $EXEC_PACK
 - Execute mode: $execute
-- Branch: $(git branch --show-current 2>/dev/null || true)
-- Head: $(git rev-parse --short HEAD 2>/dev/null || true)
-- Worktree status before: $(git status --short | wc -l | tr -d ' ')
+- Use materialized workspace: $use_workspace
+- Execution cwd: $EXECUTION_CWD
+- Main branch: $(git branch --show-current 2>/dev/null || true)
+- Main head: $(git rev-parse --short HEAD 2>/dev/null || true)
+- Main worktree status before: $(git status --short | wc -l | tr -d ' ')
+- Execution branch: $(git -C "$EXECUTION_CWD" branch --show-current 2>/dev/null || true)
+- Execution head: $(git -C "$EXECUTION_CWD" rev-parse --short HEAD 2>/dev/null || true)
+- Execution worktree status before: $(git -C "$EXECUTION_CWD" status --short 2>/dev/null | wc -l | tr -d ' ')
+- Workspace readiness: $WORKSPACE_READINESS
+- Workspace mode: $WORKSPACE_MODE
+- Workspace lock ticket: $workspace_lock_ticket_display
 - Workspace plan: $attempt_dir/workspace.json
 EOF
 
@@ -182,17 +249,24 @@ $command
 
 $(if [ "$execute" -eq 1 ]; then echo "execute"; else echo "plan-only"; fi)
 
+## Execution cwd
+
+\`\`\`text
+$EXECUTION_CWD
+\`\`\`
+
 ## Guardrails
 
 - Dry-run eligibility required.
 - Workspace readiness required.
+- Materialized workspace execution requires --use-workspace and a matching lock.
 - Remote, merge, deployment and destructive commands are blocked.
 - Human Gate still owns push, merge, secrets, production and real owners/rulesets.
 EOF
 
 if [ "$execute" -eq 1 ]; then
   set +e
-  sh -c "$command" >"$attempt_dir/COMMAND.txt" 2>&1
+  (cd "$EXECUTION_CWD" && sh -c "$command") >"$attempt_dir_abs/COMMAND.txt" 2>&1
   code=$?
   set -e
 else
@@ -205,9 +279,10 @@ cat >"$attempt_dir/RESULT.md" <<EOF
 
 - Exit code: $code
 - Command log: $attempt_dir/COMMAND.txt
+- Execution cwd: $EXECUTION_CWD
 EOF
 
-python3 - "$attempt_dir" "$ticket" "$SAFE_TICKET" "$TITLE" "$EXEC_PACK" "$ARTIFACT_ROOT" "$timestamp" "$execute" "$code" "$command" <<'PY'
+python3 - "$attempt_dir" "$ticket" "$SAFE_TICKET" "$TITLE" "$EXEC_PACK" "$ARTIFACT_ROOT" "$timestamp" "$execute" "$code" "$command" "$EXECUTION_CWD" "$use_workspace" <<'PY'
 import json
 import sys
 from pathlib import Path
@@ -225,7 +300,9 @@ from scripts.artemis_event_common import event, event_log, now_utc, write_event_
     execute,
     code,
     command,
-) = sys.argv[1:11]
+    execution_cwd,
+    use_workspace,
+) = sys.argv[1:13]
 
 attempt_path = Path(attempt_dir)
 attempt_id = attempt_path.name
@@ -260,6 +337,8 @@ common_payload = {
     "attempt_id": attempt_id,
     "execute": executed,
     "command": command,
+    "execution_cwd": execution_cwd,
+    "use_workspace": use_workspace == "1",
     "workspace": workspace,
     "artifact_root": artifact_root,
 }

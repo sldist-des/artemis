@@ -210,9 +210,10 @@ Para preparar uma execucao local supervisionada, use:
 ```bash
 scripts/artemis-runner.sh --ticket TKT-000 --command "scripts/validate-artemis.sh"
 scripts/artemis-runner.sh --ticket TKT-000 --command "scripts/validate-artemis.sh" --execute
+scripts/artemis-runner.sh --ticket TKT-022 --command "pwd" --execute --use-workspace
 ```
 
-Sem `--execute`, o runner apenas registra o plano. Com `--execute`, ele roda o comando depois de validar elegibilidade, readiness de workspace e bloquear comandos remotos, destrutivos ou de deploy. Cada tentativa registra `workspace.json`.
+Sem `--execute`, o runner apenas registra o plano. Com `--execute`, ele roda o comando depois de validar elegibilidade, readiness de workspace e bloquear comandos remotos, destrutivos ou de deploy. Com `--use-workspace`, ele exige worktree e lock materializados para o ticket e executa com `cwd` no worktree. Cada tentativa registra `workspace.json`.
 
 Cada tentativa tambem registra `events.json` com eventos canonicos:
 
@@ -220,7 +221,7 @@ Cada tentativa tambem registra `events.json` com eventos canonicos:
 - `runner.attempt_started`, quando `--execute` for usado;
 - `runner.attempt_completed`.
 
-Esses eventos sao observacionais e apontam para `dry-run.json`, `workspace.json`, comando e resultado.
+Esses eventos sao observacionais e apontam para `dry-run.json`, `workspace.json`, comando, resultado e `execution_cwd`.
 
 Antes de mover uma tarefa para Handoff ou Done, execute o Validation Gate:
 

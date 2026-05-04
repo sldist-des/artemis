@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T14:09:34Z",
+  "source": "scripts/artemis-workspace.sh",
+  "task_source": "control-plane/tasks.json",
+  "summary": {
+    "ready": 0,
+    "blocked": 0,
+    "human_gate": 1
+  },
+  "workspaces": [
+    {
+      "ticket": "TKT-022",
+      "task_id": "tkt-022",
+      "title": "Executar runner no workspace materializado",
+      "readiness": "human_gate",
+      "reason": "existing lock requires owner confirmation",
+      "workspace": {
+        "mode": "materialized",
+        "branch": "artemis/tkt-022-executar-runner-no-workspace-materia",
+        "worktree_path": "../veri-artemis-worktrees/tkt-022",
+        "lock_path": ".artemis/locks/tkt-022.lock",
+        "artifact_root": "artifacts/artemis-runner-workspace-execution/run-01",
+        "writer": "Architect",
+        "cleanup_state": "active"
+      },
+      "checks": [
+        {
+          "name": "task_state",
+          "status": "passed",
+          "reason": "state=ready"
+        },
+        {
+          "name": "owner",
+          "status": "passed",
+          "reason": "writer owner is declared"
+        },
+        {
+          "name": "risk",
+          "status": "passed",
+          "reason": "risk=high"
+        },
+        {
+          "name": "exec_pack",
+          "status": "passed",
+          "reason": "Exec Pack is declared",
+          "path": "docs/exec-packs/active/TKT-022-runner-workspace-execution.md"
+        },
+        {
+          "name": "exec_pack_file",
+          "status": "passed",
+          "reason": "Exec Pack file exists",
+          "path": "docs/exec-packs/active/TKT-022-runner-workspace-execution.md"
+        },
+        {
+          "name": "artifact_root",
+          "status": "passed",
+          "reason": "artifact_root=artifacts/artemis-runner-workspace-execution/run-01",
+          "path": "artifacts/artemis-runner-workspace-execution/run-01"
+        },
+        {
+          "name": "writer_lock",
+          "status": "human_gate",
+          "reason": "existing lock requires owner confirmation",
+          "path": ".artemis/locks/tkt-022.lock"
+        },
+        {
+          "name": "worktree_path",
+          "status": "human_gate",
+          "reason": "planned worktree path already exists",
+          "path": "../veri-artemis-worktrees/tkt-022"
+        },
+        {
+          "name": "branch",
+          "status": "warning",
+          "reason": "branch already exists and must be inspected before reuse",
+          "name_ref": "artemis/tkt-022-executar-runner-no-workspace-materia"
+        },
+        {
+          "name": "branch_worktree_occupancy",
+          "status": "human_gate",
+          "reason": "planned branch is already checked out in a worktree",
+          "name_ref": "artemis/tkt-022-executar-runner-no-workspace-materia"
+        },
+        {
+          "name": "current_worktree_dirty",
+          "status": "warning",
+          "reason": "current worktree has 2 pending item(s)",
+          "dirty_count": 2
+        }
+      ]
+    }
+  ]
+}

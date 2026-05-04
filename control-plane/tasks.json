@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T14:00:47Z",
+  "generated_at": "2026-05-04T14:12:58Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
-      "id": "tkt-022",
-      "ticket": "TKT-022",
-      "title": "Executar runner no workspace materializado",
+      "id": "tkt-023",
+      "ticket": "TKT-023",
+      "title": "Loop de validacao e fix em workspace isolado",
       "state": "ready",
       "owner": "Architect",
       "risk": "high",
-      "summary": "Uma tentativa local deve poder usar o workspace materializado como diretorio de execucao, preservando dry-run, readiness, eventos canonicos, logs e handoff.",
-      "exec_pack": "docs/exec-packs/active/TKT-022-runner-workspace-execution.md",
-      "evidence": "artifacts/artemis-runner-workspace-execution/run-01/STATUS.md",
+      "summary": "Uma tarefa deve poder falhar em validacao, registrar parada tecnica, executar uma tentativa de fix no workspace materializado e produzir nova evidencia antes de handoff.",
+      "exec_pack": "docs/exec-packs/active/TKT-023-validation-fix-loop.md",
+      "evidence": "artifacts/artemis-validation-fix-loop/run-01/STATUS.md",
       "tags": ["exec-pack", "active"]
     },
     {
@@ -277,6 +277,18 @@
       "summary": "Um comando local deve materializar o workspace planejado apenas quando readiness estiver `ready`, criando worktree e lock com evidencia, sem iniciar agentes automaticamente.",
       "exec_pack": "docs/exec-packs/done/TKT-021-workspace-materialization.md",
       "evidence": "artifacts/artemis-workspace-materialization/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-022",
+      "ticket": "TKT-022",
+      "title": "Executar runner no workspace materializado",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "high",
+      "summary": "Uma tentativa local deve poder usar o workspace materializado como diretorio de execucao, preservando dry-run, readiness, eventos canonicos, logs e handoff.",
+      "exec_pack": "docs/exec-packs/done/TKT-022-runner-workspace-execution.md",
+      "evidence": "artifacts/artemis-runner-workspace-execution/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

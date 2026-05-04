@@ -447,7 +447,7 @@ Aceite:
 
 Objetivo: fazer o runner supervisionado executar comandos dentro do worktree materializado quando explicitamente solicitado.
 
-Estado: proximo corte em TKT-022.
+Estado: concluido em TKT-022.
 
 Aceite:
 
@@ -456,6 +456,20 @@ Aceite:
 - execucao em main worktree nao e usada para escrita quando workspace materializado estiver ativo;
 - comandos remotos, destrutivos e deploy continuam Human Gate;
 - runner continua terminal-first e sem daemon.
+
+### Fase 16 - Loop de validacao e fix
+
+Objetivo: formalizar nova tentativa de fix/retry no workspace isolado quando uma validacao falha.
+
+Estado: proximo corte em TKT-023.
+
+Aceite:
+
+- tentativa falha vira `blocked`;
+- retry preserva evidencia anterior;
+- nova tentativa registra eventos canonicos;
+- handoff explica o que falhou, o que mudou e o que foi revalidado;
+- Human Gate vence quando escopo, risco ou conflito crescem.
 
 ## 10. Gatilhos de confiabilidade
 

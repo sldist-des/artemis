@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T14:09:34Z",
+  "source": "scripts/artemis-runner.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_20260504t140934z-2-tkt-022_planned",
+      "event_type": "runner.attempt_planned",
+      "generated_at": "2026-05-04T14:09:34Z",
+      "producer": {
+        "adapter": "local_runner",
+        "name": "scripts/artemis-runner.sh",
+        "mode": "supervised"
+      },
+      "subject": {
+        "ticket": "TKT-022",
+        "task_id": "tkt-022",
+        "title": "Executar runner no workspace materializado",
+        "exec_pack": "docs/exec-packs/active/TKT-022-runner-workspace-execution.md",
+        "artifact_root": "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022",
+        "branch": "artemis/tkt-022-executar-runner-no-workspace-materia",
+        "worktree": "../veri-artemis-worktrees/tkt-022"
+      },
+      "runner": {
+        "kind": "codex_cli",
+        "attempt_id": "20260504T140934Z-2-tkt-022",
+        "command": "pwd"
+      },
+      "state": {
+        "from": "ready",
+        "to": "running",
+        "reason": "Supervised runner attempt planned with workspace readiness."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022",
+        "status_path": "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/STATUS.md",
+        "validation_path": "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/dry-run.json",
+          "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/workspace.json",
+          "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/RUNNER.md",
+          "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/ENVIRONMENT.md",
+          "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/COMMAND.txt",
+          "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/RESULT.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-022"
+      },
+      "payload": {
+        "attempt_id": "20260504T140934Z-2-tkt-022",
+        "execute": true,
+        "command": "pwd",
+        "execution_cwd": "/srv/veri-artemis-worktrees/tkt-022",
+        "use_workspace": true,
+        "workspace": {
+          "mode": "materialized",
+          "branch": "artemis/tkt-022-executar-runner-no-workspace-materia",
+          "worktree_path": "../veri-artemis-worktrees/tkt-022",
+          "lock_path": ".artemis/locks/tkt-022.lock",
+          "artifact_root": "artifacts/artemis-runner-workspace-execution/run-01",
+          "writer": "Architect",
+          "cleanup_state": "active"
+        },
+        "artifact_root": "artifacts/artemis-runner-workspace-execution/run-01",
+        "reason": "Supervised runner attempt planned with workspace readiness."
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_20260504t140934z-2-tkt-022_started",
+      "event_type": "runner.attempt_started",
+      "generated_at": "2026-05-04T14:09:34Z",
+      "producer": {
+        "adapter": "local_runner",
+        "name": "scripts/artemis-runner.sh",
+        "mode": "supervised"
+      },
+      "subject": {
+        "ticket": "TKT-022",
+        "task_id": "tkt-022",
+        "title": "Executar runner no workspace materializado",
+        "exec_pack": "docs/exec-packs/active/TKT-022-runner-workspace-execution.md",
+        "artifact_root": "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022",
+        "branch": "artemis/tkt-022-executar-runner-no-workspace-materia",
+        "worktree": "../veri-artemis-worktrees/tkt-022"
+      },
+      "runner": {
+        "kind": "codex_cli",
+        "attempt_id": "20260504T140934Z-2-tkt-022",
+        "command": "pwd"
+      },
+      "state": {
+        "from": "running",
+        "to": "running",
+        "reason": "Supervised runner command started."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022",
+        "status_path": "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/STATUS.md",
+        "validation_path": "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/dry-run.json",
+          "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/workspace.json",
+          "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/RUNNER.md",
+          "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/ENVIRONMENT.md",
+          "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/COMMAND.txt",
+          "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/RESULT.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-022"
+      },
+      "payload": {
+        "attempt_id": "20260504T140934Z-2-tkt-022",
+        "execute": true,
+        "command": "pwd",
+        "execution_cwd": "/srv/veri-artemis-worktrees/tkt-022",
+        "use_workspace": true,
+        "workspace": {
+          "mode": "materialized",
+          "branch": "artemis/tkt-022-executar-runner-no-workspace-materia",
+          "worktree_path": "../veri-artemis-worktrees/tkt-022",
+          "lock_path": ".artemis/locks/tkt-022.lock",
+          "artifact_root": "artifacts/artemis-runner-workspace-execution/run-01",
+          "writer": "Architect",
+          "cleanup_state": "active"
+        },
+        "artifact_root": "artifacts/artemis-runner-workspace-execution/run-01",
+        "reason": "Supervised runner command started."
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_20260504t140934z-2-tkt-022_completed",
+      "event_type": "runner.attempt_completed",
+      "generated_at": "2026-05-04T14:09:34Z",
+      "producer": {
+        "adapter": "local_runner",
+        "name": "scripts/artemis-runner.sh",
+        "mode": "supervised"
+      },
+      "subject": {
+        "ticket": "TKT-022",
+        "task_id": "tkt-022",
+        "title": "Executar runner no workspace materializado",
+        "exec_pack": "docs/exec-packs/active/TKT-022-runner-workspace-execution.md",
+        "artifact_root": "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022",
+        "branch": "artemis/tkt-022-executar-runner-no-workspace-materia",
+        "worktree": "../veri-artemis-worktrees/tkt-022"
+      },
+      "runner": {
+        "kind": "codex_cli",
+        "attempt_id": "20260504T140934Z-2-tkt-022",
+        "command": "pwd"
+      },
+      "state": {
+        "from": "running",
+        "to": "review",
+        "reason": "Supervised runner command completed."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022",
+        "status_path": "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/STATUS.md",
+        "validation_path": "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/dry-run.json",
+          "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/workspace.json",
+          "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/RUNNER.md",
+          "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/ENVIRONMENT.md",
+          "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/COMMAND.txt",
+          "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/RESULT.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-022"
+      },
+      "payload": {
+        "attempt_id": "20260504T140934Z-2-tkt-022",
+        "execute": true,
+        "command": "pwd",
+        "execution_cwd": "/srv/veri-artemis-worktrees/tkt-022",
+        "use_workspace": true,
+        "workspace": {
+          "mode": "materialized",
+          "branch": "artemis/tkt-022-executar-runner-no-workspace-materia",
+          "worktree_path": "../veri-artemis-worktrees/tkt-022",
+          "lock_path": ".artemis/locks/tkt-022.lock",
+          "artifact_root": "artifacts/artemis-runner-workspace-execution/run-01",
+          "writer": "Architect",
+          "cleanup_state": "active"
+        },
+        "artifact_root": "artifacts/artemis-runner-workspace-execution/run-01",
+        "exit_code": 0,
+        "command_log": "artifacts/artemis-runner-workspace-execution/run-01/attempts/20260504T140934Z-2-tkt-022/COMMAND.txt",
+        "reason": "Supervised runner command completed."
+      }
+    }
+  ]
+}

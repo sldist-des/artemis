@@ -241,6 +241,88 @@ if ! test -f /tmp/artemis-workspace-runtime-handoff/RUNTIME_HANDOFF.md; then
   echo "scripts/artemis-workspace-runtime-handoff.sh did not write runtime handoff artifact" >&2
   exit 1
 fi
+python3 - /tmp/artemis-workspace-cleanup-review/cleanup-review.json /tmp/artemis-decision-states-cleanup.json /tmp/artemis-decision-states-contract.json <<'PY'
+import json
+import sys
+from pathlib import Path
+
+reviews = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))["reviews"]
+states = ["approved_ready", "deferred", "rejected"]
+cleanup_results = []
+contract_results = []
+for review, state in zip(reviews, states):
+    ticket = review["ticket"]
+    status = "ready_to_execute" if state == "approved_ready" else "human_gate"
+    cleanup_results.append({
+        "ticket": ticket,
+        "status": status,
+        "contract_status": state,
+        "execute_requested": False,
+        "executed": False,
+        "blockers": [] if state == "approved_ready" else [f"decision is {state}, not approved for cleanup execution"],
+        "expected_commands": review.get("commands_after_approval", []),
+        "approved_commands": review.get("commands_after_approval", []) if state == "approved_ready" else [],
+        "command_results": [],
+    })
+    contract_results.append({
+        "ticket": ticket,
+        "decision": "approved" if state == "approved_ready" else state,
+        "contract_state": state,
+        "execution_allowed": state == "approved_ready",
+        "required_fields": ["decided_by", "decided_at", "reason"],
+        "expected_commands": review.get("commands_after_approval", []),
+        "approved_commands": review.get("commands_after_approval", []) if state == "approved_ready" else [],
+        "blockers": [],
+        "warnings": [],
+    })
+
+Path(sys.argv[2]).write_text(json.dumps({
+    "schema_version": 1,
+    "generated_at": "2026-01-01T00:00:00Z",
+    "source": "scripts/validate-artemis.sh",
+    "mode": "dry_run",
+    "overall": "human_gate",
+    "summary": {
+        "reviewed": len(cleanup_results),
+        "ready_to_execute": 1,
+        "human_gate": 2,
+        "failed": 0,
+        "executed_commands": 0,
+    },
+    "results": cleanup_results,
+}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+Path(sys.argv[3]).write_text(json.dumps({
+    "schema_version": 1,
+    "generated_at": "2026-01-01T00:00:00Z",
+    "source": "scripts/validate-artemis.sh",
+    "mode": "read_only",
+    "overall": "passed",
+    "summary": {
+        "reviewed": len(contract_results),
+        "pending": 0,
+        "approved_ready": 1,
+        "deferred": 1,
+        "rejected": 1,
+        "invalid": 0,
+        "execution_allowed": 1,
+    },
+    "results": contract_results,
+}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+PY
+scripts/artemis-workspace-runtime-handoff.sh --lifecycle /tmp/artemis-workspace-lifecycle/workspace-lifecycle.json --cleanup /tmp/artemis-decision-states-cleanup.json --approval-contract /tmp/artemis-decision-states-contract.json --artifact-root /tmp/artemis-workspace-runtime-handoff-states --json >/tmp/artemis-workspace-runtime-handoff-states.json
+if ! grep -q '"approved_ready": 1' /tmp/artemis-workspace-runtime-handoff-states.json; then
+  echo "scripts/artemis-workspace-runtime-handoff.sh did not emit approved_ready state" >&2
+  exit 1
+fi
+if ! grep -q '"deferred": 1' /tmp/artemis-workspace-runtime-handoff-states.json; then
+  echo "scripts/artemis-workspace-runtime-handoff.sh did not emit deferred state" >&2
+  exit 1
+fi
+if ! grep -q '"rejected": 1' /tmp/artemis-workspace-runtime-handoff-states.json; then
+  echo "scripts/artemis-workspace-runtime-handoff.sh did not emit rejected state" >&2
+  exit 1
+fi
 scripts/artemis-runner.sh --input /tmp/artemis-runner-task-source.json --ticket TKT-VALIDATE --command "scripts/artemis-dry-run.sh --input /tmp/artemis-runner-task-source.json" --artifact-root /tmp/artemis-runner-validation >/tmp/artemis-runner.out
 if ! grep -q '/tmp/artemis-runner-validation/attempts/' /tmp/artemis-runner.out; then
   echo "scripts/artemis-runner.sh did not create a supervised attempt artifact" >&2

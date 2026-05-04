@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T16:49:24Z",
+  "generated_at": "2026-05-04T16:56:34Z",
   "source": "scripts/artemis-workspace-runtime-handoff.sh",
   "mode": "read_only",
   "summary": {
@@ -8,6 +8,9 @@
     "cleaned": 0,
     "kept": 0,
     "pending": 3,
+    "approved_ready": 0,
+    "deferred": 0,
+    "rejected": 0,
     "needs_decision": 0
   },
   "workspaces": [
@@ -18,6 +21,9 @@
       "reason": "cleanup decision remains gated by human approval",
       "lifecycle_state": "review_ready",
       "cleanup_status": "human_gate",
+      "decision": "pending",
+      "contract_status": "pending",
+      "execution_allowed": false,
       "cleanup_executed": false,
       "worktree_path": "../veri-artemis-worktrees/tkt-021",
       "worktree_exists": true,
@@ -29,6 +35,7 @@
       "evidence": {
         "lifecycle": "artifacts/artemis-workspace-lifecycle/run-01/workspace-lifecycle.json",
         "cleanup": "artifacts/artemis-approved-workspace-cleanup/run-01/approved-cleanup.json",
+        "approval_contract": "artifacts/artemis-human-cleanup-approval-contract/run-01/cleanup-approval-contract.json",
         "status": "artifacts/artemis-workspace-materialization/run-01/STATUS.md",
         "validation": "artifacts/artemis-workspace-materialization/run-01/VALIDATION.md",
         "handoff": "artifacts/artemis-workspace-materialization/run-01/HANDOFF.md"
@@ -44,6 +51,9 @@
       "reason": "cleanup decision remains gated by human approval",
       "lifecycle_state": "review_ready",
       "cleanup_status": "human_gate",
+      "decision": "pending",
+      "contract_status": "pending",
+      "execution_allowed": false,
       "cleanup_executed": false,
       "worktree_path": "../veri-artemis-worktrees/tkt-022",
       "worktree_exists": true,
@@ -55,6 +65,7 @@
       "evidence": {
         "lifecycle": "artifacts/artemis-workspace-lifecycle/run-01/workspace-lifecycle.json",
         "cleanup": "artifacts/artemis-approved-workspace-cleanup/run-01/approved-cleanup.json",
+        "approval_contract": "artifacts/artemis-human-cleanup-approval-contract/run-01/cleanup-approval-contract.json",
         "status": "artifacts/artemis-runner-workspace-execution/run-01/STATUS.md",
         "validation": "artifacts/artemis-runner-workspace-execution/run-01/VALIDATION.md",
         "handoff": "artifacts/artemis-runner-workspace-execution/run-01/HANDOFF.md"
@@ -70,6 +81,9 @@
       "reason": "cleanup decision remains gated by human approval",
       "lifecycle_state": "review_ready",
       "cleanup_status": "human_gate",
+      "decision": "pending",
+      "contract_status": "pending",
+      "execution_allowed": false,
       "cleanup_executed": false,
       "worktree_path": "../veri-artemis-worktrees/tkt-023",
       "worktree_exists": true,
@@ -81,6 +95,7 @@
       "evidence": {
         "lifecycle": "artifacts/artemis-workspace-lifecycle/run-01/workspace-lifecycle.json",
         "cleanup": "artifacts/artemis-approved-workspace-cleanup/run-01/approved-cleanup.json",
+        "approval_contract": "artifacts/artemis-human-cleanup-approval-contract/run-01/cleanup-approval-contract.json",
         "status": "artifacts/artemis-validation-fix-loop/run-01/STATUS.md",
         "validation": "artifacts/artemis-validation-fix-loop/run-01/VALIDATION.md",
         "handoff": "artifacts/artemis-validation-fix-loop/run-01/HANDOFF.md"
@@ -94,6 +109,8 @@
     "This handoff does not remove worktrees, branches, locks, or artifacts.",
     "Artifacts are the durable memory of local runtime decisions.",
     "A workspace with pending cleanup remains visible in lifecycle inventory.",
+    "Deferred and rejected decisions remain visible and never imply cleanup execution.",
+    "Approved-ready is not cleaned until the executor records command execution.",
     "A cleaned workspace must still appear in handoff evidence."
   ]
 }

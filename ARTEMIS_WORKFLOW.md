@@ -244,7 +244,7 @@ Para registrar o estado final local dos workspaces:
 scripts/artemis-workspace-runtime-handoff.sh --artifact-root artifacts/artemis-workspace-runtime-handoff/run-01 --json
 ```
 
-Esse handoff e read-only e consolida `cleaned`, `kept`, `pending` ou `needs_decision` usando o inventario e o resultado do executor aprovado. Workspaces pendentes continuam visiveis ate nova decisao humana.
+Esse handoff e read-only e consolida `cleaned`, `kept`, `pending`, `approved_ready`, `deferred`, `rejected` ou `needs_decision` usando o inventario, o contrato de decisao e o resultado do executor aprovado. `approved_ready` nao significa limpo; significa que a decisao e valida, mas o executor ainda nao registrou execucao.
 
 Para preparar uma execucao local supervisionada, use:
 

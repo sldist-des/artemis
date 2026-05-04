@@ -1008,14 +1008,25 @@
       },
       {
         id: "tkt-029",
-        state: "ready",
+        state: "done",
         ticket: "TKT-029",
         title: "Estados decisao runtime",
-        summary: "Refletir deferred e rejected no handoff local sem executar cleanup.",
+        summary: "Runtime handoff distingue pending, approved_ready, deferred e rejected.",
         owner: "Codex",
         risk: "medium",
-        evidence: "docs/exec-packs/active/TKT-029-runtime-handoff-decision-states.md",
+        evidence: "artifacts/artemis-runtime-handoff-decision-states/run-01",
         tags: ["workspace", "handoff", "decision"]
+      },
+      {
+        id: "tkt-030",
+        state: "ready",
+        ticket: "TKT-030",
+        title: "Fixtures decisao humana",
+        summary: "Criar exemplos validaveis de approved, deferred, rejected e invalidos.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "docs/exec-packs/active/TKT-030-human-decision-fixtures.md",
+        tags: ["workspace", "fixtures", "decision"]
       },
       {
         id: "github-auth",
@@ -1046,17 +1057,17 @@
 
     const seedEvents = [
       {
-        event_id: "evt_tkt-029_task_discovered",
+        event_id: "evt_tkt-030_task_discovered",
         event_type: "task.discovered",
-        generated_at: "2026-05-04T16:47:00Z",
+        generated_at: "2026-05-04T16:57:00Z",
         producer: { adapter: "exec_pack", name: "scripts/artemis-tasks.sh", mode: "read_only" },
         subject: {
-          ticket: "TKT-029",
-          title: "Estados de decisao no handoff de runtime"
+          ticket: "TKT-030",
+          title: "Fixtures de decisao humana"
         },
         state: { from: null, to: "ready", reason: "Active Exec Pack discovered by local task source." },
         severity: "info",
-        evidence: { artifact_path: "docs/exec-packs/active/TKT-029-runtime-handoff-decision-states.md" }
+        evidence: { artifact_path: "docs/exec-packs/active/TKT-030-human-decision-fixtures.md" }
       },
       {
         event_id: "evt_tkt-017_adapter_events",

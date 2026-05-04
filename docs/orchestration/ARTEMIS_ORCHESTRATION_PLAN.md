@@ -545,7 +545,7 @@ Aceite:
 
 Objetivo: refletir `deferred` e `rejected` no handoff local sem executar cleanup.
 
-Estado: proximo corte em TKT-029.
+Estado: concluido em TKT-029.
 
 Aceite:
 
@@ -553,6 +553,19 @@ Aceite:
 - workspace rejeitado nao some do historico;
 - decisao deferida preserva proximo passo humano;
 - Control Plane mostra o estado de decisao sem sugerir execucao automatica.
+
+### Fase 23 - Fixtures de decisao humana
+
+Objetivo: criar fixtures documentadas para `approved`, `deferred`, `rejected` e casos invalidos sem tocar workspaces reais.
+
+Estado: proximo corte em TKT-030.
+
+Aceite:
+
+- fixtures vivem sob `artifacts` ou `docs` e sao claramente nao-executaveis;
+- validacao cobre decisao aprovada exata, parcial invalida, deferida e rejeitada;
+- executor continua dry-run por padrao;
+- fixtures nao referenciam worktrees reais como alvo de execucao.
 
 ## 10. Gatilhos de confiabilidade
 

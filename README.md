@@ -126,6 +126,8 @@ Registre o handoff do runtime local:
 scripts/artemis-workspace-runtime-handoff.sh --artifact-root artifacts/artemis-workspace-runtime-handoff/run-01
 ```
 
+O handoff distingue `pending`, `approved_ready`, `deferred`, `rejected`, `cleaned`, `kept` e `needs_decision`. Apenas `cleaned` indica execucao registrada.
+
 Prepare ou execute uma tentativa local supervisionada com:
 
 ```bash

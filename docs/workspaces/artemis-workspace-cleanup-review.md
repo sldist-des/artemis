@@ -86,4 +86,7 @@ Estados de handoff:
 - `cleaned`: cleanup aprovado foi executado e reportou sucesso;
 - `kept`: workspace permanece presente e revisavel;
 - `pending`: decisao humana ainda esta aberta;
+- `approved_ready`: decisao humana e valida, mas cleanup ainda nao executou;
+- `deferred`: humano adiou cleanup com razao registrada;
+- `rejected`: humano rejeitou cleanup com razao registrada;
 - `needs_decision`: ha falha, divergencia ou evidencia insuficiente.

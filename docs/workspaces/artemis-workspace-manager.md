@@ -68,7 +68,7 @@ scripts/artemis-workspace.sh --ticket TKT-019 --artifact-root artifacts/<ticket>
 
 `scripts/artemis-approved-workspace-cleanup.sh` valida decisoes aprovadas e usa dry-run por padrao. Execucao real exige `--execute`, decisao `approved` e comandos locais exatamente iguais aos gerados pela revisao.
 
-`scripts/artemis-workspace-runtime-handoff.sh` consolida o estado final local em artifact duravel para que workspace limpo, mantido ou pendente nao dependa apenas de `.artemis/`.
+`scripts/artemis-workspace-runtime-handoff.sh` consolida o estado final local em artifact duravel para que workspace limpo, mantido, pendente, aprovado, deferido ou rejeitado nao dependa apenas de `.artemis/`.
 
 ## Invariantes
 

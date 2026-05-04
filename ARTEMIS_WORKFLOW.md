@@ -222,6 +222,14 @@ scripts/artemis-workspace-cleanup-review.sh --artifact-root artifacts/artemis-wo
 
 Esse comando gera `cleanup-review.json`, `CLEANUP_REVIEW.md` e `DECISION_TEMPLATE.md`. Ele nunca executa `git worktree remove`, `rm` ou `git branch -d`; apenas lista comandos que podem ser aprovados explicitamente por humano.
 
+Para validar o contrato da decisao humana:
+
+```bash
+scripts/artemis-human-cleanup-approval-contract.sh --decision artifacts/artemis-workspace-cleanup-review/run-01/cleanup-review.json --artifact-root artifacts/artemis-human-cleanup-approval-contract/run-01 --json
+```
+
+Decisoes validas sao `pending`, `approved`, `deferred` e `rejected`. `approved` exige `decided_by`, `decided_at` em ISO-8601, `reason` e todos os comandos exatamente iguais a `commands_after_approval`. Aprovacao parcial nao executa cleanup; registre como `deferred` com razao.
+
 Para validar uma decisao humana ja preenchida sem executar cleanup:
 
 ```bash

@@ -1,6 +1,6 @@
 # ARTEMIS WORKSPACE RUNTIME HANDOFF
 
-- Generated at: 2026-05-04T16:01:16Z
+- Generated at: 2026-05-04T16:49:24Z
 - Mode: `read_only`
 - Total: 3
 - Cleaned: 0
@@ -23,11 +23,7 @@
 - Artifact root: `artifacts/artemis-workspace-materialization/run-01`
 
 Blockers:
-- decision is pending, not approved
-- decided_by is missing
-- decided_at is missing
-- decision reason is missing
-- approved_commands do not exactly match expected cleanup commands
+- decision is pending, not approved for cleanup execution
 
 ### TKT-022 - pending
 
@@ -42,11 +38,7 @@ Blockers:
 - Artifact root: `artifacts/artemis-runner-workspace-execution/run-01`
 
 Blockers:
-- decision is pending, not approved
-- decided_by is missing
-- decided_at is missing
-- decision reason is missing
-- approved_commands do not exactly match expected cleanup commands
+- decision is pending, not approved for cleanup execution
 
 ### TKT-023 - pending
 
@@ -61,11 +53,7 @@ Blockers:
 - Artifact root: `artifacts/artemis-validation-fix-loop/run-01`
 
 Blockers:
-- decision is pending, not approved
-- decided_by is missing
-- decided_at is missing
-- decision reason is missing
-- approved_commands do not exactly match expected cleanup commands
+- decision is pending, not approved for cleanup execution
 
 ## Invariants
 

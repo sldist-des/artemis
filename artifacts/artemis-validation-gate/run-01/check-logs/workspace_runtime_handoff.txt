@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T16:01:17Z",
+  "generated_at": "2026-05-04T16:48:24Z",
   "source": "scripts/artemis-workspace-runtime-handoff.sh",
   "mode": "read_only",
   "summary": {
@@ -34,11 +34,7 @@
         "handoff": "artifacts/artemis-workspace-materialization/run-01/HANDOFF.md"
       },
       "blockers": [
-        "decision is pending, not approved",
-        "decided_by is missing",
-        "decided_at is missing",
-        "decision reason is missing",
-        "approved_commands do not exactly match expected cleanup commands"
+        "decision is pending, not approved for cleanup execution"
       ]
     },
     {
@@ -64,11 +60,7 @@
         "handoff": "artifacts/artemis-runner-workspace-execution/run-01/HANDOFF.md"
       },
       "blockers": [
-        "decision is pending, not approved",
-        "decided_by is missing",
-        "decided_at is missing",
-        "decision reason is missing",
-        "approved_commands do not exactly match expected cleanup commands"
+        "decision is pending, not approved for cleanup execution"
       ]
     },
     {
@@ -94,11 +86,7 @@
         "handoff": "artifacts/artemis-validation-fix-loop/run-01/HANDOFF.md"
       },
       "blockers": [
-        "decision is pending, not approved",
-        "decided_by is missing",
-        "decided_at is missing",
-        "decision reason is missing",
-        "approved_commands do not exactly match expected cleanup commands"
+        "decision is pending, not approved for cleanup execution"
       ]
     }
   ],

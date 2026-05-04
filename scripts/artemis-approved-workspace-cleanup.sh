@@ -66,6 +66,7 @@ fi
 
 payload=$(python3 - "$decision" "$ticket" "$execute" <<'PY'
 import json
+import shlex
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -86,7 +87,10 @@ if ticket_filter:
 
 
 def split_command(command: str) -> list[str]:
-    return command.split()
+    try:
+        return shlex.split(command)
+    except ValueError:
+        return command.split()
 
 
 def allowed_shape(command: str, review: dict) -> bool:
@@ -102,36 +106,65 @@ def allowed_shape(command: str, review: dict) -> bool:
     )
 
 
-def validate_review(review: dict) -> tuple[str, list[str]]:
+def valid_timestamp(value: str) -> bool:
+    if not value:
+        return False
+    try:
+        datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return False
+    return True
+
+
+def validate_review(review: dict) -> tuple[str, str, list[str]]:
+    valid_decisions = {"pending", "approved", "deferred", "rejected"}
     blockers = list(review.get("blockers", []))
     record = review.get("decision_record") or {}
-    decision = str(record.get("decision") or "pending")
+    decision = str(record.get("decision") or "pending").strip()
     approved_commands = [str(item) for item in record.get("approved_commands") or []]
     expected_commands = [str(item) for item in review.get("commands_after_approval") or []]
 
-    if review.get("recommendation") != "eligible_for_human_cleanup_approval":
-        blockers.append("review is not eligible for human cleanup approval")
-    if decision != "approved":
-        blockers.append(f"decision is {decision}, not approved")
-    if not str(record.get("decided_by") or "").strip():
-        blockers.append("decided_by is missing")
-    if not str(record.get("decided_at") or "").strip():
-        blockers.append("decided_at is missing")
-    if not str(record.get("reason") or "").strip():
-        blockers.append("decision reason is missing")
-    if approved_commands != expected_commands:
-        blockers.append("approved_commands do not exactly match expected cleanup commands")
+    if decision not in valid_decisions:
+        blockers.append("decision must be pending, approved, deferred, or rejected")
+
+    if decision in {"approved", "deferred", "rejected"}:
+        if not str(record.get("decided_by") or "").strip():
+            blockers.append(f"decided_by is required for {decision}")
+        if not str(record.get("reason") or "").strip():
+            blockers.append(f"reason is required for {decision}")
+        if not valid_timestamp(str(record.get("decided_at") or "").strip()):
+            blockers.append("decided_at must be ISO-8601")
+
+    if decision == "approved":
+        if review.get("recommendation") != "eligible_for_human_cleanup_approval":
+            blockers.append("approved cleanup requires eligible_for_human_cleanup_approval")
+        if approved_commands != expected_commands:
+            blockers.append("approved_commands must exactly match commands_after_approval")
+        if not approved_commands:
+            blockers.append("approved cleanup requires all expected commands")
+    elif approved_commands:
+        blockers.append("pending, deferred, and rejected decisions must not include approved_commands")
+
     for command in approved_commands:
         if not allowed_shape(command, review):
             blockers.append(f"command is outside cleanup allowlist: {command}")
 
-    return ("ready_to_execute" if not blockers else "human_gate"), blockers
+    if decision == "approved" and not blockers:
+        return "ready_to_execute", "approved_ready", blockers
+
+    if blockers:
+        return "human_gate", "invalid", blockers
+
+    if decision in {"pending", "deferred", "rejected"} and not blockers:
+        blockers.append(f"decision is {decision}, not approved for cleanup execution")
+
+    return "human_gate", decision, blockers
 
 
 results = []
 executed_commands = []
 for review in reviews:
-    status, blockers = validate_review(review)
+    status, contract_status, blockers = validate_review(review)
     command_results = []
     if execute and status == "ready_to_execute":
         for command in review.get("decision_record", {}).get("approved_commands", []):
@@ -159,6 +192,7 @@ for review in reviews:
     results.append({
         "ticket": review.get("ticket"),
         "status": status,
+        "contract_status": contract_status,
         "execute_requested": execute,
         "executed": bool(command_results),
         "blockers": blockers,
@@ -189,6 +223,8 @@ payload = {
     "invariants": [
         "Default mode is dry-run.",
         "pending and deferred decisions never execute.",
+        "rejected decisions never execute.",
+        "approval requires identity, timestamp, reason, and exact commands.",
         "approved_commands must exactly match the generated cleanup review commands.",
         "Only local git worktree remove, lock rm, and git branch -d commands are allowlisted.",
         "Remote GitHub operations are out of scope.",
@@ -240,6 +276,7 @@ for item in payload["results"]:
     lines.extend([
         f"### {item['ticket']} - {item['status']}",
         "",
+        f"- Contract status: `{item['contract_status']}`",
         f"- Execute requested: {item['execute_requested']}",
         f"- Executed: {item['executed']}",
         "",

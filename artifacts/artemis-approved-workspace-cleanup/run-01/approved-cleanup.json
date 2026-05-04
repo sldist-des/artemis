@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T14:46:18Z",
+  "generated_at": "2026-05-04T16:49:18Z",
   "source": "scripts/artemis-approved-workspace-cleanup.sh",
   "mode": "dry_run",
   "decision": "artifacts/artemis-workspace-cleanup-review/run-01/cleanup-review.json",
@@ -17,14 +17,11 @@
     {
       "ticket": "TKT-021",
       "status": "human_gate",
+      "contract_status": "pending",
       "execute_requested": false,
       "executed": false,
       "blockers": [
-        "decision is pending, not approved",
-        "decided_by is missing",
-        "decided_at is missing",
-        "decision reason is missing",
-        "approved_commands do not exactly match expected cleanup commands"
+        "decision is pending, not approved for cleanup execution"
       ],
       "expected_commands": [
         "git worktree remove ../veri-artemis-worktrees/tkt-021",
@@ -37,14 +34,11 @@
     {
       "ticket": "TKT-022",
       "status": "human_gate",
+      "contract_status": "pending",
       "execute_requested": false,
       "executed": false,
       "blockers": [
-        "decision is pending, not approved",
-        "decided_by is missing",
-        "decided_at is missing",
-        "decision reason is missing",
-        "approved_commands do not exactly match expected cleanup commands"
+        "decision is pending, not approved for cleanup execution"
       ],
       "expected_commands": [
         "git worktree remove ../veri-artemis-worktrees/tkt-022",
@@ -57,14 +51,11 @@
     {
       "ticket": "TKT-023",
       "status": "human_gate",
+      "contract_status": "pending",
       "execute_requested": false,
       "executed": false,
       "blockers": [
-        "decision is pending, not approved",
-        "decided_by is missing",
-        "decided_at is missing",
-        "decision reason is missing",
-        "approved_commands do not exactly match expected cleanup commands"
+        "decision is pending, not approved for cleanup execution"
       ],
       "expected_commands": [
         "git worktree remove ../veri-artemis-worktrees/tkt-023",
@@ -78,6 +69,8 @@
   "invariants": [
     "Default mode is dry-run.",
     "pending and deferred decisions never execute.",
+    "rejected decisions never execute.",
+    "approval requires identity, timestamp, reason, and exact commands.",
     "approved_commands must exactly match the generated cleanup review commands.",
     "Only local git worktree remove, lock rm, and git branch -d commands are allowlisted.",
     "Remote GitHub operations are out of scope."

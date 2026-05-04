@@ -43,6 +43,21 @@ scripts/artemis-workspace-cleanup-review.sh --artifact-root artifacts/artemis-wo
 
 ## Executor aprovado
 
+Antes do executor, valide o contrato da decisao humana:
+
+```bash
+scripts/artemis-human-cleanup-approval-contract.sh --decision artifacts/artemis-workspace-cleanup-review/run-01/cleanup-review.json --artifact-root artifacts/artemis-human-cleanup-approval-contract/run-01 --json
+```
+
+Decisoes validas:
+
+- `pending`: decisao aberta, sem metadata obrigatoria e sem comandos aprovados;
+- `approved`: exige `decided_by`, `decided_at`, `reason` e todos os comandos exatos;
+- `deferred`: exige metadata e razao para manter o workspace pendente;
+- `rejected`: exige metadata e razao para rejeitar cleanup.
+
+`approved_commands` so pode aparecer em `approved`, e precisa ser identico a `commands_after_approval`. Aprovacao parcial deve ser `deferred`.
+
 `scripts/artemis-approved-workspace-cleanup.sh` valida `cleanup-review.json` ou um artifact equivalente com decisoes preenchidas.
 
 ```bash

@@ -5,29 +5,29 @@
     "eligible": 1,
     "blocked": 0,
     "human_gate": 0,
-    "done": 28
+    "done": 29
   },
   "decisions": [
     {
-      "ticket": "TKT-028",
+      "ticket": "TKT-029",
       "decision": "eligible",
       "runner": "codex-cli",
       "reason": "Task has Exec Pack, owner, evidence target, and no human-gate terms.",
-      "title": "Contrato de aprovacao humana para cleanup",
+      "title": "Estados de decisao no handoff de runtime",
       "state": "ready",
-      "exec_pack": "docs/exec-packs/active/TKT-028-human-cleanup-approval-contract.md",
+      "exec_pack": "docs/exec-packs/active/TKT-029-runtime-handoff-decision-states.md",
       "workspace": {
-        "ticket": "TKT-028",
-        "task_id": "tkt-028",
-        "title": "Contrato de aprovacao humana para cleanup",
+        "ticket": "TKT-029",
+        "task_id": "tkt-029",
+        "title": "Estados de decisao no handoff de runtime",
         "readiness": "ready",
         "reason": "Workspace can be planned without creating a worktree.",
         "workspace": {
           "mode": "planned",
-          "branch": "artemis/tkt-028-contrato-de-aprovacao-humana-para-cl",
-          "worktree_path": "../veri-artemis-worktrees/tkt-028",
-          "lock_path": ".artemis/locks/tkt-028.lock",
-          "artifact_root": "artifacts/artemis-human-cleanup-approval-contract/run-01",
+          "branch": "artemis/tkt-029-estados-de-decisao-no-handoff-de-run",
+          "worktree_path": "../veri-artemis-worktrees/tkt-029",
+          "lock_path": ".artemis/locks/tkt-029.lock",
+          "artifact_root": "artifacts/artemis-runtime-handoff-decision-states/run-01",
           "writer": "Architect",
           "cleanup_state": "not_created"
         },
@@ -51,49 +51,49 @@
             "name": "exec_pack",
             "status": "passed",
             "reason": "Exec Pack is declared",
-            "path": "docs/exec-packs/active/TKT-028-human-cleanup-approval-contract.md"
+            "path": "docs/exec-packs/active/TKT-029-runtime-handoff-decision-states.md"
           },
           {
             "name": "exec_pack_file",
             "status": "passed",
             "reason": "Exec Pack file exists",
-            "path": "docs/exec-packs/active/TKT-028-human-cleanup-approval-contract.md"
+            "path": "docs/exec-packs/active/TKT-029-runtime-handoff-decision-states.md"
           },
           {
             "name": "artifact_root",
             "status": "passed",
-            "reason": "artifact_root=artifacts/artemis-human-cleanup-approval-contract/run-01",
-            "path": "artifacts/artemis-human-cleanup-approval-contract/run-01"
+            "reason": "artifact_root=artifacts/artemis-runtime-handoff-decision-states/run-01",
+            "path": "artifacts/artemis-runtime-handoff-decision-states/run-01"
           },
           {
             "name": "writer_lock",
             "status": "passed",
             "reason": "no existing writer lock",
-            "path": ".artemis/locks/tkt-028.lock"
+            "path": ".artemis/locks/tkt-029.lock"
           },
           {
             "name": "worktree_path",
             "status": "passed",
             "reason": "planned worktree path is free",
-            "path": "../veri-artemis-worktrees/tkt-028"
+            "path": "../veri-artemis-worktrees/tkt-029"
           },
           {
             "name": "branch",
             "status": "passed",
             "reason": "planned branch is new",
-            "name_ref": "artemis/tkt-028-contrato-de-aprovacao-humana-para-cl"
+            "name_ref": "artemis/tkt-029-estados-de-decisao-no-handoff-de-run"
           },
           {
             "name": "branch_worktree_occupancy",
             "status": "passed",
             "reason": "planned branch is not checked out elsewhere",
-            "name_ref": "artemis/tkt-028-contrato-de-aprovacao-humana-para-cl"
+            "name_ref": "artemis/tkt-029-estados-de-decisao-no-handoff-de-run"
           },
           {
             "name": "current_worktree_dirty",
             "status": "warning",
-            "reason": "current worktree has 39 pending item(s)",
-            "dirty_count": 39
+            "reason": "current worktree has 49 pending item(s)",
+            "dirty_count": 49
           }
         ]
       }
@@ -349,6 +349,15 @@
       "title": "Handoff de runtime local de workspaces",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-027-workspace-runtime-handoff.md"
+    },
+    {
+      "ticket": "TKT-028",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Contrato de aprovacao humana para cleanup",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-028-human-cleanup-approval-contract.md"
     }
   ]
 }

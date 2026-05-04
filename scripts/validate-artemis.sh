@@ -37,6 +37,7 @@ scripts/artemis-dry-run.sh
 scripts/artemis-workspace.sh
 scripts/artemis-workspace-lifecycle.sh
 scripts/artemis-workspace-cleanup-review.sh
+scripts/artemis-human-cleanup-approval-contract.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -102,6 +103,7 @@ sh -n scripts/artemis-dry-run.sh
 sh -n scripts/artemis-workspace.sh
 sh -n scripts/artemis-workspace-lifecycle.sh
 sh -n scripts/artemis-workspace-cleanup-review.sh
+sh -n scripts/artemis-human-cleanup-approval-contract.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -176,6 +178,42 @@ if ! test -f /tmp/artemis-workspace-cleanup-review/DECISION_TEMPLATE.md; then
   echo "scripts/artemis-workspace-cleanup-review.sh did not write decision template" >&2
   exit 1
 fi
+scripts/artemis-human-cleanup-approval-contract.sh --decision /tmp/artemis-workspace-cleanup-review/cleanup-review.json --artifact-root /tmp/artemis-human-cleanup-approval-contract --json >/tmp/artemis-human-cleanup-approval-contract.json
+if ! grep -q '"valid_decisions":' /tmp/artemis-human-cleanup-approval-contract.json; then
+  echo "scripts/artemis-human-cleanup-approval-contract.sh did not emit approval contract" >&2
+  exit 1
+fi
+if ! grep -q '"overall": "human_gate"' /tmp/artemis-human-cleanup-approval-contract.json; then
+  echo "scripts/artemis-human-cleanup-approval-contract.sh did not preserve pending Human Gate" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-human-cleanup-approval-contract/CLEANUP_APPROVAL_CONTRACT.md; then
+  echo "scripts/artemis-human-cleanup-approval-contract.sh did not write contract artifact" >&2
+  exit 1
+fi
+python3 - /tmp/artemis-workspace-cleanup-review/cleanup-review.json /tmp/artemis-approved-cleanup-decision.json <<'PY'
+import json
+import sys
+from pathlib import Path
+
+source = Path(sys.argv[1])
+target = Path(sys.argv[2])
+payload = json.loads(source.read_text(encoding="utf-8"))
+for review in payload.get("reviews", []):
+    review["decision_record"] = {
+        "decision": "approved",
+        "decided_by": "ARTEMIS validation",
+        "decided_at": "2026-01-01T00:00:00Z",
+        "reason": "Synthetic validation approval for dry-run contract checks.",
+        "approved_commands": list(review.get("commands_after_approval") or []),
+    }
+target.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+PY
+scripts/artemis-human-cleanup-approval-contract.sh --decision /tmp/artemis-approved-cleanup-decision.json --artifact-root /tmp/artemis-human-cleanup-approval-contract-approved --json >/tmp/artemis-human-cleanup-approval-contract-approved.json
+if ! grep -q '"approved_ready": 3' /tmp/artemis-human-cleanup-approval-contract-approved.json; then
+  echo "scripts/artemis-human-cleanup-approval-contract.sh did not accept exact approved commands" >&2
+  exit 1
+fi
 scripts/artemis-approved-workspace-cleanup.sh --decision /tmp/artemis-workspace-cleanup-review/cleanup-review.json --artifact-root /tmp/artemis-approved-workspace-cleanup --json >/tmp/artemis-approved-workspace-cleanup.json
 if ! grep -q '"overall": "human_gate"' /tmp/artemis-approved-workspace-cleanup.json; then
   echo "scripts/artemis-approved-workspace-cleanup.sh did not stop pending decisions at Human Gate" >&2
@@ -183,6 +221,15 @@ if ! grep -q '"overall": "human_gate"' /tmp/artemis-approved-workspace-cleanup.j
 fi
 if ! grep -q '"executed_commands": 0' /tmp/artemis-approved-workspace-cleanup.json; then
   echo "scripts/artemis-approved-workspace-cleanup.sh executed commands during dry-run" >&2
+  exit 1
+fi
+scripts/artemis-approved-workspace-cleanup.sh --decision /tmp/artemis-approved-cleanup-decision.json --artifact-root /tmp/artemis-approved-workspace-cleanup-approved --json >/tmp/artemis-approved-workspace-cleanup-approved.json
+if ! grep -q '"ready_to_execute": 3' /tmp/artemis-approved-workspace-cleanup-approved.json; then
+  echo "scripts/artemis-approved-workspace-cleanup.sh did not mark exact approved commands ready in dry-run" >&2
+  exit 1
+fi
+if ! grep -q '"executed_commands": 0' /tmp/artemis-approved-workspace-cleanup-approved.json; then
+  echo "scripts/artemis-approved-workspace-cleanup.sh executed exact approvals during dry-run" >&2
   exit 1
 fi
 scripts/artemis-workspace-runtime-handoff.sh --lifecycle /tmp/artemis-workspace-lifecycle/workspace-lifecycle.json --cleanup /tmp/artemis-approved-workspace-cleanup/approved-cleanup.json --artifact-root /tmp/artemis-workspace-runtime-handoff --json >/tmp/artemis-workspace-runtime-handoff.json

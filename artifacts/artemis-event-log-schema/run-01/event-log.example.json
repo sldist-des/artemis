@@ -1,24 +1,24 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T16:03:13Z",
+  "generated_at": "2026-05-04T16:48:31Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
-      "event_id": "evt_tkt-028_task_discovered",
+      "event_id": "evt_tkt-029_task_discovered",
       "event_type": "task.discovered",
-      "generated_at": "2026-05-04T16:03:13Z",
+      "generated_at": "2026-05-04T16:48:31Z",
       "producer": {
         "adapter": "exec_pack",
         "name": "scripts/artemis-tasks.sh",
         "mode": "read_only"
       },
       "subject": {
-        "ticket": "TKT-028",
-        "task_id": "tkt-028",
-        "title": "Contrato de aprovacao humana para cleanup",
-        "exec_pack": "docs/exec-packs/active/TKT-028-human-cleanup-approval-contract.md",
-        "artifact_root": "artifacts/artemis-human-cleanup-approval-contract/run-01"
+        "ticket": "TKT-029",
+        "task_id": "tkt-029",
+        "title": "Estados de decisao no handoff de runtime",
+        "exec_pack": "docs/exec-packs/active/TKT-029-runtime-handoff-decision-states.md",
+        "artifact_root": "artifacts/artemis-runtime-handoff-decision-states/run-01"
       },
       "runner": {
         "kind": "none"
@@ -34,17 +34,17 @@
       },
       "severity": "info",
       "evidence": {
-        "artifact_path": "artifacts/artemis-human-cleanup-approval-contract/run-01",
-        "status_path": "artifacts/artemis-human-cleanup-approval-contract/run-01/STATUS.md",
-        "validation_path": "artifacts/artemis-human-cleanup-approval-contract/run-01/VALIDATION.md",
-        "handoff_path": "artifacts/artemis-human-cleanup-approval-contract/run-01/HANDOFF.md",
+        "artifact_path": "artifacts/artemis-runtime-handoff-decision-states/run-01",
+        "status_path": "artifacts/artemis-runtime-handoff-decision-states/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-runtime-handoff-decision-states/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-runtime-handoff-decision-states/run-01/HANDOFF.md",
         "logs": []
       },
       "links": {
-        "correlation_id": "tkt-028"
+        "correlation_id": "tkt-029"
       },
       "payload": {
-        "summary": "Um artifact ou schema deve deixar claro como registrar `approved`, `deferred` ou `rejected`, quais campos sao obrigatorios e como o executor valida que os comandos aprovados sao exatamente os esperados.",
+        "summary": "O handoff de runtime deve diferenciar decisao aberta, decisao deferida e decisao rejeitada, preservando evidencia e evitando qualquer sugestao de cleanup automatico.",
         "risk": "medium",
         "owner": "Architect",
         "tags": [
@@ -58,7 +58,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-04T16:03:13Z",
+      "generated_at": "2026-05-04T16:48:31Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -125,7 +125,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-04T16:03:13Z",
+      "generated_at": "2026-05-04T16:48:31Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -212,7 +212,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-04T16:03:13Z",
+      "generated_at": "2026-05-04T16:48:31Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -305,7 +305,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-04T16:03:13Z",
+      "generated_at": "2026-05-04T16:48:31Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -345,7 +345,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 30,
+          "passed": 32,
           "failed": 0,
           "human_gate": 2
         },
@@ -398,6 +398,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_cleanup_review.txt"
+          },
+          {
+            "name": "shell_human_cleanup_approval_contract",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_human_cleanup_approval_contract.txt"
           },
           {
             "name": "shell_approved_workspace_cleanup",
@@ -489,6 +496,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/workspace_cleanup_review.txt"
+          },
+          {
+            "name": "human_cleanup_approval_contract",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/human_cleanup_approval_contract.txt"
           },
           {
             "name": "approved_workspace_cleanup",

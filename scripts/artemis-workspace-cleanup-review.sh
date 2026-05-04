@@ -199,6 +199,9 @@ decision_lines = [
     "# HUMAN CLEANUP DECISION TEMPLATE",
     "",
     "Use this template only after reviewing `cleanup-review.json` and the required evidence.",
+    "Validate the filled decision with `scripts/artemis-human-cleanup-approval-contract.sh` before any executor run.",
+    "",
+    "Rules: `approved` requires `decided_by`, ISO-8601 `decided_at`, `reason`, and every command exactly as listed. Partial approval must stay `deferred` with a reason and does not execute.",
     "",
 ]
 for item in payload["reviews"]:
@@ -209,7 +212,7 @@ for item in payload["reviews"]:
         "- Decided by:",
         "- Decided at:",
         "- Reason:",
-        "- Approved commands:",
+        "- Approved commands (copy all only when Decision is approved; leave empty for pending/deferred/rejected):",
     ])
     for command in item["commands_after_approval"]:
         decision_lines.append(f"  - `{command}`")

@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T16:49:18Z",
+  "source": "scripts/artemis-human-cleanup-approval-contract.sh",
+  "mode": "read_only",
+  "decision": "artifacts/artemis-workspace-cleanup-review/run-01/cleanup-review.json",
+  "ticket_filter": null,
+  "overall": "human_gate",
+  "contract": {
+    "valid_decisions": [
+      "pending",
+      "approved",
+      "deferred",
+      "rejected"
+    ],
+    "metadata_required_for": [
+      "approved",
+      "deferred",
+      "rejected"
+    ],
+    "required_metadata_fields": [
+      "decided_by",
+      "decided_at",
+      "reason"
+    ],
+    "approved_requires_exact_commands": true,
+    "partial_approval_executes": false,
+    "non_approved_commands_allowed": false,
+    "timestamp_format": "ISO-8601",
+    "execution_scope": [
+      "git worktree remove <review worktree>",
+      "rm <review lock>",
+      "git branch -d <review branch>"
+    ]
+  },
+  "summary": {
+    "reviewed": 3,
+    "pending": 3,
+    "approved_ready": 0,
+    "deferred": 0,
+    "rejected": 0,
+    "invalid": 0,
+    "execution_allowed": 0
+  },
+  "results": [
+    {
+      "ticket": "TKT-021",
+      "decision": "pending",
+      "contract_state": "pending",
+      "execution_allowed": false,
+      "required_fields": [],
+      "expected_commands": [
+        "git worktree remove ../veri-artemis-worktrees/tkt-021",
+        "rm .artemis/locks/tkt-021.lock",
+        "git branch -d artemis/tkt-021-materializar-workspace-artemis-contr"
+      ],
+      "approved_commands": [],
+      "blockers": [],
+      "warnings": [
+        "pending is an open human decision and cannot execute cleanup"
+      ]
+    },
+    {
+      "ticket": "TKT-022",
+      "decision": "pending",
+      "contract_state": "pending",
+      "execution_allowed": false,
+      "required_fields": [],
+      "expected_commands": [
+        "git worktree remove ../veri-artemis-worktrees/tkt-022",
+        "rm .artemis/locks/tkt-022.lock",
+        "git branch -d artemis/tkt-022-executar-runner-no-workspace-materia"
+      ],
+      "approved_commands": [],
+      "blockers": [],
+      "warnings": [
+        "pending is an open human decision and cannot execute cleanup"
+      ]
+    },
+    {
+      "ticket": "TKT-023",
+      "decision": "pending",
+      "contract_state": "pending",
+      "execution_allowed": false,
+      "required_fields": [],
+      "expected_commands": [
+        "git worktree remove ../veri-artemis-worktrees/tkt-023",
+        "rm .artemis/locks/tkt-023.lock",
+        "git branch -d artemis/tkt-023-loop-de-validacao-e-fix-em-workspace"
+      ],
+      "approved_commands": [],
+      "blockers": [],
+      "warnings": [
+        "pending is an open human decision and cannot execute cleanup"
+      ]
+    }
+  ],
+  "invariants": [
+    "Approval requires identity, timestamp, reason, and exact commands.",
+    "Deferred and rejected are explicit human decisions but never execute cleanup.",
+    "Partial command approval is not executable approval.",
+    "Pending remains an open Human Gate.",
+    "Remote operations are out of scope."
+  ]
+}

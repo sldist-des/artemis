@@ -531,7 +531,7 @@ Aceite:
 
 Objetivo: definir o formato minimo da decisao humana aprovada para que um executor local possa sair de `pending`.
 
-Estado: proximo corte em TKT-028.
+Estado: concluido em TKT-028.
 
 Aceite:
 
@@ -540,6 +540,19 @@ Aceite:
 - comandos aprovados devem ser exatos e auditaveis;
 - decisao parcial mantem workspace pendente;
 - execucao continua fora ate decisao real existir.
+
+### Fase 22 - Estados de decisao no handoff de runtime
+
+Objetivo: refletir `deferred` e `rejected` no handoff local sem executar cleanup.
+
+Estado: proximo corte em TKT-029.
+
+Aceite:
+
+- runtime handoff diferencia decisao aberta, deferida e rejeitada;
+- workspace rejeitado nao some do historico;
+- decisao deferida preserva proximo passo humano;
+- Control Plane mostra o estado de decisao sem sugerir execucao automatica.
 
 ## 10. Gatilhos de confiabilidade
 

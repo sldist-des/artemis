@@ -997,14 +997,25 @@
       },
       {
         id: "tkt-028",
-        state: "ready",
+        state: "done",
         ticket: "TKT-028",
         title: "Contrato aprovacao cleanup",
-        summary: "Formalizar campos e estados de decisao humana para aprovar cleanup local.",
+        summary: "Contrato valida pending, approved, deferred e rejected antes do executor.",
         owner: "Codex",
         risk: "medium",
-        evidence: "docs/exec-packs/active/TKT-028-human-cleanup-approval-contract.md",
+        evidence: "artifacts/artemis-human-cleanup-approval-contract/run-01",
         tags: ["workspace", "approval", "cleanup"]
+      },
+      {
+        id: "tkt-029",
+        state: "ready",
+        ticket: "TKT-029",
+        title: "Estados decisao runtime",
+        summary: "Refletir deferred e rejected no handoff local sem executar cleanup.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "docs/exec-packs/active/TKT-029-runtime-handoff-decision-states.md",
+        tags: ["workspace", "handoff", "decision"]
       },
       {
         id: "github-auth",
@@ -1035,17 +1046,17 @@
 
     const seedEvents = [
       {
-        event_id: "evt_tkt-028_task_discovered",
+        event_id: "evt_tkt-029_task_discovered",
         event_type: "task.discovered",
-        generated_at: "2026-05-04T16:01:00Z",
+        generated_at: "2026-05-04T16:47:00Z",
         producer: { adapter: "exec_pack", name: "scripts/artemis-tasks.sh", mode: "read_only" },
         subject: {
-          ticket: "TKT-028",
-          title: "Contrato de aprovacao humana para cleanup"
+          ticket: "TKT-029",
+          title: "Estados de decisao no handoff de runtime"
         },
         state: { from: null, to: "ready", reason: "Active Exec Pack discovered by local task source." },
         severity: "info",
-        evidence: { artifact_path: "docs/exec-packs/active/TKT-028-human-cleanup-approval-contract.md" }
+        evidence: { artifact_path: "docs/exec-packs/active/TKT-029-runtime-handoff-decision-states.md" }
       },
       {
         event_id: "evt_tkt-017_adapter_events",

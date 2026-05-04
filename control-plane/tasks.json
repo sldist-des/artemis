@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T18:35:03Z",
+  "generated_at": "2026-05-04T19:10:40Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
-      "id": "tkt-037",
-      "ticket": "TKT-037",
-      "title": "Human Gate da decisao humana pendente",
+      "id": "tkt-038",
+      "ticket": "TKT-038",
+      "title": "Contrato de reentrada apos decisao humana",
       "state": "ready",
       "owner": "Reviewer",
       "risk": "medium",
-      "summary": "O repositorio deve ter um artifact de pausa operacional que diga o que o humano precisa preencher, quais comandos validar depois e por que nenhum executor pode seguir agora.",
-      "exec_pack": "docs/exec-packs/active/TKT-037-human-decision-pending-gate.md",
-      "evidence": "artifacts/artemis-human-decision-pending-gate/run-01/STATUS.md",
+      "summary": "O repositorio deve ter um artifact que diga quais validacoes rodar, quais estados liberam preflight futuro e quais estados permanecem sem executor.",
+      "exec_pack": "docs/exec-packs/active/TKT-038-human-decision-reentry-contract.md",
+      "evidence": "artifacts/artemis-human-decision-reentry-contract/run-01/STATUS.md",
       "tags": ["exec-pack", "active"]
     },
     {
@@ -457,6 +457,18 @@
       "summary": "O repositorio deve ter um artifact que diga se uma decisao humana preenchida esta pronta, deferida, rejeitada ou bloqueada, sem executar comandos de cleanup.",
       "exec_pack": "docs/exec-packs/done/TKT-036-human-decision-intake.md",
       "evidence": "artifacts/artemis-human-decision-intake/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-037",
+      "ticket": "TKT-037",
+      "title": "Human Gate da decisao humana pendente",
+      "state": "done",
+      "owner": "Reviewer",
+      "risk": "medium",
+      "summary": "O repositorio deve ter um artifact de pausa operacional que diga o que o humano precisa preencher, quais comandos validar depois e por que nenhum executor pode seguir agora.",
+      "exec_pack": "docs/exec-packs/done/TKT-037-human-decision-pending-gate.md",
+      "evidence": "artifacts/artemis-human-decision-pending-gate/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

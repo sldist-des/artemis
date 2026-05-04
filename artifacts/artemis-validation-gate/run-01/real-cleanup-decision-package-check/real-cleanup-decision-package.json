@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T18:34:11Z",
+  "generated_at": "2026-05-04T19:08:59Z",
   "source": "scripts/artemis-real-cleanup-decision-package.sh",
   "mode": "read_only",
   "source_review": "artifacts/artemis-validation-gate/run-01/workspace-cleanup-review-check/cleanup-review.json",

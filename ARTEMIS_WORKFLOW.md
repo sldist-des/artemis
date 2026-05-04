@@ -276,6 +276,14 @@ scripts/artemis-human-decision-intake.sh --artifact-root artifacts/artemis-human
 
 O intake reaproveita o contrato humano e o dry-run de cleanup para classificar cada workspace como `approved_ready`, `deferred`, `rejected`, `pending` ou `invalid`. `approved_ready` ainda nao executa nada; apenas permite um corte futuro de executor supervisionado.
 
+Para registrar a pausa operacional enquanto houver decisao pendente:
+
+```bash
+scripts/artemis-human-decision-pending-gate.sh --artifact-root artifacts/artemis-human-decision-pending-gate/run-01 --json
+```
+
+Esse gate nao decide nem executa. Ele lista campos humanos obrigatorios, comandos de validacao apos preenchimento e a reentrada segura pelo intake.
+
 Para validar uma decisao humana ja preenchida sem executar cleanup:
 
 ```bash

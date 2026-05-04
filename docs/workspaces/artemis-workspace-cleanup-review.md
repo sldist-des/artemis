@@ -102,6 +102,14 @@ scripts/artemis-human-decision-intake.sh --artifact-root artifacts/artemis-human
 
 O intake classifica cada workspace sem executar cleanup. `approved_ready` significa elegivel para um corte futuro de executor supervisionado; `pending`, `deferred`, `rejected` e `invalid` continuam sem execucao.
 
+Enquanto o intake reportar `pending`, registre o Human Gate:
+
+```bash
+scripts/artemis-human-decision-pending-gate.sh --artifact-root artifacts/artemis-human-decision-pending-gate/run-01 --json
+```
+
+Esse registro mantem o pacote parado, lista campos humanos obrigatorios e aponta a reentrada segura pelo intake depois do preenchimento.
+
 `scripts/artemis-approved-workspace-cleanup.sh` valida `cleanup-review.json` ou um artifact equivalente com decisoes preenchidas.
 
 ```bash

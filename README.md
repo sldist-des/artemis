@@ -172,6 +172,14 @@ scripts/artemis-human-decision-intake.sh --artifact-root artifacts/artemis-human
 
 O intake classifica cada workspace como `approved_ready`, `deferred`, `rejected`, `pending` ou `invalid`. Ele nao aceita `--execute` e nao remove worktrees, locks ou branches.
 
+Registre a pausa quando a decisao real continuar pendente:
+
+```bash
+scripts/artemis-human-decision-pending-gate.sh --artifact-root artifacts/artemis-human-decision-pending-gate/run-01
+```
+
+Esse gate lista os campos que o humano deve preencher, os comandos de validacao apos preenchimento e confirma que `pending` nao autoriza cleanup.
+
 Prepare ou execute uma tentativa local supervisionada com:
 
 ```bash

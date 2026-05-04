@@ -649,7 +649,7 @@ Aceite:
 
 Objetivo: registrar a pausa operacional enquanto a decisao humana real continua pendente.
 
-Estado: proximo corte em TKT-037.
+Estado: concluido em TKT-037.
 
 Aceite:
 
@@ -657,6 +657,19 @@ Aceite:
 - campos humanos obrigatorios ficam listados;
 - comandos de validacao apos preenchimento ficam claros;
 - reentrada segura aponta de volta para o intake antes de qualquer executor.
+
+### Fase 31 - Contrato de reentrada apos decisao humana
+
+Objetivo: definir o caminho read-only depois que o humano preencher a decisao real.
+
+Estado: proximo corte em TKT-038.
+
+Aceite:
+
+- estados de reentrada sao explicitos;
+- `approved_ready` aponta apenas para preflight futuro;
+- estados `pending`, `deferred`, `rejected` e `invalid` permanecem sem executor;
+- comandos de validacao de retorno ficam versionados.
 
 ## 10. Gatilhos de confiabilidade
 

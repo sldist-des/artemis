@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T19:08:59Z",
+  "source": "scripts/artemis-human-decision-pending-gate.sh",
+  "mode": "read_only",
+  "overall": "human_gate",
+  "artifact_root": "artifacts/artemis-validation-gate/run-01/human-decision-pending-gate-check",
+  "intake_root": "artifacts/artemis-validation-gate/run-01/human-decision-intake-check",
+  "decision": "artifacts/artemis-validation-gate/run-01/real-cleanup-decision-package-check/real-cleanup-decision.json",
+  "runbook": "artifacts/artemis-assisted-human-decision-runbook/run-01/RUNBOOK.md",
+  "cleanup_execution_allowed": false,
+  "summary": {
+    "pending": 3,
+    "invalid": 0,
+    "executed_commands": 0,
+    "approved_ready": 0,
+    "deferred": 0,
+    "rejected": 0
+  },
+  "pending_items": [
+    {
+      "ticket": "TKT-021",
+      "title": "Materializar workspace ARTEMIS controlado",
+      "decision": "pending",
+      "required_fields_after_human_decision": [
+        "decision_record.decision",
+        "decision_record.decided_by",
+        "decision_record.decided_at",
+        "decision_record.reason",
+        "decision_record.approved_commands"
+      ],
+      "valid_decisions": [
+        "approved",
+        "deferred",
+        "rejected"
+      ],
+      "expected_commands_if_approved": [
+        "git worktree remove ../veri-artemis-worktrees/tkt-021",
+        "rm .artemis/locks/tkt-021.lock",
+        "git branch -d artemis/tkt-021-materializar-workspace-artemis-contr"
+      ],
+      "next_action": "human_must_fill_decision_record"
+    },
+    {
+      "ticket": "TKT-022",
+      "title": "Executar runner no workspace materializado",
+      "decision": "pending",
+      "required_fields_after_human_decision": [
+        "decision_record.decision",
+        "decision_record.decided_by",
+        "decision_record.decided_at",
+        "decision_record.reason",
+        "decision_record.approved_commands"
+      ],
+      "valid_decisions": [
+        "approved",
+        "deferred",
+        "rejected"
+      ],
+      "expected_commands_if_approved": [
+        "git worktree remove ../veri-artemis-worktrees/tkt-022",
+        "rm .artemis/locks/tkt-022.lock",
+        "git branch -d artemis/tkt-022-executar-runner-no-workspace-materia"
+      ],
+      "next_action": "human_must_fill_decision_record"
+    },
+    {
+      "ticket": "TKT-023",
+      "title": "Loop de validacao e fix em workspace isolado",
+      "decision": "pending",
+      "required_fields_after_human_decision": [
+        "decision_record.decision",
+        "decision_record.decided_by",
+        "decision_record.decided_at",
+        "decision_record.reason",
+        "decision_record.approved_commands"
+      ],
+      "valid_decisions": [
+        "approved",
+        "deferred",
+        "rejected"
+      ],
+      "expected_commands_if_approved": [
+        "git worktree remove ../veri-artemis-worktrees/tkt-023",
+        "rm .artemis/locks/tkt-023.lock",
+        "git branch -d artemis/tkt-023-loop-de-validacao-e-fix-em-workspace"
+      ],
+      "next_action": "human_must_fill_decision_record"
+    }
+  ],
+  "validation_commands_after_fill": [
+    "scripts/artemis-human-cleanup-approval-contract.sh --decision artifacts/artemis-validation-gate/run-01/real-cleanup-decision-package-check/real-cleanup-decision.json --artifact-root artifacts/artemis-human-decision-intake/run-01/approval-contract --json",
+    "scripts/artemis-approved-workspace-cleanup.sh --decision artifacts/artemis-validation-gate/run-01/real-cleanup-decision-package-check/real-cleanup-decision.json --artifact-root artifacts/artemis-human-decision-intake/run-01/cleanup-dry-run --json",
+    "scripts/artemis-human-decision-intake.sh --decision artifacts/artemis-validation-gate/run-01/real-cleanup-decision-package-check/real-cleanup-decision.json --artifact-root artifacts/artemis-human-decision-intake/run-01 --json",
+    "scripts/validate-artemis.sh"
+  ],
+  "reentry_steps": [
+    "Open artifacts/artemis-assisted-human-decision-runbook/run-01/RUNBOOK.md.",
+    "Edit artifacts/artemis-validation-gate/run-01/real-cleanup-decision-package-check/real-cleanup-decision.json only as the human decision record.",
+    "For approved decisions, copy every expected command exactly and in order.",
+    "For partial or uncertain approval, choose deferred with a reason.",
+    "Run the validation commands before any executor is considered.",
+    "Only after a later intake reports approved_ready should an executor preflight be planned."
+  ],
+  "evidence_inventory": [
+    {
+      "label": "human decision intake JSON",
+      "path": "artifacts/artemis-validation-gate/run-01/human-decision-intake-check/human-decision-intake.json",
+      "exists": true
+    },
+    {
+      "label": "human decision intake status",
+      "path": "artifacts/artemis-validation-gate/run-01/human-decision-intake-check/STATUS.md",
+      "exists": true
+    },
+    {
+      "label": "human decision intake validation",
+      "path": "artifacts/artemis-validation-gate/run-01/human-decision-intake-check/VALIDATION.md",
+      "exists": true
+    },
+    {
+      "label": "human decision intake handoff",
+      "path": "artifacts/artemis-validation-gate/run-01/human-decision-intake-check/HANDOFF.md",
+      "exists": true
+    },
+    {
+      "label": "real cleanup decision file",
+      "path": "artifacts/artemis-validation-gate/run-01/real-cleanup-decision-package-check/real-cleanup-decision.json",
+      "exists": true
+    },
+    {
+      "label": "assisted human decision runbook",
+      "path": "artifacts/artemis-assisted-human-decision-runbook/run-01/RUNBOOK.md",
+      "exists": true
+    }
+  ],
+  "blockers": [],
+  "invariants": [
+    "Human Gate is not approval.",
+    "Agents must not fill real-cleanup-decision.json for the human.",
+    "No --execute command is emitted by this gate.",
+    "Pending decisions cannot remove worktrees, locks, or branches.",
+    "Remote writes remain Human Gate."
+  ]
+}

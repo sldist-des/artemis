@@ -80,6 +80,12 @@ O preenchimento humano deve seguir:
 artifacts/artemis-assisted-human-decision-runbook/run-01/RUNBOOK.md
 ```
 
+Depois de alterar o runbook ou o pacote real, valide consistencia:
+
+```bash
+scripts/artemis-human-decision-runbook-consistency.sh --artifact-root artifacts/artemis-human-decision-runbook-consistency/run-01 --json
+```
+
 `scripts/artemis-approved-workspace-cleanup.sh` valida `cleanup-review.json` ou um artifact equivalente com decisoes preenchidas.
 
 ```bash

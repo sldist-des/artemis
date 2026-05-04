@@ -5,30 +5,30 @@
     "eligible": 1,
     "blocked": 0,
     "human_gate": 0,
-    "done": 33
+    "done": 35
   },
   "decisions": [
     {
-      "ticket": "TKT-033",
+      "ticket": "TKT-035",
       "decision": "eligible",
       "runner": "codex-cli",
       "reason": "Task has Exec Pack, owner, evidence target, and no human-gate terms.",
-      "title": "Runbook assistido de decisao humana",
+      "title": "Checkpoint local do pacote de decisao humana",
       "state": "ready",
-      "exec_pack": "docs/exec-packs/active/TKT-033-assisted-human-decision-runbook.md",
+      "exec_pack": "docs/exec-packs/active/TKT-035-human-decision-release-checkpoint.md",
       "workspace": {
-        "ticket": "TKT-033",
-        "task_id": "tkt-033",
-        "title": "Runbook assistido de decisao humana",
+        "ticket": "TKT-035",
+        "task_id": "tkt-035",
+        "title": "Checkpoint local do pacote de decisao humana",
         "readiness": "ready",
         "reason": "Workspace can be planned without creating a worktree.",
         "workspace": {
           "mode": "planned",
-          "branch": "artemis/tkt-033-runbook-assistido-de-decisao-humana",
-          "worktree_path": "../veri-artemis-worktrees/tkt-033",
-          "lock_path": ".artemis/locks/tkt-033.lock",
-          "artifact_root": "artifacts/artemis-assisted-human-decision-runbook/run-01",
-          "writer": "Architect",
+          "branch": "artemis/tkt-035-checkpoint-local-do-pacote-de-decisa",
+          "worktree_path": "../veri-artemis-worktrees/tkt-035",
+          "lock_path": ".artemis/locks/tkt-035.lock",
+          "artifact_root": "artifacts/artemis-human-decision-release-checkpoint/run-01",
+          "writer": "Reviewer",
           "cleanup_state": "not_created"
         },
         "checks": [
@@ -51,49 +51,49 @@
             "name": "exec_pack",
             "status": "passed",
             "reason": "Exec Pack is declared",
-            "path": "docs/exec-packs/active/TKT-033-assisted-human-decision-runbook.md"
+            "path": "docs/exec-packs/active/TKT-035-human-decision-release-checkpoint.md"
           },
           {
             "name": "exec_pack_file",
             "status": "passed",
             "reason": "Exec Pack file exists",
-            "path": "docs/exec-packs/active/TKT-033-assisted-human-decision-runbook.md"
+            "path": "docs/exec-packs/active/TKT-035-human-decision-release-checkpoint.md"
           },
           {
             "name": "artifact_root",
             "status": "passed",
-            "reason": "artifact_root=artifacts/artemis-assisted-human-decision-runbook/run-01",
-            "path": "artifacts/artemis-assisted-human-decision-runbook/run-01"
+            "reason": "artifact_root=artifacts/artemis-human-decision-release-checkpoint/run-01",
+            "path": "artifacts/artemis-human-decision-release-checkpoint/run-01"
           },
           {
             "name": "writer_lock",
             "status": "passed",
             "reason": "no existing writer lock",
-            "path": ".artemis/locks/tkt-033.lock"
+            "path": ".artemis/locks/tkt-035.lock"
           },
           {
             "name": "worktree_path",
             "status": "passed",
             "reason": "planned worktree path is free",
-            "path": "../veri-artemis-worktrees/tkt-033"
+            "path": "../veri-artemis-worktrees/tkt-035"
           },
           {
             "name": "branch",
             "status": "passed",
             "reason": "planned branch is new",
-            "name_ref": "artemis/tkt-033-runbook-assistido-de-decisao-humana"
+            "name_ref": "artemis/tkt-035-checkpoint-local-do-pacote-de-decisa"
           },
           {
             "name": "branch_worktree_occupancy",
             "status": "passed",
             "reason": "planned branch is not checked out elsewhere",
-            "name_ref": "artemis/tkt-033-runbook-assistido-de-decisao-humana"
+            "name_ref": "artemis/tkt-035-checkpoint-local-do-pacote-de-decisa"
           },
           {
             "name": "current_worktree_dirty",
             "status": "warning",
-            "reason": "current worktree has 37 pending item(s)",
-            "dirty_count": 37
+            "reason": "current worktree has 44 pending item(s)",
+            "dirty_count": 44
           }
         ]
       }
@@ -394,6 +394,24 @@
       "title": "Control Plane para decisao real de cleanup",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-032-control-plane-real-cleanup-human-gate.md"
+    },
+    {
+      "ticket": "TKT-033",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Runbook assistido de decisao humana",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-033-assisted-human-decision-runbook.md"
+    },
+    {
+      "ticket": "TKT-034",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Consistencia do runbook de decisao humana",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-034-human-decision-runbook-consistency.md"
     }
   ]
 }

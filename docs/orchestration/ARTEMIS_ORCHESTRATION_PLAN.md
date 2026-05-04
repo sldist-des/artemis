@@ -610,7 +610,7 @@ Aceite:
 
 Objetivo: validar que o runbook assistido nao diverge do pacote real de decisao.
 
-Estado: proximo corte em TKT-034.
+Estado: concluido em TKT-034.
 
 Aceite:
 
@@ -618,6 +618,19 @@ Aceite:
 - tickets e evidencias esperadas sao conferidos;
 - exemplos continuam claramente nao-executaveis;
 - checagem permanece read-only e sem `--execute`.
+
+### Fase 28 - Checkpoint local do pacote de decisao humana
+
+Objetivo: consolidar a camada de decisao humana de cleanup como pacote local pronto para uso supervisionado.
+
+Estado: proximo corte em TKT-035.
+
+Aceite:
+
+- evidencias de pacote real, runbook, consistencia e Control Plane ficam reunidas;
+- riscos residuais sao registrados;
+- cleanup real continua Human Gate;
+- proximo corte fica claro antes de qualquer execucao.
 
 ## 10. Gatilhos de confiabilidade
 

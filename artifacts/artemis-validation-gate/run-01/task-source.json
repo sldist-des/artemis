@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T17:31:26Z",
+  "generated_at": "2026-05-04T17:46:02Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
-      "id": "tkt-033",
-      "ticket": "TKT-033",
-      "title": "Runbook assistido de decisao humana",
+      "id": "tkt-035",
+      "ticket": "TKT-035",
+      "title": "Checkpoint local do pacote de decisao humana",
       "state": "ready",
-      "owner": "Architect",
+      "owner": "Reviewer",
       "risk": "medium",
-      "summary": "O repositorio deve explicar como escolher `approved`, `deferred` ou `rejected` por workspace, como copiar comandos exatos quando houver aprovacao e como validar o arquivo preenchido.",
-      "exec_pack": "docs/exec-packs/active/TKT-033-assisted-human-decision-runbook.md",
-      "evidence": "artifacts/artemis-assisted-human-decision-runbook/run-01/STATUS.md",
+      "summary": "O repositorio deve ter um artifact que mostre que a camada de decisao humana esta pronta para uso supervisionado, ainda sem executar cleanup.",
+      "exec_pack": "docs/exec-packs/active/TKT-035-human-decision-release-checkpoint.md",
+      "evidence": "artifacts/artemis-human-decision-release-checkpoint/run-01/STATUS.md",
       "tags": ["exec-pack", "active"]
     },
     {
@@ -409,6 +409,30 @@
       "summary": "O Control Plane deve mostrar que TKT-021, TKT-022 e TKT-023 ainda estao em `pending`, com evidencia do pacote real e Human Gate explicito.",
       "exec_pack": "docs/exec-packs/done/TKT-032-control-plane-real-cleanup-human-gate.md",
       "evidence": "artifacts/artemis-control-plane-real-cleanup-human-gate/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-033",
+      "ticket": "TKT-033",
+      "title": "Runbook assistido de decisao humana",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "O repositorio deve explicar como escolher `approved`, `deferred` ou `rejected` por workspace, como copiar comandos exatos quando houver aprovacao e como validar o arquivo preenchido.",
+      "exec_pack": "docs/exec-packs/done/TKT-033-assisted-human-decision-runbook.md",
+      "evidence": "artifacts/artemis-assisted-human-decision-runbook/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-034",
+      "ticket": "TKT-034",
+      "title": "Consistencia do runbook de decisao humana",
+      "state": "done",
+      "owner": "Implementer",
+      "risk": "medium",
+      "summary": "O repositorio deve validar que os comandos documentados no runbook correspondem ao pacote real de decisao humana e que exemplos continuam nao-executaveis.",
+      "exec_pack": "docs/exec-packs/done/TKT-034-human-decision-runbook-consistency.md",
+      "evidence": "artifacts/artemis-human-decision-runbook-consistency/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

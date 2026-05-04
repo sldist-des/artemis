@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T17:44:54Z",
+  "source": "scripts/artemis-human-decision-runbook-consistency.sh",
+  "mode": "read_only",
+  "decision": "artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json",
+  "runbook_root": "artifacts/artemis-assisted-human-decision-runbook/run-01",
+  "overall": "passed",
+  "summary": {
+    "tickets_checked": 3,
+    "expected_tickets": 3,
+    "commands_checked": 9,
+    "evidence_checked": 18,
+    "example_checks": 5,
+    "blockers": 0
+  },
+  "results": [
+    {
+      "ticket": "TKT-021",
+      "required_evidence": 6,
+      "commands_after_approval": 3,
+      "decision": "pending",
+      "blockers": []
+    },
+    {
+      "ticket": "TKT-022",
+      "required_evidence": 6,
+      "commands_after_approval": 3,
+      "decision": "pending",
+      "blockers": []
+    },
+    {
+      "ticket": "TKT-023",
+      "required_evidence": 6,
+      "commands_after_approval": 3,
+      "decision": "pending",
+      "blockers": []
+    }
+  ],
+  "example_checks": {
+    "examples_warn_not_authorization": true,
+    "examples_include_invalid_partial": true,
+    "examples_say_deferred_for_partial": true,
+    "runbook_says_agent_must_not_decide": true,
+    "runbook_keeps_execute_out_of_scope": true
+  },
+  "blockers": [],
+  "invariants": [
+    "The runbook is not authorization.",
+    "The real decision JSON remains canonical for human decisions.",
+    "Examples must not be treated as executable decisions.",
+    "This check never removes worktrees, locks, or branches."
+  ]
+}

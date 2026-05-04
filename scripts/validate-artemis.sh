@@ -40,6 +40,7 @@ scripts/artemis-workspace-cleanup-review.sh
 scripts/artemis-human-cleanup-approval-contract.sh
 scripts/artemis-human-decision-fixtures.sh
 scripts/artemis-real-cleanup-decision-package.sh
+scripts/artemis-human-decision-runbook-consistency.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -108,6 +109,7 @@ sh -n scripts/artemis-workspace-cleanup-review.sh
 sh -n scripts/artemis-human-cleanup-approval-contract.sh
 sh -n scripts/artemis-human-decision-fixtures.sh
 sh -n scripts/artemis-real-cleanup-decision-package.sh
+sh -n scripts/artemis-human-decision-runbook-consistency.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -310,6 +312,21 @@ fi
 if ! grep -q '"executed_commands": 0' /tmp/artemis-real-cleanup-decision-dry-run.json; then
   echo "real cleanup decision package executed commands during dry-run" >&2
   exit 1
+fi
+if [ -d artifacts/artemis-assisted-human-decision-runbook/run-01 ]; then
+  scripts/artemis-human-decision-runbook-consistency.sh --decision artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json --runbook-root artifacts/artemis-assisted-human-decision-runbook/run-01 --artifact-root /tmp/artemis-human-decision-runbook-consistency --json >/tmp/artemis-human-decision-runbook-consistency.json
+  if ! grep -q '"overall": "passed"' /tmp/artemis-human-decision-runbook-consistency.json; then
+    echo "scripts/artemis-human-decision-runbook-consistency.sh did not pass" >&2
+    exit 1
+  fi
+  if ! grep -q '"commands_checked": 9' /tmp/artemis-human-decision-runbook-consistency.json; then
+    echo "runbook consistency did not check all cleanup commands" >&2
+    exit 1
+  fi
+  if ! grep -q '"evidence_checked": 18' /tmp/artemis-human-decision-runbook-consistency.json; then
+    echo "runbook consistency did not check all evidence entries" >&2
+    exit 1
+  fi
 fi
 scripts/artemis-approved-workspace-cleanup.sh --decision /tmp/artemis-workspace-cleanup-review/cleanup-review.json --artifact-root /tmp/artemis-approved-workspace-cleanup --json >/tmp/artemis-approved-workspace-cleanup.json
 if ! grep -q '"overall": "human_gate"' /tmp/artemis-approved-workspace-cleanup.json; then

@@ -17,7 +17,7 @@ Passou com Human Gate esperado.
 ## Evidencia
 
 - `scripts/artemis-validation-gate.sh --artifact-root artifacts/artemis-validation-gate/run-01 --json` retornou `overall=human_gate`.
-- `validation-gate.json` registrou `passed=36`, `failed=0`, `human_gate=2`.
+- `validation-gate.json` registrou `passed=38`, `failed=0`, `human_gate=2`.
 - `scripts/validate-artemis.sh` retornou `ARTEMIS validation passed`.
 - `scripts/artemis-dry-run.sh --json` classificou TKT-025 como `eligible`.
 - `scripts/artemis-workspace-lifecycle.sh --artifact-root artifacts/artemis-validation-gate/run-01/workspace-lifecycle-check --json` passou.
@@ -25,6 +25,7 @@ Passou com Human Gate esperado.
 - `scripts/artemis-human-cleanup-approval-contract.sh --decision artifacts/artemis-validation-gate/run-01/workspace-cleanup-review-check/cleanup-review.json --artifact-root artifacts/artemis-validation-gate/run-01/human-cleanup-approval-contract-check --json` passou.
 - `scripts/artemis-human-decision-fixtures.sh --artifact-root artifacts/artemis-validation-gate/run-01/human-decision-fixtures-check --json` passou.
 - `scripts/artemis-real-cleanup-decision-package.sh --source artifacts/artemis-validation-gate/run-01/workspace-cleanup-review-check/cleanup-review.json --artifact-root artifacts/artemis-validation-gate/run-01/real-cleanup-decision-package-check --json` passou.
+- `scripts/artemis-human-decision-runbook-consistency.sh --artifact-root artifacts/artemis-validation-gate/run-01/human-decision-runbook-consistency-check --json` passou.
 - `scripts/artemis-approved-workspace-cleanup.sh --decision artifacts/artemis-validation-gate/run-01/workspace-cleanup-review-check/cleanup-review.json --artifact-root artifacts/artemis-validation-gate/run-01/approved-workspace-cleanup-check --json` passou.
 - `scripts/artemis-workspace-runtime-handoff.sh --lifecycle artifacts/artemis-validation-gate/run-01/workspace-lifecycle-check/workspace-lifecycle.json --cleanup artifacts/artemis-validation-gate/run-01/approved-workspace-cleanup-check/approved-cleanup.json --approval-contract artifacts/artemis-validation-gate/run-01/human-cleanup-approval-contract-check/cleanup-approval-contract.json --artifact-root artifacts/artemis-validation-gate/run-01/workspace-runtime-handoff-check --json` passou.
 - `git diff --check` passou.

@@ -150,6 +150,12 @@ Use o runbook assistido para preencher decisoes reais sem executar cleanup:
 artifacts/artemis-assisted-human-decision-runbook/run-01/RUNBOOK.md
 ```
 
+Valide a consistencia entre runbook e pacote real:
+
+```bash
+scripts/artemis-human-decision-runbook-consistency.sh --artifact-root artifacts/artemis-human-decision-runbook-consistency/run-01
+```
+
 Prepare ou execute uma tentativa local supervisionada com:
 
 ```bash

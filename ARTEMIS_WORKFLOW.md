@@ -254,6 +254,12 @@ artifacts/artemis-assisted-human-decision-runbook/run-01/RUNBOOK.md
 
 O runbook explica quando usar `approved`, `deferred` e `rejected`, como preencher metadata humana e como copiar comandos exatos sem executar cleanup.
 
+Para validar que o runbook nao divergiu do pacote real:
+
+```bash
+scripts/artemis-human-decision-runbook-consistency.sh --artifact-root artifacts/artemis-human-decision-runbook-consistency/run-01 --json
+```
+
 Para validar uma decisao humana ja preenchida sem executar cleanup:
 
 ```bash

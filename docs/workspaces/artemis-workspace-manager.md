@@ -62,6 +62,8 @@ scripts/artemis-workspace.sh --ticket TKT-019 --artifact-root artifacts/<ticket>
 
 `scripts/artemis-workspace-lifecycle.sh` lista locks, worktrees, branches e artifact roots ja materializados. O comando e somente leitura e classifica cada workspace como `active`, `review_ready` ou `decision_required`; nenhuma classificacao remove worktree ou lock automaticamente.
 
+`scripts/artemis-workspace-cleanup-review.sh` transforma o inventario em um pacote de decisao humana com checklist, bloqueios e comandos candidatos. Ele nao executa cleanup.
+
 ## Invariantes
 
 - Um agente escritor por worktree.

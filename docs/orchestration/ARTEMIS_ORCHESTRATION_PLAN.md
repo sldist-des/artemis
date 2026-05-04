@@ -489,7 +489,7 @@ Aceite:
 
 Objetivo: definir o procedimento humano para remover worktrees, branches locais e locks depois do inventario.
 
-Estado: proximo corte em TKT-025.
+Estado: concluido em TKT-025.
 
 Aceite:
 
@@ -498,6 +498,20 @@ Aceite:
 - workspace sujo ou branch nao integrada exige decisao humana;
 - remocao local registra artifact de decisao;
 - push, merge e PR continuam fora do fluxo automatico.
+
+### Fase 19 - Execucao local de cleanup aprovada
+
+Objetivo: definir se ARTEMIS deve ter um executor local de cleanup que so rode comandos aprovados explicitamente no artifact de decisao humana.
+
+Estado: proximo corte em TKT-026.
+
+Aceite:
+
+- executor recusa decisoes `pending`, `deferred` ou sem comandos explicitos;
+- comandos permitidos sao estritamente locais;
+- remocao de worktree, lock e branch local e auditada;
+- dry-run continua disponivel antes de qualquer execucao;
+- GitHub remoto continua Human Gate.
 
 ## 10. Gatilhos de confiabilidade
 

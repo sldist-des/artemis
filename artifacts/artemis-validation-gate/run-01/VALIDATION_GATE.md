@@ -1,7 +1,7 @@
 # VALIDATION GATE RESULT
 
 - Overall: human_gate
-- Passed: 24
+- Passed: 26
 - Failed: 0
 - Human Gate: 2
 
@@ -13,6 +13,7 @@
 - shell_dry_run: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_dry_run.txt`
 - shell_workspace: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace.txt`
 - shell_workspace_lifecycle: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_lifecycle.txt`
+- shell_workspace_cleanup_review: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_cleanup_review.txt`
 - shell_runner: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt`
 - shell_validation_gate: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_validation_gate.txt`
 - shell_github_issues: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_github_issues.txt`
@@ -23,6 +24,7 @@
 - dry_run: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/dry_run.txt`
 - workspace_check: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/workspace_check.txt`
 - workspace_lifecycle: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/workspace_lifecycle.txt`
+- workspace_cleanup_review: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/workspace_cleanup_review.txt`
 - runner_plan: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt`
 - runner_events: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/runner_events.txt`
 - required_files: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/required_files.txt`

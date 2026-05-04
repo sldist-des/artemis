@@ -20,6 +20,7 @@ docs/principles/artemis-principles.md
 docs/runbooks/github-setup.md
 docs/schemas/artemis-event.schema.json
 docs/schemas/artemis-event-log.schema.json
+docs/workspaces/artemis-workspace-cleanup-review.md
 control-plane/index.html
 control-plane/tasks.json
 templates/AGENTS.md
@@ -35,6 +36,7 @@ scripts/artemis-tasks.sh
 scripts/artemis-dry-run.sh
 scripts/artemis-workspace.sh
 scripts/artemis-workspace-lifecycle.sh
+scripts/artemis-workspace-cleanup-review.sh
 scripts/artemis-runner.sh
 scripts/artemis-validation-gate.sh
 scripts/artemis-github-issues.sh
@@ -97,6 +99,7 @@ sh -n scripts/artemis-tasks.sh
 sh -n scripts/artemis-dry-run.sh
 sh -n scripts/artemis-workspace.sh
 sh -n scripts/artemis-workspace-lifecycle.sh
+sh -n scripts/artemis-workspace-cleanup-review.sh
 sh -n scripts/artemis-runner.sh
 sh -n scripts/artemis-validation-gate.sh
 sh -n scripts/artemis-github-issues.sh
@@ -158,6 +161,15 @@ if ! grep -q '"locks":' /tmp/artemis-workspace-lifecycle.json; then
 fi
 if ! test -f /tmp/artemis-workspace-lifecycle/WORKSPACE_LIFECYCLE.md; then
   echo "scripts/artemis-workspace-lifecycle.sh did not write lifecycle artifact" >&2
+  exit 1
+fi
+scripts/artemis-workspace-cleanup-review.sh --artifact-root /tmp/artemis-workspace-cleanup-review --json >/tmp/artemis-workspace-cleanup-review.json
+if ! grep -q '"cleanup_allowed_by_script": false' /tmp/artemis-workspace-cleanup-review.json; then
+  echo "scripts/artemis-workspace-cleanup-review.sh did not preserve manual cleanup gate" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-workspace-cleanup-review/DECISION_TEMPLATE.md; then
+  echo "scripts/artemis-workspace-cleanup-review.sh did not write decision template" >&2
   exit 1
 fi
 scripts/artemis-runner.sh --input /tmp/artemis-runner-task-source.json --ticket TKT-VALIDATE --command "scripts/artemis-dry-run.sh --input /tmp/artemis-runner-task-source.json" --artifact-root /tmp/artemis-runner-validation >/tmp/artemis-runner.out

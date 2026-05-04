@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T14:31:27Z",
+  "generated_at": "2026-05-04T14:38:08Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
-      "id": "tkt-025",
-      "ticket": "TKT-025",
-      "title": "Revisao manual de cleanup de workspaces",
+      "id": "tkt-026",
+      "ticket": "TKT-026",
+      "title": "Executor local de cleanup aprovado",
       "state": "ready",
       "owner": "Architect",
-      "risk": "medium",
-      "summary": "Um humano deve conseguir decidir se um workspace `review_ready` pode ser removido localmente, quais evidencias precisam existir antes da remocao e como registrar a decisao sem automatizar cleanup.",
-      "exec_pack": "docs/exec-packs/active/TKT-025-workspace-cleanup-review.md",
-      "evidence": "artifacts/artemis-workspace-cleanup-review/run-01/STATUS.md",
+      "risk": "high",
+      "summary": "Um comando deve conseguir validar uma decisao humana preenchida e, somente quando aprovado, executar cleanup local de worktree, lock e branch com dry-run e evidencia. O padrao deve continuar read-only.",
+      "exec_pack": "docs/exec-packs/active/TKT-026-approved-workspace-cleanup-executor.md",
+      "evidence": "artifacts/artemis-approved-workspace-cleanup/run-01/STATUS.md",
       "tags": ["exec-pack", "active"]
     },
     {
@@ -313,6 +313,18 @@
       "summary": "Um comando local deve listar worktrees, branches, locks e artifact roots ARTEMIS, mostrando quais estao ativos, quais estao prontos para revisao humana e quais precisam de decisao antes de limpeza.",
       "exec_pack": "docs/exec-packs/done/TKT-024-workspace-lifecycle-inventory.md",
       "evidence": "artifacts/artemis-workspace-lifecycle/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-025",
+      "ticket": "TKT-025",
+      "title": "Revisao manual de cleanup de workspaces",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "Um humano deve conseguir decidir se um workspace `review_ready` pode ser removido localmente, quais evidencias precisam existir antes da remocao e como registrar a decisao sem automatizar cleanup.",
+      "exec_pack": "docs/exec-packs/done/TKT-025-workspace-cleanup-review.md",
+      "evidence": "artifacts/artemis-workspace-cleanup-review/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

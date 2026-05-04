@@ -214,6 +214,14 @@ scripts/artemis-workspace-lifecycle.sh --artifact-root artifacts/artemis-workspa
 
 O inventario e read-only. Ele lista locks, worktrees, branches, artifact roots, limpeza pendente e criterio de revisao. `review_ready` nao autoriza limpeza automatica; significa apenas que o workspace pode ir para revisao humana antes de remover worktree ou lock.
 
+Para preparar o pacote de decisao humana de cleanup:
+
+```bash
+scripts/artemis-workspace-cleanup-review.sh --artifact-root artifacts/artemis-workspace-cleanup-review/run-01 --json
+```
+
+Esse comando gera `cleanup-review.json`, `CLEANUP_REVIEW.md` e `DECISION_TEMPLATE.md`. Ele nunca executa `git worktree remove`, `rm` ou `git branch -d`; apenas lista comandos que podem ser aprovados explicitamente por humano.
+
 Para preparar uma execucao local supervisionada, use:
 
 ```bash

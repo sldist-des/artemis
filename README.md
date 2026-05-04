@@ -102,6 +102,12 @@ Inventarie o lifecycle local de workspaces sem limpar nada:
 scripts/artemis-workspace-lifecycle.sh --artifact-root artifacts/artemis-workspace-lifecycle/run-01
 ```
 
+Prepare a decisao humana de cleanup, ainda sem remover nada:
+
+```bash
+scripts/artemis-workspace-cleanup-review.sh --artifact-root artifacts/artemis-workspace-cleanup-review/run-01
+```
+
 Prepare ou execute uma tentativa local supervisionada com:
 
 ```bash

@@ -1,24 +1,24 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T14:31:30Z",
+  "generated_at": "2026-05-04T14:38:12Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
-      "event_id": "evt_tkt-025_task_discovered",
+      "event_id": "evt_tkt-026_task_discovered",
       "event_type": "task.discovered",
-      "generated_at": "2026-05-04T14:31:30Z",
+      "generated_at": "2026-05-04T14:38:12Z",
       "producer": {
         "adapter": "exec_pack",
         "name": "scripts/artemis-tasks.sh",
         "mode": "read_only"
       },
       "subject": {
-        "ticket": "TKT-025",
-        "task_id": "tkt-025",
-        "title": "Revisao manual de cleanup de workspaces",
-        "exec_pack": "docs/exec-packs/active/TKT-025-workspace-cleanup-review.md",
-        "artifact_root": "artifacts/artemis-workspace-cleanup-review/run-01"
+        "ticket": "TKT-026",
+        "task_id": "tkt-026",
+        "title": "Executor local de cleanup aprovado",
+        "exec_pack": "docs/exec-packs/active/TKT-026-approved-workspace-cleanup-executor.md",
+        "artifact_root": "artifacts/artemis-approved-workspace-cleanup/run-01"
       },
       "runner": {
         "kind": "none"
@@ -34,18 +34,18 @@
       },
       "severity": "info",
       "evidence": {
-        "artifact_path": "artifacts/artemis-workspace-cleanup-review/run-01",
-        "status_path": "artifacts/artemis-workspace-cleanup-review/run-01/STATUS.md",
-        "validation_path": "artifacts/artemis-workspace-cleanup-review/run-01/VALIDATION.md",
-        "handoff_path": "artifacts/artemis-workspace-cleanup-review/run-01/HANDOFF.md",
+        "artifact_path": "artifacts/artemis-approved-workspace-cleanup/run-01",
+        "status_path": "artifacts/artemis-approved-workspace-cleanup/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-approved-workspace-cleanup/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-approved-workspace-cleanup/run-01/HANDOFF.md",
         "logs": []
       },
       "links": {
-        "correlation_id": "tkt-025"
+        "correlation_id": "tkt-026"
       },
       "payload": {
-        "summary": "Um humano deve conseguir decidir se um workspace `review_ready` pode ser removido localmente, quais evidencias precisam existir antes da remocao e como registrar a decisao sem automatizar cleanup.",
-        "risk": "medium",
+        "summary": "Um comando deve conseguir validar uma decisao humana preenchida e, somente quando aprovado, executar cleanup local de worktree, lock e branch com dry-run e evidencia. O padrao deve continuar read-only.",
+        "risk": "high",
         "owner": "Architect",
         "tags": [
           "exec-pack",
@@ -58,7 +58,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-04T14:31:30Z",
+      "generated_at": "2026-05-04T14:38:12Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -125,7 +125,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-04T14:31:30Z",
+      "generated_at": "2026-05-04T14:38:12Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -212,7 +212,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-04T14:31:30Z",
+      "generated_at": "2026-05-04T14:38:12Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -305,7 +305,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-04T14:31:30Z",
+      "generated_at": "2026-05-04T14:38:12Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -345,7 +345,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 22,
+          "passed": 24,
           "failed": 0,
           "human_gate": 2
         },
@@ -384,6 +384,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace.txt"
+          },
+          {
+            "name": "shell_workspace_lifecycle",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_lifecycle.txt"
           },
           {
             "name": "shell_runner",
@@ -447,6 +454,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/workspace_check.txt"
+          },
+          {
+            "name": "workspace_lifecycle",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/workspace_lifecycle.txt"
           },
           {
             "name": "runner_plan",

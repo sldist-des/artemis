@@ -1,33 +1,33 @@
 {
   "schema_version": 1,
-  "source": "artifacts/artemis-validation-gate/run-01/task-source.json",
+  "source": "control-plane/tasks.json",
   "summary": {
     "eligible": 1,
     "blocked": 0,
     "human_gate": 0,
-    "done": 21
+    "done": 20
   },
   "decisions": [
     {
-      "ticket": "TKT-021",
+      "ticket": "TKT-020",
       "decision": "eligible",
       "runner": "codex-cli",
       "reason": "Task has Exec Pack, owner, evidence target, and no human-gate terms.",
-      "title": "Materializar workspace ARTEMIS controlado",
+      "title": "Emitir eventos canonicos de tentativa do runner",
       "state": "ready",
-      "exec_pack": "docs/exec-packs/active/TKT-021-workspace-materialization.md",
+      "exec_pack": "docs/exec-packs/active/TKT-020-runner-attempt-events.md",
       "workspace": {
-        "ticket": "TKT-021",
-        "task_id": "tkt-021",
-        "title": "Materializar workspace ARTEMIS controlado",
+        "ticket": "TKT-020",
+        "task_id": "tkt-020",
+        "title": "Emitir eventos canonicos de tentativa do runner",
         "readiness": "ready",
         "reason": "Workspace can be planned without creating a worktree.",
         "workspace": {
           "mode": "planned",
-          "branch": "artemis/tkt-021-materializar-workspace-artemis-contr",
-          "worktree_path": "../veri-artemis-worktrees/tkt-021",
-          "lock_path": ".artemis/locks/tkt-021.lock",
-          "artifact_root": "artifacts/artemis-workspace-materialization/run-01",
+          "branch": "artemis/tkt-020-emitir-eventos-canonicos-de-tentativ",
+          "worktree_path": "../veri-artemis-worktrees/tkt-020",
+          "lock_path": ".artemis/locks/tkt-020.lock",
+          "artifact_root": "artifacts/artemis-runner-attempt-events/run-01",
           "writer": "Architect",
           "cleanup_state": "not_created"
         },
@@ -45,55 +45,55 @@
           {
             "name": "risk",
             "status": "passed",
-            "reason": "risk=high"
+            "reason": "risk=medium"
           },
           {
             "name": "exec_pack",
             "status": "passed",
             "reason": "Exec Pack is declared",
-            "path": "docs/exec-packs/active/TKT-021-workspace-materialization.md"
+            "path": "docs/exec-packs/active/TKT-020-runner-attempt-events.md"
           },
           {
             "name": "exec_pack_file",
             "status": "passed",
             "reason": "Exec Pack file exists",
-            "path": "docs/exec-packs/active/TKT-021-workspace-materialization.md"
+            "path": "docs/exec-packs/active/TKT-020-runner-attempt-events.md"
           },
           {
             "name": "artifact_root",
             "status": "passed",
-            "reason": "artifact_root=artifacts/artemis-workspace-materialization/run-01",
-            "path": "artifacts/artemis-workspace-materialization/run-01"
+            "reason": "artifact_root=artifacts/artemis-runner-attempt-events/run-01",
+            "path": "artifacts/artemis-runner-attempt-events/run-01"
           },
           {
             "name": "writer_lock",
             "status": "passed",
             "reason": "no existing writer lock",
-            "path": ".artemis/locks/tkt-021.lock"
+            "path": ".artemis/locks/tkt-020.lock"
           },
           {
             "name": "worktree_path",
             "status": "passed",
             "reason": "planned worktree path is free",
-            "path": "../veri-artemis-worktrees/tkt-021"
+            "path": "../veri-artemis-worktrees/tkt-020"
           },
           {
             "name": "branch",
             "status": "passed",
             "reason": "planned branch is new",
-            "name_ref": "artemis/tkt-021-materializar-workspace-artemis-contr"
+            "name_ref": "artemis/tkt-020-emitir-eventos-canonicos-de-tentativ"
           },
           {
             "name": "branch_worktree_occupancy",
             "status": "passed",
             "reason": "planned branch is not checked out elsewhere",
-            "name_ref": "artemis/tkt-021-materializar-workspace-artemis-contr"
+            "name_ref": "artemis/tkt-020-emitir-eventos-canonicos-de-tentativ"
           },
           {
             "name": "current_worktree_dirty",
             "status": "warning",
-            "reason": "current worktree has 50 pending item(s)",
-            "dirty_count": 50
+            "reason": "current worktree has 5 pending item(s)",
+            "dirty_count": 5
           }
         ]
       }
@@ -277,15 +277,6 @@
       "title": "Definir Workspace Manager ARTEMIS",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-019-artemis-workspace-manager.md"
-    },
-    {
-      "ticket": "TKT-020",
-      "decision": "done",
-      "runner": "none",
-      "reason": "Task already archived in done state.",
-      "title": "Emitir eventos canonicos de tentativa do runner",
-      "state": "done",
-      "exec_pack": "docs/exec-packs/done/TKT-020-runner-attempt-events.md"
     }
   ]
 }

@@ -13,6 +13,7 @@ task_source	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-lo
 dry_run	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/dry_run.txt
 workspace_check	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/workspace_check.txt
 runner_plan	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt
+runner_events	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/runner_events.txt
 required_files	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/required_files.txt
 git_diff_check	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/git_diff_check.txt
 codex_app_server	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/codex_app_server.txt

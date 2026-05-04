@@ -67,6 +67,7 @@
             "github_issues",
             "codex_app_server",
             "claude_code",
+            "local_runner",
             "validation_gate",
             "control_plane",
             "manual"

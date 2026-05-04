@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source": "artifacts/artemis-validation-gate/run-01/task-source.json",
+  "source": "control-plane/tasks.json",
   "summary": {
     "eligible": 1,
     "blocked": 0,
@@ -92,8 +92,8 @@
           {
             "name": "current_worktree_dirty",
             "status": "warning",
-            "reason": "current worktree has 50 pending item(s)",
-            "dirty_count": 50
+            "reason": "current worktree has 48 pending item(s)",
+            "dirty_count": 48
           }
         ]
       }

@@ -206,6 +206,14 @@ scripts/artemis-runner.sh --ticket TKT-000 --command "scripts/validate-artemis.s
 
 Sem `--execute`, o runner apenas registra o plano. Com `--execute`, ele roda o comando depois de validar elegibilidade, readiness de workspace e bloquear comandos remotos, destrutivos ou de deploy. Cada tentativa registra `workspace.json`.
 
+Cada tentativa tambem registra `events.json` com eventos canonicos:
+
+- `runner.attempt_planned`;
+- `runner.attempt_started`, quando `--execute` for usado;
+- `runner.attempt_completed`.
+
+Esses eventos sao observacionais e apontam para `dry-run.json`, `workspace.json`, comando e resultado.
+
 Antes de mover uma tarefa para Handoff ou Done, execute o Validation Gate:
 
 ```bash

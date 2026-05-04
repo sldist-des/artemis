@@ -158,6 +158,19 @@ if ! find /tmp/artemis-runner-validation/attempts -name workspace.json -type f |
   echo "scripts/artemis-runner.sh did not record workspace readiness in the attempt" >&2
   exit 1
 fi
+runner_events=$(find /tmp/artemis-runner-validation/attempts -name events.json -type f -print -quit)
+if [ -z "$runner_events" ]; then
+  echo "scripts/artemis-runner.sh did not record canonical runner events" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "runner.attempt_planned"' "$runner_events"; then
+  echo "scripts/artemis-runner.sh did not emit runner.attempt_planned" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "runner.attempt_completed"' "$runner_events"; then
+  echo "scripts/artemis-runner.sh did not emit runner.attempt_completed" >&2
+  exit 1
+fi
 
 scripts/artemis-validation-gate.sh --artifact-root /tmp/artemis-validation-gate --json >/tmp/artemis-validation-gate.json
 if ! grep -q '"overall": "human_gate"' /tmp/artemis-validation-gate.json; then
@@ -166,6 +179,10 @@ if ! grep -q '"overall": "human_gate"' /tmp/artemis-validation-gate.json; then
 fi
 if ! grep -q '"event_type": "validation.completed"' /tmp/artemis-validation-gate/events.json; then
   echo "scripts/artemis-validation-gate.sh did not emit canonical events" >&2
+  exit 1
+fi
+if ! find /tmp/artemis-validation-gate/runner-attempts -name events.json -type f -print -quit | grep -q events.json; then
+  echo "scripts/artemis-validation-gate.sh did not preserve runner attempt events" >&2
   exit 1
 fi
 

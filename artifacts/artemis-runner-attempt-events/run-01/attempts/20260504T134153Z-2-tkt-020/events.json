@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T13:41:53Z",
+  "source": "scripts/artemis-runner.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_20260504t134153z-2-tkt-020_planned",
+      "event_type": "runner.attempt_planned",
+      "generated_at": "2026-05-04T13:41:53Z",
+      "producer": {
+        "adapter": "local_runner",
+        "name": "scripts/artemis-runner.sh",
+        "mode": "supervised"
+      },
+      "subject": {
+        "ticket": "TKT-020",
+        "task_id": "tkt-020",
+        "title": "Emitir eventos canonicos de tentativa do runner",
+        "exec_pack": "docs/exec-packs/active/TKT-020-runner-attempt-events.md",
+        "artifact_root": "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020",
+        "branch": "artemis/tkt-020-emitir-eventos-canonicos-de-tentativ",
+        "worktree": "../veri-artemis-worktrees/tkt-020"
+      },
+      "runner": {
+        "kind": "codex_cli",
+        "attempt_id": "20260504T134153Z-2-tkt-020",
+        "command": "scripts/artemis-dry-run.sh"
+      },
+      "state": {
+        "from": "ready",
+        "to": "running",
+        "reason": "Supervised runner attempt planned with workspace readiness."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020",
+        "status_path": "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020/STATUS.md",
+        "validation_path": "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020/dry-run.json",
+          "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020/workspace.json",
+          "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020/RUNNER.md",
+          "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020/ENVIRONMENT.md",
+          "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020/COMMAND.txt",
+          "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020/RESULT.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-020"
+      },
+      "payload": {
+        "attempt_id": "20260504T134153Z-2-tkt-020",
+        "execute": false,
+        "command": "scripts/artemis-dry-run.sh",
+        "workspace": {
+          "mode": "planned",
+          "branch": "artemis/tkt-020-emitir-eventos-canonicos-de-tentativ",
+          "worktree_path": "../veri-artemis-worktrees/tkt-020",
+          "lock_path": ".artemis/locks/tkt-020.lock",
+          "artifact_root": "artifacts/artemis-runner-attempt-events/run-01",
+          "writer": "Architect",
+          "cleanup_state": "not_created"
+        },
+        "artifact_root": "artifacts/artemis-runner-attempt-events/run-01",
+        "reason": "Supervised runner attempt planned with workspace readiness."
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_20260504t134153z-2-tkt-020_completed",
+      "event_type": "runner.attempt_completed",
+      "generated_at": "2026-05-04T13:41:53Z",
+      "producer": {
+        "adapter": "local_runner",
+        "name": "scripts/artemis-runner.sh",
+        "mode": "supervised"
+      },
+      "subject": {
+        "ticket": "TKT-020",
+        "task_id": "tkt-020",
+        "title": "Emitir eventos canonicos de tentativa do runner",
+        "exec_pack": "docs/exec-packs/active/TKT-020-runner-attempt-events.md",
+        "artifact_root": "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020",
+        "branch": "artemis/tkt-020-emitir-eventos-canonicos-de-tentativ",
+        "worktree": "../veri-artemis-worktrees/tkt-020"
+      },
+      "runner": {
+        "kind": "codex_cli",
+        "attempt_id": "20260504T134153Z-2-tkt-020",
+        "command": "scripts/artemis-dry-run.sh"
+      },
+      "state": {
+        "from": "running",
+        "to": "review",
+        "reason": "Supervised runner plan completed without command execution."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020",
+        "status_path": "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020/STATUS.md",
+        "validation_path": "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020/dry-run.json",
+          "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020/workspace.json",
+          "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020/RUNNER.md",
+          "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020/ENVIRONMENT.md",
+          "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020/COMMAND.txt",
+          "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020/RESULT.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-020"
+      },
+      "payload": {
+        "attempt_id": "20260504T134153Z-2-tkt-020",
+        "execute": false,
+        "command": "scripts/artemis-dry-run.sh",
+        "workspace": {
+          "mode": "planned",
+          "branch": "artemis/tkt-020-emitir-eventos-canonicos-de-tentativ",
+          "worktree_path": "../veri-artemis-worktrees/tkt-020",
+          "lock_path": ".artemis/locks/tkt-020.lock",
+          "artifact_root": "artifacts/artemis-runner-attempt-events/run-01",
+          "writer": "Architect",
+          "cleanup_state": "not_created"
+        },
+        "artifact_root": "artifacts/artemis-runner-attempt-events/run-01",
+        "exit_code": 0,
+        "command_log": "artifacts/artemis-runner-attempt-events/run-01/attempts/20260504T134153Z-2-tkt-020/COMMAND.txt",
+        "reason": "Supervised runner plan completed without command execution."
+      }
+    }
+  ]
+}

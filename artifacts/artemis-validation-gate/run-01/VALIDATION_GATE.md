@@ -1,7 +1,7 @@
 # VALIDATION GATE RESULT
 
 - Overall: human_gate
-- Passed: 21
+- Passed: 22
 - Failed: 0
 - Human Gate: 2
 
@@ -22,6 +22,7 @@
 - dry_run: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/dry_run.txt`
 - workspace_check: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/workspace_check.txt`
 - runner_plan: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt`
+- runner_events: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/runner_events.txt`
 - required_files: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/required_files.txt`
 - git_diff_check: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/git_diff_check.txt`
 - codex_app_server: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/codex_app_server.txt`

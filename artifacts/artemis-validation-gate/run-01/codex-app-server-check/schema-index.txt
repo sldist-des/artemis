@@ -108,6 +108,8 @@ v2/GetAccountResponse.json
 v2/GuardianWarningNotification.json
 v2/HookCompletedNotification.json
 v2/HookStartedNotification.json
+v2/HooksListParams.json
+v2/HooksListResponse.json
 v2/ItemCompletedNotification.json
 v2/ItemGuardianApprovalReviewCompletedNotification.json
 v2/ItemGuardianApprovalReviewStartedNotification.json
@@ -135,6 +137,8 @@ v2/McpServerToolCallResponse.json
 v2/McpToolCallProgressNotification.json
 v2/ModelListParams.json
 v2/ModelListResponse.json
+v2/ModelProviderCapabilitiesReadParams.json
+v2/ModelProviderCapabilitiesReadResponse.json
 v2/ModelReroutedNotification.json
 v2/ModelVerificationNotification.json
 v2/PlanDeltaNotification.json
@@ -150,6 +154,7 @@ v2/RawResponseItemCompletedNotification.json
 v2/ReasoningSummaryPartAddedNotification.json
 v2/ReasoningSummaryTextDeltaNotification.json
 v2/ReasoningTextDeltaNotification.json
+v2/RemoteControlStatusChangedNotification.json
 v2/ReviewStartParams.json
 v2/ReviewStartResponse.json
 v2/SendAddCreditsNudgeEmailParams.json
@@ -171,6 +176,8 @@ v2/ThreadCompactStartParams.json
 v2/ThreadCompactStartResponse.json
 v2/ThreadForkParams.json
 v2/ThreadForkResponse.json
+v2/ThreadGoalClearedNotification.json
+v2/ThreadGoalUpdatedNotification.json
 v2/ThreadInjectItemsParams.json
 v2/ThreadInjectItemsResponse.json
 v2/ThreadListParams.json

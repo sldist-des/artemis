@@ -909,14 +909,25 @@
       },
       {
         id: "tkt-020",
-        state: "ready",
+        state: "done",
         ticket: "TKT-020",
         title: "Eventos de tentativa do runner",
-        summary: "Emitir eventos canonicos para tentativa planejada, iniciada e concluida.",
+        summary: "Runner supervisionado emite eventos canonicos por tentativa.",
         owner: "Codex",
         risk: "medium",
-        evidence: "docs/exec-packs/active/TKT-020-runner-attempt-events.md",
+        evidence: "artifacts/artemis-runner-attempt-events/run-01",
         tags: ["runner", "events", "attempt"]
+      },
+      {
+        id: "tkt-021",
+        state: "ready",
+        ticket: "TKT-021",
+        title: "Materializar workspace controlado",
+        summary: "Criar branch, worktree e lock local apenas com flag explicita.",
+        owner: "Codex",
+        risk: "high",
+        evidence: "docs/exec-packs/active/TKT-021-workspace-materialization.md",
+        tags: ["workspace", "worktree", "lock"]
       },
       {
         id: "github-auth",
@@ -947,17 +958,17 @@
 
     const seedEvents = [
       {
-        event_id: "evt_tkt-020_task_discovered",
+        event_id: "evt_tkt-021_task_discovered",
         event_type: "task.discovered",
-        generated_at: "2026-04-30T20:36:42Z",
+        generated_at: "2026-05-04T13:42:03Z",
         producer: { adapter: "exec_pack", name: "scripts/artemis-tasks.sh", mode: "read_only" },
         subject: {
-          ticket: "TKT-020",
-          title: "Emitir eventos canonicos de tentativa do runner"
+          ticket: "TKT-021",
+          title: "Materializar workspace ARTEMIS controlado"
         },
         state: { from: null, to: "ready", reason: "Active Exec Pack discovered by local task source." },
         severity: "info",
-        evidence: { artifact_path: "artifacts/artemis-runner-attempt-events/run-01" }
+        evidence: { artifact_path: "artifacts/artemis-workspace-materialization/run-01" }
       },
       {
         event_id: "evt_tkt-017_adapter_events",

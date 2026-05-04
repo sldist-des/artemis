@@ -419,7 +419,7 @@ Aceite:
 
 Objetivo: fazer o runner supervisionado registrar ciclo de tentativa como eventos canonicos.
 
-Estado: proximo corte em TKT-020.
+Estado: concluido em TKT-020.
 
 Aceite:
 
@@ -428,6 +428,20 @@ Aceite:
 - `workspace.json`, `dry-run.json`, comando e resultado aparecem como evidencia;
 - falha tecnica vira evento com severidade adequada;
 - Control Plane consegue consumir o ciclo sem editar estado canonico.
+
+### Fase 14 - Materializacao controlada de workspace
+
+Objetivo: criar branch, worktree e lock local somente quando readiness estiver `ready` e houver comando explicito.
+
+Estado: proximo corte em TKT-021.
+
+Aceite:
+
+- `scripts/artemis-workspace.sh` ganha modo explicito de criacao ou comando dedicado;
+- nenhum workspace e criado sem flag clara;
+- lock registra ticket, writer, branch e artifact root;
+- conflitos permanecem Human Gate;
+- limpeza/abandono de workspace fica documentada.
 
 ## 10. Gatilhos de confiabilidade
 

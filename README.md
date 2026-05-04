@@ -97,6 +97,8 @@ scripts/artemis-runner.sh --ticket TKT-000 --command "scripts/validate-artemis.s
 scripts/artemis-runner.sh --ticket TKT-000 --command "scripts/validate-artemis.sh" --execute
 ```
 
+Cada tentativa registra `dry-run.json`, `workspace.json`, `COMMAND.txt`, `RESULT.md` e `events.json`.
+
 Rode o Validation Gate antes de handoff:
 
 ```bash

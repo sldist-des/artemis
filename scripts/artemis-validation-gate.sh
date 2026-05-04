@@ -105,6 +105,7 @@ run_check task_source technical "scripts/artemis-tasks.sh --output '$task_source
 run_check dry_run technical "scripts/artemis-dry-run.sh --input '$task_source_file' --json"
 run_check workspace_check technical "scripts/artemis-workspace.sh --input '$runner_source_file' --ticket TKT-VALIDATE --artifact-root '$artifact_root/workspace-check' --json"
 run_check runner_plan technical "scripts/artemis-runner.sh --input '$runner_source_file' --ticket TKT-VALIDATE --command 'scripts/artemis-dry-run.sh --input $runner_source_file' --artifact-root '$artifact_root/runner-attempts'"
+run_check runner_events technical "events_file=\$(find '$artifact_root/runner-attempts/attempts' -name events.json -type f -print -quit); test -n \"\$events_file\" && grep -q '\"event_type\": \"runner.attempt_planned\"' \"\$events_file\" && grep -q '\"event_type\": \"runner.attempt_completed\"' \"\$events_file\""
 run_check required_files technical "test -f ARTEMIS_WORKFLOW.md && test -f control-plane/tasks.json && test -f scripts/artemis-workspace.sh && test -f scripts/artemis-runner.sh"
 run_check git_diff_check technical "git diff --check"
 run_check codex_app_server technical "scripts/artemis-codex-app-server.sh --artifact-root '$artifact_root/codex-app-server-check' --json"

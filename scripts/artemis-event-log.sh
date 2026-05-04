@@ -42,6 +42,7 @@ fi
 
 payload=$(python3 - <<'PY'
 import json
+from pathlib import Path
 from scripts.artemis_event_common import event, event_log, now_utc, read_json
 
 generated_at = now_utc()
@@ -173,6 +174,20 @@ events.append(event(
     },
     severity="warning" if validation.get("overall") == "human_gate" else "info",
 ))
+
+attempt_roots = set()
+for task in tasks.get("tasks", []):
+    task_artifact_root = task.get("evidence", "")
+    if task_artifact_root.endswith("/STATUS.md"):
+        task_artifact_root = task_artifact_root.removesuffix("/STATUS.md")
+    if task_artifact_root.startswith("artifacts/"):
+        attempt_roots.add(task_artifact_root)
+
+for attempt_root in sorted(attempt_roots):
+    for attempt_events in sorted((Path(attempt_root) / "attempts").glob("*/events.json")):
+        attempt_log = read_json(attempt_events)
+        for attempt_event in attempt_log.get("events", []):
+            events.append(attempt_event)
 
 event_log = event_log(source="scripts/artemis-event-log.sh", generated_at=generated_at, events=events)
 

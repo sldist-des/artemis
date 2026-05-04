@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-30T20:37:39Z",
+  "generated_at": "2026-05-04T13:50:19Z",
   "source": "scripts/artemis-validation-gate.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-04-30T20:37:39Z",
+      "generated_at": "2026-05-04T13:50:19Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -55,6 +55,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/dry_run.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/workspace_check.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/runner_events.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/required_files.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/git_diff_check.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/codex_app_server.txt",
@@ -71,7 +72,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 21,
+          "passed": 22,
           "failed": 0,
           "human_gate": 2
         },
@@ -180,6 +181,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt"
+          },
+          {
+            "name": "runner_events",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/runner_events.txt"
           },
           {
             "name": "required_files",

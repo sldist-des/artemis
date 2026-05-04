@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-30T20:37:10Z",
+  "generated_at": "2026-05-04T13:43:23Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
-      "id": "tkt-020",
-      "ticket": "TKT-020",
-      "title": "Emitir eventos canonicos de tentativa do runner",
+      "id": "tkt-021",
+      "ticket": "TKT-021",
+      "title": "Materializar workspace ARTEMIS controlado",
       "state": "ready",
       "owner": "Architect",
-      "risk": "medium",
-      "summary": "Cada tentativa local deve produzir eventos compativeis com `docs/schemas/artemis-event.schema.json`, vinculando ticket, workspace, dry-run, comando, resultado e artifact root sem alterar estado canonico.",
-      "exec_pack": "docs/exec-packs/active/TKT-020-runner-attempt-events.md",
-      "evidence": "artifacts/artemis-runner-attempt-events/run-01/STATUS.md",
+      "risk": "high",
+      "summary": "Um comando local deve materializar o workspace planejado apenas quando readiness estiver `ready`, criando worktree e lock com evidencia, sem iniciar agentes automaticamente.",
+      "exec_pack": "docs/exec-packs/active/TKT-021-workspace-materialization.md",
+      "evidence": "artifacts/artemis-workspace-materialization/run-01/STATUS.md",
       "tags": ["exec-pack", "active"]
     },
     {
@@ -253,6 +253,18 @@
       "summary": "ARTEMIS deve ter uma especificacao e um primeiro check local que expliquem quando uma tarefa pode abrir um workspace isolado, quando deve parar em Human Gate e como registrar evidencias sem iniciar agentes automaticamente.",
       "exec_pack": "docs/exec-packs/done/TKT-019-artemis-workspace-manager.md",
       "evidence": "artifacts/artemis-workspace-manager/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-020",
+      "ticket": "TKT-020",
+      "title": "Emitir eventos canonicos de tentativa do runner",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "Cada tentativa local deve produzir eventos compativeis com `docs/schemas/artemis-event.schema.json`, vinculando ticket, workspace, dry-run, comando, resultado e artifact root sem alterar estado canonico.",
+      "exec_pack": "docs/exec-packs/done/TKT-020-runner-attempt-events.md",
+      "evidence": "artifacts/artemis-runner-attempt-events/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

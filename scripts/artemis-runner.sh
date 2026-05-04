@@ -207,6 +207,146 @@ cat >"$attempt_dir/RESULT.md" <<EOF
 - Command log: $attempt_dir/COMMAND.txt
 EOF
 
+python3 - "$attempt_dir" "$ticket" "$SAFE_TICKET" "$TITLE" "$EXEC_PACK" "$ARTIFACT_ROOT" "$timestamp" "$execute" "$code" "$command" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+from scripts.artemis_event_common import event, event_log, now_utc, write_event_log
+
+(
+    attempt_dir,
+    ticket,
+    safe_ticket,
+    title,
+    exec_pack,
+    artifact_root,
+    timestamp,
+    execute,
+    code,
+    command,
+) = sys.argv[1:11]
+
+attempt_path = Path(attempt_dir)
+attempt_id = attempt_path.name
+event_id_prefix = "evt_" + attempt_id.lower().replace("_", "-")
+generated_at = now_utc()
+exit_code = int(code)
+executed = execute == "1"
+
+workspace_payload = json.loads((attempt_path / "workspace.json").read_text(encoding="utf-8"))
+workspace = workspace_payload["workspaces"][0]["workspace"]
+
+logs = [
+    f"{attempt_dir}/dry-run.json",
+    f"{attempt_dir}/workspace.json",
+    f"{attempt_dir}/RUNNER.md",
+    f"{attempt_dir}/ENVIRONMENT.md",
+    f"{attempt_dir}/COMMAND.txt",
+    f"{attempt_dir}/RESULT.md",
+]
+
+producer = {
+    "adapter": "local_runner",
+    "name": "scripts/artemis-runner.sh",
+    "mode": "supervised",
+}
+runner = {
+    "kind": "codex_cli",
+    "attempt_id": attempt_id,
+    "command": command,
+}
+common_payload = {
+    "attempt_id": attempt_id,
+    "execute": executed,
+    "command": command,
+    "workspace": workspace,
+    "artifact_root": artifact_root,
+}
+
+events = []
+
+planned = event(
+    event_id=f"{event_id_prefix}_planned",
+    event_type="runner.attempt_planned",
+    generated_at=generated_at,
+    producer=producer,
+    ticket=ticket,
+    title=title,
+    exec_pack=exec_pack,
+    artifact_root=attempt_dir,
+    state_from="ready",
+    state_to="running",
+    runner=runner,
+    logs=logs,
+    payload={
+        **common_payload,
+        "reason": "Supervised runner attempt planned with workspace readiness.",
+    },
+)
+planned["subject"]["branch"] = workspace["branch"]
+planned["subject"]["worktree"] = workspace["worktree_path"]
+events.append(planned)
+
+if executed:
+    started = event(
+        event_id=f"{event_id_prefix}_started",
+        event_type="runner.attempt_started",
+        generated_at=generated_at,
+        producer=producer,
+        ticket=ticket,
+        title=title,
+        exec_pack=exec_pack,
+        artifact_root=attempt_dir,
+        state_from="running",
+        state_to="running",
+        runner=runner,
+        logs=logs,
+        payload={
+            **common_payload,
+            "reason": "Supervised runner command started.",
+        },
+    )
+    started["subject"]["branch"] = workspace["branch"]
+    started["subject"]["worktree"] = workspace["worktree_path"]
+    events.append(started)
+
+completed_state = "review" if exit_code == 0 else "blocked"
+completed = event(
+    event_id=f"{event_id_prefix}_completed",
+    event_type="runner.attempt_completed",
+    generated_at=generated_at,
+    producer=producer,
+    ticket=ticket,
+    title=title,
+    exec_pack=exec_pack,
+    artifact_root=attempt_dir,
+    state_from="running",
+    state_to=completed_state,
+    runner=runner,
+    severity="info" if exit_code == 0 else "error",
+    logs=logs,
+    payload={
+        **common_payload,
+        "exit_code": exit_code,
+        "command_log": f"{attempt_dir}/COMMAND.txt",
+        "reason": (
+            "Supervised runner command completed."
+            if executed
+            else "Supervised runner plan completed without command execution."
+        ),
+    },
+)
+completed["subject"]["branch"] = workspace["branch"]
+completed["subject"]["worktree"] = workspace["worktree_path"]
+events.append(completed)
+
+write_event_log(
+    attempt_path / "events.json",
+    event_log(source="scripts/artemis-runner.sh", generated_at=generated_at, events=events),
+)
+PY
+
 if [ "$code" -ne 0 ]; then
   echo "runner command failed with exit code $code; see $attempt_dir/COMMAND.txt" >&2
   exit "$code"

@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-04-30T20:37:39Z",
+  "generated_at": "2026-05-04T13:50:19Z",
   "overall": "human_gate",
   "summary": {
-    "passed": 21,
+    "passed": 22,
     "failed": 0,
     "human_gate": 2
   },
@@ -112,6 +112,13 @@
       "status": "passed",
       "exit_code": 0,
       "log": "artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt"
+    },
+    {
+      "name": "runner_events",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/runner_events.txt"
     },
     {
       "name": "required_files",

@@ -3,7 +3,7 @@
 - Overall: passed
 - Reason: Codex app-server local contract check passed.
 - Codex CLI: /usr/bin/codex
-- Generated schema files during probe: 227
+- Generated schema files during probe: 234
 
 ## Sources
 

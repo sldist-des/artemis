@@ -13,7 +13,15 @@ Cada tarefa elegivel recebe um plano de workspace com:
 - dono escritor;
 - estado de limpeza.
 
-O primeiro corte e read-only. Ele calcula readiness e registra evidencias, mas nao cria worktree, nao troca branch, nao inicia agente e nao faz push.
+O modo padrao e read-only. Ele calcula readiness e registra evidencias, mas nao cria worktree, nao troca branch, nao inicia agente e nao faz push.
+
+A materializacao real exige flag explicita:
+
+```bash
+scripts/artemis-workspace.sh --ticket TKT-021 --artifact-root artifacts/artemis-workspace-materialization/run-01 --materialize
+```
+
+Esse comando cria apenas efeitos locais: branch, worktree e lock. Ele nao inicia Codex, Claude, push, merge, PR ou cleanup automatico.
 
 ## Caminhos padrao
 
@@ -45,6 +53,7 @@ scripts/artemis-workspace.sh
 scripts/artemis-workspace.sh --ticket TKT-019
 scripts/artemis-workspace.sh --ticket TKT-019 --json
 scripts/artemis-workspace.sh --ticket TKT-019 --artifact-root artifacts/artemis-workspace-manager/run-01
+scripts/artemis-workspace.sh --ticket TKT-019 --artifact-root artifacts/<ticket>/run-01 --materialize
 ```
 
 `scripts/artemis-dry-run.sh` inclui readiness de workspace para tarefas elegiveis.
@@ -57,4 +66,5 @@ scripts/artemis-workspace.sh --ticket TKT-019 --artifact-root artifacts/artemis-
 - Lock existente exige Human Gate.
 - Worktree existente exige Human Gate.
 - Workspace nao e fonte canonica; Exec Pack, artifacts, validacao e Git continuam canonicos.
-- Criacao real de worktree fica para corte posterior ou acao humana explicita.
+- Materializacao real exige `--materialize` e `--ticket`.
+- Cleanup automatico e proibido; abandono ou remocao de worktree exige revisao humana.

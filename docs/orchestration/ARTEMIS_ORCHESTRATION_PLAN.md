@@ -433,7 +433,7 @@ Aceite:
 
 Objetivo: criar branch, worktree e lock local somente quando readiness estiver `ready` e houver comando explicito.
 
-Estado: proximo corte em TKT-021.
+Estado: concluido em TKT-021.
 
 Aceite:
 
@@ -442,6 +442,20 @@ Aceite:
 - lock registra ticket, writer, branch e artifact root;
 - conflitos permanecem Human Gate;
 - limpeza/abandono de workspace fica documentada.
+
+### Fase 15 - Execucao no workspace materializado
+
+Objetivo: fazer o runner supervisionado executar comandos dentro do worktree materializado quando explicitamente solicitado.
+
+Estado: proximo corte em TKT-022.
+
+Aceite:
+
+- runner verifica lock/worktree antes de executar;
+- cwd real aparece em artifacts e eventos;
+- execucao em main worktree nao e usada para escrita quando workspace materializado estiver ativo;
+- comandos remotos, destrutivos e deploy continuam Human Gate;
+- runner continua terminal-first e sem daemon.
 
 ## 10. Gatilhos de confiabilidade
 

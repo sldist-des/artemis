@@ -195,7 +195,15 @@ scripts/artemis-workspace.sh
 scripts/artemis-workspace.sh --ticket TKT-020 --json
 ```
 
-O Workspace Manager calcula branch, worktree, lock, artifact root e dono escritor sem criar worktree. Lock existente, worktree existente ou branch ocupada exigem Human Gate. O contrato detalhado vive em `docs/workspaces/artemis-workspace-manager.md`.
+O Workspace Manager calcula branch, worktree, lock, artifact root e dono escritor sem criar worktree no modo padrao. Lock existente, worktree existente ou branch ocupada exigem Human Gate. O contrato detalhado vive em `docs/workspaces/artemis-workspace-manager.md`.
+
+Para materializar explicitamente um workspace local:
+
+```bash
+scripts/artemis-workspace.sh --ticket TKT-021 --artifact-root artifacts/artemis-workspace-materialization/run-01 --materialize
+```
+
+Esse modo cria branch, worktree e lock locais, registra `materialization.json` e `MATERIALIZATION.md`, e nao inicia agentes automaticamente.
 
 Para preparar uma execucao local supervisionada, use:
 

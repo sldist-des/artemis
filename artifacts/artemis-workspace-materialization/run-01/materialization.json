@@ -1,0 +1,42 @@
+{
+  "status": "materialized",
+  "reason": "workspace materialized with explicit command",
+  "generated_at": "2026-05-04T13:58:39Z",
+  "ticket": "TKT-021",
+  "task_id": "tkt-021",
+  "branch": "artemis/tkt-021-materializar-workspace-artemis-contr",
+  "worktree_path": "../veri-artemis-worktrees/tkt-021",
+  "lock_path": ".artemis/locks/tkt-021.lock",
+  "artifact_root": "artifacts/artemis-workspace-materialization/run-01",
+  "created": [
+    "worktree",
+    "branch",
+    "lock"
+  ],
+  "cleanup": {
+    "automatic": false,
+    "instructions": [
+      "Inspect and commit or discard work inside the materialized worktree.",
+      "Remove the worktree manually only after human review.",
+      "Remove the local lock only after the workspace is no longer owned by an active writer."
+    ]
+  },
+  "head": "233ae0b",
+  "lock": {
+    "schema_version": 1,
+    "created_at": "2026-05-04T13:58:39Z",
+    "source": "scripts/artemis-workspace.sh --materialize",
+    "ticket": "TKT-021",
+    "task_id": "tkt-021",
+    "title": "Materializar workspace ARTEMIS controlado",
+    "writer": "Architect",
+    "branch": "artemis/tkt-021-materializar-workspace-artemis-contr",
+    "worktree_path": "../veri-artemis-worktrees/tkt-021",
+    "lock_path": ".artemis/locks/tkt-021.lock",
+    "artifact_root": "artifacts/artemis-workspace-materialization/run-01",
+    "head": "233ae0b",
+    "cleanup_state": "active"
+  },
+  "git_stdout": "HEAD is now at 233ae0b Record runner attempts as ARTEMIS events\n",
+  "git_stderr": "Preparing worktree (new branch 'artemis/tkt-021-materializar-workspace-artemis-contr')\n"
+}

@@ -90,6 +90,12 @@ Verifique o workspace planejado antes de executar:
 scripts/artemis-workspace.sh --ticket TKT-020
 ```
 
+Materialize um workspace apenas com flag explicita:
+
+```bash
+scripts/artemis-workspace.sh --ticket TKT-021 --artifact-root artifacts/artemis-workspace-materialization/run-01 --materialize
+```
+
 Prepare ou execute uma tentativa local supervisionada com:
 
 ```bash

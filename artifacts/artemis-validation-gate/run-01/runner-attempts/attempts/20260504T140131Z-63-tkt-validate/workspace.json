@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T13:50:16Z",
+  "generated_at": "2026-05-04T14:01:31Z",
   "source": "scripts/artemis-workspace.sh",
   "task_source": "artifacts/artemis-validation-gate/run-01/runner-task-source.json",
   "summary": {
@@ -85,8 +85,8 @@
         {
           "name": "current_worktree_dirty",
           "status": "warning",
-          "reason": "current worktree has 50 pending item(s)",
-          "dirty_count": 50
+          "reason": "current worktree has 34 pending item(s)",
+          "dirty_count": 34
         }
       ]
     }

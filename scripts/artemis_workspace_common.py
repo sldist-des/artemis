@@ -170,6 +170,9 @@ def plan_workspace(task: dict[str, Any], *, repo_root: str | Path | None = None)
         readiness = "human_gate"
         reason = next(item["reason"] for item in checks if item["status"] == "human_gate")
 
+    workspace_mode = "materialized" if lock_exists or worktree_exists else "planned"
+    cleanup_state = "active" if lock_exists or worktree_exists else "not_created"
+
     return {
         "ticket": ticket,
         "task_id": safe_ticket,
@@ -177,13 +180,13 @@ def plan_workspace(task: dict[str, Any], *, repo_root: str | Path | None = None)
         "readiness": readiness,
         "reason": reason,
         "workspace": {
-            "mode": "planned",
+            "mode": workspace_mode,
             "branch": branch,
             "worktree_path": worktree_path,
             "lock_path": lock_path,
             "artifact_root": artifact_root,
             "writer": owner or "unassigned",
-            "cleanup_state": "not_created",
+            "cleanup_state": cleanup_state,
         },
         "checks": checks,
     }

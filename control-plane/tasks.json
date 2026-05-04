@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-04T13:43:23Z",
+  "generated_at": "2026-05-04T14:00:47Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
-      "id": "tkt-021",
-      "ticket": "TKT-021",
-      "title": "Materializar workspace ARTEMIS controlado",
+      "id": "tkt-022",
+      "ticket": "TKT-022",
+      "title": "Executar runner no workspace materializado",
       "state": "ready",
       "owner": "Architect",
       "risk": "high",
-      "summary": "Um comando local deve materializar o workspace planejado apenas quando readiness estiver `ready`, criando worktree e lock com evidencia, sem iniciar agentes automaticamente.",
-      "exec_pack": "docs/exec-packs/active/TKT-021-workspace-materialization.md",
-      "evidence": "artifacts/artemis-workspace-materialization/run-01/STATUS.md",
+      "summary": "Uma tentativa local deve poder usar o workspace materializado como diretorio de execucao, preservando dry-run, readiness, eventos canonicos, logs e handoff.",
+      "exec_pack": "docs/exec-packs/active/TKT-022-runner-workspace-execution.md",
+      "evidence": "artifacts/artemis-runner-workspace-execution/run-01/STATUS.md",
       "tags": ["exec-pack", "active"]
     },
     {
@@ -265,6 +265,18 @@
       "summary": "Cada tentativa local deve produzir eventos compativeis com `docs/schemas/artemis-event.schema.json`, vinculando ticket, workspace, dry-run, comando, resultado e artifact root sem alterar estado canonico.",
       "exec_pack": "docs/exec-packs/done/TKT-020-runner-attempt-events.md",
       "evidence": "artifacts/artemis-runner-attempt-events/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-021",
+      "ticket": "TKT-021",
+      "title": "Materializar workspace ARTEMIS controlado",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "high",
+      "summary": "Um comando local deve materializar o workspace planejado apenas quando readiness estiver `ready`, criando worktree e lock com evidencia, sem iniciar agentes automaticamente.",
+      "exec_pack": "docs/exec-packs/done/TKT-021-workspace-materialization.md",
+      "evidence": "artifacts/artemis-workspace-materialization/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

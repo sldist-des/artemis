@@ -284,6 +284,14 @@ scripts/artemis-human-decision-pending-gate.sh --artifact-root artifacts/artemis
 
 Esse gate nao decide nem executa. Ele lista campos humanos obrigatorios, comandos de validacao apos preenchimento e a reentrada segura pelo intake.
 
+Para registrar o contrato de reentrada apos o humano preencher a decisao:
+
+```bash
+scripts/artemis-human-decision-reentry-contract.sh --artifact-root artifacts/artemis-human-decision-reentry-contract/run-01 --json
+```
+
+Esse contrato continua read-only. `approved_ready` libera apenas um preflight supervisionado futuro; qualquer `pending`, `deferred`, `rejected` ou `invalid` permanece sem executor.
+
 Para validar uma decisao humana ja preenchida sem executar cleanup:
 
 ```bash

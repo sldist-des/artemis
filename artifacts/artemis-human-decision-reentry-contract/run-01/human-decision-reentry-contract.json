@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-05T20:04:20Z",
+  "source": "scripts/artemis-human-decision-reentry-contract.sh",
+  "mode": "read_only",
+  "overall": "human_gate",
+  "artifact_root": "artifacts/artemis-human-decision-reentry-contract/run-01",
+  "pending_gate_root": "artifacts/artemis-human-decision-pending-gate/run-01",
+  "intake_root": "artifacts/artemis-human-decision-intake/run-01",
+  "decision": "artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json",
+  "preflight_allowed": false,
+  "cleanup_execution_allowed": false,
+  "summary": {
+    "approved_ready": 0,
+    "pending": 3,
+    "deferred": 0,
+    "rejected": 0,
+    "invalid": 0,
+    "executed_commands": 0,
+    "reviewed": 3,
+    "preflight_allowed": false,
+    "cleanup_execution_allowed": false
+  },
+  "state_contracts": {
+    "approved_ready": {
+      "meaning": "Decision record and dry-run agree that a workspace can enter a future supervised preflight.",
+      "allows_preflight": true,
+      "allows_executor": false,
+      "required_next_step": "Create or run a later preflight artifact; do not execute cleanup from this contract."
+    },
+    "pending": {
+      "meaning": "Human decision fields are still incomplete.",
+      "allows_preflight": false,
+      "allows_executor": false,
+      "required_next_step": "Human fills decision_record and reruns intake plus this reentry contract."
+    },
+    "deferred": {
+      "meaning": "Human chose to revisit later.",
+      "allows_preflight": false,
+      "allows_executor": false,
+      "required_next_step": "Keep workspace state and record the deferral."
+    },
+    "rejected": {
+      "meaning": "Human declined cleanup for that workspace.",
+      "allows_preflight": false,
+      "allows_executor": false,
+      "required_next_step": "Record refusal and keep workspace state."
+    },
+    "invalid": {
+      "meaning": "Decision metadata or command list is inconsistent.",
+      "allows_preflight": false,
+      "allows_executor": false,
+      "required_next_step": "Fix the decision record before any next lane."
+    }
+  },
+  "results": [
+    {
+      "ticket": "TKT-021",
+      "title": "Materializar workspace ARTEMIS controlado",
+      "intake_state": "pending",
+      "contract_state": "pending",
+      "allows_preflight": false,
+      "allows_executor": false,
+      "required_next_step": "Human fills decision_record and reruns intake plus this reentry contract.",
+      "next_action_from_intake": "human_decision_required"
+    },
+    {
+      "ticket": "TKT-022",
+      "title": "Executar runner no workspace materializado",
+      "intake_state": "pending",
+      "contract_state": "pending",
+      "allows_preflight": false,
+      "allows_executor": false,
+      "required_next_step": "Human fills decision_record and reruns intake plus this reentry contract.",
+      "next_action_from_intake": "human_decision_required"
+    },
+    {
+      "ticket": "TKT-023",
+      "title": "Loop de validacao e fix em workspace isolado",
+      "intake_state": "pending",
+      "contract_state": "pending",
+      "allows_preflight": false,
+      "allows_executor": false,
+      "required_next_step": "Human fills decision_record and reruns intake plus this reentry contract.",
+      "next_action_from_intake": "human_decision_required"
+    }
+  ],
+  "validation_commands_after_human_fill": [
+    "scripts/artemis-human-cleanup-approval-contract.sh --decision artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json --artifact-root artifacts/artemis-human-decision-intake/run-01/approval-contract --json",
+    "scripts/artemis-approved-workspace-cleanup.sh --decision artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json --artifact-root artifacts/artemis-human-decision-intake/run-01/cleanup-dry-run --json",
+    "scripts/artemis-human-decision-intake.sh --decision artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json --artifact-root artifacts/artemis-human-decision-intake/run-01 --json",
+    "scripts/artemis-human-decision-pending-gate.sh --intake-root artifacts/artemis-human-decision-intake/run-01 --decision artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json --artifact-root artifacts/artemis-human-decision-pending-gate/run-01 --json",
+    "scripts/artemis-human-decision-reentry-contract.sh --pending-gate-root artifacts/artemis-human-decision-pending-gate/run-01 --intake-root artifacts/artemis-human-decision-intake/run-01 --decision artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json --artifact-root artifacts/artemis-human-decision-reentry-contract/run-01 --json",
+    "scripts/validate-artemis.sh"
+  ],
+  "evidence_inventory": [
+    {
+      "label": "human decision pending gate JSON",
+      "path": "artifacts/artemis-human-decision-pending-gate/run-01/human-decision-pending-gate.json",
+      "exists": true
+    },
+    {
+      "label": "human decision pending gate status",
+      "path": "artifacts/artemis-human-decision-pending-gate/run-01/STATUS.md",
+      "exists": true
+    },
+    {
+      "label": "human decision pending gate validation",
+      "path": "artifacts/artemis-human-decision-pending-gate/run-01/VALIDATION.md",
+      "exists": true
+    },
+    {
+      "label": "human decision pending gate handoff",
+      "path": "artifacts/artemis-human-decision-pending-gate/run-01/HANDOFF.md",
+      "exists": true
+    },
+    {
+      "label": "human decision intake JSON",
+      "path": "artifacts/artemis-human-decision-intake/run-01/human-decision-intake.json",
+      "exists": true
+    },
+    {
+      "label": "human decision intake status",
+      "path": "artifacts/artemis-human-decision-intake/run-01/STATUS.md",
+      "exists": true
+    },
+    {
+      "label": "human decision intake validation",
+      "path": "artifacts/artemis-human-decision-intake/run-01/VALIDATION.md",
+      "exists": true
+    },
+    {
+      "label": "human decision intake handoff",
+      "path": "artifacts/artemis-human-decision-intake/run-01/HANDOFF.md",
+      "exists": true
+    },
+    {
+      "label": "real cleanup decision file",
+      "path": "artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json",
+      "exists": true
+    }
+  ],
+  "blockers": [],
+  "next_lane": "human_must_fill_decision_record",
+  "invariants": [
+    "Reentry is read-only and is not an executor.",
+    "approved_ready permits only a future supervised preflight.",
+    "approved_ready does not execute cleanup by itself.",
+    "pending, deferred, rejected, and invalid do not enter an executor.",
+    "No command with --execute is emitted by this contract.",
+    "Remote writes remain Human Gate."
+  ]
+}

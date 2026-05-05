@@ -1262,14 +1262,25 @@
       },
       {
         id: "tkt-038",
-        state: "ready",
+        state: "human",
         ticket: "TKT-038",
         title: "Reentrada decisao humana",
-        summary: "Definir contrato read-only de reentrada apos preenchimento humano.",
+        summary: "Contrato read-only manteve 3 decisoes pending sem preflight nem executor.",
         owner: "Codex",
         risk: "medium",
-        evidence: "docs/exec-packs/active/TKT-038-human-decision-reentry-contract.md",
+        evidence: "artifacts/artemis-human-decision-reentry-contract/run-01",
         tags: ["workspace", "human-gate", "reentry"]
+      },
+      {
+        id: "tkt-039",
+        state: "ready",
+        ticket: "TKT-039",
+        title: "Preflight pos-aprovacao humana",
+        summary: "Definir preflight read-only quando a reentrada declarar preflight_allowed=true.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "docs/exec-packs/active/TKT-039-post-human-approval-preflight.md",
+        tags: ["workspace", "preflight", "reentry"]
       },
       {
         id: "github-auth",
@@ -1330,17 +1341,17 @@
 
     const seedEvents = [
       {
-        event_id: "evt_tkt-038_task_discovered",
+        event_id: "evt_tkt-039_task_discovered",
         event_type: "task.discovered",
-        generated_at: "2026-05-04T19:09:03Z",
+        generated_at: "2026-05-05T20:04:20Z",
         producer: { adapter: "exec_pack", name: "scripts/artemis-tasks.sh", mode: "read_only" },
         subject: {
-          ticket: "TKT-038",
-          title: "Contrato de reentrada apos decisao humana"
+          ticket: "TKT-039",
+          title: "Preflight supervisionado pos-aprovacao humana"
         },
         state: { from: null, to: "ready", reason: "Active Exec Pack discovered by local task source." },
         severity: "info",
-        evidence: { artifact_path: "artifacts/artemis-human-decision-reentry-contract/run-01" }
+        evidence: { artifact_path: "artifacts/artemis-post-human-approval-preflight/run-01" }
       },
       {
         event_id: "evt_tkt-017_adapter_events",

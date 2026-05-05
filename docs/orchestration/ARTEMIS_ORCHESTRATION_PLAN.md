@@ -662,7 +662,7 @@ Aceite:
 
 Objetivo: definir o caminho read-only depois que o humano preencher a decisao real.
 
-Estado: proximo corte em TKT-038.
+Estado: concluido em TKT-038.
 
 Aceite:
 
@@ -670,6 +670,19 @@ Aceite:
 - `approved_ready` aponta apenas para preflight futuro;
 - estados `pending`, `deferred`, `rejected` e `invalid` permanecem sem executor;
 - comandos de validacao de retorno ficam versionados.
+
+### Fase 32 - Preflight supervisionado pos-aprovacao humana
+
+Objetivo: preparar uma checagem read-only que so rode depois que a reentrada declarar `preflight_allowed=true`.
+
+Estado: proximo corte em TKT-039.
+
+Aceite:
+
+- preflight consome o contrato de reentrada;
+- preflight para se qualquer decisao voltar a `pending`, `deferred`, `rejected` ou `invalid`;
+- nenhum cleanup real e executado;
+- executor continua fora do corte ate haver aprovacao humana e evidencia de preflight.
 
 ## 10. Gatilhos de confiabilidade
 

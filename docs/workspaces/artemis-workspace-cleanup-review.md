@@ -110,6 +110,14 @@ scripts/artemis-human-decision-pending-gate.sh --artifact-root artifacts/artemis
 
 Esse registro mantem o pacote parado, lista campos humanos obrigatorios e aponta a reentrada segura pelo intake depois do preenchimento.
 
+Depois do preenchimento humano, registre o contrato de reentrada:
+
+```bash
+scripts/artemis-human-decision-reentry-contract.sh --artifact-root artifacts/artemis-human-decision-reentry-contract/run-01 --json
+```
+
+Esse contrato separa intake, preflight e executor. `approved_ready` nao executa cleanup; apenas permite um corte futuro de preflight supervisionado.
+
 `scripts/artemis-approved-workspace-cleanup.sh` valida `cleanup-review.json` ou um artifact equivalente com decisoes preenchidas.
 
 ```bash

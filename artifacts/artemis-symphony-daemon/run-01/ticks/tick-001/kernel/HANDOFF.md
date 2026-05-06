@@ -6,7 +6,7 @@ Kernel local read-only concluido com overall `idle`.
 
 ## Proximo corte
 
-- Implementar `TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony`.
+- Implementar `TKT-048 - Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony`.
 - Continuar com ponte plan-only por padrao e comando explicito por terminal.
 
 ## Nao fazer

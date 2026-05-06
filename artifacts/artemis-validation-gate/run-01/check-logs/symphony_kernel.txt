@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T19:35:37Z",
+  "generated_at": "2026-05-06T20:01:36Z",
   "source": "scripts/artemis-symphony-kernel.sh",
   "mode": "read_only",
   "overall": "dispatch_plan_ready",
@@ -51,5 +51,5 @@
     "Human Gates are copied into the plan and never bypassed.",
     "Terminal override remains required for any future supervised execution."
   ],
-  "next_cut": "TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony"
+  "next_cut": "TKT-048 - Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony"
 }

@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-06T20:01:09Z",
+  "source": "scripts/artemis-symphony-bridge.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-947_symphony_bridge",
+      "event_type": "runner.attempt_planned",
+      "generated_at": "2026-05-06T20:01:09Z",
+      "producer": {
+        "adapter": "local_runner",
+        "name": "scripts/artemis-symphony-bridge.sh",
+        "mode": "supervised"
+      },
+      "subject": {
+        "ticket": "TKT-947",
+        "task_id": "tkt-947",
+        "title": "Validate queue bridge plan-only dispatch",
+        "exec_pack": "docs/exec-packs/done/TKT-047-artemis-symphony-queue-bridge.md",
+        "artifact_root": "artifacts/artemis-symphony-queue-bridge/run-01/bridge"
+      },
+      "runner": {
+        "kind": "codex_cli",
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-queue-bridge/run-01/fixtures/task-source.json"
+      },
+      "state": {
+        "from": "ready",
+        "to": "running",
+        "reason": "Symphony bridge created a supervised runner attempt."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-symphony-queue-bridge/run-01/bridge",
+        "status_path": "artifacts/artemis-symphony-queue-bridge/run-01/bridge/STATUS.md",
+        "validation_path": "artifacts/artemis-symphony-queue-bridge/run-01/bridge/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-symphony-queue-bridge/run-01/bridge/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-symphony-queue-bridge/run-01/bridge/kernel/symphony-kernel.json",
+          "artifacts/artemis-symphony-queue-bridge/run-01/bridge/runner/attempts/20260506T200109Z-30-tkt-947/events.json"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-947"
+      },
+      "payload": {
+        "reason": "Symphony bridge created a supervised runner attempt.",
+        "overall": "runner_plan_ready",
+        "execute_requested": false,
+        "commands_executed": 0,
+        "automatic_daemon": false
+      }
+    }
+  ]
+}

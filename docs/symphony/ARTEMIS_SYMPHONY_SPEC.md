@@ -347,6 +347,33 @@ Contrato:
 - `commands_executed=0`;
 - Human Gates continuam fora da fila executavel.
 
+### Modo 2.6 - Queue Bridge plan-only
+
+Implementado como ponte supervisionada a partir de um item revisado da fila.
+
+- le `symphony-queue.json`;
+- seleciona exatamente um item por `--ticket` ou `--queue-id`;
+- exige comando explicito via `--command`;
+- valida que o item esta em `review_required`;
+- valida `terminal_override_required=true`;
+- chama `scripts/artemis-symphony-bridge.sh` sem `--execute`;
+- mantem `commands_executed=0`;
+- registra `validation_gate_required_before_execute=true`.
+
+Queue Bridge implementado:
+
+- `scripts/artemis-symphony-queue-bridge.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_QUEUE_BRIDGE.md`
+
+Contrato:
+
+- a fila continua sendo entrada supervisionada, nao daemon executavel;
+- a chamada ao bridge e plan-only neste corte;
+- `execute_requested=false`;
+- `runner_executed=false`;
+- Human Gates continuam explicitos;
+- execucao real fica reservada para corte posterior com Validation Gate.
+
 ### Modo 3 - Tracker remoto
 
 Futuro.
@@ -368,13 +395,13 @@ Futuro.
 
 ## Proximo corte recomendado
 
-`TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony`
+`TKT-048 - Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony`
 
 Objetivo:
 
-- consumir um item revisado da fila;
-- exigir comando explicito e terminal override;
-- chamar a ponte supervisionada em modo plan-only por padrao;
-- preservar Human Gates, Validation Gate e evidencias antes de qualquer `--execute`.
+- permitir `--execute` apenas como opt-in explicito;
+- exigir Validation Gate verde antes da execucao real;
+- manter comandos remotos, destrutivos e deploys bloqueados;
+- registrar decisao humana e evidencia do runner antes do handoff.
 
-Esse sera o sexto passo de implementacao do nosso Symphony proprio.
+Esse sera o setimo passo de implementacao do nosso Symphony proprio.

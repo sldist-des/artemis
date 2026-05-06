@@ -1,7 +1,7 @@
 # VALIDATION GATE RESULT
 
 - Overall: human_gate
-- Passed: 60
+- Passed: 62
 - Failed: 0
 - Human Gate: 2
 
@@ -29,6 +29,7 @@
 - shell_symphony_bridge: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_bridge.txt`
 - shell_symphony_daemon: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_daemon.txt`
 - shell_symphony_queue: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_queue.txt`
+- shell_symphony_queue_bridge: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_queue_bridge.txt`
 - shell_approved_workspace_cleanup: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt`
 - shell_workspace_runtime_handoff: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt`
 - shell_runner: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt`
@@ -57,6 +58,7 @@
 - symphony_bridge: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/symphony_bridge.txt`
 - symphony_daemon: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/symphony_daemon.txt`
 - symphony_queue: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/symphony_queue.txt`
+- symphony_queue_bridge: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/symphony_queue_bridge.txt`
 - approved_workspace_cleanup: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt`
 - workspace_runtime_handoff: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt`
 - runner_plan: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt`

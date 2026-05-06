@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 47
+    "done": 48
   },
   "decisions": [
     {
@@ -430,6 +430,15 @@
       "title": "Fila supervisionada do ARTEMIS Symphony",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-046-artemis-symphony-supervised-queue.md"
+    },
+    {
+      "ticket": "TKT-047",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Queue Bridge plan-only do ARTEMIS Symphony",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-047-artemis-symphony-queue-bridge.md"
     }
   ]
 }

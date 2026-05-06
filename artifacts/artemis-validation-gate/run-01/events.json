@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T19:35:41Z",
+  "generated_at": "2026-05-06T20:01:42Z",
   "source": "scripts/artemis-validation-gate.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-06T19:35:41Z",
+      "generated_at": "2026-05-06T20:01:42Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -62,6 +62,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_bridge.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_daemon.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_queue.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_queue_bridge.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt",
@@ -90,6 +91,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/symphony_bridge.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/symphony_daemon.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/symphony_queue.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/symphony_queue_bridge.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt",
@@ -110,7 +112,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 60,
+          "passed": 62,
           "failed": 0,
           "human_gate": 2
         },
@@ -268,6 +270,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_queue.txt"
+          },
+          {
+            "name": "shell_symphony_queue_bridge",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_queue_bridge.txt"
           },
           {
             "name": "shell_approved_workspace_cleanup",
@@ -464,6 +473,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/symphony_queue.txt"
+          },
+          {
+            "name": "symphony_queue_bridge",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/symphony_queue_bridge.txt"
           },
           {
             "name": "approved_workspace_cleanup",

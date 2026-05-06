@@ -1,21 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T19:35:03Z",
+  "generated_at": "2026-05-06T19:47:51Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
   "artifact_root": "artifacts/artemis-symphony-compatibility/run-01",
   "spec": "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md",
   "summary": {
-    "layers_total": 11,
+    "layers_total": 12,
     "layers_with_missing_files": 0,
-    "tasks_total": 47,
-    "tasks_done": 47,
+    "tasks_total": 48,
+    "tasks_done": 48,
     "daemon_implemented": true,
     "kernel_implemented": true,
     "bridge_implemented": true,
     "daemon_dry_run": true,
     "queue_implemented": true,
+    "queue_bridge_implemented": true,
     "next_cut_defined": true
   },
   "compatibility": {
@@ -27,9 +28,10 @@
     "bridge_implemented": true,
     "daemon_dry_run": true,
     "queue_implemented": true,
+    "queue_bridge_implemented": true,
     "terminal_first": true,
     "human_gates_preserved": true,
-    "next_cut": "TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony"
+    "next_cut": "TKT-048 - Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony"
   },
   "layers": [
     {
@@ -152,6 +154,16 @@
       ],
       "status": "implemented_read_only",
       "missing_files": []
+    },
+    {
+      "layer": "queue_bridge",
+      "purpose": "Plan-only bridge call from one reviewed queue item with explicit terminal command.",
+      "required_files": [
+        "scripts/artemis-symphony-queue-bridge.sh",
+        "docs/symphony/ARTEMIS_SYMPHONY_QUEUE_BRIDGE.md"
+      ],
+      "status": "implemented_plan_only",
+      "missing_files": []
     }
   ],
   "blockers": [],
@@ -164,6 +176,7 @@
     "The implemented bridge is supervised and plan-only by default.",
     "The implemented daemon is finite dry-run and never starts runners automatically.",
     "The implemented queue is review-only and never starts bridge or runner automatically.",
+    "The implemented queue bridge is plan-only and never passes --execute.",
     "A long-running supervised service is not implemented yet."
   ]
 }

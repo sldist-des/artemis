@@ -16,6 +16,7 @@ docs/symphony/ARTEMIS_SYMPHONY_KERNEL.md
 docs/symphony/ARTEMIS_SYMPHONY_BRIDGE.md
 docs/symphony/ARTEMIS_SYMPHONY_DAEMON.md
 docs/symphony/ARTEMIS_SYMPHONY_QUEUE.md
+docs/symphony/ARTEMIS_SYMPHONY_QUEUE_BRIDGE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
 docs/agents/CAPABILITY_REGISTRY.md
@@ -58,6 +59,7 @@ scripts/artemis-symphony-kernel.sh
 scripts/artemis-symphony-bridge.sh
 scripts/artemis-symphony-daemon.sh
 scripts/artemis-symphony-queue.sh
+scripts/artemis-symphony-queue-bridge.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -138,6 +140,7 @@ sh -n scripts/artemis-symphony-kernel.sh
 sh -n scripts/artemis-symphony-bridge.sh
 sh -n scripts/artemis-symphony-daemon.sh
 sh -n scripts/artemis-symphony-queue.sh
+sh -n scripts/artemis-symphony-queue-bridge.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -697,6 +700,55 @@ if ! test -f /tmp/artemis-symphony-queue/events.json; then
   echo "scripts/artemis-symphony-queue.sh did not write events.json" >&2
   exit 1
 fi
+scripts/artemis-symphony-queue-bridge.sh --queue /tmp/artemis-symphony-queue/symphony-queue.json --ticket TKT-901 --command "scripts/artemis-dry-run.sh --input /tmp/artemis-symphony-kernel-source.json" --artifact-root /tmp/artemis-symphony-queue-bridge --json >/tmp/artemis-symphony-queue-bridge.json
+if ! grep -q '"overall": "bridge_plan_ready"' /tmp/artemis-symphony-queue-bridge.json; then
+  echo "scripts/artemis-symphony-queue-bridge.sh did not report bridge_plan_ready" >&2
+  exit 1
+fi
+if ! grep -q '"queue_item_found": true' /tmp/artemis-symphony-queue-bridge.json; then
+  echo "ARTEMIS Symphony queue bridge did not consume a queue item" >&2
+  exit 1
+fi
+if ! grep -q '"bridge_planned": true' /tmp/artemis-symphony-queue-bridge.json; then
+  echo "ARTEMIS Symphony queue bridge did not plan bridge execution" >&2
+  exit 1
+fi
+if ! grep -q '"execute_requested": false' /tmp/artemis-symphony-queue-bridge.json; then
+  echo "ARTEMIS Symphony queue bridge requested execution" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-symphony-queue-bridge.json; then
+  echo "ARTEMIS Symphony queue bridge executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"runner_executed": false' /tmp/artemis-symphony-queue-bridge.json; then
+  echo "ARTEMIS Symphony queue bridge reported runner execution" >&2
+  exit 1
+fi
+if ! grep -q '"validation_gate_required_before_execute": true' /tmp/artemis-symphony-queue-bridge.json; then
+  echo "ARTEMIS Symphony queue bridge did not require Validation Gate before execution" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-symphony-queue-bridge/queue-bridge.json; then
+  echo "scripts/artemis-symphony-queue-bridge.sh did not write queue-bridge.json" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-symphony-queue-bridge/events.json; then
+  echo "scripts/artemis-symphony-queue-bridge.sh did not write events.json" >&2
+  exit 1
+fi
+if scripts/artemis-symphony-queue-bridge.sh --queue /tmp/artemis-symphony-queue/symphony-queue.json --ticket TKT-999 --command "scripts/artemis-dry-run.sh --input /tmp/artemis-symphony-kernel-source.json" --artifact-root /tmp/artemis-symphony-queue-bridge-missing --json >/tmp/artemis-symphony-queue-bridge-missing.json 2>/tmp/artemis-symphony-queue-bridge-missing.stderr; then
+  echo "ARTEMIS Symphony queue bridge should reject missing queue tickets" >&2
+  exit 1
+fi
+if ! grep -q '"overall": "not_in_queue"' /tmp/artemis-symphony-queue-bridge-missing.json; then
+  echo "ARTEMIS Symphony queue bridge missing-ticket artifact did not report not_in_queue" >&2
+  exit 1
+fi
+if ! grep -q '"queue_item_found": false' /tmp/artemis-symphony-queue-bridge-missing.json; then
+  echo "ARTEMIS Symphony queue bridge missing-ticket artifact did not preserve queue evidence" >&2
+  exit 1
+fi
 scripts/artemis-approved-workspace-cleanup.sh --decision /tmp/artemis-workspace-cleanup-review/cleanup-review.json --artifact-root /tmp/artemis-approved-workspace-cleanup --json >/tmp/artemis-approved-workspace-cleanup.json
 if ! grep -q '"overall": "human_gate"' /tmp/artemis-approved-workspace-cleanup.json; then
   echo "scripts/artemis-approved-workspace-cleanup.sh did not stop pending decisions at Human Gate" >&2
@@ -913,6 +965,14 @@ if ! grep -q "artifacts/artemis-symphony-queue/run-01/symphony-queue.json" contr
 fi
 if ! grep -q "queue_empty" control-plane/index.html; then
   echo "control-plane/index.html does not show the Symphony queue state" >&2
+  exit 1
+fi
+if ! grep -q "artifacts/artemis-symphony-queue-bridge/run-01/queue-bridge.json" control-plane/index.html; then
+  echo "control-plane/index.html does not link the Symphony queue bridge artifact" >&2
+  exit 1
+fi
+if ! grep -q "bridge_plan_ready" control-plane/index.html; then
+  echo "control-plane/index.html does not show the Symphony queue bridge state" >&2
   exit 1
 fi
 

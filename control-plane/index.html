@@ -1506,6 +1506,17 @@
         tags: ["symphony", "queue", "review"]
       },
       {
+        id: "tkt-047",
+        state: "done",
+        ticket: "TKT-047",
+        title: "Queue Bridge plan-only do ARTEMIS Symphony",
+        summary: "Item revisado da fila chama o bridge supervisionado em modo plan-only, com comando explicito e commands=0.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "artifacts/artemis-symphony-queue-bridge/run-01",
+        tags: ["symphony", "queue-bridge", "plan-only"]
+      },
+      {
         id: "github-auth",
         state: "human",
         ticket: "GIT",
@@ -1668,6 +1679,19 @@
         evidence: { artifact_path: "artifacts/artemis-symphony-queue/run-01" }
       },
       {
+        event_id: "evt_tkt-047_symphony_queue_bridge",
+        event_type: "runner.attempt_planned",
+        generated_at: "2026-05-06T20:10:00Z",
+        producer: { adapter: "local_queue_bridge", name: "scripts/artemis-symphony-queue-bridge.sh", mode: "plan_only" },
+        subject: {
+          ticket: "TKT-047",
+          title: "Queue Bridge plan-only do ARTEMIS Symphony"
+        },
+        state: { from: "review", to: "running", reason: "Queue item was routed to the supervised bridge without --execute and with commands_executed=0." },
+        severity: "info",
+        evidence: { artifact_path: "artifacts/artemis-symphony-queue-bridge/run-01" }
+      },
+      {
         event_id: "evt_tkt-017_adapter_events",
         event_type: "adapter.events_emitted",
         generated_at: "2026-04-30T19:54:36Z",
@@ -1751,7 +1775,7 @@
           status: "human_gate",
           summary: "Validation Gate passou tecnicamente e preservou Human Gates externos.",
           facts: [
-            ["passed", "56"],
+            ["passed", "62"],
             ["failed", "0"]
           ],
           links: [
@@ -1785,6 +1809,20 @@
             ["status", "../artifacts/artemis-symphony-queue/run-01/STATUS.md"],
             ["json", "../artifacts/artemis-symphony-queue/run-01/symphony-queue.json"],
             ["events", "../artifacts/artemis-symphony-queue/run-01/events.json"]
+          ]
+        },
+        {
+          title: "Q Bridge",
+          status: "plan_ready",
+          summary: "bridge_plan_ready: item revisado da fila chamou o bridge em plan-only, sem --execute.",
+          facts: [
+            ["ticket", "TKT-947"],
+            ["commands", "0"]
+          ],
+          links: [
+            ["status", "../artifacts/artemis-symphony-queue-bridge/run-01/STATUS.md"],
+            ["json", "../artifacts/artemis-symphony-queue-bridge/run-01/queue-bridge.json"],
+            ["bridge", "../artifacts/artemis-symphony-queue-bridge/run-01/bridge/symphony-bridge.json"]
           ]
         }
       ]

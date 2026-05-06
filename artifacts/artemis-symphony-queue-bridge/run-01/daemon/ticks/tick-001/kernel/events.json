@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-06T19:47:38Z",
+  "source": "scripts/artemis-symphony-kernel.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-947_symphony_dispatch_planned",
+      "event_type": "runner.readiness_checked",
+      "generated_at": "2026-05-06T19:47:38Z",
+      "producer": {
+        "adapter": "local_runner",
+        "name": "scripts/artemis-symphony-kernel.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-947",
+        "task_id": "tkt-947",
+        "title": "Validate queue bridge plan-only dispatch",
+        "exec_pack": "docs/exec-packs/done/TKT-047-artemis-symphony-queue-bridge.md",
+        "artifact_root": "artifacts/artemis-symphony-queue-bridge/run-01/daemon/ticks/tick-001/kernel"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "ready",
+        "to": "ready",
+        "reason": "Read-only Symphony kernel planned dispatch without execution."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-symphony-queue-bridge/run-01/daemon/ticks/tick-001/kernel",
+        "status_path": "artifacts/artemis-symphony-queue-bridge/run-01/daemon/ticks/tick-001/kernel/STATUS.md",
+        "validation_path": "artifacts/artemis-symphony-queue-bridge/run-01/daemon/ticks/tick-001/kernel/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-symphony-queue-bridge/run-01/daemon/ticks/tick-001/kernel/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-947"
+      },
+      "payload": {
+        "reason": "Read-only Symphony kernel planned dispatch without execution.",
+        "slot": 1,
+        "order": 1,
+        "commands_executed": 0,
+        "runner_execution_allowed": false
+      }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T19:34:58Z",
+  "generated_at": "2026-05-06T19:47:27Z",
   "source": "scripts/artemis-symphony-kernel.sh",
   "mode": "read_only",
   "overall": "idle",
@@ -8,11 +8,11 @@
   "artifact_root": "artifacts/artemis-symphony-kernel/run-01",
   "dry_run": "artifacts/artemis-symphony-kernel/run-01/dry-run.json",
   "summary": {
-    "tasks_total": 47,
+    "tasks_total": 48,
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 47,
+    "done": 48,
     "selected_for_dispatch": 0,
     "max_concurrency": 1,
     "dispatch_slots": 0,
@@ -349,6 +349,13 @@
       "decision": "done",
       "runner": "none",
       "reason": "Task already archived in done state."
+    },
+    {
+      "ticket": "TKT-047",
+      "title": "Queue Bridge plan-only do ARTEMIS Symphony",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state."
     }
   ],
   "invariants": [
@@ -358,5 +365,5 @@
     "Human Gates are copied into the plan and never bypassed.",
     "Terminal override remains required for any future supervised execution."
   ],
-  "next_cut": "TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony"
+  "next_cut": "TKT-048 - Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony"
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T19:34:58Z",
+  "generated_at": "2026-05-06T19:47:07Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -565,6 +565,18 @@
       "summary": "Fila supervisionada local gera itens revisaveis quando ha dispatch elegivel e `queue_empty` quando nao ha trabalho elegivel, sempre sem execucao automatica.",
       "exec_pack": "docs/exec-packs/done/TKT-046-artemis-symphony-supervised-queue.md",
       "evidence": "artifacts/artemis-symphony-queue/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-047",
+      "ticket": "TKT-047",
+      "title": "Queue Bridge plan-only do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "Queue Bridge gera `bridge_plan_ready` para um item revisado sintetico e falha",
+      "exec_pack": "docs/exec-packs/done/TKT-047-artemis-symphony-queue-bridge.md",
+      "evidence": "artifacts/artemis-symphony-queue-bridge/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

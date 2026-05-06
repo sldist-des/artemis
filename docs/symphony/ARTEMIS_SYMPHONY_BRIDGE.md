@@ -59,6 +59,6 @@ scripts/artemis-symphony-bridge.sh \
 
 ## Proximo Corte
 
-`TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony`
+`TKT-048 - Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony`
 
 Objetivo: consumir item revisado da fila com comando explicito, mantendo a ponte como acao de terminal.

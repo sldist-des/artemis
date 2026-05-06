@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T19:35:07Z",
+  "generated_at": "2026-05-06T19:47:34Z",
   "source": "scripts/artemis-symphony-queue.sh",
   "mode": "supervised_queue_read_only",
   "overall": "queue_empty",
@@ -27,5 +27,5 @@
     "Every queue item requires terminal override before bridge execution.",
     "Human Gates remain explicit and non-bypassable."
   ],
-  "next_cut": "TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony"
+  "next_cut": "TKT-048 - Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony"
 }

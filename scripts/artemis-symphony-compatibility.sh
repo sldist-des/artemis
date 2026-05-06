@@ -149,6 +149,12 @@ layers = [
         "required_files": ["scripts/artemis-symphony-queue.sh", "docs/symphony/ARTEMIS_SYMPHONY_QUEUE.md"],
         "status": "implemented_read_only",
     },
+    {
+        "layer": "queue_bridge",
+        "purpose": "Plan-only bridge call from one reviewed queue item with explicit terminal command.",
+        "required_files": ["scripts/artemis-symphony-queue-bridge.sh", "docs/symphony/ARTEMIS_SYMPHONY_QUEUE_BRIDGE.md"],
+        "status": "implemented_plan_only",
+    },
 ]
 
 for layer in layers:
@@ -166,7 +172,8 @@ required_terms = [
     "Runner Layer",
     "Validation Layer",
     "Human Gates",
-    "TKT-047",
+    "TKT-048",
+    "Queue Bridge",
 ]
 missing_terms = [term for term in required_terms if term not in spec_text]
 if missing_terms:
@@ -195,9 +202,10 @@ compatibility = {
     "bridge_implemented": True,
     "daemon_dry_run": True,
     "queue_implemented": True,
+    "queue_bridge_implemented": True,
     "terminal_first": True,
     "human_gates_preserved": True,
-    "next_cut": "TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony",
+    "next_cut": "TKT-048 - Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony",
 }
 
 overall = "failed" if blockers else "spec_ready"
@@ -219,7 +227,8 @@ payload = {
         "bridge_implemented": exists("scripts/artemis-symphony-bridge.sh"),
         "daemon_dry_run": exists("scripts/artemis-symphony-daemon.sh"),
         "queue_implemented": exists("scripts/artemis-symphony-queue.sh"),
-        "next_cut_defined": "TKT-047" in spec_text,
+        "queue_bridge_implemented": exists("scripts/artemis-symphony-queue-bridge.sh"),
+        "next_cut_defined": "TKT-048" in spec_text,
     },
     "compatibility": compatibility,
     "layers": layers,
@@ -233,6 +242,7 @@ payload = {
         "The implemented bridge is supervised and plan-only by default.",
         "The implemented daemon is finite dry-run and never starts runners automatically.",
         "The implemented queue is review-only and never starts bridge or runner automatically.",
+        "The implemented queue bridge is plan-only and never passes --execute.",
         "A long-running supervised service is not implemented yet.",
     ],
 }
@@ -319,7 +329,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Criar `TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony`.",
+    "- Criar `TKT-048 - Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony`.",
     "- Consumir item revisado com comando explicito e ponte plan-only por padrao.",
     "- Manter Validation Gate antes de qualquer execucao real.",
     "",

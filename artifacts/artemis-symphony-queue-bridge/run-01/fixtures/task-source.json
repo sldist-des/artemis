@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": "artifacts/artemis-symphony-queue-bridge/run-01/fixtures/task-source.json",
+  "tasks": [
+    {
+      "id": "tkt-947",
+      "ticket": "TKT-947",
+      "title": "Validate queue bridge plan-only dispatch",
+      "state": "ready",
+      "owner": "Codex",
+      "risk": "low",
+      "summary": "Synthetic task used to prove ARTEMIS Symphony queue-to-bridge routing without execution.",
+      "exec_pack": "docs/exec-packs/done/TKT-047-artemis-symphony-queue-bridge.md",
+      "evidence": "artifacts/artemis-symphony-queue-bridge/run-01/STATUS.md",
+      "tags": ["symphony", "queue-bridge", "validation"]
+    }
+  ]
+}

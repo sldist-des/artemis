@@ -1273,14 +1273,14 @@
       },
       {
         id: "tkt-039",
-        state: "ready",
+        state: "human",
         ticket: "TKT-039",
         title: "Preflight pos-aprovacao humana",
-        summary: "Definir preflight read-only quando a reentrada declarar preflight_allowed=true.",
+        summary: "Preflight read-only parou com 3 pending e supervised_preflight_allowed=false.",
         owner: "Codex",
         risk: "medium",
-        evidence: "docs/exec-packs/active/TKT-039-post-human-approval-preflight.md",
-        tags: ["workspace", "preflight", "reentry"]
+        evidence: "artifacts/artemis-post-human-approval-preflight/run-01",
+        tags: ["workspace", "preflight", "human-gate"]
       },
       {
         id: "github-auth",
@@ -1341,16 +1341,16 @@
 
     const seedEvents = [
       {
-        event_id: "evt_tkt-039_task_discovered",
-        event_type: "task.discovered",
-        generated_at: "2026-05-05T20:04:20Z",
-        producer: { adapter: "exec_pack", name: "scripts/artemis-tasks.sh", mode: "read_only" },
+        event_id: "evt_artemis_local_read_only_cycle_complete",
+        event_type: "validation.completed",
+        generated_at: "2026-05-06T12:07:15Z",
+        producer: { adapter: "validation_gate", name: "scripts/artemis-post-human-approval-preflight.sh", mode: "read_only" },
         subject: {
           ticket: "TKT-039",
           title: "Preflight supervisionado pos-aprovacao humana"
         },
-        state: { from: null, to: "ready", reason: "Active Exec Pack discovered by local task source." },
-        severity: "info",
+        state: { from: "ready", to: "human_gate", reason: "Read-only cycle complete until human decision is filled." },
+        severity: "warning",
         evidence: { artifact_path: "artifacts/artemis-post-human-approval-preflight/run-01" }
       },
       {

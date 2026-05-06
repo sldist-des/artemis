@@ -675,7 +675,7 @@ Aceite:
 
 Objetivo: preparar uma checagem read-only que so rode depois que a reentrada declarar `preflight_allowed=true`.
 
-Estado: proximo corte em TKT-039.
+Estado: concluido em TKT-039.
 
 Aceite:
 
@@ -683,6 +683,12 @@ Aceite:
 - preflight para se qualquer decisao voltar a `pending`, `deferred`, `rejected` ou `invalid`;
 - nenhum cleanup real e executado;
 - executor continua fora do corte ate haver aprovacao humana e evidencia de preflight.
+
+### Fechamento da trilha local read-only
+
+Estado: completo ate decisao humana real.
+
+O ciclo local de contratos, gates e evidencias esta completo. O proximo movimento material depende de uma decisao humana preenchida em `real-cleanup-decision.json`; sem isso, a trilha correta e permanecer em Human Gate.
 
 ## 10. Gatilhos de confiabilidade
 

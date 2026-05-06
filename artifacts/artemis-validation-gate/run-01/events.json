@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-05T20:05:07Z",
+  "generated_at": "2026-05-06T12:08:00Z",
   "source": "scripts/artemis-validation-gate.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-05T20:05:07Z",
+      "generated_at": "2026-05-06T12:08:00Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -55,6 +55,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_human_decision_intake.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_human_decision_pending_gate.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_human_decision_reentry_contract.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/shell_post_human_approval_preflight.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt",
@@ -76,6 +77,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/human_decision_intake.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/human_decision_pending_gate.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/human_decision_reentry_contract.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/post_human_approval_preflight.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt",
@@ -96,7 +98,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 46,
+          "passed": 48,
           "failed": 0,
           "human_gate": 2
         },
@@ -205,6 +207,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_human_decision_reentry_contract.txt"
+          },
+          {
+            "name": "shell_post_human_approval_preflight",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_post_human_approval_preflight.txt"
           },
           {
             "name": "shell_approved_workspace_cleanup",
@@ -352,6 +361,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/human_decision_reentry_contract.txt"
+          },
+          {
+            "name": "post_human_approval_preflight",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/post_human_approval_preflight.txt"
           },
           {
             "name": "approved_workspace_cleanup",

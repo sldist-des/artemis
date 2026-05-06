@@ -45,6 +45,7 @@ scripts/artemis-human-decision-release-checkpoint.sh
 scripts/artemis-human-decision-intake.sh
 scripts/artemis-human-decision-pending-gate.sh
 scripts/artemis-human-decision-reentry-contract.sh
+scripts/artemis-post-human-approval-preflight.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -118,6 +119,7 @@ sh -n scripts/artemis-human-decision-release-checkpoint.sh
 sh -n scripts/artemis-human-decision-intake.sh
 sh -n scripts/artemis-human-decision-pending-gate.sh
 sh -n scripts/artemis-human-decision-reentry-contract.sh
+sh -n scripts/artemis-post-human-approval-preflight.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -144,10 +146,22 @@ if ! grep -q '"decisions": \[' /tmp/artemis-dry-run.json; then
   echo "scripts/artemis-dry-run.sh did not emit dry-run decisions" >&2
   exit 1
 fi
-if ! grep -q '"workspace": {' /tmp/artemis-dry-run.json; then
-  echo "scripts/artemis-dry-run.sh did not include workspace readiness for eligible work" >&2
-  exit 1
-fi
+python3 - /tmp/artemis-dry-run.json <<'PY'
+import json
+import sys
+from pathlib import Path
+
+payload = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+summary = payload.get("summary", {})
+eligible = int(summary.get("eligible", 0))
+done = int(summary.get("done", 0))
+decisions = payload.get("decisions", [])
+
+if eligible > 0 and not any("workspace" in item for item in decisions):
+    raise SystemExit("scripts/artemis-dry-run.sh did not include workspace readiness for eligible work")
+if eligible == 0 and done <= 0:
+    raise SystemExit("scripts/artemis-dry-run.sh has no eligible work and no completed tasks")
+PY
 
 cat >/tmp/artemis-runner-task-source.json <<'JSON'
 {
@@ -404,6 +418,27 @@ if ! grep -q '"cleanup_execution_allowed": false' /tmp/artemis-human-decision-re
 fi
 if ! grep -q '"executed_commands": 0' /tmp/artemis-human-decision-reentry-contract.json; then
   echo "human decision reentry contract detected executed commands" >&2
+  exit 1
+fi
+scripts/artemis-post-human-approval-preflight.sh --reentry-root /tmp/artemis-human-decision-reentry-contract --intake-root /tmp/artemis-human-decision-intake --decision /tmp/artemis-real-cleanup-decision-package/real-cleanup-decision.json --artifact-root /tmp/artemis-post-human-approval-preflight --json >/tmp/artemis-post-human-approval-preflight.json
+if ! grep -q '"overall": "human_gate"' /tmp/artemis-post-human-approval-preflight.json; then
+  echo "scripts/artemis-post-human-approval-preflight.sh did not stop pending decisions at Human Gate" >&2
+  exit 1
+fi
+if ! grep -q '"pending": 3' /tmp/artemis-post-human-approval-preflight.json; then
+  echo "post-human approval preflight did not preserve three pending decisions" >&2
+  exit 1
+fi
+if ! grep -q '"supervised_preflight_allowed": false' /tmp/artemis-post-human-approval-preflight.json; then
+  echo "post-human approval preflight allowed preflight before approval" >&2
+  exit 1
+fi
+if ! grep -q '"cleanup_execution_allowed": false' /tmp/artemis-post-human-approval-preflight.json; then
+  echo "post-human approval preflight allowed cleanup execution" >&2
+  exit 1
+fi
+if ! grep -q '"executed_commands": 0' /tmp/artemis-post-human-approval-preflight.json; then
+  echo "post-human approval preflight detected executed commands" >&2
   exit 1
 fi
 scripts/artemis-approved-workspace-cleanup.sh --decision /tmp/artemis-workspace-cleanup-review/cleanup-review.json --artifact-root /tmp/artemis-approved-workspace-cleanup --json >/tmp/artemis-approved-workspace-cleanup.json

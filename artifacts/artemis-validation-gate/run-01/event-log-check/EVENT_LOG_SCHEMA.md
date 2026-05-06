@@ -1,12 +1,11 @@
 # ARTEMIS EVENT LOG SCHEMA
 
 - Schema version: 1
-- Events: 19
+- Events: 18
 - Source: scripts/artemis-event-log.sh
 
 ## Event Types
 
-- `task.discovered`: `evt_tkt-039_task_discovered` -> ready
 - `runner.readiness_checked`: `evt_tkt-013_github_issues_readiness` -> human_gate
 - `adapter.contract_recorded`: `evt_tkt-014_codex_app_server_contract` -> done
 - `adapter.contract_recorded`: `evt_tkt-015_claude_code_contract` -> done

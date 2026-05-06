@@ -118,6 +118,14 @@ scripts/artemis-human-decision-reentry-contract.sh --artifact-root artifacts/art
 
 Esse contrato separa intake, preflight e executor. `approved_ready` nao executa cleanup; apenas permite um corte futuro de preflight supervisionado.
 
+Depois da reentrada, registre o preflight read-only:
+
+```bash
+scripts/artemis-post-human-approval-preflight.sh --artifact-root artifacts/artemis-post-human-approval-preflight/run-01 --json
+```
+
+O preflight para enquanto a decisao real tiver `pending`, `deferred`, `rejected` ou `invalid`. O executor continua fora do corte.
+
 `scripts/artemis-approved-workspace-cleanup.sh` valida `cleanup-review.json` ou um artifact equivalente com decisoes preenchidas.
 
 ```bash

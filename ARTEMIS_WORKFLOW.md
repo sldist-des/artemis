@@ -292,6 +292,14 @@ scripts/artemis-human-decision-reentry-contract.sh --artifact-root artifacts/art
 
 Esse contrato continua read-only. `approved_ready` libera apenas um preflight supervisionado futuro; qualquer `pending`, `deferred`, `rejected` ou `invalid` permanece sem executor.
 
+Para registrar o preflight pos-aprovacao humana:
+
+```bash
+scripts/artemis-post-human-approval-preflight.sh --artifact-root artifacts/artemis-post-human-approval-preflight/run-01 --json
+```
+
+Esse preflight consome o contrato de reentrada. Ele so declara `supervised_preflight_allowed=true` quando todos os itens estiverem `approved_ready` e nenhum estado pendente ou recusado existir. Ele nao executa cleanup.
+
 Para validar uma decisao humana ja preenchida sem executar cleanup:
 
 ```bash

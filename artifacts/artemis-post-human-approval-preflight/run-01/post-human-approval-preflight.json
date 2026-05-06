@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-06T12:07:15Z",
+  "source": "scripts/artemis-post-human-approval-preflight.sh",
+  "mode": "read_only",
+  "overall": "human_gate",
+  "artifact_root": "artifacts/artemis-post-human-approval-preflight/run-01",
+  "reentry_root": "artifacts/artemis-human-decision-reentry-contract/run-01",
+  "intake_root": "artifacts/artemis-human-decision-intake/run-01",
+  "decision": "artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json",
+  "reentry_preflight_allowed": false,
+  "supervised_preflight_allowed": false,
+  "cleanup_execution_allowed": false,
+  "summary": {
+    "approved_ready": 0,
+    "pending": 3,
+    "deferred": 0,
+    "rejected": 0,
+    "invalid": 0,
+    "executed_commands": 0,
+    "reviewed": 3,
+    "disallowed_states": [
+      "pending"
+    ],
+    "supervised_preflight_allowed": false,
+    "cleanup_execution_allowed": false
+  },
+  "preflight_items": [
+    {
+      "ticket": "TKT-021",
+      "title": "Materializar workspace ARTEMIS controlado",
+      "contract_state": "pending",
+      "preflight_status": "not_ready",
+      "allows_executor": false,
+      "reason": "pending does not allow preflight in this cut"
+    },
+    {
+      "ticket": "TKT-022",
+      "title": "Executar runner no workspace materializado",
+      "contract_state": "pending",
+      "preflight_status": "not_ready",
+      "allows_executor": false,
+      "reason": "pending does not allow preflight in this cut"
+    },
+    {
+      "ticket": "TKT-023",
+      "title": "Loop de validacao e fix em workspace isolado",
+      "contract_state": "pending",
+      "preflight_status": "not_ready",
+      "allows_executor": false,
+      "reason": "pending does not allow preflight in this cut"
+    }
+  ],
+  "validation_commands_after_human_fill": [
+    "scripts/artemis-human-decision-intake.sh --decision artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json --artifact-root artifacts/artemis-human-decision-intake/run-01 --json",
+    "scripts/artemis-human-decision-reentry-contract.sh --intake-root artifacts/artemis-human-decision-intake/run-01 --decision artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json --artifact-root artifacts/artemis-human-decision-reentry-contract/run-01 --json",
+    "scripts/artemis-post-human-approval-preflight.sh --reentry-root artifacts/artemis-human-decision-reentry-contract/run-01 --intake-root artifacts/artemis-human-decision-intake/run-01 --decision artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json --artifact-root artifacts/artemis-post-human-approval-preflight/run-01 --json",
+    "scripts/validate-artemis.sh"
+  ],
+  "evidence_inventory": [
+    {
+      "label": "human decision reentry contract JSON",
+      "path": "artifacts/artemis-human-decision-reentry-contract/run-01/human-decision-reentry-contract.json",
+      "exists": true
+    },
+    {
+      "label": "human decision reentry status",
+      "path": "artifacts/artemis-human-decision-reentry-contract/run-01/STATUS.md",
+      "exists": true
+    },
+    {
+      "label": "human decision reentry validation",
+      "path": "artifacts/artemis-human-decision-reentry-contract/run-01/VALIDATION.md",
+      "exists": true
+    },
+    {
+      "label": "human decision reentry handoff",
+      "path": "artifacts/artemis-human-decision-reentry-contract/run-01/HANDOFF.md",
+      "exists": true
+    },
+    {
+      "label": "human decision intake JSON",
+      "path": "artifacts/artemis-human-decision-intake/run-01/human-decision-intake.json",
+      "exists": true
+    },
+    {
+      "label": "real cleanup decision file",
+      "path": "artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json",
+      "exists": true
+    }
+  ],
+  "blockers": [],
+  "next_lane": "human_must_complete_decision_before_preflight",
+  "invariants": [
+    "Post-human approval preflight is read-only and is not an executor.",
+    "supervised_preflight_allowed requires reentry preflight_allowed=true.",
+    "Any pending, deferred, rejected, or invalid decision stops this preflight.",
+    "No command with --execute is emitted by this preflight.",
+    "Cleanup execution is always false in this cut.",
+    "Remote writes remain Human Gate."
+  ]
+}

@@ -1,64 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-05T20:05:07Z",
+  "generated_at": "2026-05-06T12:07:59Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
-      "event_id": "evt_tkt-039_task_discovered",
-      "event_type": "task.discovered",
-      "generated_at": "2026-05-05T20:05:07Z",
-      "producer": {
-        "adapter": "exec_pack",
-        "name": "scripts/artemis-tasks.sh",
-        "mode": "read_only"
-      },
-      "subject": {
-        "ticket": "TKT-039",
-        "task_id": "tkt-039",
-        "title": "Preflight supervisionado pos-aprovacao humana",
-        "exec_pack": "docs/exec-packs/active/TKT-039-post-human-approval-preflight.md",
-        "artifact_root": "artifacts/artemis-post-human-approval-preflight/run-01"
-      },
-      "runner": {
-        "kind": "none"
-      },
-      "state": {
-        "from": null,
-        "to": "ready",
-        "reason": "Active Exec Pack discovered by local task source."
-      },
-      "gate": {
-        "kind": "none",
-        "status": "not_applicable"
-      },
-      "severity": "info",
-      "evidence": {
-        "artifact_path": "artifacts/artemis-post-human-approval-preflight/run-01",
-        "status_path": "artifacts/artemis-post-human-approval-preflight/run-01/STATUS.md",
-        "validation_path": "artifacts/artemis-post-human-approval-preflight/run-01/VALIDATION.md",
-        "handoff_path": "artifacts/artemis-post-human-approval-preflight/run-01/HANDOFF.md",
-        "logs": []
-      },
-      "links": {
-        "correlation_id": "tkt-039"
-      },
-      "payload": {
-        "summary": "O repositorio deve ter um artifact que confirme se a decisao preenchida pode seguir para um preflight supervisionado futuro, sem executar cleanup.",
-        "risk": "medium",
-        "owner": "Reviewer",
-        "tags": [
-          "exec-pack",
-          "active"
-        ],
-        "reason": "Active Exec Pack discovered by local task source."
-      }
-    },
-    {
-      "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-05T20:05:07Z",
+      "generated_at": "2026-05-06T12:07:59Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -125,7 +74,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-05T20:05:07Z",
+      "generated_at": "2026-05-06T12:07:59Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -212,7 +161,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-05T20:05:07Z",
+      "generated_at": "2026-05-06T12:07:59Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -305,7 +254,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-05T20:05:07Z",
+      "generated_at": "2026-05-06T12:07:59Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -345,7 +294,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 44,
+          "passed": 46,
           "failed": 0,
           "human_gate": 2
         },
@@ -447,6 +396,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_human_decision_pending_gate.txt"
+          },
+          {
+            "name": "shell_human_decision_reentry_contract",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_human_decision_reentry_contract.txt"
           },
           {
             "name": "shell_approved_workspace_cleanup",
@@ -587,6 +543,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/human_decision_pending_gate.txt"
+          },
+          {
+            "name": "human_decision_reentry_contract",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/human_decision_reentry_contract.txt"
           },
           {
             "name": "approved_workspace_cleanup",

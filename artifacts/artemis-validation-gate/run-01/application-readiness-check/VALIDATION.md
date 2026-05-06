@@ -4,7 +4,7 @@
 
 - Overall: `ready_with_human_gates`.
 - Application ready: `true`.
-- Tasks: `41/41 done`.
+- Tasks: `42/42 done`.
 - Validation technical failures: `0`.
 
 ## Comandos de verificacao

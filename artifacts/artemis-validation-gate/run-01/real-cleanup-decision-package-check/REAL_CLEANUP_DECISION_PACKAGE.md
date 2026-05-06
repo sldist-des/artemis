@@ -1,6 +1,6 @@
 # ARTEMIS REAL CLEANUP DECISION PACKAGE
 
-- Generated at: 2026-05-06T13:25:46Z
+- Generated at: 2026-05-06T14:49:01Z
 - Mode: `read_only`
 - Source review: `artifacts/artemis-validation-gate/run-01/workspace-cleanup-review-check/cleanup-review.json`
 - Decision file: `artifacts/artemis-validation-gate/run-01/real-cleanup-decision-package-check/real-cleanup-decision.json`

@@ -1294,6 +1294,17 @@
         tags: ["application", "readiness", "handoff"]
       },
       {
+        id: "tkt-041",
+        state: "done",
+        ticket: "TKT-041",
+        title: "ARTEMIS Symphony Spec",
+        summary: "Especificacao propria define ARTEMIS Symphony como inspired_spec_not_dependency.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "artifacts/artemis-symphony-compatibility/run-01",
+        tags: ["symphony", "orchestration", "spec"]
+      },
+      {
         id: "github-auth",
         state: "human",
         ticket: "GIT",
@@ -1376,6 +1387,19 @@
         state: { from: "validating", to: "done", reason: "ARTEMIS local kit is ready_with_human_gates for target-project application." },
         severity: "info",
         evidence: { artifact_path: "artifacts/artemis-application-readiness/run-01" }
+      },
+      {
+        event_id: "evt_tkt-041_artemis_symphony_spec",
+        event_type: "validation.completed",
+        generated_at: "2026-05-06T14:48:20Z",
+        producer: { adapter: "symphony_compatibility", name: "scripts/artemis-symphony-compatibility.sh", mode: "read_only" },
+        subject: {
+          ticket: "TKT-041",
+          title: "ARTEMIS Symphony Spec"
+        },
+        state: { from: "validating", to: "done", reason: "ARTEMIS Symphony spec is ready; daemon kernel remains next cut." },
+        severity: "info",
+        evidence: { artifact_path: "artifacts/artemis-symphony-compatibility/run-01" }
       },
       {
         event_id: "evt_tkt-017_adapter_events",

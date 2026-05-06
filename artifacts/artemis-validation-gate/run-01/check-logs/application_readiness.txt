@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T13:25:46Z",
+  "generated_at": "2026-05-06T14:49:02Z",
   "source": "scripts/artemis-application-readiness.sh",
   "mode": "read_only",
   "overall": "ready_with_human_gates",
   "application_ready": true,
   "artifact_root": "artifacts/artemis-validation-gate/run-01/application-readiness-check",
   "summary": {
-    "tasks_total": 41,
-    "tasks_done": 41,
+    "tasks_total": 42,
+    "tasks_done": 42,
     "active_tasks": 0,
     "validation_failed": 0,
     "external_human_gates": 2,
-    "dirty_items": 93
+    "dirty_items": 75
   },
   "required_inventory": [
     {

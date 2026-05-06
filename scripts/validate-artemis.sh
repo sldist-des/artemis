@@ -11,6 +11,7 @@ ARTEMIS_QUICKSTART.md
 ARTEMIS_WORKFLOW.md
 ARTEMIS_APPLY.md
 .impeccable.md
+docs/symphony/ARTEMIS_SYMPHONY_SPEC.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
 docs/agents/CAPABILITY_REGISTRY.md
@@ -48,6 +49,7 @@ scripts/artemis-human-decision-pending-gate.sh
 scripts/artemis-human-decision-reentry-contract.sh
 scripts/artemis-post-human-approval-preflight.sh
 scripts/artemis-application-readiness.sh
+scripts/artemis-symphony-compatibility.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -123,6 +125,7 @@ sh -n scripts/artemis-human-decision-pending-gate.sh
 sh -n scripts/artemis-human-decision-reentry-contract.sh
 sh -n scripts/artemis-post-human-approval-preflight.sh
 sh -n scripts/artemis-application-readiness.sh
+sh -n scripts/artemis-symphony-compatibility.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -455,6 +458,23 @@ if ! grep -q '"application_ready": true' /tmp/artemis-application-readiness.json
 fi
 if ! grep -q '"active_tasks": 0' /tmp/artemis-application-readiness.json; then
   echo "application readiness did not preserve zero active tasks" >&2
+  exit 1
+fi
+scripts/artemis-symphony-compatibility.sh --artifact-root /tmp/artemis-symphony-compatibility --json >/tmp/artemis-symphony-compatibility.json
+if ! grep -q '"overall": "spec_ready"' /tmp/artemis-symphony-compatibility.json; then
+  echo "scripts/artemis-symphony-compatibility.sh did not report spec_ready" >&2
+  exit 1
+fi
+if ! grep -q '"adoption_mode": "inspired_spec_not_dependency"' /tmp/artemis-symphony-compatibility.json; then
+  echo "ARTEMIS Symphony compatibility did not preserve inspired-spec adoption mode" >&2
+  exit 1
+fi
+if ! grep -q '"code_copied": false' /tmp/artemis-symphony-compatibility.json; then
+  echo "ARTEMIS Symphony compatibility did not preserve no-code-copy invariant" >&2
+  exit 1
+fi
+if ! grep -q '"next_cut_defined": true' /tmp/artemis-symphony-compatibility.json; then
+  echo "ARTEMIS Symphony compatibility did not define next cut" >&2
   exit 1
 fi
 scripts/artemis-approved-workspace-cleanup.sh --decision /tmp/artemis-workspace-cleanup-review/cleanup-review.json --artifact-root /tmp/artemis-approved-workspace-cleanup --json >/tmp/artemis-approved-workspace-cleanup.json

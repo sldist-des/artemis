@@ -239,6 +239,17 @@ scripts/artemis-event-log.sh
 
 Adapters tambem registram `events.json` nos seus artifacts quando executados com `--artifact-root`.
 
+## ARTEMIS Symphony
+
+ARTEMIS agora possui uma especificacao propria de orquestrador inspirada pelo OpenAI Symphony:
+
+```bash
+docs/symphony/ARTEMIS_SYMPHONY_SPEC.md
+scripts/artemis-symphony-compatibility.sh --artifact-root artifacts/artemis-symphony-compatibility/run-01
+```
+
+Essa especificacao nao copia codigo do OpenAI Symphony. Ela define o nosso modelo: Exec Packs como contrato canonico, workspaces isolados, runner adapters, Validation Gate, evidencias e Human Gates. O proximo corte recomendado e o kernel local read-only do ARTEMIS Symphony.
+
 ## Como aplicar em um projeto
 
 Leia tambem `ARTEMIS_APPLY.md` para o handoff curto de aplicacao.

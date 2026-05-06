@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T13:17:31Z",
+  "generated_at": "2026-05-06T14:48:26Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -493,6 +493,18 @@
       "summary": "O repositorio deve ter um artifact de readiness que diga se o kit pode ser aplicado em outro projeto, quais comandos usar e quais pendencias continuam humanas.",
       "exec_pack": "docs/exec-packs/done/TKT-040-artemis-application-readiness.md",
       "evidence": "artifacts/artemis-application-readiness/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-041",
+      "ticket": "TKT-041",
+      "title": "ARTEMIS Symphony Spec",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "O repositorio deve ter uma especificacao ARTEMIS Symphony, um artifact de compatibilidade e um proximo corte claro para o kernel local.",
+      "exec_pack": "docs/exec-packs/done/TKT-041-artemis-symphony-spec.md",
+      "evidence": "artifacts/artemis-symphony-compatibility/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

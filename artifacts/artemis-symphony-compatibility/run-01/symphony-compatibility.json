@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-06T14:48:20Z",
+  "source": "scripts/artemis-symphony-compatibility.sh",
+  "mode": "read_only",
+  "overall": "spec_ready",
+  "artifact_root": "artifacts/artemis-symphony-compatibility/run-01",
+  "spec": "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md",
+  "summary": {
+    "layers_total": 9,
+    "layers_with_missing_files": 0,
+    "tasks_total": 42,
+    "tasks_done": 42,
+    "daemon_implemented": false,
+    "next_cut_defined": true
+  },
+  "compatibility": {
+    "upstream_reference": "https://github.com/openai/symphony/blob/main/SPEC.md",
+    "adoption_mode": "inspired_spec_not_dependency",
+    "code_copied": false,
+    "daemon_implemented": false,
+    "terminal_first": true,
+    "human_gates_preserved": true,
+    "next_cut": "TKT-042 - Kernel local do ARTEMIS Symphony"
+  },
+  "layers": [
+    {
+      "layer": "policy",
+      "purpose": "Workflow, agent authority and task contract.",
+      "required_files": [
+        "AGENTS.md",
+        "ARTEMIS_WORKFLOW.md",
+        "docs/invariants/core.md"
+      ],
+      "status": "implemented",
+      "missing_files": []
+    },
+    {
+      "layer": "task_source",
+      "purpose": "Exec Packs and GitHub Issues adapter as task source.",
+      "required_files": [
+        "scripts/artemis-tasks.sh",
+        "scripts/artemis-github-issues.sh",
+        "control-plane/tasks.json"
+      ],
+      "status": "implemented",
+      "missing_files": []
+    },
+    {
+      "layer": "eligibility",
+      "purpose": "Read-only dispatch decision before execution.",
+      "required_files": [
+        "scripts/artemis-dry-run.sh",
+        "scripts/artemis-workspace.sh"
+      ],
+      "status": "implemented",
+      "missing_files": []
+    },
+    {
+      "layer": "workspace",
+      "purpose": "Branch, worktree, lock and cleanup lifecycle.",
+      "required_files": [
+        "scripts/artemis-workspace.sh",
+        "scripts/artemis-workspace-lifecycle.sh",
+        "scripts/artemis-workspace-cleanup-review.sh"
+      ],
+      "status": "implemented",
+      "missing_files": []
+    },
+    {
+      "layer": "runner",
+      "purpose": "Supervised runner plus Codex and Claude adapter contracts.",
+      "required_files": [
+        "scripts/artemis-runner.sh",
+        "scripts/artemis-codex-app-server.sh",
+        "scripts/artemis-claude-code.sh"
+      ],
+      "status": "implemented_contract",
+      "missing_files": []
+    },
+    {
+      "layer": "validation",
+      "purpose": "Technical proof and Human Gate separation.",
+      "required_files": [
+        "scripts/validate-artemis.sh",
+        "scripts/artemis-validation-gate.sh"
+      ],
+      "status": "implemented",
+      "missing_files": []
+    },
+    {
+      "layer": "evidence",
+      "purpose": "Artifacts, events and handoff memory.",
+      "required_files": [
+        "docs/schemas/artemis-event.schema.json",
+        "docs/schemas/artemis-event-log.schema.json",
+        "scripts/artemis-event-log.sh"
+      ],
+      "status": "implemented",
+      "missing_files": []
+    },
+    {
+      "layer": "control_plane",
+      "purpose": "Human-visible operating surface.",
+      "required_files": [
+        "control-plane/index.html",
+        "docs/control-plane/artemis-control-plane.md"
+      ],
+      "status": "implemented_static",
+      "missing_files": []
+    },
+    {
+      "layer": "daemon_kernel",
+      "purpose": "Long-running local Symphony loop.",
+      "required_files": [],
+      "status": "next_cut",
+      "missing_files": []
+    }
+  ],
+  "blockers": [],
+  "invariants": [
+    "OpenAI Symphony is a reference, not a vendored dependency.",
+    "ARTEMIS Symphony stays terminal-first.",
+    "Human Gates remain explicit and non-bypassable.",
+    "Control Plane remains observational, not canonical state.",
+    "The daemon kernel is the next cut, not part of this spec cut."
+  ]
+}

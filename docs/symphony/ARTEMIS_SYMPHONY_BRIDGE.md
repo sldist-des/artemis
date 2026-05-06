@@ -59,6 +59,6 @@ scripts/artemis-symphony-bridge.sh \
 
 ## Proximo Corte
 
-`TKT-046 - Fila supervisionada do ARTEMIS Symphony`
+`TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony`
 
-Objetivo: transformar dispatch observado pelo daemon dry-run em fila revisavel, mantendo a ponte como acao explicita de terminal.
+Objetivo: consumir item revisado da fila com comando explicito, mantendo a ponte como acao de terminal.

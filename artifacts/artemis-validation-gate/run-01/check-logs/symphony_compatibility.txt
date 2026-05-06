@@ -1,20 +1,21 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T19:26:53Z",
+  "generated_at": "2026-05-06T19:35:37Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
   "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-compatibility-check",
   "spec": "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md",
   "summary": {
-    "layers_total": 10,
+    "layers_total": 11,
     "layers_with_missing_files": 0,
-    "tasks_total": 46,
-    "tasks_done": 46,
+    "tasks_total": 47,
+    "tasks_done": 47,
     "daemon_implemented": true,
     "kernel_implemented": true,
     "bridge_implemented": true,
     "daemon_dry_run": true,
+    "queue_implemented": true,
     "next_cut_defined": true
   },
   "compatibility": {
@@ -25,9 +26,10 @@
     "kernel_implemented": true,
     "bridge_implemented": true,
     "daemon_dry_run": true,
+    "queue_implemented": true,
     "terminal_first": true,
     "human_gates_preserved": true,
-    "next_cut": "TKT-046 - Fila supervisionada do ARTEMIS Symphony"
+    "next_cut": "TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony"
   },
   "layers": [
     {
@@ -82,6 +84,8 @@
         "docs/symphony/ARTEMIS_SYMPHONY_BRIDGE.md",
         "scripts/artemis-symphony-daemon.sh",
         "docs/symphony/ARTEMIS_SYMPHONY_DAEMON.md",
+        "scripts/artemis-symphony-queue.sh",
+        "docs/symphony/ARTEMIS_SYMPHONY_QUEUE.md",
         "scripts/artemis-codex-app-server.sh",
         "scripts/artemis-claude-code.sh"
       ],
@@ -138,6 +142,16 @@
       ],
       "status": "implemented_read_only",
       "missing_files": []
+    },
+    {
+      "layer": "supervised_queue",
+      "purpose": "Review-only queue derived from daemon and kernel dispatch evidence.",
+      "required_files": [
+        "scripts/artemis-symphony-queue.sh",
+        "docs/symphony/ARTEMIS_SYMPHONY_QUEUE.md"
+      ],
+      "status": "implemented_read_only",
+      "missing_files": []
     }
   ],
   "blockers": [],
@@ -149,6 +163,7 @@
     "The implemented kernel is read-only and cannot execute agents.",
     "The implemented bridge is supervised and plan-only by default.",
     "The implemented daemon is finite dry-run and never starts runners automatically.",
+    "The implemented queue is review-only and never starts bridge or runner automatically.",
     "A long-running supervised service is not implemented yet."
   ]
 }

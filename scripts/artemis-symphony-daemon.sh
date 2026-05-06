@@ -267,7 +267,7 @@ payload = {
         "Human Gates are observed and reported, never bypassed.",
         "Terminal override remains required for supervised bridge execution.",
     ],
-    "next_cut": "TKT-046 - Fila supervisionada do ARTEMIS Symphony",
+    "next_cut": "TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony",
 }
 
 (artifact_root / "symphony-daemon.json").write_text(
@@ -368,8 +368,8 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-046 - Fila supervisionada do ARTEMIS Symphony`.",
-    "- Transformar dispatch observado em fila revisavel, ainda sem execucao automatica.",
+    "- Implementar `TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony`.",
+    "- Consumir item revisado da fila com comando explicito e ponte plan-only por padrao.",
     "",
     "## Nao fazer",
     "",

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-06T19:35:07Z",
+  "source": "scripts/artemis-symphony-queue.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_task_symphony_queue_completed",
+      "event_type": "validation.completed",
+      "generated_at": "2026-05-06T19:35:07Z",
+      "producer": {
+        "adapter": "local_queue",
+        "name": "scripts/artemis-symphony-queue.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TASK",
+        "task_id": "task",
+        "title": "ARTEMIS Symphony supervised queue",
+        "exec_pack": "docs/symphony/ARTEMIS_SYMPHONY_QUEUE.md",
+        "artifact_root": "artifacts/artemis-symphony-queue/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "done",
+        "reason": "Supervised queue generated from daemon evidence without execution."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-symphony-queue/run-01",
+        "status_path": "artifacts/artemis-symphony-queue/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-symphony-queue/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-symphony-queue/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-symphony-queue/run-01/symphony-queue.json"
+        ]
+      },
+      "links": {
+        "correlation_id": "task"
+      },
+      "payload": {
+        "reason": "Supervised queue generated from daemon evidence without execution.",
+        "overall": "queue_empty",
+        "queue_items": 0,
+        "commands_executed": 0,
+        "bridge_called": false,
+        "runner_called": false
+      }
+    }
+  ]
+}

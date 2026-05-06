@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-06T19:35:07Z",
+  "source": "scripts/artemis-symphony-queue.sh",
+  "mode": "supervised_queue_read_only",
+  "overall": "queue_empty",
+  "artifact_root": "artifacts/artemis-symphony-queue/run-01",
+  "daemon": "artifacts/artemis-symphony-daemon/run-01/symphony-daemon.json",
+  "source_tick": "tick-002",
+  "source_kernel": "artifacts/artemis-symphony-daemon/run-01/ticks/tick-002/kernel/symphony-kernel.json",
+  "summary": {
+    "queue_items": 0,
+    "review_required": 0,
+    "human_gate_tickets": 0,
+    "commands_executed": 0,
+    "bridge_called": false,
+    "runner_called": false,
+    "runner_auto_execution_allowed": false
+  },
+  "items": [],
+  "human_gate_tickets": [],
+  "errors": [],
+  "invariants": [
+    "Queue is derived from daemon and kernel evidence.",
+    "Queue is review-only and does not execute agents.",
+    "Queue does not call the bridge or runner.",
+    "Every queue item requires terminal override before bridge execution.",
+    "Human Gates remain explicit and non-bypassable."
+  ],
+  "next_cut": "TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony"
+}

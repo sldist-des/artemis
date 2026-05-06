@@ -15,6 +15,7 @@ docs/symphony/ARTEMIS_SYMPHONY_SPEC.md
 docs/symphony/ARTEMIS_SYMPHONY_KERNEL.md
 docs/symphony/ARTEMIS_SYMPHONY_BRIDGE.md
 docs/symphony/ARTEMIS_SYMPHONY_DAEMON.md
+docs/symphony/ARTEMIS_SYMPHONY_QUEUE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
 docs/agents/CAPABILITY_REGISTRY.md
@@ -56,6 +57,7 @@ scripts/artemis-symphony-compatibility.sh
 scripts/artemis-symphony-kernel.sh
 scripts/artemis-symphony-bridge.sh
 scripts/artemis-symphony-daemon.sh
+scripts/artemis-symphony-queue.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -135,6 +137,7 @@ sh -n scripts/artemis-symphony-compatibility.sh
 sh -n scripts/artemis-symphony-kernel.sh
 sh -n scripts/artemis-symphony-bridge.sh
 sh -n scripts/artemis-symphony-daemon.sh
+sh -n scripts/artemis-symphony-queue.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -498,6 +501,10 @@ if ! grep -q '"daemon_dry_run": true' /tmp/artemis-symphony-compatibility.json; 
   echo "ARTEMIS Symphony compatibility did not preserve daemon dry-run mode" >&2
   exit 1
 fi
+if ! grep -q '"queue_implemented": true' /tmp/artemis-symphony-compatibility.json; then
+  echo "ARTEMIS Symphony compatibility did not detect the supervised queue" >&2
+  exit 1
+fi
 cat >/tmp/artemis-symphony-kernel-source.json <<'JSON'
 {
   "schema_version": 1,
@@ -651,6 +658,43 @@ if ! test -f /tmp/artemis-symphony-daemon/heartbeat.jsonl; then
 fi
 if ! test -f /tmp/artemis-symphony-daemon/events.json; then
   echo "scripts/artemis-symphony-daemon.sh did not write events.json" >&2
+  exit 1
+fi
+scripts/artemis-symphony-queue.sh --daemon /tmp/artemis-symphony-daemon/symphony-daemon.json --artifact-root /tmp/artemis-symphony-queue --json >/tmp/artemis-symphony-queue.json
+if ! grep -q '"overall": "queue_ready"' /tmp/artemis-symphony-queue.json; then
+  echo "scripts/artemis-symphony-queue.sh did not report queue_ready" >&2
+  exit 1
+fi
+if ! grep -q '"queue_items": 2' /tmp/artemis-symphony-queue.json; then
+  echo "ARTEMIS Symphony queue did not materialize both dispatch items" >&2
+  exit 1
+fi
+if ! grep -q '"review_required": 2' /tmp/artemis-symphony-queue.json; then
+  echo "ARTEMIS Symphony queue did not require review for both items" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-symphony-queue.json; then
+  echo "ARTEMIS Symphony queue executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"bridge_called": false' /tmp/artemis-symphony-queue.json; then
+  echo "ARTEMIS Symphony queue called the bridge" >&2
+  exit 1
+fi
+if ! grep -q '"runner_called": false' /tmp/artemis-symphony-queue.json; then
+  echo "ARTEMIS Symphony queue called the runner" >&2
+  exit 1
+fi
+if ! grep -q '"terminal_override_required": true' /tmp/artemis-symphony-queue.json; then
+  echo "ARTEMIS Symphony queue did not require terminal override" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-symphony-queue/symphony-queue.json; then
+  echo "scripts/artemis-symphony-queue.sh did not write symphony-queue.json" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-symphony-queue/events.json; then
+  echo "scripts/artemis-symphony-queue.sh did not write events.json" >&2
   exit 1
 fi
 scripts/artemis-approved-workspace-cleanup.sh --decision /tmp/artemis-workspace-cleanup-review/cleanup-review.json --artifact-root /tmp/artemis-approved-workspace-cleanup --json >/tmp/artemis-approved-workspace-cleanup.json
@@ -861,6 +905,14 @@ if ! grep -q "artifacts/artemis-symphony-daemon/run-01/symphony-daemon.json" con
 fi
 if ! grep -q "heartbeat_ready" control-plane/index.html; then
   echo "control-plane/index.html does not show the Symphony daemon heartbeat" >&2
+  exit 1
+fi
+if ! grep -q "artifacts/artemis-symphony-queue/run-01/symphony-queue.json" control-plane/index.html; then
+  echo "control-plane/index.html does not link the Symphony queue artifact" >&2
+  exit 1
+fi
+if ! grep -q "queue_empty" control-plane/index.html; then
+  echo "control-plane/index.html does not show the Symphony queue state" >&2
   exit 1
 fi
 

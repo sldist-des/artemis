@@ -322,6 +322,31 @@ Contrato:
 - mantem `runner_auto_execution_allowed=false`;
 - preserva Human Gates observados pelo kernel.
 
+### Modo 2.5 - Fila supervisionada local
+
+Implementado como fila read-only revisavel.
+
+- le `symphony-daemon.json`;
+- abre o kernel do ultimo tick;
+- transforma `dispatch_plan` em itens `review_required`;
+- nao escolhe comando de execucao;
+- nao chama bridge ou runner automaticamente.
+
+Fila supervisionada implementada:
+
+- `scripts/artemis-symphony-queue.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_QUEUE.md`
+
+Contrato:
+
+- a fila e derivada de evidencia do daemon e do kernel;
+- cada item exige terminal override;
+- `bridge_called=false`;
+- `runner_called=false`;
+- `runner_auto_execution_allowed=false`;
+- `commands_executed=0`;
+- Human Gates continuam fora da fila executavel.
+
 ### Modo 3 - Tracker remoto
 
 Futuro.
@@ -343,13 +368,13 @@ Futuro.
 
 ## Proximo corte recomendado
 
-`TKT-046 - Fila supervisionada do ARTEMIS Symphony`
+`TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony`
 
 Objetivo:
 
-- transformar dispatch observado pelo daemon dry-run em fila revisavel;
-- manter a fila local-first e versionavel;
-- exigir terminal override para qualquer ponte supervisionada;
-- preservar Human Gates e Validation Gate antes de execucao.
+- consumir um item revisado da fila;
+- exigir comando explicito e terminal override;
+- chamar a ponte supervisionada em modo plan-only por padrao;
+- preservar Human Gates, Validation Gate e evidencias antes de qualquer `--execute`.
 
-Esse sera o quinto passo de implementacao do nosso Symphony proprio.
+Esse sera o sexto passo de implementacao do nosso Symphony proprio.

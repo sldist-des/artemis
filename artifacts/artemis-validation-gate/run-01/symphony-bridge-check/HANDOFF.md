@@ -6,8 +6,8 @@ Bridge supervisionada concluida com overall `runner_plan_ready`.
 
 ## Proximo corte
 
-- Implementar `TKT-046 - Fila supervisionada do ARTEMIS Symphony`.
-- Manter ponte como execucao explicita por terminal, mesmo quando a fila existir.
+- Implementar `TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony`.
+- Consumir item revisado da fila com comando explicito e ponte plan-only por padrao.
 
 ## Nao fazer
 

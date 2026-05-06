@@ -934,7 +934,7 @@
     <section class="symphony-section" aria-labelledby="symphony-title">
       <header class="symphony-header">
         <h2 id="symphony-title">ARTEMIS Symphony</h2>
-        <p id="symphony-summary">Evidencias de kernel, bridge, runner e daemon dry-run. Control Plane e somente observacional.</p>
+        <p id="symphony-summary">Evidencias de kernel, bridge, runner, daemon dry-run e fila. Control Plane e somente observacional.</p>
       </header>
       <div id="symphony-evidence" class="symphony-grid" aria-live="polite"></div>
     </section>
@@ -1495,6 +1495,17 @@
         tags: ["symphony", "daemon", "heartbeat"]
       },
       {
+        id: "tkt-046",
+        state: "done",
+        ticket: "TKT-046",
+        title: "Fila supervisionada do ARTEMIS Symphony",
+        summary: "Fila read-only materializa dispatch observado como itens revisaveis, sem bridge ou runner automatico.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "artifacts/artemis-symphony-queue/run-01",
+        tags: ["symphony", "queue", "review"]
+      },
+      {
         id: "github-auth",
         state: "human",
         ticket: "GIT",
@@ -1644,6 +1655,19 @@
         evidence: { artifact_path: "artifacts/artemis-symphony-daemon/run-01" }
       },
       {
+        event_id: "evt_tkt-046_symphony_queue",
+        event_type: "validation.completed",
+        generated_at: "2026-05-06T19:45:00Z",
+        producer: { adapter: "local_queue", name: "scripts/artemis-symphony-queue.sh", mode: "read_only" },
+        subject: {
+          ticket: "TKT-046",
+          title: "Fila supervisionada do ARTEMIS Symphony"
+        },
+        state: { from: "planned", to: "done", reason: "Queue materialized daemon dispatch evidence as review-only items without bridge or runner execution." },
+        severity: "info",
+        evidence: { artifact_path: "artifacts/artemis-symphony-queue/run-01" }
+      },
+      {
         event_id: "evt_tkt-017_adapter_events",
         event_type: "adapter.events_emitted",
         generated_at: "2026-04-30T19:54:36Z",
@@ -1681,7 +1705,7 @@
     const symphonySummaryNode = document.querySelector("#symphony-summary");
 
     const symphonyEvidence = {
-      summary: "Kernel, bridge, runner e daemon dry-run publicados como evidencia local. Exec Packs e artifacts continuam canonicos.",
+      summary: "Kernel, bridge, runner, daemon dry-run e fila publicados como evidencia local. Exec Packs e artifacts continuam canonicos.",
       items: [
         {
           title: "Kernel",
@@ -1747,6 +1771,20 @@
             ["status", "../artifacts/artemis-symphony-daemon/run-01/STATUS.md"],
             ["heartbeat", "../artifacts/artemis-symphony-daemon/run-01/heartbeat.json"],
             ["json", "../artifacts/artemis-symphony-daemon/run-01/symphony-daemon.json"]
+          ]
+        },
+        {
+          title: "Queue",
+          status: "queue_empty",
+          summary: "Fila supervisionada leu o ultimo tick do daemon e manteve revisao sem bridge ou runner automatico.",
+          facts: [
+            ["items", "0"],
+            ["commands", "0"]
+          ],
+          links: [
+            ["status", "../artifacts/artemis-symphony-queue/run-01/STATUS.md"],
+            ["json", "../artifacts/artemis-symphony-queue/run-01/symphony-queue.json"],
+            ["events", "../artifacts/artemis-symphony-queue/run-01/events.json"]
           ]
         }
       ]

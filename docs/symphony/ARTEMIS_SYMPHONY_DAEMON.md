@@ -57,6 +57,6 @@ scripts/artemis-symphony-daemon.sh --json
 
 ## Proximo Corte
 
-`TKT-046 - Fila supervisionada do ARTEMIS Symphony`
+`TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony`
 
-Objetivo: transformar dispatch observado pelo daemon dry-run em fila revisavel sem execucao automatica.
+Objetivo: consumir item revisado da fila com comando explicito e ponte supervisionada plan-only por padrao.

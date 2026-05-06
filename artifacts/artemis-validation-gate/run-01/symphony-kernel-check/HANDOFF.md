@@ -6,8 +6,8 @@ Kernel local read-only concluido com overall `dispatch_plan_ready`.
 
 ## Proximo corte
 
-- Implementar `TKT-046 - Fila supervisionada do ARTEMIS Symphony`.
-- Continuar sem execucao automatica ate a fila supervisionada preservar terminal override e Human Gate.
+- Implementar `TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony`.
+- Continuar com ponte plan-only por padrao e comando explicito por terminal.
 
 ## Nao fazer
 

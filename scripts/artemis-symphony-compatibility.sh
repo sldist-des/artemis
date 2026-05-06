@@ -102,6 +102,8 @@ layers = [
             "docs/symphony/ARTEMIS_SYMPHONY_BRIDGE.md",
             "scripts/artemis-symphony-daemon.sh",
             "docs/symphony/ARTEMIS_SYMPHONY_DAEMON.md",
+            "scripts/artemis-symphony-queue.sh",
+            "docs/symphony/ARTEMIS_SYMPHONY_QUEUE.md",
             "scripts/artemis-codex-app-server.sh",
             "scripts/artemis-claude-code.sh",
         ],
@@ -141,6 +143,12 @@ layers = [
         "required_files": ["scripts/artemis-symphony-daemon.sh", "docs/symphony/ARTEMIS_SYMPHONY_DAEMON.md"],
         "status": "implemented_read_only",
     },
+    {
+        "layer": "supervised_queue",
+        "purpose": "Review-only queue derived from daemon and kernel dispatch evidence.",
+        "required_files": ["scripts/artemis-symphony-queue.sh", "docs/symphony/ARTEMIS_SYMPHONY_QUEUE.md"],
+        "status": "implemented_read_only",
+    },
 ]
 
 for layer in layers:
@@ -158,7 +166,7 @@ required_terms = [
     "Runner Layer",
     "Validation Layer",
     "Human Gates",
-    "TKT-046",
+    "TKT-047",
 ]
 missing_terms = [term for term in required_terms if term not in spec_text]
 if missing_terms:
@@ -186,9 +194,10 @@ compatibility = {
     "kernel_implemented": True,
     "bridge_implemented": True,
     "daemon_dry_run": True,
+    "queue_implemented": True,
     "terminal_first": True,
     "human_gates_preserved": True,
-    "next_cut": "TKT-046 - Fila supervisionada do ARTEMIS Symphony",
+    "next_cut": "TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony",
 }
 
 overall = "failed" if blockers else "spec_ready"
@@ -209,7 +218,8 @@ payload = {
         "kernel_implemented": exists("scripts/artemis-symphony-kernel.sh"),
         "bridge_implemented": exists("scripts/artemis-symphony-bridge.sh"),
         "daemon_dry_run": exists("scripts/artemis-symphony-daemon.sh"),
-        "next_cut_defined": "TKT-046" in spec_text,
+        "queue_implemented": exists("scripts/artemis-symphony-queue.sh"),
+        "next_cut_defined": "TKT-047" in spec_text,
     },
     "compatibility": compatibility,
     "layers": layers,
@@ -222,6 +232,7 @@ payload = {
         "The implemented kernel is read-only and cannot execute agents.",
         "The implemented bridge is supervised and plan-only by default.",
         "The implemented daemon is finite dry-run and never starts runners automatically.",
+        "The implemented queue is review-only and never starts bridge or runner automatically.",
         "A long-running supervised service is not implemented yet.",
     ],
 }
@@ -304,13 +315,13 @@ handoff_lines = [
     "",
     "## Estado",
     "",
-    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte e o daemon dry-run local existem.",
+    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run e a fila supervisionada local existem.",
     "",
     "## Proximo corte",
     "",
-    "- Criar `TKT-046 - Fila supervisionada do ARTEMIS Symphony`.",
-    "- Transformar dispatch observado em fila revisavel sem execucao automatica.",
-    "- Manter terminal override para ponte supervisionada.",
+    "- Criar `TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony`.",
+    "- Consumir item revisado com comando explicito e ponte plan-only por padrao.",
+    "- Manter Validation Gate antes de qualquer execucao real.",
     "",
     "## Nao fazer",
     "",

@@ -2,13 +2,13 @@
 
 ## Estado
 
-ARTEMIS Symphony esta `spec_ready` como especificacao propria. O kernel, a ponte e o daemon dry-run local existem.
+ARTEMIS Symphony esta `spec_ready` como especificacao propria. O kernel, a ponte, o daemon dry-run e a fila supervisionada local existem.
 
 ## Proximo corte
 
-- Criar `TKT-046 - Fila supervisionada do ARTEMIS Symphony`.
-- Transformar dispatch observado em fila revisavel sem execucao automatica.
-- Manter terminal override para ponte supervisionada.
+- Criar `TKT-047 - Execucao supervisionada a partir da fila ARTEMIS Symphony`.
+- Consumir item revisado com comando explicito e ponte plan-only por padrao.
+- Manter Validation Gate antes de qualquer execucao real.
 
 ## Nao fazer
 

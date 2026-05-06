@@ -165,7 +165,7 @@ payload = {
         "Human Gates are copied into the plan and never bypassed.",
         "Terminal override remains required for any future supervised execution.",
     ],
-    "next_cut": "TKT-043 - Ponte supervisionada do ARTEMIS Symphony",
+    "next_cut": "TKT-045 - Daemon dry-run do ARTEMIS Symphony",
 }
 
 (artifact_root / "symphony-kernel.json").write_text(
@@ -282,8 +282,8 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-043 - Ponte supervisionada do ARTEMIS Symphony`.",
-    "- Continuar sem daemon ate a ponte provar comando, evidencia e Human Gate.",
+    "- Implementar `TKT-045 - Daemon dry-run do ARTEMIS Symphony`.",
+    "- Continuar sem execucao automatica ate o daemon dry-run provar heartbeat, plano e Human Gate.",
     "",
     "## Nao fazer",
     "",

@@ -59,6 +59,6 @@ scripts/artemis-symphony-bridge.sh \
 
 ## Proximo Corte
 
-`TKT-044 - Control Plane do ARTEMIS Symphony Bridge`
+`TKT-045 - Daemon dry-run do ARTEMIS Symphony`
 
-Objetivo: expor evidencias do kernel, bridge e runner no Control Plane sem mudar a fonte canonica de estado.
+Objetivo: criar um loop local ainda read-only que observa a task source, chama o kernel, respeita Human Gates e nunca executa runner automaticamente.

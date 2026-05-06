@@ -791,5 +791,21 @@ if ! grep -q "ARTEMIS Control Plane" control-plane/index.html; then
   echo "control-plane/index.html does not look like the ARTEMIS Control Plane" >&2
   exit 1
 fi
+if ! grep -q 'id="symphony-evidence"' control-plane/index.html; then
+  echo "control-plane/index.html does not expose ARTEMIS Symphony evidence" >&2
+  exit 1
+fi
+if ! grep -q "runner_plan_ready" control-plane/index.html; then
+  echo "control-plane/index.html does not show the Symphony bridge runner plan" >&2
+  exit 1
+fi
+if ! grep -q "artifacts/artemis-symphony-bridge/run-01/symphony-bridge.json" control-plane/index.html; then
+  echo "control-plane/index.html does not link the Symphony bridge artifact" >&2
+  exit 1
+fi
+if ! grep -q "20260506T165146Z-25-tkt-903" control-plane/index.html; then
+  echo "control-plane/index.html does not link the Symphony runner attempt" >&2
+  exit 1
+fi
 
 echo "ARTEMIS validation passed"

@@ -3,7 +3,7 @@
 ## Resultado local
 
 - Overall: `idle`.
-- Tasks total: `44`.
+- Tasks total: `45`.
 - Eligible: `0`.
 - Selected for dispatch: `0`.
 - Max concurrency: `1`.

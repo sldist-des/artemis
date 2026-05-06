@@ -527,6 +527,134 @@
       background: rgba(49, 95, 125, .08);
     }
 
+    .symphony-section {
+      border-top: 2px solid var(--ink);
+      border-bottom: 1px solid var(--line);
+      margin: 0 0 18px;
+      padding: 14px 0 16px;
+      display: grid;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .symphony-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .symphony-header h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .symphony-header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+      text-align: right;
+      overflow-wrap: anywhere;
+    }
+
+    .symphony-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .symphony-card {
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel) 88%, #d8e5d2);
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+      min-height: 152px;
+      min-width: 0;
+    }
+
+    .symphony-card header {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: start;
+      min-width: 0;
+    }
+
+    .symphony-card h3 {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.15;
+      overflow-wrap: anywhere;
+    }
+
+    .symphony-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .symphony-status {
+      border: 1px solid var(--green);
+      color: var(--green);
+      background: var(--panel);
+      padding: 3px 6px;
+      font-size: 10px;
+      font-weight: 800;
+      line-height: 1.1;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .symphony-facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .symphony-fact {
+      border-top: 1px solid var(--line);
+      padding-top: 5px;
+      min-width: 0;
+    }
+
+    .symphony-fact b {
+      display: block;
+      font-size: 13px;
+      line-height: 1.15;
+      overflow-wrap: anywhere;
+    }
+
+    .symphony-fact span {
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .symphony-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-self: end;
+    }
+
+    .symphony-links a {
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+    }
+
     .card {
       border: 1px solid var(--ink);
       background: var(--panel);
@@ -678,6 +806,19 @@
         grid-template-columns: 1fr;
       }
 
+      .symphony-header {
+        display: grid;
+        align-items: start;
+      }
+
+      .symphony-header p {
+        text-align: left;
+      }
+
+      .symphony-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .gate-row {
         grid-template-columns: minmax(72px, .22fr) minmax(0, 1fr) minmax(80px, auto);
       }
@@ -745,6 +886,7 @@
       }
 
       .gate-stats,
+      .symphony-grid,
       .gate-row {
         grid-template-columns: 1fr;
       }
@@ -791,6 +933,14 @@
       <div class="metric"><b id="metric-active">0</b><span>ativos</span></div>
       <div class="metric"><b id="metric-human">0</b><span>decisoes humanas</span></div>
       <div class="metric"><b id="metric-done">0</b><span>concluidos</span></div>
+    </section>
+
+    <section class="symphony-section" aria-labelledby="symphony-title">
+      <header class="symphony-header">
+        <h2 id="symphony-title">ARTEMIS Symphony</h2>
+        <p id="symphony-summary">Evidencias de kernel, bridge e runner. Control Plane e somente observacional.</p>
+      </header>
+      <div id="symphony-evidence" class="symphony-grid" aria-live="polite"></div>
     </section>
 
     <section class="decision-gate" aria-labelledby="decision-gate-title">
@@ -1327,6 +1477,17 @@
         tags: ["symphony", "bridge", "runner"]
       },
       {
+        id: "tkt-044",
+        state: "done",
+        ticket: "TKT-044",
+        title: "Symphony Bridge Control Plane",
+        summary: "Control Plane expoe evidencias de kernel, bridge e runner sem virar fonte canonica.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "artifacts/artemis-symphony-control-plane/run-01",
+        tags: ["symphony", "control-plane", "evidence"]
+      },
+      {
         id: "github-auth",
         state: "human",
         ticket: "GIT",
@@ -1450,6 +1611,19 @@
         evidence: { artifact_path: "artifacts/artemis-symphony-bridge/run-01" }
       },
       {
+        event_id: "evt_tkt-044_symphony_control_plane",
+        event_type: "validation.completed",
+        generated_at: "2026-05-06T17:02:00Z",
+        producer: { adapter: "control_plane", name: "control-plane/index.html", mode: "read_only" },
+        subject: {
+          ticket: "TKT-044",
+          title: "Symphony Bridge Control Plane"
+        },
+        state: { from: "validating", to: "done", reason: "Control Plane exposes Symphony kernel, bridge, runner and Validation Gate evidence as read-only links." },
+        severity: "info",
+        evidence: { artifact_path: "artifacts/artemis-symphony-control-plane/run-01" }
+      },
+      {
         event_id: "evt_tkt-017_adapter_events",
         event_type: "adapter.events_emitted",
         generated_at: "2026-04-30T19:54:36Z",
@@ -1483,6 +1657,66 @@
     const sourceStatus = document.querySelector("#source-status");
     const eventTimeline = document.querySelector("#event-timeline");
     const timelineStatus = document.querySelector("#timeline-status");
+    const symphonyEvidenceNode = document.querySelector("#symphony-evidence");
+    const symphonySummaryNode = document.querySelector("#symphony-summary");
+
+    const symphonyEvidence = {
+      summary: "Kernel, bridge e runner publicados como evidencia local. Exec Packs e artifacts continuam canonicos.",
+      items: [
+        {
+          title: "Kernel",
+          status: "dispatch_plan_ready",
+          summary: "Plano read-only selecionou o ticket sintetico para a ponte sem executar agente.",
+          facts: [
+            ["dispatch", "1"],
+            ["commands", "0"]
+          ],
+          links: [
+            ["status", "../artifacts/artemis-symphony-bridge/run-01/kernel/STATUS.md"],
+            ["json", "../artifacts/artemis-symphony-bridge/run-01/kernel/symphony-kernel.json"]
+          ]
+        },
+        {
+          title: "Bridge",
+          status: "runner_plan_ready",
+          summary: "Ponte confirmou dispatch_plan e criou tentativa supervisionada plan-only.",
+          facts: [
+            ["planned", "true"],
+            ["execute", "false"]
+          ],
+          links: [
+            ["status", "../artifacts/artemis-symphony-bridge/run-01/STATUS.md"],
+            ["json", "../artifacts/artemis-symphony-bridge/run-01/symphony-bridge.json"]
+          ]
+        },
+        {
+          title: "Runner",
+          status: "plan_only",
+          summary: "Runner recebeu comando supervisionado, registrou tentativa e nao executou comando.",
+          facts: [
+            ["attempt", "TKT-903"],
+            ["commands", "0"]
+          ],
+          links: [
+            ["attempt", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260506T165146Z-25-tkt-903/RUNNER.md"],
+            ["events", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260506T165146Z-25-tkt-903/events.json"]
+          ]
+        },
+        {
+          title: "Validation",
+          status: "human_gate",
+          summary: "Validation Gate passou tecnicamente e preservou Human Gates externos.",
+          facts: [
+            ["passed", "56"],
+            ["failed", "0"]
+          ],
+          links: [
+            ["gate", "../artifacts/artemis-validation-gate/run-01/validation-gate.json"],
+            ["handoff", "../artifacts/artemis-symphony-bridge/run-01/HANDOFF.md"]
+          ]
+        }
+      ]
+    };
 
     function cloneCards(source) {
       return JSON.parse(JSON.stringify(source));
@@ -1598,6 +1832,30 @@
       `).join("");
     }
 
+    function renderSymphonyEvidence(model) {
+      symphonySummaryNode.textContent = model.summary;
+      symphonyEvidenceNode.innerHTML = model.items.map((item) => `
+        <article class="symphony-card">
+          <header>
+            <h3>${escapeHtml(item.title)}</h3>
+            <span class="symphony-status">${escapeHtml(item.status)}</span>
+          </header>
+          <p>${escapeHtml(item.summary)}</p>
+          <div class="symphony-facts">
+            ${item.facts.map(([label, value]) => `
+              <span class="symphony-fact">
+                <b>${escapeHtml(value)}</b>
+                <span>${escapeHtml(label)}</span>
+              </span>
+            `).join("")}
+          </div>
+          <div class="symphony-links">
+            ${item.links.map(([label, href]) => `<a href="${escapeHtml(href)}">${escapeHtml(label)}</a>`).join("")}
+          </div>
+        </article>
+      `).join("");
+    }
+
     async function loadEventSource() {
       try {
         const response = await fetch(eventSourceUrl, { cache: "no-store" });
@@ -1688,6 +1946,7 @@
       applyFilter();
       updateMetrics();
       renderDecisionGate(realCleanupGate);
+      renderSymphonyEvidence(symphonyEvidence);
     }
 
     function renderCard(card) {

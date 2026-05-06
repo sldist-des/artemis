@@ -109,3 +109,16 @@ and renders the events as a compact read-only timeline with ticket, event type, 
 The timeline is observational only. Dragging cards can still adjust the local visual board, but event data does not mutate canonical state. Exec Packs, artifacts and Git remain canonical.
 
 Adapters that support the canonical event contract write `events.json` beside their adapter-specific JSON. This gives the Control Plane one future read-only stream without forcing every adapter to expose the same internal diagnostics.
+
+## ARTEMIS Symphony evidence
+
+The Control Plane includes a read-only `ARTEMIS Symphony` section for the local Symphony cuts.
+
+It exposes:
+
+- Kernel evidence from `artifacts/artemis-symphony-bridge/run-01/kernel/`;
+- Bridge evidence from `artifacts/artemis-symphony-bridge/run-01/`;
+- Runner plan-only evidence from `artifacts/artemis-symphony-bridge/run-01/runner/attempts/`;
+- Validation Gate evidence from `artifacts/artemis-validation-gate/run-01/`.
+
+This section is intentionally observational. It links to artifacts and summarizes facts such as `runner_plan_ready`, `execute=false` and `commands=0`, but it does not create tasks, execute runners, approve Human Gates, or become canonical state.

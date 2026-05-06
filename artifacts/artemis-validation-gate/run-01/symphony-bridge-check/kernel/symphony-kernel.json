@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T16:52:09Z",
+  "generated_at": "2026-05-06T17:04:56Z",
   "source": "scripts/artemis-symphony-kernel.sh",
   "mode": "read_only",
   "overall": "dispatch_plan_ready",
@@ -51,5 +51,5 @@
     "Human Gates are copied into the plan and never bypassed.",
     "Terminal override remains required for any future supervised execution."
   ],
-  "next_cut": "TKT-043 - Ponte supervisionada do ARTEMIS Symphony"
+  "next_cut": "TKT-045 - Daemon dry-run do ARTEMIS Symphony"
 }

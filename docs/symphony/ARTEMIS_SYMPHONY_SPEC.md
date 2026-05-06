@@ -328,13 +328,14 @@ Futuro.
 
 ## Proximo corte recomendado
 
-`TKT-044 - Control Plane do ARTEMIS Symphony Bridge`
+`TKT-045 - Daemon dry-run do ARTEMIS Symphony`
 
 Objetivo:
 
-- expor evidencias de kernel, bridge e runner;
-- preservar Control Plane como superficie observacional;
-- mostrar comandos executados, quando houver;
-- manter Exec Pack como fonte canonica.
+- criar um loop local read-only sobre a task source;
+- chamar o kernel em intervalo configuravel;
+- registrar heartbeat e plano sem executar runner;
+- preservar Human Gates;
+- manter terminal override para qualquer ponte supervisionada.
 
-Esse sera o terceiro passo de implementacao do nosso Symphony proprio.
+Esse sera o quarto passo de implementacao do nosso Symphony proprio.

@@ -14,7 +14,7 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Bridge implemented: `true`.
 - Terminal-first: `true`.
 - Human Gates preserved: `true`.
-- Next cut: `TKT-044 - Control Plane do ARTEMIS Symphony Bridge`.
+- Next cut: `TKT-045 - Daemon dry-run do ARTEMIS Symphony`.
 
 ## Camadas
 

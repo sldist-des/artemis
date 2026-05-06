@@ -6,9 +6,9 @@ ARTEMIS Symphony esta `spec_ready` como especificacao propria. O kernel local re
 
 ## Proximo corte
 
-- Criar `TKT-044 - Control Plane do ARTEMIS Symphony Bridge`.
-- Expor evidencias do kernel, bridge e runner no Control Plane.
-- Preservar Control Plane como superficie observacional.
+- Criar `TKT-045 - Daemon dry-run do ARTEMIS Symphony`.
+- Observar task source local sem executar runners automaticamente.
+- Registrar heartbeat, plano e Human Gates como evidencia.
 
 ## Nao fazer
 

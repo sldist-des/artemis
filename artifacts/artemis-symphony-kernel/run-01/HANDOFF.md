@@ -6,8 +6,8 @@ Kernel local read-only concluido com overall `idle`.
 
 ## Proximo corte
 
-- Implementar `TKT-043 - Ponte supervisionada do ARTEMIS Symphony`.
-- Continuar sem daemon ate a ponte provar comando, evidencia e Human Gate.
+- Implementar `TKT-045 - Daemon dry-run do ARTEMIS Symphony`.
+- Continuar sem execucao automatica ate o daemon dry-run provar heartbeat, plano e Human Gate.
 
 ## Nao fazer
 

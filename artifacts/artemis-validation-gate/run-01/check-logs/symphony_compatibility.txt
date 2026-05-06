@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T16:52:08Z",
+  "generated_at": "2026-05-06T17:04:55Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
@@ -9,8 +9,8 @@
   "summary": {
     "layers_total": 9,
     "layers_with_missing_files": 0,
-    "tasks_total": 44,
-    "tasks_done": 44,
+    "tasks_total": 45,
+    "tasks_done": 45,
     "daemon_implemented": false,
     "kernel_implemented": true,
     "bridge_implemented": true,
@@ -25,7 +25,7 @@
     "bridge_implemented": true,
     "terminal_first": true,
     "human_gates_preserved": true,
-    "next_cut": "TKT-044 - Control Plane do ARTEMIS Symphony Bridge"
+    "next_cut": "TKT-045 - Daemon dry-run do ARTEMIS Symphony"
   },
   "layers": [
     {

@@ -150,7 +150,7 @@ required_terms = [
     "Runner Layer",
     "Validation Layer",
     "Human Gates",
-    "TKT-044",
+    "TKT-045",
 ]
 missing_terms = [term for term in required_terms if term not in spec_text]
 if missing_terms:
@@ -179,7 +179,7 @@ compatibility = {
     "bridge_implemented": True,
     "terminal_first": True,
     "human_gates_preserved": True,
-    "next_cut": "TKT-044 - Control Plane do ARTEMIS Symphony Bridge",
+    "next_cut": "TKT-045 - Daemon dry-run do ARTEMIS Symphony",
 }
 
 overall = "failed" if blockers else "spec_ready"
@@ -199,7 +199,7 @@ payload = {
         "daemon_implemented": False,
         "kernel_implemented": exists("scripts/artemis-symphony-kernel.sh"),
         "bridge_implemented": exists("scripts/artemis-symphony-bridge.sh"),
-        "next_cut_defined": "TKT-044" in spec_text,
+        "next_cut_defined": "TKT-045" in spec_text,
     },
     "compatibility": compatibility,
     "layers": layers,
@@ -297,9 +297,9 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Criar `TKT-044 - Control Plane do ARTEMIS Symphony Bridge`.",
-    "- Expor evidencias do kernel, bridge e runner no Control Plane.",
-    "- Preservar Control Plane como superficie observacional.",
+    "- Criar `TKT-045 - Daemon dry-run do ARTEMIS Symphony`.",
+    "- Observar task source local sem executar runners automaticamente.",
+    "- Registrar heartbeat, plano e Human Gates como evidencia.",
     "",
     "## Nao fazer",
     "",

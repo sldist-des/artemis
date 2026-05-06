@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 44
+    "done": 45
   },
   "decisions": [
     {
@@ -403,6 +403,15 @@
       "title": "Ponte supervisionada do ARTEMIS Symphony",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-043-artemis-symphony-bridge.md"
+    },
+    {
+      "ticket": "TKT-044",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Control Plane do ARTEMIS Symphony Bridge",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-044-artemis-symphony-bridge-control-plane.md"
     }
   ]
 }

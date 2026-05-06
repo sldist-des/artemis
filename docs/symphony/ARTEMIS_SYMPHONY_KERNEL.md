@@ -50,6 +50,6 @@ scripts/artemis-symphony-kernel.sh --json
 
 ## Proximo Corte
 
-`TKT-043 - Ponte supervisionada do ARTEMIS Symphony`
+`TKT-044 - Control Plane do ARTEMIS Symphony Bridge`
 
-Objetivo: conectar o plano do kernel ao runner supervisionado ainda sem daemon, com comando explicito, evidencia e Human Gate preservados.
+Objetivo: expor evidencias do kernel, bridge e runner no Control Plane sem mudar a fonte canonica de estado.

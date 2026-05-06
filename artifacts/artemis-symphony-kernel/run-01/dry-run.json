@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 43
+    "done": 44
   },
   "decisions": [
     {
@@ -394,6 +394,15 @@
       "title": "Kernel local do ARTEMIS Symphony",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-042-artemis-symphony-kernel.md"
+    },
+    {
+      "ticket": "TKT-043",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Ponte supervisionada do ARTEMIS Symphony",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-043-artemis-symphony-bridge.md"
     }
   ]
 }

@@ -6,10 +6,9 @@ ARTEMIS Symphony esta `spec_ready` como especificacao propria. O kernel local re
 
 ## Proximo corte
 
-- Criar `TKT-043 - Ponte supervisionada do ARTEMIS Symphony`.
-- Conectar plano de dispatch ao runner supervisionado sem daemon.
-- Exigir comando explicito e evidencia antes de qualquer execucao.
-- Preservar Human Gates e terminal override.
+- Criar `TKT-044 - Control Plane do ARTEMIS Symphony Bridge`.
+- Expor evidencias do kernel, bridge e runner no Control Plane.
+- Preservar Control Plane como superficie observacional.
 
 ## Nao fazer
 

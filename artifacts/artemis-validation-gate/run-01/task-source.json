@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T16:06:41Z",
+  "generated_at": "2026-05-06T16:52:07Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -517,6 +517,18 @@
       "summary": "Um comando local le o task source, reutiliza o dry-run ARTEMIS, aplica concorrencia maxima configuravel e grava um plano de dispatch sem executar agentes.",
       "exec_pack": "docs/exec-packs/done/TKT-042-artemis-symphony-kernel.md",
       "evidence": "artifacts/artemis-symphony-kernel/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-043",
+      "ticket": "TKT-043",
+      "title": "Ponte supervisionada do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "Um comando local roda o kernel, seleciona um ticket elegivel em `dispatch_plan` e cria uma tentativa supervisionada do runner em modo plan-only por padrao.",
+      "exec_pack": "docs/exec-packs/done/TKT-043-artemis-symphony-bridge.md",
+      "evidence": "artifacts/artemis-symphony-bridge/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

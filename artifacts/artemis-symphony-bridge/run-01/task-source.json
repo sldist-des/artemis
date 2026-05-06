@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": "artifacts/artemis-symphony-bridge/run-01/task-source.json",
+  "tasks": [
+    {
+      "id": "tkt-bridge-validate",
+      "ticket": "TKT-903",
+      "title": "Validate ARTEMIS Symphony Bridge",
+      "state": "ready",
+      "owner": "Codex",
+      "risk": "low",
+      "summary": "Synthetic task used to prove the supervised Symphony bridge creates a runner plan without automatic execution.",
+      "exec_pack": "docs/exec-packs/done/TKT-043-artemis-symphony-bridge.md",
+      "evidence": "artifacts/artemis-symphony-bridge/run-01/STATUS.md",
+      "tags": ["symphony", "bridge", "validation"]
+    }
+  ]
+}

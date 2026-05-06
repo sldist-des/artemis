@@ -11,9 +11,10 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Code copied: `false`.
 - Daemon implemented: `false`.
 - Kernel implemented: `true`.
+- Bridge implemented: `true`.
 - Terminal-first: `true`.
 - Human Gates preserved: `true`.
-- Next cut: `TKT-043 - Ponte supervisionada do ARTEMIS Symphony`.
+- Next cut: `TKT-044 - Control Plane do ARTEMIS Symphony Bridge`.
 
 ## Camadas
 
@@ -43,7 +44,7 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 
 ### runner
 
-- Purpose: Supervised runner plus Codex and Claude adapter contracts.
+- Purpose: Supervised runner plus Symphony bridge, Codex and Claude adapter contracts.
 - Status: `implemented_contract`.
 - Missing files: `0`.
 
@@ -78,4 +79,5 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Human Gates remain explicit and non-bypassable.
 - Control Plane remains observational, not canonical state.
 - The implemented kernel is read-only and cannot execute agents.
+- The implemented bridge is supervised and plan-only by default.
 - The long-running daemon is not implemented yet.

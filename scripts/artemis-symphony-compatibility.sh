@@ -95,9 +95,11 @@ layers = [
     },
     {
         "layer": "runner",
-        "purpose": "Supervised runner plus Codex and Claude adapter contracts.",
+        "purpose": "Supervised runner plus Symphony bridge, Codex and Claude adapter contracts.",
         "required_files": [
             "scripts/artemis-runner.sh",
+            "scripts/artemis-symphony-bridge.sh",
+            "docs/symphony/ARTEMIS_SYMPHONY_BRIDGE.md",
             "scripts/artemis-codex-app-server.sh",
             "scripts/artemis-claude-code.sh",
         ],
@@ -148,7 +150,7 @@ required_terms = [
     "Runner Layer",
     "Validation Layer",
     "Human Gates",
-    "TKT-043",
+    "TKT-044",
 ]
 missing_terms = [term for term in required_terms if term not in spec_text]
 if missing_terms:
@@ -174,9 +176,10 @@ compatibility = {
     "code_copied": False,
     "daemon_implemented": False,
     "kernel_implemented": True,
+    "bridge_implemented": True,
     "terminal_first": True,
     "human_gates_preserved": True,
-    "next_cut": "TKT-043 - Ponte supervisionada do ARTEMIS Symphony",
+    "next_cut": "TKT-044 - Control Plane do ARTEMIS Symphony Bridge",
 }
 
 overall = "failed" if blockers else "spec_ready"
@@ -195,7 +198,8 @@ payload = {
         "tasks_done": tasks_done,
         "daemon_implemented": False,
         "kernel_implemented": exists("scripts/artemis-symphony-kernel.sh"),
-        "next_cut_defined": "TKT-043" in spec_text,
+        "bridge_implemented": exists("scripts/artemis-symphony-bridge.sh"),
+        "next_cut_defined": "TKT-044" in spec_text,
     },
     "compatibility": compatibility,
     "layers": layers,
@@ -206,6 +210,7 @@ payload = {
         "Human Gates remain explicit and non-bypassable.",
         "Control Plane remains observational, not canonical state.",
         "The implemented kernel is read-only and cannot execute agents.",
+        "The implemented bridge is supervised and plan-only by default.",
         "The long-running daemon is not implemented yet.",
     ],
 }
@@ -229,6 +234,7 @@ status_lines = [
     f"- Code copied: `{str(compatibility['code_copied']).lower()}`.",
     f"- Daemon implemented: `{str(compatibility['daemon_implemented']).lower()}`.",
     f"- Kernel implemented: `{str(compatibility['kernel_implemented']).lower()}`.",
+    f"- Bridge implemented: `{str(compatibility['bridge_implemented']).lower()}`.",
     f"- Terminal-first: `{str(compatibility['terminal_first']).lower()}`.",
     f"- Human Gates preserved: `{str(compatibility['human_gates_preserved']).lower()}`.",
     f"- Next cut: `{compatibility['next_cut']}`.",
@@ -291,10 +297,9 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Criar `TKT-043 - Ponte supervisionada do ARTEMIS Symphony`.",
-    "- Conectar plano de dispatch ao runner supervisionado sem daemon.",
-    "- Exigir comando explicito e evidencia antes de qualquer execucao.",
-    "- Preservar Human Gates e terminal override.",
+    "- Criar `TKT-044 - Control Plane do ARTEMIS Symphony Bridge`.",
+    "- Expor evidencias do kernel, bridge e runner no Control Plane.",
+    "- Preservar Control Plane como superficie observacional.",
     "",
     "## Nao fazer",
     "",

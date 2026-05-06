@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-06T16:51:46Z",
+  "source": "scripts/artemis-symphony-kernel.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-903_symphony_dispatch_planned",
+      "event_type": "runner.readiness_checked",
+      "generated_at": "2026-05-06T16:51:46Z",
+      "producer": {
+        "adapter": "local_runner",
+        "name": "scripts/artemis-symphony-kernel.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-903",
+        "task_id": "tkt-903",
+        "title": "Validate ARTEMIS Symphony Bridge",
+        "exec_pack": "docs/exec-packs/done/TKT-043-artemis-symphony-bridge.md",
+        "artifact_root": "artifacts/artemis-symphony-bridge/run-01/kernel"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "ready",
+        "to": "ready",
+        "reason": "Read-only Symphony kernel planned dispatch without execution."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-symphony-bridge/run-01/kernel",
+        "status_path": "artifacts/artemis-symphony-bridge/run-01/kernel/STATUS.md",
+        "validation_path": "artifacts/artemis-symphony-bridge/run-01/kernel/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-symphony-bridge/run-01/kernel/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-903"
+      },
+      "payload": {
+        "reason": "Read-only Symphony kernel planned dispatch without execution.",
+        "slot": 1,
+        "order": 1,
+        "commands_executed": 0,
+        "runner_execution_allowed": false
+      }
+    }
+  ]
+}

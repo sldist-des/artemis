@@ -1316,6 +1316,17 @@
         tags: ["symphony", "kernel", "dispatch"]
       },
       {
+        id: "tkt-043",
+        state: "done",
+        ticket: "TKT-043",
+        title: "ARTEMIS Symphony Bridge",
+        summary: "Ponte supervisionada conecta dispatch do kernel ao runner em modo plan-only por padrao.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "artifacts/artemis-symphony-bridge/run-01",
+        tags: ["symphony", "bridge", "runner"]
+      },
+      {
         id: "github-auth",
         state: "human",
         ticket: "GIT",
@@ -1424,6 +1435,19 @@
         state: { from: "validating", to: "done", reason: "Read-only kernel wrote dispatch plan with commands_executed=0 and runner_execution_allowed=false." },
         severity: "info",
         evidence: { artifact_path: "artifacts/artemis-symphony-kernel/run-01" }
+      },
+      {
+        event_id: "evt_tkt-043_artemis_symphony_bridge",
+        event_type: "runner.attempt_planned",
+        generated_at: "2026-05-06T16:44:08Z",
+        producer: { adapter: "symphony_bridge", name: "scripts/artemis-symphony-bridge.sh", mode: "supervised" },
+        subject: {
+          ticket: "TKT-043",
+          title: "ARTEMIS Symphony Bridge"
+        },
+        state: { from: "ready", to: "running", reason: "Bridge created a runner plan with execute_requested=false and commands_executed=0." },
+        severity: "info",
+        evidence: { artifact_path: "artifacts/artemis-symphony-bridge/run-01" }
       },
       {
         event_id: "evt_tkt-017_adapter_events",

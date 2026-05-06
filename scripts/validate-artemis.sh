@@ -13,6 +13,7 @@ ARTEMIS_APPLY.md
 .impeccable.md
 docs/symphony/ARTEMIS_SYMPHONY_SPEC.md
 docs/symphony/ARTEMIS_SYMPHONY_KERNEL.md
+docs/symphony/ARTEMIS_SYMPHONY_BRIDGE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
 docs/agents/CAPABILITY_REGISTRY.md
@@ -52,6 +53,7 @@ scripts/artemis-post-human-approval-preflight.sh
 scripts/artemis-application-readiness.sh
 scripts/artemis-symphony-compatibility.sh
 scripts/artemis-symphony-kernel.sh
+scripts/artemis-symphony-bridge.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -129,6 +131,7 @@ sh -n scripts/artemis-post-human-approval-preflight.sh
 sh -n scripts/artemis-application-readiness.sh
 sh -n scripts/artemis-symphony-compatibility.sh
 sh -n scripts/artemis-symphony-kernel.sh
+sh -n scripts/artemis-symphony-bridge.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -543,6 +546,63 @@ if ! test -f /tmp/artemis-symphony-kernel/STATUS.md; then
 fi
 if ! test -f /tmp/artemis-symphony-kernel/events.json; then
   echo "scripts/artemis-symphony-kernel.sh did not write events.json" >&2
+  exit 1
+fi
+scripts/artemis-symphony-bridge.sh --input /tmp/artemis-symphony-kernel-source.json --ticket TKT-901 --command "scripts/artemis-dry-run.sh --input /tmp/artemis-symphony-kernel-source.json" --artifact-root /tmp/artemis-symphony-bridge --max-concurrency 2 --json >/tmp/artemis-symphony-bridge.json
+if ! grep -q '"overall": "runner_plan_ready"' /tmp/artemis-symphony-bridge.json; then
+  echo "scripts/artemis-symphony-bridge.sh did not create a supervised runner plan" >&2
+  exit 1
+fi
+if ! grep -q '"ticket_in_dispatch_plan": true' /tmp/artemis-symphony-bridge.json; then
+  echo "ARTEMIS Symphony bridge did not require dispatch-plan membership" >&2
+  exit 1
+fi
+if ! grep -q '"runner_planned": true' /tmp/artemis-symphony-bridge.json; then
+  echo "ARTEMIS Symphony bridge did not plan a runner attempt" >&2
+  exit 1
+fi
+if ! grep -q '"execute_requested": false' /tmp/artemis-symphony-bridge.json; then
+  echo "ARTEMIS Symphony bridge did not stay plan-only by default" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-symphony-bridge.json; then
+  echo "ARTEMIS Symphony bridge executed commands without --execute" >&2
+  exit 1
+fi
+if ! grep -q '"automatic_daemon": false' /tmp/artemis-symphony-bridge.json; then
+  echo "ARTEMIS Symphony bridge reported daemon behavior" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-symphony-bridge/STATUS.md; then
+  echo "scripts/artemis-symphony-bridge.sh did not write STATUS.md" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-symphony-bridge/events.json; then
+  echo "scripts/artemis-symphony-bridge.sh did not write events.json" >&2
+  exit 1
+fi
+set +e
+scripts/artemis-symphony-bridge.sh --input /tmp/artemis-symphony-kernel-source.json --ticket TKT-999 --command "scripts/artemis-dry-run.sh --input /tmp/artemis-symphony-kernel-source.json" --artifact-root /tmp/artemis-symphony-bridge-missing --max-concurrency 2 --json >/tmp/artemis-symphony-bridge-missing.json
+bridge_missing_code=$?
+set -e
+if [ "$bridge_missing_code" -eq 0 ]; then
+  echo "ARTEMIS Symphony bridge accepted a ticket outside dispatch_plan" >&2
+  exit 1
+fi
+if ! grep -q '"overall": "not_dispatchable"' /tmp/artemis-symphony-bridge-missing.json; then
+  echo "ARTEMIS Symphony bridge did not report not_dispatchable for missing ticket" >&2
+  exit 1
+fi
+if ! grep -q '"ticket_in_dispatch_plan": false' /tmp/artemis-symphony-bridge-missing.json; then
+  echo "ARTEMIS Symphony bridge did not preserve dispatch-plan membership failure" >&2
+  exit 1
+fi
+if ! grep -q '"runner_planned": false' /tmp/artemis-symphony-bridge-missing.json; then
+  echo "ARTEMIS Symphony bridge planned a runner attempt for a missing ticket" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-symphony-bridge-missing.json; then
+  echo "ARTEMIS Symphony bridge executed commands for a missing ticket" >&2
   exit 1
 fi
 scripts/artemis-approved-workspace-cleanup.sh --decision /tmp/artemis-workspace-cleanup-review/cleanup-review.json --artifact-root /tmp/artemis-approved-workspace-cleanup --json >/tmp/artemis-approved-workspace-cleanup.json

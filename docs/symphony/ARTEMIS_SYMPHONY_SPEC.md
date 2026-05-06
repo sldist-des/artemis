@@ -284,6 +284,19 @@ Ja existe como contrato.
 - registra evento;
 - pode usar worktree.
 
+Ponte implementada:
+
+- `scripts/artemis-symphony-bridge.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_BRIDGE.md`
+
+Contrato:
+
+- roda o kernel antes do runner;
+- seleciona apenas tickets presentes no `dispatch_plan`;
+- cria tentativa supervisionada plan-only por padrao;
+- exige `--execute` para rodar comando;
+- nao inicia daemon.
+
 ### Modo 2 - Symphony local daemon
 
 Alvo futuro.
@@ -315,13 +328,13 @@ Futuro.
 
 ## Proximo corte recomendado
 
-`TKT-043 - Ponte supervisionada do ARTEMIS Symphony`
+`TKT-044 - Control Plane do ARTEMIS Symphony Bridge`
 
 Objetivo:
 
-- conectar `symphony-kernel.json` ao runner supervisionado;
-- manter comando explicito e terminal-first;
-- preservar Human Gates;
-- continuar sem daemon.
+- expor evidencias de kernel, bridge e runner;
+- preservar Control Plane como superficie observacional;
+- mostrar comandos executados, quando houver;
+- manter Exec Pack como fonte canonica.
 
-Esse sera o segundo passo de implementacao do nosso Symphony proprio.
+Esse sera o terceiro passo de implementacao do nosso Symphony proprio.

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-06T16:52:09Z",
+  "source": "scripts/artemis-symphony-kernel.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-validate_symphony_dispatch_planned",
+      "event_type": "runner.readiness_checked",
+      "generated_at": "2026-05-06T16:52:09Z",
+      "producer": {
+        "adapter": "local_runner",
+        "name": "scripts/artemis-symphony-kernel.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-VALIDATE",
+        "task_id": "tkt-validate",
+        "title": "Validate supervised runner",
+        "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/kernel"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "ready",
+        "to": "ready",
+        "reason": "Read-only Symphony kernel planned dispatch without execution."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/kernel",
+        "status_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/kernel/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/kernel/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/kernel/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-validate"
+      },
+      "payload": {
+        "reason": "Read-only Symphony kernel planned dispatch without execution.",
+        "slot": 1,
+        "order": 1,
+        "commands_executed": 0,
+        "runner_execution_allowed": false
+      }
+    }
+  ]
+}

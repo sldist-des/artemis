@@ -183,11 +183,25 @@ for task in tasks.get("tasks", []):
     if task_artifact_root.startswith("artifacts/"):
         attempt_roots.add(task_artifact_root)
 
+event_files = set()
 for attempt_root in sorted(attempt_roots):
-    for attempt_events in sorted((Path(attempt_root) / "attempts").glob("*/events.json")):
-        attempt_log = read_json(attempt_events)
-        for attempt_event in attempt_log.get("events", []):
-            events.append(attempt_event)
+    root_path = Path(attempt_root)
+    for candidate in [
+        root_path / "events.json",
+        root_path / "kernel" / "events.json",
+    ]:
+        if candidate.is_file():
+            event_files.add(candidate)
+    for pattern in [
+        "attempts/*/events.json",
+        "runner/attempts/*/events.json",
+    ]:
+        event_files.update(root_path.glob(pattern))
+
+for events_path in sorted(event_files):
+    attempt_log = read_json(events_path)
+    for attempt_event in attempt_log.get("events", []):
+        events.append(attempt_event)
 
 event_log = event_log(source="scripts/artemis-event-log.sh", generated_at=generated_at, events=events)
 

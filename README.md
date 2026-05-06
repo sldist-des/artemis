@@ -246,11 +246,13 @@ ARTEMIS agora possui uma especificacao propria de orquestrador inspirada pelo Op
 ```bash
 docs/symphony/ARTEMIS_SYMPHONY_SPEC.md
 docs/symphony/ARTEMIS_SYMPHONY_KERNEL.md
+docs/symphony/ARTEMIS_SYMPHONY_BRIDGE.md
 scripts/artemis-symphony-compatibility.sh --artifact-root artifacts/artemis-symphony-compatibility/run-01
 scripts/artemis-symphony-kernel.sh --artifact-root artifacts/artemis-symphony-kernel/run-01
+scripts/artemis-symphony-bridge.sh --ticket TKT-000 --command "scripts/validate-artemis.sh"
 ```
 
-Essa especificacao nao copia codigo do OpenAI Symphony. Ela define o nosso modelo: Exec Packs como contrato canonico, workspaces isolados, runner adapters, Validation Gate, evidencias e Human Gates. O kernel local atual e read-only: planeja dispatch com concorrencia limitada e registra evidencia sem executar agentes.
+Essa especificacao nao copia codigo do OpenAI Symphony. Ela define o nosso modelo: Exec Packs como contrato canonico, workspaces isolados, runner adapters, Validation Gate, evidencias e Human Gates. O kernel local atual planeja dispatch com concorrencia limitada; a ponte supervisionada entrega um ticket elegivel ao runner em modo plan-only por padrao.
 
 ## Como aplicar em um projeto
 

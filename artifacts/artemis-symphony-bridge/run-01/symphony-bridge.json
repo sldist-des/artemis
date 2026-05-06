@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-06T16:51:46Z",
+  "source": "scripts/artemis-symphony-bridge.sh",
+  "mode": "supervised_bridge",
+  "overall": "runner_plan_ready",
+  "task_source": "artifacts/artemis-symphony-bridge/run-01/task-source.json",
+  "artifact_root": "artifacts/artemis-symphony-bridge/run-01",
+  "kernel": "artifacts/artemis-symphony-bridge/run-01/kernel/symphony-kernel.json",
+  "runner_attempt": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260506T165146Z-25-tkt-903",
+  "runner_events": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260506T165146Z-25-tkt-903/events.json",
+  "summary": {
+    "kernel_overall": "dispatch_plan_ready",
+    "kernel_selected_for_dispatch": 1,
+    "max_concurrency": 1,
+    "selected_ticket": "TKT-903",
+    "ticket_in_dispatch_plan": true,
+    "runner_planned": true,
+    "runner_exit_code": 0,
+    "execute_requested": false,
+    "use_workspace": false,
+    "commands_executed": 0,
+    "automatic_daemon": false
+  },
+  "selected_dispatch": {
+    "order": 1,
+    "slot": 1,
+    "ticket": "TKT-903",
+    "title": "Validate ARTEMIS Symphony Bridge",
+    "state": "ready",
+    "runner": "codex-cli",
+    "exec_pack": "docs/exec-packs/done/TKT-043-artemis-symphony-bridge.md",
+    "workspace": {
+      "mode": "planned",
+      "branch": "artemis/tkt-903-validate-artemis-symphony-bridge",
+      "worktree_path": "../veri-artemis-worktrees/tkt-903",
+      "lock_path": ".artemis/locks/tkt-903.lock",
+      "artifact_root": "artifacts/artemis-symphony-bridge/run-01",
+      "writer": "Codex",
+      "cleanup_state": "not_created"
+    },
+    "decision": "planned_read_only",
+    "reason": "Task has Exec Pack, owner, evidence target, and no human-gate terms.",
+    "runner_execution_allowed": false,
+    "commands_executed": 0
+  },
+  "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-bridge/run-01/task-source.json",
+  "invariants": [
+    "Bridge is not a daemon.",
+    "Bridge runs the kernel before touching the runner.",
+    "Bridge only selects tickets present in dispatch_plan.",
+    "Default mode is runner plan-only.",
+    "Runner execution requires explicit --execute.",
+    "Remote, destructive and deployment commands remain blocked by the runner."
+  ],
+  "next_cut": "TKT-044 - Control Plane do ARTEMIS Symphony Bridge"
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T14:48:26Z",
+  "generated_at": "2026-05-06T16:04:22Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -505,6 +505,18 @@
       "summary": "O repositorio deve ter uma especificacao ARTEMIS Symphony, um artifact de compatibilidade e um proximo corte claro para o kernel local.",
       "exec_pack": "docs/exec-packs/done/TKT-041-artemis-symphony-spec.md",
       "evidence": "artifacts/artemis-symphony-compatibility/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-042",
+      "ticket": "TKT-042",
+      "title": "Kernel local do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "Um comando local le o task source, reutiliza o dry-run ARTEMIS, aplica concorrencia maxima configuravel e grava um plano de dispatch sem executar agentes.",
+      "exec_pack": "docs/exec-packs/done/TKT-042-artemis-symphony-kernel.md",
+      "evidence": "artifacts/artemis-symphony-kernel/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T14:49:02Z",
+  "generated_at": "2026-05-06T16:06:43Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
@@ -9,9 +9,10 @@
   "summary": {
     "layers_total": 9,
     "layers_with_missing_files": 0,
-    "tasks_total": 42,
-    "tasks_done": 42,
+    "tasks_total": 43,
+    "tasks_done": 43,
     "daemon_implemented": false,
+    "kernel_implemented": true,
     "next_cut_defined": true
   },
   "compatibility": {
@@ -19,9 +20,10 @@
     "adoption_mode": "inspired_spec_not_dependency",
     "code_copied": false,
     "daemon_implemented": false,
+    "kernel_implemented": true,
     "terminal_first": true,
     "human_gates_preserved": true,
-    "next_cut": "TKT-042 - Kernel local do ARTEMIS Symphony"
+    "next_cut": "TKT-043 - Ponte supervisionada do ARTEMIS Symphony"
   },
   "layers": [
     {
@@ -111,9 +113,12 @@
     },
     {
       "layer": "daemon_kernel",
-      "purpose": "Long-running local Symphony loop.",
-      "required_files": [],
-      "status": "next_cut",
+      "purpose": "Local ARTEMIS Symphony kernel before long-running daemon.",
+      "required_files": [
+        "scripts/artemis-symphony-kernel.sh",
+        "docs/symphony/ARTEMIS_SYMPHONY_KERNEL.md"
+      ],
+      "status": "implemented_read_only",
       "missing_files": []
     }
   ],
@@ -123,6 +128,7 @@
     "ARTEMIS Symphony stays terminal-first.",
     "Human Gates remain explicit and non-bypassable.",
     "Control Plane remains observational, not canonical state.",
-    "The daemon kernel is the next cut, not part of this spec cut."
+    "The implemented kernel is read-only and cannot execute agents.",
+    "The long-running daemon is not implemented yet."
   ]
 }

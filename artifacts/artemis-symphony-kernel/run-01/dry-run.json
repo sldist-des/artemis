@@ -1,0 +1,399 @@
+{
+  "schema_version": 1,
+  "source": "control-plane/tasks.json",
+  "summary": {
+    "eligible": 0,
+    "blocked": 0,
+    "human_gate": 0,
+    "done": 43
+  },
+  "decisions": [
+    {
+      "ticket": "TKT-000",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Montar starter kit ARTEMIS",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-000-artemis-starter-kit.md"
+    },
+    {
+      "ticket": "TKT-001",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Criar base Git do ARTEMIS",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-001-git-foundation.md"
+    },
+    {
+      "ticket": "TKT-002",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Canonizar AGENTS.md como guia comum",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-002-agent-guide-canon.md"
+    },
+    {
+      "ticket": "TKT-003",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Operacionalizar o proprio repositorio ARTEMIS",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-003-repository-operationalization.md"
+    },
+    {
+      "ticket": "TKT-004",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Preparar criacao do remoto GitHub",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-004-github-remote-readiness.md"
+    },
+    {
+      "ticket": "TKT-005",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Implementar ARTEMIS Control Plane",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-005-artemis-control-plane.md"
+    },
+    {
+      "ticket": "TKT-006",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Planejar ARTEMIS Orchestrator",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-006-artemis-orchestration-plan.md"
+    },
+    {
+      "ticket": "TKT-007",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Renomear superficie visual para ARTEMIS Control Plane",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-007-control-plane-rename.md"
+    },
+    {
+      "ticket": "TKT-008",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Criar ARTEMIS_WORKFLOW.md",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-008-artemis-workflow.md"
+    },
+    {
+      "ticket": "TKT-009",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Criar task source local para Exec Packs",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-009-local-task-source.md"
+    },
+    {
+      "ticket": "TKT-010",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Criar orchestrator dry-run",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-010-orchestrator-dry-run.md"
+    },
+    {
+      "ticket": "TKT-011",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Criar runner local supervisionado",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-011-local-supervised-runner.md"
+    },
+    {
+      "ticket": "TKT-012",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Criar Validation Gate forte",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-012-validation-gate.md"
+    },
+    {
+      "ticket": "TKT-013",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Criar GitHub Issues adapter",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-013-github-issues-adapter.md"
+    },
+    {
+      "ticket": "TKT-014",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Preparar Codex app-server adapter",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-014-codex-app-server-adapter.md"
+    },
+    {
+      "ticket": "TKT-015",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Preparar Claude Code adapter",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-015-claude-code-adapter.md"
+    },
+    {
+      "ticket": "TKT-016",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Definir schema canonico de eventos ARTEMIS",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-016-artemis-event-log-schema.md"
+    },
+    {
+      "ticket": "TKT-017",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Fazer adapters emitirem eventos canonicos ARTEMIS",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-017-adapters-emit-canonical-events.md"
+    },
+    {
+      "ticket": "TKT-018",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Renderizar timeline de eventos no Control Plane",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-018-control-plane-event-timeline.md"
+    },
+    {
+      "ticket": "TKT-019",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Definir Workspace Manager ARTEMIS",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-019-artemis-workspace-manager.md"
+    },
+    {
+      "ticket": "TKT-020",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Emitir eventos canonicos de tentativa do runner",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-020-runner-attempt-events.md"
+    },
+    {
+      "ticket": "TKT-021",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Materializar workspace ARTEMIS controlado",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-021-workspace-materialization.md"
+    },
+    {
+      "ticket": "TKT-022",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Executar runner no workspace materializado",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-022-runner-workspace-execution.md"
+    },
+    {
+      "ticket": "TKT-023",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Loop de validacao e fix em workspace isolado",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-023-validation-fix-loop.md"
+    },
+    {
+      "ticket": "TKT-024",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Inventario e lifecycle de workspaces ARTEMIS",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-024-workspace-lifecycle-inventory.md"
+    },
+    {
+      "ticket": "TKT-025",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Revisao manual de cleanup de workspaces",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-025-workspace-cleanup-review.md"
+    },
+    {
+      "ticket": "TKT-026",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Executor local de cleanup aprovado",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-026-approved-workspace-cleanup-executor.md"
+    },
+    {
+      "ticket": "TKT-027",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Handoff de runtime local de workspaces",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-027-workspace-runtime-handoff.md"
+    },
+    {
+      "ticket": "TKT-028",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Contrato de aprovacao humana para cleanup",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-028-human-cleanup-approval-contract.md"
+    },
+    {
+      "ticket": "TKT-029",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Estados de decisao no handoff de runtime",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-029-runtime-handoff-decision-states.md"
+    },
+    {
+      "ticket": "TKT-030",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Fixtures de decisao humana",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-030-human-decision-fixtures.md"
+    },
+    {
+      "ticket": "TKT-031",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Pacote de decisao humana real",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-031-real-cleanup-decision-package.md"
+    },
+    {
+      "ticket": "TKT-032",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Control Plane para decisao real de cleanup",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-032-control-plane-real-cleanup-human-gate.md"
+    },
+    {
+      "ticket": "TKT-033",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Runbook assistido de decisao humana",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-033-assisted-human-decision-runbook.md"
+    },
+    {
+      "ticket": "TKT-034",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Consistencia do runbook de decisao humana",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-034-human-decision-runbook-consistency.md"
+    },
+    {
+      "ticket": "TKT-035",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Checkpoint local do pacote de decisao humana",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-035-human-decision-release-checkpoint.md"
+    },
+    {
+      "ticket": "TKT-036",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Intake supervisionado da decisao humana preenchida",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-036-human-decision-intake.md"
+    },
+    {
+      "ticket": "TKT-037",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Human Gate da decisao humana pendente",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-037-human-decision-pending-gate.md"
+    },
+    {
+      "ticket": "TKT-038",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Contrato de reentrada apos decisao humana",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-038-human-decision-reentry-contract.md"
+    },
+    {
+      "ticket": "TKT-039",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Preflight supervisionado pos-aprovacao humana",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-039-post-human-approval-preflight.md"
+    },
+    {
+      "ticket": "TKT-040",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Readiness de aplicacao do ARTEMIS",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-040-artemis-application-readiness.md"
+    },
+    {
+      "ticket": "TKT-041",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "ARTEMIS Symphony Spec",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-041-artemis-symphony-spec.md"
+    },
+    {
+      "ticket": "TKT-042",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Kernel local do ARTEMIS Symphony",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-042-artemis-symphony-kernel.md"
+    }
+  ]
+}

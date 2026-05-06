@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T14:49:06Z",
+  "generated_at": "2026-05-06T16:06:46Z",
   "source": "scripts/artemis-claude-code.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-06T14:49:06Z",
+      "generated_at": "2026-05-06T16:06:46Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",

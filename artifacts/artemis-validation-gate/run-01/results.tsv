@@ -16,6 +16,7 @@ shell_human_decision_reentry_contract	technical	passed	0	artifacts/artemis-valid
 shell_post_human_approval_preflight	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_post_human_approval_preflight.txt
 shell_application_readiness	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_application_readiness.txt
 shell_symphony_compatibility	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_compatibility.txt
+shell_symphony_kernel	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_kernel.txt
 shell_approved_workspace_cleanup	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt
 shell_workspace_runtime_handoff	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt
 shell_runner	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt
@@ -40,6 +41,7 @@ human_decision_reentry_contract	technical	passed	0	artifacts/artemis-validation-
 post_human_approval_preflight	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/post_human_approval_preflight.txt
 application_readiness	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/application_readiness.txt
 symphony_compatibility	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/symphony_compatibility.txt
+symphony_kernel	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/symphony_kernel.txt
 approved_workspace_cleanup	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt
 workspace_runtime_handoff	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt
 runner_plan	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt

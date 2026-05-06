@@ -127,9 +127,9 @@ layers = [
     },
     {
         "layer": "daemon_kernel",
-        "purpose": "Long-running local Symphony loop.",
-        "required_files": [],
-        "status": "next_cut",
+        "purpose": "Local ARTEMIS Symphony kernel before long-running daemon.",
+        "required_files": ["scripts/artemis-symphony-kernel.sh", "docs/symphony/ARTEMIS_SYMPHONY_KERNEL.md"],
+        "status": "implemented_read_only",
     },
 ]
 
@@ -148,7 +148,7 @@ required_terms = [
     "Runner Layer",
     "Validation Layer",
     "Human Gates",
-    "TKT-042",
+    "TKT-043",
 ]
 missing_terms = [term for term in required_terms if term not in spec_text]
 if missing_terms:
@@ -173,9 +173,10 @@ compatibility = {
     "adoption_mode": "inspired_spec_not_dependency",
     "code_copied": False,
     "daemon_implemented": False,
+    "kernel_implemented": True,
     "terminal_first": True,
     "human_gates_preserved": True,
-    "next_cut": "TKT-042 - Kernel local do ARTEMIS Symphony",
+    "next_cut": "TKT-043 - Ponte supervisionada do ARTEMIS Symphony",
 }
 
 overall = "failed" if blockers else "spec_ready"
@@ -193,7 +194,8 @@ payload = {
         "tasks_total": tasks_total,
         "tasks_done": tasks_done,
         "daemon_implemented": False,
-        "next_cut_defined": "TKT-042" in spec_text,
+        "kernel_implemented": exists("scripts/artemis-symphony-kernel.sh"),
+        "next_cut_defined": "TKT-043" in spec_text,
     },
     "compatibility": compatibility,
     "layers": layers,
@@ -203,7 +205,8 @@ payload = {
         "ARTEMIS Symphony stays terminal-first.",
         "Human Gates remain explicit and non-bypassable.",
         "Control Plane remains observational, not canonical state.",
-        "The daemon kernel is the next cut, not part of this spec cut.",
+        "The implemented kernel is read-only and cannot execute agents.",
+        "The long-running daemon is not implemented yet.",
     ],
 }
 
@@ -225,6 +228,7 @@ status_lines = [
     f"- Adoption mode: `{compatibility['adoption_mode']}`.",
     f"- Code copied: `{str(compatibility['code_copied']).lower()}`.",
     f"- Daemon implemented: `{str(compatibility['daemon_implemented']).lower()}`.",
+    f"- Kernel implemented: `{str(compatibility['kernel_implemented']).lower()}`.",
     f"- Terminal-first: `{str(compatibility['terminal_first']).lower()}`.",
     f"- Human Gates preserved: `{str(compatibility['human_gates_preserved']).lower()}`.",
     f"- Next cut: `{compatibility['next_cut']}`.",
@@ -283,19 +287,19 @@ handoff_lines = [
     "",
     "## Estado",
     "",
-    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. Nenhum daemon foi criado neste corte.",
+    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel local read-only existe; nenhum daemon foi criado.",
     "",
     "## Proximo corte",
     "",
-    "- Criar `TKT-042 - Kernel local do ARTEMIS Symphony`.",
-    "- Implementar loop read-only local sobre `control-plane/tasks.json`.",
-    "- Registrar plano de dispatch sem executar agente.",
+    "- Criar `TKT-043 - Ponte supervisionada do ARTEMIS Symphony`.",
+    "- Conectar plano de dispatch ao runner supervisionado sem daemon.",
+    "- Exigir comando explicito e evidencia antes de qualquer execucao.",
     "- Preservar Human Gates e terminal override.",
     "",
     "## Nao fazer",
     "",
     "- Nao copiar codigo do OpenAI Symphony.",
-    "- Nao executar daemon antes do kernel read-only.",
+    "- Nao executar daemon antes da ponte supervisionada.",
     "- Nao automatizar push, PR, merge ou cleanup.",
 ]
 (artifact_root / "HANDOFF.md").write_text("\n".join(handoff_lines) + "\n", encoding="utf-8")

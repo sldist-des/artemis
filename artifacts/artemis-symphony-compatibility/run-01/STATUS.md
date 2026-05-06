@@ -10,9 +10,10 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Adoption mode: `inspired_spec_not_dependency`.
 - Code copied: `false`.
 - Daemon implemented: `false`.
+- Kernel implemented: `true`.
 - Terminal-first: `true`.
 - Human Gates preserved: `true`.
-- Next cut: `TKT-042 - Kernel local do ARTEMIS Symphony`.
+- Next cut: `TKT-043 - Ponte supervisionada do ARTEMIS Symphony`.
 
 ## Camadas
 
@@ -66,8 +67,8 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 
 ### daemon_kernel
 
-- Purpose: Long-running local Symphony loop.
-- Status: `next_cut`.
+- Purpose: Local ARTEMIS Symphony kernel before long-running daemon.
+- Status: `implemented_read_only`.
 - Missing files: `0`.
 
 ## Invariantes
@@ -76,4 +77,5 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - ARTEMIS Symphony stays terminal-first.
 - Human Gates remain explicit and non-bypassable.
 - Control Plane remains observational, not canonical state.
-- The daemon kernel is the next cut, not part of this spec cut.
+- The implemented kernel is read-only and cannot execute agents.
+- The long-running daemon is not implemented yet.

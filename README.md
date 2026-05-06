@@ -245,10 +245,12 @@ ARTEMIS agora possui uma especificacao propria de orquestrador inspirada pelo Op
 
 ```bash
 docs/symphony/ARTEMIS_SYMPHONY_SPEC.md
+docs/symphony/ARTEMIS_SYMPHONY_KERNEL.md
 scripts/artemis-symphony-compatibility.sh --artifact-root artifacts/artemis-symphony-compatibility/run-01
+scripts/artemis-symphony-kernel.sh --artifact-root artifacts/artemis-symphony-kernel/run-01
 ```
 
-Essa especificacao nao copia codigo do OpenAI Symphony. Ela define o nosso modelo: Exec Packs como contrato canonico, workspaces isolados, runner adapters, Validation Gate, evidencias e Human Gates. O proximo corte recomendado e o kernel local read-only do ARTEMIS Symphony.
+Essa especificacao nao copia codigo do OpenAI Symphony. Ela define o nosso modelo: Exec Packs como contrato canonico, workspaces isolados, runner adapters, Validation Gate, evidencias e Human Gates. O kernel local atual e read-only: planeja dispatch com concorrencia limitada e registra evidencia sem executar agentes.
 
 ## Como aplicar em um projeto
 

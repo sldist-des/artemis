@@ -262,6 +262,19 @@ Estado atual.
 - valida readiness;
 - registra artifacts.
 
+Componente implementado:
+
+- `scripts/artemis-symphony-kernel.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_KERNEL.md`
+
+Contrato:
+
+- le `control-plane/tasks.json` ou task source equivalente;
+- usa `scripts/artemis-dry-run.sh` como fonte de elegibilidade;
+- aplica bounded concurrency apenas no plano;
+- escreve `symphony-kernel.json`, `dry-run.json`, `events.json`, `STATUS.md`, `VALIDATION.md` e `HANDOFF.md`;
+- nao executa agentes.
+
 ### Modo 1 - Runner supervisionado local
 
 Ja existe como contrato.
@@ -273,7 +286,7 @@ Ja existe como contrato.
 
 ### Modo 2 - Symphony local daemon
 
-Proximo alvo.
+Alvo futuro.
 
 - observa `control-plane/tasks.json` ou Exec Packs;
 - executa loop com polling;
@@ -302,14 +315,13 @@ Futuro.
 
 ## Proximo corte recomendado
 
-`TKT-042 - Kernel local do ARTEMIS Symphony`
+`TKT-043 - Ponte supervisionada do ARTEMIS Symphony`
 
 Objetivo:
 
-- criar um loop local read-only que le `control-plane/tasks.json`;
-- seleciona tarefas elegiveis;
-- aplica bounded concurrency configuravel;
-- escreve plano de dispatch em artifact;
-- nao executa agente ainda.
+- conectar `symphony-kernel.json` ao runner supervisionado;
+- manter comando explicito e terminal-first;
+- preservar Human Gates;
+- continuar sem daemon.
 
-Esse sera o primeiro passo de implementacao do nosso Symphony proprio.
+Esse sera o segundo passo de implementacao do nosso Symphony proprio.

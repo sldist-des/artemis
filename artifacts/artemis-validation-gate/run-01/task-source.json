@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T12:07:55Z",
+  "generated_at": "2026-05-06T13:25:45Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -481,6 +481,18 @@
       "summary": "O repositorio deve ter um artifact que confirme se a decisao preenchida pode seguir para um preflight supervisionado futuro, sem executar cleanup.",
       "exec_pack": "docs/exec-packs/done/TKT-039-post-human-approval-preflight.md",
       "evidence": "artifacts/artemis-post-human-approval-preflight/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-040",
+      "ticket": "TKT-040",
+      "title": "Readiness de aplicacao do ARTEMIS",
+      "state": "done",
+      "owner": "Memory Keeper",
+      "risk": "medium",
+      "summary": "O repositorio deve ter um artifact de readiness que diga se o kit pode ser aplicado em outro projeto, quais comandos usar e quais pendencias continuam humanas.",
+      "exec_pack": "docs/exec-packs/done/TKT-040-artemis-application-readiness.md",
+      "evidence": "artifacts/artemis-application-readiness/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

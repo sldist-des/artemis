@@ -1283,6 +1283,17 @@
         tags: ["workspace", "preflight", "human-gate"]
       },
       {
+        id: "tkt-040",
+        state: "done",
+        ticket: "TKT-040",
+        title: "Readiness de aplicacao",
+        summary: "Pacote ARTEMIS pronto para aplicacao local com gates humanos externos preservados.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "artifacts/artemis-application-readiness/run-01",
+        tags: ["application", "readiness", "handoff"]
+      },
+      {
         id: "github-auth",
         state: "human",
         ticket: "GIT",
@@ -1352,6 +1363,19 @@
         state: { from: "ready", to: "human_gate", reason: "Read-only cycle complete until human decision is filled." },
         severity: "warning",
         evidence: { artifact_path: "artifacts/artemis-post-human-approval-preflight/run-01" }
+      },
+      {
+        event_id: "evt_tkt-040_application_readiness",
+        event_type: "validation.completed",
+        generated_at: "2026-05-06T13:17:28Z",
+        producer: { adapter: "application_readiness", name: "scripts/artemis-application-readiness.sh", mode: "read_only" },
+        subject: {
+          ticket: "TKT-040",
+          title: "Readiness de aplicacao do ARTEMIS"
+        },
+        state: { from: "validating", to: "done", reason: "ARTEMIS local kit is ready_with_human_gates for target-project application." },
+        severity: "info",
+        evidence: { artifact_path: "artifacts/artemis-application-readiness/run-01" }
       },
       {
         event_id: "evt_tkt-017_adapter_events",

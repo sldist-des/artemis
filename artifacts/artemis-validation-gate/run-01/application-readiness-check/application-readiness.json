@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-06T13:25:46Z",
+  "source": "scripts/artemis-application-readiness.sh",
+  "mode": "read_only",
+  "overall": "ready_with_human_gates",
+  "application_ready": true,
+  "artifact_root": "artifacts/artemis-validation-gate/run-01/application-readiness-check",
+  "summary": {
+    "tasks_total": 41,
+    "tasks_done": 41,
+    "active_tasks": 0,
+    "validation_failed": 0,
+    "external_human_gates": 2,
+    "dirty_items": 93
+  },
+  "required_inventory": [
+    {
+      "path": "AGENTS.md",
+      "exists": true
+    },
+    {
+      "path": "CLAUDE.md",
+      "exists": true
+    },
+    {
+      "path": "README.md",
+      "exists": true
+    },
+    {
+      "path": "ARTEMIS_QUICKSTART.md",
+      "exists": true
+    },
+    {
+      "path": "ARTEMIS_WORKFLOW.md",
+      "exists": true
+    },
+    {
+      "path": "templates/AGENTS.md",
+      "exists": true
+    },
+    {
+      "path": "templates/CLAUDE.md",
+      "exists": true
+    },
+    {
+      "path": "templates/ARCHITECTURE.md",
+      "exists": true
+    },
+    {
+      "path": "templates/AI_PROCESS.md",
+      "exists": true
+    },
+    {
+      "path": "templates/.github/PULL_REQUEST_TEMPLATE.md",
+      "exists": true
+    },
+    {
+      "path": "templates/.github/ISSUE_TEMPLATE/artemis_task.yml",
+      "exists": true
+    },
+    {
+      "path": "templates/.github/CODEOWNERS",
+      "exists": true
+    },
+    {
+      "path": "templates/docs/exec-packs/TEMPLATE.md",
+      "exists": true
+    },
+    {
+      "path": "templates/docs/invariants/core.md",
+      "exists": true
+    },
+    {
+      "path": "scripts/bootstrap-artemis.sh",
+      "exists": true
+    },
+    {
+      "path": "scripts/validate-artemis.sh",
+      "exists": true
+    },
+    {
+      "path": "scripts/artemis-validation-gate.sh",
+      "exists": true
+    },
+    {
+      "path": "scripts/artemis-post-human-approval-preflight.sh",
+      "exists": true
+    }
+  ],
+  "application_steps": [
+    "Rode scripts/bootstrap-artemis.sh /caminho/do/projeto.",
+    "Edite AGENTS.md, ARCHITECTURE.md e AI_PROCESS.md no projeto alvo.",
+    "Mantenha CLAUDE.md como adaptador fino apontando para AGENTS.md.",
+    "Crie o primeiro Exec Pack em docs/exec-packs/active/.",
+    "Rode lint, testes e scripts/validate-artemis.sh do projeto quando existirem.",
+    "Use branch e worktree por tarefa antes de implementar com agente.",
+    "Registre STATUS.md, VALIDATION.md e HANDOFF.md para toda tarefa material."
+  ],
+  "external_gates": [
+    {
+      "gate": "real_cleanup_decision",
+      "status": "human_gate",
+      "reason": "real-cleanup-decision.json still requires human decision before cleanup/preflight can advance",
+      "required_human_action": "Fill artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json and rerun intake, reentry, preflight."
+    },
+    {
+      "gate": "github_remote",
+      "status": "human_gate",
+      "reason": "Remote writes, gh auth, CODEOWNERS, branch protection and PR publication require human-owned setup.",
+      "required_human_action": "Authenticate gh, configure CODEOWNERS/rulesets if remote publication is desired."
+    }
+  ],
+  "blockers": [],
+  "warnings": [],
+  "invariants": [
+    "Application readiness is read-only and does not execute cleanup.",
+    "Application readiness does not authenticate GitHub or perform remote writes.",
+    "Application readiness does not fill human-owned decision records.",
+    "Templates are starter material and must be adapted to the target project.",
+    "AGENTS.md remains canonical for shared agent guidance."
+  ]
+}

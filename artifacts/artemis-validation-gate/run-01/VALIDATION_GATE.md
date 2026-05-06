@@ -1,7 +1,7 @@
 # VALIDATION GATE RESULT
 
 - Overall: human_gate
-- Passed: 48
+- Passed: 50
 - Failed: 0
 - Human Gate: 2
 
@@ -23,6 +23,7 @@
 - shell_human_decision_pending_gate: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_human_decision_pending_gate.txt`
 - shell_human_decision_reentry_contract: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_human_decision_reentry_contract.txt`
 - shell_post_human_approval_preflight: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_post_human_approval_preflight.txt`
+- shell_application_readiness: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_application_readiness.txt`
 - shell_approved_workspace_cleanup: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt`
 - shell_workspace_runtime_handoff: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt`
 - shell_runner: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt`
@@ -45,6 +46,7 @@
 - human_decision_pending_gate: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/human_decision_pending_gate.txt`
 - human_decision_reentry_contract: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/human_decision_reentry_contract.txt`
 - post_human_approval_preflight: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/post_human_approval_preflight.txt`
+- application_readiness: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/application_readiness.txt`
 - approved_workspace_cleanup: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt`
 - workspace_runtime_handoff: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt`
 - runner_plan: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt`

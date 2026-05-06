@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T12:08:00Z",
+  "generated_at": "2026-05-06T13:25:49Z",
   "overall": "human_gate",
   "summary": {
-    "passed": 48,
+    "passed": 50,
     "failed": 0,
     "human_gate": 2
   },
@@ -119,6 +119,13 @@
       "status": "passed",
       "exit_code": 0,
       "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_post_human_approval_preflight.txt"
+    },
+    {
+      "name": "shell_application_readiness",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_application_readiness.txt"
     },
     {
       "name": "shell_approved_workspace_cleanup",
@@ -273,6 +280,13 @@
       "status": "passed",
       "exit_code": 0,
       "log": "artifacts/artemis-validation-gate/run-01/check-logs/post_human_approval_preflight.txt"
+    },
+    {
+      "name": "application_readiness",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/application_readiness.txt"
     },
     {
       "name": "approved_workspace_cleanup",

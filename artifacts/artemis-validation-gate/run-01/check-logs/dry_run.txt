@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 40
+    "done": 41
   },
   "decisions": [
     {
@@ -367,6 +367,15 @@
       "title": "Preflight supervisionado pos-aprovacao humana",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-039-post-human-approval-preflight.md"
+    },
+    {
+      "ticket": "TKT-040",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Readiness de aplicacao do ARTEMIS",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-040-artemis-application-readiness.md"
     }
   ]
 }

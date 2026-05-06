@@ -9,6 +9,7 @@ AI_PROCESS.md
 README.md
 ARTEMIS_QUICKSTART.md
 ARTEMIS_WORKFLOW.md
+ARTEMIS_APPLY.md
 .impeccable.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
@@ -46,6 +47,7 @@ scripts/artemis-human-decision-intake.sh
 scripts/artemis-human-decision-pending-gate.sh
 scripts/artemis-human-decision-reentry-contract.sh
 scripts/artemis-post-human-approval-preflight.sh
+scripts/artemis-application-readiness.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -120,6 +122,7 @@ sh -n scripts/artemis-human-decision-intake.sh
 sh -n scripts/artemis-human-decision-pending-gate.sh
 sh -n scripts/artemis-human-decision-reentry-contract.sh
 sh -n scripts/artemis-post-human-approval-preflight.sh
+sh -n scripts/artemis-application-readiness.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -439,6 +442,19 @@ if ! grep -q '"cleanup_execution_allowed": false' /tmp/artemis-post-human-approv
 fi
 if ! grep -q '"executed_commands": 0' /tmp/artemis-post-human-approval-preflight.json; then
   echo "post-human approval preflight detected executed commands" >&2
+  exit 1
+fi
+scripts/artemis-application-readiness.sh --artifact-root /tmp/artemis-application-readiness --json >/tmp/artemis-application-readiness.json
+if ! grep -q '"overall": "ready_with_human_gates"' /tmp/artemis-application-readiness.json; then
+  echo "scripts/artemis-application-readiness.sh did not report ready_with_human_gates" >&2
+  exit 1
+fi
+if ! grep -q '"application_ready": true' /tmp/artemis-application-readiness.json; then
+  echo "scripts/artemis-application-readiness.sh did not report application_ready=true" >&2
+  exit 1
+fi
+if ! grep -q '"active_tasks": 0' /tmp/artemis-application-readiness.json; then
+  echo "application readiness did not preserve zero active tasks" >&2
   exit 1
 fi
 scripts/artemis-approved-workspace-cleanup.sh --decision /tmp/artemis-workspace-cleanup-review/cleanup-review.json --artifact-root /tmp/artemis-approved-workspace-cleanup --json >/tmp/artemis-approved-workspace-cleanup.json

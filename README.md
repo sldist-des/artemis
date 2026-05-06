@@ -241,6 +241,8 @@ Adapters tambem registram `events.json` nos seus artifacts quando executados com
 
 ## Como aplicar em um projeto
 
+Leia tambem `ARTEMIS_APPLY.md` para o handoff curto de aplicacao.
+
 1. Copie os templates para a raiz do projeto alvo.
 2. Edite `AGENTS.md` e `ARCHITECTURE.md` com o contexto real do projeto; ajuste `CLAUDE.md` somente se houver diferencas especificas do Claude Code.
 3. Crie um Exec Pack em `docs/exec-packs/active/` para cada tarefa relevante.
@@ -257,3 +259,13 @@ Adapters tambem registram `events.json` nos seus artifacts quando executados com
 ```
 
 O script copia o kit base sem sobrescrever arquivos existentes. Revise manualmente os arquivos criados antes de usar em producao.
+
+## Readiness de aplicacao
+
+Para consolidar se o kit esta pronto para ser aplicado em outro projeto:
+
+```bash
+scripts/artemis-application-readiness.sh --artifact-root artifacts/artemis-application-readiness/run-01
+```
+
+O readiness esperado e `ready_with_human_gates`: o pacote local esta aplicavel, mas cleanup real e GitHub remoto continuam dependentes de decisao humana.

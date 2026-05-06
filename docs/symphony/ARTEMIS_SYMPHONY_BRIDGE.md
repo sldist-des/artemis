@@ -59,6 +59,6 @@ scripts/artemis-symphony-bridge.sh \
 
 ## Proximo Corte
 
-`TKT-045 - Daemon dry-run do ARTEMIS Symphony`
+`TKT-046 - Fila supervisionada do ARTEMIS Symphony`
 
-Objetivo: criar um loop local ainda read-only que observa a task source, chama o kernel, respeita Human Gates e nunca executa runner automaticamente.
+Objetivo: transformar dispatch observado pelo daemon dry-run em fila revisavel, mantendo a ponte como acao explicita de terminal.

@@ -230,7 +230,7 @@ payload = {
         "Runner execution requires explicit --execute.",
         "Remote, destructive and deployment commands remain blocked by the runner.",
     ],
-    "next_cut": "TKT-044 - Control Plane do ARTEMIS Symphony Bridge",
+    "next_cut": "TKT-046 - Fila supervisionada do ARTEMIS Symphony",
 }
 
 (artifact_root / "symphony-bridge.json").write_text(
@@ -328,8 +328,8 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-044 - Control Plane do ARTEMIS Symphony Bridge`.",
-    "- Expor evidencias de kernel, bridge e runner sem transformar UI em fonte canonica.",
+    "- Implementar `TKT-046 - Fila supervisionada do ARTEMIS Symphony`.",
+    "- Manter ponte como execucao explicita por terminal, mesmo quando a fila existir.",
     "",
     "## Nao fazer",
     "",

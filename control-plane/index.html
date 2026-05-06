@@ -563,7 +563,7 @@
 
     .symphony-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 10px;
       min-width: 0;
     }
@@ -815,10 +815,6 @@
         text-align: left;
       }
 
-      .symphony-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
       .gate-row {
         grid-template-columns: minmax(72px, .22fr) minmax(0, 1fr) minmax(80px, auto);
       }
@@ -938,7 +934,7 @@
     <section class="symphony-section" aria-labelledby="symphony-title">
       <header class="symphony-header">
         <h2 id="symphony-title">ARTEMIS Symphony</h2>
-        <p id="symphony-summary">Evidencias de kernel, bridge e runner. Control Plane e somente observacional.</p>
+        <p id="symphony-summary">Evidencias de kernel, bridge, runner e daemon dry-run. Control Plane e somente observacional.</p>
       </header>
       <div id="symphony-evidence" class="symphony-grid" aria-live="polite"></div>
     </section>
@@ -1488,6 +1484,17 @@
         tags: ["symphony", "control-plane", "evidence"]
       },
       {
+        id: "tkt-045",
+        state: "done",
+        ticket: "TKT-045",
+        title: "Daemon dry-run do ARTEMIS Symphony",
+        summary: "Daemon dry-run registra heartbeat finito chamando apenas o kernel, sem runner automatico.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "artifacts/artemis-symphony-daemon/run-01",
+        tags: ["symphony", "daemon", "heartbeat"]
+      },
+      {
         id: "github-auth",
         state: "human",
         ticket: "GIT",
@@ -1624,6 +1631,19 @@
         evidence: { artifact_path: "artifacts/artemis-symphony-control-plane/run-01" }
       },
       {
+        event_id: "evt_tkt-045_symphony_daemon",
+        event_type: "validation.completed",
+        generated_at: "2026-05-06T17:20:00Z",
+        producer: { adapter: "local_daemon", name: "scripts/artemis-symphony-daemon.sh", mode: "read_only_dry_run" },
+        subject: {
+          ticket: "TKT-045",
+          title: "Daemon dry-run do ARTEMIS Symphony"
+        },
+        state: { from: "planned", to: "done", reason: "Daemon dry-run recorded heartbeat evidence without bridge or runner execution." },
+        severity: "info",
+        evidence: { artifact_path: "artifacts/artemis-symphony-daemon/run-01" }
+      },
+      {
         event_id: "evt_tkt-017_adapter_events",
         event_type: "adapter.events_emitted",
         generated_at: "2026-04-30T19:54:36Z",
@@ -1661,7 +1681,7 @@
     const symphonySummaryNode = document.querySelector("#symphony-summary");
 
     const symphonyEvidence = {
-      summary: "Kernel, bridge e runner publicados como evidencia local. Exec Packs e artifacts continuam canonicos.",
+      summary: "Kernel, bridge, runner e daemon dry-run publicados como evidencia local. Exec Packs e artifacts continuam canonicos.",
       items: [
         {
           title: "Kernel",
@@ -1713,6 +1733,20 @@
           links: [
             ["gate", "../artifacts/artemis-validation-gate/run-01/validation-gate.json"],
             ["handoff", "../artifacts/artemis-symphony-bridge/run-01/HANDOFF.md"]
+          ]
+        },
+        {
+          title: "Daemon",
+          status: "heartbeat_ready",
+          summary: "Loop finito chamou apenas o kernel, registrou heartbeat e encerrou sem runner automatico.",
+          facts: [
+            ["ticks", "2"],
+            ["commands", "0"]
+          ],
+          links: [
+            ["status", "../artifacts/artemis-symphony-daemon/run-01/STATUS.md"],
+            ["heartbeat", "../artifacts/artemis-symphony-daemon/run-01/heartbeat.json"],
+            ["json", "../artifacts/artemis-symphony-daemon/run-01/symphony-daemon.json"]
           ]
         }
       ]

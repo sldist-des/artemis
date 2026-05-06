@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T17:04:53Z",
+  "generated_at": "2026-05-06T19:26:52Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -541,6 +541,18 @@
       "summary": "O Control Plane deve mostrar uma faixa observacional com status, fatos e links para artifacts reais do kernel, bridge, tentativa do runner e Validation Gate, sem virar fonte canonica.",
       "exec_pack": "docs/exec-packs/done/TKT-044-artemis-symphony-bridge-control-plane.md",
       "evidence": "artifacts/artemis-symphony-control-plane/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-045",
+      "ticket": "TKT-045",
+      "title": "Daemon dry-run do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "Daemon dry-run local produz heartbeat, eventos e handoff sem iniciar runner automatico.",
+      "exec_pack": "docs/exec-packs/done/TKT-045-artemis-symphony-daemon-dry-run.md",
+      "evidence": "artifacts/artemis-symphony-daemon/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

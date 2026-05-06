@@ -50,6 +50,6 @@ scripts/artemis-symphony-kernel.sh --json
 
 ## Proximo Corte
 
-`TKT-045 - Daemon dry-run do ARTEMIS Symphony`
+`TKT-046 - Fila supervisionada do ARTEMIS Symphony`
 
-Objetivo: expor evidencias do kernel, bridge e runner no Control Plane sem mudar a fonte canonica de estado.
+Objetivo: transformar dispatch observado em fila revisavel sem execucao automatica.

@@ -14,6 +14,7 @@ ARTEMIS_APPLY.md
 docs/symphony/ARTEMIS_SYMPHONY_SPEC.md
 docs/symphony/ARTEMIS_SYMPHONY_KERNEL.md
 docs/symphony/ARTEMIS_SYMPHONY_BRIDGE.md
+docs/symphony/ARTEMIS_SYMPHONY_DAEMON.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
 docs/agents/CAPABILITY_REGISTRY.md
@@ -54,6 +55,7 @@ scripts/artemis-application-readiness.sh
 scripts/artemis-symphony-compatibility.sh
 scripts/artemis-symphony-kernel.sh
 scripts/artemis-symphony-bridge.sh
+scripts/artemis-symphony-daemon.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -132,6 +134,7 @@ sh -n scripts/artemis-application-readiness.sh
 sh -n scripts/artemis-symphony-compatibility.sh
 sh -n scripts/artemis-symphony-kernel.sh
 sh -n scripts/artemis-symphony-bridge.sh
+sh -n scripts/artemis-symphony-daemon.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -487,6 +490,14 @@ if ! grep -q '"kernel_implemented": true' /tmp/artemis-symphony-compatibility.js
   echo "ARTEMIS Symphony compatibility did not detect the read-only kernel" >&2
   exit 1
 fi
+if ! grep -q '"daemon_implemented": true' /tmp/artemis-symphony-compatibility.json; then
+  echo "ARTEMIS Symphony compatibility did not detect the daemon dry-run" >&2
+  exit 1
+fi
+if ! grep -q '"daemon_dry_run": true' /tmp/artemis-symphony-compatibility.json; then
+  echo "ARTEMIS Symphony compatibility did not preserve daemon dry-run mode" >&2
+  exit 1
+fi
 cat >/tmp/artemis-symphony-kernel-source.json <<'JSON'
 {
   "schema_version": 1,
@@ -603,6 +614,43 @@ if ! grep -q '"runner_planned": false' /tmp/artemis-symphony-bridge-missing.json
 fi
 if ! grep -q '"commands_executed": 0' /tmp/artemis-symphony-bridge-missing.json; then
   echo "ARTEMIS Symphony bridge executed commands for a missing ticket" >&2
+  exit 1
+fi
+scripts/artemis-symphony-daemon.sh --input /tmp/artemis-symphony-kernel-source.json --artifact-root /tmp/artemis-symphony-daemon --ticks 2 --interval 0 --max-concurrency 2 --json >/tmp/artemis-symphony-daemon.json
+if ! grep -q '"overall": "heartbeat_ready"' /tmp/artemis-symphony-daemon.json; then
+  echo "scripts/artemis-symphony-daemon.sh did not report heartbeat_ready" >&2
+  exit 1
+fi
+if ! grep -q '"ticks_completed": 2' /tmp/artemis-symphony-daemon.json; then
+  echo "ARTEMIS Symphony daemon dry-run did not complete both ticks" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-symphony-daemon.json; then
+  echo "ARTEMIS Symphony daemon dry-run executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"runner_auto_execution_allowed": false' /tmp/artemis-symphony-daemon.json; then
+  echo "ARTEMIS Symphony daemon dry-run allowed runner auto execution" >&2
+  exit 1
+fi
+if ! grep -q '"bridge_called": false' /tmp/artemis-symphony-daemon.json; then
+  echo "ARTEMIS Symphony daemon dry-run called the bridge" >&2
+  exit 1
+fi
+if ! grep -q '"long_running_process_started": false' /tmp/artemis-symphony-daemon.json; then
+  echo "ARTEMIS Symphony daemon dry-run started a long-running process" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-symphony-daemon/heartbeat.json; then
+  echo "scripts/artemis-symphony-daemon.sh did not write heartbeat.json" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-symphony-daemon/heartbeat.jsonl; then
+  echo "scripts/artemis-symphony-daemon.sh did not write heartbeat.jsonl" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-symphony-daemon/events.json; then
+  echo "scripts/artemis-symphony-daemon.sh did not write events.json" >&2
   exit 1
 fi
 scripts/artemis-approved-workspace-cleanup.sh --decision /tmp/artemis-workspace-cleanup-review/cleanup-review.json --artifact-root /tmp/artemis-approved-workspace-cleanup --json >/tmp/artemis-approved-workspace-cleanup.json
@@ -805,6 +853,14 @@ if ! grep -q "artifacts/artemis-symphony-bridge/run-01/symphony-bridge.json" con
 fi
 if ! grep -q "20260506T165146Z-25-tkt-903" control-plane/index.html; then
   echo "control-plane/index.html does not link the Symphony runner attempt" >&2
+  exit 1
+fi
+if ! grep -q "artifacts/artemis-symphony-daemon/run-01/symphony-daemon.json" control-plane/index.html; then
+  echo "control-plane/index.html does not link the Symphony daemon artifact" >&2
+  exit 1
+fi
+if ! grep -q "heartbeat_ready" control-plane/index.html; then
+  echo "control-plane/index.html does not show the Symphony daemon heartbeat" >&2
   exit 1
 fi
 

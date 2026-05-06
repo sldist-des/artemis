@@ -299,13 +299,28 @@ Contrato:
 
 ### Modo 2 - Symphony local daemon
 
-Alvo futuro.
+Implementado como dry-run finito.
 
 - observa `control-plane/tasks.json` ou Exec Packs;
 - executa loop com polling;
 - respeita bounded concurrency;
 - nunca passa Human Gate automaticamente;
-- chama runner supervisionado somente para tarefas elegiveis.
+- registra heartbeat e plano;
+- nao chama bridge ou runner automaticamente.
+
+Daemon dry-run implementado:
+
+- `scripts/artemis-symphony-daemon.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_DAEMON.md`
+
+Contrato:
+
+- usa `--ticks` para manter a execucao finita e auditavel;
+- chama apenas `scripts/artemis-symphony-kernel.sh`;
+- escreve `symphony-daemon.json`, `heartbeat.json`, `heartbeat.jsonl`, `events.json`, `STATUS.md`, `VALIDATION.md` e `HANDOFF.md`;
+- mantem `commands_executed=0`;
+- mantem `runner_auto_execution_allowed=false`;
+- preserva Human Gates observados pelo kernel.
 
 ### Modo 3 - Tracker remoto
 
@@ -328,14 +343,13 @@ Futuro.
 
 ## Proximo corte recomendado
 
-`TKT-045 - Daemon dry-run do ARTEMIS Symphony`
+`TKT-046 - Fila supervisionada do ARTEMIS Symphony`
 
 Objetivo:
 
-- criar um loop local read-only sobre a task source;
-- chamar o kernel em intervalo configuravel;
-- registrar heartbeat e plano sem executar runner;
-- preservar Human Gates;
-- manter terminal override para qualquer ponte supervisionada.
+- transformar dispatch observado pelo daemon dry-run em fila revisavel;
+- manter a fila local-first e versionavel;
+- exigir terminal override para qualquer ponte supervisionada;
+- preservar Human Gates e Validation Gate antes de execucao.
 
-Esse sera o quarto passo de implementacao do nosso Symphony proprio.
+Esse sera o quinto passo de implementacao do nosso Symphony proprio.

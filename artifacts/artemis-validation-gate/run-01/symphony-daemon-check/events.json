@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-06T19:26:54Z",
+  "source": "scripts/artemis-symphony-daemon.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_task_symphony_daemon_tick-001",
+      "event_type": "runner.readiness_checked",
+      "generated_at": "2026-05-06T19:26:54Z",
+      "producer": {
+        "adapter": "local_daemon",
+        "name": "scripts/artemis-symphony-daemon.sh",
+        "mode": "read_only_dry_run"
+      },
+      "subject": {
+        "ticket": "TASK",
+        "task_id": "task",
+        "title": "ARTEMIS Symphony daemon dry-run",
+        "exec_pack": "docs/symphony/ARTEMIS_SYMPHONY_DAEMON.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-daemon-check"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "context",
+        "to": "planned",
+        "reason": "Daemon dry-run heartbeat recorded without runner execution."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable",
+        "reason": ""
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/symphony-daemon-check",
+        "status_path": "artifacts/artemis-validation-gate/run-01/symphony-daemon-check/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/symphony-daemon-check/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/symphony-daemon-check/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-validation-gate/run-01/symphony-daemon-check/ticks/tick-001/kernel/symphony-kernel.json",
+          "artifacts/artemis-validation-gate/run-01/symphony-daemon-check/heartbeat.jsonl"
+        ]
+      },
+      "links": {
+        "correlation_id": "task"
+      },
+      "payload": {
+        "reason": "Daemon dry-run heartbeat recorded without runner execution.",
+        "tick": 1,
+        "kernel_overall": "dispatch_plan_ready",
+        "selected_for_dispatch": 1,
+        "commands_executed": 0,
+        "runner_auto_execution_allowed": false
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_task_symphony_daemon_tick-002",
+      "event_type": "runner.readiness_checked",
+      "generated_at": "2026-05-06T19:26:54Z",
+      "producer": {
+        "adapter": "local_daemon",
+        "name": "scripts/artemis-symphony-daemon.sh",
+        "mode": "read_only_dry_run"
+      },
+      "subject": {
+        "ticket": "TASK",
+        "task_id": "task",
+        "title": "ARTEMIS Symphony daemon dry-run",
+        "exec_pack": "docs/symphony/ARTEMIS_SYMPHONY_DAEMON.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-daemon-check"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "planned",
+        "reason": "Daemon dry-run heartbeat recorded without runner execution."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable",
+        "reason": ""
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/symphony-daemon-check",
+        "status_path": "artifacts/artemis-validation-gate/run-01/symphony-daemon-check/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/symphony-daemon-check/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/symphony-daemon-check/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-validation-gate/run-01/symphony-daemon-check/ticks/tick-002/kernel/symphony-kernel.json",
+          "artifacts/artemis-validation-gate/run-01/symphony-daemon-check/heartbeat.jsonl"
+        ]
+      },
+      "links": {
+        "correlation_id": "task"
+      },
+      "payload": {
+        "reason": "Daemon dry-run heartbeat recorded without runner execution.",
+        "tick": 2,
+        "kernel_overall": "dispatch_plan_ready",
+        "selected_for_dispatch": 1,
+        "commands_executed": 0,
+        "runner_auto_execution_allowed": false
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_task_symphony_daemon_completed",
+      "event_type": "validation.completed",
+      "generated_at": "2026-05-06T19:26:54Z",
+      "producer": {
+        "adapter": "local_daemon",
+        "name": "scripts/artemis-symphony-daemon.sh",
+        "mode": "read_only_dry_run"
+      },
+      "subject": {
+        "ticket": "TASK",
+        "task_id": "task",
+        "title": "ARTEMIS Symphony daemon dry-run",
+        "exec_pack": "docs/symphony/ARTEMIS_SYMPHONY_DAEMON.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-daemon-check"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "done",
+        "reason": "Daemon dry-run completed without runner execution."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/symphony-daemon-check",
+        "status_path": "artifacts/artemis-validation-gate/run-01/symphony-daemon-check/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/symphony-daemon-check/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/symphony-daemon-check/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-validation-gate/run-01/symphony-daemon-check/symphony-daemon.json",
+          "artifacts/artemis-validation-gate/run-01/symphony-daemon-check/heartbeat.jsonl"
+        ]
+      },
+      "links": {
+        "correlation_id": "task"
+      },
+      "payload": {
+        "reason": "Daemon dry-run completed without runner execution.",
+        "overall": "heartbeat_ready",
+        "ticks_completed": 2,
+        "commands_executed": 0,
+        "runner_auto_execution_allowed": false,
+        "long_running_process_started": false
+      }
+    }
+  ]
+}

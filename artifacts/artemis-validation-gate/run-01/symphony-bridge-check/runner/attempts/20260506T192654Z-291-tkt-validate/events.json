@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T17:04:56Z",
+  "generated_at": "2026-05-06T19:26:54Z",
   "source": "scripts/artemis-runner.sh",
   "events": [
     {
       "schema_version": 1,
-      "event_id": "evt_20260506t170456z-289-tkt-validate_planned",
+      "event_id": "evt_20260506t192654z-291-tkt-validate_planned",
       "event_type": "runner.attempt_planned",
-      "generated_at": "2026-05-06T17:04:56Z",
+      "generated_at": "2026-05-06T19:26:54Z",
       "producer": {
         "adapter": "local_runner",
         "name": "scripts/artemis-runner.sh",
@@ -18,13 +18,13 @@
         "task_id": "tkt-validate",
         "title": "Validate supervised runner",
         "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md",
-        "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate",
         "branch": "artemis/tkt-validate-validate-supervised-runner",
         "worktree": "../veri-artemis-worktrees/tkt-validate"
       },
       "runner": {
         "kind": "codex_cli",
-        "attempt_id": "20260506T170456Z-289-tkt-validate",
+        "attempt_id": "20260506T192654Z-291-tkt-validate",
         "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json"
       },
       "state": {
@@ -38,24 +38,24 @@
       },
       "severity": "info",
       "evidence": {
-        "artifact_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate",
-        "status_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate/STATUS.md",
-        "validation_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate/VALIDATION.md",
-        "handoff_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate/HANDOFF.md",
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate",
+        "status_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate/HANDOFF.md",
         "logs": [
-          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate/dry-run.json",
-          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate/workspace.json",
-          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate/RUNNER.md",
-          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate/ENVIRONMENT.md",
-          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate/COMMAND.txt",
-          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate/RESULT.md"
+          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate/dry-run.json",
+          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate/workspace.json",
+          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate/RUNNER.md",
+          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate/ENVIRONMENT.md",
+          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate/COMMAND.txt",
+          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate/RESULT.md"
         ]
       },
       "links": {
         "correlation_id": "tkt-validate"
       },
       "payload": {
-        "attempt_id": "20260506T170456Z-289-tkt-validate",
+        "attempt_id": "20260506T192654Z-291-tkt-validate",
         "execute": false,
         "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json",
         "execution_cwd": "/srv/veri",
@@ -77,9 +77,9 @@
     },
     {
       "schema_version": 1,
-      "event_id": "evt_20260506t170456z-289-tkt-validate_completed",
+      "event_id": "evt_20260506t192654z-291-tkt-validate_completed",
       "event_type": "runner.attempt_completed",
-      "generated_at": "2026-05-06T17:04:56Z",
+      "generated_at": "2026-05-06T19:26:54Z",
       "producer": {
         "adapter": "local_runner",
         "name": "scripts/artemis-runner.sh",
@@ -90,13 +90,13 @@
         "task_id": "tkt-validate",
         "title": "Validate supervised runner",
         "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md",
-        "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate",
         "branch": "artemis/tkt-validate-validate-supervised-runner",
         "worktree": "../veri-artemis-worktrees/tkt-validate"
       },
       "runner": {
         "kind": "codex_cli",
-        "attempt_id": "20260506T170456Z-289-tkt-validate",
+        "attempt_id": "20260506T192654Z-291-tkt-validate",
         "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json"
       },
       "state": {
@@ -110,24 +110,24 @@
       },
       "severity": "info",
       "evidence": {
-        "artifact_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate",
-        "status_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate/STATUS.md",
-        "validation_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate/VALIDATION.md",
-        "handoff_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate/HANDOFF.md",
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate",
+        "status_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate/HANDOFF.md",
         "logs": [
-          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate/dry-run.json",
-          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate/workspace.json",
-          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate/RUNNER.md",
-          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate/ENVIRONMENT.md",
-          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate/COMMAND.txt",
-          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate/RESULT.md"
+          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate/dry-run.json",
+          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate/workspace.json",
+          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate/RUNNER.md",
+          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate/ENVIRONMENT.md",
+          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate/COMMAND.txt",
+          "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate/RESULT.md"
         ]
       },
       "links": {
         "correlation_id": "tkt-validate"
       },
       "payload": {
-        "attempt_id": "20260506T170456Z-289-tkt-validate",
+        "attempt_id": "20260506T192654Z-291-tkt-validate",
         "execute": false,
         "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json",
         "execution_cwd": "/srv/veri",
@@ -145,7 +145,7 @@
         },
         "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner",
         "exit_code": 0,
-        "command_log": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T170456Z-289-tkt-validate/COMMAND.txt",
+        "command_log": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260506T192654Z-291-tkt-validate/COMMAND.txt",
         "reason": "Supervised runner plan completed without command execution."
       }
     }

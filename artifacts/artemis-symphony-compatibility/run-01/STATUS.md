@@ -9,12 +9,12 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Overall: `spec_ready`.
 - Adoption mode: `inspired_spec_not_dependency`.
 - Code copied: `false`.
-- Daemon implemented: `false`.
+- Daemon implemented: `true`.
 - Kernel implemented: `true`.
 - Bridge implemented: `true`.
 - Terminal-first: `true`.
 - Human Gates preserved: `true`.
-- Next cut: `TKT-045 - Daemon dry-run do ARTEMIS Symphony`.
+- Next cut: `TKT-046 - Fila supervisionada do ARTEMIS Symphony`.
 
 ## Camadas
 
@@ -72,6 +72,12 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Status: `implemented_read_only`.
 - Missing files: `0`.
 
+### daemon_dry_run
+
+- Purpose: Finite local heartbeat loop that calls the read-only kernel without runner execution.
+- Status: `implemented_read_only`.
+- Missing files: `0`.
+
 ## Invariantes
 
 - OpenAI Symphony is a reference, not a vendored dependency.
@@ -80,4 +86,5 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Control Plane remains observational, not canonical state.
 - The implemented kernel is read-only and cannot execute agents.
 - The implemented bridge is supervised and plan-only by default.
-- The long-running daemon is not implemented yet.
+- The implemented daemon is finite dry-run and never starts runners automatically.
+- A long-running supervised service is not implemented yet.

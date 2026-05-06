@@ -1,31 +1,33 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T17:04:49Z",
+  "generated_at": "2026-05-06T19:26:27Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
   "artifact_root": "artifacts/artemis-symphony-compatibility/run-01",
   "spec": "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md",
   "summary": {
-    "layers_total": 9,
+    "layers_total": 10,
     "layers_with_missing_files": 0,
-    "tasks_total": 45,
-    "tasks_done": 45,
-    "daemon_implemented": false,
+    "tasks_total": 46,
+    "tasks_done": 46,
+    "daemon_implemented": true,
     "kernel_implemented": true,
     "bridge_implemented": true,
+    "daemon_dry_run": true,
     "next_cut_defined": true
   },
   "compatibility": {
     "upstream_reference": "https://github.com/openai/symphony/blob/main/SPEC.md",
     "adoption_mode": "inspired_spec_not_dependency",
     "code_copied": false,
-    "daemon_implemented": false,
+    "daemon_implemented": true,
     "kernel_implemented": true,
     "bridge_implemented": true,
+    "daemon_dry_run": true,
     "terminal_first": true,
     "human_gates_preserved": true,
-    "next_cut": "TKT-045 - Daemon dry-run do ARTEMIS Symphony"
+    "next_cut": "TKT-046 - Fila supervisionada do ARTEMIS Symphony"
   },
   "layers": [
     {
@@ -78,6 +80,8 @@
         "scripts/artemis-runner.sh",
         "scripts/artemis-symphony-bridge.sh",
         "docs/symphony/ARTEMIS_SYMPHONY_BRIDGE.md",
+        "scripts/artemis-symphony-daemon.sh",
+        "docs/symphony/ARTEMIS_SYMPHONY_DAEMON.md",
         "scripts/artemis-codex-app-server.sh",
         "scripts/artemis-claude-code.sh"
       ],
@@ -124,6 +128,16 @@
       ],
       "status": "implemented_read_only",
       "missing_files": []
+    },
+    {
+      "layer": "daemon_dry_run",
+      "purpose": "Finite local heartbeat loop that calls the read-only kernel without runner execution.",
+      "required_files": [
+        "scripts/artemis-symphony-daemon.sh",
+        "docs/symphony/ARTEMIS_SYMPHONY_DAEMON.md"
+      ],
+      "status": "implemented_read_only",
+      "missing_files": []
     }
   ],
   "blockers": [],
@@ -134,6 +148,7 @@
     "Control Plane remains observational, not canonical state.",
     "The implemented kernel is read-only and cannot execute agents.",
     "The implemented bridge is supervised and plan-only by default.",
-    "The long-running daemon is not implemented yet."
+    "The implemented daemon is finite dry-run and never starts runners automatically.",
+    "A long-running supervised service is not implemented yet."
   ]
 }

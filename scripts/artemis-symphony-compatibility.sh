@@ -100,6 +100,8 @@ layers = [
             "scripts/artemis-runner.sh",
             "scripts/artemis-symphony-bridge.sh",
             "docs/symphony/ARTEMIS_SYMPHONY_BRIDGE.md",
+            "scripts/artemis-symphony-daemon.sh",
+            "docs/symphony/ARTEMIS_SYMPHONY_DAEMON.md",
             "scripts/artemis-codex-app-server.sh",
             "scripts/artemis-claude-code.sh",
         ],
@@ -133,6 +135,12 @@ layers = [
         "required_files": ["scripts/artemis-symphony-kernel.sh", "docs/symphony/ARTEMIS_SYMPHONY_KERNEL.md"],
         "status": "implemented_read_only",
     },
+    {
+        "layer": "daemon_dry_run",
+        "purpose": "Finite local heartbeat loop that calls the read-only kernel without runner execution.",
+        "required_files": ["scripts/artemis-symphony-daemon.sh", "docs/symphony/ARTEMIS_SYMPHONY_DAEMON.md"],
+        "status": "implemented_read_only",
+    },
 ]
 
 for layer in layers:
@@ -150,7 +158,7 @@ required_terms = [
     "Runner Layer",
     "Validation Layer",
     "Human Gates",
-    "TKT-045",
+    "TKT-046",
 ]
 missing_terms = [term for term in required_terms if term not in spec_text]
 if missing_terms:
@@ -174,12 +182,13 @@ compatibility = {
     "upstream_reference": "https://github.com/openai/symphony/blob/main/SPEC.md",
     "adoption_mode": "inspired_spec_not_dependency",
     "code_copied": False,
-    "daemon_implemented": False,
+    "daemon_implemented": True,
     "kernel_implemented": True,
     "bridge_implemented": True,
+    "daemon_dry_run": True,
     "terminal_first": True,
     "human_gates_preserved": True,
-    "next_cut": "TKT-045 - Daemon dry-run do ARTEMIS Symphony",
+    "next_cut": "TKT-046 - Fila supervisionada do ARTEMIS Symphony",
 }
 
 overall = "failed" if blockers else "spec_ready"
@@ -196,10 +205,11 @@ payload = {
         "layers_with_missing_files": sum(1 for layer in layers if layer["missing_files"]),
         "tasks_total": tasks_total,
         "tasks_done": tasks_done,
-        "daemon_implemented": False,
+        "daemon_implemented": exists("scripts/artemis-symphony-daemon.sh"),
         "kernel_implemented": exists("scripts/artemis-symphony-kernel.sh"),
         "bridge_implemented": exists("scripts/artemis-symphony-bridge.sh"),
-        "next_cut_defined": "TKT-045" in spec_text,
+        "daemon_dry_run": exists("scripts/artemis-symphony-daemon.sh"),
+        "next_cut_defined": "TKT-046" in spec_text,
     },
     "compatibility": compatibility,
     "layers": layers,
@@ -211,7 +221,8 @@ payload = {
         "Control Plane remains observational, not canonical state.",
         "The implemented kernel is read-only and cannot execute agents.",
         "The implemented bridge is supervised and plan-only by default.",
-        "The long-running daemon is not implemented yet.",
+        "The implemented daemon is finite dry-run and never starts runners automatically.",
+        "A long-running supervised service is not implemented yet.",
     ],
 }
 
@@ -293,18 +304,18 @@ handoff_lines = [
     "",
     "## Estado",
     "",
-    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel local read-only existe; nenhum daemon foi criado.",
+    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte e o daemon dry-run local existem.",
     "",
     "## Proximo corte",
     "",
-    "- Criar `TKT-045 - Daemon dry-run do ARTEMIS Symphony`.",
-    "- Observar task source local sem executar runners automaticamente.",
-    "- Registrar heartbeat, plano e Human Gates como evidencia.",
+    "- Criar `TKT-046 - Fila supervisionada do ARTEMIS Symphony`.",
+    "- Transformar dispatch observado em fila revisavel sem execucao automatica.",
+    "- Manter terminal override para ponte supervisionada.",
     "",
     "## Nao fazer",
     "",
     "- Nao copiar codigo do OpenAI Symphony.",
-    "- Nao executar daemon antes da ponte supervisionada.",
+    "- Nao transformar daemon dry-run em processo persistente sem supervisor explicito.",
     "- Nao automatizar push, PR, merge ou cleanup.",
 ]
 (artifact_root / "HANDOFF.md").write_text("\n".join(handoff_lines) + "\n", encoding="utf-8")

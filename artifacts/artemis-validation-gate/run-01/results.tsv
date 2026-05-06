@@ -18,6 +18,7 @@ shell_application_readiness	technical	passed	0	artifacts/artemis-validation-gate
 shell_symphony_compatibility	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_compatibility.txt
 shell_symphony_kernel	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_kernel.txt
 shell_symphony_bridge	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_bridge.txt
+shell_symphony_daemon	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_daemon.txt
 shell_approved_workspace_cleanup	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt
 shell_workspace_runtime_handoff	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt
 shell_runner	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt
@@ -44,6 +45,7 @@ application_readiness	technical	passed	0	artifacts/artemis-validation-gate/run-0
 symphony_compatibility	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/symphony_compatibility.txt
 symphony_kernel	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/symphony_kernel.txt
 symphony_bridge	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/symphony_bridge.txt
+symphony_daemon	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/symphony_daemon.txt
 approved_workspace_cleanup	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt
 workspace_runtime_handoff	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt
 runner_plan	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt

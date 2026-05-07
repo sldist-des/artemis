@@ -1551,6 +1551,17 @@
         tags: ["symphony", "remote-source", "intake"]
       },
       {
+        id: "tkt-051",
+        state: "done",
+        ticket: "TKT-051",
+        title: "Intake remoto revisavel do ARTEMIS Symphony",
+        summary: "Intake remoto gera pacote de revisao e mantem fonte derivada em Human Gate.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "artifacts/artemis-symphony-remote-intake/run-01",
+        tags: ["symphony", "remote-intake", "human-gate"]
+      },
+      {
         id: "github-auth",
         state: "human",
         ticket: "GIT",
@@ -1765,6 +1776,19 @@
         evidence: { artifact_path: "artifacts/artemis-symphony-remote-source/run-01" }
       },
       {
+        event_id: "evt_tkt-051_symphony_remote_intake",
+        event_type: "adapter.contract_recorded",
+        generated_at: "2026-05-07T14:10:00Z",
+        producer: { adapter: "symphony_remote_intake", name: "scripts/artemis-symphony-remote-intake.sh", mode: "read_only_remote_intake_review" },
+        subject: {
+          ticket: "TKT-051",
+          title: "Intake remoto revisavel do ARTEMIS Symphony"
+        },
+        state: { from: "planned", to: "review", reason: "Remote intake created a local review package and kept derived tasks in Human Gate." },
+        severity: "info",
+        evidence: { artifact_path: "artifacts/artemis-symphony-remote-intake/run-01" }
+      },
+      {
         event_id: "evt_tkt-017_adapter_events",
         event_type: "adapter.events_emitted",
         generated_at: "2026-04-30T19:54:36Z",
@@ -1839,8 +1863,8 @@
             ["commands", "0"]
           ],
           links: [
-            ["attempt", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T123714Z-24-tkt-903/RUNNER.md"],
-            ["events", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T123714Z-24-tkt-903/events.json"]
+            ["attempt", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T124755Z-24-tkt-903/RUNNER.md"],
+            ["events", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T124755Z-24-tkt-903/events.json"]
           ]
         },
         {
@@ -1938,6 +1962,20 @@
             ["status", "../artifacts/artemis-symphony-remote-source/run-01/STATUS.md"],
             ["json", "../artifacts/artemis-symphony-remote-source/run-01/remote-source.json"],
             ["tasks", "../artifacts/artemis-symphony-remote-source/run-01/task-source.json"]
+          ]
+        },
+        {
+          title: "R Intake",
+          status: "remote_intake_ready",
+          summary: "remote_intake_ready: item remoto foi preparado para revisao local com fonte derivada em Human Gate.",
+          facts: [
+            ["review", "1"],
+            ["promote", "0"]
+          ],
+          links: [
+            ["status", "../artifacts/artemis-symphony-remote-intake/run-01/STATUS.md"],
+            ["json", "../artifacts/artemis-symphony-remote-intake/run-01/remote-intake.json"],
+            ["review", "../artifacts/artemis-symphony-remote-intake/run-01/REVIEW.md"]
           ]
         }
       ]

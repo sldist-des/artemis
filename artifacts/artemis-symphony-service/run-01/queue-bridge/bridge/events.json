@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T12:37:33Z",
+  "generated_at": "2026-05-07T12:48:11Z",
   "source": "scripts/artemis-symphony-bridge.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-949_symphony_bridge",
       "event_type": "runner.attempt_planned",
-      "generated_at": "2026-05-07T12:37:33Z",
+      "generated_at": "2026-05-07T12:48:11Z",
       "producer": {
         "adapter": "local_runner",
         "name": "scripts/artemis-symphony-bridge.sh",
@@ -41,7 +41,7 @@
         "handoff_path": "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/HANDOFF.md",
         "logs": [
           "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/kernel/symphony-kernel.json",
-          "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/runner/attempts/20260507T123733Z-62-tkt-949/events.json"
+          "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/runner/attempts/20260507T124811Z-62-tkt-949/events.json"
         ]
       },
       "links": {

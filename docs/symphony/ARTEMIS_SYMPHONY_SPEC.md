@@ -457,6 +457,34 @@ Contrato:
 - push/merge continuam gates humanos ate politica real ser definida;
 - item remoto precisa passar por intake revisavel antes de fila/service.
 
+### Modo 3.1 - Intake remoto revisavel
+
+Implementado em `TKT-051` como revisao read-only antes de qualquer promocao
+local.
+
+- consome `remote-source.json`;
+- valida binding local de Exec Pack, owner, risco e URL remota;
+- gera `remote-intake.json` e `review-source.json`;
+- mantem `review-source.json` em `state=human`;
+- bloqueia promocao automatica;
+- bloqueia dispatch direto;
+- bloqueia escritas remotas;
+- mantem `commands_executed=0`;
+- registra evento canonico para Control Plane e handoff.
+
+Intake remoto revisavel implementado:
+
+- `scripts/artemis-symphony-remote-intake.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_REMOTE_INTAKE.md`
+
+Contrato:
+
+- Remote Intake e pacote de revisao, nao executor;
+- item remoto revisado so pode virar fonte local executavel apos decisao
+  humana explicita em corte posterior;
+- Queue, Service, Bridge e Runner nao sao chamados pelo intake;
+- Human Gates continuam explicitos.
+
 ## Invariantes
 
 - ARTEMIS Symphony nao executa cleanup real sem decisao humana.
@@ -469,14 +497,16 @@ Contrato:
 
 ## Proximo corte recomendado
 
-`TKT-051 - Intake remoto revisavel do ARTEMIS Symphony`
+`TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony`
 
 Objetivo:
 
-- revisar itens da fonte remota antes de promocao para fila/service;
-- exigir Exec Pack local, evidencia e ownership antes de qualquer dispatch;
+- promover intake remoto revisado para uma fonte local executavel apenas apos
+  decisao humana exata;
+- exigir Exec Pack local, evidencia, ownership e comando terminal antes de
+  qualquer dispatch;
 - preservar terminal-first, Human Gates e Validation Gate;
 - manter PRs, comentarios, labels e branches como acoes humanas ou explicitamente
   aprovadas.
 
-Esse sera o decimo passo de implementacao do nosso Symphony proprio.
+Esse sera o decimo primeiro passo de implementacao do nosso Symphony proprio.

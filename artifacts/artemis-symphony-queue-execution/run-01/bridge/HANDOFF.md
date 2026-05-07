@@ -6,7 +6,7 @@ Bridge supervisionada concluida com overall `runner_executed`.
 
 ## Proximo corte
 
-- Implementar `TKT-051 - Intake remoto revisavel do ARTEMIS Symphony`.
+- Implementar `TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony`.
 - Consumir item revisado da fila com comando explicito e ponte plan-only por padrao.
 
 ## Nao fazer

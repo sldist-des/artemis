@@ -6,7 +6,7 @@ Kernel local read-only concluido com overall `idle`.
 
 ## Proximo corte
 
-- Implementar `TKT-051 - Intake remoto revisavel do ARTEMIS Symphony`.
+- Implementar `TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony`.
 - Continuar com ponte plan-only por padrao e comando explicito por terminal.
 
 ## Nao fazer

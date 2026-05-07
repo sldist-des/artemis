@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T12:49:19Z",
+  "source": "scripts/artemis-symphony-remote-intake.sh",
+  "mode": "read_only_remote_intake_review",
+  "overall": "remote_intake_ready",
+  "reason": "Remote intake items are ready for human review before local promotion.",
+  "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-remote-intake-check",
+  "remote_source": "artifacts/artemis-validation-gate/run-01/symphony-remote-source-check/remote-source.json",
+  "summary": {
+    "remote_available": true,
+    "remote_source_overall": "remote_source_ready",
+    "items_total": 1,
+    "review_ready": 1,
+    "human_gate": 0,
+    "blocked": 0,
+    "observed_done": 0,
+    "review_required": 1,
+    "promotion_allowed": 0,
+    "direct_dispatch_allowed": false,
+    "remote_writes_allowed": false,
+    "runner_auto_execution_allowed": false,
+    "commands_executed": 0
+  },
+  "contract": {
+    "remote_source_defines": "intent_and_evidence",
+    "remote_intake_defines": "review_package",
+    "exec_pack_defines": "execution_contract",
+    "promotion": "blocked_until_explicit_human_review",
+    "review_source_state": "human",
+    "direct_dispatch": "blocked",
+    "remote_writes": "blocked",
+    "terminal_first": true,
+    "human_gates_preserved": true,
+    "validation_gate_required_before_execute": true
+  },
+  "remote_contract": {
+    "remote_source_defines": "intent_and_evidence",
+    "exec_pack_defines": "execution_contract",
+    "control_plane_shows": "state",
+    "remote_writes": "blocked_by_default",
+    "direct_dispatch": "blocked_by_default",
+    "terminal_first": true,
+    "human_gates_preserved": true,
+    "validation_gate_required_before_execute": true
+  },
+  "items": [
+    {
+      "ticket": "TKT-950",
+      "title": "TKT-950 - Validate supervised source intake",
+      "state": "intake",
+      "status": "review_ready",
+      "owner": "Codex",
+      "risk": "low",
+      "exec_pack": "docs/exec-packs/done/TKT-050-artemis-symphony-remote-source.md",
+      "remote": {
+        "provider": "github_issues",
+        "repo": "sldist-des/artemis",
+        "number": 950,
+        "url": "https://github.com/sldist-des/artemis/issues/950",
+        "updated_at": "2026-05-07T00:00:00Z",
+        "labels": [
+          "artemis",
+          "artemis:ready",
+          "exec-pack:docs/exec-packs/done/TKT-050-artemis-symphony-remote-source.md",
+          "risk:low"
+        ]
+      },
+      "blockers": [],
+      "warnings": [],
+      "review_required": true,
+      "promotion_allowed": false,
+      "direct_dispatch_allowed": false,
+      "remote_writes_allowed": false,
+      "commands_executed": 0
+    }
+  ],
+  "review_source": "artifacts/artemis-validation-gate/run-01/symphony-remote-intake-check/review-source.json",
+  "next_cut": "TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony"
+}

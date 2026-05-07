@@ -69,6 +69,7 @@
             "claude_code",
             "local_runner",
             "symphony_remote_source",
+            "symphony_remote_intake",
             "validation_gate",
             "control_plane",
             "manual"

@@ -332,7 +332,7 @@ payload = {
         "Validation Gate remains required before real execution.",
         "Human Gates remain explicit and non-bypassable.",
     ],
-    "next_cut": "TKT-051 - Intake remoto revisavel do ARTEMIS Symphony",
+    "next_cut": "TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony",
 }
 
 write_text(
@@ -448,7 +448,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-051 - Intake remoto revisavel do ARTEMIS Symphony`.",
+    "- Implementar `TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony`.",
     "- Manter `--execute` dependente de Validation Gate e decisao exata.",
 ]
 write_text(artifact_root / "HANDOFF.md", "\n".join(handoff_lines) + "\n")

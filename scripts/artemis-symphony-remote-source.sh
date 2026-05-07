@@ -301,7 +301,7 @@ payload = {
         "checks": github_payload.get("checks", {}),
         "contract": github_payload.get("contract", {}),
     },
-    "next_cut": "TKT-051 - Intake remoto revisavel do ARTEMIS Symphony",
+    "next_cut": "TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony",
 }
 
 task_source = {
@@ -374,7 +374,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-051 - Intake remoto revisavel do ARTEMIS Symphony`.",
+    "- Implementar `TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony`.",
     "- Revisar itens remotos antes de promover para fila/service.",
     "- Exigir Exec Pack local e decisao humana quando houver escrita remota, PR, merge ou deploy.",
     "",

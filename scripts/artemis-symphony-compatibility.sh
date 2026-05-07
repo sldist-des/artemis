@@ -173,6 +173,12 @@ layers = [
         "required_files": ["scripts/artemis-symphony-remote-source.sh", "docs/symphony/ARTEMIS_SYMPHONY_REMOTE_SOURCE.md"],
         "status": "implemented_read_only_intake",
     },
+    {
+        "layer": "remote_intake",
+        "purpose": "Review-only remote intake package before any local promotion.",
+        "required_files": ["scripts/artemis-symphony-remote-intake.sh", "docs/symphony/ARTEMIS_SYMPHONY_REMOTE_INTAKE.md"],
+        "status": "implemented_review_only",
+    },
 ]
 
 for layer in layers:
@@ -192,10 +198,12 @@ required_terms = [
     "Human Gates",
     "TKT-050",
     "TKT-051",
+    "TKT-052",
     "Queue Bridge",
     "Queue Execution",
     "Service",
     "Remote Source",
+    "Remote Intake",
 ]
 missing_terms = [term for term in required_terms if term not in spec_text]
 if missing_terms:
@@ -228,9 +236,10 @@ compatibility = {
     "queue_execution_implemented": True,
     "service_implemented": True,
     "remote_source_implemented": True,
+    "remote_intake_implemented": True,
     "terminal_first": True,
     "human_gates_preserved": True,
-    "next_cut": "TKT-051 - Intake remoto revisavel do ARTEMIS Symphony",
+    "next_cut": "TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony",
 }
 
 overall = "failed" if blockers else "spec_ready"
@@ -256,7 +265,8 @@ payload = {
         "queue_execution_implemented": exists("docs/symphony/ARTEMIS_SYMPHONY_QUEUE_EXECUTION.md"),
         "service_implemented": exists("scripts/artemis-symphony-service.sh"),
         "remote_source_implemented": exists("scripts/artemis-symphony-remote-source.sh"),
-        "next_cut_defined": "TKT-051" in spec_text,
+        "remote_intake_implemented": exists("scripts/artemis-symphony-remote-intake.sh"),
+        "next_cut_defined": "TKT-052" in spec_text,
     },
     "compatibility": compatibility,
     "layers": layers,
@@ -274,6 +284,7 @@ payload = {
         "Queue execution requires --execute plus Validation Gate and exact approval artifacts.",
         "The implemented service is finite and never passes --execute automatically.",
         "The implemented remote source is read-only intake and never authorizes runner execution.",
+        "The implemented remote intake is review-only and keeps derived tasks in Human Gate.",
     ],
 }
 
@@ -299,6 +310,7 @@ status_lines = [
     f"- Bridge implemented: `{str(compatibility['bridge_implemented']).lower()}`.",
     f"- Service implemented: `{str(compatibility['service_implemented']).lower()}`.",
     f"- Remote source implemented: `{str(compatibility['remote_source_implemented']).lower()}`.",
+    f"- Remote intake implemented: `{str(compatibility['remote_intake_implemented']).lower()}`.",
     f"- Terminal-first: `{str(compatibility['terminal_first']).lower()}`.",
     f"- Human Gates preserved: `{str(compatibility['human_gates_preserved']).lower()}`.",
     f"- Next cut: `{compatibility['next_cut']}`.",
@@ -357,12 +369,12 @@ handoff_lines = [
     "",
     "## Estado",
     "",
-    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito e a fonte remota read-only existem.",
+    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only e o intake remoto revisavel existem.",
     "",
     "## Proximo corte",
     "",
-    "- Criar `TKT-051 - Intake remoto revisavel do ARTEMIS Symphony`.",
-    "- Manter fonte remota como intake/evidencia, nao como executor automatico.",
+    "- Criar `TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony`.",
+    "- Manter intake remoto como revisao, nao como executor automatico.",
     "- Manter Validation Gate antes de qualquer execucao real.",
     "",
     "## Nao fazer",

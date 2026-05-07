@@ -161,7 +161,7 @@ payload = {
         "Every queue item requires terminal override before bridge execution.",
         "Human Gates remain explicit and non-bypassable.",
     ],
-    "next_cut": "TKT-051 - Intake remoto revisavel do ARTEMIS Symphony",
+    "next_cut": "TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony",
 }
 
 (artifact_root / "symphony-queue.json").write_text(
@@ -295,7 +295,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-051 - Intake remoto revisavel do ARTEMIS Symphony`.",
+    "- Implementar `TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony`.",
     "- Exigir comando explicito, terminal override e Validation Gate antes de qualquer execucao.",
     "",
     "## Nao fazer",

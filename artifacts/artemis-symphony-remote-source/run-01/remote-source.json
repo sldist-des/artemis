@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T12:36:47Z",
+  "generated_at": "2026-05-07T12:47:18Z",
   "source": "scripts/artemis-symphony-remote-source.sh",
   "mode": "read_only_supervised_intake",
   "overall": "remote_source_ready",
@@ -89,5 +89,5 @@
       "remote_writes": "human_gate_only"
     }
   },
-  "next_cut": "TKT-051 - Intake remoto revisavel do ARTEMIS Symphony"
+  "next_cut": "TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony"
 }

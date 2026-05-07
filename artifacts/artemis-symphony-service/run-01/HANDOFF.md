@@ -9,7 +9,7 @@
 
 ## Proximo corte
 
-- Implementar `TKT-051 - Intake remoto revisavel do ARTEMIS Symphony`.
+- Implementar `TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony`.
 - Manter execucao real fora do service; usar Queue Bridge `--execute` apenas com Validation Gate e decisao exata.
 
 ## Nao fazer

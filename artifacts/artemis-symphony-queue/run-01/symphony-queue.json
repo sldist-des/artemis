@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T12:37:19Z",
+  "generated_at": "2026-05-07T12:48:01Z",
   "source": "scripts/artemis-symphony-queue.sh",
   "mode": "supervised_queue_read_only",
   "overall": "queue_empty",
@@ -27,5 +27,5 @@
     "Every queue item requires terminal override before bridge execution.",
     "Human Gates remain explicit and non-bypassable."
   ],
-  "next_cut": "TKT-051 - Intake remoto revisavel do ARTEMIS Symphony"
+  "next_cut": "TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony"
 }

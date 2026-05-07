@@ -20,6 +20,7 @@ docs/symphony/ARTEMIS_SYMPHONY_QUEUE_BRIDGE.md
 docs/symphony/ARTEMIS_SYMPHONY_QUEUE_EXECUTION.md
 docs/symphony/ARTEMIS_SYMPHONY_SERVICE.md
 docs/symphony/ARTEMIS_SYMPHONY_REMOTE_SOURCE.md
+docs/symphony/ARTEMIS_SYMPHONY_REMOTE_INTAKE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
 docs/agents/CAPABILITY_REGISTRY.md
@@ -65,6 +66,7 @@ scripts/artemis-symphony-queue.sh
 scripts/artemis-symphony-queue-bridge.sh
 scripts/artemis-symphony-service.sh
 scripts/artemis-symphony-remote-source.sh
+scripts/artemis-symphony-remote-intake.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -148,6 +150,7 @@ sh -n scripts/artemis-symphony-queue.sh
 sh -n scripts/artemis-symphony-queue-bridge.sh
 sh -n scripts/artemis-symphony-service.sh
 sh -n scripts/artemis-symphony-remote-source.sh
+sh -n scripts/artemis-symphony-remote-intake.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -1088,6 +1091,44 @@ if ! grep -q '"event_type": "adapter.contract_recorded"' /tmp/artemis-symphony-r
   echo "scripts/artemis-symphony-remote-source.sh did not emit canonical events" >&2
   exit 1
 fi
+scripts/artemis-symphony-remote-intake.sh --remote-source /tmp/artemis-symphony-remote-source/remote-source.json --artifact-root /tmp/artemis-symphony-remote-intake --json >/tmp/artemis-symphony-remote-intake.json
+if ! grep -q '"overall": "remote_intake_ready"' /tmp/artemis-symphony-remote-intake.json; then
+  echo "scripts/artemis-symphony-remote-intake.sh did not report remote_intake_ready for synthetic source" >&2
+  exit 1
+fi
+if ! grep -q '"review_ready": 1' /tmp/artemis-symphony-remote-intake.json; then
+  echo "ARTEMIS Symphony remote intake did not mark the synthetic item review_ready" >&2
+  exit 1
+fi
+if ! grep -q '"promotion_allowed": 0' /tmp/artemis-symphony-remote-intake.json; then
+  echo "ARTEMIS Symphony remote intake allowed promotion before human review" >&2
+  exit 1
+fi
+if ! grep -q '"direct_dispatch_allowed": false' /tmp/artemis-symphony-remote-intake.json; then
+  echo "ARTEMIS Symphony remote intake allowed direct dispatch" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-symphony-remote-intake.json; then
+  echo "ARTEMIS Symphony remote intake executed commands" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-symphony-remote-intake/review-source.json; then
+  echo "scripts/artemis-symphony-remote-intake.sh did not write review-source.json" >&2
+  exit 1
+fi
+scripts/artemis-dry-run.sh --input /tmp/artemis-symphony-remote-intake/review-source.json --json >/tmp/artemis-symphony-remote-intake-dry-run.json
+if ! grep -q '"eligible": 0' /tmp/artemis-symphony-remote-intake-dry-run.json; then
+  echo "remote intake review-source produced eligible dispatch work" >&2
+  exit 1
+fi
+if ! grep -q '"human_gate": 1' /tmp/artemis-symphony-remote-intake-dry-run.json; then
+  echo "remote intake review-source did not stay in Human Gate" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "adapter.contract_recorded"' /tmp/artemis-symphony-remote-intake/events.json; then
+  echo "scripts/artemis-symphony-remote-intake.sh did not emit canonical events" >&2
+  exit 1
+fi
 
 scripts/artemis-codex-app-server.sh --artifact-root /tmp/artemis-codex-app-server --json >/tmp/artemis-codex-app-server.json
 if ! grep -q '"overall": "passed"' /tmp/artemis-codex-app-server.json; then
@@ -1131,7 +1172,7 @@ if ! grep -q "artifacts/artemis-symphony-bridge/run-01/symphony-bridge.json" con
   echo "control-plane/index.html does not link the Symphony bridge artifact" >&2
   exit 1
 fi
-if ! grep -q "20260507T123714Z-24-tkt-903" control-plane/index.html; then
+if ! grep -q "20260507T124755Z-24-tkt-903" control-plane/index.html; then
   echo "control-plane/index.html does not link the Symphony runner attempt" >&2
   exit 1
 fi
@@ -1181,6 +1222,14 @@ if ! grep -q "artifacts/artemis-symphony-remote-source/run-01/remote-source.json
 fi
 if ! grep -q "remote_source_ready" control-plane/index.html; then
   echo "control-plane/index.html does not show the Symphony remote source state" >&2
+  exit 1
+fi
+if ! grep -q "artifacts/artemis-symphony-remote-intake/run-01/remote-intake.json" control-plane/index.html; then
+  echo "control-plane/index.html does not link the Symphony remote intake artifact" >&2
+  exit 1
+fi
+if ! grep -q "remote_intake_ready" control-plane/index.html; then
+  echo "control-plane/index.html does not show the Symphony remote intake state" >&2
   exit 1
 fi
 

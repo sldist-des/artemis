@@ -362,6 +362,17 @@ scripts/artemis-symphony-remote-source.sh --json
 
 A fonte remota gera `remote-source.json` e `task-source.json`, mas nao autoriza dispatch direto, runner automatico, labels, comentarios, PRs, branches ou qualquer escrita remota. Exec Pack local continua sendo o contrato de execucao.
 
+Antes de qualquer promocao local, revise a fonte remota:
+
+```bash
+scripts/artemis-symphony-remote-intake.sh
+scripts/artemis-symphony-remote-intake.sh --json
+```
+
+O intake remoto gera `remote-intake.json`, `review-source.json` e `REVIEW.md`.
+A fonte derivada fica em `state=human`, com `promotion_allowed=0` e
+`commands_executed=0`, ate existir decisao humana exata em corte posterior.
+
 Codex app-server e fonte futura de eventos ricos, nao substitui controle terminal-first:
 
 ```bash

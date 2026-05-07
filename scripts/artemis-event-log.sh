@@ -203,6 +203,15 @@ for events_path in sorted(event_files):
     for attempt_event in attempt_log.get("events", []):
         events.append(attempt_event)
 
+for events_path in [
+    Path("artifacts/artemis-symphony-remote-source/run-01/events.json"),
+    Path("artifacts/artemis-symphony-remote-intake/run-01/events.json"),
+]:
+    if events_path.is_file():
+        remote_log = read_json(events_path)
+        for remote_event in remote_log.get("events", []):
+            events.append(remote_event)
+
 event_log = event_log(source="scripts/artemis-event-log.sh", generated_at=generated_at, events=events)
 
 print(json.dumps(event_log, ensure_ascii=False, indent=2))

@@ -50,6 +50,6 @@ scripts/artemis-symphony-kernel.sh --json
 
 ## Proximo Corte
 
-`TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony`
+`TKT-054 - Project Operations Graph do ARTEMIS Symphony`
 
 Objetivo: consumir item revisado da fila com comando explicito e ponte supervisionada plan-only por padrao.

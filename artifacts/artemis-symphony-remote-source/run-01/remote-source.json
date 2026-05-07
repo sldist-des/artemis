@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T13:02:32Z",
+  "generated_at": "2026-05-07T13:35:50Z",
   "source": "scripts/artemis-symphony-remote-source.sh",
   "mode": "read_only_supervised_intake",
   "overall": "remote_source_ready",
@@ -89,5 +89,5 @@
       "remote_writes": "human_gate_only"
     }
   },
-  "next_cut": "TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony"
+  "next_cut": "TKT-054 - Project Operations Graph do ARTEMIS Symphony"
 }

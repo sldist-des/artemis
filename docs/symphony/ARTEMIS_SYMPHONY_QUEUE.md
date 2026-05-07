@@ -49,6 +49,6 @@ scripts/artemis-symphony-queue.sh --json
 
 ## Proximo Corte
 
-`TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony`
+`TKT-054 - Project Operations Graph do ARTEMIS Symphony`
 
 Objetivo: consumir um item revisado da fila por comando explicito, chamando a ponte em modo plan-only por padrao.

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T13:04:17Z",
+  "generated_at": "2026-05-07T13:37:20Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -637,6 +637,18 @@
       "summary": "Criar uma promocao local revisavel para itens vindos do Remote Intake, sem",
       "exec_pack": "docs/exec-packs/done/TKT-052-artemis-symphony-remote-promotion.md",
       "evidence": "docs/exec-packs/done/TKT-052-artemis-symphony-remote-promotion.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-053",
+      "ticket": "TKT-053",
+      "title": "Memory Zone humano-AI do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "Definir a zona de memoria humano-AI do ARTEMIS Symphony, inspirada por Tolaria",
+      "exec_pack": "docs/exec-packs/done/TKT-053-artemis-memory-zone.md",
+      "evidence": "docs/exec-packs/done/TKT-053-artemis-memory-zone.md",
       "tags": ["exec-pack", "done"]
     }
   ]

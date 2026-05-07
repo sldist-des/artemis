@@ -185,6 +185,12 @@ layers = [
         "required_files": ["scripts/artemis-symphony-remote-promotion.sh", "docs/symphony/ARTEMIS_SYMPHONY_REMOTE_PROMOTION.md"],
         "status": "implemented_decision_gate",
     },
+    {
+        "layer": "memory_zone",
+        "purpose": "Human-AI memory zone for markdown vaults, ARTEMIS evidence and future incremental indexes.",
+        "required_files": ["scripts/artemis-memory-zone.sh", "docs/memory/ARTEMIS_MEMORY_ZONE.md"],
+        "status": "implemented_read_only_contract",
+    },
 ]
 
 for layer in layers:
@@ -206,12 +212,14 @@ required_terms = [
     "TKT-051",
     "TKT-052",
     "TKT-053",
+    "TKT-054",
     "Queue Bridge",
     "Queue Execution",
     "Service",
     "Remote Source",
     "Remote Intake",
     "Remote Promotion",
+    "Memory Zone",
 ]
 missing_terms = [term for term in required_terms if term not in spec_text]
 if missing_terms:
@@ -246,9 +254,10 @@ compatibility = {
     "remote_source_implemented": True,
     "remote_intake_implemented": True,
     "remote_promotion_implemented": True,
+    "memory_zone_implemented": True,
     "terminal_first": True,
     "human_gates_preserved": True,
-    "next_cut": "TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony",
+    "next_cut": "TKT-054 - Project Operations Graph do ARTEMIS Symphony",
 }
 
 overall = "failed" if blockers else "spec_ready"
@@ -276,7 +285,8 @@ payload = {
         "remote_source_implemented": exists("scripts/artemis-symphony-remote-source.sh"),
         "remote_intake_implemented": exists("scripts/artemis-symphony-remote-intake.sh"),
         "remote_promotion_implemented": exists("scripts/artemis-symphony-remote-promotion.sh"),
-        "next_cut_defined": "TKT-053" in spec_text,
+        "memory_zone_implemented": exists("scripts/artemis-memory-zone.sh"),
+        "next_cut_defined": "TKT-054" in spec_text,
     },
     "compatibility": compatibility,
     "layers": layers,
@@ -296,6 +306,7 @@ payload = {
         "The implemented remote source is read-only intake and never authorizes runner execution.",
         "The implemented remote intake is review-only and keeps derived tasks in Human Gate.",
         "The implemented remote promotion requires exact human decision and never executes runners.",
+        "The implemented Memory Zone is a context contract and does not install indexer dependencies.",
     ],
 }
 
@@ -323,6 +334,7 @@ status_lines = [
     f"- Remote source implemented: `{str(compatibility['remote_source_implemented']).lower()}`.",
     f"- Remote intake implemented: `{str(compatibility['remote_intake_implemented']).lower()}`.",
     f"- Remote promotion implemented: `{str(compatibility['remote_promotion_implemented']).lower()}`.",
+    f"- Memory Zone implemented: `{str(compatibility['memory_zone_implemented']).lower()}`.",
     f"- Terminal-first: `{str(compatibility['terminal_first']).lower()}`.",
     f"- Human Gates preserved: `{str(compatibility['human_gates_preserved']).lower()}`.",
     f"- Next cut: `{compatibility['next_cut']}`.",
@@ -381,12 +393,12 @@ handoff_lines = [
     "",
     "## Estado",
     "",
-    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel e a promocao local por decisao existem.",
+    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel, a promocao local por decisao e a Memory Zone existem.",
     "",
     "## Proximo corte",
     "",
-    "- Criar `TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony`.",
-    "- Manter feedback remoto como pacote de decisao, nao como escrita automatica.",
+    "- Criar `TKT-054 - Project Operations Graph do ARTEMIS Symphony`.",
+    "- Modelar projeto, tarefas, agentes, dependencias, gates, validacoes, custos e memoria como grafo operacional.",
     "- Manter Validation Gate antes de qualquer execucao real.",
     "",
     "## Nao fazer",

@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T13:35:40Z",
+  "source": "scripts/artemis-memory-zone.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-053_memory_zone",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-07T13:35:40Z",
+      "producer": {
+        "adapter": "memory_zone",
+        "name": "scripts/artemis-memory-zone.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-053",
+        "task_id": "tkt-053",
+        "title": "Memory Zone humano-AI do ARTEMIS Symphony",
+        "exec_pack": "docs/exec-packs/done/TKT-053-artemis-memory-zone.md",
+        "artifact_root": "artifacts/artemis-memory-zone/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "done",
+        "reason": "Human-AI Memory Zone contract is ready."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-memory-zone/run-01",
+        "status_path": "artifacts/artemis-memory-zone/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-memory-zone/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-memory-zone/run-01/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-053"
+      },
+      "payload": {
+        "overall": "memory_zone_ready",
+        "reason": "Human-AI Memory Zone contract is ready.",
+        "summary": {
+          "sources_total": 2,
+          "zones_total": 3,
+          "missing_files": 0,
+          "dependencies_installed": 0,
+          "indexes_built": 0,
+          "embeddings_created": 0,
+          "commands_executed": 0,
+          "remote_writes_allowed": false,
+          "runtime_started": false
+        },
+        "next_cut": "TKT-054 - Project Operations Graph do ARTEMIS Symphony"
+      }
+    }
+  ]
+}

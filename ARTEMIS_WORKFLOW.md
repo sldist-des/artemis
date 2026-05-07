@@ -387,6 +387,19 @@ A promocao gera `promoted-source.json` em `state=ready`, registra o comando
 terminal aprovado e mantem Queue, Bridge, Runner e escritas remotas bloqueados.
 Sem decisao exata, o resultado permanece Human Gate.
 
+ARTEMIS tambem possui uma Memory Zone humano-AI:
+
+```bash
+scripts/artemis-memory-zone.sh
+scripts/artemis-memory-zone.sh --json
+```
+
+A Memory Zone conecta notas humanas, artifacts, eventos, handoffs e contexto de
+projeto. Ela se inspira em Tolaria para vault markdown/git humano-AI e em
+CocoIndex para indice incremental futuro, mas nao instala dependencias nem cria
+embeddings sem decisao explicita. Indices derivados sao read models
+reconstruiveis, nao fonte de verdade.
+
 Codex app-server e fonte futura de eventos ricos, nao substitui controle terminal-first:
 
 ```bash

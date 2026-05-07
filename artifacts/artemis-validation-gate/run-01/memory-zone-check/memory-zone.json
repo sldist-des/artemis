@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T13:37:25Z",
+  "source": "scripts/artemis-memory-zone.sh",
+  "mode": "read_only_memory_contract",
+  "overall": "memory_zone_ready",
+  "reason": "Human-AI Memory Zone contract is ready.",
+  "artifact_root": "artifacts/artemis-validation-gate/run-01/memory-zone-check",
+  "summary": {
+    "sources_total": 2,
+    "zones_total": 3,
+    "missing_files": 0,
+    "dependencies_installed": 0,
+    "indexes_built": 0,
+    "embeddings_created": 0,
+    "commands_executed": 0,
+    "remote_writes_allowed": false,
+    "runtime_started": false
+  },
+  "sources": [
+    {
+      "name": "Tolaria",
+      "url": "https://github.com/refactoringhq/tolaria",
+      "role": "human_ai_vault_reference",
+      "adopt": [
+        "files_first",
+        "git_first",
+        "offline_first",
+        "markdown_frontmatter",
+        "ai_first_not_ai_only"
+      ],
+      "do_not_adopt_blindly": [
+        "desktop_runtime_coupling",
+        "AGPL_code_copy"
+      ]
+    },
+    {
+      "name": "CocoIndex",
+      "url": "https://github.com/cocoindex-io/cocoindex",
+      "role": "incremental_context_index_reference",
+      "adopt": [
+        "incremental_processing",
+        "lineage",
+        "freshness",
+        "semantic_and_graph_indexes"
+      ],
+      "do_not_adopt_blindly": [
+        "new_runtime_dependency_without_decision",
+        "implicit_embedding_costs"
+      ]
+    }
+  ],
+  "zones": [
+    {
+      "zone": "human_vault",
+      "purpose": "Notas, decisoes, runbooks e contexto editaveis por humanos e agentes.",
+      "format": "markdown_with_frontmatter",
+      "authority": "human_editable_git_versioned",
+      "runtime": "future_tolaria_compatible_vault"
+    },
+    {
+      "zone": "project_memory",
+      "purpose": "Estado operacional do projeto, decisoes, gates, exec packs e handoffs.",
+      "format": "artemis_artifacts_and_event_log",
+      "authority": "artifacts_are_evidence_git_is_memory",
+      "runtime": "current_repo"
+    },
+    {
+      "zone": "derived_index",
+      "purpose": "Indice incremental para busca semantica, grafo, freshness e lineage.",
+      "format": "future_cocoindex_dataflow",
+      "authority": "derived_read_model_not_source_of_truth",
+      "runtime": "future_optional_indexer"
+    }
+  ],
+  "invariants": [
+    "Memory Zone is source-of-context, not execution authority.",
+    "Markdown/Git artifacts remain portable and inspectable.",
+    "Derived indexes can be rebuilt and never replace source files.",
+    "Secrets and credentials are excluded from memory and indexes by default.",
+    "Agents may propose memory updates, but Human Gates govern sensitive knowledge changes.",
+    "Costs from embeddings, indexing and agent queries must be budgeted before runtime use."
+  ],
+  "contracts": {
+    "tolaria": "reference_for_human_ai_markdown_vault",
+    "cocoindex": "reference_for_incremental_derived_context_index",
+    "source_of_truth": "git_versioned_markdown_and_artifacts",
+    "derived_index": "rebuildable_read_model",
+    "project_operations_graph": "future_consumer_of_memory_zone",
+    "dependency_policy": "no_new_dependency_without_explicit_decision"
+  },
+  "next_cut": "TKT-054 - Project Operations Graph do ARTEMIS Symphony"
+}

@@ -60,4 +60,4 @@ Sem `--decision`, o resultado deve permanecer em Human Gate.
 
 ## Proximo corte
 
-`TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony`
+`TKT-054 - Project Operations Graph do ARTEMIS Symphony`

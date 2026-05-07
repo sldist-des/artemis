@@ -517,6 +517,34 @@ Contrato:
 - PRs, comentarios, labels e branches continuam bloqueados ate contrato
   explicito.
 
+### Modo 3.3 - Memory Zone humano-AI
+
+Implementado em `TKT-053` como contrato read-only de memoria compartilhada entre
+humanos, Codex, Claude Code e futuros agentes.
+
+- usa Tolaria como referencia de vault markdown/git humano-AI;
+- usa CocoIndex como referencia de indice incremental com freshness e lineage;
+- separa Human Vault, Project Memory e Derived Index;
+- trata markdown, artifacts e git como fontes de verdade portaveis;
+- trata indices derivados como read models reconstruiveis;
+- exclui secrets e credenciais por padrao;
+- nao instala novas dependencias;
+- nao inicia indexador, banco, embeddings ou runtime;
+- registra evento canonico para Control Plane e handoff.
+
+Memory Zone implementada:
+
+- `scripts/artemis-memory-zone.sh`
+- `docs/memory/ARTEMIS_MEMORY_ZONE.md`
+
+Contrato:
+
+- Memory Zone fornece contexto, nao autoridade de execucao;
+- agentes podem propor atualizacoes de memoria, mas alteracoes sensiveis passam
+  por Human Gate;
+- Project Operations Graph deve consumir essa memoria no proximo corte;
+- nenhum indice derivado substitui arquivos fonte, artifacts ou git.
+
 ## Invariantes
 
 - ARTEMIS Symphony nao executa cleanup real sem decisao humana.
@@ -529,13 +557,14 @@ Contrato:
 
 ## Proximo corte recomendado
 
-`TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony`
+`TKT-054 - Project Operations Graph do ARTEMIS Symphony`
 
 Objetivo:
 
-- registrar feedback remoto supervisionado como pacote de decisao;
-- manter comentarios, labels, branches e PRs atras de aprovacao humana exata;
-- separar evidencia local de qualquer escrita remota real;
-- preservar terminal-first, Human Gates e Validation Gate.
+- modelar projeto, tarefas, agentes, dependencias, gates, validacoes, custos,
+  memoria e artifacts como grafo operacional;
+- usar Memory Zone como fonte de contexto;
+- preparar o Control Plane operacional para mostrar estado vivo do projeto;
+- preservar terminal-first, Human Gates, Validation Gate e budget gates.
 
-Esse sera o decimo segundo passo de implementacao do nosso Symphony proprio.
+Esse sera o decimo terceiro passo de implementacao do nosso Symphony proprio.

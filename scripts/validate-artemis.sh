@@ -22,6 +22,7 @@ docs/symphony/ARTEMIS_SYMPHONY_SERVICE.md
 docs/symphony/ARTEMIS_SYMPHONY_REMOTE_SOURCE.md
 docs/symphony/ARTEMIS_SYMPHONY_REMOTE_INTAKE.md
 docs/symphony/ARTEMIS_SYMPHONY_REMOTE_PROMOTION.md
+docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
 docs/agents/CAPABILITY_REGISTRY.md
@@ -69,6 +70,7 @@ scripts/artemis-symphony-service.sh
 scripts/artemis-symphony-remote-source.sh
 scripts/artemis-symphony-remote-intake.sh
 scripts/artemis-symphony-remote-promotion.sh
+scripts/artemis-memory-zone.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -154,6 +156,7 @@ sh -n scripts/artemis-symphony-service.sh
 sh -n scripts/artemis-symphony-remote-source.sh
 sh -n scripts/artemis-symphony-remote-intake.sh
 sh -n scripts/artemis-symphony-remote-promotion.sh
+sh -n scripts/artemis-memory-zone.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -1211,6 +1214,27 @@ if ! grep -q '"event_type": "approval.resolved"' /tmp/artemis-symphony-promotion
   echo "scripts/artemis-symphony-remote-promotion.sh did not emit canonical approval event" >&2
   exit 1
 fi
+scripts/artemis-memory-zone.sh --artifact-root /tmp/artemis-memory-zone --json >/tmp/artemis-memory-zone.json
+if ! grep -q '"overall": "memory_zone_ready"' /tmp/artemis-memory-zone.json; then
+  echo "scripts/artemis-memory-zone.sh did not report memory_zone_ready" >&2
+  exit 1
+fi
+if ! grep -q '"dependencies_installed": 0' /tmp/artemis-memory-zone.json; then
+  echo "ARTEMIS Memory Zone installed dependencies during contract validation" >&2
+  exit 1
+fi
+if ! grep -q '"indexes_built": 0' /tmp/artemis-memory-zone.json; then
+  echo "ARTEMIS Memory Zone built indexes during read-only contract validation" >&2
+  exit 1
+fi
+if ! grep -q '"embeddings_created": 0' /tmp/artemis-memory-zone.json; then
+  echo "ARTEMIS Memory Zone created embeddings during read-only contract validation" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "adapter.contract_recorded"' /tmp/artemis-memory-zone/events.json; then
+  echo "scripts/artemis-memory-zone.sh did not emit canonical events" >&2
+  exit 1
+fi
 
 scripts/artemis-codex-app-server.sh --artifact-root /tmp/artemis-codex-app-server --json >/tmp/artemis-codex-app-server.json
 if ! grep -q '"overall": "passed"' /tmp/artemis-codex-app-server.json; then
@@ -1254,7 +1278,7 @@ if ! grep -q "artifacts/artemis-symphony-bridge/run-01/symphony-bridge.json" con
   echo "control-plane/index.html does not link the Symphony bridge artifact" >&2
   exit 1
 fi
-if ! grep -q "20260507T130259Z-26-tkt-903" control-plane/index.html; then
+if ! grep -q "20260507T133550Z-26-tkt-903" control-plane/index.html; then
   echo "control-plane/index.html does not link the Symphony runner attempt" >&2
   exit 1
 fi
@@ -1320,6 +1344,14 @@ if ! grep -q "artifacts/artemis-symphony-promotion/run-01/remote-promotion.json"
 fi
 if ! grep -q "remote_promotion_ready" control-plane/index.html; then
   echo "control-plane/index.html does not show the Symphony remote promotion state" >&2
+  exit 1
+fi
+if ! grep -q "artifacts/artemis-memory-zone/run-01/memory-zone.json" control-plane/index.html; then
+  echo "control-plane/index.html does not link the ARTEMIS Memory Zone artifact" >&2
+  exit 1
+fi
+if ! grep -q "memory_zone_ready" control-plane/index.html; then
+  echo "control-plane/index.html does not show the ARTEMIS Memory Zone state" >&2
   exit 1
 fi
 

@@ -43,6 +43,6 @@ git diff --check
 
 ## Handoff
 
-O proximo corte e `TKT-053 - Feedback remoto supervisionado do ARTEMIS
-Symphony`, mantendo comentarios, labels, branches e PRs atras de decisao humana
-exata.
+O proximo corte e `TKT-054 - Project Operations Graph do ARTEMIS Symphony`,
+mantendo tarefas, agentes, dependencias, gates, validacoes, custos, memoria e
+artefatos como grafo operacional auditavel.

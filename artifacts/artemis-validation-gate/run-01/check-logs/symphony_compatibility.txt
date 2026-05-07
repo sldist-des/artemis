@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T13:04:18Z",
+  "generated_at": "2026-05-07T13:37:21Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
   "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-compatibility-check",
   "spec": "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md",
   "summary": {
-    "layers_total": 17,
+    "layers_total": 18,
     "layers_with_missing_files": 0,
-    "tasks_total": 53,
-    "tasks_done": 53,
+    "tasks_total": 54,
+    "tasks_done": 54,
     "daemon_implemented": true,
     "kernel_implemented": true,
     "bridge_implemented": true,
@@ -22,6 +22,7 @@
     "remote_source_implemented": true,
     "remote_intake_implemented": true,
     "remote_promotion_implemented": true,
+    "memory_zone_implemented": true,
     "next_cut_defined": true
   },
   "compatibility": {
@@ -39,9 +40,10 @@
     "remote_source_implemented": true,
     "remote_intake_implemented": true,
     "remote_promotion_implemented": true,
+    "memory_zone_implemented": true,
     "terminal_first": true,
     "human_gates_preserved": true,
-    "next_cut": "TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony"
+    "next_cut": "TKT-054 - Project Operations Graph do ARTEMIS Symphony"
   },
   "layers": [
     {
@@ -224,6 +226,16 @@
       ],
       "status": "implemented_decision_gate",
       "missing_files": []
+    },
+    {
+      "layer": "memory_zone",
+      "purpose": "Human-AI memory zone for markdown vaults, ARTEMIS evidence and future incremental indexes.",
+      "required_files": [
+        "scripts/artemis-memory-zone.sh",
+        "docs/memory/ARTEMIS_MEMORY_ZONE.md"
+      ],
+      "status": "implemented_read_only_contract",
+      "missing_files": []
     }
   ],
   "blockers": [],
@@ -241,6 +253,7 @@
     "The implemented service is finite and never passes --execute automatically.",
     "The implemented remote source is read-only intake and never authorizes runner execution.",
     "The implemented remote intake is review-only and keeps derived tasks in Human Gate.",
-    "The implemented remote promotion requires exact human decision and never executes runners."
+    "The implemented remote promotion requires exact human decision and never executes runners.",
+    "The implemented Memory Zone is a context contract and does not install indexer dependencies."
   ]
 }

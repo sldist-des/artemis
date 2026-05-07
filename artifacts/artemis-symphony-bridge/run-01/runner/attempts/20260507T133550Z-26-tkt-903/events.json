@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T13:35:50Z",
+  "source": "scripts/artemis-runner.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_20260507t133550z-26-tkt-903_planned",
+      "event_type": "runner.attempt_planned",
+      "generated_at": "2026-05-07T13:35:50Z",
+      "producer": {
+        "adapter": "local_runner",
+        "name": "scripts/artemis-runner.sh",
+        "mode": "supervised"
+      },
+      "subject": {
+        "ticket": "TKT-903",
+        "task_id": "tkt-903",
+        "title": "Validate ARTEMIS Symphony Bridge",
+        "exec_pack": "docs/exec-packs/done/TKT-043-artemis-symphony-bridge.md",
+        "artifact_root": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903",
+        "branch": "artemis/tkt-903-validate-artemis-symphony-bridge",
+        "worktree": "../veri-artemis-worktrees/tkt-903"
+      },
+      "runner": {
+        "kind": "codex_cli",
+        "attempt_id": "20260507T133550Z-26-tkt-903",
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-bridge/run-01/task-source.json"
+      },
+      "state": {
+        "from": "ready",
+        "to": "running",
+        "reason": "Supervised runner attempt planned with workspace readiness."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903",
+        "status_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/STATUS.md",
+        "validation_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/dry-run.json",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/workspace.json",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/RUNNER.md",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/ENVIRONMENT.md",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/COMMAND.txt",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/RESULT.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-903"
+      },
+      "payload": {
+        "attempt_id": "20260507T133550Z-26-tkt-903",
+        "execute": false,
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-bridge/run-01/task-source.json",
+        "execution_cwd": "/srv/veri",
+        "use_workspace": false,
+        "attempt_purpose": "run",
+        "retry_of": null,
+        "workspace": {
+          "mode": "planned",
+          "branch": "artemis/tkt-903-validate-artemis-symphony-bridge",
+          "worktree_path": "../veri-artemis-worktrees/tkt-903",
+          "lock_path": ".artemis/locks/tkt-903.lock",
+          "artifact_root": "artifacts/artemis-symphony-bridge/run-01",
+          "writer": "Codex",
+          "cleanup_state": "not_created"
+        },
+        "artifact_root": "artifacts/artemis-symphony-bridge/run-01/runner",
+        "reason": "Supervised runner attempt planned with workspace readiness."
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_20260507t133550z-26-tkt-903_completed",
+      "event_type": "runner.attempt_completed",
+      "generated_at": "2026-05-07T13:35:50Z",
+      "producer": {
+        "adapter": "local_runner",
+        "name": "scripts/artemis-runner.sh",
+        "mode": "supervised"
+      },
+      "subject": {
+        "ticket": "TKT-903",
+        "task_id": "tkt-903",
+        "title": "Validate ARTEMIS Symphony Bridge",
+        "exec_pack": "docs/exec-packs/done/TKT-043-artemis-symphony-bridge.md",
+        "artifact_root": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903",
+        "branch": "artemis/tkt-903-validate-artemis-symphony-bridge",
+        "worktree": "../veri-artemis-worktrees/tkt-903"
+      },
+      "runner": {
+        "kind": "codex_cli",
+        "attempt_id": "20260507T133550Z-26-tkt-903",
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-bridge/run-01/task-source.json"
+      },
+      "state": {
+        "from": "running",
+        "to": "review",
+        "reason": "Supervised runner plan completed without command execution."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903",
+        "status_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/STATUS.md",
+        "validation_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/dry-run.json",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/workspace.json",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/RUNNER.md",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/ENVIRONMENT.md",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/COMMAND.txt",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/RESULT.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-903"
+      },
+      "payload": {
+        "attempt_id": "20260507T133550Z-26-tkt-903",
+        "execute": false,
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-bridge/run-01/task-source.json",
+        "execution_cwd": "/srv/veri",
+        "use_workspace": false,
+        "attempt_purpose": "run",
+        "retry_of": null,
+        "workspace": {
+          "mode": "planned",
+          "branch": "artemis/tkt-903-validate-artemis-symphony-bridge",
+          "worktree_path": "../veri-artemis-worktrees/tkt-903",
+          "lock_path": ".artemis/locks/tkt-903.lock",
+          "artifact_root": "artifacts/artemis-symphony-bridge/run-01",
+          "writer": "Codex",
+          "cleanup_state": "not_created"
+        },
+        "artifact_root": "artifacts/artemis-symphony-bridge/run-01/runner",
+        "exit_code": 0,
+        "command_log": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/COMMAND.txt",
+        "reason": "Supervised runner plan completed without command execution."
+      }
+    }
+  ]
+}

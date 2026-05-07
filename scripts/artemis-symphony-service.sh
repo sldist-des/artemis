@@ -308,7 +308,7 @@ payload = {
         "Service preserves terminal override and Human Gates.",
         "Real execution remains owned by queue bridge --execute plus Validation Gate and exact approval.",
     ],
-    "next_cut": "TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony",
+    "next_cut": "TKT-054 - Project Operations Graph do ARTEMIS Symphony",
 }
 
 write_text(artifact_root / "symphony-service.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
@@ -429,7 +429,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony`.",
+    "- Implementar `TKT-054 - Project Operations Graph do ARTEMIS Symphony`.",
     "- Manter execucao real fora do service; usar Queue Bridge `--execute` apenas com Validation Gate e decisao exata.",
     "",
     "## Nao fazer",

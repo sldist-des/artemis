@@ -6,7 +6,7 @@ Bridge supervisionada concluida com overall `runner_executed`.
 
 ## Proximo corte
 
-- Implementar `TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony`.
+- Implementar `TKT-054 - Project Operations Graph do ARTEMIS Symphony`.
 - Consumir item revisado da fila com comando explicito e ponte plan-only por padrao.
 
 ## Nao fazer

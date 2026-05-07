@@ -25,6 +25,7 @@ shell_symphony_service	technical	passed	0	artifacts/artemis-validation-gate/run-
 shell_symphony_remote_source	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_remote_source.txt
 shell_symphony_remote_intake	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_remote_intake.txt
 shell_symphony_remote_promotion	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_remote_promotion.txt
+shell_memory_zone	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_memory_zone.txt
 shell_approved_workspace_cleanup	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt
 shell_workspace_runtime_handoff	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt
 shell_runner	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt
@@ -59,6 +60,7 @@ symphony_service	technical	passed	0	artifacts/artemis-validation-gate/run-01/che
 symphony_remote_source	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/symphony_remote_source.txt
 symphony_remote_intake	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/symphony_remote_intake.txt
 symphony_remote_promotion	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/symphony_remote_promotion.txt
+memory_zone	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/memory_zone.txt
 approved_workspace_cleanup	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt
 workspace_runtime_handoff	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt
 runner_plan	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt

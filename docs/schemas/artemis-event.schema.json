@@ -73,7 +73,8 @@
             "symphony_remote_promotion",
             "validation_gate",
             "control_plane",
-            "manual"
+            "manual",
+            "memory_zone"
           ]
         },
         "name": {

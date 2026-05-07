@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T13:04:25Z",
+  "generated_at": "2026-05-07T13:37:28Z",
   "overall": "human_gate",
   "summary": {
-    "passed": 71,
+    "passed": 73,
     "failed": 0,
     "human_gate": 2
   },
@@ -196,6 +196,13 @@
       "status": "passed",
       "exit_code": 0,
       "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_symphony_remote_promotion.txt"
+    },
+    {
+      "name": "shell_memory_zone",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_memory_zone.txt"
     },
     {
       "name": "shell_approved_workspace_cleanup",
@@ -434,6 +441,13 @@
       "status": "passed",
       "exit_code": 0,
       "log": "artifacts/artemis-validation-gate/run-01/check-logs/symphony_remote_promotion.txt"
+    },
+    {
+      "name": "memory_zone",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/memory_zone.txt"
     },
     {
       "name": "approved_workspace_cleanup",

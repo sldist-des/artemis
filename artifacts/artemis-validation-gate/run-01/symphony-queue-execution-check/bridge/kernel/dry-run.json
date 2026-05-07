@@ -92,8 +92,8 @@
           {
             "name": "current_worktree_dirty",
             "status": "warning",
-            "reason": "current worktree has 348 pending item(s)",
-            "dirty_count": 348
+            "reason": "current worktree has 355 pending item(s)",
+            "dirty_count": 355
           }
         ]
       }

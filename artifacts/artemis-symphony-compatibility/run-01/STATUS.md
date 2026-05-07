@@ -16,9 +16,10 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Remote source implemented: `true`.
 - Remote intake implemented: `true`.
 - Remote promotion implemented: `true`.
+- Memory Zone implemented: `true`.
 - Terminal-first: `true`.
 - Human Gates preserved: `true`.
-- Next cut: `TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony`.
+- Next cut: `TKT-054 - Project Operations Graph do ARTEMIS Symphony`.
 
 ## Camadas
 
@@ -124,6 +125,12 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Status: `implemented_decision_gate`.
 - Missing files: `0`.
 
+### memory_zone
+
+- Purpose: Human-AI memory zone for markdown vaults, ARTEMIS evidence and future incremental indexes.
+- Status: `implemented_read_only_contract`.
+- Missing files: `0`.
+
 ## Invariantes
 
 - OpenAI Symphony is a reference, not a vendored dependency.
@@ -140,3 +147,4 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - The implemented remote source is read-only intake and never authorizes runner execution.
 - The implemented remote intake is review-only and keeps derived tasks in Human Gate.
 - The implemented remote promotion requires exact human decision and never executes runners.
+- The implemented Memory Zone is a context contract and does not install indexer dependencies.

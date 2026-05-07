@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T16:45:38Z",
+  "generated_at": "2026-05-07T17:41:12Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -13,17 +13,17 @@
     "validation_gate": "artifacts/artemis-validation-gate/run-01/validation-gate.json"
   },
   "summary": {
-    "tasks_total": 57,
-    "tasks_done": 57,
+    "tasks_total": 58,
+    "tasks_done": 58,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 7,
-    "events_total": 43,
+    "events_total": 44,
     "nodes_total": 10,
     "edges_total": 12,
-    "evidence_count": 57,
-    "exec_pack_count": 57,
-    "validation_passed": 79,
+    "evidence_count": 58,
+    "exec_pack_count": 58,
+    "validation_passed": 81,
     "validation_failed": 0,
     "validation_human_gate": 2,
     "memory_zones": 3,
@@ -35,10 +35,10 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 57
+    "done": 58
   },
   "risks": {
-    "medium": 49,
+    "medium": 50,
     "low": 4,
     "high": 4
   },
@@ -49,7 +49,7 @@
     ],
     [
       "Codex",
-      7
+      8
     ],
     [
       "Context Curator",
@@ -75,11 +75,11 @@
   "top_tags": [
     [
       "exec-pack",
-      57
+      58
     ],
     [
       "done",
-      57
+      58
     ]
   ],
   "nodes": [
@@ -94,8 +94,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 57,
-      "done": 57,
+      "count": 58,
+      "done": 58,
       "human": 0
     },
     {
@@ -110,7 +110,7 @@
         ],
         [
           "Codex",
-          7
+          8
         ],
         [
           "Context Curator",
@@ -137,7 +137,7 @@
       "id": "validation:gate",
       "type": "validation",
       "label": "Validation Gate",
-      "passed": 79,
+      "passed": 81,
       "failed": 0
     },
     {
@@ -151,14 +151,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 57,
-      "exec_packs": 57
+      "task_evidence": 58,
+      "exec_packs": 58
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 43
+      "events": 44
     },
     {
       "id": "cost:budget",
@@ -289,5 +289,5 @@
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },
-  "next_cut": "TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony"
+  "next_cut": "TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony"
 }

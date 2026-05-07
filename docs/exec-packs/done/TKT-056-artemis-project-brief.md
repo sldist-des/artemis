@@ -41,5 +41,5 @@ git diff --check
 
 ## Handoff
 
-O proximo corte e `TKT-057 - Guided Human Collaboration Mode do ARTEMIS
-Symphony`, usando o briefing como camada de entrada para colaboradores humanos.
+O proximo corte e `TKT-058 - Supervised Agent Launch Contract do ARTEMIS
+Symphony`, usando o modo guiado como entrada para lancamentos supervisionados.

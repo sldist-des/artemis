@@ -59,6 +59,6 @@ scripts/artemis-symphony-bridge.sh \
 
 ## Proximo Corte
 
-`TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`
+`TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`
 
 Objetivo: consumir item revisado da fila com comando explicito, mantendo a ponte como acao de terminal.

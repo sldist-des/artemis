@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T17:41:00Z",
+  "source": "scripts/artemis-guided-collaboration.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-057_guided_collaboration",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-07T17:41:00Z",
+      "producer": {
+        "adapter": "guided_collaboration",
+        "name": "scripts/artemis-guided-collaboration.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-057",
+        "task_id": "tkt-057",
+        "title": "Guided Human Collaboration Mode do ARTEMIS Symphony",
+        "exec_pack": "docs/exec-packs/done/TKT-057-artemis-guided-collaboration.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/guided-collaboration-check"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "done",
+        "reason": "Guided collaboration contract was derived from Project Brief, Project Graph and local task source."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/guided-collaboration-check",
+        "status_path": "artifacts/artemis-validation-gate/run-01/guided-collaboration-check/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/guided-collaboration-check/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/guided-collaboration-check/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-057"
+      },
+      "payload": {
+        "overall": "guided_collaboration_ready",
+        "reason": "Guided collaboration contract was derived from Project Brief, Project Graph and local task source.",
+        "summary": {
+          "projects_total": 1,
+          "task_lanes": 4,
+          "agent_profiles": 4,
+          "gate_contracts": 4,
+          "tasks_total": 58,
+          "tasks_done": 58,
+          "tasks_human": 0,
+          "tasks_ready": 0,
+          "validation_passed": 81,
+          "validation_failed": 0,
+          "human_gates": 2,
+          "commands_executed": 0,
+          "dependencies_installed": 0,
+          "runtime_started": false,
+          "agents_started": 0,
+          "remote_writes_allowed": false,
+          "source_of_truth_changed": false
+        },
+        "next_cut": "TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony"
+      }
+    }
+  ]
+}

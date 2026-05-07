@@ -209,6 +209,12 @@ layers = [
         "required_files": ["scripts/artemis-project-brief.sh", "docs/symphony/ARTEMIS_SYMPHONY_PROJECT_BRIEF.md"],
         "status": "implemented_human_readable_brief",
     },
+    {
+        "layer": "guided_collaboration",
+        "purpose": "Read-only guided entry for choosing project, task, agent profile, gates and evidence before runtime.",
+        "required_files": ["scripts/artemis-guided-collaboration.sh", "docs/symphony/ARTEMIS_SYMPHONY_GUIDED_COLLABORATION.md"],
+        "status": "implemented_read_only_guided_entry",
+    },
 ]
 
 for layer in layers:
@@ -234,6 +240,7 @@ required_terms = [
     "TKT-055",
     "TKT-056",
     "TKT-057",
+    "TKT-058",
     "Queue Bridge",
     "Queue Execution",
     "Service",
@@ -244,6 +251,7 @@ required_terms = [
     "Project Operations Graph",
     "Project Graph View",
     "Project Brief",
+    "Guided Collaboration",
 ]
 missing_terms = [term for term in required_terms if term not in spec_text]
 if missing_terms:
@@ -282,9 +290,10 @@ compatibility = {
     "project_graph_implemented": True,
     "project_graph_view_implemented": True,
     "project_brief_implemented": True,
+    "guided_collaboration_implemented": True,
     "terminal_first": True,
     "human_gates_preserved": True,
-    "next_cut": "TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony",
+    "next_cut": "TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony",
 }
 
 overall = "failed" if blockers else "spec_ready"
@@ -316,7 +325,8 @@ payload = {
         "project_graph_implemented": exists("scripts/artemis-project-graph.sh"),
         "project_graph_view_implemented": exists("scripts/artemis-project-graph-view.sh"),
         "project_brief_implemented": exists("scripts/artemis-project-brief.sh"),
-        "next_cut_defined": "TKT-057" in spec_text,
+        "guided_collaboration_implemented": exists("scripts/artemis-guided-collaboration.sh"),
+        "next_cut_defined": "TKT-058" in spec_text,
     },
     "compatibility": compatibility,
     "layers": layers,
@@ -340,6 +350,7 @@ payload = {
         "The implemented Project Operations Graph is a read model and never becomes execution authority.",
         "The implemented Project Graph View is observational and never becomes canonical state.",
         "The implemented Project Brief is explanatory and never becomes canonical state.",
+        "The implemented Guided Collaboration mode is a read-only entry and never launches agents.",
     ],
 }
 
@@ -371,6 +382,7 @@ status_lines = [
     f"- Project Graph implemented: `{str(compatibility['project_graph_implemented']).lower()}`.",
     f"- Project Graph View implemented: `{str(compatibility['project_graph_view_implemented']).lower()}`.",
     f"- Project Brief implemented: `{str(compatibility['project_brief_implemented']).lower()}`.",
+    f"- Guided Collaboration implemented: `{str(compatibility['guided_collaboration_implemented']).lower()}`.",
     f"- Terminal-first: `{str(compatibility['terminal_first']).lower()}`.",
     f"- Human Gates preserved: `{str(compatibility['human_gates_preserved']).lower()}`.",
     f"- Next cut: `{compatibility['next_cut']}`.",
@@ -429,12 +441,12 @@ handoff_lines = [
     "",
     "## Estado",
     "",
-    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel, a promocao local por decisao, a Memory Zone, o Project Operations Graph, o Project Graph View e o Project Brief existem.",
+    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel, a promocao local por decisao, a Memory Zone, o Project Operations Graph, o Project Graph View, o Project Brief e o Guided Collaboration existem.",
     "",
     "## Proximo corte",
     "",
-    "- Criar `TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`.",
-    "- Usar o brief leigo como entrada para colaboracao guiada.",
+    "- Criar `TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`.",
+    "- Usar o modo guiado como entrada para contrato de lancamento supervisionado.",
     "- Manter Validation Gate antes de qualquer execucao real.",
     "",
     "## Nao fazer",

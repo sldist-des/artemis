@@ -68,4 +68,4 @@ A decisao deve seguir este formato minimo:
 
 ## Proximo corte
 
-`TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`
+`TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`

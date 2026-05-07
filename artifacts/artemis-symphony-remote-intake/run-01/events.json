@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T16:46:14Z",
+  "generated_at": "2026-05-07T17:38:33Z",
   "source": "scripts/artemis-symphony-remote-intake.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-051_symphony_remote_intake",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T16:46:14Z",
+      "generated_at": "2026-05-07T17:38:33Z",
       "producer": {
         "adapter": "symphony_remote_intake",
         "name": "scripts/artemis-symphony-remote-intake.sh",
@@ -74,7 +74,7 @@
           "human_gates_preserved": true,
           "validation_gate_required_before_execute": true
         },
-        "next_cut": "TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony"
+        "next_cut": "TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony"
       }
     }
   ]

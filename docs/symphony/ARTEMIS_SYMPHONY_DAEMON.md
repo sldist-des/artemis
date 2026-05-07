@@ -57,6 +57,6 @@ scripts/artemis-symphony-daemon.sh --json
 
 ## Proximo Corte
 
-`TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`
+`TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`
 
 Objetivo: consumir item revisado da fila com comando explicito e ponte supervisionada plan-only por padrao.

@@ -54,5 +54,5 @@ git diff --check
 
 ## Handoff
 
-O proximo corte e `TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`, renderizando
+O proximo corte e `TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`, renderizando
 as relacoes do grafo no Control Plane com linguagem operacional e leiga.

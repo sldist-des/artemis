@@ -6,7 +6,7 @@ Bridge supervisionada concluida com overall `runner_plan_ready`.
 
 ## Proximo corte
 
-- Implementar `TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`.
+- Implementar `TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`.
 - Consumir item revisado da fila com comando explicito e ponte plan-only por padrao.
 
 ## Nao fazer

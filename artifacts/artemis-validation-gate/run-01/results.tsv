@@ -29,6 +29,7 @@ shell_memory_zone	technical	passed	0	artifacts/artemis-validation-gate/run-01/ch
 shell_project_graph	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_project_graph.txt
 shell_project_graph_view	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_project_graph_view.txt
 shell_project_brief	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_project_brief.txt
+shell_guided_collaboration	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_guided_collaboration.txt
 shell_approved_workspace_cleanup	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt
 shell_workspace_runtime_handoff	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt
 shell_runner	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt
@@ -67,6 +68,7 @@ memory_zone	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-lo
 project_graph	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/project_graph.txt
 project_graph_view	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/project_graph_view.txt
 project_brief	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/project_brief.txt
+guided_collaboration	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/guided_collaboration.txt
 approved_workspace_cleanup	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt
 workspace_runtime_handoff	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt
 runner_plan	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt

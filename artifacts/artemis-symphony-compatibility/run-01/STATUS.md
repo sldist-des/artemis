@@ -20,9 +20,10 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Project Graph implemented: `true`.
 - Project Graph View implemented: `true`.
 - Project Brief implemented: `true`.
+- Guided Collaboration implemented: `true`.
 - Terminal-first: `true`.
 - Human Gates preserved: `true`.
-- Next cut: `TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`.
+- Next cut: `TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`.
 
 ## Camadas
 
@@ -152,6 +153,12 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Status: `implemented_human_readable_brief`.
 - Missing files: `0`.
 
+### guided_collaboration
+
+- Purpose: Read-only guided entry for choosing project, task, agent profile, gates and evidence before runtime.
+- Status: `implemented_read_only_guided_entry`.
+- Missing files: `0`.
+
 ## Invariantes
 
 - OpenAI Symphony is a reference, not a vendored dependency.
@@ -172,3 +179,4 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - The implemented Project Operations Graph is a read model and never becomes execution authority.
 - The implemented Project Graph View is observational and never becomes canonical state.
 - The implemented Project Brief is explanatory and never becomes canonical state.
+- The implemented Guided Collaboration mode is a read-only entry and never launches agents.

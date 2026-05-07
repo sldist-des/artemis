@@ -171,7 +171,7 @@ payload = {
         "next_actions": [
             "Usar este briefing como porta de entrada para pessoas que nao conhecem todos os artifacts.",
             "Explicar cada tarefa futura em termos de objetivo, risco, evidencia esperada e decisao humana necessaria.",
-            "Criar o proximo modo de colaboracao guiada para humanos escolherem projetos, tarefas e agentes sem perder controle terminal-first.",
+            "Usar o modo guiado como entrada para contratos de lancamento supervisionado de agentes sem perder controle terminal-first.",
         ],
         "how_to_collaborate": [
             "Leia o briefing primeiro para entender o estado geral.",
@@ -189,7 +189,7 @@ payload = {
     "missing_tokens": missing_tokens,
     "missing_files": missing_files,
     "required_tokens": required_tokens,
-    "next_cut": "TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony",
+    "next_cut": "TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony",
 }
 
 brief_ready = (
@@ -263,7 +263,7 @@ handoff_lines = [
     "",
     "Proximo corte:",
     "",
-    "- Implementar `TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`.",
+    "- Implementar `TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`.",
 ]
 (artifact_root / "HANDOFF.md").write_text("\n".join(handoff_lines) + "\n", encoding="utf-8")
 

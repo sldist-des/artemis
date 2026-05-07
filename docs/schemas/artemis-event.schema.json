@@ -77,7 +77,8 @@
             "memory_zone",
             "project_graph",
             "project_graph_view",
-            "project_brief"
+            "project_brief",
+            "guided_collaboration"
           ]
         },
         "name": {

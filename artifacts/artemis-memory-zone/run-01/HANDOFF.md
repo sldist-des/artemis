@@ -6,7 +6,7 @@ Memory Zone esta `memory_zone_ready` como contrato read-only. Ela conecta memori
 
 ## Proximo corte
 
-- Implementar `TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`.
+- Implementar `TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`.
 - Usar Memory Zone como fonte de contexto e o indice derivado como read model.
 
 ## Nao fazer

@@ -1,0 +1,21 @@
+# ENVIRONMENT - TKT-903
+
+- Generated at: 20260507T173824Z
+- Repository: /srv/veri
+- Ticket: TKT-903
+- Exec Pack: docs/exec-packs/done/TKT-043-artemis-symphony-bridge.md
+- Execute mode: 0
+- Use materialized workspace: 0
+- Attempt purpose: run
+- Retry of: none
+- Execution cwd: /srv/veri
+- Main branch: main
+- Main head: 38ce731
+- Main worktree status before: 236
+- Execution branch: main
+- Execution head: 38ce731
+- Execution worktree status before: 236
+- Workspace readiness: ready
+- Workspace mode: planned
+- Workspace lock ticket: none
+- Workspace plan: artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T173824Z-26-tkt-903/workspace.json

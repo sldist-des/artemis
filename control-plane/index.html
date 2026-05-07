@@ -969,6 +969,87 @@
       overflow-wrap: anywhere;
     }
 
+    .guided-collaboration-section {
+      border-bottom: 2px solid var(--ink);
+      margin: -4px 0 18px;
+      padding: 0 0 16px;
+      display: grid;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .guided-collaboration-header {
+      display: grid;
+      grid-template-columns: minmax(260px, .5fr) minmax(0, 1fr);
+      gap: 16px;
+      align-items: end;
+      min-width: 0;
+    }
+
+    .guided-collaboration-header h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .guided-collaboration-header p,
+    .guided-collaboration-status {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .guided-collaboration-status {
+      text-align: right;
+    }
+
+    .guided-layout {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .guided-panel {
+      border: 1px solid var(--ink);
+      background: var(--panel);
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+      align-content: start;
+      min-width: 0;
+    }
+
+    .guided-panel h3 {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.15;
+    }
+
+    .guided-item {
+      border-top: 1px solid var(--line);
+      padding-top: 7px;
+      display: grid;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .guided-item b {
+      font-size: 12px;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+
+    .guided-item span {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+    }
+
     .card {
       border: 1px solid var(--ink);
       background: var(--panel);
@@ -1124,12 +1205,15 @@
       .graph-body,
       .project-brief-header,
       .brief-layout,
-      .brief-columns {
+      .brief-columns,
+      .guided-collaboration-header,
+      .guided-layout {
         grid-template-columns: 1fr;
       }
 
       .project-graph-status,
-      .project-brief-status {
+      .project-brief-status,
+      .guided-collaboration-status {
         text-align: left;
       }
 
@@ -1333,6 +1417,34 @@
       </div>
     </section>
 
+    <section class="guided-collaboration-section" aria-labelledby="guided-collaboration-title">
+      <header class="guided-collaboration-header">
+        <div>
+          <h2 id="guided-collaboration-title">Guided Collaboration</h2>
+          <p>Entrada guiada para escolher projeto, tarefa, agente, gates e evidencia antes de qualquer runtime real.</p>
+        </div>
+        <p id="guided-collaboration-status" class="guided-collaboration-status">Fonte: seed do modo guiado.</p>
+      </header>
+      <div class="guided-layout" aria-label="Modo guiado do ARTEMIS Symphony">
+        <section class="guided-panel">
+          <h3>Projetos</h3>
+          <div id="guided-collaboration-projects"></div>
+        </section>
+        <section class="guided-panel">
+          <h3>Tarefas</h3>
+          <div id="guided-collaboration-tasks"></div>
+        </section>
+        <section class="guided-panel">
+          <h3>Agentes</h3>
+          <div id="guided-collaboration-agents"></div>
+        </section>
+        <section class="guided-panel">
+          <h3>Gates</h3>
+          <div id="guided-collaboration-gates"></div>
+        </section>
+      </div>
+    </section>
+
     <section class="decision-gate" aria-labelledby="decision-gate-title">
       <header>
         <h2 id="decision-gate-title">Human Gate cleanup</h2>
@@ -1372,6 +1484,7 @@
     const eventSourceUrl = "../artifacts/artemis-event-log-schema/run-01/event-log.example.json";
     const projectGraphSourceUrl = "../artifacts/artemis-project-graph/run-01/project-graph.json";
     const projectBriefSourceUrl = "../artifacts/artemis-project-brief/run-01/project-brief.json";
+    const guidedCollaborationSourceUrl = "../artifacts/artemis-guided-collaboration/run-01/guided-collaboration.json";
 
     const columns = [
       { id: "intake", title: "Intake", help: "Ideia ou pedido bruto. Ainda nao tem contrato." },
@@ -2012,6 +2125,17 @@
         tags: ["symphony", "project-brief", "human-readable"]
       },
       {
+        id: "tkt-057",
+        state: "done",
+        ticket: "TKT-057",
+        title: "Guided Human Collaboration Mode do ARTEMIS Symphony",
+        summary: "Entrada guiada escolhe projeto, tarefa, agente, gates e evidencia sem iniciar runtime real.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "artifacts/artemis-guided-collaboration/run-01",
+        tags: ["symphony", "guided", "human-collaboration"]
+      },
+      {
         id: "github-auth",
         state: "human",
         ticket: "GIT",
@@ -2304,6 +2428,19 @@
         evidence: { artifact_path: "artifacts/artemis-project-brief/run-01" }
       },
       {
+        event_id: "evt_tkt-057_guided_collaboration",
+        event_type: "adapter.contract_recorded",
+        generated_at: "2026-05-07T18:05:00Z",
+        producer: { adapter: "guided_collaboration", name: "scripts/artemis-guided-collaboration.sh", mode: "read_only" },
+        subject: {
+          ticket: "TKT-057",
+          title: "Guided Human Collaboration Mode do ARTEMIS Symphony"
+        },
+        state: { from: "planned", to: "done", reason: "Guided Collaboration defines project, task, agent, gate and evidence choices before runtime." },
+        severity: "info",
+        evidence: { artifact_path: "artifacts/artemis-guided-collaboration/run-01" }
+      },
+      {
         event_id: "evt_tkt-017_adapter_events",
         event_type: "adapter.events_emitted",
         generated_at: "2026-04-30T19:54:36Z",
@@ -2351,6 +2488,11 @@
     const projectBriefReadyNode = document.querySelector("#project-brief-ready");
     const projectBriefHumanNode = document.querySelector("#project-brief-human");
     const projectBriefNextNode = document.querySelector("#project-brief-next");
+    const guidedCollaborationStatusNode = document.querySelector("#guided-collaboration-status");
+    const guidedCollaborationProjectsNode = document.querySelector("#guided-collaboration-projects");
+    const guidedCollaborationTasksNode = document.querySelector("#guided-collaboration-tasks");
+    const guidedCollaborationAgentsNode = document.querySelector("#guided-collaboration-agents");
+    const guidedCollaborationGatesNode = document.querySelector("#guided-collaboration-gates");
 
     const symphonyEvidence = {
       summary: "Kernel, bridge, runner, daemon dry-run e fila publicados como evidencia local. Exec Packs e artifacts continuam canonicos.",
@@ -2390,8 +2532,8 @@
             ["commands", "0"]
           ],
           links: [
-            ["attempt", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T164614Z-26-tkt-903/RUNNER.md"],
-            ["events", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T164614Z-26-tkt-903/events.json"]
+            ["attempt", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T173824Z-26-tkt-903/RUNNER.md"],
+            ["events", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T173824Z-26-tkt-903/events.json"]
           ]
         },
         {
@@ -2399,7 +2541,7 @@
           status: "human_gate",
           summary: "Validation Gate passou tecnicamente e preservou Human Gates externos.",
           facts: [
-            ["passed", "79"],
+            ["passed", "81"],
             ["failed", "0"]
           ],
           links: [
@@ -2574,6 +2716,20 @@
             ["json", "../artifacts/artemis-project-brief/run-01/project-brief.json"],
             ["brief", "../artifacts/artemis-project-brief/run-01/PROJECT_BRIEF.md"]
           ]
+        },
+        {
+          title: "Guide",
+          status: "guided_collaboration_ready",
+          summary: "guided_collaboration_ready: projeto, tarefa, agente, gates e evidencia estao explicitos antes de runtime real.",
+          facts: [
+            ["agents", "4"],
+            ["runtime", "0"]
+          ],
+          links: [
+            ["status", "../artifacts/artemis-guided-collaboration/run-01/STATUS.md"],
+            ["json", "../artifacts/artemis-guided-collaboration/run-01/guided-collaboration.json"],
+            ["guide", "../artifacts/artemis-guided-collaboration/run-01/GUIDE.md"]
+          ]
         }
       ]
     };
@@ -2582,12 +2738,12 @@
       source: "seed",
       overall: "project_graph_ready",
       summary: {
-        tasks_total: 57,
-        tasks_done: 57,
-        events_total: 43,
+        tasks_total: 58,
+        tasks_done: 58,
+        events_total: 44,
         nodes_total: 10,
         edges_total: 12,
-        validation_passed: 79,
+        validation_passed: 81,
         validation_human_gate: 2,
         memory_zones: 3,
         dependencies_installed: 0,
@@ -2595,12 +2751,12 @@
       },
       nodes: [
         { id: "project:artemis", type: "project", label: "ARTEMIS", status: "operational" },
-        { id: "task_set:exec_packs", type: "task_set", label: "Exec Packs", count: 57, done: 57 },
+        { id: "task_set:exec_packs", type: "task_set", label: "Exec Packs", count: 58, done: 58 },
         { id: "agent_roles:owners", type: "agent_roles", label: "Owners and agent roles", count: 7 },
         { id: "gate:human", type: "gate", label: "Human Gates", count: 2 },
-        { id: "validation:gate", type: "validation", label: "Validation Gate", passed: 79, failed: 0 },
+        { id: "validation:gate", type: "validation", label: "Validation Gate", passed: 81, failed: 0 },
         { id: "memory:zone", type: "memory", label: "Human-AI Memory Zone", zones: 3 },
-        { id: "artifact:evidence", type: "artifact_set", label: "Artifacts and evidence", task_evidence: 57 },
+        { id: "artifact:evidence", type: "artifact_set", label: "Artifacts and evidence", task_evidence: 58 },
         { id: "event_log:timeline", type: "event_log", label: "Canonical event timeline", events: 42 },
         { id: "cost:budget", type: "cost_guard", label: "Token and runtime budget", dependencies_installed: 0 },
         { id: "control_plane:view", type: "view", label: "Control Plane", authority: "observational" }
@@ -2635,9 +2791,9 @@
       source: "seed",
       overall: "human_project_brief_ready",
       summary: {
-        tasks_total: 57,
-        tasks_done: 57,
-        validation_passed: 79,
+        tasks_total: 58,
+        tasks_done: 58,
+        validation_passed: 81,
         validation_failed: 0,
         human_gates: 2,
         memory_zones: 3,
@@ -2648,8 +2804,8 @@
         headline: "ARTEMIS Symphony em linguagem de projeto",
         status: "O ARTEMIS Symphony esta pronto como sistema local supervisionado: ele organiza tarefas, evidencia, validacao, memoria e limites antes de qualquer execucao automatica.",
         ready: [
-          "57 de 57 Exec Packs estao concluidos e versionados.",
-          "O Validation Gate registra 79 checks aprovados e 0 falhas tecnicas.",
+          "58 de 58 Exec Packs estao concluidos e versionados.",
+          "O Validation Gate registra 81 checks aprovados e 0 falhas tecnicas.",
           "O Project Graph conecta tarefas, agentes, gates, memoria, custos e evidencias."
         ],
         human_attention: [
@@ -2660,9 +2816,48 @@
         next_actions: [
           "Usar este briefing como porta de entrada para colaboradores humanos.",
           "Explicar tarefas futuras por objetivo, risco, evidencia esperada e gate.",
-          "Criar o modo de colaboracao guiada sem perder controle terminal-first."
+          "Usar o modo guiado para preparar lancamentos supervisionados sem perder controle terminal-first."
         ]
       }
+    };
+
+    const seedGuidedCollaboration = {
+      source: "seed",
+      overall: "guided_collaboration_ready",
+      summary: {
+        projects_total: 1,
+        task_lanes: 4,
+        agent_profiles: 4,
+        gate_contracts: 4,
+        runtime_started: false,
+        agents_started: 0,
+        remote_writes_allowed: false
+      },
+      projects: [
+        {
+          name: "ARTEMIS",
+          status: "operational_local_supervised",
+          summary: "Metodo e Symphony locais prontos para orientar trabalho antes de runtime real."
+        }
+      ],
+      task_lanes: [
+        { label: "Escolher projeto", question: "Qual repositorio ou produto sera trabalhado?" },
+        { label: "Escolher tarefa", question: "Qual objetivo concreto, reversivel e verificavel entra no fluxo?" },
+        { label: "Escolher agente", question: "Qual perfil deve atuar?" },
+        { label: "Confirmar evidencia", question: "O que prova que a tarefa terminou?" }
+      ],
+      agent_profiles: [
+        { name: "Codex frontier", budget: "alto", best_for: "Tarefas longas, arquitetura, integracao e validacao ampla." },
+        { name: "Claude Code rapido", budget: "medio", best_for: "Mapear diretorios, linguagem e recortes medios." },
+        { name: "Verifier", budget: "baixo_medio", best_for: "Conferir evidencia, testes e claims." },
+        { name: "Humano owner", budget: "decisao", best_for: "Decidir auth, custo, producao, remoto e aceite." }
+      ],
+      gate_contract: [
+        { label: "Auth", status: "human_required_before_real_use" },
+        { label: "Budget", status: "human_required_before_runtime" },
+        { label: "Remote write", status: "blocked_by_default" },
+        { label: "Validation", status: "required_before_done" }
+      ]
     };
 
     function cloneCards(source) {
@@ -2898,6 +3093,44 @@
       renderBriefItems(projectBriefNextNode, brief.next_actions);
     }
 
+    function renderGuidedItems(target, items, pickTitle, pickMeta) {
+      const source = Array.isArray(items) ? items : [];
+      target.innerHTML = source.slice(0, 4).map((item) => `
+        <div class="guided-item">
+          <b>${escapeHtml(pickTitle(item))}</b>
+          <span>${escapeHtml(pickMeta(item))}</span>
+        </div>
+      `).join("");
+    }
+
+    function renderGuidedCollaboration(model) {
+      guidedCollaborationStatusNode.textContent = `Fonte: ${model.source || guidedCollaborationSourceUrl} | ${model.overall || "observed"}`;
+      renderGuidedItems(
+        guidedCollaborationProjectsNode,
+        model.projects,
+        (item) => item.name || item.id || "Projeto",
+        (item) => item.summary || item.status || "Sem resumo"
+      );
+      renderGuidedItems(
+        guidedCollaborationTasksNode,
+        model.task_lanes,
+        (item) => item.label || item.id || "Tarefa",
+        (item) => item.question || item.evidence || "Sem pergunta"
+      );
+      renderGuidedItems(
+        guidedCollaborationAgentsNode,
+        model.agent_profiles,
+        (item) => item.name || item.id || "Agente",
+        (item) => `${item.budget || "budget"} | ${item.best_for || "Sem indicacao"}`
+      );
+      renderGuidedItems(
+        guidedCollaborationGatesNode,
+        model.gate_contract,
+        (item) => item.label || item.id || "Gate",
+        (item) => item.rule || item.status || "Sem regra"
+      );
+    }
+
     async function loadProjectGraphSource() {
       try {
         const response = await fetch(projectGraphSourceUrl, { cache: "no-store" });
@@ -2916,6 +3149,18 @@
         if (!response.ok) return null;
         const payload = await response.json();
         if (!payload.brief || !payload.summary) return null;
+        return payload;
+      } catch {
+        return null;
+      }
+    }
+
+    async function loadGuidedCollaborationSource() {
+      try {
+        const response = await fetch(guidedCollaborationSourceUrl, { cache: "no-store" });
+        if (!response.ok) return null;
+        const payload = await response.json();
+        if (!Array.isArray(payload.projects) || !Array.isArray(payload.agent_profiles)) return null;
         return payload;
       } catch {
         return null;
@@ -3090,10 +3335,13 @@
       render();
       renderProjectGraph(seedProjectGraph);
       renderProjectBrief(seedProjectBrief);
+      renderGuidedCollaboration(seedGuidedCollaboration);
       const loadedGraph = await loadProjectGraphSource();
       if (loadedGraph) renderProjectGraph(loadedGraph);
       const loadedBrief = await loadProjectBriefSource();
       if (loadedBrief) renderProjectBrief(loadedBrief);
+      const loadedGuidedCollaboration = await loadGuidedCollaborationSource();
+      if (loadedGuidedCollaboration) renderGuidedCollaboration(loadedGuidedCollaboration);
       const loadedEvents = await loadEventSource();
       renderTimeline(loadedEvents || seedEvents);
     }

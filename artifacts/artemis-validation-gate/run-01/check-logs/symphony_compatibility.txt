@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T16:50:42Z",
+  "generated_at": "2026-05-07T17:40:55Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
   "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-compatibility-check",
   "spec": "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md",
   "summary": {
-    "layers_total": 21,
+    "layers_total": 22,
     "layers_with_missing_files": 0,
-    "tasks_total": 57,
-    "tasks_done": 57,
+    "tasks_total": 58,
+    "tasks_done": 58,
     "daemon_implemented": true,
     "kernel_implemented": true,
     "bridge_implemented": true,
@@ -26,6 +26,7 @@
     "project_graph_implemented": true,
     "project_graph_view_implemented": true,
     "project_brief_implemented": true,
+    "guided_collaboration_implemented": true,
     "next_cut_defined": true
   },
   "compatibility": {
@@ -47,9 +48,10 @@
     "project_graph_implemented": true,
     "project_graph_view_implemented": true,
     "project_brief_implemented": true,
+    "guided_collaboration_implemented": true,
     "terminal_first": true,
     "human_gates_preserved": true,
-    "next_cut": "TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony"
+    "next_cut": "TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony"
   },
   "layers": [
     {
@@ -272,6 +274,16 @@
       ],
       "status": "implemented_human_readable_brief",
       "missing_files": []
+    },
+    {
+      "layer": "guided_collaboration",
+      "purpose": "Read-only guided entry for choosing project, task, agent profile, gates and evidence before runtime.",
+      "required_files": [
+        "scripts/artemis-guided-collaboration.sh",
+        "docs/symphony/ARTEMIS_SYMPHONY_GUIDED_COLLABORATION.md"
+      ],
+      "status": "implemented_read_only_guided_entry",
+      "missing_files": []
     }
   ],
   "blockers": [],
@@ -293,6 +305,7 @@
     "The implemented Memory Zone is a context contract and does not install indexer dependencies.",
     "The implemented Project Operations Graph is a read model and never becomes execution authority.",
     "The implemented Project Graph View is observational and never becomes canonical state.",
-    "The implemented Project Brief is explanatory and never becomes canonical state."
+    "The implemented Project Brief is explanatory and never becomes canonical state.",
+    "The implemented Guided Collaboration mode is a read-only entry and never launches agents."
   ]
 }

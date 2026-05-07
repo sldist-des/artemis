@@ -23,12 +23,14 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 - `docs/symphony/ARTEMIS_SYMPHONY_PROJECT_GRAPH.md`
 - `docs/symphony/ARTEMIS_SYMPHONY_PROJECT_GRAPH_VIEW.md`
 - `docs/symphony/ARTEMIS_SYMPHONY_PROJECT_BRIEF.md`
+- `docs/symphony/ARTEMIS_SYMPHONY_GUIDED_COLLABORATION.md`
 - Exec Pack ativo em `docs/exec-packs/active/`
 
 ## Comandos canonicos
 
 ```bash
 scripts/validate-artemis.sh
+scripts/artemis-guided-collaboration.sh --json
 scripts/github-readiness.sh
 sh -n scripts/bootstrap-artemis.sh
 git status --branch --short --ignored

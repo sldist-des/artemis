@@ -211,6 +211,7 @@ for events_path in [
     Path("artifacts/artemis-project-graph/run-01/events.json"),
     Path("artifacts/artemis-project-graph-view/run-01/events.json"),
     Path("artifacts/artemis-project-brief/run-01/events.json"),
+    Path("artifacts/artemis-guided-collaboration/run-01/events.json"),
 ]:
     if events_path.is_file():
         remote_log = read_json(events_path)

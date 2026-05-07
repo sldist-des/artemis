@@ -59,4 +59,4 @@ scripts/artemis-symphony-remote-source.sh \
 
 ## Proximo Corte
 
-`TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`
+`TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`

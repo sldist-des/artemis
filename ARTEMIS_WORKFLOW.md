@@ -415,6 +415,8 @@ scripts/artemis-project-graph-view.sh
 scripts/artemis-project-graph-view.sh --json
 scripts/artemis-project-brief.sh
 scripts/artemis-project-brief.sh --json
+scripts/artemis-guided-collaboration.sh
+scripts/artemis-guided-collaboration.sh --json
 ```
 
 Esse grafo e um read model operacional. Ele ajuda humanos e agentes a entenderem
@@ -424,6 +426,9 @@ O Project Graph View e a leitura visual desse grafo no Control Plane; tambem e
 observacional e nao muda autoridade, runtime ou fonte de verdade.
 O Project Brief e a traducao leiga e acionavel do mesmo grafo; ele ajuda pessoas
 a colaborar sem conhecer todos os artifacts, mas tambem nao vira fonte canonica.
+O Guided Collaboration e a entrada guiada desse briefing: ele ajuda a escolher
+projeto, tarefa, perfil de agente, gates e evidencia antes de runtime real, sem
+iniciar agentes, auth, fila, app-server ou escrita remota.
 
 Codex app-server e fonte futura de eventos ricos, nao substitui controle terminal-first:
 

@@ -25,6 +25,7 @@ docs/symphony/ARTEMIS_SYMPHONY_REMOTE_PROMOTION.md
 docs/symphony/ARTEMIS_SYMPHONY_PROJECT_GRAPH.md
 docs/symphony/ARTEMIS_SYMPHONY_PROJECT_GRAPH_VIEW.md
 docs/symphony/ARTEMIS_SYMPHONY_PROJECT_BRIEF.md
+docs/symphony/ARTEMIS_SYMPHONY_GUIDED_COLLABORATION.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
@@ -77,6 +78,7 @@ scripts/artemis-memory-zone.sh
 scripts/artemis-project-graph.sh
 scripts/artemis-project-graph-view.sh
 scripts/artemis-project-brief.sh
+scripts/artemis-guided-collaboration.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -166,6 +168,7 @@ sh -n scripts/artemis-memory-zone.sh
 sh -n scripts/artemis-project-graph.sh
 sh -n scripts/artemis-project-graph-view.sh
 sh -n scripts/artemis-project-brief.sh
+sh -n scripts/artemis-guided-collaboration.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -1307,6 +1310,31 @@ if ! grep -q '"event_type": "adapter.contract_recorded"' /tmp/artemis-project-br
   echo "scripts/artemis-project-brief.sh did not emit canonical events" >&2
   exit 1
 fi
+scripts/artemis-guided-collaboration.sh --artifact-root /tmp/artemis-guided-collaboration --json >/tmp/artemis-guided-collaboration.json
+if ! grep -q '"overall": "guided_collaboration_ready"' /tmp/artemis-guided-collaboration.json; then
+  echo "scripts/artemis-guided-collaboration.sh did not report guided_collaboration_ready" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_started": false' /tmp/artemis-guided-collaboration.json; then
+  echo "ARTEMIS Guided Collaboration started runtime during contract validation" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": 0' /tmp/artemis-guided-collaboration.json; then
+  echo "ARTEMIS Guided Collaboration started agents during read-only contract validation" >&2
+  exit 1
+fi
+if ! grep -q '"remote_writes_allowed": false' /tmp/artemis-guided-collaboration.json; then
+  echo "ARTEMIS Guided Collaboration allowed remote writes" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-guided-collaboration.json; then
+  echo "ARTEMIS Guided Collaboration executed commands during read-only contract validation" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "adapter.contract_recorded"' /tmp/artemis-guided-collaboration/events.json; then
+  echo "scripts/artemis-guided-collaboration.sh did not emit canonical events" >&2
+  exit 1
+fi
 
 scripts/artemis-codex-app-server.sh --artifact-root /tmp/artemis-codex-app-server --json >/tmp/artemis-codex-app-server.json
 if ! grep -q '"overall": "passed"' /tmp/artemis-codex-app-server.json; then
@@ -1350,7 +1378,7 @@ if ! grep -q "artifacts/artemis-symphony-bridge/run-01/symphony-bridge.json" con
   echo "control-plane/index.html does not link the Symphony bridge artifact" >&2
   exit 1
 fi
-if ! grep -q "20260507T164614Z-26-tkt-903" control-plane/index.html; then
+if ! grep -q "20260507T173824Z-26-tkt-903" control-plane/index.html; then
   echo "control-plane/index.html does not link the Symphony runner attempt" >&2
   exit 1
 fi
@@ -1456,6 +1484,18 @@ if ! grep -q "renderProjectBrief" control-plane/index.html; then
 fi
 if ! grep -q "human_project_brief_ready" control-plane/index.html; then
   echo "control-plane/index.html does not show the ARTEMIS Project Brief state" >&2
+  exit 1
+fi
+if ! grep -q "guided-collaboration-section" control-plane/index.html; then
+  echo "control-plane/index.html does not render the ARTEMIS Guided Collaboration section" >&2
+  exit 1
+fi
+if ! grep -q "renderGuidedCollaboration" control-plane/index.html; then
+  echo "control-plane/index.html does not include the Guided Collaboration renderer" >&2
+  exit 1
+fi
+if ! grep -q "guided_collaboration_ready" control-plane/index.html; then
+  echo "control-plane/index.html does not show the ARTEMIS Guided Collaboration state" >&2
   exit 1
 fi
 

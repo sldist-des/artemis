@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T16:50:45Z",
+  "generated_at": "2026-05-07T17:40:58Z",
   "source": "scripts/artemis-symphony-queue-bridge.sh",
   "mode": "supervised_queue_bridge_plan_only",
   "overall": "bridge_plan_ready",
@@ -78,5 +78,5 @@
     "Validation Gate remains required before real execution.",
     "Human Gates remain explicit and non-bypassable."
   ],
-  "next_cut": "TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony"
+  "next_cut": "TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony"
 }

@@ -40,7 +40,6 @@ scripts/validate-artemis.sh
 
 ## Handoff
 
-O proximo corte recomendado e `TKT-057 - Guided Human Collaboration Mode do
-ARTEMIS Symphony`, usando este briefing como porta de entrada para pessoas
-escolherem projeto, tarefa, agente e acao com linguagem clara e limites
-visiveis.
+O proximo corte recomendado e `TKT-058 - Supervised Agent Launch Contract do
+ARTEMIS Symphony`, usando o modo guiado como ponte para lancamentos
+supervisionados com budget, auth, comando, rollback e evidencia explicitos.

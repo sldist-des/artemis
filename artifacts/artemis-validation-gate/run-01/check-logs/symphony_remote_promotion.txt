@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T16:50:46Z",
+  "generated_at": "2026-05-07T17:40:59Z",
   "source": "scripts/artemis-symphony-remote-promotion.sh",
   "mode": "local_promotion_decision_gate",
   "overall": "remote_promotion_ready",
@@ -42,5 +42,5 @@
   "promoted_source": "artifacts/artemis-validation-gate/run-01/symphony-promotion-check/promoted-source.json",
   "blockers": [],
   "warnings": [],
-  "next_cut": "TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony"
+  "next_cut": "TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony"
 }

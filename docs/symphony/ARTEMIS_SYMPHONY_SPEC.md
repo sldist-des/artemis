@@ -623,6 +623,32 @@ Contrato:
 - qualquer modo guiado futuro precisa preservar terminal-first, budget gates e
   Human Gates.
 
+### Modo 3.7 - Guided Collaboration
+
+Implementado em `TKT-057` como entrada guiada read-only para pessoas escolherem
+projeto, tarefa, perfil de agente, gates e evidencia antes de runtime real.
+
+- consome Project Brief, Project Graph, task source e Control Plane;
+- mostra projeto em foco, etapas de escolha, perfis de agente, Human Gates,
+  budget/auth/remoto e evidencia esperada;
+- diferencia Codex frontier, Claude Code rapido, verifier e humano owner;
+- preserva terminal-first como trilha auditavel;
+- nao inicia agente, app-server, SDK, bridge, queue, daemon ou servidor;
+- nao autentica contas, nao cria issue, nao faz push, nao abre PR e nao aprova
+  Human Gates.
+
+Guided Collaboration implementado:
+
+- `scripts/artemis-guided-collaboration.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_GUIDED_COLLABORATION.md`
+
+Contrato:
+
+- Guided Collaboration e orientacao operacional, nao fonte de verdade;
+- Git, Exec Packs, Event Log, Validation Gate e artifacts continuam canonicos;
+- escolhas guiadas futuras so podem virar execucao por contrato supervisionado
+  explicito com budget, auth, comandos, rollback e evidencia.
+
 ## Invariantes
 
 - ARTEMIS Symphony nao executa cleanup real sem decisao humana.
@@ -635,13 +661,16 @@ Contrato:
 
 ## Proximo corte recomendado
 
-`TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`
+`TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`
 
 Objetivo:
 
-- criar uma entrada guiada para pessoas escolherem projeto, tarefa e agente;
-- mostrar objetivo, risco, custo, gate e evidencia esperada antes de agir;
-- manter comando terminal-first como trilha auditavel;
-- preservar terminal-first, Human Gates, Validation Gate e budget gates.
+- transformar uma escolha guiada em pacote de lancamento supervisionado;
+- explicitar agente, modelo, budget, auth, comando, rollback e evidencia antes
+  de qualquer runtime real;
+- manter execute=false por padrao e Human Gate antes de custo, rede, remoto ou
+  trabalho sensivel;
+- preparar o caminho para acionar Codex/Claude de modo auditavel sem perder
+  controle terminal-first.
 
-Esse sera o decimo sexto passo de implementacao do nosso Symphony proprio.
+Esse sera o decimo setimo passo de implementacao do nosso Symphony proprio.

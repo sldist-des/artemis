@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T16:46:25Z",
+  "generated_at": "2026-05-07T17:38:47Z",
   "source": "scripts/artemis-symphony-bridge.sh",
   "mode": "supervised_bridge",
   "overall": "runner_plan_ready",
   "task_source": "artifacts/artemis-symphony-queue-bridge/run-01/fixtures/task-source.json",
   "artifact_root": "artifacts/artemis-symphony-queue-bridge/run-01/bridge",
   "kernel": "artifacts/artemis-symphony-queue-bridge/run-01/bridge/kernel/symphony-kernel.json",
-  "runner_attempt": "artifacts/artemis-symphony-queue-bridge/run-01/bridge/runner/attempts/20260507T164625Z-32-tkt-947",
-  "runner_events": "artifacts/artemis-symphony-queue-bridge/run-01/bridge/runner/attempts/20260507T164625Z-32-tkt-947/events.json",
+  "runner_attempt": "artifacts/artemis-symphony-queue-bridge/run-01/bridge/runner/attempts/20260507T173847Z-32-tkt-947",
+  "runner_events": "artifacts/artemis-symphony-queue-bridge/run-01/bridge/runner/attempts/20260507T173847Z-32-tkt-947/events.json",
   "summary": {
     "kernel_overall": "dispatch_plan_ready",
     "kernel_selected_for_dispatch": 1,
@@ -53,5 +53,5 @@
     "Runner execution requires explicit --execute.",
     "Remote, destructive and deployment commands remain blocked by the runner."
   ],
-  "next_cut": "TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony"
+  "next_cut": "TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony"
 }

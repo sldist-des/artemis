@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T16:44:56Z",
+  "generated_at": "2026-05-07T17:37:42Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -685,6 +685,18 @@
       "summary": "Transformar o Project Operations Graph em um briefing humano, simples e",
       "exec_pack": "docs/exec-packs/done/TKT-056-artemis-project-brief.md",
       "evidence": "docs/exec-packs/done/TKT-056-artemis-project-brief.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-057",
+      "ticket": "TKT-057",
+      "title": "Guided Human Collaboration Mode do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "Criar uma entrada guiada para humanos escolherem projeto, tarefa, perfil de",
+      "exec_pack": "docs/exec-packs/done/TKT-057-artemis-guided-collaboration.md",
+      "evidence": "docs/exec-packs/done/TKT-057-artemis-guided-collaboration.md",
       "tags": ["exec-pack", "done"]
     }
   ]

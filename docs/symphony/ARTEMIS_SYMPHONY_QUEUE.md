@@ -49,6 +49,6 @@ scripts/artemis-symphony-queue.sh --json
 
 ## Proximo Corte
 
-`TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`
+`TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`
 
 Objetivo: consumir um item revisado da fila por comando explicito, chamando a ponte em modo plan-only por padrao.

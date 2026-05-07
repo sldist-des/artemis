@@ -8,5 +8,5 @@
 
 ## Proximo corte
 
-- Implementar `TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`.
+- Implementar `TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`.
 - Manter `--execute` dependente de Validation Gate e decisao exata.

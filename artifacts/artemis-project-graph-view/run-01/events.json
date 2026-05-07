@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T14:57:11Z",
+  "source": "scripts/artemis-project-graph-view.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-055_project_graph_view",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-07T14:57:11Z",
+      "producer": {
+        "adapter": "project_graph_view",
+        "name": "scripts/artemis-project-graph-view.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-055",
+        "task_id": "tkt-055",
+        "title": "Project Graph View do ARTEMIS Symphony",
+        "exec_pack": "docs/exec-packs/done/TKT-055-artemis-project-graph-view.md",
+        "artifact_root": "artifacts/artemis-project-graph-view/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "done",
+        "reason": "Project Graph View renders the read-only graph in the Control Plane."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-project-graph-view/run-01",
+        "status_path": "artifacts/artemis-project-graph-view/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-project-graph-view/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-project-graph-view/run-01/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-055"
+      },
+      "payload": {
+        "overall": "project_graph_view_ready",
+        "reason": "Project Graph View renders the read-only graph in the Control Plane.",
+        "summary": {
+          "nodes_rendered": 10,
+          "edges_rendered": 12,
+          "questions_rendered": 3,
+          "invariants_rendered": 3,
+          "validation_passed": 77,
+          "human_gates": 2,
+          "dependencies_installed": 0,
+          "commands_executed": 0,
+          "runtime_started": false,
+          "remote_writes_allowed": false,
+          "source_of_truth_changed": false
+        },
+        "next_cut": "TKT-056 - Human-readable Project Brief do ARTEMIS Symphony"
+      }
+    }
+  ]
+}

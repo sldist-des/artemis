@@ -656,6 +656,189 @@
       border-bottom: 1px solid var(--ink);
     }
 
+    .project-graph-section {
+      border-top: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+      margin: 0 0 18px;
+      padding: 14px 0 16px;
+      display: grid;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .project-graph-header {
+      display: grid;
+      grid-template-columns: minmax(240px, .42fr) minmax(0, 1fr);
+      gap: 16px;
+      align-items: end;
+      min-width: 0;
+    }
+
+    .project-graph-header h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .project-graph-header p,
+    .project-graph-status {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .project-graph-status {
+      text-align: right;
+    }
+
+    .graph-metrics {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .graph-metric {
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel) 84%, #d8e5d2);
+      padding: 8px;
+      min-width: 0;
+    }
+
+    .graph-metric b {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .graph-metric span {
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .graph-body {
+      display: grid;
+      grid-template-columns: minmax(360px, 1fr) minmax(280px, .46fr);
+      gap: 12px;
+      align-items: start;
+      min-width: 0;
+    }
+
+    .graph-map {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      align-content: start;
+      align-items: start;
+      min-width: 0;
+    }
+
+    .graph-node {
+      min-height: 94px;
+      border: 1px solid var(--ink);
+      background: var(--panel);
+      padding: 9px;
+      display: grid;
+      align-content: start;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .graph-node[data-type="gate"],
+    .graph-node[data-type="cost_guard"] {
+      background: color-mix(in srgb, var(--panel) 78%, #f3d6bf);
+    }
+
+    .graph-node[data-type="validation"],
+    .graph-node[data-type="memory"] {
+      background: color-mix(in srgb, var(--panel) 82%, #d8e5d2);
+    }
+
+    .graph-node[data-type="event_log"],
+    .graph-node[data-type="view"] {
+      background: color-mix(in srgb, var(--panel) 82%, #d5e4ec);
+    }
+
+    .graph-node strong {
+      font-size: 13px;
+      line-height: 1.15;
+      overflow-wrap: anywhere;
+    }
+
+    .graph-node span {
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      overflow-wrap: anywhere;
+    }
+
+    .graph-node p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.32;
+      overflow-wrap: anywhere;
+    }
+
+    .graph-side {
+      display: grid;
+      grid-template-rows: minmax(0, auto) minmax(0, auto);
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .graph-relations,
+    .graph-brief {
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel) 88%, var(--paper));
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .graph-relations h3,
+    .graph-brief h3 {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.15;
+    }
+
+    .graph-edge,
+    .graph-question,
+    .graph-invariant {
+      display: grid;
+      gap: 3px;
+      border-top: 1px solid var(--line);
+      padding-top: 7px;
+      min-width: 0;
+    }
+
+    .graph-edge b,
+    .graph-question b,
+    .graph-invariant b {
+      font-size: 12px;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+
+    .graph-edge span,
+    .graph-question span,
+    .graph-invariant span {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+
     .card {
       border: 1px solid var(--ink);
       background: var(--panel);
@@ -807,6 +990,23 @@
         grid-template-columns: 1fr;
       }
 
+      .project-graph-header,
+      .graph-body {
+        grid-template-columns: 1fr;
+      }
+
+      .project-graph-status {
+        text-align: left;
+      }
+
+      .graph-metrics {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .graph-map {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .symphony-header {
         display: grid;
         align-items: start;
@@ -883,6 +1083,8 @@
       }
 
       .gate-stats,
+      .graph-metrics,
+      .graph-map,
       .symphony-grid,
       .gate-row {
         grid-template-columns: 1fr;
@@ -940,6 +1142,30 @@
       <div id="symphony-evidence" class="symphony-grid" aria-live="polite"></div>
     </section>
 
+    <section class="project-graph-section" aria-labelledby="project-graph-title">
+      <header class="project-graph-header">
+        <div>
+          <h2 id="project-graph-title">Project Graph</h2>
+          <p>Leitura operacional do projeto: estado, donos, gates, memoria, validacao, custos e evidencia local.</p>
+        </div>
+        <p id="project-graph-status" class="project-graph-status">Fonte: seed do grafo.</p>
+      </header>
+      <div id="project-graph-metrics" class="graph-metrics" aria-label="Metricas do grafo"></div>
+      <div class="graph-body">
+        <div id="project-graph-map" class="graph-map" aria-label="Nos do Project Operations Graph"></div>
+        <aside class="graph-side" aria-label="Relacoes e leitura do grafo">
+          <div class="graph-relations">
+            <h3>Relacoes</h3>
+            <div id="project-graph-relations"></div>
+          </div>
+          <div class="graph-brief">
+            <h3>Perguntas e limites</h3>
+            <div id="project-graph-brief"></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
     <section class="decision-gate" aria-labelledby="decision-gate-title">
       <header>
         <h2 id="decision-gate-title">Human Gate cleanup</h2>
@@ -977,6 +1203,7 @@
     const legacyStorageKey = "artemis-kanban-v1";
     const taskSourceUrl = "tasks.json";
     const eventSourceUrl = "../artifacts/artemis-event-log-schema/run-01/event-log.example.json";
+    const projectGraphSourceUrl = "../artifacts/artemis-project-graph/run-01/project-graph.json";
 
     const columns = [
       { id: "intake", title: "Intake", help: "Ideia ou pedido bruto. Ainda nao tem contrato." },
@@ -1861,6 +2088,19 @@
         evidence: { artifact_path: "artifacts/artemis-project-graph/run-01" }
       },
       {
+        event_id: "evt_tkt-055_project_graph_view",
+        event_type: "adapter.contract_recorded",
+        generated_at: "2026-05-07T17:05:00Z",
+        producer: { adapter: "project_graph_view", name: "scripts/artemis-project-graph-view.sh", mode: "read_only" },
+        subject: {
+          ticket: "TKT-055",
+          title: "Project Graph View do ARTEMIS Symphony"
+        },
+        state: { from: "planned", to: "done", reason: "Project Graph View renders the read-only graph in the Control Plane." },
+        severity: "info",
+        evidence: { artifact_path: "artifacts/artemis-project-graph-view/run-01" }
+      },
+      {
         event_id: "evt_tkt-017_adapter_events",
         event_type: "adapter.events_emitted",
         generated_at: "2026-04-30T19:54:36Z",
@@ -1896,6 +2136,11 @@
     const timelineStatus = document.querySelector("#timeline-status");
     const symphonyEvidenceNode = document.querySelector("#symphony-evidence");
     const symphonySummaryNode = document.querySelector("#symphony-summary");
+    const projectGraphStatusNode = document.querySelector("#project-graph-status");
+    const projectGraphMetricsNode = document.querySelector("#project-graph-metrics");
+    const projectGraphMapNode = document.querySelector("#project-graph-map");
+    const projectGraphRelationsNode = document.querySelector("#project-graph-relations");
+    const projectGraphBriefNode = document.querySelector("#project-graph-brief");
 
     const symphonyEvidence = {
       summary: "Kernel, bridge, runner, daemon dry-run e fila publicados como evidencia local. Exec Packs e artifacts continuam canonicos.",
@@ -1935,8 +2180,8 @@
             ["commands", "0"]
           ],
           links: [
-            ["attempt", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T135456Z-26-tkt-903/RUNNER.md"],
-            ["events", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T135456Z-26-tkt-903/events.json"]
+            ["attempt", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T145423Z-26-tkt-903/RUNNER.md"],
+            ["events", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T145423Z-26-tkt-903/events.json"]
           ]
         },
         {
@@ -1944,7 +2189,7 @@
           status: "human_gate",
           summary: "Validation Gate passou tecnicamente e preservou Human Gates externos.",
           facts: [
-            ["passed", "75"],
+            ["passed", "77"],
             ["failed", "0"]
           ],
           links: [
@@ -2091,7 +2336,74 @@
             ["json", "../artifacts/artemis-project-graph/run-01/project-graph.json"],
             ["graph", "../artifacts/artemis-project-graph/run-01/GRAPH.md"]
           ]
+        },
+        {
+          title: "Graph View",
+          status: "project_graph_view_ready",
+          summary: "project_graph_view_ready: o grafo foi renderizado no Control Plane como leitura observacional.",
+          facts: [
+            ["runtime", "0"],
+            ["deps", "0"]
+          ],
+          links: [
+            ["status", "../artifacts/artemis-project-graph-view/run-01/STATUS.md"],
+            ["json", "../artifacts/artemis-project-graph-view/run-01/project-graph-view.json"],
+            ["doc", "../docs/symphony/ARTEMIS_SYMPHONY_PROJECT_GRAPH_VIEW.md"]
+          ]
         }
+      ]
+    };
+
+    const seedProjectGraph = {
+      source: "seed",
+      overall: "project_graph_ready",
+      summary: {
+        tasks_total: 56,
+        tasks_done: 56,
+        events_total: 42,
+        nodes_total: 10,
+        edges_total: 12,
+        validation_passed: 77,
+        validation_human_gate: 2,
+        memory_zones: 3,
+        dependencies_installed: 0,
+        commands_executed: 0
+      },
+      nodes: [
+        { id: "project:artemis", type: "project", label: "ARTEMIS", status: "operational" },
+        { id: "task_set:exec_packs", type: "task_set", label: "Exec Packs", count: 56, done: 56 },
+        { id: "agent_roles:owners", type: "agent_roles", label: "Owners and agent roles", count: 7 },
+        { id: "gate:human", type: "gate", label: "Human Gates", count: 2 },
+        { id: "validation:gate", type: "validation", label: "Validation Gate", passed: 77, failed: 0 },
+        { id: "memory:zone", type: "memory", label: "Human-AI Memory Zone", zones: 3 },
+        { id: "artifact:evidence", type: "artifact_set", label: "Artifacts and evidence", task_evidence: 56 },
+        { id: "event_log:timeline", type: "event_log", label: "Canonical event timeline", events: 42 },
+        { id: "cost:budget", type: "cost_guard", label: "Token and runtime budget", dependencies_installed: 0 },
+        { id: "control_plane:view", type: "view", label: "Control Plane", authority: "observational" }
+      ],
+      edges: [
+        { from: "project:artemis", to: "task_set:exec_packs", type: "contains" },
+        { from: "task_set:exec_packs", to: "artifact:evidence", type: "requires_evidence" },
+        { from: "task_set:exec_packs", to: "agent_roles:owners", type: "assigned_to" },
+        { from: "task_set:exec_packs", to: "gate:human", type: "blocked_by_when_sensitive" },
+        { from: "validation:gate", to: "task_set:exec_packs", type: "verifies" },
+        { from: "memory:zone", to: "task_set:exec_packs", type: "provides_context" },
+        { from: "memory:zone", to: "event_log:timeline", type: "summarizes_history" },
+        { from: "event_log:timeline", to: "artifact:evidence", type: "records" },
+        { from: "cost:budget", to: "agent_roles:owners", type: "constrains_runtime" },
+        { from: "control_plane:view", to: "project:artemis", type: "observes" },
+        { from: "control_plane:view", to: "validation:gate", type: "shows" },
+        { from: "control_plane:view", to: "memory:zone", type: "shows" }
+      ],
+      questions: [
+        { question: "Como esta o projeto?", answer_source: ["task_set:exec_packs", "validation:gate"] },
+        { question: "Quem esta responsavel pelo que?", answer_source: ["agent_roles:owners"] },
+        { question: "O que depende de decisao humana?", answer_source: ["gate:human"] }
+      ],
+      invariants: [
+        "Project Operations Graph is a read model, not execution authority.",
+        "Exec Packs, artifacts, event logs and git remain canonical.",
+        "Human Gates and Validation Gate remain non-bypassable."
       ]
     };
 
@@ -2231,6 +2543,84 @@
           </div>
         </article>
       `).join("");
+    }
+
+    function compactNodeValue(node) {
+      const pairs = [
+        ["done", node.done],
+        ["count", node.count],
+        ["passed", node.passed],
+        ["zones", node.zones],
+        ["events", node.events],
+        ["deps", node.dependencies_installed],
+        ["authority", node.authority]
+      ].filter(([, value]) => value !== undefined && value !== null && value !== "");
+      if (!pairs.length) return node.status || node.source_of_truth || node.type;
+      return pairs.slice(0, 2).map(([label, value]) => `${label}: ${value}`).join(" / ");
+    }
+
+    function renderProjectGraph(graph) {
+      const summary = graph.summary || {};
+      const nodes = Array.isArray(graph.nodes) ? graph.nodes : [];
+      const edges = Array.isArray(graph.edges) ? graph.edges : [];
+      const questions = Array.isArray(graph.questions) ? graph.questions : [];
+      const invariants = Array.isArray(graph.invariants) ? graph.invariants : [];
+
+      projectGraphStatusNode.textContent = `Fonte: ${graph.source || projectGraphSourceUrl} | ${graph.overall || "observed"}`;
+      projectGraphMetricsNode.innerHTML = [
+        ["tasks", summary.tasks_total],
+        ["done", summary.tasks_done],
+        ["events", summary.events_total],
+        ["nodes", summary.nodes_total || nodes.length],
+        ["edges", summary.edges_total || edges.length],
+        ["validation", summary.validation_passed]
+      ].map(([label, value]) => `
+        <span class="graph-metric">
+          <b>${escapeHtml(value ?? 0)}</b>
+          <span>${escapeHtml(label)}</span>
+        </span>
+      `).join("");
+
+      projectGraphMapNode.innerHTML = nodes.map((node) => `
+        <article class="graph-node" data-type="${escapeHtml(node.type || "node")}">
+          <span>${escapeHtml(node.type || "node")}</span>
+          <strong>${escapeHtml(node.label || node.id)}</strong>
+          <p>${escapeHtml(compactNodeValue(node))}</p>
+        </article>
+      `).join("");
+
+      projectGraphRelationsNode.innerHTML = edges.map((edge) => `
+        <div class="graph-edge">
+          <b>${escapeHtml(edge.type || "relates")}</b>
+          <span>${escapeHtml(edge.from)} -> ${escapeHtml(edge.to)}</span>
+        </div>
+      `).join("");
+
+      const briefQuestions = questions.slice(0, 3).map((item) => `
+        <div class="graph-question">
+          <b>${escapeHtml(item.question)}</b>
+          <span>${escapeHtml((item.answer_source || []).join(", "))}</span>
+        </div>
+      `).join("");
+      const briefInvariants = invariants.slice(0, 3).map((item) => `
+        <div class="graph-invariant">
+          <b>Limite</b>
+          <span>${escapeHtml(item)}</span>
+        </div>
+      `).join("");
+      projectGraphBriefNode.innerHTML = `${briefQuestions}${briefInvariants}`;
+    }
+
+    async function loadProjectGraphSource() {
+      try {
+        const response = await fetch(projectGraphSourceUrl, { cache: "no-store" });
+        if (!response.ok) return null;
+        const payload = await response.json();
+        if (!Array.isArray(payload.nodes) || !Array.isArray(payload.edges)) return null;
+        return payload;
+      } catch {
+        return null;
+      }
     }
 
     async function loadEventSource() {
@@ -2399,6 +2789,9 @@
       initialCards = taskSourceCards || storedCards || cloneCards(seedCards);
       cards = cloneCards(initialCards);
       render();
+      renderProjectGraph(seedProjectGraph);
+      const loadedGraph = await loadProjectGraphSource();
+      if (loadedGraph) renderProjectGraph(loadedGraph);
       const loadedEvents = await loadEventSource();
       renderTimeline(loadedEvents || seedEvents);
     }

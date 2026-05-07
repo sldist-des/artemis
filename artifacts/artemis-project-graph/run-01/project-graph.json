@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T13:58:00Z",
+  "generated_at": "2026-05-07T14:57:11Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -13,17 +13,17 @@
     "validation_gate": "artifacts/artemis-validation-gate/run-01/validation-gate.json"
   },
   "summary": {
-    "tasks_total": 55,
-    "tasks_done": 55,
+    "tasks_total": 56,
+    "tasks_done": 56,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 7,
-    "events_total": 40,
+    "events_total": 42,
     "nodes_total": 10,
     "edges_total": 12,
-    "evidence_count": 55,
-    "exec_pack_count": 55,
-    "validation_passed": 75,
+    "evidence_count": 56,
+    "exec_pack_count": 56,
+    "validation_passed": 77,
     "validation_failed": 0,
     "validation_human_gate": 2,
     "memory_zones": 3,
@@ -35,10 +35,10 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 55
+    "done": 56
   },
   "risks": {
-    "medium": 47,
+    "medium": 48,
     "low": 4,
     "high": 4
   },
@@ -52,11 +52,11 @@
       6
     ],
     [
-      "Reviewer",
-      5
+      "Codex",
+      6
     ],
     [
-      "Codex",
+      "Reviewer",
       5
     ],
     [
@@ -75,11 +75,11 @@
   "top_tags": [
     [
       "exec-pack",
-      55
+      56
     ],
     [
       "done",
-      55
+      56
     ]
   ],
   "nodes": [
@@ -94,8 +94,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 55,
-      "done": 55,
+      "count": 56,
+      "done": 56,
       "human": 0
     },
     {
@@ -113,11 +113,11 @@
           6
         ],
         [
-          "Reviewer",
-          5
+          "Codex",
+          6
         ],
         [
-          "Codex",
+          "Reviewer",
           5
         ],
         [
@@ -137,7 +137,7 @@
       "id": "validation:gate",
       "type": "validation",
       "label": "Validation Gate",
-      "passed": 75,
+      "passed": 77,
       "failed": 0
     },
     {
@@ -151,14 +151,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 55,
-      "exec_packs": 55
+      "task_evidence": 56,
+      "exec_packs": 56
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 40
+      "events": 42
     },
     {
       "id": "cost:budget",
@@ -289,5 +289,5 @@
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },
-  "next_cut": "TKT-055 - Project Graph View do ARTEMIS Symphony"
+  "next_cut": "TKT-056 - Human-readable Project Brief do ARTEMIS Symphony"
 }

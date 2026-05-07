@@ -332,7 +332,7 @@ payload = {
         "Validation Gate remains required before real execution.",
         "Human Gates remain explicit and non-bypassable.",
     ],
-    "next_cut": "TKT-055 - Project Graph View do ARTEMIS Symphony",
+    "next_cut": "TKT-056 - Human-readable Project Brief do ARTEMIS Symphony",
 }
 
 write_text(
@@ -448,7 +448,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-055 - Project Graph View do ARTEMIS Symphony`.",
+    "- Implementar `TKT-056 - Human-readable Project Brief do ARTEMIS Symphony`.",
     "- Manter `--execute` dependente de Validation Gate e decisao exata.",
 ]
 write_text(artifact_root / "HANDOFF.md", "\n".join(handoff_lines) + "\n")

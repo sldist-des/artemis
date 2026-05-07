@@ -6,7 +6,7 @@ Project Operations Graph esta `project_graph_ready` como read model operacional.
 
 ## Proximo corte
 
-- Implementar `TKT-055 - Project Graph View do ARTEMIS Symphony`.
+- Implementar `TKT-056 - Human-readable Project Brief do ARTEMIS Symphony`.
 - Renderizar relacoes do grafo no Control Plane com linguagem operacional e leiga.
 
 ## Nao fazer

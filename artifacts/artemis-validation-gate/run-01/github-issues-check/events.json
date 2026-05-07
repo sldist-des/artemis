@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T13:56:42Z",
+  "generated_at": "2026-05-07T14:55:48Z",
   "source": "scripts/artemis-github-issues.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-07T13:56:42Z",
+      "generated_at": "2026-05-07T14:55:48Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",

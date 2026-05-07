@@ -197,6 +197,12 @@ layers = [
         "required_files": ["scripts/artemis-project-graph.sh", "docs/symphony/ARTEMIS_SYMPHONY_PROJECT_GRAPH.md"],
         "status": "implemented_read_only_graph",
     },
+    {
+        "layer": "project_graph_view",
+        "purpose": "Read-only Control Plane visualization of the Project Operations Graph.",
+        "required_files": ["scripts/artemis-project-graph-view.sh", "docs/symphony/ARTEMIS_SYMPHONY_PROJECT_GRAPH_VIEW.md"],
+        "status": "implemented_observational_view",
+    },
 ]
 
 for layer in layers:
@@ -220,6 +226,7 @@ required_terms = [
     "TKT-053",
     "TKT-054",
     "TKT-055",
+    "TKT-056",
     "Queue Bridge",
     "Queue Execution",
     "Service",
@@ -228,6 +235,7 @@ required_terms = [
     "Remote Promotion",
     "Memory Zone",
     "Project Operations Graph",
+    "Project Graph View",
 ]
 missing_terms = [term for term in required_terms if term not in spec_text]
 if missing_terms:
@@ -264,9 +272,10 @@ compatibility = {
     "remote_promotion_implemented": True,
     "memory_zone_implemented": True,
     "project_graph_implemented": True,
+    "project_graph_view_implemented": True,
     "terminal_first": True,
     "human_gates_preserved": True,
-    "next_cut": "TKT-055 - Project Graph View do ARTEMIS Symphony",
+    "next_cut": "TKT-056 - Human-readable Project Brief do ARTEMIS Symphony",
 }
 
 overall = "failed" if blockers else "spec_ready"
@@ -296,7 +305,8 @@ payload = {
         "remote_promotion_implemented": exists("scripts/artemis-symphony-remote-promotion.sh"),
         "memory_zone_implemented": exists("scripts/artemis-memory-zone.sh"),
         "project_graph_implemented": exists("scripts/artemis-project-graph.sh"),
-        "next_cut_defined": "TKT-055" in spec_text,
+        "project_graph_view_implemented": exists("scripts/artemis-project-graph-view.sh"),
+        "next_cut_defined": "TKT-056" in spec_text,
     },
     "compatibility": compatibility,
     "layers": layers,
@@ -318,6 +328,7 @@ payload = {
         "The implemented remote promotion requires exact human decision and never executes runners.",
         "The implemented Memory Zone is a context contract and does not install indexer dependencies.",
         "The implemented Project Operations Graph is a read model and never becomes execution authority.",
+        "The implemented Project Graph View is observational and never becomes canonical state.",
     ],
 }
 
@@ -347,6 +358,7 @@ status_lines = [
     f"- Remote promotion implemented: `{str(compatibility['remote_promotion_implemented']).lower()}`.",
     f"- Memory Zone implemented: `{str(compatibility['memory_zone_implemented']).lower()}`.",
     f"- Project Graph implemented: `{str(compatibility['project_graph_implemented']).lower()}`.",
+    f"- Project Graph View implemented: `{str(compatibility['project_graph_view_implemented']).lower()}`.",
     f"- Terminal-first: `{str(compatibility['terminal_first']).lower()}`.",
     f"- Human Gates preserved: `{str(compatibility['human_gates_preserved']).lower()}`.",
     f"- Next cut: `{compatibility['next_cut']}`.",
@@ -405,12 +417,12 @@ handoff_lines = [
     "",
     "## Estado",
     "",
-    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel, a promocao local por decisao, a Memory Zone e o Project Operations Graph existem.",
+    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel, a promocao local por decisao, a Memory Zone, o Project Operations Graph e o Project Graph View existem.",
     "",
     "## Proximo corte",
     "",
-    "- Criar `TKT-055 - Project Graph View do ARTEMIS Symphony`.",
-    "- Renderizar relacoes do grafo no Control Plane com linguagem operacional e leiga.",
+    "- Criar `TKT-056 - Human-readable Project Brief do ARTEMIS Symphony`.",
+    "- Transformar o grafo em brief leigo e acionavel.",
     "- Manter Validation Gate antes de qualquer execucao real.",
     "",
     "## Nao fazer",

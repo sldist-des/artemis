@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T13:55:29Z",
+  "generated_at": "2026-05-07T14:54:50Z",
   "source": "scripts/artemis-symphony-queue-bridge.sh",
   "mode": "supervised_queue_bridge_execute",
   "overall": "runner_executed",
@@ -78,5 +78,5 @@
     "Validation Gate remains required before real execution.",
     "Human Gates remain explicit and non-bypassable."
   ],
-  "next_cut": "TKT-055 - Project Graph View do ARTEMIS Symphony"
+  "next_cut": "TKT-056 - Human-readable Project Brief do ARTEMIS Symphony"
 }

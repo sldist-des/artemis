@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T13:53:41Z",
+  "generated_at": "2026-05-07T14:53:31Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -661,6 +661,18 @@
       "summary": "O repositorio deve gerar um grafo operacional auditavel sem instalar banco de",
       "exec_pack": "docs/exec-packs/done/TKT-054-artemis-project-graph.md",
       "evidence": "artifacts/artemis-project-graph/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-055",
+      "ticket": "TKT-055",
+      "title": "Project Graph View do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "O Control Plane deve mostrar metricas, nos, relacoes, perguntas operacionais e",
+      "exec_pack": "docs/exec-packs/done/TKT-055-artemis-project-graph-view.md",
+      "evidence": "artifacts/artemis-project-graph-view/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

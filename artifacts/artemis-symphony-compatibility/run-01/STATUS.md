@@ -18,9 +18,10 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Remote promotion implemented: `true`.
 - Memory Zone implemented: `true`.
 - Project Graph implemented: `true`.
+- Project Graph View implemented: `true`.
 - Terminal-first: `true`.
 - Human Gates preserved: `true`.
-- Next cut: `TKT-055 - Project Graph View do ARTEMIS Symphony`.
+- Next cut: `TKT-056 - Human-readable Project Brief do ARTEMIS Symphony`.
 
 ## Camadas
 
@@ -138,6 +139,12 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Status: `implemented_read_only_graph`.
 - Missing files: `0`.
 
+### project_graph_view
+
+- Purpose: Read-only Control Plane visualization of the Project Operations Graph.
+- Status: `implemented_observational_view`.
+- Missing files: `0`.
+
 ## Invariantes
 
 - OpenAI Symphony is a reference, not a vendored dependency.
@@ -156,3 +163,4 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - The implemented remote promotion requires exact human decision and never executes runners.
 - The implemented Memory Zone is a context contract and does not install indexer dependencies.
 - The implemented Project Operations Graph is a read model and never becomes execution authority.
+- The implemented Project Graph View is observational and never becomes canonical state.

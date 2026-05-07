@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T13:54:46Z",
+  "generated_at": "2026-05-07T14:53:48Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
   "artifact_root": "artifacts/artemis-symphony-compatibility/run-01",
   "spec": "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md",
   "summary": {
-    "layers_total": 19,
+    "layers_total": 20,
     "layers_with_missing_files": 0,
-    "tasks_total": 55,
-    "tasks_done": 55,
+    "tasks_total": 56,
+    "tasks_done": 56,
     "daemon_implemented": true,
     "kernel_implemented": true,
     "bridge_implemented": true,
@@ -24,6 +24,7 @@
     "remote_promotion_implemented": true,
     "memory_zone_implemented": true,
     "project_graph_implemented": true,
+    "project_graph_view_implemented": true,
     "next_cut_defined": true
   },
   "compatibility": {
@@ -43,9 +44,10 @@
     "remote_promotion_implemented": true,
     "memory_zone_implemented": true,
     "project_graph_implemented": true,
+    "project_graph_view_implemented": true,
     "terminal_first": true,
     "human_gates_preserved": true,
-    "next_cut": "TKT-055 - Project Graph View do ARTEMIS Symphony"
+    "next_cut": "TKT-056 - Human-readable Project Brief do ARTEMIS Symphony"
   },
   "layers": [
     {
@@ -248,6 +250,16 @@
       ],
       "status": "implemented_read_only_graph",
       "missing_files": []
+    },
+    {
+      "layer": "project_graph_view",
+      "purpose": "Read-only Control Plane visualization of the Project Operations Graph.",
+      "required_files": [
+        "scripts/artemis-project-graph-view.sh",
+        "docs/symphony/ARTEMIS_SYMPHONY_PROJECT_GRAPH_VIEW.md"
+      ],
+      "status": "implemented_observational_view",
+      "missing_files": []
     }
   ],
   "blockers": [],
@@ -267,6 +279,7 @@
     "The implemented remote intake is review-only and keeps derived tasks in Human Gate.",
     "The implemented remote promotion requires exact human decision and never executes runners.",
     "The implemented Memory Zone is a context contract and does not install indexer dependencies.",
-    "The implemented Project Operations Graph is a read model and never becomes execution authority."
+    "The implemented Project Operations Graph is a read model and never becomes execution authority.",
+    "The implemented Project Graph View is observational and never becomes canonical state."
   ]
 }

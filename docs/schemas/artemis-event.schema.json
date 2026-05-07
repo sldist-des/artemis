@@ -75,7 +75,8 @@
             "control_plane",
             "manual",
             "memory_zone",
-            "project_graph"
+            "project_graph",
+            "project_graph_view"
           ]
         },
         "name": {

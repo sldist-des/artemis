@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T13:55:30Z",
+  "generated_at": "2026-05-07T14:54:51Z",
   "source": "scripts/artemis-symphony-bridge.sh",
   "mode": "supervised_bridge",
   "overall": "runner_plan_ready",
   "task_source": "artifacts/artemis-symphony-service/run-01/fixtures/task-source.json",
   "artifact_root": "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge",
   "kernel": "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/kernel/symphony-kernel.json",
-  "runner_attempt": "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/runner/attempts/20260507T135529Z-66-tkt-949",
-  "runner_events": "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/runner/attempts/20260507T135529Z-66-tkt-949/events.json",
+  "runner_attempt": "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/runner/attempts/20260507T145451Z-66-tkt-949",
+  "runner_events": "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/runner/attempts/20260507T145451Z-66-tkt-949/events.json",
   "summary": {
     "kernel_overall": "dispatch_plan_ready",
     "kernel_selected_for_dispatch": 1,
@@ -53,5 +53,5 @@
     "Runner execution requires explicit --execute.",
     "Remote, destructive and deployment commands remain blocked by the runner."
   ],
-  "next_cut": "TKT-055 - Project Graph View do ARTEMIS Symphony"
+  "next_cut": "TKT-056 - Human-readable Project Brief do ARTEMIS Symphony"
 }

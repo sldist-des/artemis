@@ -219,7 +219,7 @@ payload = {
     "remote_contract": contract,
     "items": items,
     "review_source": str(artifact_root / "review-source.json"),
-    "next_cut": "TKT-055 - Project Graph View do ARTEMIS Symphony",
+    "next_cut": "TKT-056 - Human-readable Project Brief do ARTEMIS Symphony",
 }
 
 review_source = {
@@ -326,7 +326,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-055 - Project Graph View do ARTEMIS Symphony`.",
+    "- Implementar `TKT-056 - Human-readable Project Brief do ARTEMIS Symphony`.",
     "- Exigir decisao humana exata antes de promover item remoto para fila/service.",
     "- Manter GitHub writes bloqueados ate contrato explicito.",
     "",

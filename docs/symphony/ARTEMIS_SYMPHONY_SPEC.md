@@ -573,6 +573,31 @@ Contrato:
 - Control Plane pode consumir o grafo, mas continua observacional;
 - Human Gates, Validation Gate e budget gates continuam nao bypassaveis.
 
+### Modo 3.5 - Project Graph View
+
+Implementado em `TKT-055` como visualizacao read-only do Project Operations
+Graph no Control Plane.
+
+- renderiza metricas, nos, relacoes, perguntas operacionais e limites;
+- consome `artifacts/artemis-project-graph/run-01/project-graph.json`;
+- usa HTML/CSS/JS local sem dependencia nova;
+- nao inicia servidor persistente, banco de grafo, canvas engine ou runtime;
+- nao executa agentes, runners, bridges ou filas;
+- nao torna o Control Plane canonico.
+
+Project Graph View implementado:
+
+- `scripts/artemis-project-graph-view.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_PROJECT_GRAPH_VIEW.md`
+
+Contrato:
+
+- a view e uma leitura operacional para humanos e agentes;
+- a fonte de verdade continua em Git, Exec Packs, artifacts, Event Log e
+  Validation Gate;
+- qualquer interatividade futura que envolva runtime, auth, rede, custo ou
+  escrita precisa passar por Human Gate.
+
 ## Invariantes
 
 - ARTEMIS Symphony nao executa cleanup real sem decisao humana.
@@ -585,14 +610,13 @@ Contrato:
 
 ## Proximo corte recomendado
 
-`TKT-055 - Project Graph View do ARTEMIS Symphony`
+`TKT-056 - Human-readable Project Brief do ARTEMIS Symphony`
 
 Objetivo:
 
-- renderizar as relacoes do Project Operations Graph no Control Plane;
-- mostrar estado vivo do projeto com linguagem operacional e leiga;
-- permitir leitura clara de responsaveis, bloqueios, gates, validacoes, memoria
-  e custos;
+- transformar o Project Operations Graph em explicacao leiga e acionavel;
+- mostrar o que esta pronto, o que depende de humano e qual proxima acao;
+- permitir que pessoas nao tecnicas colaborem sem conhecer todos os artifacts;
 - preservar terminal-first, Human Gates, Validation Gate e budget gates.
 
-Esse sera o decimo quarto passo de implementacao do nosso Symphony proprio.
+Esse sera o decimo quinto passo de implementacao do nosso Symphony proprio.

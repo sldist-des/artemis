@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T14:55:45Z",
+  "source": "scripts/artemis-project-graph-view.sh",
+  "mode": "read_only_control_plane_view_contract",
+  "overall": "project_graph_view_ready",
+  "reason": "Project Graph View renders the read-only graph in the Control Plane.",
+  "artifact_root": "artifacts/artemis-validation-gate/run-01/project-graph-view-check",
+  "inputs": {
+    "project_graph": "artifacts/artemis-project-graph/run-01/project-graph.json",
+    "control_plane": "control-plane/index.html"
+  },
+  "summary": {
+    "nodes_rendered": 10,
+    "edges_rendered": 12,
+    "questions_rendered": 3,
+    "invariants_rendered": 3,
+    "validation_passed": 75,
+    "human_gates": 2,
+    "dependencies_installed": 0,
+    "commands_executed": 0,
+    "runtime_started": false,
+    "remote_writes_allowed": false,
+    "source_of_truth_changed": false
+  },
+  "missing_tokens": [],
+  "required_tokens": [
+    "project-graph-section",
+    "project-graph-map",
+    "project-graph-relations",
+    "project-graph-brief",
+    "projectGraphSourceUrl",
+    "renderProjectGraph",
+    "loadProjectGraphSource"
+  ],
+  "invariants": [
+    "Control Plane is observational, not canonical.",
+    "Project Graph View reads local graph artifacts only.",
+    "No graph database, canvas engine, frontend framework or runtime is introduced.",
+    "Human Gates, Validation Gate, Event Log, Exec Packs and git remain authoritative."
+  ],
+  "next_cut": "TKT-056 - Human-readable Project Brief do ARTEMIS Symphony"
+}

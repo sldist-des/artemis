@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T13:56:39Z",
+  "generated_at": "2026-05-07T14:55:45Z",
   "source": "scripts/artemis-symphony-remote-intake.sh",
   "mode": "read_only_remote_intake_review",
   "overall": "remote_intake_ready",
@@ -76,5 +76,5 @@
     }
   ],
   "review_source": "artifacts/artemis-validation-gate/run-01/symphony-remote-intake-check/review-source.json",
-  "next_cut": "TKT-055 - Project Graph View do ARTEMIS Symphony"
+  "next_cut": "TKT-056 - Human-readable Project Brief do ARTEMIS Symphony"
 }

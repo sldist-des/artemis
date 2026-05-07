@@ -6,7 +6,7 @@ Promocao local do intake esta `remote_promotion_ready`. A fonte local promovida 
 
 ## Proximo corte
 
-- Implementar `TKT-055 - Project Graph View do ARTEMIS Symphony`.
+- Implementar `TKT-056 - Human-readable Project Brief do ARTEMIS Symphony`.
 - Manter comentarios, labels, branches e PRs atras de decisao humana exata.
 
 ## Nao fazer

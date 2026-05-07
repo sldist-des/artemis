@@ -49,4 +49,4 @@ scripts/artemis-symphony-remote-intake.sh \
 
 ## Proximo Corte
 
-`TKT-055 - Project Graph View do ARTEMIS Symphony`
+`TKT-056 - Human-readable Project Brief do ARTEMIS Symphony`

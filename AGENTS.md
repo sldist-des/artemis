@@ -40,6 +40,14 @@ git status --branch --short --ignored
 - Toda entrega deve incluir validacao e handoff.
 - Commits devem seguir o Lore Commit Protocol quando forem feitos por agente.
 
+## Referencias externas e inspiracao etica
+
+- Agentes podem ler codigo publico de projetos de referencia para entender arquitetura, fluxo, UX, contratos, tradeoffs e padroes tecnicos.
+- Ler codigo de referencia nao autoriza copiar implementacao, trechos substanciais, assets, marcas, textos proprietarios ou estrutura licenciada de forma incompatível.
+- Aprendizados devem virar decisao propria do ARTEMIS: contrato, invariant, interface, teste, artefato ou implementacao original.
+- Quando a licenca puder afetar o projeto, registre a referencia e escale antes de vendorizar codigo, instalar dependencia, portar modulo ou reproduzir estrutura interna.
+- Intencao reta nao substitui rastreabilidade: cite a fonte, preserve autoria externa e deixe claro o que foi adotado, rejeitado e recriado.
+
 ## Review guidelines
 
 - Trate vazamento de secrets como P0.

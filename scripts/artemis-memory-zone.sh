@@ -117,6 +117,7 @@ invariants = [
     "Memory Zone is source-of-context, not execution authority.",
     "Markdown/Git artifacts remain portable and inspectable.",
     "Derived indexes can be rebuilt and never replace source files.",
+    "Public reference code may be studied for architecture and tradeoffs, but ARTEMIS implementation must be original.",
     "Secrets and credentials are excluded from memory and indexes by default.",
     "Agents may propose memory updates, but Human Gates govern sensitive knowledge changes.",
     "Costs from embeddings, indexing and agent queries must be budgeted before runtime use.",
@@ -132,6 +133,9 @@ summary = {
     "commands_executed": 0,
     "remote_writes_allowed": False,
     "runtime_started": False,
+    "reference_code_study_allowed": True,
+    "code_copied": False,
+    "vendorization_allowed_without_human_gate": False,
 }
 
 overall = "memory_zone_ready" if not missing_files else "failed"
@@ -156,6 +160,7 @@ payload = {
         "derived_index": "rebuildable_read_model",
         "project_operations_graph": "future_consumer_of_memory_zone",
         "dependency_policy": "no_new_dependency_without_explicit_decision",
+        "reference_study_policy": "study_public_code_for_learning_then_recreate_original_artemis_implementation",
     },
     "next_cut": "TKT-054 - Project Operations Graph do ARTEMIS Symphony",
 }

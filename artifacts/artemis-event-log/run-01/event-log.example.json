@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T13:37:33Z",
+  "generated_at": "2026-05-07T13:46:57Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-07T13:37:33Z",
+      "generated_at": "2026-05-07T13:46:57Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -74,7 +74,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T13:37:33Z",
+      "generated_at": "2026-05-07T13:46:57Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -161,7 +161,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T13:37:33Z",
+      "generated_at": "2026-05-07T13:46:57Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -254,7 +254,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-07T13:37:33Z",
+      "generated_at": "2026-05-07T13:46:57Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -3687,7 +3687,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-053_memory_zone",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T13:35:40Z",
+      "generated_at": "2026-05-07T13:46:53Z",
       "producer": {
         "adapter": "memory_zone",
         "name": "scripts/artemis-memory-zone.sh",
@@ -3735,7 +3735,10 @@
           "embeddings_created": 0,
           "commands_executed": 0,
           "remote_writes_allowed": false,
-          "runtime_started": false
+          "runtime_started": false,
+          "reference_code_study_allowed": true,
+          "code_copied": false,
+          "vendorization_allowed_without_human_gate": false
         },
         "next_cut": "TKT-054 - Project Operations Graph do ARTEMIS Symphony"
       }

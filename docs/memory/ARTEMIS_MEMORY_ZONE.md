@@ -23,6 +23,29 @@ CocoIndex inspira a camada de indice derivado:
 - indices semanticos e grafos reconstruiveis;
 - atualizacao por delta em vez de recomputacao total.
 
+## Estudo de referencia etica
+
+ARTEMIS permite olhar codigo publico de projetos de referencia quando a intencao
+for aprender, comparar e projetar melhor. Esse estudo deve focar em:
+
+- arquitetura;
+- UX e fluxo operacional;
+- contratos de dados e eventos;
+- padroes de testes e validacao;
+- tradeoffs de runtime, dependencia, custo e licenca.
+
+O que nao entra automaticamente:
+
+- copia de implementacao;
+- trechos substanciais;
+- assets, marcas ou textos proprietarios;
+- estrutura interna licenciada de forma incompatível;
+- dependencia ou vendorization sem decisao humana explicita.
+
+O resultado esperado e sempre uma decisao propria do ARTEMIS: contrato, invariant,
+interface, teste, artefato ou implementacao original. A fonte deve ficar citada e
+o que foi adotado, rejeitado ou recriado deve aparecer em handoff ou Lore commit.
+
 ## Contrato ARTEMIS
 
 - Markdown/Git e a memoria portavel.

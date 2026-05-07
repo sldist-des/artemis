@@ -400,6 +400,11 @@ CocoIndex para indice incremental futuro, mas nao instala dependencias nem cria
 embeddings sem decisao explicita. Indices derivados sao read models
 reconstruiveis, nao fonte de verdade.
 
+Codigo publico de referencia pode ser lido para estudar arquitetura, UX, fluxo,
+contratos, testes e tradeoffs. O que entra no ARTEMIS deve ser implementacao
+propria, com fonte citada, decisao registrada e sem copia substancial ou
+vendorization sem Human Gate quando houver risco de licenca.
+
 Codex app-server e fonte futura de eventos ricos, nao substitui controle terminal-first:
 
 ```bash

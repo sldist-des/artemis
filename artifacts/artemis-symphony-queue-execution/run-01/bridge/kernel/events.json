@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-06T20:18:47Z",
+  "source": "scripts/artemis-symphony-kernel.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-948_symphony_dispatch_planned",
+      "event_type": "runner.readiness_checked",
+      "generated_at": "2026-05-06T20:18:47Z",
+      "producer": {
+        "adapter": "local_runner",
+        "name": "scripts/artemis-symphony-kernel.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-948",
+        "task_id": "tkt-948",
+        "title": "Validate queue execution opt-in",
+        "exec_pack": "docs/exec-packs/done/TKT-048-artemis-symphony-queue-execution.md",
+        "artifact_root": "artifacts/artemis-symphony-queue-execution/run-01/bridge/kernel"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "ready",
+        "to": "ready",
+        "reason": "Read-only Symphony kernel planned dispatch without execution."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-symphony-queue-execution/run-01/bridge/kernel",
+        "status_path": "artifacts/artemis-symphony-queue-execution/run-01/bridge/kernel/STATUS.md",
+        "validation_path": "artifacts/artemis-symphony-queue-execution/run-01/bridge/kernel/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-symphony-queue-execution/run-01/bridge/kernel/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-948"
+      },
+      "payload": {
+        "reason": "Read-only Symphony kernel planned dispatch without execution.",
+        "slot": 1,
+        "order": 1,
+        "commands_executed": 0,
+        "runner_execution_allowed": false
+      }
+    }
+  ]
+}

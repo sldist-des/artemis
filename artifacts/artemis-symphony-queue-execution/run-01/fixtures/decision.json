@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "decision": "approved",
+  "ticket": "TKT-948",
+  "queue_id": "queue-001-tkt-948",
+  "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-queue-execution/run-01/fixtures/task-source.json",
+  "validation_gate": "artifacts/artemis-symphony-queue-execution/run-01/fixtures/validation-gate.json",
+  "validation_human_gates_acknowledged": true,
+  "decided_by": "ARTEMIS synthetic validation",
+  "reason": "Exact local dry-run command approved for queue execution validation."
+}

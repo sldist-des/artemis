@@ -6,7 +6,7 @@ Bridge supervisionada concluida com overall `runner_plan_ready`.
 
 ## Proximo corte
 
-- Implementar `TKT-048 - Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony`.
+- Implementar `TKT-049 - Servico supervisionado local do ARTEMIS Symphony`.
 - Consumir item revisado da fila com comando explicito e ponte plan-only por padrao.
 
 ## Nao fazer

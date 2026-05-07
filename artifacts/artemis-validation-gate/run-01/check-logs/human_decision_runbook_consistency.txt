@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T20:01:35Z",
+  "generated_at": "2026-05-07T12:05:52Z",
   "source": "scripts/artemis-human-decision-runbook-consistency.sh",
   "mode": "read_only",
   "decision": "artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json",

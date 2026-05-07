@@ -3,10 +3,10 @@
 ## Estado
 
 - Queue bridge: `bridge_plan_ready`.
-- Real execution: `not_implemented_in_this_cut`.
+- Real execution: `not_requested`.
 - Commands executed: `0`.
 
 ## Proximo corte
 
-- Implementar `TKT-048 - Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony`.
-- Antes de qualquer `--execute`, exigir Validation Gate verde e decisao humana explicita.
+- Implementar `TKT-049 - Servico supervisionado local do ARTEMIS Symphony`.
+- Manter `--execute` dependente de Validation Gate e decisao exata.

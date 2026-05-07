@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T20:01:42Z",
+  "generated_at": "2026-05-07T12:05:59Z",
   "overall": "human_gate",
   "summary": {
-    "passed": 62,
+    "passed": 63,
     "failed": 0,
     "human_gate": 2
   },
@@ -371,6 +371,13 @@
       "status": "passed",
       "exit_code": 0,
       "log": "artifacts/artemis-validation-gate/run-01/check-logs/symphony_queue_bridge.txt"
+    },
+    {
+      "name": "symphony_queue_execution",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/symphony_queue_execution.txt"
     },
     {
       "name": "approved_workspace_cleanup",

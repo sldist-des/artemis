@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": "artifacts/artemis-symphony-queue-execution/run-01/fixtures/task-source.json",
+  "tasks": [
+    {
+      "id": "tkt-948",
+      "ticket": "TKT-948",
+      "title": "Validate queue execution opt-in",
+      "state": "ready",
+      "owner": "Codex",
+      "risk": "low",
+      "summary": "Synthetic task used to prove ARTEMIS Symphony queue execution after Validation Gate and exact approval.",
+      "exec_pack": "docs/exec-packs/done/TKT-048-artemis-symphony-queue-execution.md",
+      "evidence": "artifacts/artemis-symphony-queue-execution/run-01/STATUS.md",
+      "tags": ["symphony", "queue-execution", "validation"]
+    }
+  ]
+}

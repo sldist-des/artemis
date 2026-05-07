@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T12:05:55Z",
+  "source": "scripts/artemis-symphony-queue-bridge.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-validate_symphony_queue_bridge",
+      "event_type": "runner.attempt_completed",
+      "generated_at": "2026-05-07T12:05:55Z",
+      "producer": {
+        "adapter": "local_queue_bridge",
+        "name": "scripts/artemis-symphony-queue-bridge.sh",
+        "mode": "execute"
+      },
+      "subject": {
+        "ticket": "TKT-VALIDATE",
+        "task_id": "tkt-validate",
+        "title": "Validate supervised runner",
+        "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-queue-execution-check"
+      },
+      "runner": {
+        "kind": "codex_cli",
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json"
+      },
+      "state": {
+        "from": "review",
+        "to": "review",
+        "reason": "Queue item was executed through the supervised bridge after Validation Gate and exact approval."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/symphony-queue-execution-check",
+        "status_path": "artifacts/artemis-validation-gate/run-01/symphony-queue-execution-check/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/symphony-queue-execution-check/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/symphony-queue-execution-check/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-validation-gate/run-01/symphony-queue-check/symphony-queue.json",
+          "artifacts/artemis-validation-gate/run-01/symphony-queue-execution-check/queue-bridge.json",
+          "artifacts/artemis-validation-gate/run-01/symphony-queue-execution-check/bridge/symphony-bridge.json"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-validate"
+      },
+      "payload": {
+        "reason": "Queue item was executed through the supervised bridge after Validation Gate and exact approval.",
+        "queue_id": "queue-001-tkt-validate",
+        "bridge_planned": true,
+        "execute_requested": true,
+        "commands_executed": 1,
+        "validation_gate_required_before_execute": true,
+        "approval_exact": true
+      }
+    }
+  ]
+}

@@ -122,6 +122,7 @@ It exposes:
 - Daemon dry-run heartbeat evidence from `artifacts/artemis-symphony-daemon/run-01/`;
 - Queue evidence from `artifacts/artemis-symphony-queue/run-01/`;
 - Queue Bridge plan-only evidence from `artifacts/artemis-symphony-queue-bridge/run-01/`;
+- Queue Execution opt-in evidence from `artifacts/artemis-symphony-queue-execution/run-01/`;
 - Validation Gate evidence from `artifacts/artemis-validation-gate/run-01/`.
 
-This section is intentionally observational. It links to artifacts and summarizes facts such as `runner_plan_ready`, `bridge_plan_ready`, `execute=false` and `commands=0`, but it does not create tasks, execute runners, approve Human Gates, or become canonical state.
+This section is intentionally observational. It links to artifacts and summarizes facts such as `runner_plan_ready`, `bridge_plan_ready`, `runner_executed`, `execute=false`, `execute=true` and command counts, but it does not create tasks, execute runners, approve Human Gates, or become canonical state.

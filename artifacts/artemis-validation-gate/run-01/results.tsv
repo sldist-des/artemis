@@ -50,6 +50,7 @@ symphony_bridge	technical	passed	0	artifacts/artemis-validation-gate/run-01/chec
 symphony_daemon	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/symphony_daemon.txt
 symphony_queue	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/symphony_queue.txt
 symphony_queue_bridge	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/symphony_queue_bridge.txt
+symphony_queue_execution	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/symphony_queue_execution.txt
 approved_workspace_cleanup	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt
 workspace_runtime_handoff	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt
 runner_plan	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt

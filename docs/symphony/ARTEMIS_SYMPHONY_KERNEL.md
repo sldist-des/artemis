@@ -50,6 +50,6 @@ scripts/artemis-symphony-kernel.sh --json
 
 ## Proximo Corte
 
-`TKT-048 - Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony`
+`TKT-049 - Servico supervisionado local do ARTEMIS Symphony`
 
 Objetivo: consumir item revisado da fila com comando explicito e ponte supervisionada plan-only por padrao.

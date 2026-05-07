@@ -1,0 +1,12 @@
+ARTEMIS Orchestrator Dry Run
+source: artifacts/artemis-validation-gate/run-01/runner-task-source.json
+summary: eligible=1 blocked=0 human_gate=0 done=0
+
+- TKT-VALIDATE [eligible] runner=codex-cli
+  title: Validate supervised runner
+  reason: Task has Exec Pack, owner, evidence target, and no human-gate terms.
+  workspace_readiness: ready
+  branch: artemis/tkt-validate-validate-supervised-runner
+  worktree: ../veri-artemis-worktrees/tkt-validate
+  lock: .artemis/locks/tkt-validate.lock
+  would_dispatch: codex-cli --exec-pack docs/exec-packs/active/TKT-VALIDATE.md

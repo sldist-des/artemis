@@ -45,6 +45,8 @@ results_file="$artifact_root/results.tsv"
 : >"$results_file"
 task_source_file="$artifact_root/task-source.json"
 runner_source_file="$artifact_root/runner-task-source.json"
+queue_bridge_validation_gate_file="$artifact_root/queue-bridge-validation-gate-fixture.json"
+queue_bridge_decision_file="$artifact_root/queue-bridge-decision-fixture.json"
 
 cat >"$runner_source_file" <<'JSON'
 {
@@ -64,6 +66,41 @@ cat >"$runner_source_file" <<'JSON'
       "tags": ["exec-pack", "validation"]
     }
   ]
+}
+JSON
+
+cat >"$queue_bridge_validation_gate_file" <<'JSON'
+{
+  "schema_version": 1,
+  "overall": "passed",
+  "summary": {
+    "passed": 1,
+    "failed": 0,
+    "human_gate": 0
+  },
+  "checks": [
+    {
+      "name": "synthetic",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/synthetic.txt"
+    }
+  ]
+}
+JSON
+
+cat >"$queue_bridge_decision_file" <<JSON
+{
+  "schema_version": 1,
+  "decision": "approved",
+  "ticket": "TKT-VALIDATE",
+  "queue_id": "queue-001-tkt-validate",
+  "command": "scripts/artemis-dry-run.sh --input $runner_source_file",
+  "validation_gate": "$queue_bridge_validation_gate_file",
+  "validation_human_gates_acknowledged": true,
+  "decided_by": "ARTEMIS synthetic validation",
+  "reason": "Exact local dry-run command approved for queue execution validation."
 }
 JSON
 
@@ -142,11 +179,12 @@ run_check symphony_bridge technical "scripts/artemis-symphony-bridge.sh --input 
 run_check symphony_daemon technical "scripts/artemis-symphony-daemon.sh --input '$runner_source_file' --artifact-root '$artifact_root/symphony-daemon-check' --ticks 2 --interval 0 --max-concurrency 1 --json"
 run_check symphony_queue technical "scripts/artemis-symphony-queue.sh --daemon '$artifact_root/symphony-daemon-check/symphony-daemon.json' --artifact-root '$artifact_root/symphony-queue-check' --json"
 run_check symphony_queue_bridge technical "scripts/artemis-symphony-queue-bridge.sh --queue '$artifact_root/symphony-queue-check/symphony-queue.json' --ticket TKT-VALIDATE --command 'scripts/artemis-dry-run.sh --input $runner_source_file' --artifact-root '$artifact_root/symphony-queue-bridge-check' --json"
+run_check symphony_queue_execution technical "scripts/artemis-symphony-queue-bridge.sh --queue '$artifact_root/symphony-queue-check/symphony-queue.json' --ticket TKT-VALIDATE --command 'scripts/artemis-dry-run.sh --input $runner_source_file' --artifact-root '$artifact_root/symphony-queue-execution-check' --execute --validation-gate '$queue_bridge_validation_gate_file' --decision '$queue_bridge_decision_file' --json"
 run_check approved_workspace_cleanup technical "scripts/artemis-approved-workspace-cleanup.sh --decision '$artifact_root/workspace-cleanup-review-check/cleanup-review.json' --artifact-root '$artifact_root/approved-workspace-cleanup-check' --json"
 run_check workspace_runtime_handoff technical "scripts/artemis-workspace-runtime-handoff.sh --lifecycle '$artifact_root/workspace-lifecycle-check/workspace-lifecycle.json' --cleanup '$artifact_root/approved-workspace-cleanup-check/approved-cleanup.json' --approval-contract '$artifact_root/human-cleanup-approval-contract-check/cleanup-approval-contract.json' --artifact-root '$artifact_root/workspace-runtime-handoff-check' --json"
 run_check runner_plan technical "scripts/artemis-runner.sh --input '$runner_source_file' --ticket TKT-VALIDATE --command 'scripts/artemis-dry-run.sh --input $runner_source_file' --artifact-root '$artifact_root/runner-attempts'"
 run_check runner_events technical "events_file=\$(find '$artifact_root/runner-attempts/attempts' -name events.json -type f -print -quit); test -n \"\$events_file\" && grep -q '\"event_type\": \"runner.attempt_planned\"' \"\$events_file\" && grep -q '\"event_type\": \"runner.attempt_completed\"' \"\$events_file\""
-run_check required_files technical "test -f ARTEMIS_WORKFLOW.md && test -f ARTEMIS_APPLY.md && test -f control-plane/tasks.json && test -f scripts/artemis-workspace.sh && test -f scripts/artemis-runner.sh && test -f scripts/artemis-application-readiness.sh && test -f scripts/artemis-symphony-kernel.sh && test -f scripts/artemis-symphony-bridge.sh && test -f scripts/artemis-symphony-daemon.sh && test -f scripts/artemis-symphony-queue.sh && test -f scripts/artemis-symphony-queue-bridge.sh"
+run_check required_files technical "test -f ARTEMIS_WORKFLOW.md && test -f ARTEMIS_APPLY.md && test -f control-plane/tasks.json && test -f scripts/artemis-workspace.sh && test -f scripts/artemis-runner.sh && test -f scripts/artemis-application-readiness.sh && test -f scripts/artemis-symphony-kernel.sh && test -f scripts/artemis-symphony-bridge.sh && test -f scripts/artemis-symphony-daemon.sh && test -f scripts/artemis-symphony-queue.sh && test -f scripts/artemis-symphony-queue-bridge.sh && test -f docs/symphony/ARTEMIS_SYMPHONY_QUEUE_EXECUTION.md"
 run_check git_diff_check technical "git diff --check"
 run_check codex_app_server technical "scripts/artemis-codex-app-server.sh --artifact-root '$artifact_root/codex-app-server-check' --json"
 run_check claude_code technical "scripts/artemis-claude-code.sh --artifact-root '$artifact_root/claude-code-check' --json"

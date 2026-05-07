@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T20:01:08Z",
+  "generated_at": "2026-05-07T12:05:40Z",
   "source": "scripts/artemis-symphony-queue-bridge.sh",
   "mode": "supervised_queue_bridge_plan_only",
   "overall": "bridge_plan_ready",
@@ -12,6 +12,8 @@
   "source_kernel": "artifacts/artemis-symphony-queue-bridge/run-01/daemon/ticks/tick-001/kernel/symphony-kernel.json",
   "task_source": "artifacts/artemis-symphony-queue-bridge/run-01/fixtures/task-source.json",
   "bridge": "artifacts/artemis-symphony-queue-bridge/run-01/bridge/symphony-bridge.json",
+  "validation_gate": "",
+  "decision": "",
   "summary": {
     "queue_item_found": true,
     "queue_item_reviewed": true,
@@ -25,6 +27,12 @@
     "execute_requested": false,
     "commands_executed": 0,
     "runner_executed": false,
+    "validation_gate": "",
+    "validation_gate_passed": false,
+    "decision": "",
+    "decision_approved": false,
+    "approval_exact": false,
+    "validation_human_gates_acknowledged": false,
     "validation_gate_required_before_execute": true
   },
   "selected_queue_item": {
@@ -64,11 +72,11 @@
   "invariants": [
     "Queue bridge consumes exactly one reviewed queue item.",
     "Queue bridge requires an explicit command from the terminal.",
-    "Queue bridge calls the supervised bridge in plan-only mode.",
-    "Queue bridge never passes --execute in this cut.",
-    "Commands executed remain zero until a later explicit execution cut.",
+    "Queue bridge calls the supervised bridge in plan-only mode by default.",
+    "Queue bridge only passes --execute when Validation Gate and exact approval artifacts are present.",
+    "Execution requires exact ticket, queue_id, and command approval.",
     "Validation Gate remains required before real execution.",
     "Human Gates remain explicit and non-bypassable."
   ],
-  "next_cut": "TKT-048 - Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony"
+  "next_cut": "TKT-049 - Servico supervisionado local do ARTEMIS Symphony"
 }

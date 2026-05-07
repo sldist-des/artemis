@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-06T20:18:48Z",
+  "source": "scripts/artemis-symphony-bridge.sh",
+  "mode": "supervised_bridge",
+  "overall": "runner_executed",
+  "task_source": "artifacts/artemis-symphony-queue-execution/run-01/fixtures/task-source.json",
+  "artifact_root": "artifacts/artemis-symphony-queue-execution/run-01/bridge",
+  "kernel": "artifacts/artemis-symphony-queue-execution/run-01/bridge/kernel/symphony-kernel.json",
+  "runner_attempt": "artifacts/artemis-symphony-queue-execution/run-01/bridge/runner/attempts/20260506T201848Z-30-tkt-948",
+  "runner_events": "artifacts/artemis-symphony-queue-execution/run-01/bridge/runner/attempts/20260506T201848Z-30-tkt-948/events.json",
+  "summary": {
+    "kernel_overall": "dispatch_plan_ready",
+    "kernel_selected_for_dispatch": 1,
+    "max_concurrency": 1,
+    "selected_ticket": "TKT-948",
+    "ticket_in_dispatch_plan": true,
+    "runner_planned": true,
+    "runner_exit_code": 0,
+    "execute_requested": true,
+    "use_workspace": false,
+    "commands_executed": 1,
+    "automatic_daemon": false
+  },
+  "selected_dispatch": {
+    "order": 1,
+    "slot": 1,
+    "ticket": "TKT-948",
+    "title": "Validate queue execution opt-in",
+    "state": "ready",
+    "runner": "codex-cli",
+    "exec_pack": "docs/exec-packs/done/TKT-048-artemis-symphony-queue-execution.md",
+    "workspace": {
+      "mode": "planned",
+      "branch": "artemis/tkt-948-validate-queue-execution-opt-in",
+      "worktree_path": "../veri-artemis-worktrees/tkt-948",
+      "lock_path": ".artemis/locks/tkt-948.lock",
+      "artifact_root": "artifacts/artemis-symphony-queue-execution/run-01",
+      "writer": "Codex",
+      "cleanup_state": "not_created"
+    },
+    "decision": "planned_read_only",
+    "reason": "Task has Exec Pack, owner, evidence target, and no human-gate terms.",
+    "runner_execution_allowed": false,
+    "commands_executed": 0
+  },
+  "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-queue-execution/run-01/fixtures/task-source.json",
+  "invariants": [
+    "Bridge is not a daemon.",
+    "Bridge runs the kernel before touching the runner.",
+    "Bridge only selects tickets present in dispatch_plan.",
+    "Default mode is runner plan-only.",
+    "Runner execution requires explicit --execute.",
+    "Remote, destructive and deployment commands remain blocked by the runner."
+  ],
+  "next_cut": "TKT-049 - Servico supervisionado local do ARTEMIS Symphony"
+}

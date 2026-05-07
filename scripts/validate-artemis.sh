@@ -17,6 +17,7 @@ docs/symphony/ARTEMIS_SYMPHONY_BRIDGE.md
 docs/symphony/ARTEMIS_SYMPHONY_DAEMON.md
 docs/symphony/ARTEMIS_SYMPHONY_QUEUE.md
 docs/symphony/ARTEMIS_SYMPHONY_QUEUE_BRIDGE.md
+docs/symphony/ARTEMIS_SYMPHONY_QUEUE_EXECUTION.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
 docs/agents/CAPABILITY_REGISTRY.md
@@ -737,6 +738,68 @@ if ! test -f /tmp/artemis-symphony-queue-bridge/events.json; then
   echo "scripts/artemis-symphony-queue-bridge.sh did not write events.json" >&2
   exit 1
 fi
+cat >/tmp/artemis-symphony-queue-bridge-validation-gate.json <<'JSON'
+{
+  "schema_version": 1,
+  "overall": "passed",
+  "summary": {
+    "passed": 1,
+    "failed": 0,
+    "human_gate": 0
+  },
+  "checks": [
+    {
+      "name": "synthetic",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "/tmp/artemis-symphony-queue-bridge-validation.log"
+    }
+  ]
+}
+JSON
+cat >/tmp/artemis-symphony-queue-bridge-decision.json <<'JSON'
+{
+  "schema_version": 1,
+  "decision": "approved",
+  "ticket": "TKT-901",
+  "queue_id": "queue-001-tkt-901",
+  "command": "scripts/artemis-dry-run.sh --input /tmp/artemis-symphony-kernel-source.json",
+  "validation_gate": "/tmp/artemis-symphony-queue-bridge-validation-gate.json",
+  "validation_human_gates_acknowledged": true,
+  "decided_by": "ARTEMIS synthetic validation",
+  "reason": "Exact local dry-run command approved for queue execution validation."
+}
+JSON
+scripts/artemis-symphony-queue-bridge.sh --queue /tmp/artemis-symphony-queue/symphony-queue.json --ticket TKT-901 --command "scripts/artemis-dry-run.sh --input /tmp/artemis-symphony-kernel-source.json" --artifact-root /tmp/artemis-symphony-queue-bridge-execute --execute --validation-gate /tmp/artemis-symphony-queue-bridge-validation-gate.json --decision /tmp/artemis-symphony-queue-bridge-decision.json --json >/tmp/artemis-symphony-queue-bridge-execute.json
+if ! grep -q '"overall": "runner_executed"' /tmp/artemis-symphony-queue-bridge-execute.json; then
+  echo "scripts/artemis-symphony-queue-bridge.sh did not report runner_executed with exact approval" >&2
+  exit 1
+fi
+if ! grep -q '"execute_requested": true' /tmp/artemis-symphony-queue-bridge-execute.json; then
+  echo "ARTEMIS Symphony queue bridge did not preserve execute_requested=true" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 1' /tmp/artemis-symphony-queue-bridge-execute.json; then
+  echo "ARTEMIS Symphony queue bridge did not execute the approved synthetic command" >&2
+  exit 1
+fi
+if ! grep -q '"runner_executed": true' /tmp/artemis-symphony-queue-bridge-execute.json; then
+  echo "ARTEMIS Symphony queue bridge did not report runner_executed=true" >&2
+  exit 1
+fi
+if ! grep -q '"validation_gate_passed": true' /tmp/artemis-symphony-queue-bridge-execute.json; then
+  echo "ARTEMIS Symphony queue bridge did not require a passing Validation Gate" >&2
+  exit 1
+fi
+if ! grep -q '"approval_exact": true' /tmp/artemis-symphony-queue-bridge-execute.json; then
+  echo "ARTEMIS Symphony queue bridge did not require exact approval" >&2
+  exit 1
+fi
+if scripts/artemis-symphony-queue-bridge.sh --queue /tmp/artemis-symphony-queue/symphony-queue.json --ticket TKT-901 --command "scripts/artemis-dry-run.sh --input /tmp/artemis-symphony-kernel-source.json" --artifact-root /tmp/artemis-symphony-queue-bridge-execute-blocked --execute --validation-gate /tmp/artemis-symphony-queue-bridge-validation-gate.json --json >/tmp/artemis-symphony-queue-bridge-execute-blocked.json 2>/tmp/artemis-symphony-queue-bridge-execute-blocked.stderr; then
+  echo "ARTEMIS Symphony queue bridge should reject --execute without decision" >&2
+  exit 1
+fi
 if scripts/artemis-symphony-queue-bridge.sh --queue /tmp/artemis-symphony-queue/symphony-queue.json --ticket TKT-999 --command "scripts/artemis-dry-run.sh --input /tmp/artemis-symphony-kernel-source.json" --artifact-root /tmp/artemis-symphony-queue-bridge-missing --json >/tmp/artemis-symphony-queue-bridge-missing.json 2>/tmp/artemis-symphony-queue-bridge-missing.stderr; then
   echo "ARTEMIS Symphony queue bridge should reject missing queue tickets" >&2
   exit 1
@@ -973,6 +1036,14 @@ if ! grep -q "artifacts/artemis-symphony-queue-bridge/run-01/queue-bridge.json" 
 fi
 if ! grep -q "bridge_plan_ready" control-plane/index.html; then
   echo "control-plane/index.html does not show the Symphony queue bridge state" >&2
+  exit 1
+fi
+if ! grep -q "artifacts/artemis-symphony-queue-execution/run-01/queue-bridge.json" control-plane/index.html; then
+  echo "control-plane/index.html does not link the Symphony queue execution artifact" >&2
+  exit 1
+fi
+if ! grep -q "runner_executed" control-plane/index.html; then
+  echo "control-plane/index.html does not show the Symphony queue execution state" >&2
   exit 1
 fi
 

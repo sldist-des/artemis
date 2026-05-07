@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "overall": "passed",
+  "summary": {
+    "passed": 1,
+    "failed": 0,
+    "human_gate": 0
+  },
+  "checks": [
+    {
+      "name": "synthetic_queue_execution",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-symphony-queue-execution/run-01/fixtures/validation.log"
+    }
+  ]
+}

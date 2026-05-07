@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 48
+    "done": 49
   },
   "decisions": [
     {
@@ -439,6 +439,15 @@
       "title": "Queue Bridge plan-only do ARTEMIS Symphony",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-047-artemis-symphony-queue-bridge.md"
+    },
+    {
+      "ticket": "TKT-048",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-048-artemis-symphony-queue-execution.md"
     }
   ]
 }

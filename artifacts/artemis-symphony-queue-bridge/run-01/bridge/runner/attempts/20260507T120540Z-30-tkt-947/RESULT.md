@@ -1,0 +1,7 @@
+# RESULT - TKT-947
+
+- Exit code: 0
+- Command log: artifacts/artemis-symphony-queue-bridge/run-01/bridge/runner/attempts/20260507T120540Z-30-tkt-947/COMMAND.txt
+- Execution cwd: /srv/veri
+- Attempt purpose: run
+- Retry of: none

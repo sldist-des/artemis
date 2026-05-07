@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T20:01:42Z",
+  "generated_at": "2026-05-07T12:05:59Z",
   "source": "scripts/artemis-validation-gate.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-06T20:01:42Z",
+      "generated_at": "2026-05-07T12:05:59Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -92,6 +92,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/symphony_daemon.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/symphony_queue.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/symphony_queue_bridge.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/symphony_queue_execution.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt",
@@ -112,7 +113,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 62,
+          "passed": 63,
           "failed": 0,
           "human_gate": 2
         },
@@ -480,6 +481,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/symphony_queue_bridge.txt"
+          },
+          {
+            "name": "symphony_queue_execution",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/symphony_queue_execution.txt"
           },
           {
             "name": "approved_workspace_cleanup",

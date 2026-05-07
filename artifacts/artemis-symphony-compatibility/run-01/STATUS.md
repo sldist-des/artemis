@@ -14,7 +14,7 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Bridge implemented: `true`.
 - Terminal-first: `true`.
 - Human Gates preserved: `true`.
-- Next cut: `TKT-048 - Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony`.
+- Next cut: `TKT-049 - Servico supervisionado local do ARTEMIS Symphony`.
 
 ## Camadas
 
@@ -90,6 +90,12 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Status: `implemented_plan_only`.
 - Missing files: `0`.
 
+### queue_execution
+
+- Purpose: Opt-in execution from queue after Validation Gate and exact approval decision.
+- Status: `implemented_opt_in`.
+- Missing files: `0`.
+
 ## Invariantes
 
 - OpenAI Symphony is a reference, not a vendored dependency.
@@ -100,5 +106,6 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - The implemented bridge is supervised and plan-only by default.
 - The implemented daemon is finite dry-run and never starts runners automatically.
 - The implemented queue is review-only and never starts bridge or runner automatically.
-- The implemented queue bridge is plan-only and never passes --execute.
+- The implemented queue bridge is plan-only by default.
+- Queue execution requires --execute plus Validation Gate and exact approval artifacts.
 - A long-running supervised service is not implemented yet.

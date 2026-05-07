@@ -6,10 +6,10 @@ ARTEMIS Symphony.
 ## Objetivo
 
 Consumir um item revisado da fila, exigir um comando explicito no terminal e
-chamar o bridge supervisionado em modo plan-only.
+chamar o bridge supervisionado em modo plan-only por padrao.
 
-Este corte nao executa comandos reais. O script nunca passa `--execute` para o
-bridge.
+A partir do TKT-048, o mesmo script aceita `--execute`, mas somente quando
+recebe Validation Gate e decisao aprovada exata.
 
 ## Comando
 
@@ -33,11 +33,14 @@ scripts/artemis-symphony-queue-bridge.sh --ticket TKT-000 --command "cmd" --json
 - o item deve estar em `review_required`;
 - o item deve exigir `terminal_override_required=true`;
 - o comando deve ser fornecido explicitamente pelo terminal;
-- o bridge e chamado sem `--execute`;
-- `execute_requested=false`;
-- `commands_executed=0`;
-- `runner_executed=false`;
-- `validation_gate_required_before_execute=true`.
+- por padrao, o bridge e chamado sem `--execute`;
+- `execute_requested=false` em modo plan-only;
+- `commands_executed=0` em modo plan-only;
+- `runner_executed=false` em modo plan-only;
+- `validation_gate_required_before_execute=true`;
+- `--execute` exige `--validation-gate` e `--decision`;
+- decisao aprovada deve bater exatamente com `ticket`, `queue_id`, `command` e
+  `validation_gate`.
 
 ## Artefatos
 
@@ -52,10 +55,10 @@ scripts/artemis-symphony-queue-bridge.sh --ticket TKT-000 --command "cmd" --json
 
 - A fila nao vira daemon executavel.
 - O bridge continua supervisionado.
-- Execucao real continua bloqueada.
+- Execucao real exige opt-in explicito.
 - Human Gates continuam explicitos.
 - Validation Gate e obrigatorio antes de qualquer execucao real.
 
 ## Proximo corte
 
-`TKT-048 - Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony`
+`TKT-049 - Servico supervisionado local do ARTEMIS Symphony`

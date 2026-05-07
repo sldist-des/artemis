@@ -8,6 +8,8 @@
 - Execute requested: `false`.
 - Commands executed: `0`.
 - Runner executed: `false`.
+- Validation Gate passed: `false`.
+- Approval exact: `false`.
 - Validation Gate required before execute: `true`.
 
 ## Comando

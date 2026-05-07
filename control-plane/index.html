@@ -1517,6 +1517,17 @@
         tags: ["symphony", "queue-bridge", "plan-only"]
       },
       {
+        id: "tkt-048",
+        state: "done",
+        ticket: "TKT-048",
+        title: "Queue Execution opt-in do ARTEMIS Symphony",
+        summary: "Execucao real da fila exige --execute, Validation Gate verde e decisao exata.",
+        owner: "Codex",
+        risk: "high",
+        evidence: "artifacts/artemis-symphony-queue-execution/run-01",
+        tags: ["symphony", "queue-execution", "validation-gate"]
+      },
+      {
         id: "github-auth",
         state: "human",
         ticket: "GIT",
@@ -1692,6 +1703,19 @@
         evidence: { artifact_path: "artifacts/artemis-symphony-queue-bridge/run-01" }
       },
       {
+        event_id: "evt_tkt-048_symphony_queue_execution",
+        event_type: "runner.attempt_completed",
+        generated_at: "2026-05-06T20:18:47Z",
+        producer: { adapter: "local_queue_bridge", name: "scripts/artemis-symphony-queue-bridge.sh", mode: "execute" },
+        subject: {
+          ticket: "TKT-048",
+          title: "Queue Execution opt-in do ARTEMIS Symphony"
+        },
+        state: { from: "review", to: "review", reason: "Queue item executed only after --execute, Validation Gate failed=0, and exact approval decision." },
+        severity: "info",
+        evidence: { artifact_path: "artifacts/artemis-symphony-queue-execution/run-01" }
+      },
+      {
         event_id: "evt_tkt-017_adapter_events",
         event_type: "adapter.events_emitted",
         generated_at: "2026-04-30T19:54:36Z",
@@ -1775,7 +1799,7 @@
           status: "human_gate",
           summary: "Validation Gate passou tecnicamente e preservou Human Gates externos.",
           facts: [
-            ["passed", "62"],
+            ["passed", "63"],
             ["failed", "0"]
           ],
           links: [
@@ -1823,6 +1847,20 @@
             ["status", "../artifacts/artemis-symphony-queue-bridge/run-01/STATUS.md"],
             ["json", "../artifacts/artemis-symphony-queue-bridge/run-01/queue-bridge.json"],
             ["bridge", "../artifacts/artemis-symphony-queue-bridge/run-01/bridge/symphony-bridge.json"]
+          ]
+        },
+        {
+          title: "Q Execute",
+          status: "executed",
+          summary: "runner_executed: --execute usou Validation Gate e decisao exata antes de chamar o bridge.",
+          facts: [
+            ["ticket", "TKT-948"],
+            ["commands", "1"]
+          ],
+          links: [
+            ["status", "../artifacts/artemis-symphony-queue-execution/run-01/STATUS.md"],
+            ["json", "../artifacts/artemis-symphony-queue-execution/run-01/queue-bridge.json"],
+            ["decision", "../artifacts/artemis-symphony-queue-execution/run-01/fixtures/decision.json"]
           ]
         }
       ]

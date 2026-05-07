@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T19:47:07Z",
+  "generated_at": "2026-05-06T20:18:57Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -577,6 +577,18 @@
       "summary": "Queue Bridge gera `bridge_plan_ready` para um item revisado sintetico e falha",
       "exec_pack": "docs/exec-packs/done/TKT-047-artemis-symphony-queue-bridge.md",
       "evidence": "artifacts/artemis-symphony-queue-bridge/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-048",
+      "ticket": "TKT-048",
+      "title": "Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "Queue Bridge gera `runner_executed` apenas para a decisao exata e mantem",
+      "exec_pack": "docs/exec-packs/done/TKT-048-artemis-symphony-queue-execution.md",
+      "evidence": "artifacts/artemis-symphony-queue-execution/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

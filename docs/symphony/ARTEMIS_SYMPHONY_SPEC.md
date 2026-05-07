@@ -374,6 +374,35 @@ Contrato:
 - Human Gates continuam explicitos;
 - execucao real fica reservada para corte posterior com Validation Gate.
 
+### Modo 2.7 - Queue Execution opt-in
+
+Implementado como extensao explicita do Queue Bridge.
+
+- `--execute` e opt-in no terminal;
+- `--validation-gate` e obrigatorio;
+- `--decision` e obrigatorio;
+- Validation Gate deve ter `summary.failed=0`;
+- se Validation Gate estiver em `human_gate`, a decisao deve reconhecer os
+  Human Gates externos;
+- a decisao deve ter `decision=approved`;
+- `ticket`, `queue_id`, `command` e `validation_gate` devem bater exatamente;
+- o bridge recebe `--execute` somente depois dessas validacoes;
+- o runner continua bloqueando comandos remotos, destrutivos e deploys.
+
+Execucao opt-in implementada:
+
+- `scripts/artemis-symphony-queue-bridge.sh --execute`
+- `docs/symphony/ARTEMIS_SYMPHONY_QUEUE_EXECUTION.md`
+
+Contrato:
+
+- modo padrao continua plan-only;
+- `commands_executed=1` so ocorre quando `execute_requested=true`,
+  Validation Gate passa e a decisao e exata;
+- Human Gates continuam explicitos;
+- execucao real nao pode ser disparada por daemon, fila read-only ou Control
+  Plane.
+
 ### Modo 3 - Tracker remoto
 
 Futuro.
@@ -395,13 +424,13 @@ Futuro.
 
 ## Proximo corte recomendado
 
-`TKT-048 - Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony`
+`TKT-049 - Servico supervisionado local do ARTEMIS Symphony`
 
 Objetivo:
 
-- permitir `--execute` apenas como opt-in explicito;
-- exigir Validation Gate verde antes da execucao real;
-- manter comandos remotos, destrutivos e deploys bloqueados;
-- registrar decisao humana e evidencia do runner antes do handoff.
+- transformar os cortes locais em um servico supervisionado finito;
+- preservar terminal override e Human Gates;
+- manter fila, bridge e runner como componentes auditaveis;
+- nao abrir execucao automatica sem politica e gates reais.
 
-Esse sera o setimo passo de implementacao do nosso Symphony proprio.
+Esse sera o oitavo passo de implementacao do nosso Symphony proprio.

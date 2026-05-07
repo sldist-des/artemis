@@ -230,7 +230,7 @@ payload = {
         "Runner execution requires explicit --execute.",
         "Remote, destructive and deployment commands remain blocked by the runner.",
     ],
-    "next_cut": "TKT-048 - Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony",
+    "next_cut": "TKT-049 - Servico supervisionado local do ARTEMIS Symphony",
 }
 
 (artifact_root / "symphony-bridge.json").write_text(
@@ -328,7 +328,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-048 - Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony`.",
+    "- Implementar `TKT-049 - Servico supervisionado local do ARTEMIS Symphony`.",
     "- Consumir item revisado da fila com comando explicito e ponte plan-only por padrao.",
     "",
     "## Nao fazer",

@@ -15,14 +15,17 @@ ARTEMIS Symphony queue bridge esta `bridge_plan_ready`.
 - Bridge planned: `true`.
 - Execute requested: `false`.
 - Commands executed: `0`.
+- Runner executed: `false`.
+- Validation Gate passed: `false`.
+- Approval exact: `false`.
 - Validation Gate required before execute: `true`.
 
 ## Invariantes
 
 - Queue bridge consumes exactly one reviewed queue item.
 - Queue bridge requires an explicit command from the terminal.
-- Queue bridge calls the supervised bridge in plan-only mode.
-- Queue bridge never passes --execute in this cut.
-- Commands executed remain zero until a later explicit execution cut.
+- Queue bridge calls the supervised bridge in plan-only mode by default.
+- Queue bridge only passes --execute when Validation Gate and exact approval artifacts are present.
+- Execution requires exact ticket, queue_id, and command approval.
 - Validation Gate remains required before real execution.
 - Human Gates remain explicit and non-bypassable.

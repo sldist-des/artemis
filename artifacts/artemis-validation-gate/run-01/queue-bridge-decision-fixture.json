@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "decision": "approved",
+  "ticket": "TKT-VALIDATE",
+  "queue_id": "queue-001-tkt-validate",
+  "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json",
+  "validation_gate": "artifacts/artemis-validation-gate/run-01/queue-bridge-validation-gate-fixture.json",
+  "validation_human_gates_acknowledged": true,
+  "decided_by": "ARTEMIS synthetic validation",
+  "reason": "Exact local dry-run command approved for queue execution validation."
+}

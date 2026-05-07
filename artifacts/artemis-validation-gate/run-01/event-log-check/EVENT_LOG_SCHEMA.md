@@ -1,7 +1,7 @@
 # ARTEMIS EVENT LOG SCHEMA
 
 - Schema version: 1
-- Events: 32
+- Events: 33
 - Source: scripts/artemis-event-log.sh
 
 ## Event Types
@@ -31,6 +31,7 @@
 - `validation.completed`: `evt_task_symphony_kernel_idle` -> done
 - `validation.completed`: `evt_task_symphony_queue_completed` -> done
 - `runner.attempt_planned`: `evt_tkt-947_symphony_queue_bridge` -> running
+- `runner.attempt_completed`: `evt_tkt-948_symphony_queue_bridge` -> review
 - `runner.attempt_planned`: `evt_20260504t141956z-2-tkt-023_planned` -> running
 - `runner.attempt_started`: `evt_20260504t141956z-2-tkt-023_started` -> running
 - `runner.attempt_completed`: `evt_20260504t141956z-2-tkt-023_completed` -> blocked

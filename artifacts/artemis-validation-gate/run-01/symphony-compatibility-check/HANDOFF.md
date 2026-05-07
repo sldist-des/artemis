@@ -6,7 +6,7 @@ ARTEMIS Symphony esta `spec_ready` como especificacao propria. O kernel, a ponte
 
 ## Proximo corte
 
-- Criar `TKT-048 - Execucao real opt-in com Validation Gate da fila ARTEMIS Symphony`.
+- Criar `TKT-049 - Servico supervisionado local do ARTEMIS Symphony`.
 - Consumir item revisado com comando explicito e ponte plan-only por padrao.
 - Manter Validation Gate antes de qualquer execucao real.
 

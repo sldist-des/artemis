@@ -22,6 +22,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 - `artemis-github-operating-model.md`
 - `docs/symphony/ARTEMIS_SYMPHONY_PROJECT_GRAPH.md`
 - `docs/symphony/ARTEMIS_SYMPHONY_PROJECT_GRAPH_VIEW.md`
+- `docs/symphony/ARTEMIS_SYMPHONY_PROJECT_BRIEF.md`
 - Exec Pack ativo em `docs/exec-packs/active/`
 
 ## Comandos canonicos

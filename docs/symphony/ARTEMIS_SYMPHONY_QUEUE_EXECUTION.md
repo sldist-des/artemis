@@ -68,4 +68,4 @@ A decisao deve seguir este formato minimo:
 
 ## Proximo corte
 
-`TKT-056 - Human-readable Project Brief do ARTEMIS Symphony`
+`TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`

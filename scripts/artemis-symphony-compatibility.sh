@@ -203,6 +203,12 @@ layers = [
         "required_files": ["scripts/artemis-project-graph-view.sh", "docs/symphony/ARTEMIS_SYMPHONY_PROJECT_GRAPH_VIEW.md"],
         "status": "implemented_observational_view",
     },
+    {
+        "layer": "project_brief",
+        "purpose": "Human-readable explanation layer derived from the Project Operations Graph.",
+        "required_files": ["scripts/artemis-project-brief.sh", "docs/symphony/ARTEMIS_SYMPHONY_PROJECT_BRIEF.md"],
+        "status": "implemented_human_readable_brief",
+    },
 ]
 
 for layer in layers:
@@ -227,6 +233,7 @@ required_terms = [
     "TKT-054",
     "TKT-055",
     "TKT-056",
+    "TKT-057",
     "Queue Bridge",
     "Queue Execution",
     "Service",
@@ -236,6 +243,7 @@ required_terms = [
     "Memory Zone",
     "Project Operations Graph",
     "Project Graph View",
+    "Project Brief",
 ]
 missing_terms = [term for term in required_terms if term not in spec_text]
 if missing_terms:
@@ -273,9 +281,10 @@ compatibility = {
     "memory_zone_implemented": True,
     "project_graph_implemented": True,
     "project_graph_view_implemented": True,
+    "project_brief_implemented": True,
     "terminal_first": True,
     "human_gates_preserved": True,
-    "next_cut": "TKT-056 - Human-readable Project Brief do ARTEMIS Symphony",
+    "next_cut": "TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony",
 }
 
 overall = "failed" if blockers else "spec_ready"
@@ -306,7 +315,8 @@ payload = {
         "memory_zone_implemented": exists("scripts/artemis-memory-zone.sh"),
         "project_graph_implemented": exists("scripts/artemis-project-graph.sh"),
         "project_graph_view_implemented": exists("scripts/artemis-project-graph-view.sh"),
-        "next_cut_defined": "TKT-056" in spec_text,
+        "project_brief_implemented": exists("scripts/artemis-project-brief.sh"),
+        "next_cut_defined": "TKT-057" in spec_text,
     },
     "compatibility": compatibility,
     "layers": layers,
@@ -329,6 +339,7 @@ payload = {
         "The implemented Memory Zone is a context contract and does not install indexer dependencies.",
         "The implemented Project Operations Graph is a read model and never becomes execution authority.",
         "The implemented Project Graph View is observational and never becomes canonical state.",
+        "The implemented Project Brief is explanatory and never becomes canonical state.",
     ],
 }
 
@@ -359,6 +370,7 @@ status_lines = [
     f"- Memory Zone implemented: `{str(compatibility['memory_zone_implemented']).lower()}`.",
     f"- Project Graph implemented: `{str(compatibility['project_graph_implemented']).lower()}`.",
     f"- Project Graph View implemented: `{str(compatibility['project_graph_view_implemented']).lower()}`.",
+    f"- Project Brief implemented: `{str(compatibility['project_brief_implemented']).lower()}`.",
     f"- Terminal-first: `{str(compatibility['terminal_first']).lower()}`.",
     f"- Human Gates preserved: `{str(compatibility['human_gates_preserved']).lower()}`.",
     f"- Next cut: `{compatibility['next_cut']}`.",
@@ -417,12 +429,12 @@ handoff_lines = [
     "",
     "## Estado",
     "",
-    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel, a promocao local por decisao, a Memory Zone, o Project Operations Graph e o Project Graph View existem.",
+    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel, a promocao local por decisao, a Memory Zone, o Project Operations Graph, o Project Graph View e o Project Brief existem.",
     "",
     "## Proximo corte",
     "",
-    "- Criar `TKT-056 - Human-readable Project Brief do ARTEMIS Symphony`.",
-    "- Transformar o grafo em brief leigo e acionavel.",
+    "- Criar `TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`.",
+    "- Usar o brief leigo como entrada para colaboracao guiada.",
     "- Manter Validation Gate antes de qualquer execucao real.",
     "",
     "## Nao fazer",

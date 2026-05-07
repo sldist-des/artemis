@@ -6,7 +6,7 @@ Fonte remota supervisionada esta `remote_source_ready`. Ela gera intake e eviden
 
 ## Proximo corte
 
-- Implementar `TKT-056 - Human-readable Project Brief do ARTEMIS Symphony`.
+- Implementar `TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`.
 - Revisar itens remotos antes de promover para fila/service.
 - Exigir Exec Pack local e decisao humana quando houver escrita remota, PR, merge ou deploy.
 

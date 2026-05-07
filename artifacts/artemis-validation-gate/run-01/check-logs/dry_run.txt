@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 56
+    "done": 57
   },
   "decisions": [
     {
@@ -511,6 +511,15 @@
       "title": "Project Graph View do ARTEMIS Symphony",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-055-artemis-project-graph-view.md"
+    },
+    {
+      "ticket": "TKT-056",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Human-readable Project Brief do ARTEMIS Symphony",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-056-artemis-project-brief.md"
     }
   ]
 }

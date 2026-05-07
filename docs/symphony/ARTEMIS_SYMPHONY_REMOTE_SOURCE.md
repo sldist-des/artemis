@@ -59,4 +59,4 @@ scripts/artemis-symphony-remote-source.sh \
 
 ## Proximo Corte
 
-`TKT-056 - Human-readable Project Brief do ARTEMIS Symphony`
+`TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`

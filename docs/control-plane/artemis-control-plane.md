@@ -130,6 +130,7 @@ It exposes:
 - Memory Zone evidence from `artifacts/artemis-memory-zone/run-01/`;
 - Project Operations Graph evidence from `artifacts/artemis-project-graph/run-01/`;
 - Project Graph View evidence from `artifacts/artemis-project-graph-view/run-01/`;
+- Project Brief evidence from `artifacts/artemis-project-brief/run-01/`;
 - Validation Gate evidence from `artifacts/artemis-validation-gate/run-01/`.
 
-This section is intentionally observational. It links to artifacts and summarizes facts such as `runner_plan_ready`, `bridge_plan_ready`, `runner_executed`, `remote_source_ready`, `remote_intake_ready`, `remote_promotion_ready`, `memory_zone_ready`, `project_graph_ready`, `project_graph_view_ready`, `execute=false`, `execute=true` and command counts, but it does not create tasks, execute runners, approve Human Gates, or become canonical state.
+This section is intentionally observational. It links to artifacts and summarizes facts such as `runner_plan_ready`, `bridge_plan_ready`, `runner_executed`, `remote_source_ready`, `remote_intake_ready`, `remote_promotion_ready`, `memory_zone_ready`, `project_graph_ready`, `project_graph_view_ready`, `human_project_brief_ready`, `execute=false`, `execute=true` and command counts, but it does not create tasks, execute runners, approve Human Gates, or become canonical state.

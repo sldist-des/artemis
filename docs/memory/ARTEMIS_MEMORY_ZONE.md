@@ -114,4 +114,4 @@ O Control Plane operacional deve usar a Memory Zone para responder:
 
 ## Proximo corte
 
-`TKT-056 - Human-readable Project Brief do ARTEMIS Symphony`
+`TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`

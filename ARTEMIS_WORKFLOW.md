@@ -413,6 +413,8 @@ scripts/artemis-project-graph.sh
 scripts/artemis-project-graph.sh --json
 scripts/artemis-project-graph-view.sh
 scripts/artemis-project-graph-view.sh --json
+scripts/artemis-project-brief.sh
+scripts/artemis-project-brief.sh --json
 ```
 
 Esse grafo e um read model operacional. Ele ajuda humanos e agentes a entenderem
@@ -420,6 +422,8 @@ estado, bloqueios, responsaveis, contexto seguro e custos, mas nao executa
 agentes, nao aprova gates e nao substitui Git, Exec Packs, artifacts ou Event Log.
 O Project Graph View e a leitura visual desse grafo no Control Plane; tambem e
 observacional e nao muda autoridade, runtime ou fonte de verdade.
+O Project Brief e a traducao leiga e acionavel do mesmo grafo; ele ajuda pessoas
+a colaborar sem conhecer todos os artifacts, mas tambem nao vira fonte canonica.
 
 Codex app-server e fonte futura de eventos ricos, nao substitui controle terminal-first:
 

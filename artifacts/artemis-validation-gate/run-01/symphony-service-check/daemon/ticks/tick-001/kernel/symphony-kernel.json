@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T14:55:44Z",
+  "generated_at": "2026-05-07T16:50:45Z",
   "source": "scripts/artemis-symphony-kernel.sh",
   "mode": "read_only",
   "overall": "dispatch_plan_ready",
@@ -51,5 +51,5 @@
     "Human Gates are copied into the plan and never bypassed.",
     "Terminal override remains required for any future supervised execution."
   ],
-  "next_cut": "TKT-056 - Human-readable Project Brief do ARTEMIS Symphony"
+  "next_cut": "TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony"
 }

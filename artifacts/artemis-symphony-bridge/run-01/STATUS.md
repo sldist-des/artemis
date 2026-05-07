@@ -9,7 +9,7 @@ ARTEMIS Symphony Bridge esta `runner_plan_ready`.
 - Task source: `artifacts/artemis-symphony-bridge/run-01/task-source.json`.
 - Ticket: `TKT-903`.
 - Kernel: `artifacts/artemis-symphony-bridge/run-01/kernel/symphony-kernel.json`.
-- Runner attempt: `artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T145423Z-26-tkt-903`.
+- Runner attempt: `artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T164614Z-26-tkt-903`.
 - Execute requested: `false`.
 - Commands executed: `0`.
 - Automatic daemon: `false`.

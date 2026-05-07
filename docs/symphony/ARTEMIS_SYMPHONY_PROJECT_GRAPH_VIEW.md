@@ -42,6 +42,6 @@ scripts/validate-artemis.sh
 
 ## Handoff
 
-O proximo corte recomendado e `TKT-056 - Human-readable Project Brief do ARTEMIS
-Symphony`, transformando o mesmo grafo em explicacao leiga e acionavel para
-pessoas que colaboram no projeto sem conhecer todos os artifacts.
+O proximo corte recomendado e `TKT-057 - Guided Human Collaboration Mode do
+ARTEMIS Symphony`, usando o briefing humano como entrada para colaboradores
+escolherem projeto, tarefa e agente com limites visiveis.

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T14:55:45Z",
+  "generated_at": "2026-05-07T16:50:46Z",
   "source": "scripts/artemis-project-graph-view.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T14:55:45Z",
+      "generated_at": "2026-05-07T16:50:46Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -51,7 +51,7 @@
           "edges_rendered": 12,
           "questions_rendered": 3,
           "invariants_rendered": 3,
-          "validation_passed": 75,
+          "validation_passed": 79,
           "human_gates": 2,
           "dependencies_installed": 0,
           "commands_executed": 0,
@@ -59,7 +59,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-056 - Human-readable Project Brief do ARTEMIS Symphony"
+        "next_cut": "TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony"
       }
     }
   ]

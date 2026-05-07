@@ -132,7 +132,7 @@ payload = {
         "No graph database, canvas engine, frontend framework or runtime is introduced.",
         "Human Gates, Validation Gate, Event Log, Exec Packs and git remain authoritative.",
     ],
-    "next_cut": "TKT-056 - Human-readable Project Brief do ARTEMIS Symphony",
+    "next_cut": "TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony",
 }
 
 (artifact_root / "project-graph-view.json").write_text(
@@ -172,7 +172,7 @@ handoff_lines = [
     "",
     "Próximo corte:",
     "",
-    "- Implementar `TKT-056 - Human-readable Project Brief do ARTEMIS Symphony`.",
+    "- Implementar `TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`.",
 ]
 (artifact_root / "HANDOFF.md").write_text("\n".join(handoff_lines) + "\n", encoding="utf-8")
 

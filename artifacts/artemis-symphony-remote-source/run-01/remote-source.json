@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T14:54:02Z",
+  "generated_at": "2026-05-07T16:46:06Z",
   "source": "scripts/artemis-symphony-remote-source.sh",
   "mode": "read_only_supervised_intake",
   "overall": "remote_source_ready",
@@ -89,5 +89,5 @@
       "remote_writes": "human_gate_only"
     }
   },
-  "next_cut": "TKT-056 - Human-readable Project Brief do ARTEMIS Symphony"
+  "next_cut": "TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony"
 }

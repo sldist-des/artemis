@@ -2,12 +2,12 @@
 
 ## Estado
 
-ARTEMIS Symphony esta `spec_ready` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel, a promocao local por decisao, a Memory Zone, o Project Operations Graph e o Project Graph View existem.
+ARTEMIS Symphony esta `spec_ready` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel, a promocao local por decisao, a Memory Zone, o Project Operations Graph, o Project Graph View e o Project Brief existem.
 
 ## Proximo corte
 
-- Criar `TKT-056 - Human-readable Project Brief do ARTEMIS Symphony`.
-- Transformar o grafo em brief leigo e acionavel.
+- Criar `TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`.
+- Usar o brief leigo como entrada para colaboracao guiada.
 - Manter Validation Gate antes de qualquer execucao real.
 
 ## Nao fazer

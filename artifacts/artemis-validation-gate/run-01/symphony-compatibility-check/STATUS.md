@@ -19,9 +19,10 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Memory Zone implemented: `true`.
 - Project Graph implemented: `true`.
 - Project Graph View implemented: `true`.
+- Project Brief implemented: `true`.
 - Terminal-first: `true`.
 - Human Gates preserved: `true`.
-- Next cut: `TKT-056 - Human-readable Project Brief do ARTEMIS Symphony`.
+- Next cut: `TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`.
 
 ## Camadas
 
@@ -145,6 +146,12 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Status: `implemented_observational_view`.
 - Missing files: `0`.
 
+### project_brief
+
+- Purpose: Human-readable explanation layer derived from the Project Operations Graph.
+- Status: `implemented_human_readable_brief`.
+- Missing files: `0`.
+
 ## Invariantes
 
 - OpenAI Symphony is a reference, not a vendored dependency.
@@ -164,3 +171,4 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - The implemented Memory Zone is a context contract and does not install indexer dependencies.
 - The implemented Project Operations Graph is a read model and never becomes execution authority.
 - The implemented Project Graph View is observational and never becomes canonical state.
+- The implemented Project Brief is explanatory and never becomes canonical state.

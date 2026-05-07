@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T14:53:31Z",
+  "generated_at": "2026-05-07T16:44:56Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -673,6 +673,18 @@
       "summary": "O Control Plane deve mostrar metricas, nos, relacoes, perguntas operacionais e",
       "exec_pack": "docs/exec-packs/done/TKT-055-artemis-project-graph-view.md",
       "evidence": "artifacts/artemis-project-graph-view/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-056",
+      "ticket": "TKT-056",
+      "title": "Human-readable Project Brief do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "Transformar o Project Operations Graph em um briefing humano, simples e",
+      "exec_pack": "docs/exec-packs/done/TKT-056-artemis-project-brief.md",
+      "evidence": "docs/exec-packs/done/TKT-056-artemis-project-brief.md",
       "tags": ["exec-pack", "done"]
     }
   ]

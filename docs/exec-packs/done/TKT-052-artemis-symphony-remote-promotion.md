@@ -43,6 +43,6 @@ git diff --check
 
 ## Handoff
 
-O proximo corte e `TKT-056 - Human-readable Project Brief do ARTEMIS Symphony`,
+O proximo corte e `TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`,
 mantendo tarefas, agentes, dependencias, gates, validacoes, custos, memoria e
 artefatos como grafo operacional auditavel.

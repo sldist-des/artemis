@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T16:50:46Z",
+  "source": "scripts/artemis-project-brief.sh",
+  "mode": "read_only_human_project_brief",
+  "overall": "human_project_brief_ready",
+  "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
+  "artifact_root": "artifacts/artemis-validation-gate/run-01/project-brief-check",
+  "inputs": {
+    "project_graph": "artifacts/artemis-project-graph/run-01/project-graph.json",
+    "project_graph_view": "artifacts/artemis-project-graph-view/run-01/project-graph-view.json",
+    "control_plane": "control-plane/index.html"
+  },
+  "audience": [
+    "human_collaborator",
+    "project_owner",
+    "codex",
+    "claude_code"
+  ],
+  "summary": {
+    "tasks_total": 57,
+    "tasks_done": 57,
+    "events_total": 43,
+    "nodes_total": 10,
+    "edges_total": 12,
+    "validation_passed": 79,
+    "validation_failed": 0,
+    "human_gates": 2,
+    "memory_zones": 3,
+    "dependencies_installed": 0,
+    "commands_executed": 0,
+    "runtime_started": false,
+    "remote_writes_allowed": false,
+    "source_of_truth_changed": false
+  },
+  "brief": {
+    "headline": "ARTEMIS Symphony em linguagem de projeto",
+    "status": "O ARTEMIS Symphony esta pronto como sistema local supervisionado: ele organiza tarefas, evidencia, validacao, memoria e limites antes de qualquer execucao automatica.",
+    "ready": [
+      "57 de 57 Exec Packs estao concluidos e versionados.",
+      "O Validation Gate registra 79 checks aprovados e 0 falhas tecnicas.",
+      "O Project Graph conecta 10 nos e 12 relacoes entre tarefas, agentes, gates, memoria, custos e evidencias.",
+      "A Memory Zone tem 3 zonas para contexto humano-AI versionado em Git."
+    ],
+    "human_attention": [
+      "Existem 2 Human Gates ativos. Eles nao sao erro: sao pontos onde uma pessoa precisa decidir antes de rede, auth, custo, escrita remota ou cleanup real.",
+      "O painel ajuda a entender o estado, mas nao aprova nem executa trabalho sensivel sozinho.",
+      "Qualquer mudanca com producao, secrets, auth, push remoto, custo ou cleanup real continua passando por decisao humana explicita."
+    ],
+    "next_actions": [
+      "Usar este briefing como porta de entrada para pessoas que nao conhecem todos os artifacts.",
+      "Explicar cada tarefa futura em termos de objetivo, risco, evidencia esperada e decisao humana necessaria.",
+      "Criar o proximo modo de colaboracao guiada para humanos escolherem projetos, tarefas e agentes sem perder controle terminal-first."
+    ],
+    "how_to_collaborate": [
+      "Leia o briefing primeiro para entender o estado geral.",
+      "Abra o Project Graph quando precisar ver relacoes tecnicas.",
+      "Abra Exec Packs e artifacts quando precisar auditar a evidencia.",
+      "Autorize apenas acoes concretas, reversiveis e bem delimitadas."
+    ],
+    "limits": [
+      "O briefing e explicacao, nao fonte de verdade.",
+      "Git, Exec Packs, Event Log, Validation Gate e artifacts continuam canonicos.",
+      "Nenhum agente, runner, bridge, fila, indexador ou banco e iniciado por este corte.",
+      "Budget, tokens, auth e escrita remota precisam ser explicitos antes de runtime real."
+    ]
+  },
+  "missing_tokens": [],
+  "missing_files": [],
+  "required_tokens": [
+    "project-brief-section",
+    "project-brief-status",
+    "project-brief-metrics",
+    "project-brief-ready",
+    "project-brief-human",
+    "project-brief-next",
+    "projectBriefSourceUrl",
+    "renderProjectBrief",
+    "loadProjectBriefSource"
+  ],
+  "next_cut": "TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony"
+}

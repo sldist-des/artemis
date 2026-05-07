@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T16:45:43Z",
+  "source": "scripts/artemis-project-brief.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-056_project_brief",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-07T16:45:43Z",
+      "producer": {
+        "adapter": "project_brief",
+        "name": "scripts/artemis-project-brief.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-056",
+        "task_id": "tkt-056",
+        "title": "Human-readable Project Brief do ARTEMIS Symphony",
+        "exec_pack": "docs/exec-packs/done/TKT-056-artemis-project-brief.md",
+        "artifact_root": "artifacts/artemis-project-brief/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "done",
+        "reason": "Human-readable Project Brief was derived from the Project Operations Graph."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-project-brief/run-01",
+        "status_path": "artifacts/artemis-project-brief/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-project-brief/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-project-brief/run-01/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-056"
+      },
+      "payload": {
+        "overall": "human_project_brief_ready",
+        "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
+        "summary": {
+          "tasks_total": 57,
+          "tasks_done": 57,
+          "events_total": 43,
+          "nodes_total": 10,
+          "edges_total": 12,
+          "validation_passed": 79,
+          "validation_failed": 0,
+          "human_gates": 2,
+          "memory_zones": 3,
+          "dependencies_installed": 0,
+          "commands_executed": 0,
+          "runtime_started": false,
+          "remote_writes_allowed": false,
+          "source_of_truth_changed": false
+        },
+        "next_cut": "TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony"
+      }
+    }
+  ]
+}

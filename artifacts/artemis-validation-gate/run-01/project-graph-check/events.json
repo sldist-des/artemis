@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T14:55:45Z",
+  "generated_at": "2026-05-07T16:50:46Z",
   "source": "scripts/artemis-project-graph.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T14:55:45Z",
+      "generated_at": "2026-05-07T16:50:46Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -47,17 +47,17 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 56,
-          "tasks_done": 56,
+          "tasks_total": 57,
+          "tasks_done": 57,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 7,
-          "events_total": 42,
+          "events_total": 43,
           "nodes_total": 10,
           "edges_total": 12,
-          "evidence_count": 56,
-          "exec_pack_count": 56,
-          "validation_passed": 75,
+          "evidence_count": 57,
+          "exec_pack_count": 57,
+          "validation_passed": 79,
           "validation_failed": 0,
           "validation_human_gate": 2,
           "memory_zones": 3,
@@ -68,7 +68,7 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-056 - Human-readable Project Brief do ARTEMIS Symphony"
+        "next_cut": "TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony"
       }
     }
   ]

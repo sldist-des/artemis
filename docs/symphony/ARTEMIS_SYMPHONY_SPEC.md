@@ -598,6 +598,31 @@ Contrato:
 - qualquer interatividade futura que envolva runtime, auth, rede, custo ou
   escrita precisa passar por Human Gate.
 
+### Modo 3.6 - Project Brief
+
+Implementado em `TKT-056` como explicacao humana e acionavel do Project
+Operations Graph.
+
+- traduz o grafo para linguagem simples;
+- mostra o que esta pronto, onde ha Human Gate e qual proxima acao faz sentido;
+- serve como porta de entrada para pessoas que nao conhecem todos os artifacts;
+- consome `artifacts/artemis-project-graph/run-01/project-graph.json`;
+- consome `artifacts/artemis-project-graph-view/run-01/project-graph-view.json`;
+- nao inicia runtime, runner, bridge, fila, agente, banco de grafo ou servidor;
+- nao torna o briefing nem o Control Plane canonicos.
+
+Project Brief implementado:
+
+- `scripts/artemis-project-brief.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_PROJECT_BRIEF.md`
+
+Contrato:
+
+- Project Brief e explicacao, nao fonte de verdade;
+- Git, Exec Packs, Event Log, Validation Gate e artifacts continuam canonicos;
+- qualquer modo guiado futuro precisa preservar terminal-first, budget gates e
+  Human Gates.
+
 ## Invariantes
 
 - ARTEMIS Symphony nao executa cleanup real sem decisao humana.
@@ -610,13 +635,13 @@ Contrato:
 
 ## Proximo corte recomendado
 
-`TKT-056 - Human-readable Project Brief do ARTEMIS Symphony`
+`TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`
 
 Objetivo:
 
-- transformar o Project Operations Graph em explicacao leiga e acionavel;
-- mostrar o que esta pronto, o que depende de humano e qual proxima acao;
-- permitir que pessoas nao tecnicas colaborem sem conhecer todos os artifacts;
+- criar uma entrada guiada para pessoas escolherem projeto, tarefa e agente;
+- mostrar objetivo, risco, custo, gate e evidencia esperada antes de agir;
+- manter comando terminal-first como trilha auditavel;
 - preservar terminal-first, Human Gates, Validation Gate e budget gates.
 
-Esse sera o decimo quinto passo de implementacao do nosso Symphony proprio.
+Esse sera o decimo sexto passo de implementacao do nosso Symphony proprio.

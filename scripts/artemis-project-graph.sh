@@ -304,7 +304,7 @@ payload = {
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },
-    "next_cut": "TKT-056 - Human-readable Project Brief do ARTEMIS Symphony",
+    "next_cut": "TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony",
 }
 
 write_text(artifact_root / "project-graph.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
@@ -386,7 +386,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-056 - Human-readable Project Brief do ARTEMIS Symphony`.",
+    "- Implementar `TKT-057 - Guided Human Collaboration Mode do ARTEMIS Symphony`.",
     "- Renderizar relacoes do grafo no Control Plane com linguagem operacional e leiga.",
     "",
     "## Nao fazer",

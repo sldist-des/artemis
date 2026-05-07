@@ -839,6 +839,136 @@
       overflow-wrap: anywhere;
     }
 
+    .project-brief-section {
+      border-bottom: 2px solid var(--ink);
+      margin: -4px 0 18px;
+      padding: 0 0 16px;
+      display: grid;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .project-brief-header {
+      display: grid;
+      grid-template-columns: minmax(260px, .5fr) minmax(0, 1fr);
+      gap: 16px;
+      align-items: end;
+      min-width: 0;
+    }
+
+    .project-brief-header h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .project-brief-header p,
+    .project-brief-status {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .project-brief-status {
+      text-align: right;
+    }
+
+    .brief-layout {
+      display: grid;
+      grid-template-columns: minmax(300px, .7fr) minmax(360px, 1fr);
+      gap: 12px;
+      align-items: stretch;
+      min-width: 0;
+    }
+
+    .brief-main,
+    .brief-list {
+      border: 1px solid var(--ink);
+      background: var(--panel);
+      padding: 12px;
+      min-width: 0;
+    }
+
+    .brief-main {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .brief-main strong {
+      font-family: var(--font-display);
+      font-size: 22px;
+      line-height: 1.08;
+      overflow-wrap: anywhere;
+    }
+
+    .brief-main p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.42;
+      overflow-wrap: anywhere;
+    }
+
+    .brief-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .brief-metric {
+      border-top: 1px solid var(--line);
+      padding-top: 7px;
+      min-width: 0;
+    }
+
+    .brief-metric b {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .brief-metric span {
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .brief-columns {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brief-list {
+      display: grid;
+      gap: 8px;
+      align-content: start;
+    }
+
+    .brief-list h3 {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.15;
+    }
+
+    .brief-item {
+      border-top: 1px solid var(--line);
+      padding-top: 7px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
     .card {
       border: 1px solid var(--ink);
       background: var(--panel);
@@ -991,11 +1121,15 @@
       }
 
       .project-graph-header,
-      .graph-body {
+      .graph-body,
+      .project-brief-header,
+      .brief-layout,
+      .brief-columns {
         grid-template-columns: 1fr;
       }
 
-      .project-graph-status {
+      .project-graph-status,
+      .project-brief-status {
         text-align: left;
       }
 
@@ -1085,6 +1219,8 @@
       .gate-stats,
       .graph-metrics,
       .graph-map,
+      .brief-metrics,
+      .brief-columns,
       .symphony-grid,
       .gate-row {
         grid-template-columns: 1fr;
@@ -1166,6 +1302,37 @@
       </div>
     </section>
 
+    <section class="project-brief-section" aria-labelledby="project-brief-title">
+      <header class="project-brief-header">
+        <div>
+          <h2 id="project-brief-title">Project Brief</h2>
+          <p>Leitura humana do mesmo grafo: estado, proximas acoes, Human Gates e limites para colaborar sem conhecer todos os artifacts.</p>
+        </div>
+        <p id="project-brief-status" class="project-brief-status">Fonte: seed do briefing.</p>
+      </header>
+      <div class="brief-layout">
+        <article class="brief-main">
+          <strong id="project-brief-headline">ARTEMIS Symphony em linguagem de projeto</strong>
+          <p id="project-brief-summary">O briefing traduz o estado tecnico em orientacao simples para humanos e agentes.</p>
+          <div id="project-brief-metrics" class="brief-metrics" aria-label="Metricas do briefing"></div>
+        </article>
+        <div class="brief-columns" aria-label="Resumo humano do ARTEMIS Symphony">
+          <section class="brief-list">
+            <h3>Pronto</h3>
+            <div id="project-brief-ready"></div>
+          </section>
+          <section class="brief-list">
+            <h3>Humano</h3>
+            <div id="project-brief-human"></div>
+          </section>
+          <section class="brief-list">
+            <h3>Proximo</h3>
+            <div id="project-brief-next"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
     <section class="decision-gate" aria-labelledby="decision-gate-title">
       <header>
         <h2 id="decision-gate-title">Human Gate cleanup</h2>
@@ -1204,6 +1371,7 @@
     const taskSourceUrl = "tasks.json";
     const eventSourceUrl = "../artifacts/artemis-event-log-schema/run-01/event-log.example.json";
     const projectGraphSourceUrl = "../artifacts/artemis-project-graph/run-01/project-graph.json";
+    const projectBriefSourceUrl = "../artifacts/artemis-project-brief/run-01/project-brief.json";
 
     const columns = [
       { id: "intake", title: "Intake", help: "Ideia ou pedido bruto. Ainda nao tem contrato." },
@@ -1822,6 +1990,28 @@
         tags: ["symphony", "project-graph", "context"]
       },
       {
+        id: "tkt-055",
+        state: "done",
+        ticket: "TKT-055",
+        title: "Project Graph View do ARTEMIS Symphony",
+        summary: "Control Plane renderiza o grafo como leitura observacional sem runtime ou dependencia nova.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "artifacts/artemis-project-graph-view/run-01",
+        tags: ["symphony", "project-graph", "control-plane"]
+      },
+      {
+        id: "tkt-056",
+        state: "done",
+        ticket: "TKT-056",
+        title: "Human-readable Project Brief do ARTEMIS Symphony",
+        summary: "Briefing traduz o grafo para linguagem simples, acionavel e segura para colaboradores humanos.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "artifacts/artemis-project-brief/run-01",
+        tags: ["symphony", "project-brief", "human-readable"]
+      },
+      {
         id: "github-auth",
         state: "human",
         ticket: "GIT",
@@ -2101,6 +2291,19 @@
         evidence: { artifact_path: "artifacts/artemis-project-graph-view/run-01" }
       },
       {
+        event_id: "evt_tkt-056_project_brief",
+        event_type: "adapter.contract_recorded",
+        generated_at: "2026-05-07T17:35:00Z",
+        producer: { adapter: "project_brief", name: "scripts/artemis-project-brief.sh", mode: "read_only" },
+        subject: {
+          ticket: "TKT-056",
+          title: "Human-readable Project Brief do ARTEMIS Symphony"
+        },
+        state: { from: "planned", to: "done", reason: "Project Brief translates the graph into plain-language collaboration context." },
+        severity: "info",
+        evidence: { artifact_path: "artifacts/artemis-project-brief/run-01" }
+      },
+      {
         event_id: "evt_tkt-017_adapter_events",
         event_type: "adapter.events_emitted",
         generated_at: "2026-04-30T19:54:36Z",
@@ -2141,6 +2344,13 @@
     const projectGraphMapNode = document.querySelector("#project-graph-map");
     const projectGraphRelationsNode = document.querySelector("#project-graph-relations");
     const projectGraphBriefNode = document.querySelector("#project-graph-brief");
+    const projectBriefStatusNode = document.querySelector("#project-brief-status");
+    const projectBriefHeadlineNode = document.querySelector("#project-brief-headline");
+    const projectBriefSummaryNode = document.querySelector("#project-brief-summary");
+    const projectBriefMetricsNode = document.querySelector("#project-brief-metrics");
+    const projectBriefReadyNode = document.querySelector("#project-brief-ready");
+    const projectBriefHumanNode = document.querySelector("#project-brief-human");
+    const projectBriefNextNode = document.querySelector("#project-brief-next");
 
     const symphonyEvidence = {
       summary: "Kernel, bridge, runner, daemon dry-run e fila publicados como evidencia local. Exec Packs e artifacts continuam canonicos.",
@@ -2180,8 +2390,8 @@
             ["commands", "0"]
           ],
           links: [
-            ["attempt", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T145423Z-26-tkt-903/RUNNER.md"],
-            ["events", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T145423Z-26-tkt-903/events.json"]
+            ["attempt", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T164614Z-26-tkt-903/RUNNER.md"],
+            ["events", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T164614Z-26-tkt-903/events.json"]
           ]
         },
         {
@@ -2189,7 +2399,7 @@
           status: "human_gate",
           summary: "Validation Gate passou tecnicamente e preservou Human Gates externos.",
           facts: [
-            ["passed", "77"],
+            ["passed", "79"],
             ["failed", "0"]
           ],
           links: [
@@ -2350,6 +2560,20 @@
             ["json", "../artifacts/artemis-project-graph-view/run-01/project-graph-view.json"],
             ["doc", "../docs/symphony/ARTEMIS_SYMPHONY_PROJECT_GRAPH_VIEW.md"]
           ]
+        },
+        {
+          title: "Brief",
+          status: "human_project_brief_ready",
+          summary: "human_project_brief_ready: o grafo foi traduzido em briefing leigo para colaboracao humana.",
+          facts: [
+            ["human", "yes"],
+            ["runtime", "0"]
+          ],
+          links: [
+            ["status", "../artifacts/artemis-project-brief/run-01/STATUS.md"],
+            ["json", "../artifacts/artemis-project-brief/run-01/project-brief.json"],
+            ["brief", "../artifacts/artemis-project-brief/run-01/PROJECT_BRIEF.md"]
+          ]
         }
       ]
     };
@@ -2358,12 +2582,12 @@
       source: "seed",
       overall: "project_graph_ready",
       summary: {
-        tasks_total: 56,
-        tasks_done: 56,
-        events_total: 42,
+        tasks_total: 57,
+        tasks_done: 57,
+        events_total: 43,
         nodes_total: 10,
         edges_total: 12,
-        validation_passed: 77,
+        validation_passed: 79,
         validation_human_gate: 2,
         memory_zones: 3,
         dependencies_installed: 0,
@@ -2371,12 +2595,12 @@
       },
       nodes: [
         { id: "project:artemis", type: "project", label: "ARTEMIS", status: "operational" },
-        { id: "task_set:exec_packs", type: "task_set", label: "Exec Packs", count: 56, done: 56 },
+        { id: "task_set:exec_packs", type: "task_set", label: "Exec Packs", count: 57, done: 57 },
         { id: "agent_roles:owners", type: "agent_roles", label: "Owners and agent roles", count: 7 },
         { id: "gate:human", type: "gate", label: "Human Gates", count: 2 },
-        { id: "validation:gate", type: "validation", label: "Validation Gate", passed: 77, failed: 0 },
+        { id: "validation:gate", type: "validation", label: "Validation Gate", passed: 79, failed: 0 },
         { id: "memory:zone", type: "memory", label: "Human-AI Memory Zone", zones: 3 },
-        { id: "artifact:evidence", type: "artifact_set", label: "Artifacts and evidence", task_evidence: 56 },
+        { id: "artifact:evidence", type: "artifact_set", label: "Artifacts and evidence", task_evidence: 57 },
         { id: "event_log:timeline", type: "event_log", label: "Canonical event timeline", events: 42 },
         { id: "cost:budget", type: "cost_guard", label: "Token and runtime budget", dependencies_installed: 0 },
         { id: "control_plane:view", type: "view", label: "Control Plane", authority: "observational" }
@@ -2405,6 +2629,40 @@
         "Exec Packs, artifacts, event logs and git remain canonical.",
         "Human Gates and Validation Gate remain non-bypassable."
       ]
+    };
+
+    const seedProjectBrief = {
+      source: "seed",
+      overall: "human_project_brief_ready",
+      summary: {
+        tasks_total: 57,
+        tasks_done: 57,
+        validation_passed: 79,
+        validation_failed: 0,
+        human_gates: 2,
+        memory_zones: 3,
+        runtime_started: false,
+        dependencies_installed: 0
+      },
+      brief: {
+        headline: "ARTEMIS Symphony em linguagem de projeto",
+        status: "O ARTEMIS Symphony esta pronto como sistema local supervisionado: ele organiza tarefas, evidencia, validacao, memoria e limites antes de qualquer execucao automatica.",
+        ready: [
+          "57 de 57 Exec Packs estao concluidos e versionados.",
+          "O Validation Gate registra 79 checks aprovados e 0 falhas tecnicas.",
+          "O Project Graph conecta tarefas, agentes, gates, memoria, custos e evidencias."
+        ],
+        human_attention: [
+          "Existem 2 Human Gates ativos para decisoes que exigem pessoa.",
+          "O painel ajuda a entender o estado, mas nao aprova nem executa trabalho sensivel sozinho.",
+          "Producao, secrets, auth, push remoto, custo e cleanup real continuam exigindo decisao explicita."
+        ],
+        next_actions: [
+          "Usar este briefing como porta de entrada para colaboradores humanos.",
+          "Explicar tarefas futuras por objetivo, risco, evidencia esperada e gate.",
+          "Criar o modo de colaboracao guiada sem perder controle terminal-first."
+        ]
+      }
     };
 
     function cloneCards(source) {
@@ -2611,12 +2869,53 @@
       projectGraphBriefNode.innerHTML = `${briefQuestions}${briefInvariants}`;
     }
 
+    function renderBriefItems(target, items) {
+      const source = Array.isArray(items) ? items : [];
+      target.innerHTML = source.slice(0, 4).map((item) => `
+        <div class="brief-item">${escapeHtml(item)}</div>
+      `).join("");
+    }
+
+    function renderProjectBrief(model) {
+      const summary = model.summary || {};
+      const brief = model.brief || {};
+      projectBriefStatusNode.textContent = `Fonte: ${model.source || projectBriefSourceUrl} | ${model.overall || "observed"}`;
+      projectBriefHeadlineNode.textContent = brief.headline || "ARTEMIS Symphony em linguagem de projeto";
+      projectBriefSummaryNode.textContent = brief.status || "Briefing humano derivado do Project Operations Graph.";
+      projectBriefMetricsNode.innerHTML = [
+        ["tasks", `${summary.tasks_done ?? 0}/${summary.tasks_total ?? 0}`],
+        ["validation", `${summary.validation_passed ?? 0}/${summary.validation_failed ?? 0}`],
+        ["human gates", summary.human_gates ?? 0],
+        ["memory", summary.memory_zones ?? 0]
+      ].map(([label, value]) => `
+        <span class="brief-metric">
+          <b>${escapeHtml(value)}</b>
+          <span>${escapeHtml(label)}</span>
+        </span>
+      `).join("");
+      renderBriefItems(projectBriefReadyNode, brief.ready);
+      renderBriefItems(projectBriefHumanNode, brief.human_attention);
+      renderBriefItems(projectBriefNextNode, brief.next_actions);
+    }
+
     async function loadProjectGraphSource() {
       try {
         const response = await fetch(projectGraphSourceUrl, { cache: "no-store" });
         if (!response.ok) return null;
         const payload = await response.json();
         if (!Array.isArray(payload.nodes) || !Array.isArray(payload.edges)) return null;
+        return payload;
+      } catch {
+        return null;
+      }
+    }
+
+    async function loadProjectBriefSource() {
+      try {
+        const response = await fetch(projectBriefSourceUrl, { cache: "no-store" });
+        if (!response.ok) return null;
+        const payload = await response.json();
+        if (!payload.brief || !payload.summary) return null;
         return payload;
       } catch {
         return null;
@@ -2790,8 +3089,11 @@
       cards = cloneCards(initialCards);
       render();
       renderProjectGraph(seedProjectGraph);
+      renderProjectBrief(seedProjectBrief);
       const loadedGraph = await loadProjectGraphSource();
       if (loadedGraph) renderProjectGraph(loadedGraph);
+      const loadedBrief = await loadProjectBriefSource();
+      if (loadedBrief) renderProjectBrief(loadedBrief);
       const loadedEvents = await loadEventSource();
       renderTimeline(loadedEvents || seedEvents);
     }

@@ -6,7 +6,7 @@ Kernel local read-only concluido com overall `dispatch_plan_ready`.
 
 ## Proximo corte
 
-- Implementar `TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony`.
+- Implementar `TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony`.
 - Continuar com ponte plan-only por padrao e comando explicito por terminal.
 
 ## Nao fazer

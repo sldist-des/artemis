@@ -126,6 +126,7 @@ It exposes:
 - Service evidence from `artifacts/artemis-symphony-service/run-01/`;
 - Remote Source evidence from `artifacts/artemis-symphony-remote-source/run-01/`;
 - Remote Intake evidence from `artifacts/artemis-symphony-remote-intake/run-01/`;
+- Remote Promotion evidence from `artifacts/artemis-symphony-promotion/run-01/`;
 - Validation Gate evidence from `artifacts/artemis-validation-gate/run-01/`.
 
-This section is intentionally observational. It links to artifacts and summarizes facts such as `runner_plan_ready`, `bridge_plan_ready`, `runner_executed`, `remote_source_ready`, `remote_intake_ready`, `execute=false`, `execute=true` and command counts, but it does not create tasks, execute runners, approve Human Gates, or become canonical state.
+This section is intentionally observational. It links to artifacts and summarizes facts such as `runner_plan_ready`, `bridge_plan_ready`, `runner_executed`, `remote_source_ready`, `remote_intake_ready`, `remote_promotion_ready`, `execute=false`, `execute=true` and command counts, but it does not create tasks, execute runners, approve Human Gates, or become canonical state.

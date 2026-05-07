@@ -230,7 +230,7 @@ payload = {
         "Runner execution requires explicit --execute.",
         "Remote, destructive and deployment commands remain blocked by the runner.",
     ],
-    "next_cut": "TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony",
+    "next_cut": "TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony",
 }
 
 (artifact_root / "symphony-bridge.json").write_text(
@@ -328,7 +328,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony`.",
+    "- Implementar `TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony`.",
     "- Consumir item revisado da fila com comando explicito e ponte plan-only por padrao.",
     "",
     "## Nao fazer",

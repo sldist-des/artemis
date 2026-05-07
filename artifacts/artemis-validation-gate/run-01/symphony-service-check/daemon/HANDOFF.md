@@ -6,7 +6,7 @@ Daemon dry-run concluido com `1` heartbeat(s) e overall `heartbeat_ready`.
 
 ## Proximo corte
 
-- Implementar `TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony`.
+- Implementar `TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony`.
 - Consumir item revisado da fila com comando explicito e ponte plan-only por padrao.
 
 ## Nao fazer

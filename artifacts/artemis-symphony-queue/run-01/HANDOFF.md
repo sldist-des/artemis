@@ -6,7 +6,7 @@ Fila supervisionada gerada com `0` item(ns) e overall `queue_empty`.
 
 ## Proximo corte
 
-- Implementar `TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony`.
+- Implementar `TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony`.
 - Exigir comando explicito, terminal override e Validation Gate antes de qualquer execucao.
 
 ## Nao fazer

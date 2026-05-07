@@ -8,5 +8,5 @@
 
 ## Proximo corte
 
-- Implementar `TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony`.
+- Implementar `TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony`.
 - Manter `--execute` dependente de Validation Gate e decisao exata.

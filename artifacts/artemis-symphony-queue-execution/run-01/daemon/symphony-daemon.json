@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T12:48:10Z",
+  "generated_at": "2026-05-07T13:03:09Z",
   "source": "scripts/artemis-symphony-daemon.sh",
   "mode": "read_only_daemon_dry_run",
   "overall": "heartbeat_ready",
   "task_source": "artifacts/artemis-symphony-queue-execution/run-01/fixtures/task-source.json",
   "artifact_root": "artifacts/artemis-symphony-queue-execution/run-01/daemon",
-  "started_at": "2026-05-07T12:48:10Z",
-  "completed_at": "2026-05-07T12:48:10Z",
+  "started_at": "2026-05-07T13:03:09Z",
+  "completed_at": "2026-05-07T13:03:09Z",
   "ticks_requested": 1,
   "ticks_completed": 1,
   "interval_seconds": 0,
@@ -27,7 +27,7 @@
     {
       "tick": 1,
       "tick_id": "tick-001",
-      "generated_at": "2026-05-07T12:48:10Z",
+      "generated_at": "2026-05-07T13:03:09Z",
       "kernel_exit_code": 0,
       "kernel": "artifacts/artemis-symphony-queue-execution/run-01/daemon/ticks/tick-001/kernel/symphony-kernel.json",
       "kernel_overall": "dispatch_plan_ready",
@@ -55,5 +55,5 @@
     "Human Gates are observed and reported, never bypassed.",
     "Terminal override remains required for supervised bridge execution."
   ],
-  "next_cut": "TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony"
+  "next_cut": "TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony"
 }

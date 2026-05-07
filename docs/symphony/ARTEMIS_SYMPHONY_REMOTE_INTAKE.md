@@ -49,4 +49,4 @@ scripts/artemis-symphony-remote-intake.sh \
 
 ## Proximo Corte
 
-`TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony`
+`TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony`

@@ -21,6 +21,7 @@ docs/symphony/ARTEMIS_SYMPHONY_QUEUE_EXECUTION.md
 docs/symphony/ARTEMIS_SYMPHONY_SERVICE.md
 docs/symphony/ARTEMIS_SYMPHONY_REMOTE_SOURCE.md
 docs/symphony/ARTEMIS_SYMPHONY_REMOTE_INTAKE.md
+docs/symphony/ARTEMIS_SYMPHONY_REMOTE_PROMOTION.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
 docs/agents/CAPABILITY_REGISTRY.md
@@ -67,6 +68,7 @@ scripts/artemis-symphony-queue-bridge.sh
 scripts/artemis-symphony-service.sh
 scripts/artemis-symphony-remote-source.sh
 scripts/artemis-symphony-remote-intake.sh
+scripts/artemis-symphony-remote-promotion.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -151,6 +153,7 @@ sh -n scripts/artemis-symphony-queue-bridge.sh
 sh -n scripts/artemis-symphony-service.sh
 sh -n scripts/artemis-symphony-remote-source.sh
 sh -n scripts/artemis-symphony-remote-intake.sh
+sh -n scripts/artemis-symphony-remote-promotion.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -1129,6 +1132,85 @@ if ! grep -q '"event_type": "adapter.contract_recorded"' /tmp/artemis-symphony-r
   echo "scripts/artemis-symphony-remote-intake.sh did not emit canonical events" >&2
   exit 1
 fi
+scripts/artemis-symphony-remote-promotion.sh --remote-intake /tmp/artemis-symphony-remote-intake/remote-intake.json --artifact-root /tmp/artemis-symphony-promotion-no-decision --json >/tmp/artemis-symphony-promotion-no-decision.json
+if ! grep -q '"overall": "remote_promotion_human_gate"' /tmp/artemis-symphony-promotion-no-decision.json; then
+  echo "scripts/artemis-symphony-remote-promotion.sh did not keep missing decision in Human Gate" >&2
+  exit 1
+fi
+cat >/tmp/artemis-symphony-promotion-validation-gate.json <<'JSON'
+{
+  "schema_version": 1,
+  "overall": "passed",
+  "summary": {
+    "passed": 1,
+    "failed": 0,
+    "human_gate": 0
+  },
+  "checks": [
+    {
+      "name": "synthetic",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "/tmp/artemis-symphony-promotion-validation-gate.log"
+    }
+  ]
+}
+JSON
+cat >/tmp/artemis-symphony-promotion-decision.json <<'JSON'
+{
+  "schema_version": 1,
+  "decision": "approved",
+  "ticket": "TKT-950",
+  "promote_to": "TKT-950",
+  "title": "Validate supervised source intake",
+  "owner": "Codex",
+  "risk": "low",
+  "exec_pack": "docs/exec-packs/done/TKT-009-local-task-source.md",
+  "evidence": "/tmp/artemis-symphony-promotion/STATUS.md",
+  "command": "scripts/artemis-dry-run.sh --input /tmp/artemis-symphony-promotion/promoted-source.json",
+  "validation_gate": "/tmp/artemis-symphony-promotion-validation-gate.json",
+  "remote_review_acknowledged": true,
+  "terminal_command_acknowledged": true,
+  "validation_gate_required": true,
+  "decided_by": "ARTEMIS synthetic validation",
+  "reason": "Exact local promotion approved for validation."
+}
+JSON
+scripts/artemis-symphony-remote-promotion.sh --remote-intake /tmp/artemis-symphony-remote-intake/remote-intake.json --decision /tmp/artemis-symphony-promotion-decision.json --artifact-root /tmp/artemis-symphony-promotion --json >/tmp/artemis-symphony-promotion.json
+if ! grep -q '"overall": "remote_promotion_ready"' /tmp/artemis-symphony-promotion.json; then
+  echo "scripts/artemis-symphony-remote-promotion.sh did not report remote_promotion_ready for exact decision" >&2
+  exit 1
+fi
+if ! grep -q '"promoted": 1' /tmp/artemis-symphony-promotion.json; then
+  echo "ARTEMIS Symphony remote promotion did not promote the synthetic item" >&2
+  exit 1
+fi
+if ! grep -q '"remote_writes_allowed": false' /tmp/artemis-symphony-promotion.json; then
+  echo "ARTEMIS Symphony remote promotion allowed remote writes" >&2
+  exit 1
+fi
+if ! grep -q '"direct_dispatch_allowed": false' /tmp/artemis-symphony-promotion.json; then
+  echo "ARTEMIS Symphony remote promotion allowed direct dispatch" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-symphony-promotion.json; then
+  echo "ARTEMIS Symphony remote promotion executed commands" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-symphony-promotion/promoted-source.json; then
+  echo "scripts/artemis-symphony-remote-promotion.sh did not write promoted-source.json" >&2
+  exit 1
+fi
+scripts/artemis-dry-run.sh --input /tmp/artemis-symphony-promotion/promoted-source.json --json >/tmp/artemis-symphony-promotion-dry-run.json
+if ! grep -q '"eligible": 1' /tmp/artemis-symphony-promotion-dry-run.json; then
+  echo "remote promotion promoted-source was not eligible as a local task source" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "approval.resolved"' /tmp/artemis-symphony-promotion/events.json; then
+  echo "scripts/artemis-symphony-remote-promotion.sh did not emit canonical approval event" >&2
+  exit 1
+fi
 
 scripts/artemis-codex-app-server.sh --artifact-root /tmp/artemis-codex-app-server --json >/tmp/artemis-codex-app-server.json
 if ! grep -q '"overall": "passed"' /tmp/artemis-codex-app-server.json; then
@@ -1172,7 +1254,7 @@ if ! grep -q "artifacts/artemis-symphony-bridge/run-01/symphony-bridge.json" con
   echo "control-plane/index.html does not link the Symphony bridge artifact" >&2
   exit 1
 fi
-if ! grep -q "20260507T124755Z-24-tkt-903" control-plane/index.html; then
+if ! grep -q "20260507T130259Z-26-tkt-903" control-plane/index.html; then
   echo "control-plane/index.html does not link the Symphony runner attempt" >&2
   exit 1
 fi
@@ -1230,6 +1312,14 @@ if ! grep -q "artifacts/artemis-symphony-remote-intake/run-01/remote-intake.json
 fi
 if ! grep -q "remote_intake_ready" control-plane/index.html; then
   echo "control-plane/index.html does not show the Symphony remote intake state" >&2
+  exit 1
+fi
+if ! grep -q "artifacts/artemis-symphony-promotion/run-01/remote-promotion.json" control-plane/index.html; then
+  echo "control-plane/index.html does not link the Symphony remote promotion artifact" >&2
+  exit 1
+fi
+if ! grep -q "remote_promotion_ready" control-plane/index.html; then
+  echo "control-plane/index.html does not show the Symphony remote promotion state" >&2
   exit 1
 fi
 

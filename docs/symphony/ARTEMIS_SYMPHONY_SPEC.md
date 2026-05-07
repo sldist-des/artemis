@@ -485,6 +485,38 @@ Contrato:
 - Queue, Service, Bridge e Runner nao sao chamados pelo intake;
 - Human Gates continuam explicitos.
 
+### Modo 3.2 - Remote Promotion / Promocao local do intake remoto
+
+Implementado em `TKT-052` como gate de decisao humana exata entre Remote Intake
+e qualquer fonte local executavel.
+
+- consome `remote-intake.json`;
+- exige arquivo de decisao com ticket, Exec Pack, owner, risco, evidencia,
+  comando terminal, Validation Gate e aprovador;
+- aceita apenas item `review_ready`;
+- gera `remote-promotion.json` e `promoted-source.json`;
+- fonte promovida fica local em `state=ready`;
+- registra comando terminal, mas nao executa;
+- nao chama Queue, Service, Bridge ou Runner;
+- bloqueia dispatch direto;
+- bloqueia escritas remotas;
+- mantem `commands_executed=0`;
+- registra evento canonico para Control Plane e handoff.
+
+Promocao local implementada:
+
+- `scripts/artemis-symphony-remote-promotion.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_REMOTE_PROMOTION.md`
+
+Contrato:
+
+- Remote Intake define revisao, nao autoridade de execucao;
+- decisao humana exata define autoridade de promocao local;
+- Exec Pack local continua sendo contrato de execucao;
+- Validation Gate continua obrigatorio antes de qualquer execucao posterior;
+- PRs, comentarios, labels e branches continuam bloqueados ate contrato
+  explicito.
+
 ## Invariantes
 
 - ARTEMIS Symphony nao executa cleanup real sem decisao humana.
@@ -497,16 +529,13 @@ Contrato:
 
 ## Proximo corte recomendado
 
-`TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony`
+`TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony`
 
 Objetivo:
 
-- promover intake remoto revisado para uma fonte local executavel apenas apos
-  decisao humana exata;
-- exigir Exec Pack local, evidencia, ownership e comando terminal antes de
-  qualquer dispatch;
-- preservar terminal-first, Human Gates e Validation Gate;
-- manter PRs, comentarios, labels e branches como acoes humanas ou explicitamente
-  aprovadas.
+- registrar feedback remoto supervisionado como pacote de decisao;
+- manter comentarios, labels, branches e PRs atras de aprovacao humana exata;
+- separar evidencia local de qualquer escrita remota real;
+- preservar terminal-first, Human Gates e Validation Gate.
 
-Esse sera o decimo primeiro passo de implementacao do nosso Symphony proprio.
+Esse sera o decimo segundo passo de implementacao do nosso Symphony proprio.

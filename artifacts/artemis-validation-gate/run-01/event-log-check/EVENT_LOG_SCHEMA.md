@@ -1,7 +1,7 @@
 # ARTEMIS EVENT LOG SCHEMA
 
 - Schema version: 1
-- Events: 36
+- Events: 37
 - Source: scripts/artemis-event-log.sh
 
 ## Event Types
@@ -23,8 +23,8 @@
 - `runner.attempt_completed`: `evt_20260504t140934z-2-tkt-022_completed` -> review
 - `runner.attempt_planned`: `evt_tkt-903_symphony_bridge` -> running
 - `runner.readiness_checked`: `evt_tkt-903_symphony_dispatch_planned` -> ready
-- `runner.attempt_planned`: `evt_20260507t124755z-24-tkt-903_planned` -> running
-- `runner.attempt_completed`: `evt_20260507t124755z-24-tkt-903_completed` -> review
+- `runner.attempt_planned`: `evt_20260507t130259z-26-tkt-903_planned` -> running
+- `runner.attempt_completed`: `evt_20260507t130259z-26-tkt-903_completed` -> review
 - `runner.readiness_checked`: `evt_task_symphony_daemon_tick-001` -> planned
 - `runner.readiness_checked`: `evt_task_symphony_daemon_tick-002` -> planned
 - `validation.completed`: `evt_task_symphony_daemon_completed` -> done
@@ -42,6 +42,7 @@
 - `validation.completed`: `evt_validation_gate_current` -> human_gate
 - `adapter.contract_recorded`: `evt_tkt-050_symphony_remote_source` -> review
 - `adapter.contract_recorded`: `evt_tkt-051_symphony_remote_intake` -> review
+- `approval.resolved`: `evt_tkt-052_symphony_remote_promotion` -> ready
 
 ## Invariants
 

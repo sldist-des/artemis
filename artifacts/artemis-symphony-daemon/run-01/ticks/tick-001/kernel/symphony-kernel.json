@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T12:47:54Z",
+  "generated_at": "2026-05-07T13:02:58Z",
   "source": "scripts/artemis-symphony-kernel.sh",
   "mode": "read_only",
   "overall": "idle",
@@ -8,11 +8,11 @@
   "artifact_root": "artifacts/artemis-symphony-daemon/run-01/ticks/tick-001/kernel",
   "dry_run": "artifacts/artemis-symphony-daemon/run-01/ticks/tick-001/kernel/dry-run.json",
   "summary": {
-    "tasks_total": 52,
+    "tasks_total": 53,
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 52,
+    "done": 53,
     "selected_for_dispatch": 0,
     "max_concurrency": 1,
     "dispatch_slots": 0,
@@ -384,6 +384,13 @@
       "decision": "done",
       "runner": "none",
       "reason": "Task already archived in done state."
+    },
+    {
+      "ticket": "TKT-052",
+      "title": "Promocao local do intake remoto do ARTEMIS Symphony",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state."
     }
   ],
   "invariants": [
@@ -393,5 +400,5 @@
     "Human Gates are copied into the plan and never bypassed.",
     "Terminal override remains required for any future supervised execution."
   ],
-  "next_cut": "TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony"
+  "next_cut": "TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony"
 }

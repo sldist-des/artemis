@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "decision": "approved",
+  "ticket": "TKT-950",
+  "promote_to": "TKT-950",
+  "title": "Validate supervised source intake",
+  "owner": "Codex",
+  "risk": "low",
+  "exec_pack": "docs/exec-packs/done/TKT-009-local-task-source.md",
+  "evidence": "artifacts/artemis-validation-gate/run-01/symphony-promotion-check/STATUS.md",
+  "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/symphony-promotion-check/promoted-source.json",
+  "validation_gate": "artifacts/artemis-validation-gate/run-01/queue-bridge-validation-gate-fixture.json",
+  "remote_review_acknowledged": true,
+  "terminal_command_acknowledged": true,
+  "validation_gate_required": true,
+  "decided_by": "ARTEMIS synthetic validation",
+  "reason": "Exact local promotion approved for validation."
+}

@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 52
+    "done": 53
   },
   "decisions": [
     {
@@ -475,6 +475,15 @@
       "title": "Intake remoto revisavel do ARTEMIS Symphony",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-051-artemis-symphony-remote-intake.md"
+    },
+    {
+      "ticket": "TKT-052",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Promocao local do intake remoto do ARTEMIS Symphony",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-052-artemis-symphony-remote-promotion.md"
     }
   ]
 }

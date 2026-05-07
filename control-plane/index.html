@@ -1562,6 +1562,17 @@
         tags: ["symphony", "remote-intake", "human-gate"]
       },
       {
+        id: "tkt-052",
+        state: "done",
+        ticket: "TKT-052",
+        title: "Promocao local do intake remoto do ARTEMIS Symphony",
+        summary: "Promocao exige decisao humana exata e gera fonte local sem executar fila, bridge ou runner.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "artifacts/artemis-symphony-promotion/run-01",
+        tags: ["symphony", "remote-promotion", "human-decision"]
+      },
+      {
         id: "github-auth",
         state: "human",
         ticket: "GIT",
@@ -1789,6 +1800,19 @@
         evidence: { artifact_path: "artifacts/artemis-symphony-remote-intake/run-01" }
       },
       {
+        event_id: "evt_tkt-052_symphony_remote_promotion",
+        event_type: "approval.resolved",
+        generated_at: "2026-05-07T15:05:00Z",
+        producer: { adapter: "symphony_remote_promotion", name: "scripts/artemis-symphony-remote-promotion.sh", mode: "supervised" },
+        subject: {
+          ticket: "TKT-052",
+          title: "Promocao local do intake remoto do ARTEMIS Symphony"
+        },
+        state: { from: "review", to: "ready", reason: "Exact human decision promoted reviewed intake into a local task source without execution." },
+        severity: "info",
+        evidence: { artifact_path: "artifacts/artemis-symphony-promotion/run-01" }
+      },
+      {
         event_id: "evt_tkt-017_adapter_events",
         event_type: "adapter.events_emitted",
         generated_at: "2026-04-30T19:54:36Z",
@@ -1863,8 +1887,8 @@
             ["commands", "0"]
           ],
           links: [
-            ["attempt", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T124755Z-24-tkt-903/RUNNER.md"],
-            ["events", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T124755Z-24-tkt-903/events.json"]
+            ["attempt", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T130259Z-26-tkt-903/RUNNER.md"],
+            ["events", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T130259Z-26-tkt-903/events.json"]
           ]
         },
         {
@@ -1872,7 +1896,7 @@
           status: "human_gate",
           summary: "Validation Gate passou tecnicamente e preservou Human Gates externos.",
           facts: [
-            ["passed", "63"],
+            ["passed", "71"],
             ["failed", "0"]
           ],
           links: [
@@ -1976,6 +2000,20 @@
             ["status", "../artifacts/artemis-symphony-remote-intake/run-01/STATUS.md"],
             ["json", "../artifacts/artemis-symphony-remote-intake/run-01/remote-intake.json"],
             ["review", "../artifacts/artemis-symphony-remote-intake/run-01/REVIEW.md"]
+          ]
+        },
+        {
+          title: "R Promote",
+          status: "remote_promotion_ready",
+          summary: "remote_promotion_ready: decisao exata promoveu item revisado para fonte local sem executar runner.",
+          facts: [
+            ["promoted", "1"],
+            ["commands", "0"]
+          ],
+          links: [
+            ["status", "../artifacts/artemis-symphony-promotion/run-01/STATUS.md"],
+            ["json", "../artifacts/artemis-symphony-promotion/run-01/remote-promotion.json"],
+            ["source", "../artifacts/artemis-symphony-promotion/run-01/promoted-source.json"]
           ]
         }
       ]

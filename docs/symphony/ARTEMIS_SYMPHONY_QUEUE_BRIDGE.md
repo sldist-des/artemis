@@ -61,4 +61,4 @@ scripts/artemis-symphony-queue-bridge.sh --ticket TKT-000 --command "cmd" --json
 
 ## Proximo corte
 
-`TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony`
+`TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony`

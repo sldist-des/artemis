@@ -373,6 +373,20 @@ O intake remoto gera `remote-intake.json`, `review-source.json` e `REVIEW.md`.
 A fonte derivada fica em `state=human`, com `promotion_allowed=0` e
 `commands_executed=0`, ate existir decisao humana exata em corte posterior.
 
+Quando houver decisao humana exata, promova o item revisado para fonte local:
+
+```bash
+scripts/artemis-symphony-remote-promotion.sh \
+  --remote-intake artifacts/artemis-symphony-remote-intake/run-01/remote-intake.json \
+  --decision artifacts/artemis-symphony-promotion/run-01/fixtures/decision.json \
+  --artifact-root artifacts/artemis-symphony-promotion/run-01 \
+  --json
+```
+
+A promocao gera `promoted-source.json` em `state=ready`, registra o comando
+terminal aprovado e mantem Queue, Bridge, Runner e escritas remotas bloqueados.
+Sem decisao exata, o resultado permanece Human Gate.
+
 Codex app-server e fonte futura de eventos ricos, nao substitui controle terminal-first:
 
 ```bash

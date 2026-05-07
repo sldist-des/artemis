@@ -15,9 +15,10 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Service implemented: `true`.
 - Remote source implemented: `true`.
 - Remote intake implemented: `true`.
+- Remote promotion implemented: `true`.
 - Terminal-first: `true`.
 - Human Gates preserved: `true`.
-- Next cut: `TKT-052 - Promocao local do intake remoto do ARTEMIS Symphony`.
+- Next cut: `TKT-053 - Feedback remoto supervisionado do ARTEMIS Symphony`.
 
 ## Camadas
 
@@ -117,6 +118,12 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Status: `implemented_review_only`.
 - Missing files: `0`.
 
+### remote_promotion
+
+- Purpose: Exact human decision gate that promotes reviewed intake into a local task source.
+- Status: `implemented_decision_gate`.
+- Missing files: `0`.
+
 ## Invariantes
 
 - OpenAI Symphony is a reference, not a vendored dependency.
@@ -132,3 +139,4 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - The implemented service is finite and never passes --execute automatically.
 - The implemented remote source is read-only intake and never authorizes runner execution.
 - The implemented remote intake is review-only and keeps derived tasks in Human Gate.
+- The implemented remote promotion requires exact human decision and never executes runners.

@@ -1,1 +1,1 @@
-artifacts/artemis-validation-gate/run-01/runner-attempts/attempts/20260507T124919Z-703-tkt-validate
+artifacts/artemis-validation-gate/run-01/runner-attempts/attempts/20260507T130423Z-766-tkt-validate

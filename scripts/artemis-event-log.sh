@@ -206,6 +206,7 @@ for events_path in sorted(event_files):
 for events_path in [
     Path("artifacts/artemis-symphony-remote-source/run-01/events.json"),
     Path("artifacts/artemis-symphony-remote-intake/run-01/events.json"),
+    Path("artifacts/artemis-symphony-promotion/run-01/events.json"),
 ]:
     if events_path.is_file():
         remote_log = read_json(events_path)

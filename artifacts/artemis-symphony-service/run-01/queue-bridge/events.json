@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T12:48:11Z",
+  "generated_at": "2026-05-07T13:03:27Z",
   "source": "scripts/artemis-symphony-queue-bridge.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-949_symphony_queue_bridge",
       "event_type": "runner.attempt_planned",
-      "generated_at": "2026-05-07T12:48:11Z",
+      "generated_at": "2026-05-07T13:03:27Z",
       "producer": {
         "adapter": "local_queue_bridge",
         "name": "scripts/artemis-symphony-queue-bridge.sh",

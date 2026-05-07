@@ -70,6 +70,7 @@
             "local_runner",
             "symphony_remote_source",
             "symphony_remote_intake",
+            "symphony_remote_promotion",
             "validation_gate",
             "control_plane",
             "manual"

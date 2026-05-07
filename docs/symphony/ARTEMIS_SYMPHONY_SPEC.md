@@ -430,14 +430,32 @@ Contrato:
 - Human Gates continuam explicitos;
 - Control Plane continua observacional.
 
-### Modo 3 - Tracker remoto
+### Modo 3 - Fonte remota supervisionada
 
-Futuro.
+Implementado em `TKT-050` como Remote Source de intake read-only a partir do
+GitHub Issues adapter.
 
-- GitHub Issues como task source remoto;
-- PR como evidencia;
-- branch protection e CODEOWNERS humanos;
-- push/merge continuam gates humanos ate politica real ser definida.
+- consome `scripts/artemis-github-issues.sh`;
+- normaliza issues em `task-source.json` supervisionado;
+- preserva GitHub Issues como intencao/evidencia, nao autoridade;
+- exige Exec Pack local como contrato de execucao;
+- bloqueia dispatch direto;
+- bloqueia escritas remotas;
+- mantem `commands_executed=0`;
+- registra evento canonico para Control Plane e handoff.
+
+Fonte remota supervisionada implementada:
+
+- `scripts/artemis-symphony-remote-source.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_REMOTE_SOURCE.md`
+
+Contrato:
+
+- GitHub Issues como task source remoto supervisionado;
+- PR como evidencia futura, nao como gatilho automatico;
+- branch protection e CODEOWNERS continuam humanos;
+- push/merge continuam gates humanos ate politica real ser definida;
+- item remoto precisa passar por intake revisavel antes de fila/service.
 
 ## Invariantes
 
@@ -451,14 +469,14 @@ Futuro.
 
 ## Proximo corte recomendado
 
-`TKT-050 - Fonte remota supervisionada do ARTEMIS Symphony`
+`TKT-051 - Intake remoto revisavel do ARTEMIS Symphony`
 
 Objetivo:
 
-- conectar uma fonte remota supervisionada ao ARTEMIS Symphony;
+- revisar itens da fonte remota antes de promocao para fila/service;
+- exigir Exec Pack local, evidencia e ownership antes de qualquer dispatch;
 - preservar terminal-first, Human Gates e Validation Gate;
-- manter GitHub Issues/PRs como evidencia remota, nao como autoridade
-  automatica de execucao;
-- nao abrir push, PR, merge ou deploy automaticos.
+- manter PRs, comentarios, labels e branches como acoes humanas ou explicitamente
+  aprovadas.
 
-Esse sera o nono passo de implementacao do nosso Symphony proprio.
+Esse sera o decimo passo de implementacao do nosso Symphony proprio.

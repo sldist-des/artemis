@@ -13,9 +13,10 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Kernel implemented: `true`.
 - Bridge implemented: `true`.
 - Service implemented: `true`.
+- Remote source implemented: `true`.
 - Terminal-first: `true`.
 - Human Gates preserved: `true`.
-- Next cut: `TKT-050 - Fonte remota supervisionada do ARTEMIS Symphony`.
+- Next cut: `TKT-051 - Intake remoto revisavel do ARTEMIS Symphony`.
 
 ## Camadas
 
@@ -103,6 +104,12 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Status: `implemented_finite`.
 - Missing files: `0`.
 
+### remote_source
+
+- Purpose: Read-only remote intake source from GitHub Issues evidence.
+- Status: `implemented_read_only_intake`.
+- Missing files: `0`.
+
 ## Invariantes
 
 - OpenAI Symphony is a reference, not a vendored dependency.
@@ -116,3 +123,4 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - The implemented queue bridge is plan-only by default.
 - Queue execution requires --execute plus Validation Gate and exact approval artifacts.
 - The implemented service is finite and never passes --execute automatically.
+- The implemented remote source is read-only intake and never authorizes runner execution.

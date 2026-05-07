@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T12:36:47Z",
+  "source": "scripts/artemis-symphony-remote-source.sh",
+  "mode": "read_only_supervised_intake",
+  "overall": "remote_source_ready",
+  "reason": "Remote issues were normalized as supervised ARTEMIS intake evidence.",
+  "artifact_root": "artifacts/artemis-symphony-remote-source/run-01",
+  "github_artifact": "artifacts/artemis-symphony-remote-source/run-01/fixtures/github-issues.json",
+  "label": "artemis",
+  "limit": 50,
+  "repo": "sldist-des/artemis",
+  "summary": {
+    "remote_available": true,
+    "remote_issues": 1,
+    "tasks_generated": 1,
+    "intake": 1,
+    "human_gate": 0,
+    "blocked": 0,
+    "done": 0,
+    "commands_executed": 0,
+    "remote_writes_allowed": false,
+    "runner_auto_execution_allowed": false,
+    "direct_dispatch_allowed": false
+  },
+  "contract": {
+    "remote_source_defines": "intent_and_evidence",
+    "exec_pack_defines": "execution_contract",
+    "control_plane_shows": "state",
+    "remote_writes": "blocked_by_default",
+    "direct_dispatch": "blocked_by_default",
+    "terminal_first": true,
+    "human_gates_preserved": true,
+    "validation_gate_required_before_execute": true
+  },
+  "source_items": [
+    {
+      "ticket": "TKT-950",
+      "state": "intake",
+      "issue": "https://github.com/sldist-des/artemis/issues/950",
+      "exec_pack_bound": true
+    }
+  ],
+  "tasks": [
+    {
+      "id": "tkt-950",
+      "ticket": "TKT-950",
+      "title": "TKT-950 - Validate supervised source intake",
+      "state": "intake",
+      "owner": "Codex",
+      "risk": "low",
+      "summary": "Issue imported as supervised intake. Local Exec Pack remains the execution contract.",
+      "exec_pack": "docs/exec-packs/done/TKT-050-artemis-symphony-remote-source.md",
+      "evidence": "artifacts/artemis-symphony-remote-source/run-01/STATUS.md",
+      "tags": [
+        "symphony",
+        "intake",
+        "remote-source"
+      ],
+      "remote": {
+        "provider": "github_issues",
+        "repo": "sldist-des/artemis",
+        "number": 950,
+        "url": "https://github.com/sldist-des/artemis/issues/950",
+        "updated_at": "2026-05-07T00:00:00Z",
+        "labels": [
+          "artemis",
+          "artemis:ready",
+          "exec-pack:docs/exec-packs/done/TKT-050-artemis-symphony-remote-source.md",
+          "risk:low"
+        ]
+      },
+      "direct_dispatch_allowed": false
+    }
+  ],
+  "github": {
+    "overall": "passed",
+    "reason": "Synthetic GitHub Issues artifact for ARTEMIS Symphony remote source validation.",
+    "checks": {
+      "gh_installed": true,
+      "gh_auth_exit_code": 0,
+      "codeowners": "active",
+      "issue_list_exit_code": 0
+    },
+    "contract": {
+      "issue_defines": "intent",
+      "exec_pack_defines": "contract",
+      "control_plane_shows": "state",
+      "remote_writes": "human_gate_only"
+    }
+  },
+  "next_cut": "TKT-051 - Intake remoto revisavel do ARTEMIS Symphony"
+}

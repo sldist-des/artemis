@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T12:15:23Z",
+  "generated_at": "2026-05-07T12:37:02Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
   "artifact_root": "artifacts/artemis-symphony-compatibility/run-01",
   "spec": "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md",
   "summary": {
-    "layers_total": 14,
+    "layers_total": 15,
     "layers_with_missing_files": 0,
-    "tasks_total": 50,
-    "tasks_done": 50,
+    "tasks_total": 51,
+    "tasks_done": 51,
     "daemon_implemented": true,
     "kernel_implemented": true,
     "bridge_implemented": true,
@@ -19,6 +19,7 @@
     "queue_bridge_implemented": true,
     "queue_execution_implemented": true,
     "service_implemented": true,
+    "remote_source_implemented": true,
     "next_cut_defined": true
   },
   "compatibility": {
@@ -33,9 +34,10 @@
     "queue_bridge_implemented": true,
     "queue_execution_implemented": true,
     "service_implemented": true,
+    "remote_source_implemented": true,
     "terminal_first": true,
     "human_gates_preserved": true,
-    "next_cut": "TKT-050 - Fonte remota supervisionada do ARTEMIS Symphony"
+    "next_cut": "TKT-051 - Intake remoto revisavel do ARTEMIS Symphony"
   },
   "layers": [
     {
@@ -188,6 +190,16 @@
       ],
       "status": "implemented_finite",
       "missing_files": []
+    },
+    {
+      "layer": "remote_source",
+      "purpose": "Read-only remote intake source from GitHub Issues evidence.",
+      "required_files": [
+        "scripts/artemis-symphony-remote-source.sh",
+        "docs/symphony/ARTEMIS_SYMPHONY_REMOTE_SOURCE.md"
+      ],
+      "status": "implemented_read_only_intake",
+      "missing_files": []
     }
   ],
   "blockers": [],
@@ -202,6 +214,7 @@
     "The implemented queue is review-only and never starts bridge or runner automatically.",
     "The implemented queue bridge is plan-only by default.",
     "Queue execution requires --execute plus Validation Gate and exact approval artifacts.",
-    "The implemented service is finite and never passes --execute automatically."
+    "The implemented service is finite and never passes --execute automatically.",
+    "The implemented remote source is read-only intake and never authorizes runner execution."
   ]
 }

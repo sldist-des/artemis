@@ -2,12 +2,12 @@
 
 ## Estado
 
-ARTEMIS Symphony esta `spec_ready` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local e o service finito existem.
+ARTEMIS Symphony esta `spec_ready` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito e a fonte remota read-only existem.
 
 ## Proximo corte
 
-- Criar `TKT-050 - Fonte remota supervisionada do ARTEMIS Symphony`.
-- Manter service finito como agregador local, nao como executor automatico.
+- Criar `TKT-051 - Intake remoto revisavel do ARTEMIS Symphony`.
+- Manter fonte remota como intake/evidencia, nao como executor automatico.
 - Manter Validation Gate antes de qualquer execucao real.
 
 ## Nao fazer

@@ -1540,6 +1540,17 @@
         tags: ["symphony", "service", "terminal-first"]
       },
       {
+        id: "tkt-050",
+        state: "done",
+        ticket: "TKT-050",
+        title: "Fonte remota supervisionada do ARTEMIS Symphony",
+        summary: "GitHub Issues entra como intake/evidencia read-only, sem escrita remota ou dispatch direto.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "artifacts/artemis-symphony-remote-source/run-01",
+        tags: ["symphony", "remote-source", "intake"]
+      },
+      {
         id: "github-auth",
         state: "human",
         ticket: "GIT",
@@ -1741,6 +1752,19 @@
         evidence: { artifact_path: "artifacts/artemis-symphony-service/run-01" }
       },
       {
+        event_id: "evt_tkt-050_symphony_remote_source",
+        event_type: "adapter.contract_recorded",
+        generated_at: "2026-05-07T13:10:00Z",
+        producer: { adapter: "symphony_remote_source", name: "scripts/artemis-symphony-remote-source.sh", mode: "read_only_supervised_intake" },
+        subject: {
+          ticket: "TKT-050",
+          title: "Fonte remota supervisionada do ARTEMIS Symphony"
+        },
+        state: { from: "planned", to: "review", reason: "Remote source normalized GitHub Issues as supervised intake evidence with direct dispatch blocked." },
+        severity: "info",
+        evidence: { artifact_path: "artifacts/artemis-symphony-remote-source/run-01" }
+      },
+      {
         event_id: "evt_tkt-017_adapter_events",
         event_type: "adapter.events_emitted",
         generated_at: "2026-04-30T19:54:36Z",
@@ -1815,8 +1839,8 @@
             ["commands", "0"]
           ],
           links: [
-            ["attempt", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260506T165146Z-25-tkt-903/RUNNER.md"],
-            ["events", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260506T165146Z-25-tkt-903/events.json"]
+            ["attempt", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T123714Z-24-tkt-903/RUNNER.md"],
+            ["events", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T123714Z-24-tkt-903/events.json"]
           ]
         },
         {
@@ -1900,6 +1924,20 @@
             ["status", "../artifacts/artemis-symphony-service/run-01/STATUS.md"],
             ["json", "../artifacts/artemis-symphony-service/run-01/symphony-service.json"],
             ["bridge", "../artifacts/artemis-symphony-service/run-01/queue-bridge/queue-bridge.json"]
+          ]
+        },
+        {
+          title: "Remote",
+          status: "remote_source_ready",
+          summary: "remote_source_ready: GitHub Issues foi normalizado como intake supervisionado sem escrita remota ou dispatch direto.",
+          facts: [
+            ["intake", "1"],
+            ["commands", "0"]
+          ],
+          links: [
+            ["status", "../artifacts/artemis-symphony-remote-source/run-01/STATUS.md"],
+            ["json", "../artifacts/artemis-symphony-remote-source/run-01/remote-source.json"],
+            ["tasks", "../artifacts/artemis-symphony-remote-source/run-01/task-source.json"]
           ]
         }
       ]

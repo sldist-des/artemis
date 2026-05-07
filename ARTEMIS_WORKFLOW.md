@@ -353,6 +353,15 @@ scripts/artemis-github-issues.sh --json
 
 O adapter e read-only. Se `gh auth`, CODEOWNERS, labels ou rulesets estiverem pendentes, o resultado deve ser `human_gate`.
 
+ARTEMIS Symphony pode normalizar essa fonte remota como intake supervisionado:
+
+```bash
+scripts/artemis-symphony-remote-source.sh
+scripts/artemis-symphony-remote-source.sh --json
+```
+
+A fonte remota gera `remote-source.json` e `task-source.json`, mas nao autoriza dispatch direto, runner automatico, labels, comentarios, PRs, branches ou qualquer escrita remota. Exec Pack local continua sendo o contrato de execucao.
+
 Codex app-server e fonte futura de eventos ricos, nao substitui controle terminal-first:
 
 ```bash

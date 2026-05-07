@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T12:15:11Z",
+  "generated_at": "2026-05-07T12:37:32Z",
   "source": "scripts/artemis-symphony-kernel.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-949_symphony_dispatch_planned",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-07T12:15:11Z",
+      "generated_at": "2026-05-07T12:37:32Z",
       "producer": {
         "adapter": "local_runner",
         "name": "scripts/artemis-symphony-kernel.sh",

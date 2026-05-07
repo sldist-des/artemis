@@ -68,6 +68,7 @@
             "codex_app_server",
             "claude_code",
             "local_runner",
+            "symphony_remote_source",
             "validation_gate",
             "control_plane",
             "manual"

@@ -73,4 +73,4 @@ Esse modo chama o Queue Bridge sem `--execute`, produz
 
 ## Proximo corte
 
-`TKT-050 - Fonte remota supervisionada do ARTEMIS Symphony`
+`TKT-051 - Intake remoto revisavel do ARTEMIS Symphony`

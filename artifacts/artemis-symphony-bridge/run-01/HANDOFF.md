@@ -6,8 +6,8 @@ Bridge supervisionada concluida com overall `runner_plan_ready`.
 
 ## Proximo corte
 
-- Implementar `TKT-044 - Control Plane do ARTEMIS Symphony Bridge`.
-- Expor evidencias de kernel, bridge e runner sem transformar UI em fonte canonica.
+- Implementar `TKT-051 - Intake remoto revisavel do ARTEMIS Symphony`.
+- Consumir item revisado da fila com comando explicito e ponte plan-only por padrao.
 
 ## Nao fazer
 

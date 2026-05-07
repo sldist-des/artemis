@@ -19,6 +19,7 @@ docs/symphony/ARTEMIS_SYMPHONY_QUEUE.md
 docs/symphony/ARTEMIS_SYMPHONY_QUEUE_BRIDGE.md
 docs/symphony/ARTEMIS_SYMPHONY_QUEUE_EXECUTION.md
 docs/symphony/ARTEMIS_SYMPHONY_SERVICE.md
+docs/symphony/ARTEMIS_SYMPHONY_REMOTE_SOURCE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
 docs/agents/CAPABILITY_REGISTRY.md
@@ -63,6 +64,7 @@ scripts/artemis-symphony-daemon.sh
 scripts/artemis-symphony-queue.sh
 scripts/artemis-symphony-queue-bridge.sh
 scripts/artemis-symphony-service.sh
+scripts/artemis-symphony-remote-source.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -144,6 +146,8 @@ sh -n scripts/artemis-symphony-bridge.sh
 sh -n scripts/artemis-symphony-daemon.sh
 sh -n scripts/artemis-symphony-queue.sh
 sh -n scripts/artemis-symphony-queue-bridge.sh
+sh -n scripts/artemis-symphony-service.sh
+sh -n scripts/artemis-symphony-remote-source.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -1011,6 +1015,80 @@ if ! grep -q '"event_type": "runner.readiness_checked"' /tmp/artemis-github-issu
   exit 1
 fi
 
+cat >/tmp/artemis-symphony-remote-source-github.json <<'JSON'
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T00:00:00Z",
+  "overall": "passed",
+  "reason": "Synthetic GitHub Issues artifact for remote source validation.",
+  "mode": "read_only",
+  "repo": "sldist-des/artemis",
+  "label": "artemis",
+  "limit": 50,
+  "checks": {
+    "gh_installed": true,
+    "gh_auth_exit_code": 0,
+    "codeowners": "active",
+    "issue_list_exit_code": 0
+  },
+  "contract": {
+    "issue_defines": "intent",
+    "exec_pack_defines": "contract",
+    "control_plane_shows": "state",
+    "remote_writes": "human_gate_only"
+  },
+  "issues": [
+    {
+      "number": 950,
+      "title": "TKT-950 - Validate supervised source intake",
+      "state": "OPEN",
+      "url": "https://github.com/sldist-des/artemis/issues/950",
+      "updatedAt": "2026-05-07T00:00:00Z",
+      "assignees": [{"login": "Codex"}],
+      "labels": [
+        {"name": "artemis"},
+        {"name": "artemis:ready"},
+        {"name": "exec-pack:docs/exec-packs/done/TKT-050-artemis-symphony-remote-source.md"},
+        {"name": "risk:low"}
+      ]
+    }
+  ],
+  "logs": {
+    "auth": "",
+    "issues": ""
+  }
+}
+JSON
+scripts/artemis-symphony-remote-source.sh --github-artifact /tmp/artemis-symphony-remote-source-github.json --artifact-root /tmp/artemis-symphony-remote-source --json >/tmp/artemis-symphony-remote-source.json
+if ! grep -q '"overall": "remote_source_ready"' /tmp/artemis-symphony-remote-source.json; then
+  echo "scripts/artemis-symphony-remote-source.sh did not report remote_source_ready for synthetic issue artifact" >&2
+  exit 1
+fi
+if ! grep -q '"tasks_generated": 1' /tmp/artemis-symphony-remote-source.json; then
+  echo "ARTEMIS Symphony remote source did not generate a supervised task source" >&2
+  exit 1
+fi
+if ! grep -q '"remote_writes_allowed": false' /tmp/artemis-symphony-remote-source.json; then
+  echo "ARTEMIS Symphony remote source allowed remote writes" >&2
+  exit 1
+fi
+if ! grep -q '"direct_dispatch_allowed": false' /tmp/artemis-symphony-remote-source.json; then
+  echo "ARTEMIS Symphony remote source allowed direct dispatch" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-symphony-remote-source.json; then
+  echo "ARTEMIS Symphony remote source executed commands" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-symphony-remote-source/task-source.json; then
+  echo "scripts/artemis-symphony-remote-source.sh did not write task-source.json" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "adapter.contract_recorded"' /tmp/artemis-symphony-remote-source/events.json; then
+  echo "scripts/artemis-symphony-remote-source.sh did not emit canonical events" >&2
+  exit 1
+fi
+
 scripts/artemis-codex-app-server.sh --artifact-root /tmp/artemis-codex-app-server --json >/tmp/artemis-codex-app-server.json
 if ! grep -q '"overall": "passed"' /tmp/artemis-codex-app-server.json; then
   echo "scripts/artemis-codex-app-server.sh did not report the expected passed status" >&2
@@ -1053,7 +1131,7 @@ if ! grep -q "artifacts/artemis-symphony-bridge/run-01/symphony-bridge.json" con
   echo "control-plane/index.html does not link the Symphony bridge artifact" >&2
   exit 1
 fi
-if ! grep -q "20260506T165146Z-25-tkt-903" control-plane/index.html; then
+if ! grep -q "20260507T123714Z-24-tkt-903" control-plane/index.html; then
   echo "control-plane/index.html does not link the Symphony runner attempt" >&2
   exit 1
 fi
@@ -1095,6 +1173,14 @@ if ! grep -q "artifacts/artemis-symphony-service/run-01/symphony-service.json" c
 fi
 if ! grep -q "service_bridge_plan_ready" control-plane/index.html; then
   echo "control-plane/index.html does not show the Symphony service state" >&2
+  exit 1
+fi
+if ! grep -q "artifacts/artemis-symphony-remote-source/run-01/remote-source.json" control-plane/index.html; then
+  echo "control-plane/index.html does not link the Symphony remote source artifact" >&2
+  exit 1
+fi
+if ! grep -q "remote_source_ready" control-plane/index.html; then
+  echo "control-plane/index.html does not show the Symphony remote source state" >&2
   exit 1
 fi
 

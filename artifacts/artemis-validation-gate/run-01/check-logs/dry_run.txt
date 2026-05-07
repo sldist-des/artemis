@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 50
+    "done": 51
   },
   "decisions": [
     {
@@ -457,6 +457,15 @@
       "title": "Servico supervisionado local do ARTEMIS Symphony",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-049-artemis-symphony-service.md"
+    },
+    {
+      "ticket": "TKT-050",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Fonte remota supervisionada do ARTEMIS Symphony",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-050-artemis-symphony-remote-source.md"
     }
   ]
 }

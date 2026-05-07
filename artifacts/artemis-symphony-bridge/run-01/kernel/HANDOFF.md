@@ -6,8 +6,8 @@ Kernel local read-only concluido com overall `dispatch_plan_ready`.
 
 ## Proximo corte
 
-- Implementar `TKT-043 - Ponte supervisionada do ARTEMIS Symphony`.
-- Continuar sem daemon ate a ponte provar comando, evidencia e Human Gate.
+- Implementar `TKT-051 - Intake remoto revisavel do ARTEMIS Symphony`.
+- Continuar com ponte plan-only por padrao e comando explicito por terminal.
 
 ## Nao fazer
 

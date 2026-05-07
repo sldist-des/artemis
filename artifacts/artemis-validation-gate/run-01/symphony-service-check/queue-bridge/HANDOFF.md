@@ -8,5 +8,5 @@
 
 ## Proximo corte
 
-- Implementar `TKT-050 - Fonte remota supervisionada do ARTEMIS Symphony`.
+- Implementar `TKT-051 - Intake remoto revisavel do ARTEMIS Symphony`.
 - Manter `--execute` dependente de Validation Gate e decisao exata.

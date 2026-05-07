@@ -68,4 +68,4 @@ A decisao deve seguir este formato minimo:
 
 ## Proximo corte
 
-`TKT-050 - Fonte remota supervisionada do ARTEMIS Symphony`
+`TKT-051 - Intake remoto revisavel do ARTEMIS Symphony`

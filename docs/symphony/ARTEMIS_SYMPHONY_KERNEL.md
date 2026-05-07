@@ -50,6 +50,6 @@ scripts/artemis-symphony-kernel.sh --json
 
 ## Proximo Corte
 
-`TKT-050 - Fonte remota supervisionada do ARTEMIS Symphony`
+`TKT-051 - Intake remoto revisavel do ARTEMIS Symphony`
 
 Objetivo: consumir item revisado da fila com comando explicito e ponte supervisionada plan-only por padrao.

@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T12:36:47Z",
+  "source": "scripts/artemis-symphony-remote-source.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-050_symphony_remote_source",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-07T12:36:47Z",
+      "producer": {
+        "adapter": "symphony_remote_source",
+        "name": "scripts/artemis-symphony-remote-source.sh",
+        "mode": "read_only_supervised_intake"
+      },
+      "subject": {
+        "ticket": "TKT-050",
+        "task_id": "tkt-050",
+        "title": "Fonte remota supervisionada do ARTEMIS Symphony",
+        "exec_pack": "docs/exec-packs/done/TKT-050-artemis-symphony-remote-source.md",
+        "artifact_root": "artifacts/artemis-symphony-remote-source/run-01"
+      },
+      "runner": {
+        "kind": "none",
+        "commands_executed": 0
+      },
+      "state": {
+        "from": "planned",
+        "to": "review",
+        "reason": "Remote issues were normalized as supervised ARTEMIS intake evidence."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-symphony-remote-source/run-01",
+        "status_path": "artifacts/artemis-symphony-remote-source/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-symphony-remote-source/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-symphony-remote-source/run-01/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-050"
+      },
+      "payload": {
+        "overall": "remote_source_ready",
+        "reason": "Remote issues were normalized as supervised ARTEMIS intake evidence.",
+        "summary": {
+          "remote_available": true,
+          "remote_issues": 1,
+          "tasks_generated": 1,
+          "intake": 1,
+          "human_gate": 0,
+          "blocked": 0,
+          "done": 0,
+          "commands_executed": 0,
+          "remote_writes_allowed": false,
+          "runner_auto_execution_allowed": false,
+          "direct_dispatch_allowed": false
+        },
+        "contract": {
+          "remote_source_defines": "intent_and_evidence",
+          "exec_pack_defines": "execution_contract",
+          "control_plane_shows": "state",
+          "remote_writes": "blocked_by_default",
+          "direct_dispatch": "blocked_by_default",
+          "terminal_first": true,
+          "human_gates_preserved": true,
+          "validation_gate_required_before_execute": true
+        },
+        "next_cut": "TKT-051 - Intake remoto revisavel do ARTEMIS Symphony"
+      }
+    }
+  ]
+}

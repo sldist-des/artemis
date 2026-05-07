@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T12:16:48Z",
+  "generated_at": "2026-05-07T12:39:36Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -601,6 +601,18 @@
       "summary": "Service gera `service_bridge_plan_ready` quando o terminal fornece ticket e",
       "exec_pack": "docs/exec-packs/done/TKT-049-artemis-symphony-service.md",
       "evidence": "artifacts/artemis-symphony-service/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-050",
+      "ticket": "TKT-050",
+      "title": "Fonte remota supervisionada do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "Conectar GitHub Issues ao ARTEMIS Symphony como fonte remota supervisionada,",
+      "exec_pack": "docs/exec-packs/done/TKT-050-artemis-symphony-remote-source.md",
+      "evidence": "docs/exec-packs/done/TKT-050-artemis-symphony-remote-source.md",
       "tags": ["exec-pack", "done"]
     }
   ]

@@ -23,8 +23,8 @@
 - `runner.attempt_completed`: `evt_20260504t140934z-2-tkt-022_completed` -> review
 - `runner.attempt_planned`: `evt_tkt-903_symphony_bridge` -> running
 - `runner.readiness_checked`: `evt_tkt-903_symphony_dispatch_planned` -> ready
-- `runner.attempt_planned`: `evt_20260506t165146z-25-tkt-903_planned` -> running
-- `runner.attempt_completed`: `evt_20260506t165146z-25-tkt-903_completed` -> review
+- `runner.attempt_planned`: `evt_20260507t123714z-24-tkt-903_planned` -> running
+- `runner.attempt_completed`: `evt_20260507t123714z-24-tkt-903_completed` -> review
 - `runner.readiness_checked`: `evt_task_symphony_daemon_tick-001` -> planned
 - `runner.readiness_checked`: `evt_task_symphony_daemon_tick-002` -> planned
 - `validation.completed`: `evt_task_symphony_daemon_completed` -> done

@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T16:51:46Z",
+  "generated_at": "2026-05-07T12:37:14Z",
   "source": "scripts/artemis-symphony-bridge.sh",
   "mode": "supervised_bridge",
   "overall": "runner_plan_ready",
   "task_source": "artifacts/artemis-symphony-bridge/run-01/task-source.json",
   "artifact_root": "artifacts/artemis-symphony-bridge/run-01",
   "kernel": "artifacts/artemis-symphony-bridge/run-01/kernel/symphony-kernel.json",
-  "runner_attempt": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260506T165146Z-25-tkt-903",
-  "runner_events": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260506T165146Z-25-tkt-903/events.json",
+  "runner_attempt": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T123714Z-24-tkt-903",
+  "runner_events": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T123714Z-24-tkt-903/events.json",
   "summary": {
     "kernel_overall": "dispatch_plan_ready",
     "kernel_selected_for_dispatch": 1,
@@ -53,5 +53,5 @@
     "Runner execution requires explicit --execute.",
     "Remote, destructive and deployment commands remain blocked by the runner."
   ],
-  "next_cut": "TKT-044 - Control Plane do ARTEMIS Symphony Bridge"
+  "next_cut": "TKT-051 - Intake remoto revisavel do ARTEMIS Symphony"
 }

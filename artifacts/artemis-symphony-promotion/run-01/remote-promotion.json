@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T13:36:10Z",
+  "generated_at": "2026-05-07T13:55:18Z",
   "source": "scripts/artemis-symphony-remote-promotion.sh",
   "mode": "local_promotion_decision_gate",
   "overall": "remote_promotion_ready",
@@ -42,5 +42,5 @@
   "promoted_source": "artifacts/artemis-symphony-promotion/run-01/promoted-source.json",
   "blockers": [],
   "warnings": [],
-  "next_cut": "TKT-054 - Project Operations Graph do ARTEMIS Symphony"
+  "next_cut": "TKT-055 - Project Graph View do ARTEMIS Symphony"
 }

@@ -20,6 +20,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 - `fluxo-artemis-claude-codex-v1.3.md`
 - `artemis-arquitetura-agentes.md`
 - `artemis-github-operating-model.md`
+- `docs/symphony/ARTEMIS_SYMPHONY_PROJECT_GRAPH.md`
 - Exec Pack ativo em `docs/exec-packs/active/`
 
 ## Comandos canonicos

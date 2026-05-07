@@ -59,4 +59,4 @@ scripts/artemis-symphony-remote-source.sh \
 
 ## Proximo Corte
 
-`TKT-054 - Project Operations Graph do ARTEMIS Symphony`
+`TKT-055 - Project Graph View do ARTEMIS Symphony`

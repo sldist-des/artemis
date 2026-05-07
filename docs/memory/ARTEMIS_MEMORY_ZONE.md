@@ -114,4 +114,4 @@ O Control Plane operacional deve usar a Memory Zone para responder:
 
 ## Proximo corte
 
-`TKT-054 - Project Operations Graph do ARTEMIS Symphony`
+`TKT-055 - Project Graph View do ARTEMIS Symphony`

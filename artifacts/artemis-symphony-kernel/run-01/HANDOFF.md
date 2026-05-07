@@ -6,7 +6,7 @@ Kernel local read-only concluido com overall `idle`.
 
 ## Proximo corte
 
-- Implementar `TKT-054 - Project Operations Graph do ARTEMIS Symphony`.
+- Implementar `TKT-055 - Project Graph View do ARTEMIS Symphony`.
 - Continuar com ponte plan-only por padrao e comando explicito por terminal.
 
 ## Nao fazer

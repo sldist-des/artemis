@@ -73,4 +73,4 @@ Esse modo chama o Queue Bridge sem `--execute`, produz
 
 ## Proximo corte
 
-`TKT-054 - Project Operations Graph do ARTEMIS Symphony`
+`TKT-055 - Project Graph View do ARTEMIS Symphony`

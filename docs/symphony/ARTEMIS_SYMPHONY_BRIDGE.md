@@ -59,6 +59,6 @@ scripts/artemis-symphony-bridge.sh \
 
 ## Proximo Corte
 
-`TKT-054 - Project Operations Graph do ARTEMIS Symphony`
+`TKT-055 - Project Graph View do ARTEMIS Symphony`
 
 Objetivo: consumir item revisado da fila com comando explicito, mantendo a ponte como acao de terminal.

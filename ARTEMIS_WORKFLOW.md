@@ -405,6 +405,18 @@ contratos, testes e tradeoffs. O que entra no ARTEMIS deve ser implementacao
 propria, com fonte citada, decisao registrada e sem copia substancial ou
 vendorization sem Human Gate quando houver risco de licenca.
 
+O Project Operations Graph conecta projeto, tarefas, agentes, gates, validacao,
+memoria, custos e artifacts:
+
+```bash
+scripts/artemis-project-graph.sh
+scripts/artemis-project-graph.sh --json
+```
+
+Esse grafo e um read model operacional. Ele ajuda humanos e agentes a entenderem
+estado, bloqueios, responsaveis, contexto seguro e custos, mas nao executa
+agentes, nao aprova gates e nao substitui Git, Exec Packs, artifacts ou Event Log.
+
 Codex app-server e fonte futura de eventos ricos, nao substitui controle terminal-first:
 
 ```bash

@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T13:58:00Z",
+  "source": "scripts/artemis-project-graph.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-054_project_graph",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-07T13:58:00Z",
+      "producer": {
+        "adapter": "project_graph",
+        "name": "scripts/artemis-project-graph.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-054",
+        "task_id": "tkt-054",
+        "title": "Project Operations Graph do ARTEMIS Symphony",
+        "exec_pack": "docs/exec-packs/done/TKT-054-artemis-project-graph.md",
+        "artifact_root": "artifacts/artemis-project-graph/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "done",
+        "reason": "Project Operations Graph contract is ready."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-project-graph/run-01",
+        "status_path": "artifacts/artemis-project-graph/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-project-graph/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-project-graph/run-01/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-054"
+      },
+      "payload": {
+        "overall": "project_graph_ready",
+        "reason": "Project Operations Graph contract is ready.",
+        "summary": {
+          "tasks_total": 55,
+          "tasks_done": 55,
+          "tasks_human": 0,
+          "tasks_ready": 0,
+          "owners_total": 7,
+          "events_total": 40,
+          "nodes_total": 10,
+          "edges_total": 12,
+          "evidence_count": 55,
+          "exec_pack_count": 55,
+          "validation_passed": 75,
+          "validation_failed": 0,
+          "validation_human_gate": 2,
+          "memory_zones": 3,
+          "dependencies_installed": 0,
+          "graph_database_started": false,
+          "embeddings_created": 0,
+          "commands_executed": 0,
+          "remote_writes_allowed": false,
+          "runner_auto_execution_allowed": false
+        },
+        "next_cut": "TKT-055 - Project Graph View do ARTEMIS Symphony"
+      }
+    }
+  ]
+}

@@ -8,5 +8,5 @@
 
 ## Proximo corte
 
-- Implementar `TKT-054 - Project Operations Graph do ARTEMIS Symphony`.
+- Implementar `TKT-055 - Project Graph View do ARTEMIS Symphony`.
 - Manter `--execute` dependente de Validation Gate e decisao exata.

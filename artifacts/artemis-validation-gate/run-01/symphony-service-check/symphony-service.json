@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T13:37:24Z",
+  "generated_at": "2026-05-07T13:56:38Z",
   "source": "scripts/artemis-symphony-service.sh",
   "mode": "finite_supervised_service",
   "overall": "service_bridge_plan_ready",
@@ -41,5 +41,5 @@
     "Service preserves terminal override and Human Gates.",
     "Real execution remains owned by queue bridge --execute plus Validation Gate and exact approval."
   ],
-  "next_cut": "TKT-054 - Project Operations Graph do ARTEMIS Symphony"
+  "next_cut": "TKT-055 - Project Graph View do ARTEMIS Symphony"
 }

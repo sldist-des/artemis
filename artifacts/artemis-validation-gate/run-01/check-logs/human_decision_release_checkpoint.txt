@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T13:37:21Z",
+  "generated_at": "2026-05-07T13:56:35Z",
   "source": "scripts/artemis-human-decision-release-checkpoint.sh",
   "overall": "passed",
   "artifact_root": "artifacts/artemis-validation-gate/run-01/human-decision-release-checkpoint-check",
@@ -22,7 +22,7 @@
   },
   "validation_gate": {
     "overall": "human_gate",
-    "passed": 71,
+    "passed": 73,
     "failed": 0,
     "human_gate": 2
   },

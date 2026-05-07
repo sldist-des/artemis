@@ -36,4 +36,4 @@ git diff --check
 
 ## Handoff
 
-O proximo corte e `TKT-054 - Project Operations Graph do ARTEMIS Symphony`.
+O proximo corte e `TKT-055 - Project Graph View do ARTEMIS Symphony`.

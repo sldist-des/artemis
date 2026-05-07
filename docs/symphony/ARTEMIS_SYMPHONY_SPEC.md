@@ -542,8 +542,36 @@ Contrato:
 - Memory Zone fornece contexto, nao autoridade de execucao;
 - agentes podem propor atualizacoes de memoria, mas alteracoes sensiveis passam
   por Human Gate;
-- Project Operations Graph deve consumir essa memoria no proximo corte;
+- Project Operations Graph consome essa memoria como contexto;
 - nenhum indice derivado substitui arquivos fonte, artifacts ou git.
+
+### Modo 3.4 - Project Operations Graph
+
+Implementado em `TKT-054` como contrato read-only do grafo operacional do
+projeto.
+
+- modela projeto, tarefas, agentes, gates, validacao, memoria, custos e
+  artifacts;
+- usa `control-plane/tasks.json`, Event Log, Validation Gate e Memory Zone como
+  entradas;
+- gera nos e arestas auditaveis por evidencia local;
+- responde perguntas operacionais sobre estado, responsaveis, bloqueios,
+  validacao, contexto seguro e custo;
+- nao instala banco de grafo, embeddings, indexador ou runtime;
+- nao executa agentes;
+- nao substitui Exec Packs, artifacts, Event Log ou Git.
+
+Project Operations Graph implementado:
+
+- `scripts/artemis-project-graph.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_PROJECT_GRAPH.md`
+
+Contrato:
+
+- o grafo e read model, nao autoridade de execucao;
+- cada aresta precisa ser explicavel por evidencia local;
+- Control Plane pode consumir o grafo, mas continua observacional;
+- Human Gates, Validation Gate e budget gates continuam nao bypassaveis.
 
 ## Invariantes
 
@@ -557,14 +585,14 @@ Contrato:
 
 ## Proximo corte recomendado
 
-`TKT-054 - Project Operations Graph do ARTEMIS Symphony`
+`TKT-055 - Project Graph View do ARTEMIS Symphony`
 
 Objetivo:
 
-- modelar projeto, tarefas, agentes, dependencias, gates, validacoes, custos,
-  memoria e artifacts como grafo operacional;
-- usar Memory Zone como fonte de contexto;
-- preparar o Control Plane operacional para mostrar estado vivo do projeto;
+- renderizar as relacoes do Project Operations Graph no Control Plane;
+- mostrar estado vivo do projeto com linguagem operacional e leiga;
+- permitir leitura clara de responsaveis, bloqueios, gates, validacoes, memoria
+  e custos;
 - preservar terminal-first, Human Gates, Validation Gate e budget gates.
 
-Esse sera o decimo terceiro passo de implementacao do nosso Symphony proprio.
+Esse sera o decimo quarto passo de implementacao do nosso Symphony proprio.

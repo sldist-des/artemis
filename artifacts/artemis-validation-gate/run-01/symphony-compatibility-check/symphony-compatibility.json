@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T13:37:21Z",
+  "generated_at": "2026-05-07T13:56:35Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
   "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-compatibility-check",
   "spec": "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md",
   "summary": {
-    "layers_total": 18,
+    "layers_total": 19,
     "layers_with_missing_files": 0,
-    "tasks_total": 54,
-    "tasks_done": 54,
+    "tasks_total": 55,
+    "tasks_done": 55,
     "daemon_implemented": true,
     "kernel_implemented": true,
     "bridge_implemented": true,
@@ -23,6 +23,7 @@
     "remote_intake_implemented": true,
     "remote_promotion_implemented": true,
     "memory_zone_implemented": true,
+    "project_graph_implemented": true,
     "next_cut_defined": true
   },
   "compatibility": {
@@ -41,9 +42,10 @@
     "remote_intake_implemented": true,
     "remote_promotion_implemented": true,
     "memory_zone_implemented": true,
+    "project_graph_implemented": true,
     "terminal_first": true,
     "human_gates_preserved": true,
-    "next_cut": "TKT-054 - Project Operations Graph do ARTEMIS Symphony"
+    "next_cut": "TKT-055 - Project Graph View do ARTEMIS Symphony"
   },
   "layers": [
     {
@@ -236,6 +238,16 @@
       ],
       "status": "implemented_read_only_contract",
       "missing_files": []
+    },
+    {
+      "layer": "project_operations_graph",
+      "purpose": "Read-only graph of project, tasks, agents, gates, validation, costs, memory and artifacts.",
+      "required_files": [
+        "scripts/artemis-project-graph.sh",
+        "docs/symphony/ARTEMIS_SYMPHONY_PROJECT_GRAPH.md"
+      ],
+      "status": "implemented_read_only_graph",
+      "missing_files": []
     }
   ],
   "blockers": [],
@@ -254,6 +266,7 @@
     "The implemented remote source is read-only intake and never authorizes runner execution.",
     "The implemented remote intake is review-only and keeps derived tasks in Human Gate.",
     "The implemented remote promotion requires exact human decision and never executes runners.",
-    "The implemented Memory Zone is a context contract and does not install indexer dependencies."
+    "The implemented Memory Zone is a context contract and does not install indexer dependencies.",
+    "The implemented Project Operations Graph is a read model and never becomes execution authority."
   ]
 }

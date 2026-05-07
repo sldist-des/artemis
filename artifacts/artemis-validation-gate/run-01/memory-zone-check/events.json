@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T13:37:25Z",
+  "generated_at": "2026-05-07T13:56:39Z",
   "source": "scripts/artemis-memory-zone.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-053_memory_zone",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T13:37:25Z",
+      "generated_at": "2026-05-07T13:56:39Z",
       "producer": {
         "adapter": "memory_zone",
         "name": "scripts/artemis-memory-zone.sh",
@@ -55,9 +55,12 @@
           "embeddings_created": 0,
           "commands_executed": 0,
           "remote_writes_allowed": false,
-          "runtime_started": false
+          "runtime_started": false,
+          "reference_code_study_allowed": true,
+          "code_copied": false,
+          "vendorization_allowed_without_human_gate": false
         },
-        "next_cut": "TKT-054 - Project Operations Graph do ARTEMIS Symphony"
+        "next_cut": "TKT-055 - Project Graph View do ARTEMIS Symphony"
       }
     }
   ]

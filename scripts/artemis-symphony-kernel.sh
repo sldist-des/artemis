@@ -165,7 +165,7 @@ payload = {
         "Human Gates are copied into the plan and never bypassed.",
         "Terminal override remains required for any future supervised execution.",
     ],
-    "next_cut": "TKT-054 - Project Operations Graph do ARTEMIS Symphony",
+    "next_cut": "TKT-055 - Project Graph View do ARTEMIS Symphony",
 }
 
 (artifact_root / "symphony-kernel.json").write_text(
@@ -282,7 +282,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-054 - Project Operations Graph do ARTEMIS Symphony`.",
+    "- Implementar `TKT-055 - Project Graph View do ARTEMIS Symphony`.",
     "- Continuar com ponte plan-only por padrao e comando explicito por terminal.",
     "",
     "## Nao fazer",

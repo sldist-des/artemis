@@ -6,7 +6,7 @@ Intake remoto revisavel esta `remote_intake_ready`. Ele prepara revisao local e 
 
 ## Proximo corte
 
-- Implementar `TKT-054 - Project Operations Graph do ARTEMIS Symphony`.
+- Implementar `TKT-055 - Project Graph View do ARTEMIS Symphony`.
 - Exigir decisao humana exata antes de promover item remoto para fila/service.
 - Manter GitHub writes bloqueados ate contrato explicito.
 

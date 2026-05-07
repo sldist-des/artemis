@@ -1,7 +1,7 @@
 # ARTEMIS EVENT LOG SCHEMA
 
 - Schema version: 1
-- Events: 38
+- Events: 40
 - Source: scripts/artemis-event-log.sh
 
 ## Event Types
@@ -13,6 +13,7 @@
 - `adapter.contract_recorded`: `evt_tkt-015_claude_code_contract` -> done
 - `adapter.contract_recorded`: `evt_tkt-014_codex_app_server_contract` -> done
 - `runner.readiness_checked`: `evt_tkt-013_github_issues_readiness` -> human_gate
+- `adapter.contract_recorded`: `evt_tkt-054_project_graph` -> done
 - `runner.attempt_planned`: `evt_20260504t134153z-2-tkt-020_planned` -> running
 - `runner.attempt_completed`: `evt_20260504t134153z-2-tkt-020_completed` -> review
 - `runner.attempt_planned`: `evt_20260504t134653z-2-tkt-021_planned` -> running
@@ -23,8 +24,8 @@
 - `runner.attempt_completed`: `evt_20260504t140934z-2-tkt-022_completed` -> review
 - `runner.attempt_planned`: `evt_tkt-903_symphony_bridge` -> running
 - `runner.readiness_checked`: `evt_tkt-903_symphony_dispatch_planned` -> ready
-- `runner.attempt_planned`: `evt_20260507t133550z-26-tkt-903_planned` -> running
-- `runner.attempt_completed`: `evt_20260507t133550z-26-tkt-903_completed` -> review
+- `runner.attempt_planned`: `evt_20260507t135456z-26-tkt-903_planned` -> running
+- `runner.attempt_completed`: `evt_20260507t135456z-26-tkt-903_completed` -> review
 - `runner.readiness_checked`: `evt_task_symphony_daemon_tick-001` -> planned
 - `runner.readiness_checked`: `evt_task_symphony_daemon_tick-002` -> planned
 - `validation.completed`: `evt_task_symphony_daemon_completed` -> done
@@ -44,6 +45,7 @@
 - `adapter.contract_recorded`: `evt_tkt-051_symphony_remote_intake` -> review
 - `approval.resolved`: `evt_tkt-052_symphony_remote_promotion` -> ready
 - `adapter.contract_recorded`: `evt_tkt-053_memory_zone` -> done
+- `adapter.contract_recorded`: `evt_tkt-054_project_graph` -> done
 
 ## Invariants
 

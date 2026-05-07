@@ -1584,6 +1584,17 @@
         tags: ["symphony", "memory-zone", "context"]
       },
       {
+        id: "tkt-054",
+        state: "done",
+        ticket: "TKT-054",
+        title: "Project Operations Graph do ARTEMIS Symphony",
+        summary: "Grafo operacional conecta tarefas, agentes, gates, validacao, memoria, custos e artifacts como read model.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "artifacts/artemis-project-graph/run-01",
+        tags: ["symphony", "project-graph", "context"]
+      },
+      {
         id: "github-auth",
         state: "human",
         ticket: "GIT",
@@ -1837,6 +1848,19 @@
         evidence: { artifact_path: "artifacts/artemis-memory-zone/run-01" }
       },
       {
+        event_id: "evt_tkt-054_project_graph",
+        event_type: "adapter.contract_recorded",
+        generated_at: "2026-05-07T16:55:00Z",
+        producer: { adapter: "project_graph", name: "scripts/artemis-project-graph.sh", mode: "read_only" },
+        subject: {
+          ticket: "TKT-054",
+          title: "Project Operations Graph do ARTEMIS Symphony"
+        },
+        state: { from: "planned", to: "done", reason: "Project Operations Graph connects tasks, agents, gates, validation, memory, costs and artifacts." },
+        severity: "info",
+        evidence: { artifact_path: "artifacts/artemis-project-graph/run-01" }
+      },
+      {
         event_id: "evt_tkt-017_adapter_events",
         event_type: "adapter.events_emitted",
         generated_at: "2026-04-30T19:54:36Z",
@@ -1911,8 +1935,8 @@
             ["commands", "0"]
           ],
           links: [
-            ["attempt", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/RUNNER.md"],
-            ["events", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T133550Z-26-tkt-903/events.json"]
+            ["attempt", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T135456Z-26-tkt-903/RUNNER.md"],
+            ["events", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T135456Z-26-tkt-903/events.json"]
           ]
         },
         {
@@ -1920,7 +1944,7 @@
           status: "human_gate",
           summary: "Validation Gate passou tecnicamente e preservou Human Gates externos.",
           facts: [
-            ["passed", "73"],
+            ["passed", "75"],
             ["failed", "0"]
           ],
           links: [
@@ -2052,6 +2076,20 @@
             ["status", "../artifacts/artemis-memory-zone/run-01/STATUS.md"],
             ["json", "../artifacts/artemis-memory-zone/run-01/memory-zone.json"],
             ["memory", "../artifacts/artemis-memory-zone/run-01/MEMORY_ZONE.md"]
+          ]
+        },
+        {
+          title: "Graph",
+          status: "project_graph_ready",
+          summary: "project_graph_ready: tarefas, agentes, gates, validacao, memoria, custos e artifacts foram conectados como read model.",
+          facts: [
+            ["nodes", "10"],
+            ["edges", "12"]
+          ],
+          links: [
+            ["status", "../artifacts/artemis-project-graph/run-01/STATUS.md"],
+            ["json", "../artifacts/artemis-project-graph/run-01/project-graph.json"],
+            ["graph", "../artifacts/artemis-project-graph/run-01/GRAPH.md"]
           ]
         }
       ]

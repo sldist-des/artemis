@@ -1,0 +1,293 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T13:56:39Z",
+  "source": "scripts/artemis-project-graph.sh",
+  "mode": "read_only_project_graph_contract",
+  "overall": "project_graph_ready",
+  "reason": "Project Operations Graph contract is ready.",
+  "artifact_root": "artifacts/artemis-validation-gate/run-01/project-graph-check",
+  "inputs": {
+    "tasks": "control-plane/tasks.json",
+    "event_log": "artifacts/artemis-event-log/run-01/event-log.example.json",
+    "memory_zone": "artifacts/artemis-memory-zone/run-01/memory-zone.json",
+    "validation_gate": "artifacts/artemis-validation-gate/run-01/validation-gate.json"
+  },
+  "summary": {
+    "tasks_total": 55,
+    "tasks_done": 55,
+    "tasks_human": 0,
+    "tasks_ready": 0,
+    "owners_total": 7,
+    "events_total": 38,
+    "nodes_total": 10,
+    "edges_total": 12,
+    "evidence_count": 55,
+    "exec_pack_count": 55,
+    "validation_passed": 73,
+    "validation_failed": 0,
+    "validation_human_gate": 2,
+    "memory_zones": 3,
+    "dependencies_installed": 0,
+    "graph_database_started": false,
+    "embeddings_created": 0,
+    "commands_executed": 0,
+    "remote_writes_allowed": false,
+    "runner_auto_execution_allowed": false
+  },
+  "states": {
+    "done": 55
+  },
+  "risks": {
+    "medium": 47,
+    "low": 4,
+    "high": 4
+  },
+  "top_owners": [
+    [
+      "Architect",
+      31
+    ],
+    [
+      "Context Curator",
+      6
+    ],
+    [
+      "Reviewer",
+      5
+    ],
+    [
+      "Codex",
+      5
+    ],
+    [
+      "Implementer",
+      4
+    ],
+    [
+      "Designer",
+      3
+    ],
+    [
+      "Memory Keeper",
+      1
+    ]
+  ],
+  "top_tags": [
+    [
+      "exec-pack",
+      55
+    ],
+    [
+      "done",
+      55
+    ]
+  ],
+  "nodes": [
+    {
+      "id": "project:artemis",
+      "type": "project",
+      "label": "ARTEMIS",
+      "authority": "git_repository",
+      "status": "operational"
+    },
+    {
+      "id": "task_set:exec_packs",
+      "type": "task_set",
+      "label": "Exec Packs",
+      "count": 55,
+      "done": 55,
+      "human": 0
+    },
+    {
+      "id": "agent_roles:owners",
+      "type": "agent_roles",
+      "label": "Owners and agent roles",
+      "count": 7,
+      "top": [
+        [
+          "Architect",
+          31
+        ],
+        [
+          "Context Curator",
+          6
+        ],
+        [
+          "Reviewer",
+          5
+        ],
+        [
+          "Codex",
+          5
+        ],
+        [
+          "Implementer",
+          4
+        ]
+      ]
+    },
+    {
+      "id": "gate:human",
+      "type": "gate",
+      "label": "Human Gates",
+      "count": 2,
+      "authority": "human_decision"
+    },
+    {
+      "id": "validation:gate",
+      "type": "validation",
+      "label": "Validation Gate",
+      "passed": 73,
+      "failed": 0
+    },
+    {
+      "id": "memory:zone",
+      "type": "memory",
+      "label": "Human-AI Memory Zone",
+      "zones": 3,
+      "source_of_truth": "markdown_git_artifacts"
+    },
+    {
+      "id": "artifact:evidence",
+      "type": "artifact_set",
+      "label": "Artifacts and evidence",
+      "task_evidence": 55,
+      "exec_packs": 55
+    },
+    {
+      "id": "event_log:timeline",
+      "type": "event_log",
+      "label": "Canonical event timeline",
+      "events": 38
+    },
+    {
+      "id": "cost:budget",
+      "type": "cost_guard",
+      "label": "Token and runtime budget",
+      "runtime_started": false,
+      "dependencies_installed": 0
+    },
+    {
+      "id": "control_plane:view",
+      "type": "view",
+      "label": "Control Plane",
+      "authority": "observational"
+    }
+  ],
+  "edges": [
+    {
+      "from": "project:artemis",
+      "to": "task_set:exec_packs",
+      "type": "contains"
+    },
+    {
+      "from": "task_set:exec_packs",
+      "to": "artifact:evidence",
+      "type": "requires_evidence"
+    },
+    {
+      "from": "task_set:exec_packs",
+      "to": "agent_roles:owners",
+      "type": "assigned_to"
+    },
+    {
+      "from": "task_set:exec_packs",
+      "to": "gate:human",
+      "type": "blocked_by_when_sensitive"
+    },
+    {
+      "from": "validation:gate",
+      "to": "task_set:exec_packs",
+      "type": "verifies"
+    },
+    {
+      "from": "memory:zone",
+      "to": "task_set:exec_packs",
+      "type": "provides_context"
+    },
+    {
+      "from": "memory:zone",
+      "to": "event_log:timeline",
+      "type": "summarizes_history"
+    },
+    {
+      "from": "event_log:timeline",
+      "to": "artifact:evidence",
+      "type": "records"
+    },
+    {
+      "from": "cost:budget",
+      "to": "agent_roles:owners",
+      "type": "constrains_runtime"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "project:artemis",
+      "type": "observes"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "validation:gate",
+      "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "memory:zone",
+      "type": "shows"
+    }
+  ],
+  "questions": [
+    {
+      "question": "Como esta o projeto?",
+      "answer_source": [
+        "task_set:exec_packs",
+        "validation:gate",
+        "event_log:timeline"
+      ]
+    },
+    {
+      "question": "Quem esta responsavel pelo que?",
+      "answer_source": [
+        "agent_roles:owners",
+        "task_set:exec_packs"
+      ]
+    },
+    {
+      "question": "O que depende de decisao humana?",
+      "answer_source": [
+        "gate:human",
+        "validation:gate"
+      ]
+    },
+    {
+      "question": "Qual contexto e seguro para agentes?",
+      "answer_source": [
+        "memory:zone",
+        "artifact:evidence"
+      ]
+    },
+    {
+      "question": "Qual custo ou runtime foi ativado?",
+      "answer_source": [
+        "cost:budget"
+      ]
+    }
+  ],
+  "invariants": [
+    "Project Operations Graph is a read model, not execution authority.",
+    "Exec Packs, artifacts, event logs and git remain canonical.",
+    "Graph edges must be explainable by local evidence.",
+    "Human Gates and Validation Gate remain non-bypassable.",
+    "Budget and token costs must be explicit before runtime automation.",
+    "No graph database, embeddings, indexer or agent runtime is started in this cut."
+  ],
+  "contracts": {
+    "source_of_truth": "git_versioned_artemis_files",
+    "graph_role": "operational_read_model",
+    "memory_input": "artemis_memory_zone",
+    "validation_input": "artemis_validation_gate",
+    "control_plane_role": "observational_graph_consumer",
+    "runtime_policy": "no_runtime_without_explicit_human_gate"
+  },
+  "next_cut": "TKT-055 - Project Graph View do ARTEMIS Symphony"
+}

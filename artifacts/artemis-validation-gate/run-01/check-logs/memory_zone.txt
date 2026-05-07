@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T13:37:25Z",
+  "generated_at": "2026-05-07T13:56:39Z",
   "source": "scripts/artemis-memory-zone.sh",
   "mode": "read_only_memory_contract",
   "overall": "memory_zone_ready",
@@ -15,7 +15,10 @@
     "embeddings_created": 0,
     "commands_executed": 0,
     "remote_writes_allowed": false,
-    "runtime_started": false
+    "runtime_started": false,
+    "reference_code_study_allowed": true,
+    "code_copied": false,
+    "vendorization_allowed_without_human_gate": false
   },
   "sources": [
     {
@@ -77,6 +80,7 @@
     "Memory Zone is source-of-context, not execution authority.",
     "Markdown/Git artifacts remain portable and inspectable.",
     "Derived indexes can be rebuilt and never replace source files.",
+    "Public reference code may be studied for architecture and tradeoffs, but ARTEMIS implementation must be original.",
     "Secrets and credentials are excluded from memory and indexes by default.",
     "Agents may propose memory updates, but Human Gates govern sensitive knowledge changes.",
     "Costs from embeddings, indexing and agent queries must be budgeted before runtime use."
@@ -87,7 +91,8 @@
     "source_of_truth": "git_versioned_markdown_and_artifacts",
     "derived_index": "rebuildable_read_model",
     "project_operations_graph": "future_consumer_of_memory_zone",
-    "dependency_policy": "no_new_dependency_without_explicit_decision"
+    "dependency_policy": "no_new_dependency_without_explicit_decision",
+    "reference_study_policy": "study_public_code_for_learning_then_recreate_original_artemis_implementation"
   },
-  "next_cut": "TKT-054 - Project Operations Graph do ARTEMIS Symphony"
+  "next_cut": "TKT-055 - Project Graph View do ARTEMIS Symphony"
 }

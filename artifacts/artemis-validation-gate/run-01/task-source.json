@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T13:37:20Z",
+  "generated_at": "2026-05-07T13:56:34Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -649,6 +649,18 @@
       "summary": "Definir a zona de memoria humano-AI do ARTEMIS Symphony, inspirada por Tolaria",
       "exec_pack": "docs/exec-packs/done/TKT-053-artemis-memory-zone.md",
       "evidence": "docs/exec-packs/done/TKT-053-artemis-memory-zone.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-054",
+      "ticket": "TKT-054",
+      "title": "Project Operations Graph do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "O repositorio deve gerar um grafo operacional auditavel sem instalar banco de",
+      "exec_pack": "docs/exec-packs/done/TKT-054-artemis-project-graph.md",
+      "evidence": "artifacts/artemis-project-graph/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

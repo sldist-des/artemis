@@ -57,6 +57,6 @@ scripts/artemis-symphony-daemon.sh --json
 
 ## Proximo Corte
 
-`TKT-054 - Project Operations Graph do ARTEMIS Symphony`
+`TKT-055 - Project Graph View do ARTEMIS Symphony`
 
 Objetivo: consumir item revisado da fila com comando explicito e ponte supervisionada plan-only por padrao.

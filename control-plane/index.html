@@ -1002,6 +1002,87 @@
       overflow-wrap: anywhere;
     }
 
+    .agent-launch-section {
+      border-bottom: 2px solid var(--ink);
+      margin: -4px 0 18px;
+      padding: 0 0 16px;
+      display: grid;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .agent-launch-header {
+      display: grid;
+      grid-template-columns: minmax(260px, .5fr) minmax(0, 1fr);
+      gap: 16px;
+      align-items: end;
+      min-width: 0;
+    }
+
+    .agent-launch-header h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .agent-launch-header p,
+    .agent-launch-status {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .agent-launch-status {
+      text-align: right;
+    }
+
+    .agent-launch-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .agent-launch-panel {
+      border: 1px solid var(--ink);
+      background: color-mix(in srgb, var(--panel) 88%, #f3d6bf);
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+      align-content: start;
+      min-width: 0;
+    }
+
+    .agent-launch-panel h3 {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.15;
+    }
+
+    .agent-launch-item {
+      border-top: 1px solid var(--line);
+      padding-top: 7px;
+      display: grid;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .agent-launch-item b {
+      font-size: 12px;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+
+    .agent-launch-item span {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+    }
+
     .guided-collaboration-status {
       text-align: right;
     }
@@ -1207,13 +1288,16 @@
       .brief-layout,
       .brief-columns,
       .guided-collaboration-header,
-      .guided-layout {
+      .guided-layout,
+      .agent-launch-header,
+      .agent-launch-layout {
         grid-template-columns: 1fr;
       }
 
       .project-graph-status,
       .project-brief-status,
-      .guided-collaboration-status {
+      .guided-collaboration-status,
+      .agent-launch-status {
         text-align: left;
       }
 
@@ -1445,6 +1529,30 @@
       </div>
     </section>
 
+    <section class="agent-launch-section" aria-labelledby="agent-launch-title">
+      <header class="agent-launch-header">
+        <div>
+          <h2 id="agent-launch-title">Agent Launch Contract</h2>
+          <p>Preflight supervisionado para escolher runtime, auth, budget, workspace, rollback e evidencia antes de iniciar agente.</p>
+        </div>
+        <p id="agent-launch-status" class="agent-launch-status">Fonte: seed do contrato de lancamento.</p>
+      </header>
+      <div class="agent-launch-layout" aria-label="Contrato supervisionado de lancamento de agentes">
+        <section class="agent-launch-panel">
+          <h3>Perfis</h3>
+          <div id="agent-launch-profiles"></div>
+        </section>
+        <section class="agent-launch-panel">
+          <h3>Gates</h3>
+          <div id="agent-launch-gates"></div>
+        </section>
+        <section class="agent-launch-panel">
+          <h3>Evidencia</h3>
+          <div id="agent-launch-evidence"></div>
+        </section>
+      </div>
+    </section>
+
     <section class="decision-gate" aria-labelledby="decision-gate-title">
       <header>
         <h2 id="decision-gate-title">Human Gate cleanup</h2>
@@ -1485,6 +1593,7 @@
     const projectGraphSourceUrl = "../artifacts/artemis-project-graph/run-01/project-graph.json";
     const projectBriefSourceUrl = "../artifacts/artemis-project-brief/run-01/project-brief.json";
     const guidedCollaborationSourceUrl = "../artifacts/artemis-guided-collaboration/run-01/guided-collaboration.json";
+    const agentLaunchContractSourceUrl = "../artifacts/artemis-agent-launch-contract/run-01/agent-launch-contract.json";
 
     const columns = [
       { id: "intake", title: "Intake", help: "Ideia ou pedido bruto. Ainda nao tem contrato." },
@@ -2136,6 +2245,17 @@
         tags: ["symphony", "guided", "human-collaboration"]
       },
       {
+        id: "tkt-058",
+        state: "done",
+        ticket: "TKT-058",
+        title: "Supervised Agent Launch Contract do ARTEMIS Symphony",
+        summary: "Contrato define auth, budget, workspace, comando, rollback e evidencia antes de iniciar agentes.",
+        owner: "Codex",
+        risk: "high",
+        evidence: "artifacts/artemis-agent-launch-contract/run-01",
+        tags: ["symphony", "agents", "launch-contract"]
+      },
+      {
         id: "github-auth",
         state: "human",
         ticket: "GIT",
@@ -2441,6 +2561,19 @@
         evidence: { artifact_path: "artifacts/artemis-guided-collaboration/run-01" }
       },
       {
+        event_id: "evt_tkt-058_agent_launch_contract",
+        event_type: "adapter.contract_recorded",
+        generated_at: "2026-05-07T18:30:00Z",
+        producer: { adapter: "agent_launch_contract", name: "scripts/artemis-agent-launch-contract.sh", mode: "read_only" },
+        subject: {
+          ticket: "TKT-058",
+          title: "Supervised Agent Launch Contract do ARTEMIS Symphony"
+        },
+        state: { from: "planned", to: "done", reason: "Agent Launch Contract defines auth, budget, command, workspace, rollback and evidence before runtime." },
+        severity: "info",
+        evidence: { artifact_path: "artifacts/artemis-agent-launch-contract/run-01" }
+      },
+      {
         event_id: "evt_tkt-017_adapter_events",
         event_type: "adapter.events_emitted",
         generated_at: "2026-04-30T19:54:36Z",
@@ -2493,6 +2626,10 @@
     const guidedCollaborationTasksNode = document.querySelector("#guided-collaboration-tasks");
     const guidedCollaborationAgentsNode = document.querySelector("#guided-collaboration-agents");
     const guidedCollaborationGatesNode = document.querySelector("#guided-collaboration-gates");
+    const agentLaunchStatusNode = document.querySelector("#agent-launch-status");
+    const agentLaunchProfilesNode = document.querySelector("#agent-launch-profiles");
+    const agentLaunchGatesNode = document.querySelector("#agent-launch-gates");
+    const agentLaunchEvidenceNode = document.querySelector("#agent-launch-evidence");
 
     const symphonyEvidence = {
       summary: "Kernel, bridge, runner, daemon dry-run e fila publicados como evidencia local. Exec Packs e artifacts continuam canonicos.",
@@ -2532,8 +2669,8 @@
             ["commands", "0"]
           ],
           links: [
-            ["attempt", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T173824Z-26-tkt-903/RUNNER.md"],
-            ["events", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T173824Z-26-tkt-903/events.json"]
+            ["attempt", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/RUNNER.md"],
+            ["events", "../artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/events.json"]
           ]
         },
         {
@@ -2730,6 +2867,20 @@
             ["json", "../artifacts/artemis-guided-collaboration/run-01/guided-collaboration.json"],
             ["guide", "../artifacts/artemis-guided-collaboration/run-01/GUIDE.md"]
           ]
+        },
+        {
+          title: "Launch",
+          status: "agent_launch_contract_ready",
+          summary: "agent_launch_contract_ready: auth, budget, workspace, comando, rollback e evidencia ficam obrigatorios antes de runtime.",
+          facts: [
+            ["execute", "false"],
+            ["agents", "0"]
+          ],
+          links: [
+            ["status", "../artifacts/artemis-agent-launch-contract/run-01/STATUS.md"],
+            ["json", "../artifacts/artemis-agent-launch-contract/run-01/agent-launch-contract.json"],
+            ["contract", "../artifacts/artemis-agent-launch-contract/run-01/CONTRACT.md"]
+          ]
         }
       ]
     };
@@ -2738,12 +2889,12 @@
       source: "seed",
       overall: "project_graph_ready",
       summary: {
-        tasks_total: 58,
-        tasks_done: 58,
-        events_total: 44,
+        tasks_total: 59,
+        tasks_done: 59,
+        events_total: 45,
         nodes_total: 10,
         edges_total: 12,
-        validation_passed: 81,
+        validation_passed: 83,
         validation_human_gate: 2,
         memory_zones: 3,
         dependencies_installed: 0,
@@ -2751,13 +2902,13 @@
       },
       nodes: [
         { id: "project:artemis", type: "project", label: "ARTEMIS", status: "operational" },
-        { id: "task_set:exec_packs", type: "task_set", label: "Exec Packs", count: 58, done: 58 },
+        { id: "task_set:exec_packs", type: "task_set", label: "Exec Packs", count: 59, done: 59 },
         { id: "agent_roles:owners", type: "agent_roles", label: "Owners and agent roles", count: 7 },
         { id: "gate:human", type: "gate", label: "Human Gates", count: 2 },
-        { id: "validation:gate", type: "validation", label: "Validation Gate", passed: 81, failed: 0 },
+        { id: "validation:gate", type: "validation", label: "Validation Gate", passed: 83, failed: 0 },
         { id: "memory:zone", type: "memory", label: "Human-AI Memory Zone", zones: 3 },
-        { id: "artifact:evidence", type: "artifact_set", label: "Artifacts and evidence", task_evidence: 58 },
-        { id: "event_log:timeline", type: "event_log", label: "Canonical event timeline", events: 42 },
+        { id: "artifact:evidence", type: "artifact_set", label: "Artifacts and evidence", task_evidence: 59 },
+        { id: "event_log:timeline", type: "event_log", label: "Canonical event timeline", events: 45 },
         { id: "cost:budget", type: "cost_guard", label: "Token and runtime budget", dependencies_installed: 0 },
         { id: "control_plane:view", type: "view", label: "Control Plane", authority: "observational" }
       ],
@@ -2791,9 +2942,9 @@
       source: "seed",
       overall: "human_project_brief_ready",
       summary: {
-        tasks_total: 58,
-        tasks_done: 58,
-        validation_passed: 81,
+        tasks_total: 59,
+        tasks_done: 59,
+        validation_passed: 83,
         validation_failed: 0,
         human_gates: 2,
         memory_zones: 3,
@@ -2804,8 +2955,8 @@
         headline: "ARTEMIS Symphony em linguagem de projeto",
         status: "O ARTEMIS Symphony esta pronto como sistema local supervisionado: ele organiza tarefas, evidencia, validacao, memoria e limites antes de qualquer execucao automatica.",
         ready: [
-          "58 de 58 Exec Packs estao concluidos e versionados.",
-          "O Validation Gate registra 81 checks aprovados e 0 falhas tecnicas.",
+          "59 de 59 Exec Packs estao concluidos e versionados.",
+          "O Validation Gate registra 83 checks aprovados e 0 falhas tecnicas.",
           "O Project Graph conecta tarefas, agentes, gates, memoria, custos e evidencias."
         ],
         human_attention: [
@@ -2857,6 +3008,43 @@
         { label: "Budget", status: "human_required_before_runtime" },
         { label: "Remote write", status: "blocked_by_default" },
         { label: "Validation", status: "required_before_done" }
+      ]
+    };
+
+    const seedAgentLaunchContract = {
+      source: "seed",
+      overall: "agent_launch_contract_ready",
+      summary: {
+        launch_profiles: 4,
+        launch_gates: 9,
+        evidence_requirements: 4,
+        execute_default: false,
+        runtime_started: false,
+        agents_started: 0,
+        remote_writes_allowed: false
+      },
+      launch_profiles: [
+        { name: "Codex app-server", runtime: "codex_app_server", purpose: "Tarefas web/remotas com approvals, artifacts e Validation Gate." },
+        { name: "Claude Code", runtime: "claude_code", purpose: "Mapeamento rapido de repositorio e tarefas medias com checkpoints." },
+        { name: "Codex terminal-first", runtime: "codex_cli", purpose: "Execucao local com git, validacao ampla e controle fino." },
+        { name: "Verifier", runtime: "verification", purpose: "Conferir evidencia, logs, screenshots e claims antes de Done." }
+      ],
+      launch_gates: [
+        { label: "Project", status: "required", rule: "Repositorio e AGENTS.md precisam estar claros." },
+        { label: "Task", status: "required", rule: "Exec Pack ou artifact explicito precisa existir." },
+        { label: "Auth", status: "human_required", rule: "Contas pessoais exigem autenticacao humana." },
+        { label: "Budget", status: "human_required", rule: "Modelo, custo, agentes, tempo e stop rule precisam estar definidos." },
+        { label: "Command", status: "required", rule: "Superficie exata de comando precisa ser revisada." },
+        { label: "Workspace", status: "required", rule: "Branch, worktree, lock e escopo precisam estar declarados." },
+        { label: "Validation", status: "required", rule: "Evidencias de aceite precisam estar definidas." },
+        { label: "Rollback", status: "required", rule: "Abort path precisa estar explicito." },
+        { label: "Remote write", status: "blocked_by_default", rule: "Push, PR, deploy e producao ficam bloqueados." }
+      ],
+      evidence_contract: [
+        { label: "Launch request", proof: "Projeto, tarefa, runtime, budget, auth e stop rule estao explicitos." },
+        { label: "Preflight", proof: "Contrato valido e invariantes read-only preservados." },
+        { label: "Runtime logs", proof: "Futuro runtime precisa registrar turns, budget, comando e evidencia." },
+        { label: "Handoff", proof: "Proximo passo e gates pendentes ficam visiveis." }
       ]
     };
 
@@ -3131,6 +3319,38 @@
       );
     }
 
+    function renderAgentLaunchItems(target, items, pickTitle, pickMeta) {
+      const source = Array.isArray(items) ? items : [];
+      target.innerHTML = source.slice(0, 9).map((item) => `
+        <div class="agent-launch-item">
+          <b>${escapeHtml(pickTitle(item))}</b>
+          <span>${escapeHtml(pickMeta(item))}</span>
+        </div>
+      `).join("");
+    }
+
+    function renderAgentLaunchContract(model) {
+      agentLaunchStatusNode.textContent = `Fonte: ${model.source || agentLaunchContractSourceUrl} | ${model.overall || "observed"}`;
+      renderAgentLaunchItems(
+        agentLaunchProfilesNode,
+        model.launch_profiles,
+        (item) => item.name || item.id || "Perfil",
+        (item) => `${item.runtime || item.command_surface || "runtime"} | ${item.purpose || "Sem finalidade"}`
+      );
+      renderAgentLaunchItems(
+        agentLaunchGatesNode,
+        model.launch_gates,
+        (item) => item.label || item.id || "Gate",
+        (item) => `${item.status || "required"} | ${item.rule || "Sem regra"}`
+      );
+      renderAgentLaunchItems(
+        agentLaunchEvidenceNode,
+        model.evidence_contract,
+        (item) => item.label || item.id || "Evidencia",
+        (item) => item.proof || item.artifact || "Sem prova"
+      );
+    }
+
     async function loadProjectGraphSource() {
       try {
         const response = await fetch(projectGraphSourceUrl, { cache: "no-store" });
@@ -3161,6 +3381,18 @@
         if (!response.ok) return null;
         const payload = await response.json();
         if (!Array.isArray(payload.projects) || !Array.isArray(payload.agent_profiles)) return null;
+        return payload;
+      } catch {
+        return null;
+      }
+    }
+
+    async function loadAgentLaunchContractSource() {
+      try {
+        const response = await fetch(agentLaunchContractSourceUrl, { cache: "no-store" });
+        if (!response.ok) return null;
+        const payload = await response.json();
+        if (!Array.isArray(payload.launch_profiles) || !Array.isArray(payload.launch_gates)) return null;
         return payload;
       } catch {
         return null;
@@ -3336,12 +3568,15 @@
       renderProjectGraph(seedProjectGraph);
       renderProjectBrief(seedProjectBrief);
       renderGuidedCollaboration(seedGuidedCollaboration);
+      renderAgentLaunchContract(seedAgentLaunchContract);
       const loadedGraph = await loadProjectGraphSource();
       if (loadedGraph) renderProjectGraph(loadedGraph);
       const loadedBrief = await loadProjectBriefSource();
       if (loadedBrief) renderProjectBrief(loadedBrief);
       const loadedGuidedCollaboration = await loadGuidedCollaborationSource();
       if (loadedGuidedCollaboration) renderGuidedCollaboration(loadedGuidedCollaboration);
+      const loadedAgentLaunchContract = await loadAgentLaunchContractSource();
+      if (loadedAgentLaunchContract) renderAgentLaunchContract(loadedAgentLaunchContract);
       const loadedEvents = await loadEventSource();
       renderTimeline(loadedEvents || seedEvents);
     }

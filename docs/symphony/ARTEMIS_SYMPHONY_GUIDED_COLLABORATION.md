@@ -41,7 +41,6 @@ scripts/validate-artemis.sh
 
 ## Handoff
 
-O proximo corte recomendado e `TKT-058 - Supervised Agent Launch Contract do
-ARTEMIS Symphony`, transformando a escolha guiada em contrato de lancamento
-supervisionado para agentes sem abrir mao de Human Gates, budget gates,
-terminal-first e evidencia verificavel.
+O proximo corte recomendado e `TKT-059 - Agent Runtime Dry-Run do ARTEMIS
+Symphony`, usando o contrato de lancamento como entrada para um dry-run
+auditavel antes de qualquer runtime real.

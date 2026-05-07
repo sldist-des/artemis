@@ -26,6 +26,7 @@ docs/symphony/ARTEMIS_SYMPHONY_PROJECT_GRAPH.md
 docs/symphony/ARTEMIS_SYMPHONY_PROJECT_GRAPH_VIEW.md
 docs/symphony/ARTEMIS_SYMPHONY_PROJECT_BRIEF.md
 docs/symphony/ARTEMIS_SYMPHONY_GUIDED_COLLABORATION.md
+docs/symphony/ARTEMIS_SYMPHONY_AGENT_LAUNCH_CONTRACT.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
@@ -79,6 +80,7 @@ scripts/artemis-project-graph.sh
 scripts/artemis-project-graph-view.sh
 scripts/artemis-project-brief.sh
 scripts/artemis-guided-collaboration.sh
+scripts/artemis-agent-launch-contract.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -169,6 +171,7 @@ sh -n scripts/artemis-project-graph.sh
 sh -n scripts/artemis-project-graph-view.sh
 sh -n scripts/artemis-project-brief.sh
 sh -n scripts/artemis-guided-collaboration.sh
+sh -n scripts/artemis-agent-launch-contract.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -1335,6 +1338,35 @@ if ! grep -q '"event_type": "adapter.contract_recorded"' /tmp/artemis-guided-col
   echo "scripts/artemis-guided-collaboration.sh did not emit canonical events" >&2
   exit 1
 fi
+scripts/artemis-agent-launch-contract.sh --artifact-root /tmp/artemis-agent-launch-contract --json >/tmp/artemis-agent-launch-contract.json
+if ! grep -q '"overall": "agent_launch_contract_ready"' /tmp/artemis-agent-launch-contract.json; then
+  echo "scripts/artemis-agent-launch-contract.sh did not report agent_launch_contract_ready" >&2
+  exit 1
+fi
+if ! grep -q '"execute_default": false' /tmp/artemis-agent-launch-contract.json; then
+  echo "ARTEMIS Agent Launch Contract did not keep execute=false by default" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_started": false' /tmp/artemis-agent-launch-contract.json; then
+  echo "ARTEMIS Agent Launch Contract started runtime during contract validation" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": 0' /tmp/artemis-agent-launch-contract.json; then
+  echo "ARTEMIS Agent Launch Contract started agents during read-only contract validation" >&2
+  exit 1
+fi
+if ! grep -q '"remote_writes_allowed": false' /tmp/artemis-agent-launch-contract.json; then
+  echo "ARTEMIS Agent Launch Contract allowed remote writes" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-agent-launch-contract.json; then
+  echo "ARTEMIS Agent Launch Contract executed commands during read-only contract validation" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "adapter.contract_recorded"' /tmp/artemis-agent-launch-contract/events.json; then
+  echo "scripts/artemis-agent-launch-contract.sh did not emit canonical events" >&2
+  exit 1
+fi
 
 scripts/artemis-codex-app-server.sh --artifact-root /tmp/artemis-codex-app-server --json >/tmp/artemis-codex-app-server.json
 if ! grep -q '"overall": "passed"' /tmp/artemis-codex-app-server.json; then
@@ -1378,7 +1410,7 @@ if ! grep -q "artifacts/artemis-symphony-bridge/run-01/symphony-bridge.json" con
   echo "control-plane/index.html does not link the Symphony bridge artifact" >&2
   exit 1
 fi
-if ! grep -q "20260507T173824Z-26-tkt-903" control-plane/index.html; then
+if ! grep -q "20260507T180318Z-26-tkt-903" control-plane/index.html; then
   echo "control-plane/index.html does not link the Symphony runner attempt" >&2
   exit 1
 fi
@@ -1496,6 +1528,18 @@ if ! grep -q "renderGuidedCollaboration" control-plane/index.html; then
 fi
 if ! grep -q "guided_collaboration_ready" control-plane/index.html; then
   echo "control-plane/index.html does not show the ARTEMIS Guided Collaboration state" >&2
+  exit 1
+fi
+if ! grep -q "agent-launch-section" control-plane/index.html; then
+  echo "control-plane/index.html does not render the ARTEMIS Agent Launch Contract section" >&2
+  exit 1
+fi
+if ! grep -q "renderAgentLaunchContract" control-plane/index.html; then
+  echo "control-plane/index.html does not include the Agent Launch Contract renderer" >&2
+  exit 1
+fi
+if ! grep -q "agent_launch_contract_ready" control-plane/index.html; then
+  echo "control-plane/index.html does not show the ARTEMIS Agent Launch Contract state" >&2
   exit 1
 fi
 

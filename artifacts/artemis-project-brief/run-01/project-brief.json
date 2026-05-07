@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T17:41:12Z",
+  "generated_at": "2026-05-07T18:04:27Z",
   "source": "scripts/artemis-project-brief.sh",
   "mode": "read_only_human_project_brief",
   "overall": "human_project_brief_ready",
@@ -18,12 +18,12 @@
     "claude_code"
   ],
   "summary": {
-    "tasks_total": 58,
-    "tasks_done": 58,
-    "events_total": 44,
+    "tasks_total": 59,
+    "tasks_done": 59,
+    "events_total": 45,
     "nodes_total": 10,
     "edges_total": 12,
-    "validation_passed": 81,
+    "validation_passed": 83,
     "validation_failed": 0,
     "human_gates": 2,
     "memory_zones": 3,
@@ -37,8 +37,8 @@
     "headline": "ARTEMIS Symphony em linguagem de projeto",
     "status": "O ARTEMIS Symphony esta pronto como sistema local supervisionado: ele organiza tarefas, evidencia, validacao, memoria e limites antes de qualquer execucao automatica.",
     "ready": [
-      "58 de 58 Exec Packs estao concluidos e versionados.",
-      "O Validation Gate registra 81 checks aprovados e 0 falhas tecnicas.",
+      "59 de 59 Exec Packs estao concluidos e versionados.",
+      "O Validation Gate registra 83 checks aprovados e 0 falhas tecnicas.",
       "O Project Graph conecta 10 nos e 12 relacoes entre tarefas, agentes, gates, memoria, custos e evidencias.",
       "A Memory Zone tem 3 zonas para contexto humano-AI versionado em Git."
     ],
@@ -78,5 +78,5 @@
     "renderProjectBrief",
     "loadProjectBriefSource"
   ],
-  "next_cut": "TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony"
+  "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
 }

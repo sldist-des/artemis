@@ -43,6 +43,6 @@ git diff --check
 
 ## Handoff
 
-O proximo corte e `TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`,
+O proximo corte e `TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`,
 mantendo tarefas, agentes, dependencias, gates, validacoes, custos, memoria e
 artefatos como grafo operacional auditavel.

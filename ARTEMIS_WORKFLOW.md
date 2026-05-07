@@ -417,6 +417,8 @@ scripts/artemis-project-brief.sh
 scripts/artemis-project-brief.sh --json
 scripts/artemis-guided-collaboration.sh
 scripts/artemis-guided-collaboration.sh --json
+scripts/artemis-agent-launch-contract.sh
+scripts/artemis-agent-launch-contract.sh --json
 ```
 
 Esse grafo e um read model operacional. Ele ajuda humanos e agentes a entenderem
@@ -429,6 +431,10 @@ a colaborar sem conhecer todos os artifacts, mas tambem nao vira fonte canonica.
 O Guided Collaboration e a entrada guiada desse briefing: ele ajuda a escolher
 projeto, tarefa, perfil de agente, gates e evidencia antes de runtime real, sem
 iniciar agentes, auth, fila, app-server ou escrita remota.
+O Agent Launch Contract e o preflight supervisionado entre a entrada guiada e
+qualquer runtime real. Ele fixa `execute=false` por padrao e exige projeto,
+tarefa, auth, budget, comando, workspace, rollback e evidencia antes de Codex
+app-server, Claude Code ou outro agente poder ser iniciado pelo Symphony.
 
 Codex app-server e fonte futura de eventos ricos, nao substitui controle terminal-first:
 

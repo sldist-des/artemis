@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T17:40:59Z",
+  "generated_at": "2026-05-07T18:05:46Z",
   "source": "scripts/artemis-project-graph.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T17:40:59Z",
+      "generated_at": "2026-05-07T18:05:46Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -47,17 +47,17 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 58,
-          "tasks_done": 58,
+          "tasks_total": 59,
+          "tasks_done": 59,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 7,
-          "events_total": 44,
+          "events_total": 45,
           "nodes_total": 10,
           "edges_total": 12,
-          "evidence_count": 58,
-          "exec_pack_count": 58,
-          "validation_passed": 81,
+          "evidence_count": 59,
+          "exec_pack_count": 59,
+          "validation_passed": 83,
           "validation_failed": 0,
           "validation_human_gate": 2,
           "memory_zones": 3,
@@ -68,7 +68,7 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony"
+        "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
       }
     }
   ]

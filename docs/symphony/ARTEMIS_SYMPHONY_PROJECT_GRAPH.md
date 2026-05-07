@@ -74,4 +74,4 @@ scripts/artemis-project-graph.sh --json
 
 ## Proximo corte
 
-`TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`
+`TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`

@@ -4,4 +4,4 @@ O briefing humano esta pronto como camada de explicacao do Project Operations Gr
 
 Proximo corte:
 
-- Implementar `TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`.
+- Implementar `TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`.

@@ -6,7 +6,7 @@ Project Operations Graph esta `project_graph_ready` como read model operacional.
 
 ## Proximo corte
 
-- Implementar `TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`.
+- Implementar `TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`.
 - Renderizar relacoes do grafo no Control Plane com linguagem operacional e leiga.
 
 ## Nao fazer

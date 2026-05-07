@@ -649,6 +649,36 @@ Contrato:
 - escolhas guiadas futuras so podem virar execucao por contrato supervisionado
   explicito com budget, auth, comandos, rollback e evidencia.
 
+### Modo 3.8 - Agent Launch Contract
+
+Implementado em `TKT-058` como contrato supervisionado read-only antes de
+qualquer lancamento real de Codex app-server, Claude Code, Codex terminal-first
+ou verifier.
+
+- consome Guided Collaboration, Project Brief, Project Graph, task source e
+  Control Plane;
+- explicita perfis de runtime, auth, budget, comando, workspace, rollback,
+  evidencia e stop rule;
+- define `execute=false` como padrao para todos os perfis;
+- registra `agents_started=0`, `runtime_started=false`, `commands_executed=0` e
+  `remote_writes_allowed=false`;
+- exige Human Gate antes de contas pessoais, custo, rede, remoto, producao,
+  secrets ou execucao longa;
+- nao inicia app-server, SDK, CLI remota, subagente pago, fila, daemon, bridge
+  ou qualquer processo de runtime.
+
+Agent Launch Contract implementado:
+
+- `scripts/artemis-agent-launch-contract.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_AGENT_LAUNCH_CONTRACT.md`
+
+Contrato:
+
+- Agent Launch Contract e preflight, nao launcher;
+- Git, Exec Packs, Event Log, Validation Gate e artifacts continuam canonicos;
+- o proximo runtime deve primeiro materializar um dry-run auditavel antes de
+  permitir execucao real.
+
 ## Invariantes
 
 - ARTEMIS Symphony nao executa cleanup real sem decisao humana.
@@ -661,15 +691,15 @@ Contrato:
 
 ## Proximo corte recomendado
 
-`TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`
+`TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`
 
 Objetivo:
 
-- transformar uma escolha guiada em pacote de lancamento supervisionado;
-- explicitar agente, modelo, budget, auth, comando, rollback e evidencia antes
-  de qualquer runtime real;
-- manter execute=false por padrao e Human Gate antes de custo, rede, remoto ou
-  trabalho sensivel;
+- materializar um pedido de runtime a partir do Agent Launch Contract;
+- validar selecao de agente, modelo, budget, auth, comando, workspace, rollback
+  e evidencia sem iniciar agente real;
+- manter execute=false por padrao e Human Gate antes de custo, rede, remoto,
+  producao ou trabalho sensivel;
 - preparar o caminho para acionar Codex/Claude de modo auditavel sem perder
   controle terminal-first.
 

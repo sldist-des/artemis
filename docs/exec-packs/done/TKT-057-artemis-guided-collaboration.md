@@ -31,7 +31,6 @@ agente, gates, custo/risco e evidencia esperada antes de qualquer execucao real.
 
 ## Handoff
 
-O proximo corte e `TKT-058 - Supervised Agent Launch Contract do ARTEMIS
-Symphony`, definindo como uma escolha guiada vira pacote de lancamento
-supervisionado para agentes com budget, auth, comando, validacao e rollback
-explicitos.
+O proximo corte e `TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`,
+materializando o contrato de lancamento como dry-run auditavel antes de qualquer
+runtime real.

@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T18:05:46Z",
+  "source": "scripts/artemis-agent-launch-contract.sh",
+  "mode": "read_only_supervised_agent_launch_contract",
+  "overall": "agent_launch_contract_ready",
+  "reason": "Supervised launch contract was derived from Guided Collaboration, Project Brief, Project Graph and task source.",
+  "artifact_root": "artifacts/artemis-validation-gate/run-01/agent-launch-contract-check",
+  "inputs": {
+    "guided_collaboration": "artifacts/artemis-guided-collaboration/run-01/guided-collaboration.json",
+    "project_brief": "artifacts/artemis-project-brief/run-01/project-brief.json",
+    "project_graph": "artifacts/artemis-project-graph/run-01/project-graph.json",
+    "tasks": "control-plane/tasks.json",
+    "control_plane": "control-plane/index.html"
+  },
+  "summary": {
+    "launch_profiles": 4,
+    "launch_gates": 9,
+    "evidence_requirements": 4,
+    "tasks_total": 59,
+    "tasks_done": 59,
+    "tasks_human": 0,
+    "validation_passed": 83,
+    "validation_failed": 0,
+    "human_gates": 2,
+    "execute_default": false,
+    "runtime_started": false,
+    "agents_started": 0,
+    "commands_executed": 0,
+    "dependencies_installed": 0,
+    "remote_writes_allowed": false,
+    "auth_required_before_real_use": true,
+    "budget_required_before_runtime": true,
+    "rollback_required_before_runtime": true,
+    "validation_required_before_done": true
+  },
+  "candidate_launch": {
+    "project": "ARTEMIS",
+    "task": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony",
+    "recommended_profile": "codex_terminal",
+    "fallback_profile": "claude_code",
+    "execute": false,
+    "reason": "The next safe step is a dry-run adapter that materializes a launch request without starting paid/runtime agents."
+  },
+  "launch_profiles": [
+    {
+      "id": "codex_app_server",
+      "name": "Codex app-server",
+      "purpose": "Receber tarefas remotas ou web e manter supervisao por artifacts, approvals e Validation Gate.",
+      "runtime": "codex_app_server",
+      "command_surface": "codex app-server",
+      "auth_required": true,
+      "budget_required": true,
+      "workspace_required": true,
+      "max_default_agents": 1,
+      "execute_default": false,
+      "allowed_before_human_approval": [
+        "read artifacts",
+        "plan launch",
+        "validate contract"
+      ],
+      "blocked_before_human_approval": [
+        "start runtime",
+        "spawn paid agent",
+        "push",
+        "deploy",
+        "touch secrets"
+      ]
+    },
+    {
+      "id": "claude_code",
+      "name": "Claude Code",
+      "purpose": "Mapear repositorio, entender linguagem e executar tarefas medias com checkpoints curtos.",
+      "runtime": "claude_code",
+      "command_surface": "claude headless/sdk",
+      "auth_required": true,
+      "budget_required": true,
+      "workspace_required": true,
+      "max_default_agents": 1,
+      "execute_default": false,
+      "allowed_before_human_approval": [
+        "read artifacts",
+        "plan launch",
+        "validate contract"
+      ],
+      "blocked_before_human_approval": [
+        "start runtime",
+        "spawn paid agent",
+        "push",
+        "deploy",
+        "touch secrets"
+      ]
+    },
+    {
+      "id": "codex_terminal",
+      "name": "Codex terminal-first",
+      "purpose": "Atuar como executor principal local quando a tarefa exige controle fino, git e verificacao ampla.",
+      "runtime": "codex_cli",
+      "command_surface": "terminal",
+      "auth_required": false,
+      "budget_required": true,
+      "workspace_required": true,
+      "max_default_agents": 1,
+      "execute_default": false,
+      "allowed_before_human_approval": [
+        "read artifacts",
+        "plan launch",
+        "validate contract"
+      ],
+      "blocked_before_human_approval": [
+        "start delegated runtime",
+        "spawn paid agent",
+        "push",
+        "deploy",
+        "touch secrets"
+      ]
+    },
+    {
+      "id": "verifier",
+      "name": "Verifier",
+      "purpose": "Validar evidencia, testes, logs, screenshots e claims antes de Done ou handoff.",
+      "runtime": "codex_subagent_or_manual_review",
+      "command_surface": "verification",
+      "auth_required": false,
+      "budget_required": true,
+      "workspace_required": false,
+      "max_default_agents": 1,
+      "execute_default": false,
+      "allowed_before_human_approval": [
+        "read artifacts",
+        "plan verification",
+        "validate evidence list"
+      ],
+      "blocked_before_human_approval": [
+        "approve Human Gate",
+        "merge",
+        "push",
+        "deploy",
+        "touch secrets"
+      ]
+    }
+  ],
+  "launch_gates": [
+    {
+      "id": "project_gate",
+      "label": "Project",
+      "status": "required",
+      "rule": "A launch request must name the repository/project and the canonical AGENTS.md contract."
+    },
+    {
+      "id": "task_gate",
+      "label": "Task",
+      "status": "required",
+      "rule": "A launch request must point to an Exec Pack or explicit task artifact with objective, scope and risk."
+    },
+    {
+      "id": "auth_gate",
+      "label": "Auth",
+      "status": "human_required",
+      "rule": "Any Codex app-server, Claude Code, GitHub or account-backed runtime requires explicit human authentication."
+    },
+    {
+      "id": "budget_gate",
+      "label": "Budget",
+      "status": "human_required",
+      "rule": "Model, max tokens/cost, max agents, max wall time and stop rule must be declared before runtime."
+    },
+    {
+      "id": "command_gate",
+      "label": "Command",
+      "status": "required",
+      "rule": "The exact command surface must be reviewed; launch remains execute=false until the next contract authorizes it."
+    },
+    {
+      "id": "workspace_gate",
+      "label": "Workspace",
+      "status": "required",
+      "rule": "Agent write scope, branch/worktree, lock and dirty-state policy must be known before execution."
+    },
+    {
+      "id": "validation_gate",
+      "label": "Validation",
+      "status": "required",
+      "rule": "The task must name tests, static checks, screenshots or artifacts that prove completion."
+    },
+    {
+      "id": "rollback_gate",
+      "label": "Rollback",
+      "status": "required",
+      "rule": "A clean abort path and artifacts to preserve on failure must be listed before runtime."
+    },
+    {
+      "id": "remote_write_gate",
+      "label": "Remote write",
+      "status": "blocked_by_default",
+      "rule": "Push, PR, issue mutation, deploy and production writes remain blocked until explicit human approval."
+    }
+  ],
+  "evidence_contract": [
+    {
+      "id": "launch_request",
+      "label": "Launch request",
+      "required": true,
+      "artifact": "agent-launch-contract.json",
+      "proof": "Project, task, runtime profile, budget, auth state, command surface and stop rule are explicit."
+    },
+    {
+      "id": "preflight",
+      "label": "Preflight",
+      "required": true,
+      "artifact": "VALIDATION.md",
+      "proof": "Contract is internally valid and read-only safety invariants are intact."
+    },
+    {
+      "id": "runtime_logs",
+      "label": "Runtime logs",
+      "required": "future_runtime",
+      "artifact": "future runner/app-server logs",
+      "proof": "When runtime exists, every agent turn must be tied to task, budget, command and evidence."
+    },
+    {
+      "id": "handoff",
+      "label": "Handoff",
+      "required": true,
+      "artifact": "HANDOFF.md",
+      "proof": "Next action is known and unresolved gates are visible."
+    }
+  ],
+  "invariants": [
+    "Agent Launch Contract is planning authority only; it never starts runtime.",
+    "execute=false is the default for every launch profile.",
+    "Human approval is required before auth-backed, paid, remote, production or long-running work.",
+    "Validation Gate and rollback evidence must be declared before a task can move to Done.",
+    "Git, Exec Packs, Event Log, artifacts and AGENTS.md remain canonical."
+  ],
+  "missing_tokens": [],
+  "missing_files": [],
+  "required_tokens": [
+    "agent-launch-section",
+    "agent-launch-status",
+    "agent-launch-profiles",
+    "agent-launch-gates",
+    "agent-launch-evidence",
+    "agentLaunchContractSourceUrl",
+    "renderAgentLaunchContract",
+    "loadAgentLaunchContractSource"
+  ],
+  "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+}

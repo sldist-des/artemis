@@ -57,6 +57,6 @@ scripts/artemis-symphony-daemon.sh --json
 
 ## Proximo Corte
 
-`TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`
+`TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`
 
 Objetivo: consumir item revisado da fila com comando explicito e ponte supervisionada plan-only por padrao.

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T17:41:12Z",
+  "generated_at": "2026-05-07T18:04:31Z",
   "source": "scripts/artemis-guided-collaboration.sh",
   "mode": "read_only_guided_human_collaboration",
   "overall": "guided_collaboration_ready",
@@ -17,11 +17,11 @@
     "task_lanes": 4,
     "agent_profiles": 4,
     "gate_contracts": 4,
-    "tasks_total": 58,
-    "tasks_done": 58,
+    "tasks_total": 59,
+    "tasks_done": 59,
     "tasks_human": 0,
     "tasks_ready": 0,
-    "validation_passed": 81,
+    "validation_passed": 83,
     "validation_failed": 0,
     "human_gates": 2,
     "commands_executed": 0,
@@ -169,5 +169,5 @@
     "renderGuidedCollaboration",
     "loadGuidedCollaborationSource"
   ],
-  "next_cut": "TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony"
+  "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
 }

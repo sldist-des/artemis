@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T17:40:53Z",
+  "generated_at": "2026-05-07T18:05:40Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -697,6 +697,18 @@
       "summary": "Criar uma entrada guiada para humanos escolherem projeto, tarefa, perfil de",
       "exec_pack": "docs/exec-packs/done/TKT-057-artemis-guided-collaboration.md",
       "evidence": "docs/exec-packs/done/TKT-057-artemis-guided-collaboration.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-058",
+      "ticket": "TKT-058",
+      "title": "Supervised Agent Launch Contract do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "high",
+      "summary": "O ARTEMIS passa a ter um artifact canonico que explicita perfis de agente, gates, budget, auth, comando, workspace, rollback, evidencia e invariantes de seguranca antes de runtime.",
+      "exec_pack": "docs/exec-packs/done/TKT-058-artemis-agent-launch-contract.md",
+      "evidence": "artifacts/artemis-agent-launch-contract/run-01/agent-launch-contract.json",
       "tags": ["exec-pack", "done"]
     }
   ]

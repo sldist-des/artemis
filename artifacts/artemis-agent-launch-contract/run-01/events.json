@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T18:04:31Z",
+  "source": "scripts/artemis-agent-launch-contract.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-058_agent_launch_contract",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-07T18:04:31Z",
+      "producer": {
+        "adapter": "agent_launch_contract",
+        "name": "scripts/artemis-agent-launch-contract.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-058",
+        "task_id": "tkt-058",
+        "title": "Supervised Agent Launch Contract do ARTEMIS Symphony",
+        "exec_pack": "docs/exec-packs/done/TKT-058-artemis-agent-launch-contract.md",
+        "artifact_root": "artifacts/artemis-agent-launch-contract/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "done",
+        "reason": "Supervised launch contract was derived from Guided Collaboration, Project Brief, Project Graph and task source."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-agent-launch-contract/run-01",
+        "status_path": "artifacts/artemis-agent-launch-contract/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-agent-launch-contract/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-agent-launch-contract/run-01/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-058"
+      },
+      "payload": {
+        "overall": "agent_launch_contract_ready",
+        "reason": "Supervised launch contract was derived from Guided Collaboration, Project Brief, Project Graph and task source.",
+        "summary": {
+          "launch_profiles": 4,
+          "launch_gates": 9,
+          "evidence_requirements": 4,
+          "tasks_total": 59,
+          "tasks_done": 59,
+          "tasks_human": 0,
+          "validation_passed": 83,
+          "validation_failed": 0,
+          "human_gates": 2,
+          "execute_default": false,
+          "runtime_started": false,
+          "agents_started": 0,
+          "commands_executed": 0,
+          "dependencies_installed": 0,
+          "remote_writes_allowed": false,
+          "auth_required_before_real_use": true,
+          "budget_required_before_runtime": true,
+          "rollback_required_before_runtime": true,
+          "validation_required_before_done": true
+        },
+        "candidate_launch": {
+          "project": "ARTEMIS",
+          "task": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony",
+          "recommended_profile": "codex_terminal",
+          "fallback_profile": "claude_code",
+          "execute": false,
+          "reason": "The next safe step is a dry-run adapter that materializes a launch request without starting paid/runtime agents."
+        },
+        "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+      }
+    }
+  ]
+}

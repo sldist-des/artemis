@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T17:38:05Z",
+  "generated_at": "2026-05-07T18:03:04Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
   "artifact_root": "artifacts/artemis-symphony-compatibility/run-01",
   "spec": "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md",
   "summary": {
-    "layers_total": 22,
+    "layers_total": 23,
     "layers_with_missing_files": 0,
-    "tasks_total": 58,
-    "tasks_done": 58,
+    "tasks_total": 59,
+    "tasks_done": 59,
     "daemon_implemented": true,
     "kernel_implemented": true,
     "bridge_implemented": true,
@@ -27,6 +27,7 @@
     "project_graph_view_implemented": true,
     "project_brief_implemented": true,
     "guided_collaboration_implemented": true,
+    "agent_launch_contract_implemented": true,
     "next_cut_defined": true
   },
   "compatibility": {
@@ -49,9 +50,10 @@
     "project_graph_view_implemented": true,
     "project_brief_implemented": true,
     "guided_collaboration_implemented": true,
+    "agent_launch_contract_implemented": true,
     "terminal_first": true,
     "human_gates_preserved": true,
-    "next_cut": "TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony"
+    "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
   },
   "layers": [
     {
@@ -284,6 +286,16 @@
       ],
       "status": "implemented_read_only_guided_entry",
       "missing_files": []
+    },
+    {
+      "layer": "agent_launch_contract",
+      "purpose": "Read-only supervised contract for auth, budget, command, workspace, rollback and evidence before agent runtime.",
+      "required_files": [
+        "scripts/artemis-agent-launch-contract.sh",
+        "docs/symphony/ARTEMIS_SYMPHONY_AGENT_LAUNCH_CONTRACT.md"
+      ],
+      "status": "implemented_supervised_preflight_contract",
+      "missing_files": []
     }
   ],
   "blockers": [],
@@ -306,6 +318,7 @@
     "The implemented Project Operations Graph is a read model and never becomes execution authority.",
     "The implemented Project Graph View is observational and never becomes canonical state.",
     "The implemented Project Brief is explanatory and never becomes canonical state.",
-    "The implemented Guided Collaboration mode is a read-only entry and never launches agents."
+    "The implemented Guided Collaboration mode is a read-only entry and never launches agents.",
+    "The implemented Agent Launch Contract is read-only, execute=false by default and never starts runtime."
   ]
 }

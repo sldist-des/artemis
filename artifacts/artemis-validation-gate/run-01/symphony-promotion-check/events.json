@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T17:40:59Z",
+  "generated_at": "2026-05-07T18:05:46Z",
   "source": "scripts/artemis-symphony-remote-promotion.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-052_symphony_remote_promotion",
       "event_type": "approval.resolved",
-      "generated_at": "2026-05-07T17:40:59Z",
+      "generated_at": "2026-05-07T18:05:46Z",
       "producer": {
         "adapter": "symphony_remote_promotion",
         "name": "scripts/artemis-symphony-remote-promotion.sh",
@@ -77,7 +77,7 @@
           "terminal_first": true,
           "human_gates_preserved": true
         },
-        "next_cut": "TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony"
+        "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
       }
     }
   ]

@@ -78,7 +78,8 @@
             "project_graph",
             "project_graph_view",
             "project_brief",
-            "guided_collaboration"
+            "guided_collaboration",
+            "agent_launch_contract"
           ]
         },
         "name": {

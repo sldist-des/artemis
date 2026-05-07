@@ -61,4 +61,4 @@ scripts/artemis-symphony-queue-bridge.sh --ticket TKT-000 --command "cmd" --json
 
 ## Proximo corte
 
-`TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`
+`TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`

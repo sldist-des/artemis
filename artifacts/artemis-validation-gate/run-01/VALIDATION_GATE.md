@@ -1,7 +1,7 @@
 # VALIDATION GATE RESULT
 
 - Overall: human_gate
-- Passed: 81
+- Passed: 83
 - Failed: 0
 - Human Gate: 2
 
@@ -39,6 +39,7 @@
 - shell_project_graph_view: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_project_graph_view.txt`
 - shell_project_brief: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_project_brief.txt`
 - shell_guided_collaboration: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_guided_collaboration.txt`
+- shell_agent_launch_contract: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_launch_contract.txt`
 - shell_approved_workspace_cleanup: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt`
 - shell_workspace_runtime_handoff: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt`
 - shell_runner: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt`
@@ -78,6 +79,7 @@
 - project_graph_view: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/project_graph_view.txt`
 - project_brief: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/project_brief.txt`
 - guided_collaboration: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/guided_collaboration.txt`
+- agent_launch_contract: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/agent_launch_contract.txt`
 - approved_workspace_cleanup: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt`
 - workspace_runtime_handoff: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt`
 - runner_plan: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt`

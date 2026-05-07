@@ -215,6 +215,12 @@ layers = [
         "required_files": ["scripts/artemis-guided-collaboration.sh", "docs/symphony/ARTEMIS_SYMPHONY_GUIDED_COLLABORATION.md"],
         "status": "implemented_read_only_guided_entry",
     },
+    {
+        "layer": "agent_launch_contract",
+        "purpose": "Read-only supervised contract for auth, budget, command, workspace, rollback and evidence before agent runtime.",
+        "required_files": ["scripts/artemis-agent-launch-contract.sh", "docs/symphony/ARTEMIS_SYMPHONY_AGENT_LAUNCH_CONTRACT.md"],
+        "status": "implemented_supervised_preflight_contract",
+    },
 ]
 
 for layer in layers:
@@ -241,6 +247,7 @@ required_terms = [
     "TKT-056",
     "TKT-057",
     "TKT-058",
+    "TKT-059",
     "Queue Bridge",
     "Queue Execution",
     "Service",
@@ -252,6 +259,7 @@ required_terms = [
     "Project Graph View",
     "Project Brief",
     "Guided Collaboration",
+    "Agent Launch Contract",
 ]
 missing_terms = [term for term in required_terms if term not in spec_text]
 if missing_terms:
@@ -291,9 +299,10 @@ compatibility = {
     "project_graph_view_implemented": True,
     "project_brief_implemented": True,
     "guided_collaboration_implemented": True,
+    "agent_launch_contract_implemented": True,
     "terminal_first": True,
     "human_gates_preserved": True,
-    "next_cut": "TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony",
+    "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony",
 }
 
 overall = "failed" if blockers else "spec_ready"
@@ -326,7 +335,8 @@ payload = {
         "project_graph_view_implemented": exists("scripts/artemis-project-graph-view.sh"),
         "project_brief_implemented": exists("scripts/artemis-project-brief.sh"),
         "guided_collaboration_implemented": exists("scripts/artemis-guided-collaboration.sh"),
-        "next_cut_defined": "TKT-058" in spec_text,
+        "agent_launch_contract_implemented": exists("scripts/artemis-agent-launch-contract.sh"),
+        "next_cut_defined": "TKT-059" in spec_text,
     },
     "compatibility": compatibility,
     "layers": layers,
@@ -351,6 +361,7 @@ payload = {
         "The implemented Project Graph View is observational and never becomes canonical state.",
         "The implemented Project Brief is explanatory and never becomes canonical state.",
         "The implemented Guided Collaboration mode is a read-only entry and never launches agents.",
+        "The implemented Agent Launch Contract is read-only, execute=false by default and never starts runtime.",
     ],
 }
 
@@ -383,6 +394,7 @@ status_lines = [
     f"- Project Graph View implemented: `{str(compatibility['project_graph_view_implemented']).lower()}`.",
     f"- Project Brief implemented: `{str(compatibility['project_brief_implemented']).lower()}`.",
     f"- Guided Collaboration implemented: `{str(compatibility['guided_collaboration_implemented']).lower()}`.",
+    f"- Agent Launch Contract implemented: `{str(compatibility['agent_launch_contract_implemented']).lower()}`.",
     f"- Terminal-first: `{str(compatibility['terminal_first']).lower()}`.",
     f"- Human Gates preserved: `{str(compatibility['human_gates_preserved']).lower()}`.",
     f"- Next cut: `{compatibility['next_cut']}`.",
@@ -441,12 +453,12 @@ handoff_lines = [
     "",
     "## Estado",
     "",
-    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel, a promocao local por decisao, a Memory Zone, o Project Operations Graph, o Project Graph View, o Project Brief e o Guided Collaboration existem.",
+    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel, a promocao local por decisao, a Memory Zone, o Project Operations Graph, o Project Graph View, o Project Brief, o Guided Collaboration e o Agent Launch Contract existem.",
     "",
     "## Proximo corte",
     "",
-    "- Criar `TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony`.",
-    "- Usar o modo guiado como entrada para contrato de lancamento supervisionado.",
+    "- Criar `TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`.",
+    "- Usar o Agent Launch Contract como entrada para materializar pedidos de runtime em modo dry-run.",
     "- Manter Validation Gate antes de qualquer execucao real.",
     "",
     "## Nao fazer",

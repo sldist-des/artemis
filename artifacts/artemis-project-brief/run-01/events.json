@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T17:41:12Z",
+  "generated_at": "2026-05-07T18:04:27Z",
   "source": "scripts/artemis-project-brief.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T17:41:12Z",
+      "generated_at": "2026-05-07T18:04:27Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -47,12 +47,12 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 58,
-          "tasks_done": 58,
-          "events_total": 44,
+          "tasks_total": 59,
+          "tasks_done": 59,
+          "events_total": 45,
           "nodes_total": 10,
           "edges_total": 12,
-          "validation_passed": 81,
+          "validation_passed": 83,
           "validation_failed": 0,
           "human_gates": 2,
           "memory_zones": 3,
@@ -62,7 +62,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-058 - Supervised Agent Launch Contract do ARTEMIS Symphony"
+        "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
       }
     }
   ]

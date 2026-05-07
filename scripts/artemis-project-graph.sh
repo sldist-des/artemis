@@ -9,6 +9,7 @@ tasks_path="control-plane/tasks.json"
 event_log_path="artifacts/artemis-event-log/run-01/event-log.example.json"
 memory_zone_path="artifacts/artemis-memory-zone/run-01/memory-zone.json"
 validation_gate_path="artifacts/artemis-validation-gate/run-01/validation-gate.json"
+runtime_dry_run_path="artifacts/artemis-agent-runtime-dry-run/run-01/runtime-dry-run.json"
 format="text"
 
 usage() {
@@ -117,6 +118,7 @@ tasks_payload = read_json(tasks_path, {"tasks": []})
 event_log_payload = read_json(event_log_path, {"events": []})
 memory_payload = read_json(memory_zone_path, {"summary": {}, "zones": []})
 validation_payload = read_json(validation_gate_path, {"summary": {}})
+runtime_dry_run_payload = read_json(Path("artifacts/artemis-agent-runtime-dry-run/run-01/runtime-dry-run.json"), {"summary": {}, "overall": "not_available"})
 
 tasks = tasks_payload.get("tasks", [])
 events = event_log_payload.get("events", [])
@@ -195,6 +197,14 @@ nodes = [
         "dependencies_installed": 0,
     },
     {
+        "id": "runtime:dry_run",
+        "type": "runtime_plan",
+        "label": "Agent Runtime Dry-Run",
+        "status": runtime_dry_run_payload.get("overall", "not_available"),
+        "agents_started": runtime_dry_run_payload.get("summary", {}).get("agents_started", 0),
+        "commands_executed": runtime_dry_run_payload.get("summary", {}).get("commands_executed", 0),
+    },
+    {
         "id": "control_plane:view",
         "type": "view",
         "label": "Control Plane",
@@ -212,6 +222,8 @@ edges = [
     {"from": "memory:zone", "to": "event_log:timeline", "type": "summarizes_history"},
     {"from": "event_log:timeline", "to": "artifact:evidence", "type": "records"},
     {"from": "cost:budget", "to": "agent_roles:owners", "type": "constrains_runtime"},
+    {"from": "runtime:dry_run", "to": "cost:budget", "type": "declares_budget"},
+    {"from": "runtime:dry_run", "to": "validation:gate", "type": "requires_preflight"},
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
@@ -301,10 +313,11 @@ payload = {
         "graph_role": "operational_read_model",
         "memory_input": "artemis_memory_zone",
         "validation_input": "artemis_validation_gate",
+        "runtime_input": "artemis_agent_runtime_dry_run",
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },
-    "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony",
+    "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony",
 }
 
 write_text(artifact_root / "project-graph.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
@@ -386,7 +399,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`.",
+    "- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.",
     "- Renderizar relacoes do grafo no Control Plane com linguagem operacional e leiga.",
     "",
     "## Nao fazer",

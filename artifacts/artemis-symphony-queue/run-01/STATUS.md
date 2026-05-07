@@ -2,15 +2,15 @@
 
 ## Resultado
 
-ARTEMIS Symphony queue esta `queue_empty`.
+ARTEMIS Symphony queue esta `queue_ready`.
 
 ## Fila
 
 - Daemon: `artifacts/artemis-symphony-daemon/run-01/symphony-daemon.json`.
 - Source tick: `tick-002`.
 - Source kernel: `artifacts/artemis-symphony-daemon/run-01/ticks/tick-002/kernel/symphony-kernel.json`.
-- Queue items: `0`.
-- Review required: `0`.
+- Queue items: `1`.
+- Review required: `1`.
 - Human Gate tickets: `0`.
 - Commands executed: `0`.
 - Bridge called: `false`.

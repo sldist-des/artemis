@@ -5,7 +5,7 @@
 - Overall: `remote_promotion_ready`.
 - Reason: Exact human decision promoted reviewed intake into a local task source.
 - Intake: `remote_intake_ready`.
-- Decision: `artifacts/artemis-symphony-promotion/run-01/fixtures/decision.json`.
+- Decision: `artifacts/artemis-validation-gate/run-01/remote-promotion-decision-fixture.json`.
 - Promoted: `1`.
 - Commands executed: `0`.
 

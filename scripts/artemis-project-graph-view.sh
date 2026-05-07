@@ -132,7 +132,7 @@ payload = {
         "No graph database, canvas engine, frontend framework or runtime is introduced.",
         "Human Gates, Validation Gate, Event Log, Exec Packs and git remain authoritative.",
     ],
-    "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony",
+    "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony",
 }
 
 (artifact_root / "project-graph-view.json").write_text(
@@ -172,7 +172,7 @@ handoff_lines = [
     "",
     "Próximo corte:",
     "",
-    "- Implementar `TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`.",
+    "- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.",
 ]
 (artifact_root / "HANDOFF.md").write_text("\n".join(handoff_lines) + "\n", encoding="utf-8")
 

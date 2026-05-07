@@ -74,4 +74,4 @@ scripts/artemis-project-graph.sh --json
 
 ## Proximo corte
 
-`TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`
+`TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`

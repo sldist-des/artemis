@@ -5,10 +5,11 @@ root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 cd "$root"
 
 artifact_root="artifacts/artemis-application-readiness/run-01"
+validation_gate_path="artifacts/artemis-validation-gate/run-01/validation-gate.json"
 format="text"
 
 usage() {
-  echo "usage: scripts/artemis-application-readiness.sh [--artifact-root path] [--json]" >&2
+  echo "usage: scripts/artemis-application-readiness.sh [--artifact-root path] [--validation-gate path] [--json]" >&2
 }
 
 while [ "$#" -gt 0 ]; do
@@ -16,6 +17,11 @@ while [ "$#" -gt 0 ]; do
     --artifact-root)
       artifact_root="${2:-}"
       if [ -z "$artifact_root" ]; then usage; exit 2; fi
+      shift 2
+      ;;
+    --validation-gate)
+      validation_gate_path="${2:-}"
+      if [ -z "$validation_gate_path" ]; then usage; exit 2; fi
       shift 2
       ;;
     --json)
@@ -35,7 +41,7 @@ done
 
 mkdir -p "$artifact_root"
 
-python3 - "$artifact_root" "$format" <<'PY'
+python3 - "$artifact_root" "$validation_gate_path" "$format" <<'PY'
 import json
 import subprocess
 import sys
@@ -44,7 +50,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 artifact_root = Path(sys.argv[1])
-output_format = sys.argv[2]
+validation_gate_path = Path(sys.argv[2])
+output_format = sys.argv[3]
 generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 blockers = []
 warnings = []
@@ -111,7 +118,7 @@ if active_tasks:
     warnings.append(f"{len(active_tasks)} non-done Exec Pack(s) remain")
 
 post_preflight = read_json("artifacts/artemis-post-human-approval-preflight/run-01/post-human-approval-preflight.json")
-validation_gate = read_json("artifacts/artemis-validation-gate/run-01/validation-gate.json")
+validation_gate = read_json(validation_gate_path)
 
 technical_failed = int((validation_gate.get("summary") or {}).get("failed", 0) or 0)
 if technical_failed:

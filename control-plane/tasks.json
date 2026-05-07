@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:02:56Z",
+  "generated_at": "2026-05-07T19:21:55Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -709,6 +709,18 @@
       "summary": "O ARTEMIS passa a ter um artifact canonico que explicita perfis de agente, gates, budget, auth, comando, workspace, rollback, evidencia e invariantes de seguranca antes de runtime.",
       "exec_pack": "docs/exec-packs/done/TKT-058-artemis-agent-launch-contract.md",
       "evidence": "artifacts/artemis-agent-launch-contract/run-01/agent-launch-contract.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-059",
+      "ticket": "TKT-059",
+      "title": "Agent Runtime Dry-Run do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Humano",
+      "risk": "high",
+      "summary": "O runtime dry-run deve reportar `agent_runtime_dry_run_ready`, com",
+      "exec_pack": "docs/exec-packs/done/TKT-059-artemis-agent-runtime-dry-run.md",
+      "evidence": "artifacts/artemis-agent-runtime-dry-run/run-01/runtime-dry-run.json",
       "tags": ["exec-pack", "done"]
     }
   ]

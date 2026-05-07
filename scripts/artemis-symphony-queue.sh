@@ -161,7 +161,7 @@ payload = {
         "Every queue item requires terminal override before bridge execution.",
         "Human Gates remain explicit and non-bypassable.",
     ],
-    "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony",
+    "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony",
 }
 
 (artifact_root / "symphony-queue.json").write_text(
@@ -295,7 +295,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`.",
+    "- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.",
     "- Exigir comando explicito, terminal override e Validation Gate antes de qualquer execucao.",
     "",
     "## Nao fazer",

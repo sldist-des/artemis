@@ -1,28 +1,28 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:03:34Z",
+  "generated_at": "2026-05-07T19:24:02Z",
   "source": "scripts/artemis-symphony-service.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_task_symphony_service_completed",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-07T18:03:34Z",
+      "generated_at": "2026-05-07T19:24:02Z",
       "producer": {
         "adapter": "local_symphony_service",
         "name": "scripts/artemis-symphony-service.sh",
         "mode": "finite_supervised"
       },
       "subject": {
-        "ticket": "TKT-949",
-        "task_id": "tkt-949",
+        "ticket": "TKT-VALIDATE",
+        "task_id": "tkt-validate",
         "title": "ARTEMIS Symphony finite supervised service",
         "exec_pack": "docs/symphony/ARTEMIS_SYMPHONY_SERVICE.md",
         "artifact_root": "artifacts/artemis-symphony-service/run-01"
       },
       "runner": {
         "kind": "codex_cli",
-        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-service/run-01/fixtures/task-source.json"
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json"
       },
       "state": {
         "from": "planned",
@@ -47,7 +47,7 @@
         ]
       },
       "links": {
-        "correlation_id": "tkt-949"
+        "correlation_id": "tkt-validate"
       },
       "payload": {
         "reason": "Finite supervised service cycle completed.",

@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `10`.
-- Edges: `12`.
-- Tasks: `59`.
-- Events: `45`.
+- Nodes: `11`.
+- Edges: `14`.
+- Tasks: `60`.
+- Events: `47`.
 
 ## Nos
 
@@ -20,6 +20,7 @@
 - `artifact:evidence` (artifact_set): Artifacts and evidence.
 - `event_log:timeline` (event_log): Canonical event timeline.
 - `cost:budget` (cost_guard): Token and runtime budget.
+- `runtime:dry_run` (runtime_plan): Agent Runtime Dry-Run.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -33,6 +34,8 @@
 - `memory:zone` --summarizes_history--> `event_log:timeline`.
 - `event_log:timeline` --records--> `artifact:evidence`.
 - `cost:budget` --constrains_runtime--> `agent_roles:owners`.
+- `runtime:dry_run` --declares_budget--> `cost:budget`.
+- `runtime:dry_run` --requires_preflight--> `validation:gate`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:05:46Z",
+  "generated_at": "2026-05-07T19:27:41Z",
   "source": "scripts/artemis-symphony-remote-source.sh",
   "mode": "remote_supervised_intake",
   "contract": {

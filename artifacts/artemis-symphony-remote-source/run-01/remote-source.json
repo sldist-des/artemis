@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:03:04Z",
+  "generated_at": "2026-05-07T19:24:11Z",
   "source": "scripts/artemis-symphony-remote-source.sh",
   "mode": "read_only_supervised_intake",
   "overall": "remote_source_ready",
   "reason": "Remote issues were normalized as supervised ARTEMIS intake evidence.",
   "artifact_root": "artifacts/artemis-symphony-remote-source/run-01",
-  "github_artifact": "artifacts/artemis-symphony-remote-source/run-01/fixtures/github-issues.json",
+  "github_artifact": "artifacts/artemis-validation-gate/run-01/remote-source-github-fixture.json",
   "label": "artemis",
   "limit": 50,
   "repo": "sldist-des/artemis",
@@ -75,7 +75,7 @@
   ],
   "github": {
     "overall": "passed",
-    "reason": "Synthetic GitHub Issues artifact for ARTEMIS Symphony remote source validation.",
+    "reason": "Synthetic GitHub Issues artifact for remote source validation.",
     "checks": {
       "gh_installed": true,
       "gh_auth_exit_code": 0,
@@ -89,5 +89,5 @@
       "remote_writes": "human_gate_only"
     }
   },
-  "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+  "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
 }

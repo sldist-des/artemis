@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:05:46Z",
+  "generated_at": "2026-05-07T19:27:41Z",
   "source": "scripts/artemis-guided-collaboration.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-057_guided_collaboration",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T18:05:46Z",
+      "generated_at": "2026-05-07T19:27:41Z",
       "producer": {
         "adapter": "guided_collaboration",
         "name": "scripts/artemis-guided-collaboration.sh",
@@ -51,13 +51,13 @@
           "task_lanes": 4,
           "agent_profiles": 4,
           "gate_contracts": 4,
-          "tasks_total": 59,
-          "tasks_done": 59,
+          "tasks_total": 60,
+          "tasks_done": 60,
           "tasks_human": 0,
           "tasks_ready": 0,
-          "validation_passed": 83,
+          "validation_passed": 1,
           "validation_failed": 0,
-          "human_gates": 2,
+          "human_gates": 1,
           "commands_executed": 0,
           "dependencies_installed": 0,
           "runtime_started": false,
@@ -65,7 +65,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+        "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
       }
     }
   ]

@@ -6,12 +6,12 @@ ARTEMIS Symphony queue bridge esta `runner_executed`.
 
 ## Execucao supervisionada
 
-- Queue: `artifacts/artemis-symphony-queue-execution/run-01/queue/symphony-queue.json`.
+- Queue: `artifacts/artemis-symphony-queue/run-01/symphony-queue.json`.
 - Queue item found: `true`.
-- Ticket: `TKT-948`.
-- Queue id: `queue-001-tkt-948`.
-- Source kernel: `artifacts/artemis-symphony-queue-execution/run-01/daemon/ticks/tick-001/kernel/symphony-kernel.json`.
-- Task source: `artifacts/artemis-symphony-queue-execution/run-01/fixtures/task-source.json`.
+- Ticket: `TKT-VALIDATE`.
+- Queue id: `queue-001-tkt-validate`.
+- Source kernel: `artifacts/artemis-symphony-daemon/run-01/ticks/tick-002/kernel/symphony-kernel.json`.
+- Task source: `artifacts/artemis-validation-gate/run-01/runner-task-source.json`.
 - Bridge planned: `true`.
 - Execute requested: `true`.
 - Commands executed: `1`.

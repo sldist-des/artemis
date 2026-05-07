@@ -213,6 +213,7 @@ for events_path in [
     Path("artifacts/artemis-project-brief/run-01/events.json"),
     Path("artifacts/artemis-guided-collaboration/run-01/events.json"),
     Path("artifacts/artemis-agent-launch-contract/run-01/events.json"),
+    Path("artifacts/artemis-agent-runtime-dry-run/run-01/events.json"),
 ]:
     if events_path.is_file():
         remote_log = read_json(events_path)
@@ -266,14 +267,14 @@ fi
 if [ "$format" = "json" ]; then
   printf '%s\n' "$payload"
 else
-  python3 - <<'PY' "$payload"
+  printf '%s\n' "$payload" | python3 -c '
 import json
 import sys
 
-payload = json.loads(sys.argv[1])
+payload = json.loads(sys.stdin.read())
 types = sorted({event["event_type"] for event in payload["events"]})
 print("ARTEMIS Event Log Schema: passed")
-print(f"events={len(payload['events'])}")
+print("events=" + str(len(payload["events"])))
 print("event_types=" + ",".join(types))
-PY
+'
 fi

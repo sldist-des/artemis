@@ -11,6 +11,6 @@
 
 ## Comandos de verificacao
 
-- `scripts/artemis-symphony-bridge.sh --input artifacts/artemis-symphony-bridge/run-01/task-source.json --ticket TKT-903 --command "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-bridge/run-01/task-source.json" --artifact-root artifacts/artemis-symphony-bridge/run-01 --json`
+- `scripts/artemis-symphony-bridge.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json --ticket TKT-VALIDATE --command "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json" --artifact-root artifacts/artemis-symphony-bridge/run-01 --json`
 - `scripts/validate-artemis.sh`
 - `scripts/artemis-validation-gate.sh --artifact-root artifacts/artemis-validation-gate/run-01 --json`

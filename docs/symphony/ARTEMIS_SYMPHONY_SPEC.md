@@ -679,6 +679,37 @@ Contrato:
 - o proximo runtime deve primeiro materializar um dry-run auditavel antes de
   permitir execucao real.
 
+### Modo 3.9 - Agent Runtime Dry-Run
+
+Implementado em `TKT-059` como ensaio auditavel entre o Agent Launch Contract e
+qualquer runtime real de Codex app-server, Claude Code, Codex terminal-first ou
+verifier.
+
+- consome `agent-launch-contract.json`;
+- materializa um pedido de runtime com projeto, tarefa, perfil, modelo, budget,
+  auth, comando, workspace, rollback, evidencia e stop rule;
+- registra preflight e runtime log sem iniciar app-server, SDK, CLI, subagente,
+  fila, daemon ou runner real;
+- mantem `execute=false`, `runtime_started=false`, `agents_started=0`,
+  `commands_executed=0`, `paid_tokens_authorized=0` e
+  `remote_writes_allowed=false`;
+- conserva auth e budget como Human Gates antes de qualquer custo, rede, remoto,
+  producao, secrets ou execucao longa;
+- prepara o proximo corte para aprovar ou rejeitar runtime real com comando,
+  escopo, custo e rollback exatos.
+
+Agent Runtime Dry-Run implementado:
+
+- `scripts/artemis-agent-runtime-dry-run.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_DRY_RUN.md`
+
+Contrato:
+
+- Agent Runtime Dry-Run e ensaio, nao launcher;
+- Git, Exec Packs, Event Log, Validation Gate e artifacts continuam canonicos;
+- qualquer runtime real ainda depende de Human Gate explicito com budget, auth,
+  comando, workspace, rollback e evidencia.
+
 ## Invariantes
 
 - ARTEMIS Symphony nao executa cleanup real sem decisao humana.
@@ -691,16 +722,14 @@ Contrato:
 
 ## Proximo corte recomendado
 
-`TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`
+`TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`
 
 Objetivo:
 
-- materializar um pedido de runtime a partir do Agent Launch Contract;
-- validar selecao de agente, modelo, budget, auth, comando, workspace, rollback
-  e evidencia sem iniciar agente real;
-- manter execute=false por padrao e Human Gate antes de custo, rede, remoto,
-  producao ou trabalho sensivel;
-- preparar o caminho para acionar Codex/Claude de modo auditavel sem perder
-  controle terminal-first.
+- transformar um dry-run de runtime em pacote de aprovacao humana exato;
+- aprovar, rejeitar ou deferir perfil, modelo, budget, auth, comando, workspace,
+  rollback e evidencia antes de qualquer runtime real;
+- preservar execute=false ate haver decisao explicita e rastreavel;
+- manter o caminho Codex/Claude auditavel sem perder controle terminal-first.
 
-Esse sera o decimo setimo passo de implementacao do nosso Symphony proprio.
+Esse sera o decimo oitavo passo de implementacao do nosso Symphony proprio.

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:03:17Z",
+  "generated_at": "2026-05-07T19:24:18Z",
   "source": "scripts/artemis-symphony-remote-promotion.sh",
   "mode": "local_promotion_decision_gate",
   "overall": "remote_promotion_ready",
   "reason": "Exact human decision promoted reviewed intake into a local task source.",
   "artifact_root": "artifacts/artemis-symphony-promotion/run-01",
   "remote_intake": "artifacts/artemis-symphony-remote-intake/run-01/remote-intake.json",
-  "decision": "artifacts/artemis-symphony-promotion/run-01/fixtures/decision.json",
+  "decision": "artifacts/artemis-validation-gate/run-01/remote-promotion-decision-fixture.json",
   "summary": {
     "intake_items": 1,
     "review_ready": 1,
@@ -42,5 +42,5 @@
   "promoted_source": "artifacts/artemis-symphony-promotion/run-01/promoted-source.json",
   "blockers": [],
   "warnings": [],
-  "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+  "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
 }

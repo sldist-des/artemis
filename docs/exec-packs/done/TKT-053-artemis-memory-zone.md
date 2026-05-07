@@ -36,4 +36,4 @@ git diff --check
 
 ## Handoff
 
-O proximo corte e `TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`.
+O proximo corte e `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.

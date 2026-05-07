@@ -1,28 +1,28 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:03:34Z",
+  "generated_at": "2026-05-07T19:24:02Z",
   "source": "scripts/artemis-symphony-queue-bridge.sh",
   "events": [
     {
       "schema_version": 1,
-      "event_id": "evt_tkt-949_symphony_queue_bridge",
+      "event_id": "evt_tkt-validate_symphony_queue_bridge",
       "event_type": "runner.attempt_planned",
-      "generated_at": "2026-05-07T18:03:34Z",
+      "generated_at": "2026-05-07T19:24:02Z",
       "producer": {
         "adapter": "local_queue_bridge",
         "name": "scripts/artemis-symphony-queue-bridge.sh",
         "mode": "plan_only"
       },
       "subject": {
-        "ticket": "TKT-949",
-        "task_id": "tkt-949",
-        "title": "Validate finite Symphony service",
-        "exec_pack": "docs/exec-packs/done/TKT-049-artemis-symphony-service.md",
+        "ticket": "TKT-VALIDATE",
+        "task_id": "tkt-validate",
+        "title": "Validate supervised runner",
+        "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md",
         "artifact_root": "artifacts/artemis-symphony-service/run-01/queue-bridge"
       },
       "runner": {
         "kind": "codex_cli",
-        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-service/run-01/fixtures/task-source.json"
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json"
       },
       "state": {
         "from": "review",
@@ -46,11 +46,11 @@
         ]
       },
       "links": {
-        "correlation_id": "tkt-949"
+        "correlation_id": "tkt-validate"
       },
       "payload": {
         "reason": "Queue item was routed to the supervised bridge in plan-only mode.",
-        "queue_id": "queue-001-tkt-949",
+        "queue_id": "queue-001-tkt-validate",
         "bridge_planned": true,
         "execute_requested": false,
         "commands_executed": 0,

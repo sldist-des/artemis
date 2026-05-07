@@ -6,7 +6,7 @@ ARTEMIS Symphony daemon dry-run esta `heartbeat_ready`.
 
 ## Heartbeat
 
-- Task source: `artifacts/artemis-symphony-service/run-01/fixtures/task-source.json`.
+- Task source: `artifacts/artemis-validation-gate/run-01/runner-task-source.json`.
 - Ticks requested: `1`.
 - Ticks completed: `1`.
 - Interval seconds: `0`.

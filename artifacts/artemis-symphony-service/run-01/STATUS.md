@@ -6,7 +6,7 @@ ARTEMIS Symphony service esta `service_bridge_plan_ready`.
 
 ## Ciclo supervisionado
 
-- Task source: `artifacts/artemis-symphony-service/run-01/fixtures/task-source.json`.
+- Task source: `artifacts/artemis-validation-gate/run-01/runner-task-source.json`.
 - Daemon: `artifacts/artemis-symphony-service/run-01/daemon/symphony-daemon.json`.
 - Queue: `artifacts/artemis-symphony-service/run-01/queue/symphony-queue.json`.
 - Queue bridge: `artifacts/artemis-symphony-service/run-01/queue-bridge/queue-bridge.json`.

@@ -2,9 +2,9 @@
 
 ## Resultado local
 
-- Overall: `queue_empty`.
-- Queue items: `0`.
-- Review required: `0`.
+- Overall: `queue_ready`.
+- Queue items: `1`.
+- Review required: `1`.
 - Commands executed: `0`.
 - Bridge called: `false`.
 - Runner called: `false`.

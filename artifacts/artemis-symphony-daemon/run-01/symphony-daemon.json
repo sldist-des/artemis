@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:03:18Z",
+  "generated_at": "2026-05-07T19:23:44Z",
   "source": "scripts/artemis-symphony-daemon.sh",
   "mode": "read_only_daemon_dry_run",
   "overall": "heartbeat_ready",
-  "task_source": "control-plane/tasks.json",
+  "task_source": "artifacts/artemis-validation-gate/run-01/runner-task-source.json",
   "artifact_root": "artifacts/artemis-symphony-daemon/run-01",
-  "started_at": "2026-05-07T18:03:17Z",
-  "completed_at": "2026-05-07T18:03:18Z",
+  "started_at": "2026-05-07T19:23:44Z",
+  "completed_at": "2026-05-07T19:23:44Z",
   "ticks_requested": 2,
   "ticks_completed": 2,
   "interval_seconds": 0,
@@ -15,8 +15,8 @@
   "heartbeat": "artifacts/artemis-symphony-daemon/run-01/heartbeat.json",
   "heartbeat_log": "artifacts/artemis-symphony-daemon/run-01/heartbeat.jsonl",
   "summary": {
-    "last_kernel_overall": "idle",
-    "last_selected_for_dispatch": 0,
+    "last_kernel_overall": "dispatch_plan_ready",
+    "last_selected_for_dispatch": 1,
     "last_human_gate": 0,
     "commands_executed": 0,
     "runner_auto_execution_allowed": false,
@@ -27,41 +27,45 @@
     {
       "tick": 1,
       "tick_id": "tick-001",
-      "generated_at": "2026-05-07T18:03:17Z",
+      "generated_at": "2026-05-07T19:23:44Z",
       "kernel_exit_code": 0,
       "kernel": "artifacts/artemis-symphony-daemon/run-01/ticks/tick-001/kernel/symphony-kernel.json",
-      "kernel_overall": "idle",
+      "kernel_overall": "dispatch_plan_ready",
       "summary": {
-        "tasks_total": 59,
-        "eligible": 0,
+        "tasks_total": 1,
+        "eligible": 1,
         "blocked": 0,
         "human_gate": 0,
-        "done": 59,
-        "selected_for_dispatch": 0,
+        "done": 0,
+        "selected_for_dispatch": 1,
         "commands_executed": 0,
         "runner_auto_execution_allowed": false
       },
-      "dispatch_tickets": [],
+      "dispatch_tickets": [
+        "TKT-VALIDATE"
+      ],
       "human_gate_tickets": []
     },
     {
       "tick": 2,
       "tick_id": "tick-002",
-      "generated_at": "2026-05-07T18:03:17Z",
+      "generated_at": "2026-05-07T19:23:44Z",
       "kernel_exit_code": 0,
       "kernel": "artifacts/artemis-symphony-daemon/run-01/ticks/tick-002/kernel/symphony-kernel.json",
-      "kernel_overall": "idle",
+      "kernel_overall": "dispatch_plan_ready",
       "summary": {
-        "tasks_total": 59,
-        "eligible": 0,
+        "tasks_total": 1,
+        "eligible": 1,
         "blocked": 0,
         "human_gate": 0,
-        "done": 59,
-        "selected_for_dispatch": 0,
+        "done": 0,
+        "selected_for_dispatch": 1,
         "commands_executed": 0,
         "runner_auto_execution_allowed": false
       },
-      "dispatch_tickets": [],
+      "dispatch_tickets": [
+        "TKT-VALIDATE"
+      ],
       "human_gate_tickets": []
     }
   ],
@@ -73,5 +77,5 @@
     "Human Gates are observed and reported, never bypassed.",
     "Terminal override remains required for supervised bridge execution."
   ],
-  "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+  "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
 }

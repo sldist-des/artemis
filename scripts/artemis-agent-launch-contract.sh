@@ -272,7 +272,7 @@ evidence_contract = [
 
 candidate_launch = {
     "project": "ARTEMIS",
-    "task": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony",
+    "task": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony",
     "recommended_profile": "codex_terminal",
     "fallback_profile": "claude_code",
     "execute": False,
@@ -329,7 +329,7 @@ payload = {
     "missing_tokens": missing_tokens,
     "missing_files": missing_files,
     "required_tokens": required_tokens,
-    "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony",
+    "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony",
 }
 
 ready = (
@@ -412,7 +412,7 @@ handoff_lines = [
     "",
     "Proximo corte:",
     "",
-    "- Implementar `TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`.",
+    "- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.",
 ]
 (artifact_root / "HANDOFF.md").write_text("\n".join(handoff_lines) + "\n", encoding="utf-8")
 

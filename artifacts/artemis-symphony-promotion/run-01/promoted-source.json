@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:03:17Z",
+  "generated_at": "2026-05-07T19:24:18Z",
   "source": "scripts/artemis-symphony-remote-promotion.sh",
   "mode": "local_promoted_task_source",
   "contract": {
@@ -28,7 +28,7 @@
       "risk": "low",
       "summary": "Locally approved ARTEMIS Symphony task. Use the recorded terminal command manually after Validation Gate evidence is checked.",
       "exec_pack": "docs/exec-packs/done/TKT-009-local-task-source.md",
-      "evidence": "artifacts/artemis-symphony-promotion/run-01/STATUS.md",
+      "evidence": "artifacts/artemis-validation-gate/run-01/symphony-promotion-check/STATUS.md",
       "tags": [
         "symphony",
         "local-promotion",
@@ -36,11 +36,11 @@
       ],
       "promotion": {
         "source_ticket": "TKT-950",
-        "decision": "artifacts/artemis-symphony-promotion/run-01/fixtures/decision.json",
+        "decision": "artifacts/artemis-validation-gate/run-01/remote-promotion-decision-fixture.json",
         "decided_by": "ARTEMIS synthetic validation",
-        "reason": "Exact local promotion approved for canonical validation.",
-        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-promotion/run-01/promoted-source.json",
-        "validation_gate": "artifacts/artemis-validation-gate/run-01/validation-gate.json"
+        "reason": "Exact local promotion approved for validation.",
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/symphony-promotion-check/promoted-source.json",
+        "validation_gate": "artifacts/artemis-validation-gate/run-01/queue-bridge-validation-gate-fixture.json"
       }
     }
   ]

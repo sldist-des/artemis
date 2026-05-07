@@ -114,4 +114,4 @@ O Control Plane operacional deve usar a Memory Zone para responder:
 
 ## Proximo corte
 
-`TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`
+`TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`

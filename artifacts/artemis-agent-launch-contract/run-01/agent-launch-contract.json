@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:04:31Z",
+  "generated_at": "2026-05-07T19:25:20Z",
   "source": "scripts/artemis-agent-launch-contract.sh",
   "mode": "read_only_supervised_agent_launch_contract",
   "overall": "agent_launch_contract_ready",
@@ -17,10 +17,10 @@
     "launch_profiles": 4,
     "launch_gates": 9,
     "evidence_requirements": 4,
-    "tasks_total": 59,
-    "tasks_done": 59,
+    "tasks_total": 60,
+    "tasks_done": 60,
     "tasks_human": 0,
-    "validation_passed": 83,
+    "validation_passed": 85,
     "validation_failed": 0,
     "human_gates": 2,
     "execute_default": false,
@@ -36,7 +36,7 @@
   },
   "candidate_launch": {
     "project": "ARTEMIS",
-    "task": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony",
+    "task": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony",
     "recommended_profile": "codex_terminal",
     "fallback_profile": "claude_code",
     "execute": false,
@@ -245,5 +245,5 @@
     "renderAgentLaunchContract",
     "loadAgentLaunchContractSource"
   ],
-  "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+  "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
 }

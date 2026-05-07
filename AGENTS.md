@@ -25,6 +25,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 - `docs/symphony/ARTEMIS_SYMPHONY_PROJECT_BRIEF.md`
 - `docs/symphony/ARTEMIS_SYMPHONY_GUIDED_COLLABORATION.md`
 - `docs/symphony/ARTEMIS_SYMPHONY_AGENT_LAUNCH_CONTRACT.md`
+- `docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_DRY_RUN.md`
 - Exec Pack ativo em `docs/exec-packs/active/`
 
 ## Comandos canonicos
@@ -33,6 +34,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 scripts/validate-artemis.sh
 scripts/artemis-guided-collaboration.sh --json
 scripts/artemis-agent-launch-contract.sh --json
+scripts/artemis-agent-runtime-dry-run.sh --json
 scripts/github-readiness.sh
 sh -n scripts/bootstrap-artemis.sh
 git status --branch --short --ignored

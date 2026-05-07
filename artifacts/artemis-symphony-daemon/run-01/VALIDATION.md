@@ -13,7 +13,7 @@
 
 ## Comandos de verificacao
 
-- `scripts/artemis-symphony-daemon.sh --input control-plane/tasks.json --artifact-root artifacts/artemis-symphony-daemon/run-01 --ticks 2 --interval 0 --max-concurrency 1 --json`
+- `scripts/artemis-symphony-daemon.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json --artifact-root artifacts/artemis-symphony-daemon/run-01 --ticks 2 --interval 0 --max-concurrency 1 --json`
 - `scripts/validate-artemis.sh`
 - `scripts/artemis-validation-gate.sh --artifact-root artifacts/artemis-validation-gate/run-01 --json`
 - `git diff --check`

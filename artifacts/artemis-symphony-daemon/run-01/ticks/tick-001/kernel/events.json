@@ -1,32 +1,32 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:03:17Z",
+  "generated_at": "2026-05-07T19:23:44Z",
   "source": "scripts/artemis-symphony-kernel.sh",
   "events": [
     {
       "schema_version": 1,
-      "event_id": "evt_task_symphony_kernel_idle",
-      "event_type": "validation.completed",
-      "generated_at": "2026-05-07T18:03:17Z",
+      "event_id": "evt_tkt-validate_symphony_dispatch_planned",
+      "event_type": "runner.readiness_checked",
+      "generated_at": "2026-05-07T19:23:44Z",
       "producer": {
         "adapter": "local_runner",
         "name": "scripts/artemis-symphony-kernel.sh",
         "mode": "read_only"
       },
       "subject": {
-        "ticket": "TASK",
-        "task_id": "task",
-        "title": "ARTEMIS Symphony kernel",
-        "exec_pack": "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md",
+        "ticket": "TKT-VALIDATE",
+        "task_id": "tkt-validate",
+        "title": "Validate supervised runner",
+        "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md",
         "artifact_root": "artifacts/artemis-symphony-daemon/run-01/ticks/tick-001/kernel"
       },
       "runner": {
         "kind": "none"
       },
       "state": {
-        "from": null,
-        "to": "done",
-        "reason": "Read-only Symphony kernel found no eligible dispatch work."
+        "from": "ready",
+        "to": "ready",
+        "reason": "Read-only Symphony kernel planned dispatch without execution."
       },
       "gate": {
         "kind": "none",
@@ -41,10 +41,12 @@
         "logs": []
       },
       "links": {
-        "correlation_id": "task"
+        "correlation_id": "tkt-validate"
       },
       "payload": {
-        "reason": "Read-only Symphony kernel found no eligible dispatch work.",
+        "reason": "Read-only Symphony kernel planned dispatch without execution.",
+        "slot": 1,
+        "order": 1,
         "commands_executed": 0,
         "runner_execution_allowed": false
       }

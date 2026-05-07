@@ -49,6 +49,6 @@ scripts/artemis-symphony-queue.sh --json
 
 ## Proximo Corte
 
-`TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`
+`TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`
 
 Objetivo: consumir um item revisado da fila por comando explicito, chamando a ponte em modo plan-only por padrao.

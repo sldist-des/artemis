@@ -60,4 +60,4 @@ Sem `--decision`, o resultado deve permanecer em Human Gate.
 
 ## Proximo corte
 
-`TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`
+`TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`

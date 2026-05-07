@@ -1,20 +1,22 @@
 {
   "tick": 2,
   "tick_id": "tick-002",
-  "generated_at": "2026-05-07T18:03:17Z",
+  "generated_at": "2026-05-07T19:23:44Z",
   "kernel_exit_code": 0,
   "kernel": "artifacts/artemis-symphony-daemon/run-01/ticks/tick-002/kernel/symphony-kernel.json",
-  "kernel_overall": "idle",
+  "kernel_overall": "dispatch_plan_ready",
   "summary": {
-    "tasks_total": 59,
-    "eligible": 0,
+    "tasks_total": 1,
+    "eligible": 1,
     "blocked": 0,
     "human_gate": 0,
-    "done": 59,
-    "selected_for_dispatch": 0,
+    "done": 0,
+    "selected_for_dispatch": 1,
     "commands_executed": 0,
     "runner_auto_execution_allowed": false
   },
-  "dispatch_tickets": [],
+  "dispatch_tickets": [
+    "TKT-VALIDATE"
+  ],
   "human_gate_tickets": []
 }

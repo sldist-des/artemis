@@ -23,9 +23,9 @@
 - ok: `artifacts/artemis-control-plane-real-cleanup-human-gate/run-01/VALIDATION.md`
 - ok: `artifacts/artemis-control-plane-real-cleanup-human-gate/run-01/HANDOFF.md`
 - ok: `control-plane/index.html`
-- ok: `artifacts/artemis-validation-gate/run-01/validation-gate.json`
-- ok: `artifacts/artemis-validation-gate/run-01/VALIDATION_GATE.md`
-- ok: `artifacts/artemis-validation-gate/run-01/VALIDATION.md`
+- ok: `artifacts/artemis-validation-gate/run-01/validation-gate-fixture/validation-gate.json`
+- ok: `artifacts/artemis-validation-gate/run-01/validation-gate-fixture/VALIDATION_GATE.md`
+- ok: `artifacts/artemis-validation-gate/run-01/validation-gate-fixture/VALIDATION.md`
 
 ## Residual Risks
 

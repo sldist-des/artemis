@@ -4,4 +4,4 @@ O contrato supervisionado de lancamento de agentes esta pronto como superficie r
 
 Proximo corte:
 
-- Implementar `TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`.
+- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.

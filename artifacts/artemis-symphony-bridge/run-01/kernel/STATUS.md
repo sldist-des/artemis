@@ -6,7 +6,7 @@ ARTEMIS Symphony kernel esta `dispatch_plan_ready` em modo read-only.
 
 ## Dispatch
 
-- Task source: `artifacts/artemis-symphony-bridge/run-01/task-source.json`.
+- Task source: `artifacts/artemis-validation-gate/run-01/runner-task-source.json`.
 - Dry-run: `artifacts/artemis-symphony-bridge/run-01/kernel/dry-run.json`.
 - Max concurrency: `1`.
 - Dispatch slots: `1`.

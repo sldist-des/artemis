@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T19:27:42Z",
+  "source": "scripts/artemis-agent-runtime-dry-run.sh",
+  "mode": "agent_runtime_dry_run",
+  "overall": "agent_runtime_dry_run_ready",
+  "reason": "Runtime launch request was materialized as auditable dry-run without starting agents.",
+  "artifact_root": "artifacts/artemis-validation-gate/run-01/agent-runtime-dry-run-check",
+  "inputs": {
+    "contract": "artifacts/artemis-validation-gate/run-01/agent-launch-contract-check/agent-launch-contract.json",
+    "tasks": "control-plane/tasks.json",
+    "project_brief": "artifacts/artemis-validation-gate/run-01/project-brief-check/project-brief.json"
+  },
+  "launch_request": {
+    "project": "ARTEMIS",
+    "task": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony",
+    "profile_id": "codex_terminal",
+    "profile_name": "Codex terminal-first",
+    "runtime": "codex_cli",
+    "command_surface": "terminal",
+    "execute": false,
+    "reason": "Dry-run materializes the launch request and preflight evidence without starting an agent runtime.",
+    "model_policy": {
+      "selection": "inherited_or_human_approved",
+      "frontier_default": "gpt-5.4",
+      "claude_default": "human_account_runtime",
+      "override_allowed": false
+    },
+    "budget": {
+      "approval_state": "human_required_before_runtime",
+      "max_agents": 1,
+      "max_commands": 0,
+      "max_paid_tokens": 0,
+      "max_runtime_seconds": 0,
+      "stop_rule": "Stop before any real runtime, paid token use, remote write, production touch, secret access or missing validation evidence."
+    },
+    "auth": {
+      "required": false,
+      "state": "not_required_for_dry_run",
+      "secrets_touched": false
+    },
+    "workspace": {
+      "repo": "/srv/veri",
+      "write_scope": "none",
+      "branch_policy": "observe_only",
+      "worktree_policy": "not_materialized",
+      "dirty_state_policy": "record_only"
+    },
+    "rollback": {
+      "required_before_runtime": true,
+      "dry_run_abort": "Delete or ignore this artifact root; no runtime side effects were created.",
+      "runtime_abort": "Future runtime must preserve logs, stop agents and hand off unresolved gates before retry."
+    },
+    "evidence": {
+      "request": "artifacts/artemis-validation-gate/run-01/agent-runtime-dry-run-check/REQUEST.md",
+      "preflight": "artifacts/artemis-validation-gate/run-01/agent-runtime-dry-run-check/PREFLIGHT.md",
+      "runtime_log": "artifacts/artemis-validation-gate/run-01/agent-runtime-dry-run-check/RUNTIME_LOG.md",
+      "handoff": "artifacts/artemis-validation-gate/run-01/agent-runtime-dry-run-check/HANDOFF.md",
+      "json": "artifacts/artemis-validation-gate/run-01/agent-runtime-dry-run-check/runtime-dry-run.json"
+    }
+  },
+  "preflight": [
+    {
+      "id": "contract_ready",
+      "status": "passed",
+      "proof": "contract overall: agent_launch_contract_ready"
+    },
+    {
+      "id": "profile_selected",
+      "status": "passed",
+      "proof": "codex_terminal"
+    },
+    {
+      "id": "required_gates_present",
+      "status": "passed",
+      "proof": "auth_gate, budget_gate, command_gate, project_gate, remote_write_gate, rollback_gate, task_gate, validation_gate, workspace_gate"
+    },
+    {
+      "id": "execute_false",
+      "status": "passed",
+      "proof": "execute=false"
+    },
+    {
+      "id": "runtime_not_started",
+      "status": "passed",
+      "proof": "runtime_started=false"
+    },
+    {
+      "id": "agents_not_started",
+      "status": "passed",
+      "proof": "agents_started=0"
+    },
+    {
+      "id": "commands_not_executed",
+      "status": "passed",
+      "proof": "commands_executed=0"
+    },
+    {
+      "id": "remote_writes_blocked",
+      "status": "passed",
+      "proof": "remote_writes_allowed=false"
+    },
+    {
+      "id": "auth_gate",
+      "status": "passed",
+      "proof": "not_required_for_dry_run"
+    },
+    {
+      "id": "budget_gate",
+      "status": "human_gate",
+      "proof": "max_paid_tokens=0 until explicit budget approval"
+    },
+    {
+      "id": "workspace_gate",
+      "status": "passed",
+      "proof": "write_scope=none and worktree_policy=not_materialized"
+    },
+    {
+      "id": "rollback_gate",
+      "status": "passed",
+      "proof": "dry-run and future runtime abort rules recorded"
+    },
+    {
+      "id": "validation_gate",
+      "status": "passed",
+      "proof": "future runtime must declare tests/checks/screenshots before Done"
+    }
+  ],
+  "summary": {
+    "tasks_total": 60,
+    "tasks_done": 60,
+    "validation_passed": 1,
+    "validation_failed": 0,
+    "human_gates_from_project": 1,
+    "preflight_checks": 13,
+    "preflight_passed": 12,
+    "preflight_failed": 0,
+    "preflight_human_gate": 1,
+    "execute": false,
+    "runtime_started": false,
+    "agents_started": 0,
+    "commands_executed": 0,
+    "dependencies_installed": 0,
+    "remote_writes_allowed": false,
+    "paid_tokens_authorized": 0,
+    "auth_required": false,
+    "selected_profile": "codex_terminal"
+  },
+  "runtime_log": [
+    "No Codex app-server process was started.",
+    "No Claude Code process was started.",
+    "No subagent, paid model session, queue bridge execution or daemon runtime was started.",
+    "No command was executed by this dry-run.",
+    "No dependency, secret, remote write, production resource, issue, PR or deploy was touched."
+  ],
+  "invariants": [
+    "Agent Runtime Dry-Run is a launch rehearsal, not a launcher.",
+    "execute=false remains mandatory until an exact Human Gate approval artifact exists.",
+    "Auth-backed, paid, remote, production and secret-touching work remain blocked.",
+    "Future runtime must preserve logs, budget accounting, validation evidence and rollback path.",
+    "Control Plane remains observational."
+  ],
+  "missing_files": [],
+  "missing_gate_ids": [],
+  "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
+}

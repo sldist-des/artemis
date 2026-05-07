@@ -14,4 +14,4 @@
 
 ## Comando
 
-- `scripts/artemis-symphony-queue-bridge.sh --queue artifacts/artemis-symphony-queue-execution/run-01/queue/symphony-queue.json --ticket TKT-948 --command "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-queue-execution/run-01/fixtures/task-source.json" --artifact-root artifacts/artemis-symphony-queue-execution/run-01 --execute --validation-gate artifacts/artemis-symphony-queue-execution/run-01/fixtures/validation-gate.json --decision artifacts/artemis-symphony-queue-execution/run-01/fixtures/decision.json --json`
+- `scripts/artemis-symphony-queue-bridge.sh --queue artifacts/artemis-symphony-queue/run-01/symphony-queue.json --ticket TKT-VALIDATE --command "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json" --artifact-root artifacts/artemis-symphony-queue-execution/run-01 --execute --validation-gate artifacts/artemis-validation-gate/run-01/queue-bridge-validation-gate-fixture.json --decision artifacts/artemis-validation-gate/run-01/queue-bridge-decision-fixture.json --json`

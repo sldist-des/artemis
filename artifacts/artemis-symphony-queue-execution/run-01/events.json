@@ -1,28 +1,28 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:03:34Z",
+  "generated_at": "2026-05-07T19:23:56Z",
   "source": "scripts/artemis-symphony-queue-bridge.sh",
   "events": [
     {
       "schema_version": 1,
-      "event_id": "evt_tkt-948_symphony_queue_bridge",
+      "event_id": "evt_tkt-validate_symphony_queue_bridge",
       "event_type": "runner.attempt_completed",
-      "generated_at": "2026-05-07T18:03:34Z",
+      "generated_at": "2026-05-07T19:23:56Z",
       "producer": {
         "adapter": "local_queue_bridge",
         "name": "scripts/artemis-symphony-queue-bridge.sh",
         "mode": "execute"
       },
       "subject": {
-        "ticket": "TKT-948",
-        "task_id": "tkt-948",
-        "title": "Validate queue execution opt-in",
-        "exec_pack": "docs/exec-packs/done/TKT-048-artemis-symphony-queue-execution.md",
+        "ticket": "TKT-VALIDATE",
+        "task_id": "tkt-validate",
+        "title": "Validate supervised runner",
+        "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md",
         "artifact_root": "artifacts/artemis-symphony-queue-execution/run-01"
       },
       "runner": {
         "kind": "codex_cli",
-        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-queue-execution/run-01/fixtures/task-source.json"
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json"
       },
       "state": {
         "from": "review",
@@ -40,17 +40,17 @@
         "validation_path": "artifacts/artemis-symphony-queue-execution/run-01/VALIDATION.md",
         "handoff_path": "artifacts/artemis-symphony-queue-execution/run-01/HANDOFF.md",
         "logs": [
-          "artifacts/artemis-symphony-queue-execution/run-01/queue/symphony-queue.json",
+          "artifacts/artemis-symphony-queue/run-01/symphony-queue.json",
           "artifacts/artemis-symphony-queue-execution/run-01/queue-bridge.json",
           "artifacts/artemis-symphony-queue-execution/run-01/bridge/symphony-bridge.json"
         ]
       },
       "links": {
-        "correlation_id": "tkt-948"
+        "correlation_id": "tkt-validate"
       },
       "payload": {
         "reason": "Queue item was executed through the supervised bridge after Validation Gate and exact approval.",
-        "queue_id": "queue-001-tkt-948",
+        "queue_id": "queue-001-tkt-validate",
         "bridge_planned": true,
         "execute_requested": true,
         "commands_executed": 1,

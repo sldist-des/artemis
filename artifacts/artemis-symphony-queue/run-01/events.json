@@ -1,13 +1,67 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:03:34Z",
+  "generated_at": "2026-05-07T19:23:47Z",
   "source": "scripts/artemis-symphony-queue.sh",
   "events": [
     {
       "schema_version": 1,
+      "event_id": "evt_tkt-validate_symphony_queue_review_required",
+      "event_type": "runner.readiness_checked",
+      "generated_at": "2026-05-07T19:23:47Z",
+      "producer": {
+        "adapter": "local_queue",
+        "name": "scripts/artemis-symphony-queue.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-VALIDATE",
+        "task_id": "tkt-validate",
+        "title": "Validate supervised runner",
+        "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md",
+        "artifact_root": "artifacts/artemis-symphony-queue/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "review",
+        "reason": "Dispatch item materialized as supervised review queue item."
+      },
+      "gate": {
+        "kind": "terminal_override",
+        "status": "required",
+        "reason": "Queue item requires explicit bridge command from terminal."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-symphony-queue/run-01",
+        "status_path": "artifacts/artemis-symphony-queue/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-symphony-queue/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-symphony-queue/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-symphony-daemon/run-01/symphony-daemon.json",
+          "artifacts/artemis-symphony-daemon/run-01/ticks/tick-002/kernel/symphony-kernel.json",
+          "artifacts/artemis-symphony-queue/run-01/symphony-queue.json"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-validate"
+      },
+      "payload": {
+        "reason": "Dispatch item materialized as supervised review queue item.",
+        "queue_id": "queue-001-tkt-validate",
+        "commands_executed": 0,
+        "bridge_called": false,
+        "runner_called": false,
+        "runner_auto_execution_allowed": false
+      }
+    },
+    {
+      "schema_version": 1,
       "event_id": "evt_task_symphony_queue_completed",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-07T18:03:34Z",
+      "generated_at": "2026-05-07T19:23:47Z",
       "producer": {
         "adapter": "local_queue",
         "name": "scripts/artemis-symphony-queue.sh",
@@ -47,8 +101,8 @@
       },
       "payload": {
         "reason": "Supervised queue generated from daemon evidence without execution.",
-        "overall": "queue_empty",
-        "queue_items": 0,
+        "overall": "queue_ready",
+        "queue_items": 1,
         "commands_executed": 0,
         "bridge_called": false,
         "runner_called": false

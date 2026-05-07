@@ -30,9 +30,9 @@ TKT-035 consolidou o pacote de decisao humana de cleanup em um checkpoint local 
 - `ok` Control Plane Human Gate validation: `artifacts/artemis-control-plane-real-cleanup-human-gate/run-01/VALIDATION.md`
 - `ok` Control Plane Human Gate handoff: `artifacts/artemis-control-plane-real-cleanup-human-gate/run-01/HANDOFF.md`
 - `ok` Control Plane UI file: `control-plane/index.html`
-- `ok` Validation Gate JSON: `artifacts/artemis-validation-gate/run-01/validation-gate.json`
-- `ok` Validation Gate report: `artifacts/artemis-validation-gate/run-01/VALIDATION_GATE.md`
-- `ok` Validation Gate validation summary: `artifacts/artemis-validation-gate/run-01/VALIDATION.md`
+- `ok` Validation Gate JSON: `artifacts/artemis-validation-gate/run-01/validation-gate-fixture/validation-gate.json`
+- `ok` Validation Gate report: `artifacts/artemis-validation-gate/run-01/validation-gate-fixture/VALIDATION_GATE.md`
+- `ok` Validation Gate validation summary: `artifacts/artemis-validation-gate/run-01/validation-gate-fixture/VALIDATION.md`
 
 ## Invariantes preservados
 

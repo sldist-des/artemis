@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:05:41Z",
+  "generated_at": "2026-05-07T19:27:34Z",
   "source": "scripts/artemis-human-decision-release-checkpoint.sh",
   "overall": "passed",
   "artifact_root": "artifacts/artemis-validation-gate/run-01/human-decision-release-checkpoint-check",
@@ -22,9 +22,9 @@
   },
   "validation_gate": {
     "overall": "human_gate",
-    "passed": 83,
+    "passed": 1,
     "failed": 0,
-    "human_gate": 2
+    "human_gate": 1
   },
   "evidence_inventory": [
     {
@@ -109,17 +109,17 @@
     },
     {
       "label": "Validation Gate JSON",
-      "path": "artifacts/artemis-validation-gate/run-01/validation-gate.json",
+      "path": "artifacts/artemis-validation-gate/run-01/validation-gate-fixture/validation-gate.json",
       "exists": true
     },
     {
       "label": "Validation Gate report",
-      "path": "artifacts/artemis-validation-gate/run-01/VALIDATION_GATE.md",
+      "path": "artifacts/artemis-validation-gate/run-01/validation-gate-fixture/VALIDATION_GATE.md",
       "exists": true
     },
     {
       "label": "Validation Gate validation summary",
-      "path": "artifacts/artemis-validation-gate/run-01/VALIDATION.md",
+      "path": "artifacts/artemis-validation-gate/run-01/validation-gate-fixture/VALIDATION.md",
       "exists": true
     }
   ],

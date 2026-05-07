@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:05:46Z",
+  "generated_at": "2026-05-07T19:27:41Z",
   "source": "scripts/artemis-guided-collaboration.sh",
   "mode": "read_only_guided_human_collaboration",
   "overall": "guided_collaboration_ready",
   "reason": "Guided collaboration contract was derived from Project Brief, Project Graph and local task source.",
   "artifact_root": "artifacts/artemis-validation-gate/run-01/guided-collaboration-check",
   "inputs": {
-    "project_brief": "artifacts/artemis-project-brief/run-01/project-brief.json",
-    "project_graph": "artifacts/artemis-project-graph/run-01/project-graph.json",
+    "project_brief": "artifacts/artemis-validation-gate/run-01/project-brief-check/project-brief.json",
+    "project_graph": "artifacts/artemis-validation-gate/run-01/project-graph-check/project-graph.json",
     "tasks": "control-plane/tasks.json",
     "control_plane": "control-plane/index.html"
   },
@@ -17,13 +17,13 @@
     "task_lanes": 4,
     "agent_profiles": 4,
     "gate_contracts": 4,
-    "tasks_total": 59,
-    "tasks_done": 59,
+    "tasks_total": 60,
+    "tasks_done": 60,
     "tasks_human": 0,
     "tasks_ready": 0,
-    "validation_passed": 83,
+    "validation_passed": 1,
     "validation_failed": 0,
-    "human_gates": 2,
+    "human_gates": 1,
     "commands_executed": 0,
     "dependencies_installed": 0,
     "runtime_started": false,
@@ -39,8 +39,8 @@
       "summary": "Metodo e Symphony locais prontos para explicar trabalho, gates, evidencia e limites antes de acionar agentes.",
       "source_of_truth": "git_exec_packs_artifacts",
       "entry_artifacts": [
-        "artifacts/artemis-project-brief/run-01/project-brief.json",
-        "artifacts/artemis-project-graph/run-01/project-graph.json",
+        "artifacts/artemis-validation-gate/run-01/project-brief-check/project-brief.json",
+        "artifacts/artemis-validation-gate/run-01/project-graph-check/project-graph.json",
         "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md"
       ]
     }
@@ -169,5 +169,5 @@
     "renderGuidedCollaboration",
     "loadGuidedCollaborationSource"
   ],
-  "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+  "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
 }

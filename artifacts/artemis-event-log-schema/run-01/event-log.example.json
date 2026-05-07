@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:06:01Z",
+  "generated_at": "2026-05-07T19:25:01Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-07T18:06:01Z",
+      "generated_at": "2026-05-07T19:25:01Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -74,7 +74,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T18:06:01Z",
+      "generated_at": "2026-05-07T19:25:01Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -161,7 +161,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T18:06:01Z",
+      "generated_at": "2026-05-07T19:25:01Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -254,7 +254,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-07T18:06:01Z",
+      "generated_at": "2026-05-07T19:25:01Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -294,7 +294,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 83,
+          "passed": 85,
           "failed": 0,
           "human_gate": 2
         },
@@ -529,6 +529,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_launch_contract.txt"
+          },
+          {
+            "name": "shell_agent_runtime_dry_run",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_dry_run.txt"
           },
           {
             "name": "shell_approved_workspace_cleanup",
@@ -809,6 +816,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/agent_launch_contract.txt"
+          },
+          {
+            "name": "agent_runtime_dry_run",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_dry_run.txt"
           },
           {
             "name": "approved_workspace_cleanup",
@@ -1222,7 +1236,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T18:04:22Z",
+      "generated_at": "2026-05-07T19:22:34Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -1262,17 +1276,17 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 59,
-          "tasks_done": 59,
+          "tasks_total": 60,
+          "tasks_done": 60,
           "tasks_human": 0,
           "tasks_ready": 0,
-          "owners_total": 7,
-          "events_total": 45,
-          "nodes_total": 10,
-          "edges_total": 12,
-          "evidence_count": 59,
-          "exec_pack_count": 59,
-          "validation_passed": 83,
+          "owners_total": 8,
+          "events_total": 46,
+          "nodes_total": 11,
+          "edges_total": 14,
+          "evidence_count": 60,
+          "exec_pack_count": 60,
+          "validation_passed": 85,
           "validation_failed": 0,
           "validation_human_gate": 2,
           "memory_zones": 3,
@@ -1283,14 +1297,14 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+        "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T18:04:27Z",
+      "generated_at": "2026-05-07T19:22:38Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -1330,11 +1344,11 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 10,
-          "edges_rendered": 12,
+          "nodes_rendered": 11,
+          "edges_rendered": 14,
           "questions_rendered": 3,
           "invariants_rendered": 3,
-          "validation_passed": 83,
+          "validation_passed": 85,
           "human_gates": 2,
           "dependencies_installed": 0,
           "commands_executed": 0,
@@ -1342,7 +1356,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+        "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
       }
     },
     {
@@ -1903,24 +1917,24 @@
     },
     {
       "schema_version": 1,
-      "event_id": "evt_tkt-903_symphony_bridge",
+      "event_id": "evt_tkt-validate_symphony_bridge",
       "event_type": "runner.attempt_planned",
-      "generated_at": "2026-05-07T18:03:18Z",
+      "generated_at": "2026-05-07T19:23:39Z",
       "producer": {
         "adapter": "local_runner",
         "name": "scripts/artemis-symphony-bridge.sh",
         "mode": "supervised"
       },
       "subject": {
-        "ticket": "TKT-903",
-        "task_id": "tkt-903",
-        "title": "Validate ARTEMIS Symphony Bridge",
-        "exec_pack": "docs/exec-packs/done/TKT-043-artemis-symphony-bridge.md",
+        "ticket": "TKT-VALIDATE",
+        "task_id": "tkt-validate",
+        "title": "Validate supervised runner",
+        "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md",
         "artifact_root": "artifacts/artemis-symphony-bridge/run-01"
       },
       "runner": {
         "kind": "codex_cli",
-        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-bridge/run-01/task-source.json"
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json"
       },
       "state": {
         "from": "ready",
@@ -1939,11 +1953,11 @@
         "handoff_path": "artifacts/artemis-symphony-bridge/run-01/HANDOFF.md",
         "logs": [
           "artifacts/artemis-symphony-bridge/run-01/kernel/symphony-kernel.json",
-          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/events.json"
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/events.json"
         ]
       },
       "links": {
-        "correlation_id": "tkt-903"
+        "correlation_id": "tkt-validate"
       },
       "payload": {
         "reason": "Symphony bridge created a supervised runner attempt.",
@@ -1955,19 +1969,19 @@
     },
     {
       "schema_version": 1,
-      "event_id": "evt_tkt-903_symphony_dispatch_planned",
+      "event_id": "evt_tkt-validate_symphony_dispatch_planned",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-07T18:03:18Z",
+      "generated_at": "2026-05-07T19:23:39Z",
       "producer": {
         "adapter": "local_runner",
         "name": "scripts/artemis-symphony-kernel.sh",
         "mode": "read_only"
       },
       "subject": {
-        "ticket": "TKT-903",
-        "task_id": "tkt-903",
-        "title": "Validate ARTEMIS Symphony Bridge",
-        "exec_pack": "docs/exec-packs/done/TKT-043-artemis-symphony-bridge.md",
+        "ticket": "TKT-VALIDATE",
+        "task_id": "tkt-validate",
+        "title": "Validate supervised runner",
+        "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md",
         "artifact_root": "artifacts/artemis-symphony-bridge/run-01/kernel"
       },
       "runner": {
@@ -1991,7 +2005,7 @@
         "logs": []
       },
       "links": {
-        "correlation_id": "tkt-903"
+        "correlation_id": "tkt-validate"
       },
       "payload": {
         "reason": "Read-only Symphony kernel planned dispatch without execution.",
@@ -2003,27 +2017,27 @@
     },
     {
       "schema_version": 1,
-      "event_id": "evt_20260507t180318z-26-tkt-903_planned",
+      "event_id": "evt_20260507t192339z-26-tkt-validate_planned",
       "event_type": "runner.attempt_planned",
-      "generated_at": "2026-05-07T18:03:18Z",
+      "generated_at": "2026-05-07T19:23:39Z",
       "producer": {
         "adapter": "local_runner",
         "name": "scripts/artemis-runner.sh",
         "mode": "supervised"
       },
       "subject": {
-        "ticket": "TKT-903",
-        "task_id": "tkt-903",
-        "title": "Validate ARTEMIS Symphony Bridge",
-        "exec_pack": "docs/exec-packs/done/TKT-043-artemis-symphony-bridge.md",
-        "artifact_root": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903",
-        "branch": "artemis/tkt-903-validate-artemis-symphony-bridge",
-        "worktree": "../veri-artemis-worktrees/tkt-903"
+        "ticket": "TKT-VALIDATE",
+        "task_id": "tkt-validate",
+        "title": "Validate supervised runner",
+        "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md",
+        "artifact_root": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate",
+        "branch": "artemis/tkt-validate-validate-supervised-runner",
+        "worktree": "../veri-artemis-worktrees/tkt-validate"
       },
       "runner": {
         "kind": "codex_cli",
-        "attempt_id": "20260507T180318Z-26-tkt-903",
-        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-bridge/run-01/task-source.json"
+        "attempt_id": "20260507T192339Z-26-tkt-validate",
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json"
       },
       "state": {
         "from": "ready",
@@ -2036,36 +2050,36 @@
       },
       "severity": "info",
       "evidence": {
-        "artifact_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903",
-        "status_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/STATUS.md",
-        "validation_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/VALIDATION.md",
-        "handoff_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/HANDOFF.md",
+        "artifact_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate",
+        "status_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/STATUS.md",
+        "validation_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/HANDOFF.md",
         "logs": [
-          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/dry-run.json",
-          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/workspace.json",
-          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/RUNNER.md",
-          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/ENVIRONMENT.md",
-          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/COMMAND.txt",
-          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/RESULT.md"
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/dry-run.json",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/workspace.json",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/RUNNER.md",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/ENVIRONMENT.md",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/COMMAND.txt",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/RESULT.md"
         ]
       },
       "links": {
-        "correlation_id": "tkt-903"
+        "correlation_id": "tkt-validate"
       },
       "payload": {
-        "attempt_id": "20260507T180318Z-26-tkt-903",
+        "attempt_id": "20260507T192339Z-26-tkt-validate",
         "execute": false,
-        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-bridge/run-01/task-source.json",
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json",
         "execution_cwd": "/srv/veri",
         "use_workspace": false,
         "attempt_purpose": "run",
         "retry_of": null,
         "workspace": {
           "mode": "planned",
-          "branch": "artemis/tkt-903-validate-artemis-symphony-bridge",
-          "worktree_path": "../veri-artemis-worktrees/tkt-903",
-          "lock_path": ".artemis/locks/tkt-903.lock",
-          "artifact_root": "artifacts/artemis-symphony-bridge/run-01",
+          "branch": "artemis/tkt-validate-validate-supervised-runner",
+          "worktree_path": "../veri-artemis-worktrees/tkt-validate",
+          "lock_path": ".artemis/locks/tkt-validate.lock",
+          "artifact_root": "artifacts/validate-runner/run-01",
           "writer": "Codex",
           "cleanup_state": "not_created"
         },
@@ -2075,27 +2089,27 @@
     },
     {
       "schema_version": 1,
-      "event_id": "evt_20260507t180318z-26-tkt-903_completed",
+      "event_id": "evt_20260507t192339z-26-tkt-validate_completed",
       "event_type": "runner.attempt_completed",
-      "generated_at": "2026-05-07T18:03:18Z",
+      "generated_at": "2026-05-07T19:23:39Z",
       "producer": {
         "adapter": "local_runner",
         "name": "scripts/artemis-runner.sh",
         "mode": "supervised"
       },
       "subject": {
-        "ticket": "TKT-903",
-        "task_id": "tkt-903",
-        "title": "Validate ARTEMIS Symphony Bridge",
-        "exec_pack": "docs/exec-packs/done/TKT-043-artemis-symphony-bridge.md",
-        "artifact_root": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903",
-        "branch": "artemis/tkt-903-validate-artemis-symphony-bridge",
-        "worktree": "../veri-artemis-worktrees/tkt-903"
+        "ticket": "TKT-VALIDATE",
+        "task_id": "tkt-validate",
+        "title": "Validate supervised runner",
+        "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md",
+        "artifact_root": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate",
+        "branch": "artemis/tkt-validate-validate-supervised-runner",
+        "worktree": "../veri-artemis-worktrees/tkt-validate"
       },
       "runner": {
         "kind": "codex_cli",
-        "attempt_id": "20260507T180318Z-26-tkt-903",
-        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-bridge/run-01/task-source.json"
+        "attempt_id": "20260507T192339Z-26-tkt-validate",
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json"
       },
       "state": {
         "from": "running",
@@ -2108,42 +2122,42 @@
       },
       "severity": "info",
       "evidence": {
-        "artifact_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903",
-        "status_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/STATUS.md",
-        "validation_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/VALIDATION.md",
-        "handoff_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/HANDOFF.md",
+        "artifact_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate",
+        "status_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/STATUS.md",
+        "validation_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/HANDOFF.md",
         "logs": [
-          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/dry-run.json",
-          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/workspace.json",
-          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/RUNNER.md",
-          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/ENVIRONMENT.md",
-          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/COMMAND.txt",
-          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/RESULT.md"
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/dry-run.json",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/workspace.json",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/RUNNER.md",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/ENVIRONMENT.md",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/COMMAND.txt",
+          "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/RESULT.md"
         ]
       },
       "links": {
-        "correlation_id": "tkt-903"
+        "correlation_id": "tkt-validate"
       },
       "payload": {
-        "attempt_id": "20260507T180318Z-26-tkt-903",
+        "attempt_id": "20260507T192339Z-26-tkt-validate",
         "execute": false,
-        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-bridge/run-01/task-source.json",
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json",
         "execution_cwd": "/srv/veri",
         "use_workspace": false,
         "attempt_purpose": "run",
         "retry_of": null,
         "workspace": {
           "mode": "planned",
-          "branch": "artemis/tkt-903-validate-artemis-symphony-bridge",
-          "worktree_path": "../veri-artemis-worktrees/tkt-903",
-          "lock_path": ".artemis/locks/tkt-903.lock",
-          "artifact_root": "artifacts/artemis-symphony-bridge/run-01",
+          "branch": "artemis/tkt-validate-validate-supervised-runner",
+          "worktree_path": "../veri-artemis-worktrees/tkt-validate",
+          "lock_path": ".artemis/locks/tkt-validate.lock",
+          "artifact_root": "artifacts/validate-runner/run-01",
           "writer": "Codex",
           "cleanup_state": "not_created"
         },
         "artifact_root": "artifacts/artemis-symphony-bridge/run-01/runner",
         "exit_code": 0,
-        "command_log": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T180318Z-26-tkt-903/COMMAND.txt",
+        "command_log": "artifacts/artemis-symphony-bridge/run-01/runner/attempts/20260507T192339Z-26-tkt-validate/COMMAND.txt",
         "reason": "Supervised runner plan completed without command execution."
       }
     },
@@ -2151,7 +2165,7 @@
       "schema_version": 1,
       "event_id": "evt_task_symphony_daemon_tick-001",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-07T18:03:17Z",
+      "generated_at": "2026-05-07T19:23:44Z",
       "producer": {
         "adapter": "local_daemon",
         "name": "scripts/artemis-symphony-daemon.sh",
@@ -2194,8 +2208,8 @@
       "payload": {
         "reason": "Daemon dry-run heartbeat recorded without runner execution.",
         "tick": 1,
-        "kernel_overall": "idle",
-        "selected_for_dispatch": 0,
+        "kernel_overall": "dispatch_plan_ready",
+        "selected_for_dispatch": 1,
         "commands_executed": 0,
         "runner_auto_execution_allowed": false
       }
@@ -2204,7 +2218,7 @@
       "schema_version": 1,
       "event_id": "evt_task_symphony_daemon_tick-002",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-07T18:03:17Z",
+      "generated_at": "2026-05-07T19:23:44Z",
       "producer": {
         "adapter": "local_daemon",
         "name": "scripts/artemis-symphony-daemon.sh",
@@ -2247,8 +2261,8 @@
       "payload": {
         "reason": "Daemon dry-run heartbeat recorded without runner execution.",
         "tick": 2,
-        "kernel_overall": "idle",
-        "selected_for_dispatch": 0,
+        "kernel_overall": "dispatch_plan_ready",
+        "selected_for_dispatch": 1,
         "commands_executed": 0,
         "runner_auto_execution_allowed": false
       }
@@ -2257,7 +2271,7 @@
       "schema_version": 1,
       "event_id": "evt_task_symphony_daemon_completed",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-07T18:03:18Z",
+      "generated_at": "2026-05-07T19:23:44Z",
       "producer": {
         "adapter": "local_daemon",
         "name": "scripts/artemis-symphony-daemon.sh",
@@ -2309,7 +2323,7 @@
       "schema_version": 1,
       "event_id": "evt_task_symphony_kernel_idle",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-07T18:03:04Z",
+      "generated_at": "2026-05-07T19:23:13Z",
       "producer": {
         "adapter": "local_runner",
         "name": "scripts/artemis-symphony-kernel.sh",
@@ -2353,9 +2367,63 @@
     },
     {
       "schema_version": 1,
+      "event_id": "evt_tkt-validate_symphony_queue_review_required",
+      "event_type": "runner.readiness_checked",
+      "generated_at": "2026-05-07T19:23:47Z",
+      "producer": {
+        "adapter": "local_queue",
+        "name": "scripts/artemis-symphony-queue.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-VALIDATE",
+        "task_id": "tkt-validate",
+        "title": "Validate supervised runner",
+        "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md",
+        "artifact_root": "artifacts/artemis-symphony-queue/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "review",
+        "reason": "Dispatch item materialized as supervised review queue item."
+      },
+      "gate": {
+        "kind": "terminal_override",
+        "status": "required",
+        "reason": "Queue item requires explicit bridge command from terminal."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-symphony-queue/run-01",
+        "status_path": "artifacts/artemis-symphony-queue/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-symphony-queue/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-symphony-queue/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-symphony-daemon/run-01/symphony-daemon.json",
+          "artifacts/artemis-symphony-daemon/run-01/ticks/tick-002/kernel/symphony-kernel.json",
+          "artifacts/artemis-symphony-queue/run-01/symphony-queue.json"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-validate"
+      },
+      "payload": {
+        "reason": "Dispatch item materialized as supervised review queue item.",
+        "queue_id": "queue-001-tkt-validate",
+        "commands_executed": 0,
+        "bridge_called": false,
+        "runner_called": false,
+        "runner_auto_execution_allowed": false
+      }
+    },
+    {
+      "schema_version": 1,
       "event_id": "evt_task_symphony_queue_completed",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-07T18:03:34Z",
+      "generated_at": "2026-05-07T19:23:47Z",
       "producer": {
         "adapter": "local_queue",
         "name": "scripts/artemis-symphony-queue.sh",
@@ -2395,8 +2463,8 @@
       },
       "payload": {
         "reason": "Supervised queue generated from daemon evidence without execution.",
-        "overall": "queue_empty",
-        "queue_items": 0,
+        "overall": "queue_ready",
+        "queue_items": 1,
         "commands_executed": 0,
         "bridge_called": false,
         "runner_called": false
@@ -2404,24 +2472,24 @@
     },
     {
       "schema_version": 1,
-      "event_id": "evt_tkt-947_symphony_queue_bridge",
+      "event_id": "evt_tkt-validate_symphony_queue_bridge",
       "event_type": "runner.attempt_planned",
-      "generated_at": "2026-05-07T18:03:34Z",
+      "generated_at": "2026-05-07T19:23:51Z",
       "producer": {
         "adapter": "local_queue_bridge",
         "name": "scripts/artemis-symphony-queue-bridge.sh",
         "mode": "plan_only"
       },
       "subject": {
-        "ticket": "TKT-947",
-        "task_id": "tkt-947",
-        "title": "Validate queue bridge plan-only dispatch",
-        "exec_pack": "docs/exec-packs/done/TKT-047-artemis-symphony-queue-bridge.md",
+        "ticket": "TKT-VALIDATE",
+        "task_id": "tkt-validate",
+        "title": "Validate supervised runner",
+        "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md",
         "artifact_root": "artifacts/artemis-symphony-queue-bridge/run-01"
       },
       "runner": {
         "kind": "codex_cli",
-        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-queue-bridge/run-01/task-source.json"
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json"
       },
       "state": {
         "from": "review",
@@ -2439,17 +2507,17 @@
         "validation_path": "artifacts/artemis-symphony-queue-bridge/run-01/VALIDATION.md",
         "handoff_path": "artifacts/artemis-symphony-queue-bridge/run-01/HANDOFF.md",
         "logs": [
-          "artifacts/artemis-symphony-queue-bridge/run-01/queue/symphony-queue.json",
+          "artifacts/artemis-symphony-queue/run-01/symphony-queue.json",
           "artifacts/artemis-symphony-queue-bridge/run-01/queue-bridge.json",
           "artifacts/artemis-symphony-queue-bridge/run-01/bridge/symphony-bridge.json"
         ]
       },
       "links": {
-        "correlation_id": "tkt-947"
+        "correlation_id": "tkt-validate"
       },
       "payload": {
         "reason": "Queue item was routed to the supervised bridge in plan-only mode.",
-        "queue_id": "queue-001-tkt-947",
+        "queue_id": "queue-001-tkt-validate",
         "bridge_planned": true,
         "execute_requested": false,
         "commands_executed": 0,
@@ -2459,24 +2527,24 @@
     },
     {
       "schema_version": 1,
-      "event_id": "evt_tkt-948_symphony_queue_bridge",
+      "event_id": "evt_tkt-validate_symphony_queue_bridge",
       "event_type": "runner.attempt_completed",
-      "generated_at": "2026-05-07T18:03:34Z",
+      "generated_at": "2026-05-07T19:23:56Z",
       "producer": {
         "adapter": "local_queue_bridge",
         "name": "scripts/artemis-symphony-queue-bridge.sh",
         "mode": "execute"
       },
       "subject": {
-        "ticket": "TKT-948",
-        "task_id": "tkt-948",
-        "title": "Validate queue execution opt-in",
-        "exec_pack": "docs/exec-packs/done/TKT-048-artemis-symphony-queue-execution.md",
+        "ticket": "TKT-VALIDATE",
+        "task_id": "tkt-validate",
+        "title": "Validate supervised runner",
+        "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md",
         "artifact_root": "artifacts/artemis-symphony-queue-execution/run-01"
       },
       "runner": {
         "kind": "codex_cli",
-        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-queue-execution/run-01/fixtures/task-source.json"
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json"
       },
       "state": {
         "from": "review",
@@ -2494,17 +2562,17 @@
         "validation_path": "artifacts/artemis-symphony-queue-execution/run-01/VALIDATION.md",
         "handoff_path": "artifacts/artemis-symphony-queue-execution/run-01/HANDOFF.md",
         "logs": [
-          "artifacts/artemis-symphony-queue-execution/run-01/queue/symphony-queue.json",
+          "artifacts/artemis-symphony-queue/run-01/symphony-queue.json",
           "artifacts/artemis-symphony-queue-execution/run-01/queue-bridge.json",
           "artifacts/artemis-symphony-queue-execution/run-01/bridge/symphony-bridge.json"
         ]
       },
       "links": {
-        "correlation_id": "tkt-948"
+        "correlation_id": "tkt-validate"
       },
       "payload": {
         "reason": "Queue item was executed through the supervised bridge after Validation Gate and exact approval.",
-        "queue_id": "queue-001-tkt-948",
+        "queue_id": "queue-001-tkt-validate",
         "bridge_planned": true,
         "execute_requested": true,
         "commands_executed": 1,
@@ -2516,22 +2584,22 @@
       "schema_version": 1,
       "event_id": "evt_task_symphony_service_completed",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-07T18:03:34Z",
+      "generated_at": "2026-05-07T19:24:02Z",
       "producer": {
         "adapter": "local_symphony_service",
         "name": "scripts/artemis-symphony-service.sh",
         "mode": "finite_supervised"
       },
       "subject": {
-        "ticket": "TKT-949",
-        "task_id": "tkt-949",
+        "ticket": "TKT-VALIDATE",
+        "task_id": "tkt-validate",
         "title": "ARTEMIS Symphony finite supervised service",
         "exec_pack": "docs/symphony/ARTEMIS_SYMPHONY_SERVICE.md",
         "artifact_root": "artifacts/artemis-symphony-service/run-01"
       },
       "runner": {
         "kind": "codex_cli",
-        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-service/run-01/fixtures/task-source.json"
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json"
       },
       "state": {
         "from": "planned",
@@ -2556,7 +2624,7 @@
         ]
       },
       "links": {
-        "correlation_id": "tkt-949"
+        "correlation_id": "tkt-validate"
       },
       "payload": {
         "reason": "Finite supervised service cycle completed.",
@@ -3009,7 +3077,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-07T18:05:53Z",
+      "generated_at": "2026-05-07T19:21:47Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -3075,6 +3143,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_project_brief.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_guided_collaboration.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_launch_contract.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_dry_run.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt",
@@ -3115,6 +3184,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/project_brief.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/guided_collaboration.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/agent_launch_contract.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_dry_run.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt",
@@ -3135,7 +3205,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 83,
+          "passed": 85,
           "failed": 0,
           "human_gate": 2
         },
@@ -3370,6 +3440,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_launch_contract.txt"
+          },
+          {
+            "name": "shell_agent_runtime_dry_run",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_dry_run.txt"
           },
           {
             "name": "shell_approved_workspace_cleanup",
@@ -3652,6 +3729,13 @@
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/agent_launch_contract.txt"
           },
           {
+            "name": "agent_runtime_dry_run",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_dry_run.txt"
+          },
+          {
             "name": "approved_workspace_cleanup",
             "kind": "technical",
             "status": "passed",
@@ -3743,7 +3827,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-050_symphony_remote_source",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T18:03:04Z",
+      "generated_at": "2026-05-07T19:24:11Z",
       "producer": {
         "adapter": "symphony_remote_source",
         "name": "scripts/artemis-symphony-remote-source.sh",
@@ -3806,14 +3890,14 @@
           "human_gates_preserved": true,
           "validation_gate_required_before_execute": true
         },
-        "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+        "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-051_symphony_remote_intake",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T18:03:17Z",
+      "generated_at": "2026-05-07T19:24:15Z",
       "producer": {
         "adapter": "symphony_remote_intake",
         "name": "scripts/artemis-symphony-remote-intake.sh",
@@ -3880,14 +3964,14 @@
           "human_gates_preserved": true,
           "validation_gate_required_before_execute": true
         },
-        "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+        "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-052_symphony_remote_promotion",
       "event_type": "approval.resolved",
-      "generated_at": "2026-05-07T18:03:17Z",
+      "generated_at": "2026-05-07T19:24:18Z",
       "producer": {
         "adapter": "symphony_remote_promotion",
         "name": "scripts/artemis-symphony-remote-promotion.sh",
@@ -3902,7 +3986,7 @@
       },
       "runner": {
         "kind": "none",
-        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-promotion/run-01/promoted-source.json"
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/symphony-promotion-check/promoted-source.json"
       },
       "state": {
         "from": "review",
@@ -3957,7 +4041,7 @@
           "terminal_first": true,
           "human_gates_preserved": true
         },
-        "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+        "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
       }
     },
     {
@@ -4017,14 +4101,14 @@
           "code_copied": false,
           "vendorization_allowed_without_human_gate": false
         },
-        "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+        "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T18:04:22Z",
+      "generated_at": "2026-05-07T19:22:34Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -4064,17 +4148,17 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 59,
-          "tasks_done": 59,
+          "tasks_total": 60,
+          "tasks_done": 60,
           "tasks_human": 0,
           "tasks_ready": 0,
-          "owners_total": 7,
-          "events_total": 45,
-          "nodes_total": 10,
-          "edges_total": 12,
-          "evidence_count": 59,
-          "exec_pack_count": 59,
-          "validation_passed": 83,
+          "owners_total": 8,
+          "events_total": 46,
+          "nodes_total": 11,
+          "edges_total": 14,
+          "evidence_count": 60,
+          "exec_pack_count": 60,
+          "validation_passed": 85,
           "validation_failed": 0,
           "validation_human_gate": 2,
           "memory_zones": 3,
@@ -4085,14 +4169,14 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+        "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T18:04:27Z",
+      "generated_at": "2026-05-07T19:22:38Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -4132,11 +4216,11 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 10,
-          "edges_rendered": 12,
+          "nodes_rendered": 11,
+          "edges_rendered": 14,
           "questions_rendered": 3,
           "invariants_rendered": 3,
-          "validation_passed": 83,
+          "validation_passed": 85,
           "human_gates": 2,
           "dependencies_installed": 0,
           "commands_executed": 0,
@@ -4144,14 +4228,14 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+        "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T18:04:27Z",
+      "generated_at": "2026-05-07T19:22:40Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -4191,12 +4275,12 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 59,
-          "tasks_done": 59,
-          "events_total": 45,
-          "nodes_total": 10,
-          "edges_total": 12,
-          "validation_passed": 83,
+          "tasks_total": 60,
+          "tasks_done": 60,
+          "events_total": 46,
+          "nodes_total": 11,
+          "edges_total": 14,
+          "validation_passed": 85,
           "validation_failed": 0,
           "human_gates": 2,
           "memory_zones": 3,
@@ -4206,14 +4290,14 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+        "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-057_guided_collaboration",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T18:04:31Z",
+      "generated_at": "2026-05-07T19:22:45Z",
       "producer": {
         "adapter": "guided_collaboration",
         "name": "scripts/artemis-guided-collaboration.sh",
@@ -4257,11 +4341,11 @@
           "task_lanes": 4,
           "agent_profiles": 4,
           "gate_contracts": 4,
-          "tasks_total": 59,
-          "tasks_done": 59,
+          "tasks_total": 60,
+          "tasks_done": 60,
           "tasks_human": 0,
           "tasks_ready": 0,
-          "validation_passed": 83,
+          "validation_passed": 85,
           "validation_failed": 0,
           "human_gates": 2,
           "commands_executed": 0,
@@ -4271,14 +4355,14 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+        "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-058_agent_launch_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T18:04:31Z",
+      "generated_at": "2026-05-07T19:22:48Z",
       "producer": {
         "adapter": "agent_launch_contract",
         "name": "scripts/artemis-agent-launch-contract.sh",
@@ -4321,10 +4405,10 @@
           "launch_profiles": 4,
           "launch_gates": 9,
           "evidence_requirements": 4,
-          "tasks_total": 59,
-          "tasks_done": 59,
+          "tasks_total": 60,
+          "tasks_done": 60,
           "tasks_human": 0,
-          "validation_passed": 83,
+          "validation_passed": 85,
           "validation_failed": 0,
           "human_gates": 2,
           "execute_default": false,
@@ -4340,13 +4424,131 @@
         },
         "candidate_launch": {
           "project": "ARTEMIS",
-          "task": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony",
+          "task": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony",
           "recommended_profile": "codex_terminal",
           "fallback_profile": "claude_code",
           "execute": false,
           "reason": "The next safe step is a dry-run adapter that materializes a launch request without starting paid/runtime agents."
         },
-        "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+        "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-059_agent_runtime_dry_run",
+      "event_type": "runner.attempt_planned",
+      "generated_at": "2026-05-07T19:22:50Z",
+      "producer": {
+        "adapter": "agent_runtime_dry_run",
+        "name": "scripts/artemis-agent-runtime-dry-run.sh",
+        "mode": "dry_run"
+      },
+      "subject": {
+        "ticket": "TKT-059",
+        "task_id": "tkt-059",
+        "title": "Agent Runtime Dry-Run do ARTEMIS Symphony",
+        "exec_pack": "docs/exec-packs/done/TKT-059-artemis-agent-runtime-dry-run.md",
+        "artifact_root": "artifacts/artemis-agent-runtime-dry-run/run-01"
+      },
+      "runner": {
+        "kind": "codex_cli",
+        "attempt_id": "dry-run-only",
+        "command": "terminal",
+        "exit_code": 0
+      },
+      "state": {
+        "from": "planned",
+        "to": "done",
+        "reason": "Runtime launch request was materialized as auditable dry-run without starting agents."
+      },
+      "gate": {
+        "kind": "human",
+        "status": "human_gate",
+        "reason": "Auth and budget remain Human Gates before real runtime."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-agent-runtime-dry-run/run-01",
+        "status_path": "artifacts/artemis-agent-runtime-dry-run/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-agent-runtime-dry-run/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-agent-runtime-dry-run/run-01/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-059"
+      },
+      "payload": {
+        "overall": "agent_runtime_dry_run_ready",
+        "reason": "Runtime launch request was materialized as auditable dry-run without starting agents.",
+        "summary": {
+          "tasks_total": 60,
+          "tasks_done": 60,
+          "validation_passed": 85,
+          "validation_failed": 0,
+          "human_gates_from_project": 2,
+          "preflight_checks": 13,
+          "preflight_passed": 12,
+          "preflight_failed": 0,
+          "preflight_human_gate": 1,
+          "execute": false,
+          "runtime_started": false,
+          "agents_started": 0,
+          "commands_executed": 0,
+          "dependencies_installed": 0,
+          "remote_writes_allowed": false,
+          "paid_tokens_authorized": 0,
+          "auth_required": false,
+          "selected_profile": "codex_terminal"
+        },
+        "launch_request": {
+          "project": "ARTEMIS",
+          "task": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony",
+          "profile_id": "codex_terminal",
+          "profile_name": "Codex terminal-first",
+          "runtime": "codex_cli",
+          "command_surface": "terminal",
+          "execute": false,
+          "reason": "Dry-run materializes the launch request and preflight evidence without starting an agent runtime.",
+          "model_policy": {
+            "selection": "inherited_or_human_approved",
+            "frontier_default": "gpt-5.4",
+            "claude_default": "human_account_runtime",
+            "override_allowed": false
+          },
+          "budget": {
+            "approval_state": "human_required_before_runtime",
+            "max_agents": 1,
+            "max_commands": 0,
+            "max_paid_tokens": 0,
+            "max_runtime_seconds": 0,
+            "stop_rule": "Stop before any real runtime, paid token use, remote write, production touch, secret access or missing validation evidence."
+          },
+          "auth": {
+            "required": false,
+            "state": "not_required_for_dry_run",
+            "secrets_touched": false
+          },
+          "workspace": {
+            "repo": "/srv/veri",
+            "write_scope": "none",
+            "branch_policy": "observe_only",
+            "worktree_policy": "not_materialized",
+            "dirty_state_policy": "record_only"
+          },
+          "rollback": {
+            "required_before_runtime": true,
+            "dry_run_abort": "Delete or ignore this artifact root; no runtime side effects were created.",
+            "runtime_abort": "Future runtime must preserve logs, stop agents and hand off unresolved gates before retry."
+          },
+          "evidence": {
+            "request": "artifacts/artemis-agent-runtime-dry-run/run-01/REQUEST.md",
+            "preflight": "artifacts/artemis-agent-runtime-dry-run/run-01/PREFLIGHT.md",
+            "runtime_log": "artifacts/artemis-agent-runtime-dry-run/run-01/RUNTIME_LOG.md",
+            "handoff": "artifacts/artemis-agent-runtime-dry-run/run-01/HANDOFF.md",
+            "json": "artifacts/artemis-agent-runtime-dry-run/run-01/runtime-dry-run.json"
+          }
+        },
+        "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
       }
     }
   ]

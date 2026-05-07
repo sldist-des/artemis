@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:03:34Z",
+  "generated_at": "2026-05-07T19:24:02Z",
   "source": "scripts/artemis-symphony-daemon.sh",
   "mode": "read_only_daemon_dry_run",
   "overall": "heartbeat_ready",
-  "task_source": "artifacts/artemis-symphony-service/run-01/fixtures/task-source.json",
+  "task_source": "artifacts/artemis-validation-gate/run-01/runner-task-source.json",
   "artifact_root": "artifacts/artemis-symphony-service/run-01/daemon",
-  "started_at": "2026-05-07T18:03:34Z",
-  "completed_at": "2026-05-07T18:03:34Z",
+  "started_at": "2026-05-07T19:24:02Z",
+  "completed_at": "2026-05-07T19:24:02Z",
   "ticks_requested": 1,
   "ticks_completed": 1,
   "interval_seconds": 0,
@@ -27,7 +27,7 @@
     {
       "tick": 1,
       "tick_id": "tick-001",
-      "generated_at": "2026-05-07T18:03:34Z",
+      "generated_at": "2026-05-07T19:24:02Z",
       "kernel_exit_code": 0,
       "kernel": "artifacts/artemis-symphony-service/run-01/daemon/ticks/tick-001/kernel/symphony-kernel.json",
       "kernel_overall": "dispatch_plan_ready",
@@ -42,7 +42,7 @@
         "runner_auto_execution_allowed": false
       },
       "dispatch_tickets": [
-        "TKT-949"
+        "TKT-VALIDATE"
       ],
       "human_gate_tickets": []
     }
@@ -55,5 +55,5 @@
     "Human Gates are observed and reported, never bypassed.",
     "Terminal override remains required for supervised bridge execution."
   ],
-  "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+  "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
 }

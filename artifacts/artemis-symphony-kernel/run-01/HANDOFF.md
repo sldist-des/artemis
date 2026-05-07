@@ -6,7 +6,7 @@ Kernel local read-only concluido com overall `idle`.
 
 ## Proximo corte
 
-- Implementar `TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`.
+- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.
 - Continuar com ponte plan-only por padrao e comando explicito por terminal.
 
 ## Nao fazer

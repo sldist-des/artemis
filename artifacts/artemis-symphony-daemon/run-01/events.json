@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:03:18Z",
+  "generated_at": "2026-05-07T19:23:44Z",
   "source": "scripts/artemis-symphony-daemon.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_task_symphony_daemon_tick-001",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-07T18:03:17Z",
+      "generated_at": "2026-05-07T19:23:44Z",
       "producer": {
         "adapter": "local_daemon",
         "name": "scripts/artemis-symphony-daemon.sh",
@@ -50,8 +50,8 @@
       "payload": {
         "reason": "Daemon dry-run heartbeat recorded without runner execution.",
         "tick": 1,
-        "kernel_overall": "idle",
-        "selected_for_dispatch": 0,
+        "kernel_overall": "dispatch_plan_ready",
+        "selected_for_dispatch": 1,
         "commands_executed": 0,
         "runner_auto_execution_allowed": false
       }
@@ -60,7 +60,7 @@
       "schema_version": 1,
       "event_id": "evt_task_symphony_daemon_tick-002",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-07T18:03:17Z",
+      "generated_at": "2026-05-07T19:23:44Z",
       "producer": {
         "adapter": "local_daemon",
         "name": "scripts/artemis-symphony-daemon.sh",
@@ -103,8 +103,8 @@
       "payload": {
         "reason": "Daemon dry-run heartbeat recorded without runner execution.",
         "tick": 2,
-        "kernel_overall": "idle",
-        "selected_for_dispatch": 0,
+        "kernel_overall": "dispatch_plan_ready",
+        "selected_for_dispatch": 1,
         "commands_executed": 0,
         "runner_auto_execution_allowed": false
       }
@@ -113,7 +113,7 @@
       "schema_version": 1,
       "event_id": "evt_task_symphony_daemon_completed",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-07T18:03:18Z",
+      "generated_at": "2026-05-07T19:23:44Z",
       "producer": {
         "adapter": "local_daemon",
         "name": "scripts/artemis-symphony-daemon.sh",

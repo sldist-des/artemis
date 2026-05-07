@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:03:17Z",
+  "generated_at": "2026-05-07T19:24:18Z",
   "source": "scripts/artemis-symphony-remote-promotion.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-052_symphony_remote_promotion",
       "event_type": "approval.resolved",
-      "generated_at": "2026-05-07T18:03:17Z",
+      "generated_at": "2026-05-07T19:24:18Z",
       "producer": {
         "adapter": "symphony_remote_promotion",
         "name": "scripts/artemis-symphony-remote-promotion.sh",
@@ -22,7 +22,7 @@
       },
       "runner": {
         "kind": "none",
-        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-promotion/run-01/promoted-source.json"
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/symphony-promotion-check/promoted-source.json"
       },
       "state": {
         "from": "review",
@@ -77,7 +77,7 @@
           "terminal_first": true,
           "human_gates_preserved": true
         },
-        "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+        "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
       }
     }
   ]

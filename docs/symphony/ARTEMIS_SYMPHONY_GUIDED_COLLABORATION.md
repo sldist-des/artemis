@@ -41,6 +41,6 @@ scripts/validate-artemis.sh
 
 ## Handoff
 
-O proximo corte recomendado e `TKT-059 - Agent Runtime Dry-Run do ARTEMIS
-Symphony`, usando o contrato de lancamento como entrada para um dry-run
-auditavel antes de qualquer runtime real.
+O proximo corte recomendado e `TKT-060 - Agent Runtime Approval Gate do ARTEMIS
+Symphony`, usando o dry-run de runtime como entrada para aprovacao humana exata
+antes de qualquer runtime real.

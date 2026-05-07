@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:05:46Z",
+  "generated_at": "2026-05-07T19:27:41Z",
   "source": "scripts/artemis-project-graph-view.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T18:05:46Z",
+      "generated_at": "2026-05-07T19:27:41Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -47,19 +47,19 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 10,
-          "edges_rendered": 12,
+          "nodes_rendered": 11,
+          "edges_rendered": 14,
           "questions_rendered": 3,
           "invariants_rendered": 3,
-          "validation_passed": 83,
-          "human_gates": 2,
+          "validation_passed": 1,
+          "human_gates": 1,
           "dependencies_installed": 0,
           "commands_executed": 0,
           "runtime_started": false,
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+        "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
       }
     }
   ]

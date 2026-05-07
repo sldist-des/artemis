@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "overall": "human_gate",
+  "summary": {
+    "passed": 1,
+    "failed": 0,
+    "human_gate": 1
+  },
+  "checks": [
+    {
+      "name": "synthetic_current_gate",
+      "kind": "human_gate",
+      "status": "human_gate",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/synthetic-current-gate.txt"
+    }
+  ]
+}

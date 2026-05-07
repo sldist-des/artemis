@@ -1,7 +1,7 @@
 # ARTEMIS EVENT LOG SCHEMA
 
 - Schema version: 1
-- Events: 45
+- Events: 47
 - Source: scripts/artemis-event-log.sh
 
 ## Event Types
@@ -23,17 +23,18 @@
 - `runner.attempt_planned`: `evt_20260504t140934z-2-tkt-022_planned` -> running
 - `runner.attempt_started`: `evt_20260504t140934z-2-tkt-022_started` -> running
 - `runner.attempt_completed`: `evt_20260504t140934z-2-tkt-022_completed` -> review
-- `runner.attempt_planned`: `evt_tkt-903_symphony_bridge` -> running
-- `runner.readiness_checked`: `evt_tkt-903_symphony_dispatch_planned` -> ready
-- `runner.attempt_planned`: `evt_20260507t180318z-26-tkt-903_planned` -> running
-- `runner.attempt_completed`: `evt_20260507t180318z-26-tkt-903_completed` -> review
+- `runner.attempt_planned`: `evt_tkt-validate_symphony_bridge` -> running
+- `runner.readiness_checked`: `evt_tkt-validate_symphony_dispatch_planned` -> ready
+- `runner.attempt_planned`: `evt_20260507t192339z-26-tkt-validate_planned` -> running
+- `runner.attempt_completed`: `evt_20260507t192339z-26-tkt-validate_completed` -> review
 - `runner.readiness_checked`: `evt_task_symphony_daemon_tick-001` -> planned
 - `runner.readiness_checked`: `evt_task_symphony_daemon_tick-002` -> planned
 - `validation.completed`: `evt_task_symphony_daemon_completed` -> done
 - `validation.completed`: `evt_task_symphony_kernel_idle` -> done
+- `runner.readiness_checked`: `evt_tkt-validate_symphony_queue_review_required` -> review
 - `validation.completed`: `evt_task_symphony_queue_completed` -> done
-- `runner.attempt_planned`: `evt_tkt-947_symphony_queue_bridge` -> running
-- `runner.attempt_completed`: `evt_tkt-948_symphony_queue_bridge` -> review
+- `runner.attempt_planned`: `evt_tkt-validate_symphony_queue_bridge` -> running
+- `runner.attempt_completed`: `evt_tkt-validate_symphony_queue_bridge` -> review
 - `validation.completed`: `evt_task_symphony_service_completed` -> review
 - `runner.attempt_planned`: `evt_20260504t141956z-2-tkt-023_planned` -> running
 - `runner.attempt_started`: `evt_20260504t141956z-2-tkt-023_started` -> running
@@ -51,6 +52,7 @@
 - `adapter.contract_recorded`: `evt_tkt-056_project_brief` -> done
 - `adapter.contract_recorded`: `evt_tkt-057_guided_collaboration` -> done
 - `adapter.contract_recorded`: `evt_tkt-058_agent_launch_contract` -> done
+- `runner.attempt_planned`: `evt_tkt-059_agent_runtime_dry_run` -> done
 
 ## Invariants
 

@@ -22,9 +22,10 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Project Brief implemented: `true`.
 - Guided Collaboration implemented: `true`.
 - Agent Launch Contract implemented: `true`.
+- Agent Runtime Dry-Run implemented: `true`.
 - Terminal-first: `true`.
 - Human Gates preserved: `true`.
-- Next cut: `TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony`.
+- Next cut: `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.
 
 ## Camadas
 
@@ -166,6 +167,12 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Status: `implemented_supervised_preflight_contract`.
 - Missing files: `0`.
 
+### agent_runtime_dry_run
+
+- Purpose: Audited dry-run request for future Codex or Claude runtime without starting agents.
+- Status: `implemented_runtime_rehearsal`.
+- Missing files: `0`.
+
 ## Invariantes
 
 - OpenAI Symphony is a reference, not a vendored dependency.
@@ -188,3 +195,4 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - The implemented Project Brief is explanatory and never becomes canonical state.
 - The implemented Guided Collaboration mode is a read-only entry and never launches agents.
 - The implemented Agent Launch Contract is read-only, execute=false by default and never starts runtime.
+- The implemented Agent Runtime Dry-Run materializes launch requests without starting agents or spending paid tokens.

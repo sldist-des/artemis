@@ -6,13 +6,13 @@ ARTEMIS Symphony daemon dry-run esta `heartbeat_ready`.
 
 ## Heartbeat
 
-- Task source: `control-plane/tasks.json`.
+- Task source: `artifacts/artemis-validation-gate/run-01/runner-task-source.json`.
 - Ticks requested: `2`.
 - Ticks completed: `2`.
 - Interval seconds: `0`.
 - Max concurrency: `1`.
-- Last kernel overall: `idle`.
-- Last selected for dispatch: `0`.
+- Last kernel overall: `dispatch_plan_ready`.
+- Last selected for dispatch: `1`.
 - Last Human Gate count: `0`.
 - Commands executed: `0`.
 - Runner auto execution allowed: `false`.

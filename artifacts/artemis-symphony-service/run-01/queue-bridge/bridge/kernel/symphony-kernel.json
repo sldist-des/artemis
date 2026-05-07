@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T18:03:34Z",
+  "generated_at": "2026-05-07T19:24:02Z",
   "source": "scripts/artemis-symphony-kernel.sh",
   "mode": "read_only",
   "overall": "dispatch_plan_ready",
-  "task_source": "artifacts/artemis-symphony-service/run-01/fixtures/task-source.json",
+  "task_source": "artifacts/artemis-validation-gate/run-01/runner-task-source.json",
   "artifact_root": "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/kernel",
   "dry_run": "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/kernel/dry-run.json",
   "summary": {
@@ -23,17 +23,17 @@
     {
       "order": 1,
       "slot": 1,
-      "ticket": "TKT-949",
-      "title": "Validate finite Symphony service",
+      "ticket": "TKT-VALIDATE",
+      "title": "Validate supervised runner",
       "state": "ready",
       "runner": "codex-cli",
-      "exec_pack": "docs/exec-packs/done/TKT-049-artemis-symphony-service.md",
+      "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md",
       "workspace": {
         "mode": "planned",
-        "branch": "artemis/tkt-949-validate-finite-symphony-service",
-        "worktree_path": "../veri-artemis-worktrees/tkt-949",
-        "lock_path": ".artemis/locks/tkt-949.lock",
-        "artifact_root": "artifacts/artemis-symphony-service/run-01",
+        "branch": "artemis/tkt-validate-validate-supervised-runner",
+        "worktree_path": "../veri-artemis-worktrees/tkt-validate",
+        "lock_path": ".artemis/locks/tkt-validate.lock",
+        "artifact_root": "artifacts/validate-runner/run-01",
         "writer": "Codex",
         "cleanup_state": "not_created"
       },
@@ -51,5 +51,5 @@
     "Human Gates are copied into the plan and never bypassed.",
     "Terminal override remains required for any future supervised execution."
   ],
-  "next_cut": "TKT-059 - Agent Runtime Dry-Run do ARTEMIS Symphony"
+  "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
 }

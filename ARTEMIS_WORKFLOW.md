@@ -419,6 +419,8 @@ scripts/artemis-guided-collaboration.sh
 scripts/artemis-guided-collaboration.sh --json
 scripts/artemis-agent-launch-contract.sh
 scripts/artemis-agent-launch-contract.sh --json
+scripts/artemis-agent-runtime-dry-run.sh
+scripts/artemis-agent-runtime-dry-run.sh --json
 ```
 
 Esse grafo e um read model operacional. Ele ajuda humanos e agentes a entenderem
@@ -435,6 +437,10 @@ O Agent Launch Contract e o preflight supervisionado entre a entrada guiada e
 qualquer runtime real. Ele fixa `execute=false` por padrao e exige projeto,
 tarefa, auth, budget, comando, workspace, rollback e evidencia antes de Codex
 app-server, Claude Code ou outro agente poder ser iniciado pelo Symphony.
+O Agent Runtime Dry-Run transforma esse contrato em um pedido auditavel de
+runtime, mas continua sem iniciar agente real: registra perfil, modelo, budget
+zero, auth gate, comando, workspace read-only, rollback, logs e handoff com
+`agents_started=0`, `commands_executed=0` e `paid_tokens_authorized=0`.
 
 Codex app-server e fonte futura de eventos ricos, nao substitui controle terminal-first:
 

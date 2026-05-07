@@ -81,6 +81,7 @@ scripts/artemis-project-graph-view.sh
 scripts/artemis-project-brief.sh
 scripts/artemis-guided-collaboration.sh
 scripts/artemis-agent-launch-contract.sh
+scripts/artemis-agent-runtime-dry-run.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -172,6 +173,7 @@ sh -n scripts/artemis-project-graph-view.sh
 sh -n scripts/artemis-project-brief.sh
 sh -n scripts/artemis-guided-collaboration.sh
 sh -n scripts/artemis-agent-launch-contract.sh
+sh -n scripts/artemis-agent-runtime-dry-run.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -1367,6 +1369,39 @@ if ! grep -q '"event_type": "adapter.contract_recorded"' /tmp/artemis-agent-laun
   echo "scripts/artemis-agent-launch-contract.sh did not emit canonical events" >&2
   exit 1
 fi
+scripts/artemis-agent-runtime-dry-run.sh --artifact-root /tmp/artemis-agent-runtime-dry-run --json >/tmp/artemis-agent-runtime-dry-run.json
+if ! grep -q '"overall": "agent_runtime_dry_run_ready"' /tmp/artemis-agent-runtime-dry-run.json; then
+  echo "scripts/artemis-agent-runtime-dry-run.sh did not report agent_runtime_dry_run_ready" >&2
+  exit 1
+fi
+if ! grep -q '"execute": false' /tmp/artemis-agent-runtime-dry-run.json; then
+  echo "ARTEMIS Agent Runtime Dry-Run did not keep execute=false" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_started": false' /tmp/artemis-agent-runtime-dry-run.json; then
+  echo "ARTEMIS Agent Runtime Dry-Run started runtime" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": 0' /tmp/artemis-agent-runtime-dry-run.json; then
+  echo "ARTEMIS Agent Runtime Dry-Run started agents" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-agent-runtime-dry-run.json; then
+  echo "ARTEMIS Agent Runtime Dry-Run executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"paid_tokens_authorized": 0' /tmp/artemis-agent-runtime-dry-run.json; then
+  echo "ARTEMIS Agent Runtime Dry-Run authorized paid tokens" >&2
+  exit 1
+fi
+if ! grep -q '"remote_writes_allowed": false' /tmp/artemis-agent-runtime-dry-run.json; then
+  echo "ARTEMIS Agent Runtime Dry-Run allowed remote writes" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "runner.attempt_planned"' /tmp/artemis-agent-runtime-dry-run/events.json; then
+  echo "scripts/artemis-agent-runtime-dry-run.sh did not emit canonical events" >&2
+  exit 1
+fi
 
 scripts/artemis-codex-app-server.sh --artifact-root /tmp/artemis-codex-app-server --json >/tmp/artemis-codex-app-server.json
 if ! grep -q '"overall": "passed"' /tmp/artemis-codex-app-server.json; then
@@ -1540,6 +1575,18 @@ if ! grep -q "renderAgentLaunchContract" control-plane/index.html; then
 fi
 if ! grep -q "agent_launch_contract_ready" control-plane/index.html; then
   echo "control-plane/index.html does not show the ARTEMIS Agent Launch Contract state" >&2
+  exit 1
+fi
+if ! grep -q "agent-runtime-section" control-plane/index.html; then
+  echo "control-plane/index.html does not render the ARTEMIS Agent Runtime Dry-Run section" >&2
+  exit 1
+fi
+if ! grep -q "renderAgentRuntimeDryRun" control-plane/index.html; then
+  echo "control-plane/index.html does not include the Agent Runtime Dry-Run renderer" >&2
+  exit 1
+fi
+if ! grep -q "agent_runtime_dry_run_ready" control-plane/index.html; then
+  echo "control-plane/index.html does not show the ARTEMIS Agent Runtime Dry-Run state" >&2
   exit 1
 fi
 

@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T12:16:52Z",
+  "source": "scripts/artemis-symphony-service.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_task_symphony_service_completed",
+      "event_type": "validation.completed",
+      "generated_at": "2026-05-07T12:16:52Z",
+      "producer": {
+        "adapter": "local_symphony_service",
+        "name": "scripts/artemis-symphony-service.sh",
+        "mode": "finite_supervised"
+      },
+      "subject": {
+        "ticket": "TKT-VALIDATE",
+        "task_id": "tkt-validate",
+        "title": "ARTEMIS Symphony finite supervised service",
+        "exec_pack": "docs/symphony/ARTEMIS_SYMPHONY_SERVICE.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-service-check"
+      },
+      "runner": {
+        "kind": "codex_cli",
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/runner-task-source.json"
+      },
+      "state": {
+        "from": "planned",
+        "to": "review",
+        "reason": "Finite supervised service cycle completed."
+      },
+      "gate": {
+        "kind": "terminal_override",
+        "status": "used",
+        "reason": "Terminal provided an explicit queue bridge command."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/symphony-service-check",
+        "status_path": "artifacts/artemis-validation-gate/run-01/symphony-service-check/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/symphony-service-check/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/symphony-service-check/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-validation-gate/run-01/symphony-service-check/symphony-service.json",
+          "artifacts/artemis-validation-gate/run-01/symphony-service-check/daemon/symphony-daemon.json",
+          "artifacts/artemis-validation-gate/run-01/symphony-service-check/queue/symphony-queue.json"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-validate"
+      },
+      "payload": {
+        "reason": "Finite supervised service cycle completed.",
+        "overall": "service_bridge_plan_ready",
+        "queue_items": 1,
+        "queue_bridge_requested": true,
+        "queue_bridge_plan_ready": true,
+        "commands_executed": 0,
+        "execute_supported_by_service": false,
+        "runner_auto_execution_allowed": false
+      }
+    }
+  ]
+}

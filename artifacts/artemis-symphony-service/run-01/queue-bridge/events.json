@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T12:15:11Z",
+  "source": "scripts/artemis-symphony-queue-bridge.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-949_symphony_queue_bridge",
+      "event_type": "runner.attempt_planned",
+      "generated_at": "2026-05-07T12:15:11Z",
+      "producer": {
+        "adapter": "local_queue_bridge",
+        "name": "scripts/artemis-symphony-queue-bridge.sh",
+        "mode": "plan_only"
+      },
+      "subject": {
+        "ticket": "TKT-949",
+        "task_id": "tkt-949",
+        "title": "Validate finite Symphony service",
+        "exec_pack": "docs/exec-packs/done/TKT-049-artemis-symphony-service.md",
+        "artifact_root": "artifacts/artemis-symphony-service/run-01/queue-bridge"
+      },
+      "runner": {
+        "kind": "codex_cli",
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-service/run-01/fixtures/task-source.json"
+      },
+      "state": {
+        "from": "review",
+        "to": "running",
+        "reason": "Queue item was routed to the supervised bridge in plan-only mode."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-symphony-service/run-01/queue-bridge",
+        "status_path": "artifacts/artemis-symphony-service/run-01/queue-bridge/STATUS.md",
+        "validation_path": "artifacts/artemis-symphony-service/run-01/queue-bridge/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-symphony-service/run-01/queue-bridge/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-symphony-service/run-01/queue/symphony-queue.json",
+          "artifacts/artemis-symphony-service/run-01/queue-bridge/queue-bridge.json",
+          "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/symphony-bridge.json"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-949"
+      },
+      "payload": {
+        "reason": "Queue item was routed to the supervised bridge in plan-only mode.",
+        "queue_id": "queue-001-tkt-949",
+        "bridge_planned": true,
+        "execute_requested": false,
+        "commands_executed": 0,
+        "validation_gate_required_before_execute": true,
+        "approval_exact": false
+      }
+    }
+  ]
+}

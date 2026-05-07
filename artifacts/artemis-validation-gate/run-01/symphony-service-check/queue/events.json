@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T12:16:52Z",
+  "source": "scripts/artemis-symphony-queue.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-validate_symphony_queue_review_required",
+      "event_type": "runner.readiness_checked",
+      "generated_at": "2026-05-07T12:16:52Z",
+      "producer": {
+        "adapter": "local_queue",
+        "name": "scripts/artemis-symphony-queue.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-VALIDATE",
+        "task_id": "tkt-validate",
+        "title": "Validate supervised runner",
+        "exec_pack": "docs/exec-packs/active/TKT-VALIDATE.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-service-check/queue"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "review",
+        "reason": "Dispatch item materialized as supervised review queue item."
+      },
+      "gate": {
+        "kind": "terminal_override",
+        "status": "required",
+        "reason": "Queue item requires explicit bridge command from terminal."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/symphony-service-check/queue",
+        "status_path": "artifacts/artemis-validation-gate/run-01/symphony-service-check/queue/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/symphony-service-check/queue/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/symphony-service-check/queue/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-validation-gate/run-01/symphony-service-check/daemon/symphony-daemon.json",
+          "artifacts/artemis-validation-gate/run-01/symphony-service-check/daemon/ticks/tick-001/kernel/symphony-kernel.json",
+          "artifacts/artemis-validation-gate/run-01/symphony-service-check/queue/symphony-queue.json"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-validate"
+      },
+      "payload": {
+        "reason": "Dispatch item materialized as supervised review queue item.",
+        "queue_id": "queue-001-tkt-validate",
+        "commands_executed": 0,
+        "bridge_called": false,
+        "runner_called": false,
+        "runner_auto_execution_allowed": false
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_task_symphony_queue_completed",
+      "event_type": "validation.completed",
+      "generated_at": "2026-05-07T12:16:52Z",
+      "producer": {
+        "adapter": "local_queue",
+        "name": "scripts/artemis-symphony-queue.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TASK",
+        "task_id": "task",
+        "title": "ARTEMIS Symphony supervised queue",
+        "exec_pack": "docs/symphony/ARTEMIS_SYMPHONY_QUEUE.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-service-check/queue"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "done",
+        "reason": "Supervised queue generated from daemon evidence without execution."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/symphony-service-check/queue",
+        "status_path": "artifacts/artemis-validation-gate/run-01/symphony-service-check/queue/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/symphony-service-check/queue/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/symphony-service-check/queue/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-validation-gate/run-01/symphony-service-check/queue/symphony-queue.json"
+        ]
+      },
+      "links": {
+        "correlation_id": "task"
+      },
+      "payload": {
+        "reason": "Supervised queue generated from daemon evidence without execution.",
+        "overall": "queue_ready",
+        "queue_items": 1,
+        "commands_executed": 0,
+        "bridge_called": false,
+        "runner_called": false
+      }
+    }
+  ]
+}

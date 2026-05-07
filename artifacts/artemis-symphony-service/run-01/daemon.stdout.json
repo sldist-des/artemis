@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T12:15:11Z",
+  "source": "scripts/artemis-symphony-daemon.sh",
+  "mode": "read_only_daemon_dry_run",
+  "overall": "heartbeat_ready",
+  "task_source": "artifacts/artemis-symphony-service/run-01/fixtures/task-source.json",
+  "artifact_root": "artifacts/artemis-symphony-service/run-01/daemon",
+  "started_at": "2026-05-07T12:15:11Z",
+  "completed_at": "2026-05-07T12:15:11Z",
+  "ticks_requested": 1,
+  "ticks_completed": 1,
+  "interval_seconds": 0,
+  "max_concurrency": 1,
+  "heartbeat": "artifacts/artemis-symphony-service/run-01/daemon/heartbeat.json",
+  "heartbeat_log": "artifacts/artemis-symphony-service/run-01/daemon/heartbeat.jsonl",
+  "summary": {
+    "last_kernel_overall": "dispatch_plan_ready",
+    "last_selected_for_dispatch": 1,
+    "last_human_gate": 0,
+    "commands_executed": 0,
+    "runner_auto_execution_allowed": false,
+    "bridge_called": false,
+    "long_running_process_started": false
+  },
+  "ticks": [
+    {
+      "tick": 1,
+      "tick_id": "tick-001",
+      "generated_at": "2026-05-07T12:15:11Z",
+      "kernel_exit_code": 0,
+      "kernel": "artifacts/artemis-symphony-service/run-01/daemon/ticks/tick-001/kernel/symphony-kernel.json",
+      "kernel_overall": "dispatch_plan_ready",
+      "summary": {
+        "tasks_total": 1,
+        "eligible": 1,
+        "blocked": 0,
+        "human_gate": 0,
+        "done": 0,
+        "selected_for_dispatch": 1,
+        "commands_executed": 0,
+        "runner_auto_execution_allowed": false
+      },
+      "dispatch_tickets": [
+        "TKT-949"
+      ],
+      "human_gate_tickets": []
+    }
+  ],
+  "errors": [],
+  "invariants": [
+    "Daemon dry-run is finite unless the human reruns it.",
+    "Daemon dry-run only calls the read-only kernel.",
+    "Daemon dry-run never calls the bridge or runner.",
+    "Human Gates are observed and reported, never bypassed.",
+    "Terminal override remains required for supervised bridge execution."
+  ],
+  "next_cut": "TKT-050 - Fonte remota supervisionada do ARTEMIS Symphony"
+}

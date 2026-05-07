@@ -580,6 +580,7 @@
 
     .symphony-card header {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       gap: 8px;
       align-items: start;
@@ -590,7 +591,7 @@
       margin: 0;
       font-size: 15px;
       line-height: 1.15;
-      overflow-wrap: anywhere;
+      overflow-wrap: normal;
     }
 
     .symphony-card p {
@@ -1528,6 +1529,17 @@
         tags: ["symphony", "queue-execution", "validation-gate"]
       },
       {
+        id: "tkt-049",
+        state: "done",
+        ticket: "TKT-049",
+        title: "Service supervisionado do ARTEMIS Symphony",
+        summary: "Service finito encadeia daemon, fila e Queue Bridge plan-only sem execucao automatica.",
+        owner: "Codex",
+        risk: "medium",
+        evidence: "artifacts/artemis-symphony-service/run-01",
+        tags: ["symphony", "service", "terminal-first"]
+      },
+      {
         id: "github-auth",
         state: "human",
         ticket: "GIT",
@@ -1716,6 +1728,19 @@
         evidence: { artifact_path: "artifacts/artemis-symphony-queue-execution/run-01" }
       },
       {
+        event_id: "evt_tkt-049_symphony_service",
+        event_type: "validation.completed",
+        generated_at: "2026-05-07T12:12:08Z",
+        producer: { adapter: "local_symphony_service", name: "scripts/artemis-symphony-service.sh", mode: "finite_supervised" },
+        subject: {
+          ticket: "TKT-049",
+          title: "Service supervisionado do ARTEMIS Symphony"
+        },
+        state: { from: "planned", to: "review", reason: "Finite service composed daemon, queue and Queue Bridge plan-only without --execute." },
+        severity: "info",
+        evidence: { artifact_path: "artifacts/artemis-symphony-service/run-01" }
+      },
+      {
         event_id: "evt_tkt-017_adapter_events",
         event_type: "adapter.events_emitted",
         generated_at: "2026-04-30T19:54:36Z",
@@ -1861,6 +1886,20 @@
             ["status", "../artifacts/artemis-symphony-queue-execution/run-01/STATUS.md"],
             ["json", "../artifacts/artemis-symphony-queue-execution/run-01/queue-bridge.json"],
             ["decision", "../artifacts/artemis-symphony-queue-execution/run-01/fixtures/decision.json"]
+          ]
+        },
+        {
+          title: "Service",
+          status: "bridge_plan_ready",
+          summary: "service_bridge_plan_ready: ciclo finito chamou daemon, fila e Queue Bridge plan-only sem --execute.",
+          facts: [
+            ["ticket", "TKT-949"],
+            ["commands", "0"]
+          ],
+          links: [
+            ["status", "../artifacts/artemis-symphony-service/run-01/STATUS.md"],
+            ["json", "../artifacts/artemis-symphony-service/run-01/symphony-service.json"],
+            ["bridge", "../artifacts/artemis-symphony-service/run-01/queue-bridge/queue-bridge.json"]
           ]
         }
       ]

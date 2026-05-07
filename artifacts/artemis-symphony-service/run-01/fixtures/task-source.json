@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": "artifacts/artemis-symphony-service/run-01/fixtures/task-source.json",
+  "tasks": [
+    {
+      "id": "tkt-949",
+      "ticket": "TKT-949",
+      "title": "Validate finite Symphony service",
+      "state": "ready",
+      "owner": "Codex",
+      "risk": "low",
+      "summary": "Synthetic task used to prove the finite ARTEMIS Symphony service composes daemon, queue and queue bridge plan-only.",
+      "exec_pack": "docs/exec-packs/done/TKT-049-artemis-symphony-service.md",
+      "evidence": "artifacts/artemis-symphony-service/run-01/STATUS.md",
+      "tags": ["exec-pack", "validation", "symphony"]
+    }
+  ]
+}

@@ -6,7 +6,7 @@ Daemon dry-run concluido com `2` heartbeat(s) e overall `heartbeat_ready`.
 
 ## Proximo corte
 
-- Implementar `TKT-049 - Servico supervisionado local do ARTEMIS Symphony`.
+- Implementar `TKT-050 - Fonte remota supervisionada do ARTEMIS Symphony`.
 - Consumir item revisado da fila com comando explicito e ponte plan-only por padrao.
 
 ## Nao fazer

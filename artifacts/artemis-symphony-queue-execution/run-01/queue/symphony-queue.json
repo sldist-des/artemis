@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-06T20:18:40Z",
+  "generated_at": "2026-05-07T12:16:33Z",
   "source": "scripts/artemis-symphony-queue.sh",
   "mode": "supervised_queue_read_only",
   "overall": "queue_ready",
@@ -61,5 +61,5 @@
     "Every queue item requires terminal override before bridge execution.",
     "Human Gates remain explicit and non-bypassable."
   ],
-  "next_cut": "TKT-049 - Servico supervisionado local do ARTEMIS Symphony"
+  "next_cut": "TKT-050 - Fonte remota supervisionada do ARTEMIS Symphony"
 }

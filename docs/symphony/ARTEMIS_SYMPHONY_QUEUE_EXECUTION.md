@@ -68,4 +68,4 @@ A decisao deve seguir este formato minimo:
 
 ## Proximo corte
 
-`TKT-049 - Servico supervisionado local do ARTEMIS Symphony`
+`TKT-050 - Fonte remota supervisionada do ARTEMIS Symphony`

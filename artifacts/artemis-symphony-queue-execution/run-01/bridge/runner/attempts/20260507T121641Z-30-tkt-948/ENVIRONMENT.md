@@ -1,0 +1,21 @@
+# ENVIRONMENT - TKT-948
+
+- Generated at: 20260507T121641Z
+- Repository: /srv/veri
+- Ticket: TKT-948
+- Exec Pack: docs/exec-packs/done/TKT-048-artemis-symphony-queue-execution.md
+- Execute mode: 1
+- Use materialized workspace: 0
+- Attempt purpose: run
+- Retry of: none
+- Execution cwd: /srv/veri
+- Main branch: main
+- Main head: 2f005d0
+- Main worktree status before: 101
+- Execution branch: main
+- Execution head: 2f005d0
+- Execution worktree status before: 101
+- Workspace readiness: ready
+- Workspace mode: planned
+- Workspace lock ticket: none
+- Workspace plan: artifacts/artemis-symphony-queue-execution/run-01/bridge/runner/attempts/20260507T121641Z-30-tkt-948/workspace.json

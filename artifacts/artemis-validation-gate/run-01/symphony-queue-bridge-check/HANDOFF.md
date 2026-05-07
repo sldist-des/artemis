@@ -8,5 +8,5 @@
 
 ## Proximo corte
 
-- Implementar `TKT-049 - Servico supervisionado local do ARTEMIS Symphony`.
+- Implementar `TKT-050 - Fonte remota supervisionada do ARTEMIS Symphony`.
 - Manter `--execute` dependente de Validation Gate e decisao exata.

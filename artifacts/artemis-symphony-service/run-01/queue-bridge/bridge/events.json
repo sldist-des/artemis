@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T12:15:11Z",
+  "source": "scripts/artemis-symphony-bridge.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-949_symphony_bridge",
+      "event_type": "runner.attempt_planned",
+      "generated_at": "2026-05-07T12:15:11Z",
+      "producer": {
+        "adapter": "local_runner",
+        "name": "scripts/artemis-symphony-bridge.sh",
+        "mode": "supervised"
+      },
+      "subject": {
+        "ticket": "TKT-949",
+        "task_id": "tkt-949",
+        "title": "Validate finite Symphony service",
+        "exec_pack": "docs/exec-packs/done/TKT-049-artemis-symphony-service.md",
+        "artifact_root": "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge"
+      },
+      "runner": {
+        "kind": "codex_cli",
+        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-symphony-service/run-01/fixtures/task-source.json"
+      },
+      "state": {
+        "from": "ready",
+        "to": "running",
+        "reason": "Symphony bridge created a supervised runner attempt."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge",
+        "status_path": "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/STATUS.md",
+        "validation_path": "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/kernel/symphony-kernel.json",
+          "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/runner/attempts/20260507T121511Z-62-tkt-949/events.json"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-949"
+      },
+      "payload": {
+        "reason": "Symphony bridge created a supervised runner attempt.",
+        "overall": "runner_plan_ready",
+        "execute_requested": false,
+        "commands_executed": 0,
+        "automatic_daemon": false
+      }
+    }
+  ]
+}

@@ -18,6 +18,7 @@ docs/symphony/ARTEMIS_SYMPHONY_DAEMON.md
 docs/symphony/ARTEMIS_SYMPHONY_QUEUE.md
 docs/symphony/ARTEMIS_SYMPHONY_QUEUE_BRIDGE.md
 docs/symphony/ARTEMIS_SYMPHONY_QUEUE_EXECUTION.md
+docs/symphony/ARTEMIS_SYMPHONY_SERVICE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
 docs/agents/CAPABILITY_REGISTRY.md
@@ -61,6 +62,7 @@ scripts/artemis-symphony-bridge.sh
 scripts/artemis-symphony-daemon.sh
 scripts/artemis-symphony-queue.sh
 scripts/artemis-symphony-queue-bridge.sh
+scripts/artemis-symphony-service.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -796,6 +798,47 @@ if ! grep -q '"approval_exact": true' /tmp/artemis-symphony-queue-bridge-execute
   echo "ARTEMIS Symphony queue bridge did not require exact approval" >&2
   exit 1
 fi
+scripts/artemis-symphony-service.sh --input /tmp/artemis-symphony-kernel-source.json --artifact-root /tmp/artemis-symphony-service --ticks 1 --interval 0 --max-concurrency 2 --ticket TKT-901 --command "scripts/artemis-dry-run.sh --input /tmp/artemis-symphony-kernel-source.json" --json >/tmp/artemis-symphony-service.json
+if ! grep -q '"overall": "service_bridge_plan_ready"' /tmp/artemis-symphony-service.json; then
+  echo "scripts/artemis-symphony-service.sh did not report service_bridge_plan_ready" >&2
+  exit 1
+fi
+if ! grep -q '"queue_bridge_requested": true' /tmp/artemis-symphony-service.json; then
+  echo "ARTEMIS Symphony service did not preserve queue_bridge_requested=true" >&2
+  exit 1
+fi
+if ! grep -q '"queue_bridge_plan_ready": true' /tmp/artemis-symphony-service.json; then
+  echo "ARTEMIS Symphony service did not produce a plan-only queue bridge" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-symphony-service.json; then
+  echo "ARTEMIS Symphony service executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"execute_supported_by_service": false' /tmp/artemis-symphony-service.json; then
+  echo "ARTEMIS Symphony service reported service-level execution support" >&2
+  exit 1
+fi
+if ! grep -q '"runner_auto_execution_allowed": false' /tmp/artemis-symphony-service.json; then
+  echo "ARTEMIS Symphony service allowed runner auto execution" >&2
+  exit 1
+fi
+if ! grep -q '"long_running_process_started": false' /tmp/artemis-symphony-service.json; then
+  echo "ARTEMIS Symphony service started a long-running process" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-symphony-service/symphony-service.json; then
+  echo "scripts/artemis-symphony-service.sh did not write symphony-service.json" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-symphony-service/events.json; then
+  echo "scripts/artemis-symphony-service.sh did not write events.json" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-symphony-service/queue-bridge/queue-bridge.json; then
+  echo "scripts/artemis-symphony-service.sh did not write queue bridge evidence" >&2
+  exit 1
+fi
 if scripts/artemis-symphony-queue-bridge.sh --queue /tmp/artemis-symphony-queue/symphony-queue.json --ticket TKT-901 --command "scripts/artemis-dry-run.sh --input /tmp/artemis-symphony-kernel-source.json" --artifact-root /tmp/artemis-symphony-queue-bridge-execute-blocked --execute --validation-gate /tmp/artemis-symphony-queue-bridge-validation-gate.json --json >/tmp/artemis-symphony-queue-bridge-execute-blocked.json 2>/tmp/artemis-symphony-queue-bridge-execute-blocked.stderr; then
   echo "ARTEMIS Symphony queue bridge should reject --execute without decision" >&2
   exit 1
@@ -1044,6 +1087,14 @@ if ! grep -q "artifacts/artemis-symphony-queue-execution/run-01/queue-bridge.jso
 fi
 if ! grep -q "runner_executed" control-plane/index.html; then
   echo "control-plane/index.html does not show the Symphony queue execution state" >&2
+  exit 1
+fi
+if ! grep -q "artifacts/artemis-symphony-service/run-01/symphony-service.json" control-plane/index.html; then
+  echo "control-plane/index.html does not link the Symphony service artifact" >&2
+  exit 1
+fi
+if ! grep -q "service_bridge_plan_ready" control-plane/index.html; then
+  echo "control-plane/index.html does not show the Symphony service state" >&2
   exit 1
 fi
 

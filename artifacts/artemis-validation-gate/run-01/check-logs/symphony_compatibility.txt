@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T12:05:53Z",
+  "generated_at": "2026-05-07T12:16:49Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
   "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-compatibility-check",
   "spec": "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md",
   "summary": {
-    "layers_total": 13,
+    "layers_total": 14,
     "layers_with_missing_files": 0,
-    "tasks_total": 49,
-    "tasks_done": 49,
+    "tasks_total": 50,
+    "tasks_done": 50,
     "daemon_implemented": true,
     "kernel_implemented": true,
     "bridge_implemented": true,
@@ -18,6 +18,7 @@
     "queue_implemented": true,
     "queue_bridge_implemented": true,
     "queue_execution_implemented": true,
+    "service_implemented": true,
     "next_cut_defined": true
   },
   "compatibility": {
@@ -31,9 +32,10 @@
     "queue_implemented": true,
     "queue_bridge_implemented": true,
     "queue_execution_implemented": true,
+    "service_implemented": true,
     "terminal_first": true,
     "human_gates_preserved": true,
-    "next_cut": "TKT-049 - Servico supervisionado local do ARTEMIS Symphony"
+    "next_cut": "TKT-050 - Fonte remota supervisionada do ARTEMIS Symphony"
   },
   "layers": [
     {
@@ -176,6 +178,16 @@
       ],
       "status": "implemented_opt_in",
       "missing_files": []
+    },
+    {
+      "layer": "supervised_service",
+      "purpose": "Finite local service cycle that composes daemon, queue, and optional queue bridge evidence.",
+      "required_files": [
+        "scripts/artemis-symphony-service.sh",
+        "docs/symphony/ARTEMIS_SYMPHONY_SERVICE.md"
+      ],
+      "status": "implemented_finite",
+      "missing_files": []
     }
   ],
   "blockers": [],
@@ -190,6 +202,6 @@
     "The implemented queue is review-only and never starts bridge or runner automatically.",
     "The implemented queue bridge is plan-only by default.",
     "Queue execution requires --execute plus Validation Gate and exact approval artifacts.",
-    "A long-running supervised service is not implemented yet."
+    "The implemented service is finite and never passes --execute automatically."
   ]
 }

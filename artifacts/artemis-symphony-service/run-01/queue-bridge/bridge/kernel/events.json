@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-07T12:15:11Z",
+  "source": "scripts/artemis-symphony-kernel.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-949_symphony_dispatch_planned",
+      "event_type": "runner.readiness_checked",
+      "generated_at": "2026-05-07T12:15:11Z",
+      "producer": {
+        "adapter": "local_runner",
+        "name": "scripts/artemis-symphony-kernel.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-949",
+        "task_id": "tkt-949",
+        "title": "Validate finite Symphony service",
+        "exec_pack": "docs/exec-packs/done/TKT-049-artemis-symphony-service.md",
+        "artifact_root": "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/kernel"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "ready",
+        "to": "ready",
+        "reason": "Read-only Symphony kernel planned dispatch without execution."
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/kernel",
+        "status_path": "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/kernel/STATUS.md",
+        "validation_path": "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/kernel/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/kernel/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-949"
+      },
+      "payload": {
+        "reason": "Read-only Symphony kernel planned dispatch without execution.",
+        "slot": 1,
+        "order": 1,
+        "commands_executed": 0,
+        "runner_execution_allowed": false
+      }
+    }
+  ]
+}

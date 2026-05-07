@@ -403,6 +403,33 @@ Contrato:
 - execucao real nao pode ser disparada por daemon, fila read-only ou Control
   Plane.
 
+### Modo 2.8 - Service supervisionado finito
+
+Implementado como ciclo local que compoe daemon, fila e Queue Bridge plan-only.
+
+- roda daemon dry-run finito;
+- materializa fila supervisionada;
+- chama Queue Bridge apenas quando o terminal fornece ticket ou queue id e
+  comando explicitos;
+- nao aceita `--execute`;
+- nunca passa `--execute` para o Queue Bridge;
+- mantem `commands_executed=0`;
+- encerra ao final do ciclo, sem processo persistente.
+
+Service supervisionado implementado:
+
+- `scripts/artemis-symphony-service.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_SERVICE.md`
+
+Contrato:
+
+- service e agregador local de evidencias, nao executor automatico;
+- terminal override continua obrigatorio;
+- execucao real continua pertencendo ao Queue Bridge com `--execute`,
+  Validation Gate e decisao exata;
+- Human Gates continuam explicitos;
+- Control Plane continua observacional.
+
 ### Modo 3 - Tracker remoto
 
 Futuro.
@@ -424,13 +451,14 @@ Futuro.
 
 ## Proximo corte recomendado
 
-`TKT-049 - Servico supervisionado local do ARTEMIS Symphony`
+`TKT-050 - Fonte remota supervisionada do ARTEMIS Symphony`
 
 Objetivo:
 
-- transformar os cortes locais em um servico supervisionado finito;
-- preservar terminal override e Human Gates;
-- manter fila, bridge e runner como componentes auditaveis;
-- nao abrir execucao automatica sem politica e gates reais.
+- conectar uma fonte remota supervisionada ao ARTEMIS Symphony;
+- preservar terminal-first, Human Gates e Validation Gate;
+- manter GitHub Issues/PRs como evidencia remota, nao como autoridade
+  automatica de execucao;
+- nao abrir push, PR, merge ou deploy automaticos.
 
-Esse sera o oitavo passo de implementacao do nosso Symphony proprio.
+Esse sera o nono passo de implementacao do nosso Symphony proprio.

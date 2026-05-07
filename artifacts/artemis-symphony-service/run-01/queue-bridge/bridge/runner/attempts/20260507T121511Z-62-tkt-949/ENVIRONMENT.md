@@ -1,0 +1,21 @@
+# ENVIRONMENT - TKT-949
+
+- Generated at: 20260507T121511Z
+- Repository: /srv/veri
+- Ticket: TKT-949
+- Exec Pack: docs/exec-packs/done/TKT-049-artemis-symphony-service.md
+- Execute mode: 0
+- Use materialized workspace: 0
+- Attempt purpose: run
+- Retry of: none
+- Execution cwd: /srv/veri
+- Main branch: main
+- Main head: 2f005d0
+- Main worktree status before: 21
+- Execution branch: main
+- Execution head: 2f005d0
+- Execution worktree status before: 21
+- Workspace readiness: ready
+- Workspace mode: planned
+- Workspace lock ticket: none
+- Workspace plan: artifacts/artemis-symphony-service/run-01/queue-bridge/bridge/runner/attempts/20260507T121511Z-62-tkt-949/workspace.json

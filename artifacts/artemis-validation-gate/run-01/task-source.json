@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T12:05:51Z",
+  "generated_at": "2026-05-07T12:16:48Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -589,6 +589,18 @@
       "summary": "Queue Bridge gera `runner_executed` apenas para a decisao exata e mantem",
       "exec_pack": "docs/exec-packs/done/TKT-048-artemis-symphony-queue-execution.md",
       "evidence": "artifacts/artemis-symphony-queue-execution/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-049",
+      "ticket": "TKT-049",
+      "title": "Servico supervisionado local do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Architect",
+      "risk": "medium",
+      "summary": "Service gera `service_bridge_plan_ready` quando o terminal fornece ticket e",
+      "exec_pack": "docs/exec-packs/done/TKT-049-artemis-symphony-service.md",
+      "evidence": "artifacts/artemis-symphony-service/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

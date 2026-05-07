@@ -161,6 +161,12 @@ layers = [
         "required_files": ["scripts/artemis-symphony-queue-bridge.sh", "docs/symphony/ARTEMIS_SYMPHONY_QUEUE_EXECUTION.md"],
         "status": "implemented_opt_in",
     },
+    {
+        "layer": "supervised_service",
+        "purpose": "Finite local service cycle that composes daemon, queue, and optional queue bridge evidence.",
+        "required_files": ["scripts/artemis-symphony-service.sh", "docs/symphony/ARTEMIS_SYMPHONY_SERVICE.md"],
+        "status": "implemented_finite",
+    },
 ]
 
 for layer in layers:
@@ -178,9 +184,10 @@ required_terms = [
     "Runner Layer",
     "Validation Layer",
     "Human Gates",
-    "TKT-049",
+    "TKT-050",
     "Queue Bridge",
     "Queue Execution",
+    "Service",
 ]
 missing_terms = [term for term in required_terms if term not in spec_text]
 if missing_terms:
@@ -211,9 +218,10 @@ compatibility = {
     "queue_implemented": True,
     "queue_bridge_implemented": True,
     "queue_execution_implemented": True,
+    "service_implemented": True,
     "terminal_first": True,
     "human_gates_preserved": True,
-    "next_cut": "TKT-049 - Servico supervisionado local do ARTEMIS Symphony",
+    "next_cut": "TKT-050 - Fonte remota supervisionada do ARTEMIS Symphony",
 }
 
 overall = "failed" if blockers else "spec_ready"
@@ -237,7 +245,8 @@ payload = {
         "queue_implemented": exists("scripts/artemis-symphony-queue.sh"),
         "queue_bridge_implemented": exists("scripts/artemis-symphony-queue-bridge.sh"),
         "queue_execution_implemented": exists("docs/symphony/ARTEMIS_SYMPHONY_QUEUE_EXECUTION.md"),
-        "next_cut_defined": "TKT-049" in spec_text,
+        "service_implemented": exists("scripts/artemis-symphony-service.sh"),
+        "next_cut_defined": "TKT-050" in spec_text,
     },
     "compatibility": compatibility,
     "layers": layers,
@@ -253,7 +262,7 @@ payload = {
         "The implemented queue is review-only and never starts bridge or runner automatically.",
         "The implemented queue bridge is plan-only by default.",
         "Queue execution requires --execute plus Validation Gate and exact approval artifacts.",
-        "A long-running supervised service is not implemented yet.",
+        "The implemented service is finite and never passes --execute automatically.",
     ],
 }
 
@@ -277,6 +286,7 @@ status_lines = [
     f"- Daemon implemented: `{str(compatibility['daemon_implemented']).lower()}`.",
     f"- Kernel implemented: `{str(compatibility['kernel_implemented']).lower()}`.",
     f"- Bridge implemented: `{str(compatibility['bridge_implemented']).lower()}`.",
+    f"- Service implemented: `{str(compatibility['service_implemented']).lower()}`.",
     f"- Terminal-first: `{str(compatibility['terminal_first']).lower()}`.",
     f"- Human Gates preserved: `{str(compatibility['human_gates_preserved']).lower()}`.",
     f"- Next cut: `{compatibility['next_cut']}`.",
@@ -335,12 +345,12 @@ handoff_lines = [
     "",
     "## Estado",
     "",
-    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run e a fila supervisionada local existem.",
+    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local e o service finito existem.",
     "",
     "## Proximo corte",
     "",
-    "- Criar `TKT-049 - Servico supervisionado local do ARTEMIS Symphony`.",
-    "- Consumir item revisado com comando explicito e ponte plan-only por padrao.",
+    "- Criar `TKT-050 - Fonte remota supervisionada do ARTEMIS Symphony`.",
+    "- Manter service finito como agregador local, nao como executor automatico.",
     "- Manter Validation Gate antes de qualquer execucao real.",
     "",
     "## Nao fazer",

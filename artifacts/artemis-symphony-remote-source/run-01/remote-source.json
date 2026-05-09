@@ -1,20 +1,20 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T19:24:11Z",
+  "generated_at": "2026-05-09T15:40:40Z",
   "source": "scripts/artemis-symphony-remote-source.sh",
   "mode": "read_only_supervised_intake",
-  "overall": "remote_source_ready",
-  "reason": "Remote issues were normalized as supervised ARTEMIS intake evidence.",
+  "overall": "human_gate",
+  "reason": "gh auth status did not pass.",
   "artifact_root": "artifacts/artemis-symphony-remote-source/run-01",
-  "github_artifact": "artifacts/artemis-validation-gate/run-01/remote-source-github-fixture.json",
+  "github_artifact": "artifacts/artemis-symphony-remote-source/run-01/github/github-issues.json",
   "label": "artemis",
   "limit": 50,
   "repo": "sldist-des/artemis",
   "summary": {
-    "remote_available": true,
-    "remote_issues": 1,
-    "tasks_generated": 1,
-    "intake": 1,
+    "remote_available": false,
+    "remote_issues": 0,
+    "tasks_generated": 0,
+    "intake": 0,
     "human_gate": 0,
     "blocked": 0,
     "done": 0,
@@ -33,61 +33,31 @@
     "human_gates_preserved": true,
     "validation_gate_required_before_execute": true
   },
-  "source_items": [
-    {
-      "ticket": "TKT-950",
-      "state": "intake",
-      "issue": "https://github.com/sldist-des/artemis/issues/950",
-      "exec_pack_bound": true
-    }
-  ],
-  "tasks": [
-    {
-      "id": "tkt-950",
-      "ticket": "TKT-950",
-      "title": "TKT-950 - Validate supervised source intake",
-      "state": "intake",
-      "owner": "Codex",
-      "risk": "low",
-      "summary": "Issue imported as supervised intake. Local Exec Pack remains the execution contract.",
-      "exec_pack": "docs/exec-packs/done/TKT-050-artemis-symphony-remote-source.md",
-      "evidence": "artifacts/artemis-symphony-remote-source/run-01/STATUS.md",
-      "tags": [
-        "symphony",
-        "intake",
-        "remote-source"
-      ],
-      "remote": {
-        "provider": "github_issues",
-        "repo": "sldist-des/artemis",
-        "number": 950,
-        "url": "https://github.com/sldist-des/artemis/issues/950",
-        "updated_at": "2026-05-07T00:00:00Z",
-        "labels": [
-          "artemis",
-          "artemis:ready",
-          "exec-pack:docs/exec-packs/done/TKT-050-artemis-symphony-remote-source.md",
-          "risk:low"
-        ]
-      },
-      "direct_dispatch_allowed": false
-    }
-  ],
+  "source_items": [],
+  "tasks": [],
   "github": {
-    "overall": "passed",
-    "reason": "Synthetic GitHub Issues artifact for remote source validation.",
+    "overall": "human_gate",
+    "reason": "gh auth status did not pass.",
     "checks": {
       "gh_installed": true,
-      "gh_auth_exit_code": 0,
-      "codeowners": "active",
+      "gh_auth_exit_code": 1,
+      "codeowners": "human_gate",
       "issue_list_exit_code": 0
     },
     "contract": {
       "issue_defines": "intent",
       "exec_pack_defines": "contract",
       "control_plane_shows": "state",
-      "remote_writes": "human_gate_only"
+      "remote_writes": "human_gate_only",
+      "labels": [
+        "artemis",
+        "artemis:intake",
+        "artemis:ready",
+        "artemis:running",
+        "artemis:human-gate",
+        "artemis:done"
+      ]
     }
   },
-  "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
+  "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony"
 }

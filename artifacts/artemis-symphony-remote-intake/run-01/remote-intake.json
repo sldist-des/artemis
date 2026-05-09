@@ -1,21 +1,21 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T19:24:15Z",
+  "generated_at": "2026-05-09T15:40:44Z",
   "source": "scripts/artemis-symphony-remote-intake.sh",
   "mode": "read_only_remote_intake_review",
-  "overall": "remote_intake_ready",
-  "reason": "Remote intake items are ready for human review before local promotion.",
+  "overall": "human_gate",
+  "reason": "gh auth status did not pass.",
   "artifact_root": "artifacts/artemis-symphony-remote-intake/run-01",
   "remote_source": "artifacts/artemis-symphony-remote-source/run-01/remote-source.json",
   "summary": {
-    "remote_available": true,
-    "remote_source_overall": "remote_source_ready",
-    "items_total": 1,
-    "review_ready": 1,
+    "remote_available": false,
+    "remote_source_overall": "human_gate",
+    "items_total": 0,
+    "review_ready": 0,
     "human_gate": 0,
     "blocked": 0,
     "observed_done": 0,
-    "review_required": 1,
+    "review_required": 0,
     "promotion_allowed": 0,
     "direct_dispatch_allowed": false,
     "remote_writes_allowed": false,
@@ -44,37 +44,7 @@
     "human_gates_preserved": true,
     "validation_gate_required_before_execute": true
   },
-  "items": [
-    {
-      "ticket": "TKT-950",
-      "title": "TKT-950 - Validate supervised source intake",
-      "state": "intake",
-      "status": "review_ready",
-      "owner": "Codex",
-      "risk": "low",
-      "exec_pack": "docs/exec-packs/done/TKT-050-artemis-symphony-remote-source.md",
-      "remote": {
-        "provider": "github_issues",
-        "repo": "sldist-des/artemis",
-        "number": 950,
-        "url": "https://github.com/sldist-des/artemis/issues/950",
-        "updated_at": "2026-05-07T00:00:00Z",
-        "labels": [
-          "artemis",
-          "artemis:ready",
-          "exec-pack:docs/exec-packs/done/TKT-050-artemis-symphony-remote-source.md",
-          "risk:low"
-        ]
-      },
-      "blockers": [],
-      "warnings": [],
-      "review_required": true,
-      "promotion_allowed": false,
-      "direct_dispatch_allowed": false,
-      "remote_writes_allowed": false,
-      "commands_executed": 0
-    }
-  ],
+  "items": [],
   "review_source": "artifacts/artemis-symphony-remote-intake/run-01/review-source.json",
-  "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
+  "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony"
 }

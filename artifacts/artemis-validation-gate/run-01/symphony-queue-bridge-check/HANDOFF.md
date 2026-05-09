@@ -8,5 +8,5 @@
 
 ## Proximo corte
 
-- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.
+- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.
 - Manter `--execute` dependente de Validation Gate e decisao exata.

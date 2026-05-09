@@ -32,4 +32,4 @@ O script `scripts/artemis-agent-runtime-dry-run.sh` gera:
 
 ## Proximo corte
 
-`TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`
+`TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`

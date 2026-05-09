@@ -219,7 +219,7 @@ payload = {
     "remote_contract": contract,
     "items": items,
     "review_source": str(artifact_root / "review-source.json"),
-    "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony",
+    "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony",
 }
 
 review_source = {
@@ -326,7 +326,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.",
+    "- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.",
     "- Exigir decisao humana exata antes de promover item remoto para fila/service.",
     "- Manter GitHub writes bloqueados ate contrato explicito.",
     "",

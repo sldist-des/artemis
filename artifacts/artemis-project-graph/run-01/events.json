@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T19:25:05Z",
+  "generated_at": "2026-05-09T15:41:25Z",
   "source": "scripts/artemis-project-graph.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T19:25:05Z",
+      "generated_at": "2026-05-09T15:41:25Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -47,17 +47,17 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 60,
-          "tasks_done": 60,
+          "tasks_total": 61,
+          "tasks_done": 61,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 8,
-          "events_total": 47,
-          "nodes_total": 11,
-          "edges_total": 14,
-          "evidence_count": 60,
-          "exec_pack_count": 60,
-          "validation_passed": 85,
+          "events_total": 48,
+          "nodes_total": 12,
+          "edges_total": 17,
+          "evidence_count": 61,
+          "exec_pack_count": 61,
+          "validation_passed": 87,
           "validation_failed": 0,
           "validation_human_gate": 2,
           "memory_zones": 3,
@@ -68,7 +68,7 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
+        "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony"
       }
     }
   ]

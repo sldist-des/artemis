@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T19:24:15Z",
+  "generated_at": "2026-05-09T15:40:44Z",
   "source": "scripts/artemis-symphony-remote-intake.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-051_symphony_remote_intake",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-07T19:24:15Z",
+      "generated_at": "2026-05-09T15:40:44Z",
       "producer": {
         "adapter": "symphony_remote_intake",
         "name": "scripts/artemis-symphony-remote-intake.sh",
@@ -26,14 +26,20 @@
       },
       "state": {
         "from": "planned",
-        "to": "review",
-        "reason": "Remote intake items are ready for human review before local promotion."
+        "to": "human_gate",
+        "reason": "gh auth status did not pass."
       },
       "gate": {
-        "kind": "none",
-        "status": "not_applicable"
+        "kind": "human",
+        "status": "human_gate",
+        "reason": "gh auth status did not pass.",
+        "options": [
+          "bind local Exec Pack",
+          "approve exact promotion later",
+          "continue local-only"
+        ]
       },
-      "severity": "info",
+      "severity": "warning",
       "evidence": {
         "artifact_path": "artifacts/artemis-symphony-remote-intake/run-01",
         "status_path": "artifacts/artemis-symphony-remote-intake/run-01/STATUS.md",
@@ -45,17 +51,17 @@
         "correlation_id": "tkt-051"
       },
       "payload": {
-        "overall": "remote_intake_ready",
-        "reason": "Remote intake items are ready for human review before local promotion.",
+        "overall": "human_gate",
+        "reason": "gh auth status did not pass.",
         "summary": {
-          "remote_available": true,
-          "remote_source_overall": "remote_source_ready",
-          "items_total": 1,
-          "review_ready": 1,
+          "remote_available": false,
+          "remote_source_overall": "human_gate",
+          "items_total": 0,
+          "review_ready": 0,
           "human_gate": 0,
           "blocked": 0,
           "observed_done": 0,
-          "review_required": 1,
+          "review_required": 0,
           "promotion_allowed": 0,
           "direct_dispatch_allowed": false,
           "remote_writes_allowed": false,
@@ -74,7 +80,7 @@
           "human_gates_preserved": true,
           "validation_gate_required_before_execute": true
         },
-        "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
+        "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony"
       }
     }
   ]

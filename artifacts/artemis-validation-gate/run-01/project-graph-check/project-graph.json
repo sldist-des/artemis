@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T19:27:41Z",
+  "generated_at": "2026-05-09T15:38:53Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -13,16 +13,16 @@
     "validation_gate": "artifacts/artemis-validation-gate/run-01/validation-gate-fixture/validation-gate.json"
   },
   "summary": {
-    "tasks_total": 60,
-    "tasks_done": 60,
+    "tasks_total": 61,
+    "tasks_done": 61,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 8,
     "events_total": 47,
-    "nodes_total": 11,
-    "edges_total": 14,
-    "evidence_count": 60,
-    "exec_pack_count": 60,
+    "nodes_total": 12,
+    "edges_total": 17,
+    "evidence_count": 61,
+    "exec_pack_count": 61,
     "validation_passed": 1,
     "validation_failed": 0,
     "validation_human_gate": 1,
@@ -35,12 +35,12 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 60
+    "done": 61
   },
   "risks": {
     "medium": 50,
     "low": 4,
-    "high": 6
+    "high": 7
   },
   "top_owners": [
     [
@@ -68,22 +68,22 @@
       3
     ],
     [
-      "Memory Keeper",
-      1
+      "Humano",
+      2
     ],
     [
-      "Humano",
+      "Memory Keeper",
       1
     ]
   ],
   "top_tags": [
     [
       "exec-pack",
-      60
+      61
     ],
     [
       "done",
-      60
+      61
     ]
   ],
   "nodes": [
@@ -98,8 +98,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 60,
-      "done": 60,
+      "count": 61,
+      "done": 61,
       "human": 0
     },
     {
@@ -155,8 +155,8 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 60,
-      "exec_packs": 60
+      "task_evidence": 61,
+      "exec_packs": 61
     },
     {
       "id": "event_log:timeline",
@@ -178,6 +178,14 @@
       "status": "agent_runtime_dry_run_ready",
       "agents_started": 0,
       "commands_executed": 0
+    },
+    {
+      "id": "runtime:approval_gate",
+      "type": "human_gate",
+      "label": "Agent Runtime Approval Gate",
+      "status": "agent_runtime_approval_gate_ready",
+      "decision": "pending",
+      "runtime_execution_allowed": false
     },
     {
       "id": "control_plane:view",
@@ -241,6 +249,21 @@
       "from": "runtime:dry_run",
       "to": "validation:gate",
       "type": "requires_preflight"
+    },
+    {
+      "from": "runtime:dry_run",
+      "to": "runtime:approval_gate",
+      "type": "requests_human_decision"
+    },
+    {
+      "from": "runtime:approval_gate",
+      "to": "gate:human",
+      "type": "opens"
+    },
+    {
+      "from": "runtime:approval_gate",
+      "to": "cost:budget",
+      "type": "requires_budget_approval"
     },
     {
       "from": "control_plane:view",
@@ -309,8 +332,9 @@
     "memory_input": "artemis_memory_zone",
     "validation_input": "artemis_validation_gate",
     "runtime_input": "artemis_agent_runtime_dry_run",
+    "runtime_approval_input": "artemis_agent_runtime_approval_gate",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },
-  "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
+  "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony"
 }

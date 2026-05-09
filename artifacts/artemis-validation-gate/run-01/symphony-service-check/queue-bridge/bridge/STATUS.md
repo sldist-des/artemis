@@ -9,7 +9,7 @@ ARTEMIS Symphony Bridge esta `runner_plan_ready`.
 - Task source: `artifacts/artemis-validation-gate/run-01/runner-task-source.json`.
 - Ticket: `TKT-VALIDATE`.
 - Kernel: `artifacts/artemis-validation-gate/run-01/symphony-service-check/queue-bridge/bridge/kernel/symphony-kernel.json`.
-- Runner attempt: `artifacts/artemis-validation-gate/run-01/symphony-service-check/queue-bridge/bridge/runner/attempts/20260507T192740Z-688-tkt-validate`.
+- Runner attempt: `artifacts/artemis-validation-gate/run-01/symphony-service-check/queue-bridge/bridge/runner/attempts/20260509T153852Z-690-tkt-validate`.
 - Execute requested: `false`.
 - Commands executed: `0`.
 - Automatic daemon: `false`.

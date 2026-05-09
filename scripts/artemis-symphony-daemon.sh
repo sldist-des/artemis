@@ -267,7 +267,7 @@ payload = {
         "Human Gates are observed and reported, never bypassed.",
         "Terminal override remains required for supervised bridge execution.",
     ],
-    "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony",
+    "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony",
 }
 
 (artifact_root / "symphony-daemon.json").write_text(
@@ -368,7 +368,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.",
+    "- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.",
     "- Consumir item revisado da fila com comando explicito e ponte plan-only por padrao.",
     "",
     "## Nao fazer",

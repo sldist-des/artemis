@@ -2,7 +2,7 @@
 
 ## Resultado local
 
-- Overall: `remote_intake_ready`.
+- Overall: `human_gate`.
 - Review source state: `human`.
 - Promotion allowed: `0`.
 - Direct dispatch allowed: `false`.

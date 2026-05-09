@@ -4,4 +4,5 @@ O dry-run de runtime materializou pedido, budget zero, auth gate, workspace read
 
 Proximo corte:
 
-- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.
+- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.
+- Usar o Agent Runtime Approval Gate como entrada de decisao humana antes de qualquer launcher real.

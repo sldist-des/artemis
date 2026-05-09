@@ -1,7 +1,7 @@
 # ARTEMIS EVENT LOG SCHEMA
 
 - Schema version: 1
-- Events: 47
+- Events: 48
 - Source: scripts/artemis-event-log.sh
 
 ## Event Types
@@ -43,9 +43,9 @@
 - `runner.attempt_started`: `evt_20260504t142001z-2-tkt-023_started` -> running
 - `runner.attempt_completed`: `evt_20260504t142001z-2-tkt-023_completed` -> review
 - `validation.completed`: `evt_validation_gate_current` -> human_gate
-- `adapter.contract_recorded`: `evt_tkt-050_symphony_remote_source` -> review
-- `adapter.contract_recorded`: `evt_tkt-051_symphony_remote_intake` -> review
-- `approval.resolved`: `evt_tkt-052_symphony_remote_promotion` -> ready
+- `adapter.contract_recorded`: `evt_tkt-050_symphony_remote_source` -> human_gate
+- `adapter.contract_recorded`: `evt_tkt-051_symphony_remote_intake` -> human_gate
+- `approval.requested`: `evt_tkt-052_symphony_remote_promotion` -> human_gate
 - `adapter.contract_recorded`: `evt_tkt-053_memory_zone` -> done
 - `adapter.contract_recorded`: `evt_tkt-054_project_graph` -> done
 - `adapter.contract_recorded`: `evt_tkt-055_project_graph_view` -> done
@@ -53,6 +53,7 @@
 - `adapter.contract_recorded`: `evt_tkt-057_guided_collaboration` -> done
 - `adapter.contract_recorded`: `evt_tkt-058_agent_launch_contract` -> done
 - `runner.attempt_planned`: `evt_tkt-059_agent_runtime_dry_run` -> done
+- `approval.requested`: `evt_tkt-060_agent_runtime_approval_gate` -> human_gate
 
 ## Invariants
 

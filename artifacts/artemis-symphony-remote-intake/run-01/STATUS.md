@@ -2,11 +2,11 @@
 
 ## Resultado
 
-- Overall: `remote_intake_ready`.
-- Reason: Remote intake items are ready for human review before local promotion.
-- Remote source: `remote_source_ready`.
-- Items: `1`.
-- Review ready: `1`.
+- Overall: `human_gate`.
+- Reason: gh auth status did not pass.
+- Remote source: `human_gate`.
+- Items: `0`.
+- Review ready: `0`.
 - Human Gate: `0`.
 
 ## Contrato

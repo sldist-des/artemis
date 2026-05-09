@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T19:24:15Z",
+  "generated_at": "2026-05-09T15:40:44Z",
   "source": "scripts/artemis-symphony-remote-intake.sh",
   "mode": "remote_intake_human_review",
   "contract": {
@@ -15,35 +15,5 @@
     "human_gates_preserved": true,
     "validation_gate_required_before_execute": true
   },
-  "tasks": [
-    {
-      "id": "tkt-950-remote-intake",
-      "ticket": "TKT-950",
-      "title": "TKT-950 - Validate supervised source intake",
-      "state": "human",
-      "owner": "Codex",
-      "risk": "low",
-      "summary": "Remote intake review is required before any local promotion or dispatch.",
-      "exec_pack": "docs/exec-packs/done/TKT-050-artemis-symphony-remote-source.md",
-      "evidence": "artifacts/artemis-symphony-remote-intake/run-01/REVIEW.md",
-      "tags": [
-        "symphony",
-        "remote-intake",
-        "human-gate"
-      ],
-      "remote": {
-        "provider": "github_issues",
-        "repo": "sldist-des/artemis",
-        "number": 950,
-        "url": "https://github.com/sldist-des/artemis/issues/950",
-        "updated_at": "2026-05-07T00:00:00Z",
-        "labels": [
-          "artemis",
-          "artemis:ready",
-          "exec-pack:docs/exec-packs/done/TKT-050-artemis-symphony-remote-source.md",
-          "risk:low"
-        ]
-      }
-    }
-  ]
+  "tasks": []
 }

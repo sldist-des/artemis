@@ -710,6 +710,37 @@ Contrato:
 - qualquer runtime real ainda depende de Human Gate explicito com budget, auth,
   comando, workspace, rollback e evidencia.
 
+### Modo 3.10 - Agent Runtime Approval Gate
+
+Implementado em `TKT-060` como gate humano entre o dry-run de runtime e qualquer
+tentativa futura de launcher real.
+
+- consome `runtime-dry-run.json`;
+- gera pacote de aprovacao humana com pedido, requisitos, checklist, template de
+  decisao, validacao e handoff;
+- mantem a decisao inicial como `pending`;
+- aceita apenas `pending`, `approved`, `deferred` e `rejected`;
+- `approved` exige identidade humana, timestamp, razao, perfil, runtime,
+  politica de comando, politica de modelo, budget positivo, auth, workspace,
+  rollback, validacao e comandos aprovados exatos;
+- `pending`, `deferred` e `rejected` nao podem liberar comandos;
+- nao inicia Codex app-server, Claude Code, SDK, CLI, subagente, fila, daemon,
+  dependencia, push, PR, deploy, segredo, producao ou tokens pagos.
+
+Agent Runtime Approval Gate implementado:
+
+- `scripts/artemis-agent-runtime-approval-gate.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_APPROVAL_GATE.md`
+
+Resultado esperado:
+
+- `agent_runtime_approval_gate_ready`;
+- `runtime_execution_allowed=false`;
+- `execute=false`;
+- `commands_executed=0`;
+- `paid_tokens_authorized=0`;
+- evento canonico `approval.requested`.
+
 ## Invariantes
 
 - ARTEMIS Symphony nao executa cleanup real sem decisao humana.
@@ -722,14 +753,17 @@ Contrato:
 
 ## Proximo corte recomendado
 
-`TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`
+`TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`
 
 Objetivo:
 
-- transformar um dry-run de runtime em pacote de aprovacao humana exato;
-- aprovar, rejeitar ou deferir perfil, modelo, budget, auth, comando, workspace,
-  rollback e evidencia antes de qualquer runtime real;
-- preservar execute=false ate haver decisao explicita e rastreavel;
-- manter o caminho Codex/Claude auditavel sem perder controle terminal-first.
+- ingerir `runtime-approval-decision.json` preenchido por humano;
+- validar identidade, timestamp, razao, budget, auth, workspace, rollback,
+  validacao e comandos aprovados exatos;
+- manter runtime bloqueado quando a decisao for `pending`, `deferred` ou
+  `rejected`;
+- produzir `approved_ready` somente quando a decisao humana for coerente,
+  completa e rastreavel;
+- preparar o futuro launcher/preflight sem executar agente neste corte.
 
-Esse sera o decimo oitavo passo de implementacao do nosso Symphony proprio.
+Esse sera o proximo passo de implementacao do nosso Symphony proprio.

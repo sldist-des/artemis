@@ -421,6 +421,8 @@ scripts/artemis-agent-launch-contract.sh
 scripts/artemis-agent-launch-contract.sh --json
 scripts/artemis-agent-runtime-dry-run.sh
 scripts/artemis-agent-runtime-dry-run.sh --json
+scripts/artemis-agent-runtime-approval-gate.sh
+scripts/artemis-agent-runtime-approval-gate.sh --json
 ```
 
 Esse grafo e um read model operacional. Ele ajuda humanos e agentes a entenderem
@@ -433,6 +435,9 @@ a colaborar sem conhecer todos os artifacts, mas tambem nao vira fonte canonica.
 O Guided Collaboration e a entrada guiada desse briefing: ele ajuda a escolher
 projeto, tarefa, perfil de agente, gates e evidencia antes de runtime real, sem
 iniciar agentes, auth, fila, app-server ou escrita remota.
+O Agent Runtime Approval Gate transforma o dry-run em pacote de decisao humana:
+ele registra `pending`, `approved`, `deferred` ou `rejected`, mas nao inicia
+Codex, Claude, comandos, fila, daemon, tokens pagos ou escrita remota.
 O Agent Launch Contract e o preflight supervisionado entre a entrada guiada e
 qualquer runtime real. Ele fixa `execute=false` por padrao e exige projeto,
 tarefa, auth, budget, comando, workspace, rollback e evidencia antes de Codex

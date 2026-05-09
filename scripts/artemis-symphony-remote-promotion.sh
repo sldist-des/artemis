@@ -254,7 +254,7 @@ payload = {
     "promoted_source": str(artifact_root / "promoted-source.json"),
     "blockers": blockers,
     "warnings": warnings,
-    "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony",
+    "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony",
 }
 
 promoted_source = {
@@ -350,7 +350,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.",
+    "- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.",
     "- Manter comentarios, labels, branches e PRs atras de decisao humana exata.",
     "",
     "## Nao fazer",

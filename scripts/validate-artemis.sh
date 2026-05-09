@@ -82,6 +82,7 @@ scripts/artemis-project-brief.sh
 scripts/artemis-guided-collaboration.sh
 scripts/artemis-agent-launch-contract.sh
 scripts/artemis-agent-runtime-dry-run.sh
+scripts/artemis-agent-runtime-approval-gate.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -174,6 +175,7 @@ sh -n scripts/artemis-project-brief.sh
 sh -n scripts/artemis-guided-collaboration.sh
 sh -n scripts/artemis-agent-launch-contract.sh
 sh -n scripts/artemis-agent-runtime-dry-run.sh
+sh -n scripts/artemis-agent-runtime-approval-gate.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -1402,6 +1404,39 @@ if ! grep -q '"event_type": "runner.attempt_planned"' /tmp/artemis-agent-runtime
   echo "scripts/artemis-agent-runtime-dry-run.sh did not emit canonical events" >&2
   exit 1
 fi
+scripts/artemis-agent-runtime-approval-gate.sh --artifact-root /tmp/artemis-agent-runtime-approval-gate --dry-run /tmp/artemis-agent-runtime-dry-run/runtime-dry-run.json --json >/tmp/artemis-agent-runtime-approval-gate.json
+if ! grep -q '"overall": "agent_runtime_approval_gate_ready"' /tmp/artemis-agent-runtime-approval-gate.json; then
+  echo "scripts/artemis-agent-runtime-approval-gate.sh did not report agent_runtime_approval_gate_ready" >&2
+  exit 1
+fi
+if ! grep -q '"decision": "pending"' /tmp/artemis-agent-runtime-approval-gate.json; then
+  echo "ARTEMIS Agent Runtime Approval Gate did not preserve pending decision" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-agent-runtime-approval-gate.json; then
+  echo "ARTEMIS Agent Runtime Approval Gate allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"execute": false' /tmp/artemis-agent-runtime-approval-gate.json; then
+  echo "ARTEMIS Agent Runtime Approval Gate did not keep execute=false" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-agent-runtime-approval-gate.json; then
+  echo "ARTEMIS Agent Runtime Approval Gate executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"paid_tokens_authorized": 0' /tmp/artemis-agent-runtime-approval-gate.json; then
+  echo "ARTEMIS Agent Runtime Approval Gate authorized paid tokens" >&2
+  exit 1
+fi
+if ! grep -q '"remote_writes_allowed": false' /tmp/artemis-agent-runtime-approval-gate.json; then
+  echo "ARTEMIS Agent Runtime Approval Gate allowed remote writes" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "approval.requested"' /tmp/artemis-agent-runtime-approval-gate/events.json; then
+  echo "scripts/artemis-agent-runtime-approval-gate.sh did not emit canonical events" >&2
+  exit 1
+fi
 
 scripts/artemis-codex-app-server.sh --artifact-root /tmp/artemis-codex-app-server --json >/tmp/artemis-codex-app-server.json
 if ! grep -q '"overall": "passed"' /tmp/artemis-codex-app-server.json; then
@@ -1587,6 +1622,18 @@ if ! grep -q "renderAgentRuntimeDryRun" control-plane/index.html; then
 fi
 if ! grep -q "agent_runtime_dry_run_ready" control-plane/index.html; then
   echo "control-plane/index.html does not show the ARTEMIS Agent Runtime Dry-Run state" >&2
+  exit 1
+fi
+if ! grep -q "agent-runtime-approval-section" control-plane/index.html; then
+  echo "control-plane/index.html does not render the ARTEMIS Agent Runtime Approval Gate section" >&2
+  exit 1
+fi
+if ! grep -q "renderAgentRuntimeApprovalGate" control-plane/index.html; then
+  echo "control-plane/index.html does not include the Agent Runtime Approval Gate renderer" >&2
+  exit 1
+fi
+if ! grep -q "agent_runtime_approval_gate_ready" control-plane/index.html; then
+  echo "control-plane/index.html does not show the ARTEMIS Agent Runtime Approval Gate state" >&2
   exit 1
 fi
 

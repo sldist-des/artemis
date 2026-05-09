@@ -2,12 +2,12 @@
 
 ## Resultado
 
-- Overall: `remote_source_ready`.
-- Reason: Remote issues were normalized as supervised ARTEMIS intake evidence.
+- Overall: `human_gate`.
+- Reason: gh auth status did not pass.
 - Repo: `sldist-des/artemis`.
-- Issues: `1`.
-- Tasks generated: `1`.
-- Intake: `1`.
+- Issues: `0`.
+- Tasks generated: `0`.
+- Intake: `0`.
 
 ## Contrato
 
@@ -16,7 +16,3 @@
 - Escritas remotas permanecem bloqueadas.
 - Dispatch direto permanece bloqueado.
 - Terminal-first, Human Gates e Validation Gate continuam obrigatorios.
-
-## Itens
-
-- `TKT-950`: `intake`, exec_pack_bound=`true`.

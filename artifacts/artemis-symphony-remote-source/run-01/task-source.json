@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T19:24:11Z",
+  "generated_at": "2026-05-09T15:40:40Z",
   "source": "scripts/artemis-symphony-remote-source.sh",
   "mode": "remote_supervised_intake",
   "contract": {
@@ -13,36 +13,5 @@
     "human_gates_preserved": true,
     "validation_gate_required_before_execute": true
   },
-  "tasks": [
-    {
-      "id": "tkt-950",
-      "ticket": "TKT-950",
-      "title": "TKT-950 - Validate supervised source intake",
-      "state": "intake",
-      "owner": "Codex",
-      "risk": "low",
-      "summary": "Issue imported as supervised intake. Local Exec Pack remains the execution contract.",
-      "exec_pack": "docs/exec-packs/done/TKT-050-artemis-symphony-remote-source.md",
-      "evidence": "artifacts/artemis-symphony-remote-source/run-01/STATUS.md",
-      "tags": [
-        "symphony",
-        "intake",
-        "remote-source"
-      ],
-      "remote": {
-        "provider": "github_issues",
-        "repo": "sldist-des/artemis",
-        "number": 950,
-        "url": "https://github.com/sldist-des/artemis/issues/950",
-        "updated_at": "2026-05-07T00:00:00Z",
-        "labels": [
-          "artemis",
-          "artemis:ready",
-          "exec-pack:docs/exec-packs/done/TKT-050-artemis-symphony-remote-source.md",
-          "risk:low"
-        ]
-      },
-      "direct_dispatch_allowed": false
-    }
-  ]
+  "tasks": []
 }

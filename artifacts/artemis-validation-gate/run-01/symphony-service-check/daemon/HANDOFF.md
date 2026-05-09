@@ -6,7 +6,7 @@ Daemon dry-run concluido com `1` heartbeat(s) e overall `heartbeat_ready`.
 
 ## Proximo corte
 
-- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.
+- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.
 - Consumir item revisado da fila com comando explicito e ponte plan-only por padrao.
 
 ## Nao fazer

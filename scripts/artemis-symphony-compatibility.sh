@@ -227,6 +227,12 @@ layers = [
         "required_files": ["scripts/artemis-agent-runtime-dry-run.sh", "docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_DRY_RUN.md"],
         "status": "implemented_runtime_rehearsal",
     },
+    {
+        "layer": "agent_runtime_approval_gate",
+        "purpose": "Human-fillable approval gate for runtime decisions before any real agent launch.",
+        "required_files": ["scripts/artemis-agent-runtime-approval-gate.sh", "docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_APPROVAL_GATE.md"],
+        "status": "implemented_runtime_human_gate",
+    },
 ]
 
 for layer in layers:
@@ -255,6 +261,7 @@ required_terms = [
     "TKT-058",
     "TKT-059",
     "TKT-060",
+    "TKT-061",
     "Queue Bridge",
     "Queue Execution",
     "Service",
@@ -268,6 +275,7 @@ required_terms = [
     "Guided Collaboration",
     "Agent Launch Contract",
     "Agent Runtime Dry-Run",
+    "Agent Runtime Approval Gate",
 ]
 missing_terms = [term for term in required_terms if term not in spec_text]
 if missing_terms:
@@ -309,9 +317,10 @@ compatibility = {
     "guided_collaboration_implemented": True,
     "agent_launch_contract_implemented": True,
     "agent_runtime_dry_run_implemented": True,
+    "agent_runtime_approval_gate_implemented": True,
     "terminal_first": True,
     "human_gates_preserved": True,
-    "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony",
+    "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony",
 }
 
 overall = "failed" if blockers else "spec_ready"
@@ -346,7 +355,8 @@ payload = {
         "guided_collaboration_implemented": exists("scripts/artemis-guided-collaboration.sh"),
         "agent_launch_contract_implemented": exists("scripts/artemis-agent-launch-contract.sh"),
         "agent_runtime_dry_run_implemented": exists("scripts/artemis-agent-runtime-dry-run.sh"),
-        "next_cut_defined": "TKT-060" in spec_text,
+        "agent_runtime_approval_gate_implemented": exists("scripts/artemis-agent-runtime-approval-gate.sh"),
+        "next_cut_defined": "TKT-061" in spec_text,
     },
     "compatibility": compatibility,
     "layers": layers,
@@ -373,6 +383,7 @@ payload = {
         "The implemented Guided Collaboration mode is a read-only entry and never launches agents.",
         "The implemented Agent Launch Contract is read-only, execute=false by default and never starts runtime.",
         "The implemented Agent Runtime Dry-Run materializes launch requests without starting agents or spending paid tokens.",
+        "The implemented Agent Runtime Approval Gate requests human approval and never starts runtime.",
     ],
 }
 
@@ -407,6 +418,7 @@ status_lines = [
     f"- Guided Collaboration implemented: `{str(compatibility['guided_collaboration_implemented']).lower()}`.",
     f"- Agent Launch Contract implemented: `{str(compatibility['agent_launch_contract_implemented']).lower()}`.",
     f"- Agent Runtime Dry-Run implemented: `{str(compatibility['agent_runtime_dry_run_implemented']).lower()}`.",
+    f"- Agent Runtime Approval Gate implemented: `{str(compatibility['agent_runtime_approval_gate_implemented']).lower()}`.",
     f"- Terminal-first: `{str(compatibility['terminal_first']).lower()}`.",
     f"- Human Gates preserved: `{str(compatibility['human_gates_preserved']).lower()}`.",
     f"- Next cut: `{compatibility['next_cut']}`.",
@@ -465,12 +477,12 @@ handoff_lines = [
     "",
     "## Estado",
     "",
-    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel, a promocao local por decisao, a Memory Zone, o Project Operations Graph, o Project Graph View, o Project Brief, o Guided Collaboration, o Agent Launch Contract e o Agent Runtime Dry-Run existem.",
+    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel, a promocao local por decisao, a Memory Zone, o Project Operations Graph, o Project Graph View, o Project Brief, o Guided Collaboration, o Agent Launch Contract, o Agent Runtime Dry-Run e o Agent Runtime Approval Gate existem.",
     "",
     "## Proximo corte",
     "",
-    "- Criar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.",
-    "- Usar o Agent Runtime Dry-Run como entrada para aprovar ou rejeitar runtime real com auth, budget e comando exatos.",
+    "- Criar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.",
+    "- Usar o Agent Runtime Approval Gate como entrada para ingerir decisoes humanas de runtime com auth, budget e comando exatos.",
     "- Manter Validation Gate antes de qualquer execucao real.",
     "",
     "## Nao fazer",

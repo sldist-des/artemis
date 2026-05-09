@@ -2,9 +2,9 @@
 
 ## Resultado local
 
-- Overall: `remote_source_ready`.
-- GitHub adapter: `passed`.
-- Tasks generated: `1`.
+- Overall: `human_gate`.
+- GitHub adapter: `human_gate`.
+- Tasks generated: `0`.
 - Remote writes allowed: `false`.
 - Runner auto execution allowed: `false`.
 - Commands executed: `0`.

@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T19:24:22Z",
+  "generated_at": "2026-05-09T15:39:28Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
   "artifact_root": "artifacts/artemis-symphony-compatibility/run-01",
   "spec": "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md",
   "summary": {
-    "layers_total": 24,
+    "layers_total": 25,
     "layers_with_missing_files": 0,
-    "tasks_total": 60,
-    "tasks_done": 60,
+    "tasks_total": 61,
+    "tasks_done": 61,
     "daemon_implemented": true,
     "kernel_implemented": true,
     "bridge_implemented": true,
@@ -29,6 +29,7 @@
     "guided_collaboration_implemented": true,
     "agent_launch_contract_implemented": true,
     "agent_runtime_dry_run_implemented": true,
+    "agent_runtime_approval_gate_implemented": true,
     "next_cut_defined": true
   },
   "compatibility": {
@@ -53,9 +54,10 @@
     "guided_collaboration_implemented": true,
     "agent_launch_contract_implemented": true,
     "agent_runtime_dry_run_implemented": true,
+    "agent_runtime_approval_gate_implemented": true,
     "terminal_first": true,
     "human_gates_preserved": true,
-    "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
+    "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony"
   },
   "layers": [
     {
@@ -308,6 +310,16 @@
       ],
       "status": "implemented_runtime_rehearsal",
       "missing_files": []
+    },
+    {
+      "layer": "agent_runtime_approval_gate",
+      "purpose": "Human-fillable approval gate for runtime decisions before any real agent launch.",
+      "required_files": [
+        "scripts/artemis-agent-runtime-approval-gate.sh",
+        "docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_APPROVAL_GATE.md"
+      ],
+      "status": "implemented_runtime_human_gate",
+      "missing_files": []
     }
   ],
   "blockers": [],
@@ -332,6 +344,7 @@
     "The implemented Project Brief is explanatory and never becomes canonical state.",
     "The implemented Guided Collaboration mode is a read-only entry and never launches agents.",
     "The implemented Agent Launch Contract is read-only, execute=false by default and never starts runtime.",
-    "The implemented Agent Runtime Dry-Run materializes launch requests without starting agents or spending paid tokens."
+    "The implemented Agent Runtime Dry-Run materializes launch requests without starting agents or spending paid tokens.",
+    "The implemented Agent Runtime Approval Gate requests human approval and never starts runtime."
   ]
 }

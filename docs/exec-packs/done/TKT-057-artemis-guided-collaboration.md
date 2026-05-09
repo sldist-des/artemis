@@ -31,6 +31,6 @@ agente, gates, custo/risco e evidencia esperada antes de qualquer execucao real.
 
 ## Handoff
 
-O proximo corte e `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`,
+O proximo corte e `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`,
 materializando o contrato de lancamento como dry-run auditavel antes de qualquer
 runtime real.

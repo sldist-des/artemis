@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T19:27:33Z",
+  "generated_at": "2026-05-09T15:38:48Z",
   "source": "scripts/artemis-workspace-lifecycle.sh",
   "mode": "read_only",
   "summary": {

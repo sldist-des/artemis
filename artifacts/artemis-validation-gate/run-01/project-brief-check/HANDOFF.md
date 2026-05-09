@@ -4,4 +4,4 @@ O briefing humano esta pronto como camada de explicacao do Project Operations Gr
 
 Proximo corte:
 
-- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.
+- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.

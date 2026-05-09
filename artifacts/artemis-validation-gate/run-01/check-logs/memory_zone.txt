@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T19:27:41Z",
+  "generated_at": "2026-05-09T15:38:53Z",
   "source": "scripts/artemis-memory-zone.sh",
   "mode": "read_only_memory_contract",
   "overall": "memory_zone_ready",
@@ -94,5 +94,5 @@
     "dependency_policy": "no_new_dependency_without_explicit_decision",
     "reference_study_policy": "study_public_code_for_learning_then_recreate_original_artemis_implementation"
   },
-  "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
+  "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony"
 }

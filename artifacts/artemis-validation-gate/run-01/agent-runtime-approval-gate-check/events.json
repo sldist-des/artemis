@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-09T15:38:53Z",
+  "source": "scripts/artemis-agent-runtime-approval-gate.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-060_agent_runtime_approval_gate",
+      "event_type": "approval.requested",
+      "generated_at": "2026-05-09T15:38:53Z",
+      "producer": {
+        "adapter": "agent_runtime_approval_gate",
+        "name": "scripts/artemis-agent-runtime-approval-gate.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-060",
+        "task_id": "tkt-060",
+        "title": "Agent Runtime Approval Gate do ARTEMIS Symphony",
+        "exec_pack": "docs/exec-packs/done/TKT-060-artemis-agent-runtime-approval-gate.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/agent-runtime-approval-gate-check"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "human_gate",
+        "reason": "Runtime approval gate is ready for a human decision before any real agent launch."
+      },
+      "gate": {
+        "kind": "human",
+        "status": "human_gate",
+        "reason": "Human must approve, defer or reject runtime before any real launch.",
+        "options": [
+          "approved",
+          "deferred",
+          "rejected"
+        ]
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/agent-runtime-approval-gate-check",
+        "status_path": "artifacts/artemis-validation-gate/run-01/agent-runtime-approval-gate-check/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/agent-runtime-approval-gate-check/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/agent-runtime-approval-gate-check/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-060"
+      },
+      "payload": {
+        "overall": "agent_runtime_approval_gate_ready",
+        "reason": "Runtime approval gate is ready for a human decision before any real agent launch.",
+        "summary": {
+          "decision": "pending",
+          "pending": 1,
+          "approved_ready": 0,
+          "deferred": 0,
+          "rejected": 0,
+          "invalid": 0,
+          "human_gate_items": 9,
+          "runtime_execution_allowed": false,
+          "execute": false,
+          "runtime_started": false,
+          "agents_started": 0,
+          "commands_executed": 0,
+          "dependencies_installed": 0,
+          "remote_writes_allowed": false,
+          "paid_tokens_authorized": 0
+        },
+        "decision_file": "artifacts/artemis-validation-gate/run-01/agent-runtime-approval-gate-check/runtime-approval-decision.json",
+        "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony"
+      }
+    }
+  ]
+}

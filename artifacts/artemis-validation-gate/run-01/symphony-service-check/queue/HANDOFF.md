@@ -6,7 +6,7 @@ Fila supervisionada gerada com `1` item(ns) e overall `queue_ready`.
 
 ## Proximo corte
 
-- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.
+- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.
 - Exigir comando explicito, terminal override e Validation Gate antes de qualquer execucao.
 
 ## Nao fazer

@@ -6,7 +6,7 @@ Project Operations Graph esta `project_graph_ready` como read model operacional.
 
 ## Proximo corte
 
-- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.
+- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.
 - Renderizar relacoes do grafo no Control Plane com linguagem operacional e leiga.
 
 ## Nao fazer

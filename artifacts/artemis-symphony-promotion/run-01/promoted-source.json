@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T19:24:18Z",
+  "generated_at": "2026-05-09T15:40:48Z",
   "source": "scripts/artemis-symphony-remote-promotion.sh",
   "mode": "local_promoted_task_source",
   "contract": {
@@ -18,30 +18,5 @@
     "terminal_first": true,
     "human_gates_preserved": true
   },
-  "tasks": [
-    {
-      "id": "tkt-950",
-      "ticket": "TKT-950",
-      "title": "Validate supervised source intake",
-      "state": "ready",
-      "owner": "Codex",
-      "risk": "low",
-      "summary": "Locally approved ARTEMIS Symphony task. Use the recorded terminal command manually after Validation Gate evidence is checked.",
-      "exec_pack": "docs/exec-packs/done/TKT-009-local-task-source.md",
-      "evidence": "artifacts/artemis-validation-gate/run-01/symphony-promotion-check/STATUS.md",
-      "tags": [
-        "symphony",
-        "local-promotion",
-        "approved-source"
-      ],
-      "promotion": {
-        "source_ticket": "TKT-950",
-        "decision": "artifacts/artemis-validation-gate/run-01/remote-promotion-decision-fixture.json",
-        "decided_by": "ARTEMIS synthetic validation",
-        "reason": "Exact local promotion approved for validation.",
-        "command": "scripts/artemis-dry-run.sh --input artifacts/artemis-validation-gate/run-01/symphony-promotion-check/promoted-source.json",
-        "validation_gate": "artifacts/artemis-validation-gate/run-01/queue-bridge-validation-gate-fixture.json"
-      }
-    }
-  ]
+  "tasks": []
 }

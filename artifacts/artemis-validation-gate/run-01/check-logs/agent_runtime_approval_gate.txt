@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-09T15:38:53Z",
+  "source": "scripts/artemis-agent-runtime-approval-gate.sh",
+  "mode": "agent_runtime_approval_gate",
+  "overall": "agent_runtime_approval_gate_ready",
+  "reason": "Runtime approval gate is ready for a human decision before any real agent launch.",
+  "artifact_root": "artifacts/artemis-validation-gate/run-01/agent-runtime-approval-gate-check",
+  "inputs": {
+    "dry_run": "artifacts/artemis-validation-gate/run-01/agent-runtime-dry-run-check/runtime-dry-run.json",
+    "decision": "artifacts/artemis-validation-gate/run-01/agent-runtime-approval-gate-check/runtime-approval-decision.json"
+  },
+  "approval_contract": {
+    "valid_decisions": [
+      "pending",
+      "approved",
+      "deferred",
+      "rejected"
+    ],
+    "metadata_required_for": [
+      "approved",
+      "deferred",
+      "rejected"
+    ],
+    "required_approval_fields": [
+      "decision_record.decision",
+      "decision_record.decided_by",
+      "decision_record.decided_at",
+      "decision_record.reason",
+      "decision_record.approved_profile_id",
+      "decision_record.approved_runtime",
+      "decision_record.approved_command_surface",
+      "decision_record.approved_model_policy",
+      "decision_record.approved_budget",
+      "decision_record.approved_auth",
+      "decision_record.approved_workspace",
+      "decision_record.approved_rollback",
+      "decision_record.approved_validation",
+      "decision_record.approved_commands"
+    ],
+    "approved_requires_exact_commands": true,
+    "approved_requires_positive_budget": true,
+    "partial_approval_executes": false,
+    "non_approved_commands_allowed": false,
+    "remote_writes_allowed_by_default": false
+  },
+  "approval_request": {
+    "project": "ARTEMIS",
+    "task": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony",
+    "profile_id": "codex_terminal",
+    "profile_name": "Codex terminal-first",
+    "runtime": "codex_cli",
+    "command_surface": "terminal",
+    "model_policy": {
+      "selection": "inherited_or_human_approved",
+      "frontier_default": "gpt-5.4",
+      "claude_default": "human_account_runtime",
+      "override_allowed": false
+    },
+    "budget": {
+      "approval_state": "human_required_before_runtime",
+      "max_agents": 1,
+      "max_commands": 0,
+      "max_paid_tokens": 0,
+      "max_runtime_seconds": 0,
+      "stop_rule": "Stop before any real runtime, paid token use, remote write, production touch, secret access or missing validation evidence."
+    },
+    "auth": {
+      "required": false,
+      "state": "not_required_for_dry_run",
+      "secrets_touched": false
+    },
+    "workspace": {
+      "repo": "/srv/veri",
+      "write_scope": "none",
+      "branch_policy": "observe_only",
+      "worktree_policy": "not_materialized",
+      "dirty_state_policy": "record_only"
+    },
+    "rollback": {
+      "required_before_runtime": true,
+      "dry_run_abort": "Delete or ignore this artifact root; no runtime side effects were created.",
+      "runtime_abort": "Future runtime must preserve logs, stop agents and hand off unresolved gates before retry."
+    },
+    "evidence": {
+      "request": "artifacts/artemis-validation-gate/run-01/agent-runtime-dry-run-check/REQUEST.md",
+      "preflight": "artifacts/artemis-validation-gate/run-01/agent-runtime-dry-run-check/PREFLIGHT.md",
+      "runtime_log": "artifacts/artemis-validation-gate/run-01/agent-runtime-dry-run-check/RUNTIME_LOG.md",
+      "handoff": "artifacts/artemis-validation-gate/run-01/agent-runtime-dry-run-check/HANDOFF.md",
+      "json": "artifacts/artemis-validation-gate/run-01/agent-runtime-dry-run-check/runtime-dry-run.json"
+    },
+    "preflight": [
+      {
+        "id": "contract_ready",
+        "status": "passed",
+        "proof": "contract overall: agent_launch_contract_ready"
+      },
+      {
+        "id": "profile_selected",
+        "status": "passed",
+        "proof": "codex_terminal"
+      },
+      {
+        "id": "required_gates_present",
+        "status": "passed",
+        "proof": "auth_gate, budget_gate, command_gate, project_gate, remote_write_gate, rollback_gate, task_gate, validation_gate, workspace_gate"
+      },
+      {
+        "id": "execute_false",
+        "status": "passed",
+        "proof": "execute=false"
+      },
+      {
+        "id": "runtime_not_started",
+        "status": "passed",
+        "proof": "runtime_started=false"
+      },
+      {
+        "id": "agents_not_started",
+        "status": "passed",
+        "proof": "agents_started=0"
+      },
+      {
+        "id": "commands_not_executed",
+        "status": "passed",
+        "proof": "commands_executed=0"
+      },
+      {
+        "id": "remote_writes_blocked",
+        "status": "passed",
+        "proof": "remote_writes_allowed=false"
+      },
+      {
+        "id": "auth_gate",
+        "status": "passed",
+        "proof": "not_required_for_dry_run"
+      },
+      {
+        "id": "budget_gate",
+        "status": "human_gate",
+        "proof": "max_paid_tokens=0 until explicit budget approval"
+      },
+      {
+        "id": "workspace_gate",
+        "status": "passed",
+        "proof": "write_scope=none and worktree_policy=not_materialized"
+      },
+      {
+        "id": "rollback_gate",
+        "status": "passed",
+        "proof": "dry-run and future runtime abort rules recorded"
+      },
+      {
+        "id": "validation_gate",
+        "status": "passed",
+        "proof": "future runtime must declare tests/checks/screenshots before Done"
+      }
+    ]
+  },
+  "decision_file": "artifacts/artemis-validation-gate/run-01/agent-runtime-approval-gate-check/runtime-approval-decision.json",
+  "decision_state": "pending",
+  "human_gate_items": [
+    {
+      "id": "decision",
+      "label": "Decision",
+      "status": "pending",
+      "required": true,
+      "proof_required": "Human must choose approved, deferred or rejected with identity, timestamp and reason."
+    },
+    {
+      "id": "model_policy",
+      "label": "Model policy",
+      "status": "pending",
+      "required": true,
+      "proof_required": "Human must accept model selection or provide an explicit override policy."
+    },
+    {
+      "id": "budget",
+      "label": "Budget",
+      "status": "pending",
+      "required": true,
+      "proof_required": "Human must set max paid tokens, max agents, max commands, max runtime seconds and stop rule."
+    },
+    {
+      "id": "auth",
+      "label": "Auth",
+      "status": "pending",
+      "required": false,
+      "proof_required": "Human-owned account auth must be confirmed before account-backed runtime."
+    },
+    {
+      "id": "command",
+      "label": "Command",
+      "status": "pending",
+      "required": true,
+      "proof_required": "Human must record exact command(s); placeholders or partial commands cannot execute."
+    },
+    {
+      "id": "workspace",
+      "label": "Workspace",
+      "status": "pending",
+      "required": true,
+      "proof_required": "Human must approve repo, branch/worktree policy, dirty-state policy and write scope."
+    },
+    {
+      "id": "validation",
+      "label": "Validation",
+      "status": "pending",
+      "required": true,
+      "proof_required": "Human must define checks, tests, screenshots or artifacts required before Done."
+    },
+    {
+      "id": "rollback",
+      "label": "Rollback",
+      "status": "pending",
+      "required": true,
+      "proof_required": "Human must approve abort path, logs to preserve and retry/handoff rules."
+    },
+    {
+      "id": "remote_write",
+      "label": "Remote write",
+      "status": "blocked_by_default",
+      "required": false,
+      "proof_required": "Remote writes remain false unless a later, separate Human Gate authorizes them exactly."
+    }
+  ],
+  "summary": {
+    "decision": "pending",
+    "pending": 1,
+    "approved_ready": 0,
+    "deferred": 0,
+    "rejected": 0,
+    "invalid": 0,
+    "human_gate_items": 9,
+    "runtime_execution_allowed": false,
+    "execute": false,
+    "runtime_started": false,
+    "agents_started": 0,
+    "commands_executed": 0,
+    "dependencies_installed": 0,
+    "remote_writes_allowed": false,
+    "paid_tokens_authorized": 0
+  },
+  "blockers": [],
+  "invariants": [
+    "Agent Runtime Approval Gate requests human approval; it does not launch runtime.",
+    "Pending, deferred and rejected decisions keep runtime_execution_allowed=false.",
+    "Approved runtime still requires a later launcher/preflight to execute exact commands.",
+    "Agents must not fill or approve the human decision record.",
+    "Control Plane remains observational."
+  ],
+  "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony"
+}

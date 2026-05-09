@@ -36,4 +36,4 @@ git diff --check
 
 ## Handoff
 
-O proximo corte e `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.
+O proximo corte e `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.

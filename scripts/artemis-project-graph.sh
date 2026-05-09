@@ -10,6 +10,7 @@ event_log_path="artifacts/artemis-event-log/run-01/event-log.example.json"
 memory_zone_path="artifacts/artemis-memory-zone/run-01/memory-zone.json"
 validation_gate_path="artifacts/artemis-validation-gate/run-01/validation-gate.json"
 runtime_dry_run_path="artifacts/artemis-agent-runtime-dry-run/run-01/runtime-dry-run.json"
+runtime_approval_gate_path="artifacts/artemis-agent-runtime-approval-gate/run-01/runtime-approval-gate.json"
 format="text"
 
 usage() {
@@ -119,6 +120,7 @@ event_log_payload = read_json(event_log_path, {"events": []})
 memory_payload = read_json(memory_zone_path, {"summary": {}, "zones": []})
 validation_payload = read_json(validation_gate_path, {"summary": {}})
 runtime_dry_run_payload = read_json(Path("artifacts/artemis-agent-runtime-dry-run/run-01/runtime-dry-run.json"), {"summary": {}, "overall": "not_available"})
+runtime_approval_gate_payload = read_json(Path("artifacts/artemis-agent-runtime-approval-gate/run-01/runtime-approval-gate.json"), {"summary": {}, "overall": "not_available"})
 
 tasks = tasks_payload.get("tasks", [])
 events = event_log_payload.get("events", [])
@@ -205,6 +207,14 @@ nodes = [
         "commands_executed": runtime_dry_run_payload.get("summary", {}).get("commands_executed", 0),
     },
     {
+        "id": "runtime:approval_gate",
+        "type": "human_gate",
+        "label": "Agent Runtime Approval Gate",
+        "status": runtime_approval_gate_payload.get("overall", "not_available"),
+        "decision": runtime_approval_gate_payload.get("summary", {}).get("decision", "unknown"),
+        "runtime_execution_allowed": runtime_approval_gate_payload.get("summary", {}).get("runtime_execution_allowed", False),
+    },
+    {
         "id": "control_plane:view",
         "type": "view",
         "label": "Control Plane",
@@ -224,6 +234,9 @@ edges = [
     {"from": "cost:budget", "to": "agent_roles:owners", "type": "constrains_runtime"},
     {"from": "runtime:dry_run", "to": "cost:budget", "type": "declares_budget"},
     {"from": "runtime:dry_run", "to": "validation:gate", "type": "requires_preflight"},
+    {"from": "runtime:dry_run", "to": "runtime:approval_gate", "type": "requests_human_decision"},
+    {"from": "runtime:approval_gate", "to": "gate:human", "type": "opens"},
+    {"from": "runtime:approval_gate", "to": "cost:budget", "type": "requires_budget_approval"},
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
@@ -314,10 +327,11 @@ payload = {
         "memory_input": "artemis_memory_zone",
         "validation_input": "artemis_validation_gate",
         "runtime_input": "artemis_agent_runtime_dry_run",
+        "runtime_approval_input": "artemis_agent_runtime_approval_gate",
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },
-    "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony",
+    "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony",
 }
 
 write_text(artifact_root / "project-graph.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
@@ -399,7 +413,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.",
+    "- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.",
     "- Renderizar relacoes do grafo no Control Plane com linguagem operacional e leiga.",
     "",
     "## Nao fazer",

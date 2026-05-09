@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T19:25:23Z",
+  "generated_at": "2026-05-09T15:41:15Z",
   "source": "scripts/artemis-agent-runtime-dry-run.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-059_agent_runtime_dry_run",
       "event_type": "runner.attempt_planned",
-      "generated_at": "2026-05-07T19:25:23Z",
+      "generated_at": "2026-05-09T15:41:15Z",
       "producer": {
         "adapter": "agent_runtime_dry_run",
         "name": "scripts/artemis-agent-runtime-dry-run.sh",
@@ -51,9 +51,9 @@
         "overall": "agent_runtime_dry_run_ready",
         "reason": "Runtime launch request was materialized as auditable dry-run without starting agents.",
         "summary": {
-          "tasks_total": 60,
-          "tasks_done": 60,
-          "validation_passed": 85,
+          "tasks_total": 61,
+          "tasks_done": 61,
+          "validation_passed": 87,
           "validation_failed": 0,
           "human_gates_from_project": 2,
           "preflight_checks": 13,
@@ -72,7 +72,7 @@
         },
         "launch_request": {
           "project": "ARTEMIS",
-          "task": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony",
+          "task": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony",
           "profile_id": "codex_terminal",
           "profile_name": "Codex terminal-first",
           "runtime": "codex_cli",
@@ -118,7 +118,7 @@
             "json": "artifacts/artemis-agent-runtime-dry-run/run-01/runtime-dry-run.json"
           }
         },
-        "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
+        "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony"
       }
     }
   ]

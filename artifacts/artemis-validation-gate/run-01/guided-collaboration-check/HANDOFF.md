@@ -4,4 +4,4 @@ O modo guiado esta pronto como contrato read-only para pessoas escolherem projet
 
 Proximo corte:
 
-- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.
+- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.

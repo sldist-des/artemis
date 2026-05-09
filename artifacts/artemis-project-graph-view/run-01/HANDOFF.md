@@ -4,4 +4,4 @@ Project Graph View esta pronto como leitura visual no Control Plane.
 
 Próximo corte:
 
-- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.
+- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.

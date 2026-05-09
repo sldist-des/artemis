@@ -6,7 +6,7 @@ Bridge supervisionada concluida com overall `runner_plan_ready`.
 
 ## Proximo corte
 
-- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.
+- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.
 - Consumir item revisado da fila com comando explicito e ponte plan-only por padrao.
 
 ## Nao fazer

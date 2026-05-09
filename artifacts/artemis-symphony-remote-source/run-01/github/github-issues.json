@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-09T15:40:40Z",
+  "overall": "human_gate",
+  "reason": "gh auth status did not pass.",
+  "mode": "read_only",
+  "repo": "sldist-des/artemis",
+  "label": "artemis",
+  "limit": 50,
+  "checks": {
+    "gh_installed": true,
+    "gh_auth_exit_code": 1,
+    "codeowners": "human_gate",
+    "issue_list_exit_code": 0
+  },
+  "contract": {
+    "issue_defines": "intent",
+    "exec_pack_defines": "contract",
+    "control_plane_shows": "state",
+    "remote_writes": "human_gate_only",
+    "labels": [
+      "artemis",
+      "artemis:intake",
+      "artemis:ready",
+      "artemis:running",
+      "artemis:human-gate",
+      "artemis:done"
+    ]
+  },
+  "issues": [],
+  "logs": {
+    "auth": "github.com\n  X Failed to log in to github.com account sldist-des (/root/.config/gh/hosts.yml)\n  - Active account: true\n  - The token in /root/.config/gh/hosts.yml is invalid.\n  - To re-authenticate, run: gh auth login -h github.com\n  - To forget about this account, run: gh auth logout -h github.com -u sldist-des",
+    "issues": ""
+  }
+}

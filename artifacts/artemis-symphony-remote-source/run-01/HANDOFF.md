@@ -2,11 +2,11 @@
 
 ## Estado
 
-Fonte remota supervisionada esta `remote_source_ready`. Ela gera intake e evidencia local, nao autoridade de execucao.
+Fonte remota supervisionada esta `human_gate`. Ela gera intake e evidencia local, nao autoridade de execucao.
 
 ## Proximo corte
 
-- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.
+- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.
 - Revisar itens remotos antes de promover para fila/service.
 - Exigir Exec Pack local e decisao humana quando houver escrita remota, PR, merge ou deploy.
 

@@ -272,11 +272,11 @@ evidence_contract = [
 
 candidate_launch = {
     "project": "ARTEMIS",
-    "task": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony",
+    "task": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony",
     "recommended_profile": "codex_terminal",
     "fallback_profile": "claude_code",
     "execute": False,
-    "reason": "The next safe step is a dry-run adapter that materializes a launch request without starting paid/runtime agents.",
+    "reason": "The next safe step is a decision intake adapter that validates a human-filled runtime approval without starting paid/runtime agents.",
 }
 
 payload = {
@@ -329,7 +329,7 @@ payload = {
     "missing_tokens": missing_tokens,
     "missing_files": missing_files,
     "required_tokens": required_tokens,
-    "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony",
+    "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony",
 }
 
 ready = (
@@ -412,7 +412,8 @@ handoff_lines = [
     "",
     "Proximo corte:",
     "",
-    "- Implementar `TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony`.",
+    "- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.",
+    "- Usar o Agent Runtime Approval Gate como entrada para validar a decisao humana preenchida.",
 ]
 (artifact_root / "HANDOFF.md").write_text("\n".join(handoff_lines) + "\n", encoding="utf-8")
 

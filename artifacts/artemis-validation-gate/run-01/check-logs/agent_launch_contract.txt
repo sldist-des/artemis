@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-07T19:27:41Z",
+  "generated_at": "2026-05-09T15:38:53Z",
   "source": "scripts/artemis-agent-launch-contract.sh",
   "mode": "read_only_supervised_agent_launch_contract",
   "overall": "agent_launch_contract_ready",
@@ -17,8 +17,8 @@
     "launch_profiles": 4,
     "launch_gates": 9,
     "evidence_requirements": 4,
-    "tasks_total": 60,
-    "tasks_done": 60,
+    "tasks_total": 61,
+    "tasks_done": 61,
     "tasks_human": 0,
     "validation_passed": 1,
     "validation_failed": 0,
@@ -36,11 +36,11 @@
   },
   "candidate_launch": {
     "project": "ARTEMIS",
-    "task": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony",
+    "task": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony",
     "recommended_profile": "codex_terminal",
     "fallback_profile": "claude_code",
     "execute": false,
-    "reason": "The next safe step is a dry-run adapter that materializes a launch request without starting paid/runtime agents."
+    "reason": "The next safe step is a decision intake adapter that validates a human-filled runtime approval without starting paid/runtime agents."
   },
   "launch_profiles": [
     {
@@ -245,5 +245,5 @@
     "renderAgentLaunchContract",
     "loadAgentLaunchContractSource"
   ],
-  "next_cut": "TKT-060 - Agent Runtime Approval Gate do ARTEMIS Symphony"
+  "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony"
 }

@@ -2,11 +2,11 @@
 
 ## Resultado
 
-- Overall: `remote_promotion_ready`.
-- Reason: Exact human decision promoted reviewed intake into a local task source.
-- Intake: `remote_intake_ready`.
-- Decision: `artifacts/artemis-validation-gate/run-01/remote-promotion-decision-fixture.json`.
-- Promoted: `1`.
+- Overall: `remote_promotion_human_gate`.
+- Reason: remote intake is not promotable: human_gate; missing exact human promotion decision
+- Intake: `human_gate`.
+- Decision: `missing`.
+- Promoted: `0`.
 - Commands executed: `0`.
 
 ## Contrato

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T13:51:05Z",
+  "generated_at": "2026-05-11T14:32:08Z",
   "source": "scripts/artemis-agent-runtime-decision-intake.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-061_agent_runtime_decision_intake",
       "event_type": "approval.intake_recorded",
-      "generated_at": "2026-05-11T13:51:05Z",
+      "generated_at": "2026-05-11T14:32:08Z",
       "producer": {
         "adapter": "agent_runtime_decision_intake",
         "name": "scripts/artemis-agent-runtime-decision-intake.sh",
@@ -65,7 +65,7 @@
         },
         "intake_state": "pending",
         "next_action": "human_decision_required",
-        "next_cut": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony"
+        "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
       }
     }
   ]

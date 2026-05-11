@@ -8,8 +8,8 @@ O kit ARTEMIS foi consolidado como pacote local aplicavel a outros projetos.
 
 - Overall: `ready_with_human_gates`.
 - Application ready: `true`.
-- Tasks total: `64`.
-- Tasks done: `64`.
+- Tasks total: `65`.
+- Tasks done: `65`.
 - Active tasks: `0`.
 - Validation failed: `0`.
 - External human gates: `2`.

@@ -50,6 +50,6 @@ scripts/artemis-symphony-kernel.sh --json
 
 ## Proximo Corte
 
-`TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`
+`TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony`
 
 Objetivo: consumir item revisado da fila com comando explicito e ponte supervisionada plan-only por padrao.

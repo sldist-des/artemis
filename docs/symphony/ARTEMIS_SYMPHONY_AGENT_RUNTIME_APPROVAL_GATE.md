@@ -34,4 +34,4 @@ O script `scripts/artemis-agent-runtime-approval-gate.sh` gera:
 
 ## Proximo corte
 
-`TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`
+`TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony`

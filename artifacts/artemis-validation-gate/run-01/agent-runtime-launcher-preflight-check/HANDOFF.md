@@ -6,7 +6,7 @@ TKT-062 avaliou o preflight de launcher como `human_gate` com estado `waiting_fo
 
 ## Proximo corte
 
-- Implementar `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`, mantendo comando e runtime bloqueados ate existir `launcher_preflight_ready`.
+- Implementar `TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony`, mantendo comando e runtime bloqueados ate existir `launcher_preflight_ready`.
 
 ## Nao fazer
 

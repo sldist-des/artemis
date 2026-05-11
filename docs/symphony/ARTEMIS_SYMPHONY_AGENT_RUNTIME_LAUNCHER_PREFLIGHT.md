@@ -30,4 +30,4 @@ O script `scripts/artemis-agent-runtime-launcher-preflight.sh` gera:
 
 ## Proximo corte
 
-`TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`
+`TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony`

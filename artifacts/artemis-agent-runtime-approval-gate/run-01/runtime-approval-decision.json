@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T13:51:34Z",
+  "generated_at": "2026-05-11T14:31:37Z",
   "source": "scripts/artemis-agent-runtime-approval-gate.sh",
   "mode": "human_fillable_pending",
   "based_on": "artifacts/artemis-agent-runtime-dry-run/run-01/runtime-dry-run.json",
@@ -12,7 +12,7 @@
   },
   "approval_request": {
     "project": "ARTEMIS",
-    "task": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony",
+    "task": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony",
     "profile_id": "codex_terminal",
     "profile_name": "Codex terminal-first",
     "runtime": "codex_cli",

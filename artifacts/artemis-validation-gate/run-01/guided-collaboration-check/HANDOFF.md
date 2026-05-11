@@ -4,4 +4,4 @@ O modo guiado esta pronto como contrato read-only para pessoas escolherem projet
 
 Proximo corte:
 
-- Implementar `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`.
+- Implementar `TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony`.

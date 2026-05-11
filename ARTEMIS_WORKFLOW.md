@@ -429,6 +429,8 @@ scripts/artemis-agent-runtime-launcher-preflight.sh
 scripts/artemis-agent-runtime-launcher-preflight.sh --json
 scripts/artemis-agent-runtime-launcher-command-plan.sh
 scripts/artemis-agent-runtime-launcher-command-plan.sh --json
+scripts/artemis-agent-runtime-launcher-execution-gate.sh
+scripts/artemis-agent-runtime-launcher-execution-gate.sh --json
 ```
 
 Esse grafo e um read model operacional. Ele ajuda humanos e agentes a entenderem
@@ -454,6 +456,10 @@ O Agent Runtime Launcher Command Plan consome o Launcher Preflight e materializa
 um plano de comandos apenas quando existe `launcher_preflight_ready`; sem isso,
 fica em Human Gate e mantem `launcher_execution_allowed=false`,
 `runtime_execution_allowed=false` e `commands_executed=0`.
+O Agent Runtime Launcher Execution Gate consome o Command Plan e exige decisao
+humana final, hash do plano, comandos exatos, budget, logs, rollback e
+validacao antes de liberar um futuro runner supervisionado. Ele nao executa
+comandos, nao inicia runtime e mantem remoto, producao e secrets bloqueados.
 O Agent Launch Contract e o preflight supervisionado entre a entrada guiada e
 qualquer runtime real. Ele fixa `execute=false` por padrao e exige projeto,
 tarefa, auth, budget, comando, workspace, rollback e evidencia antes de Codex

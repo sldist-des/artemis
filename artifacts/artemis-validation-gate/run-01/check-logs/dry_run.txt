@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 64
+    "done": 65
   },
   "decisions": [
     {
@@ -583,6 +583,15 @@
       "title": "Agent Runtime Launcher Command Plan do ARTEMIS Symphony",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-063-artemis-agent-runtime-launcher-command-plan.md"
+    },
+    {
+      "ticket": "TKT-064",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Agent Runtime Launcher Execution Gate do ARTEMIS Symphony",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-064-artemis-agent-runtime-launcher-execution-gate.md"
     }
   ]
 }

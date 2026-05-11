@@ -841,6 +841,40 @@ Resultado esperado:
 - `commands_executed=0`;
 - evento canonico `runner.attempt_planned`.
 
+### Modo 3.14 - Agent Runtime Launcher Execution Gate
+
+Implementado em `TKT-064` como gate final entre o Launcher Command Plan e
+qualquer futura execucao supervisionada.
+
+- consome `launcher-command-plan.json`;
+- exige `overall=launcher_command_plan_ready`, `plan_state=command_plan_ready`
+  e `command_plan_ready=true` antes de avaliar aprovacao final;
+- enquanto o Command Plan estiver em Human Gate, permanece em `human_gate` com
+  `gate_state=waiting_for_launcher_command_plan_ready`;
+- cria `launcher-execution-decision.json` como decisao humana preenchivel;
+- exige `decision=approved`, `execute=true`, hash do Command Plan, comandos
+  exatos, runtime, profile, command surface, budget, logs, rollback e validacao;
+- mantem remoto, producao e secrets bloqueados neste gate;
+- nao inicia Codex app-server, Claude Code, SDK, CLI, subagente, fila, daemon,
+  dependencia, push, PR, deploy, segredo, producao ou tokens pagos;
+- nao executa comandos planejados.
+
+Agent Runtime Launcher Execution Gate implementado:
+
+- `scripts/artemis-agent-runtime-launcher-execution-gate.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_EXECUTION_GATE.md`
+
+Resultado esperado:
+
+- `human_gate` enquanto o Launcher Command Plan nao estiver
+  `launcher_command_plan_ready`;
+- `launcher_execution_gate_ready` apenas quando o command plan pronto e a
+  decisao humana exata passarem no gate;
+- `runtime_started=false`;
+- `commands_executed=0`;
+- `remote_writes_allowed=false`;
+- evento canonico `approval.requested`.
+
 ## Invariantes
 
 - ARTEMIS Symphony nao executa cleanup real sem decisao humana.
@@ -853,15 +887,14 @@ Resultado esperado:
 
 ## Proximo corte recomendado
 
-`TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`
+`TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony`
 
 Objetivo:
 
-- consumir apenas `launcher-command-plan.json` em estado
-  `launcher_command_plan_ready`;
-- criar um gate explicito antes de qualquer execucao real;
-- exigir confirmacao final de comando, budget, logs, rollback, validacao e
-  limites de remoto/producao/secrets;
-- preservar controle terminal-first e Human Gates antes de acionar agentes.
+- consumir apenas `launcher-execution-gate.json` em estado
+  `launcher_execution_gate_ready`;
+- executar somente comandos aprovados exatamente pelo gate;
+- preservar logs, budget, stop rule, rollback e validacao;
+- bloquear remoto, producao e secrets salvo gate humano separado.
 
 Esse sera o proximo passo de implementacao do nosso Symphony proprio.

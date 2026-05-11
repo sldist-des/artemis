@@ -6,7 +6,7 @@ TKT-063 avaliou o plano de comandos como `human_gate` com estado `waiting_for_la
 
 ## Proximo corte
 
-- Implementar `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`, mantendo execucao bloqueada ate existir `launcher_command_plan_ready`.
+- Implementar `TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony`, mantendo execucao bloqueada ate existir `launcher_command_plan_ready`.
 
 ## Nao fazer
 

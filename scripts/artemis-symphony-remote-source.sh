@@ -301,7 +301,7 @@ payload = {
         "checks": github_payload.get("checks", {}),
         "contract": github_payload.get("contract", {}),
     },
-    "next_cut": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony",
+    "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony",
 }
 
 task_source = {
@@ -374,7 +374,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`.",
+    "- Implementar `TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony`.",
     "- Revisar itens remotos antes de promover para fila/service.",
     "- Exigir Exec Pack local e decisao humana quando houver escrita remota, PR, merge ou deploy.",
     "",

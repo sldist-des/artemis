@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-11T14:32:09Z",
+  "source": "scripts/artemis-agent-runtime-launcher-execution-gate.sh",
+  "mode": "human_fillable_pending",
+  "based_on": "artifacts/artemis-validation-gate/run-01/agent-runtime-launcher-command-plan-check/launcher-command-plan.json",
+  "command_plan_sha256": "a0d516f4725e8585744d23c2375266a24fa92e779c1e0c4c1bca2602d67e560c",
+  "decision_record": {
+    "decision": "pending",
+    "decided_by": "",
+    "decided_at": "",
+    "reason": "",
+    "execute": false,
+    "command_plan_sha256": "a0d516f4725e8585744d23c2375266a24fa92e779c1e0c4c1bca2602d67e560c",
+    "approved_runtime": "",
+    "approved_profile_id": "",
+    "approved_command_surface": "",
+    "approved_commands": [],
+    "budget_approved": false,
+    "logs_approved": false,
+    "rollback_approved": false,
+    "validation_approved": false,
+    "remote_writes_allowed": false,
+    "production_allowed": false,
+    "secrets_allowed": false
+  },
+  "approval_options": {
+    "pending": "Decision is still open; launcher execution stays blocked.",
+    "approved": "Requires exact command plan hash, commands, budget, logs, rollback and validation approval.",
+    "deferred": "Keeps launcher execution blocked for later review.",
+    "rejected": "Refuses this launcher execution request while preserving evidence."
+  },
+  "invariants": [
+    "This file is a human-fillable launcher execution decision, not execution.",
+    "Generated decisions start as pending and execute=false.",
+    "Agents must not approve launcher execution on behalf of humans.",
+    "Remote writes, production and secrets remain blocked unless separately approved."
+  ]
+}

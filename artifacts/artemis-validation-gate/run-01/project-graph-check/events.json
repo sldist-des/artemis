@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T13:51:04Z",
+  "generated_at": "2026-05-11T14:32:08Z",
   "source": "scripts/artemis-project-graph.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-11T13:51:04Z",
+      "generated_at": "2026-05-11T14:32:08Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -47,16 +47,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 64,
-          "tasks_done": 64,
+          "tasks_total": 65,
+          "tasks_done": 65,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 8,
           "events_total": 51,
-          "nodes_total": 15,
-          "edges_total": 26,
-          "evidence_count": 64,
-          "exec_pack_count": 64,
+          "nodes_total": 16,
+          "edges_total": 30,
+          "evidence_count": 65,
+          "exec_pack_count": 65,
           "validation_passed": 1,
           "validation_failed": 0,
           "validation_human_gate": 1,
@@ -68,7 +68,7 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony"
+        "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
       }
     }
   ]

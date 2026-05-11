@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T13:59:02Z",
+  "generated_at": "2026-05-11T14:32:36Z",
   "source": "scripts/artemis-project-brief.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-11T13:59:02Z",
+      "generated_at": "2026-05-11T14:32:36Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -47,12 +47,12 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 64,
-          "tasks_done": 64,
-          "events_total": 51,
-          "nodes_total": 15,
-          "edges_total": 26,
-          "validation_passed": 93,
+          "tasks_total": 65,
+          "tasks_done": 65,
+          "events_total": 52,
+          "nodes_total": 16,
+          "edges_total": 30,
+          "validation_passed": 95,
           "validation_failed": 0,
           "human_gates": 2,
           "memory_zones": 3,
@@ -62,7 +62,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony"
+        "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
       }
     }
   ]

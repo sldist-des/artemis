@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T13:51:05Z",
+  "generated_at": "2026-05-11T14:32:08Z",
   "source": "scripts/artemis-agent-launch-contract.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-058_agent_launch_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-11T13:51:05Z",
+      "generated_at": "2026-05-11T14:32:08Z",
       "producer": {
         "adapter": "agent_launch_contract",
         "name": "scripts/artemis-agent-launch-contract.sh",
@@ -50,8 +50,8 @@
           "launch_profiles": 4,
           "launch_gates": 9,
           "evidence_requirements": 4,
-          "tasks_total": 64,
-          "tasks_done": 64,
+          "tasks_total": 65,
+          "tasks_done": 65,
           "tasks_human": 0,
           "validation_passed": 1,
           "validation_failed": 0,
@@ -69,13 +69,13 @@
         },
         "candidate_launch": {
           "project": "ARTEMIS",
-          "task": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony",
+          "task": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony",
           "recommended_profile": "codex_terminal",
           "fallback_profile": "claude_code",
           "execute": false,
           "reason": "The next safe step is a command plan that consumes launcher preflight evidence without starting paid/runtime agents."
         },
-        "next_cut": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony"
+        "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
       }
     }
   ]

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T13:51:04Z",
+  "generated_at": "2026-05-11T14:32:07Z",
   "source": "scripts/artemis-symphony-remote-source.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-050_symphony_remote_source",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-11T13:51:04Z",
+      "generated_at": "2026-05-11T14:32:07Z",
       "producer": {
         "adapter": "symphony_remote_source",
         "name": "scripts/artemis-symphony-remote-source.sh",
@@ -70,7 +70,7 @@
           "human_gates_preserved": true,
           "validation_gate_required_before_execute": true
         },
-        "next_cut": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony"
+        "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
       }
     }
   ]

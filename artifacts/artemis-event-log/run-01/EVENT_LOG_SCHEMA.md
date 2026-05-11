@@ -1,7 +1,7 @@
 # ARTEMIS EVENT LOG SCHEMA
 
 - Schema version: 1
-- Events: 51
+- Events: 52
 - Source: scripts/artemis-event-log.sh
 
 ## Event Types
@@ -57,6 +57,7 @@
 - `approval.intake_recorded`: `evt_tkt-061_agent_runtime_decision_intake` -> human_gate
 - `runner.preflight_recorded`: `evt_tkt-062_agent_runtime_launcher_preflight` -> human_gate
 - `runner.attempt_planned`: `evt_tkt-063_agent_runtime_launcher_command_plan` -> human_gate
+- `approval.requested`: `evt_tkt-064_agent_runtime_launcher_execution_gate` -> human_gate
 
 ## Invariants
 

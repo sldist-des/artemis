@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T13:31:38Z",
+  "generated_at": "2026-05-11T13:50:58Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -757,6 +757,18 @@
       "summary": "Com a decisao humana ainda pendente, o preflight deve reportar `human_gate`,",
       "exec_pack": "docs/exec-packs/done/TKT-062-artemis-agent-runtime-launcher-preflight.md",
       "evidence": "artifacts/artemis-agent-runtime-launcher-preflight/run-01/launcher-preflight.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-063",
+      "ticket": "TKT-063",
+      "title": "Agent Runtime Launcher Command Plan do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Humano",
+      "risk": "high",
+      "summary": "Com o launcher preflight ainda em Human Gate, o command plan deve reportar",
+      "exec_pack": "docs/exec-packs/done/TKT-063-artemis-agent-runtime-launcher-command-plan.md",
+      "evidence": "artifacts/artemis-agent-runtime-launcher-command-plan/run-01/launcher-command-plan.json",
       "tags": ["exec-pack", "done"]
     }
   ]

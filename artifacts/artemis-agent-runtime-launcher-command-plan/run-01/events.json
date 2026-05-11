@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-11T13:51:34Z",
+  "source": "scripts/artemis-agent-runtime-launcher-command-plan.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-063_agent_runtime_launcher_command_plan",
+      "event_type": "runner.attempt_planned",
+      "generated_at": "2026-05-11T13:51:34Z",
+      "producer": {
+        "adapter": "agent_runtime_launcher_command_plan",
+        "name": "scripts/artemis-agent-runtime-launcher-command-plan.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-063",
+        "task_id": "tkt-063",
+        "title": "Agent Runtime Launcher Command Plan do ARTEMIS Symphony",
+        "exec_pack": "docs/exec-packs/done/TKT-063-artemis-agent-runtime-launcher-command-plan.md",
+        "artifact_root": "artifacts/artemis-agent-runtime-launcher-command-plan/run-01"
+      },
+      "runner": {
+        "kind": "agent_runtime_launcher_command_plan",
+        "execute": false,
+        "commands_planned": 0,
+        "commands_executed": 0
+      },
+      "state": {
+        "from": "human_gate",
+        "to": "human_gate",
+        "reason": "Launcher command plan was evaluated without executing commands or starting runtime."
+      },
+      "gate": {
+        "kind": "human",
+        "status": "human_gate",
+        "reason": "Launcher execution remains blocked in TKT-063."
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-agent-runtime-launcher-command-plan/run-01",
+        "status_path": "artifacts/artemis-agent-runtime-launcher-command-plan/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-agent-runtime-launcher-command-plan/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-agent-runtime-launcher-command-plan/run-01/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-063"
+      },
+      "payload": {
+        "overall": "human_gate",
+        "reason": "Launcher command plan was evaluated without executing commands or starting runtime.",
+        "summary": {
+          "launcher_preflight_ready": false,
+          "command_plan_ready": false,
+          "plan_checks": 6,
+          "plan_passed": 5,
+          "plan_failed": 0,
+          "plan_human_gate": 1,
+          "planned_commands_count": 0,
+          "launcher_execution_allowed": false,
+          "runtime_execution_allowed": false,
+          "runtime_started": false,
+          "agents_started": 0,
+          "commands_executed": 0,
+          "dependencies_installed": 0,
+          "remote_writes_allowed": false,
+          "paid_tokens_authorized": 0
+        },
+        "plan_state": "waiting_for_launcher_preflight_ready",
+        "next_action": "wait_for_launcher_preflight_ready",
+        "next_cut": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony"
+      }
+    }
+  ]
+}

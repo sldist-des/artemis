@@ -26,9 +26,10 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Agent Runtime Approval Gate implemented: `true`.
 - Agent Runtime Decision Intake implemented: `true`.
 - Agent Runtime Launcher Preflight implemented: `true`.
+- Agent Runtime Launcher Command Plan implemented: `true`.
 - Terminal-first: `true`.
 - Human Gates preserved: `true`.
-- Next cut: `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.
+- Next cut: `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`.
 
 ## Camadas
 
@@ -194,6 +195,12 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Status: `implemented_runtime_launcher_preflight`.
 - Missing files: `0`.
 
+### agent_runtime_launcher_command_plan
+
+- Purpose: Read-only launcher command plan that materializes commands only after launcher preflight is ready.
+- Status: `implemented_runtime_launcher_command_plan`.
+- Missing files: `0`.
+
 ## Invariantes
 
 - OpenAI Symphony is a reference, not a vendored dependency.
@@ -220,3 +227,4 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - The implemented Agent Runtime Approval Gate requests human approval and never starts runtime.
 - The implemented Agent Runtime Decision Intake classifies human decisions and never starts runtime.
 - The implemented Agent Runtime Launcher Preflight revalidates approved decisions and never starts runtime.
+- The implemented Agent Runtime Launcher Command Plan materializes commands without executing them.

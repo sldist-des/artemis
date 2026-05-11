@@ -269,7 +269,7 @@ payload = {
         "pending, deferred, rejected and invalid states do not execute commands.",
         "Remote writes, secrets, deploys and production remain separate Human Gates.",
     ],
-    "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony",
+    "next_cut": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony",
 }
 
 (artifact_root / "runtime-decision-intake.json").write_text(
@@ -341,9 +341,9 @@ handoff_lines = [
     "",
 ]
 if intake_state == "approved_ready":
-    handoff_lines.append("- Implementar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony` usando esta decisao aprovada.")
+    handoff_lines.append("- Implementar `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony` usando esta decisao aprovada.")
 else:
-    handoff_lines.append("- Implementar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`, mantendo runtime bloqueado ate existir `approved_ready`.")
+    handoff_lines.append("- Implementar `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`, mantendo runtime bloqueado ate existir `approved_ready`.")
 handoff_lines.extend([
     "",
     "## Nao fazer",

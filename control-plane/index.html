@@ -1649,6 +1649,30 @@
       </div>
     </section>
 
+    <section class="agent-launch-section agent-runtime-launcher-command-plan-section" aria-labelledby="agent-runtime-launcher-command-plan-title">
+      <header class="agent-launch-header">
+        <div>
+          <h2 id="agent-runtime-launcher-command-plan-title">Agent Runtime Launcher Command Plan</h2>
+          <p>Plano read-only de comandos antes de qualquer execucao supervisionada de launcher.</p>
+        </div>
+        <p id="agent-runtime-launcher-command-plan-status" class="agent-launch-status">Fonte: seed do command plan.</p>
+      </header>
+      <div class="agent-launch-layout" aria-label="Plano de comandos de launcher de runtime de agentes">
+        <section class="agent-launch-panel">
+          <h3>Entrada</h3>
+          <div id="agent-runtime-launcher-command-plan-input"></div>
+        </section>
+        <section class="agent-launch-panel">
+          <h3>Checks</h3>
+          <div id="agent-runtime-launcher-command-plan-checks"></div>
+        </section>
+        <section class="agent-launch-panel">
+          <h3>Plano</h3>
+          <div id="agent-runtime-launcher-command-plan-package"></div>
+        </section>
+      </div>
+    </section>
+
     <section class="decision-gate" aria-labelledby="decision-gate-title">
       <header>
         <h2 id="decision-gate-title">Human Gate cleanup</h2>
@@ -1694,6 +1718,7 @@
     const agentRuntimeApprovalGateSourceUrl = "../artifacts/artemis-agent-runtime-approval-gate/run-01/runtime-approval-gate.json";
     const agentRuntimeDecisionIntakeSourceUrl = "../artifacts/artemis-agent-runtime-decision-intake/run-01/runtime-decision-intake.json";
     const agentRuntimeLauncherPreflightSourceUrl = "../artifacts/artemis-agent-runtime-launcher-preflight/run-01/launcher-preflight.json";
+    const agentRuntimeLauncherCommandPlanSourceUrl = "../artifacts/artemis-agent-runtime-launcher-command-plan/run-01/launcher-command-plan.json";
 
     const columns = [
       { id: "intake", title: "Intake", help: "Ideia ou pedido bruto. Ainda nao tem contrato." },
@@ -2400,6 +2425,17 @@
         tags: ["symphony", "agents", "runtime-preflight"]
       },
       {
+        id: "tkt-063",
+        state: "done",
+        ticket: "TKT-063",
+        title: "Agent Runtime Launcher Command Plan do ARTEMIS Symphony",
+        summary: "Command plan materializa comandos apenas com preflight pronto e nao executa runtime.",
+        owner: "Codex",
+        risk: "high",
+        evidence: "artifacts/artemis-agent-runtime-launcher-command-plan/run-01",
+        tags: ["symphony", "agents", "runtime-command-plan"]
+      },
+      {
         id: "github-auth",
         state: "human",
         ticket: "GIT",
@@ -2790,6 +2826,10 @@
     const agentRuntimeLauncherPreflightInputNode = document.querySelector("#agent-runtime-launcher-preflight-input");
     const agentRuntimeLauncherPreflightChecksNode = document.querySelector("#agent-runtime-launcher-preflight-checks");
     const agentRuntimeLauncherPreflightPackageNode = document.querySelector("#agent-runtime-launcher-preflight-package");
+    const agentRuntimeLauncherCommandPlanStatusNode = document.querySelector("#agent-runtime-launcher-command-plan-status");
+    const agentRuntimeLauncherCommandPlanInputNode = document.querySelector("#agent-runtime-launcher-command-plan-input");
+    const agentRuntimeLauncherCommandPlanChecksNode = document.querySelector("#agent-runtime-launcher-command-plan-checks");
+    const agentRuntimeLauncherCommandPlanPackageNode = document.querySelector("#agent-runtime-launcher-command-plan-package");
 
     const symphonyEvidence = {
       summary: "Kernel, bridge, runner, daemon dry-run e fila publicados como evidencia local. Exec Packs e artifacts continuam canonicos.",
@@ -2838,7 +2878,7 @@
           status: "human_gate",
           summary: "Validation Gate passou tecnicamente e preservou Human Gates externos.",
           facts: [
-            ["passed", "91"],
+            ["passed", "93"],
             ["failed", "0"]
           ],
           links: [
@@ -2977,8 +3017,8 @@
           status: "project_graph_ready",
           summary: "project_graph_ready: tarefas, agentes, gates, validacao, memoria, custos e artifacts foram conectados como read model.",
           facts: [
-            ["nodes", "14"],
-            ["edges", "23"]
+            ["nodes", "15"],
+            ["edges", "26"]
           ],
           links: [
             ["status", "../artifacts/artemis-project-graph/run-01/STATUS.md"],
@@ -3097,6 +3137,20 @@
             ["json", "../artifacts/artemis-agent-runtime-launcher-preflight/run-01/launcher-preflight.json"],
             ["preflight", "../artifacts/artemis-agent-runtime-launcher-preflight/run-01/PREFLIGHT.md"]
           ]
+        },
+        {
+          title: "Command Plan",
+          status: "human_gate",
+          summary: "human_gate: command plan aguarda launcher_preflight_ready e nao executa comandos.",
+          facts: [
+            ["state", "waiting"],
+            ["commands", "0"]
+          ],
+          links: [
+            ["status", "../artifacts/artemis-agent-runtime-launcher-command-plan/run-01/STATUS.md"],
+            ["json", "../artifacts/artemis-agent-runtime-launcher-command-plan/run-01/launcher-command-plan.json"],
+            ["plan", "../artifacts/artemis-agent-runtime-launcher-command-plan/run-01/COMMAND_PLAN.md"]
+          ]
         }
       ]
     };
@@ -3105,12 +3159,12 @@
       source: "seed",
       overall: "project_graph_ready",
       summary: {
-        tasks_total: 63,
-        tasks_done: 63,
-        events_total: 50,
-        nodes_total: 14,
-        edges_total: 23,
-        validation_passed: 91,
+        tasks_total: 64,
+        tasks_done: 64,
+        events_total: 51,
+        nodes_total: 15,
+        edges_total: 26,
+        validation_passed: 93,
         validation_human_gate: 2,
         memory_zones: 3,
         dependencies_installed: 0,
@@ -3118,18 +3172,19 @@
       },
       nodes: [
         { id: "project:artemis", type: "project", label: "ARTEMIS", status: "operational" },
-        { id: "task_set:exec_packs", type: "task_set", label: "Exec Packs", count: 63, done: 63 },
+        { id: "task_set:exec_packs", type: "task_set", label: "Exec Packs", count: 64, done: 64 },
         { id: "agent_roles:owners", type: "agent_roles", label: "Owners and agent roles", count: 7 },
         { id: "gate:human", type: "gate", label: "Human Gates", count: 2 },
-        { id: "validation:gate", type: "validation", label: "Validation Gate", passed: 91, failed: 0 },
+        { id: "validation:gate", type: "validation", label: "Validation Gate", passed: 93, failed: 0 },
         { id: "memory:zone", type: "memory", label: "Human-AI Memory Zone", zones: 3 },
-        { id: "artifact:evidence", type: "artifact_set", label: "Artifacts and evidence", task_evidence: 63 },
-        { id: "event_log:timeline", type: "event_log", label: "Canonical event timeline", events: 50 },
+        { id: "artifact:evidence", type: "artifact_set", label: "Artifacts and evidence", task_evidence: 64 },
+        { id: "event_log:timeline", type: "event_log", label: "Canonical event timeline", events: 51 },
         { id: "cost:budget", type: "cost_guard", label: "Token and runtime budget", dependencies_installed: 0 },
         { id: "runtime:dry_run", type: "runtime_plan", label: "Agent Runtime Dry-Run", status: "agent_runtime_dry_run_ready" },
         { id: "runtime:approval_gate", type: "human_gate", label: "Agent Runtime Approval Gate", status: "agent_runtime_approval_gate_ready", decision: "pending", runtime_execution_allowed: false },
         { id: "runtime:decision_intake", type: "human_gate", label: "Agent Runtime Decision Intake", status: "human_gate", intake_state: "pending", launcher_preflight_allowed: false },
         { id: "runtime:launcher_preflight", type: "runtime_preflight", label: "Agent Runtime Launcher Preflight", status: "human_gate", preflight_state: "waiting_for_approved_ready", launcher_execution_allowed: false },
+        { id: "runtime:launcher_command_plan", type: "runtime_command_plan", label: "Agent Runtime Launcher Command Plan", status: "human_gate", plan_state: "waiting_for_launcher_preflight_ready", planned_commands: 0, launcher_execution_allowed: false },
         { id: "control_plane:view", type: "view", label: "Control Plane", authority: "observational" }
       ],
       edges: [
@@ -3153,6 +3208,9 @@
         { from: "runtime:decision_intake", to: "runtime:launcher_preflight", type: "gates_preflight" },
         { from: "runtime:launcher_preflight", to: "validation:gate", type: "rechecks" },
         { from: "runtime:launcher_preflight", to: "cost:budget", type: "keeps_execution_blocked" },
+        { from: "runtime:launcher_preflight", to: "runtime:launcher_command_plan", type: "gates_command_plan" },
+        { from: "runtime:launcher_command_plan", to: "validation:gate", type: "declares_validation" },
+        { from: "runtime:launcher_command_plan", to: "cost:budget", type: "keeps_execution_blocked" },
         { from: "control_plane:view", to: "project:artemis", type: "observes" },
         { from: "control_plane:view", to: "validation:gate", type: "shows" },
         { from: "control_plane:view", to: "memory:zone", type: "shows" }
@@ -3173,9 +3231,9 @@
       source: "seed",
       overall: "human_project_brief_ready",
       summary: {
-        tasks_total: 63,
-        tasks_done: 63,
-        validation_passed: 91,
+        tasks_total: 64,
+        tasks_done: 64,
+        validation_passed: 93,
         validation_failed: 0,
         human_gates: 2,
         memory_zones: 3,
@@ -3186,9 +3244,9 @@
         headline: "ARTEMIS Symphony em linguagem de projeto",
         status: "O ARTEMIS Symphony esta pronto como sistema local supervisionado: ele organiza tarefas, evidencia, validacao, memoria e limites antes de qualquer execucao automatica.",
         ready: [
-          "63 de 63 Exec Packs estao concluidos e versionados.",
-          "O Validation Gate registra 91 checks aprovados e 0 falhas tecnicas.",
-          "O Project Graph conecta tarefas, agentes, gates, memoria, custos, runtime dry-run, approval gate, decision intake e launcher preflight."
+          "64 de 64 Exec Packs estao concluidos e versionados.",
+          "O Validation Gate registra 93 checks aprovados e 0 falhas tecnicas.",
+          "O Project Graph conecta tarefas, agentes, gates, memoria, custos, runtime dry-run, approval gate, decision intake, launcher preflight e command plan."
         ],
         human_attention: [
           "Existem 2 Human Gates ativos para decisoes que exigem pessoa.",
@@ -3297,7 +3355,7 @@
       },
       launch_request: {
         project: "ARTEMIS",
-        task: "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony",
+        task: "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony",
         profile_id: "codex_terminal",
         runtime: "codex_cli",
         command_surface: "terminal",
@@ -3333,7 +3391,7 @@
       },
       launch_request: {
         project: "ARTEMIS",
-        task: "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony",
+        task: "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony",
         profile_id: "codex_terminal",
         runtime: "codex_cli",
         execute: false
@@ -3357,7 +3415,7 @@
       intake_state: "pending",
       approval_request: {
         project: "ARTEMIS",
-        task: "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony",
+        task: "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony",
         profile_id: "codex_terminal",
         runtime: "codex_cli",
         command_surface: "terminal"
@@ -3372,7 +3430,7 @@
         blockers: 0
       },
       next_action: "Human fills or keeps runtime approval decision; launcher preflight stays blocked.",
-      next_cut: "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony"
+      next_cut: "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony"
     };
 
     const seedAgentRuntimeLauncherPreflight = {
@@ -3407,7 +3465,43 @@
         command_surface: "",
         approved_commands: []
       },
-      next_cut: "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony"
+      next_cut: "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony"
+    };
+
+    const seedAgentRuntimeLauncherCommandPlan = {
+      source: "seed",
+      overall: "human_gate",
+      plan_state: "waiting_for_launcher_preflight_ready",
+      next_action: "wait_for_launcher_preflight_ready",
+      summary: {
+        launcher_preflight_ready: false,
+        command_plan_ready: false,
+        plan_checks: 6,
+        plan_passed: 5,
+        plan_failed: 0,
+        plan_human_gate: 1,
+        planned_commands_count: 0,
+        launcher_execution_allowed: false,
+        runtime_execution_allowed: false,
+        commands_executed: 0,
+        paid_tokens_authorized: 0
+      },
+      plan_checks: [
+        { id: "launcher_preflight_exists", status: "passed", proof: "launcher-preflight.json" },
+        { id: "launcher_preflight_ready", status: "human_gate", proof: "overall=human_gate preflight_state=waiting_for_approved_ready" },
+        { id: "launcher_execution_still_blocked", status: "passed", proof: "launcher_execution_allowed=false" },
+        { id: "runtime_execution_still_blocked", status: "passed", proof: "runtime_execution_allowed=false" },
+        { id: "commands_not_executed", status: "passed", proof: "commands_executed=0" },
+        { id: "remote_writes_blocked", status: "passed", proof: "remote_writes_allowed=false" }
+      ],
+      command_plan: {
+        eligible: false,
+        runtime: "",
+        profile_id: "",
+        command_surface: "",
+        steps: []
+      },
+      next_cut: "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony"
     };
 
     function cloneCards(source) {
@@ -3558,6 +3652,8 @@
         ["decision", node.decision],
         ["intake", node.intake_state],
         ["state", node.preflight_state],
+        ["plan", node.plan_state],
+        ["planned", node.planned_commands],
         ["preflight", node.launcher_preflight_allowed],
         ["launcher", node.launcher_execution_allowed],
         ["runtime", node.runtime_execution_allowed],
@@ -3825,7 +3921,7 @@
         agentRuntimeDecisionNextNode,
         [
           { label: "Next", value: model.next_action || "Aguardar decisao humana coerente." },
-          { label: "Next cut", value: model.next_cut || "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony" },
+          { label: "Next cut", value: model.next_cut || "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony" },
           { label: "Blockers", value: String(blockers.length || summary.blockers || 0) },
           { label: "Approved commands", value: String(summary.approved_commands_count ?? 0) }
         ],
@@ -3865,7 +3961,46 @@
           { label: "Profile", value: launcherPackage.profile_id || "bloqueado" },
           { label: "Surface", value: launcherPackage.command_surface || "bloqueado" },
           { label: "Commands", value: String((launcherPackage.approved_commands || []).length) },
-          { label: "Next cut", value: model.next_cut || "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony" }
+          { label: "Next cut", value: model.next_cut || "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony" }
+        ],
+        (item) => item.label,
+        (item) => item.value
+      );
+    }
+
+    function renderAgentRuntimeLauncherCommandPlan(model) {
+      const summary = model.summary || {};
+      const commandPlan = model.command_plan || {};
+      const steps = Array.isArray(commandPlan.steps) ? commandPlan.steps : [];
+      agentRuntimeLauncherCommandPlanStatusNode.textContent = `Fonte: ${model.source || agentRuntimeLauncherCommandPlanSourceUrl} | ${model.overall || "observed"}`;
+      renderAgentLaunchItems(
+        agentRuntimeLauncherCommandPlanInputNode,
+        [
+          { label: "Overall", value: model.overall || "human_gate" },
+          { label: "State", value: model.plan_state || "waiting_for_launcher_preflight_ready" },
+          { label: "Preflight", value: String(summary.launcher_preflight_ready ?? false) },
+          { label: "Next", value: model.next_action || "wait_for_launcher_preflight_ready" },
+          { label: "Launcher exec", value: String(summary.launcher_execution_allowed ?? false) },
+          { label: "Runtime exec", value: String(summary.runtime_execution_allowed ?? false) }
+        ],
+        (item) => item.label,
+        (item) => item.value
+      );
+      renderAgentLaunchItems(
+        agentRuntimeLauncherCommandPlanChecksNode,
+        model.plan_checks,
+        (item) => item.id || "check",
+        (item) => `${item.status || "unknown"} | ${item.proof || "Sem prova"}`
+      );
+      renderAgentLaunchItems(
+        agentRuntimeLauncherCommandPlanPackageNode,
+        [
+          { label: "Eligible", value: String(commandPlan.eligible ?? false) },
+          { label: "Runtime", value: commandPlan.runtime || "bloqueado" },
+          { label: "Profile", value: commandPlan.profile_id || "bloqueado" },
+          { label: "Surface", value: commandPlan.command_surface || "bloqueado" },
+          { label: "Steps", value: String(steps.length || summary.planned_commands_count || 0) },
+          { label: "Next cut", value: model.next_cut || "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony" }
         ],
         (item) => item.label,
         (item) => item.value
@@ -3962,6 +4097,18 @@
         if (!response.ok) return null;
         const payload = await response.json();
         if (!payload.summary || !payload.preflight_state) return null;
+        return payload;
+      } catch {
+        return null;
+      }
+    }
+
+    async function loadAgentRuntimeLauncherCommandPlanSource() {
+      try {
+        const response = await fetch(agentRuntimeLauncherCommandPlanSourceUrl, { cache: "no-store" });
+        if (!response.ok) return null;
+        const payload = await response.json();
+        if (!payload.summary || !payload.plan_state) return null;
         return payload;
       } catch {
         return null;
@@ -4142,6 +4289,7 @@
       renderAgentRuntimeApprovalGate(seedAgentRuntimeApprovalGate);
       renderAgentRuntimeDecisionIntake(seedAgentRuntimeDecisionIntake);
       renderAgentRuntimeLauncherPreflight(seedAgentRuntimeLauncherPreflight);
+      renderAgentRuntimeLauncherCommandPlan(seedAgentRuntimeLauncherCommandPlan);
       const loadedGraph = await loadProjectGraphSource();
       if (loadedGraph) renderProjectGraph(loadedGraph);
       const loadedBrief = await loadProjectBriefSource();
@@ -4158,6 +4306,8 @@
       if (loadedAgentRuntimeDecisionIntake) renderAgentRuntimeDecisionIntake(loadedAgentRuntimeDecisionIntake);
       const loadedAgentRuntimeLauncherPreflight = await loadAgentRuntimeLauncherPreflightSource();
       if (loadedAgentRuntimeLauncherPreflight) renderAgentRuntimeLauncherPreflight(loadedAgentRuntimeLauncherPreflight);
+      const loadedAgentRuntimeLauncherCommandPlan = await loadAgentRuntimeLauncherCommandPlanSource();
+      if (loadedAgentRuntimeLauncherCommandPlan) renderAgentRuntimeLauncherCommandPlan(loadedAgentRuntimeLauncherCommandPlan);
       const loadedEvents = await loadEventSource();
       renderTimeline(loadedEvents || seedEvents);
     }

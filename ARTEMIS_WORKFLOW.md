@@ -427,6 +427,8 @@ scripts/artemis-agent-runtime-decision-intake.sh
 scripts/artemis-agent-runtime-decision-intake.sh --json
 scripts/artemis-agent-runtime-launcher-preflight.sh
 scripts/artemis-agent-runtime-launcher-preflight.sh --json
+scripts/artemis-agent-runtime-launcher-command-plan.sh
+scripts/artemis-agent-runtime-launcher-command-plan.sh --json
 ```
 
 Esse grafo e um read model operacional. Ele ajuda humanos e agentes a entenderem
@@ -448,6 +450,10 @@ nao executa runtime; `approved_ready` so libera o proximo launcher preflight.
 O Agent Runtime Launcher Preflight consome o Decision Intake, revalida comando,
 budget, auth, workspace, branch, dirty state, rollback e evidencias, mas ainda
 nao executa launcher; sem `approved_ready`, ele permanece em Human Gate.
+O Agent Runtime Launcher Command Plan consome o Launcher Preflight e materializa
+um plano de comandos apenas quando existe `launcher_preflight_ready`; sem isso,
+fica em Human Gate e mantem `launcher_execution_allowed=false`,
+`runtime_execution_allowed=false` e `commands_executed=0`.
 O Agent Launch Contract e o preflight supervisionado entre a entrada guiada e
 qualquer runtime real. Ele fixa `execute=false` por padrao e exige projeto,
 tarefa, auth, budget, comando, workspace, rollback e evidencia antes de Codex

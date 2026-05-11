@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T13:31:44Z",
+  "generated_at": "2026-05-11T13:51:03Z",
   "source": "scripts/artemis-symphony-service.sh",
   "mode": "finite_supervised_service",
   "overall": "service_bridge_plan_ready",
@@ -41,5 +41,5 @@
     "Service preserves terminal override and Human Gates.",
     "Real execution remains owned by queue bridge --execute plus Validation Gate and exact approval."
   ],
-  "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony"
+  "next_cut": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony"
 }

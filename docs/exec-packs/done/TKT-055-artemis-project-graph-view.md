@@ -55,5 +55,5 @@ git diff --check
 
 ## Handoff
 
-O proximo corte e `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`,
+O proximo corte e `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`,
 explicando o estado do projeto em linguagem leiga e acionavel a partir do grafo.

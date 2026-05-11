@@ -245,6 +245,12 @@ layers = [
         "required_files": ["scripts/artemis-agent-runtime-launcher-preflight.sh", "docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_PREFLIGHT.md"],
         "status": "implemented_runtime_launcher_preflight",
     },
+    {
+        "layer": "agent_runtime_launcher_command_plan",
+        "purpose": "Read-only launcher command plan that materializes commands only after launcher preflight is ready.",
+        "required_files": ["scripts/artemis-agent-runtime-launcher-command-plan.sh", "docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_COMMAND_PLAN.md"],
+        "status": "implemented_runtime_launcher_command_plan",
+    },
 ]
 
 for layer in layers:
@@ -276,6 +282,7 @@ required_terms = [
     "TKT-061",
     "TKT-062",
     "TKT-063",
+    "TKT-064",
     "Queue Bridge",
     "Queue Execution",
     "Service",
@@ -292,6 +299,7 @@ required_terms = [
     "Agent Runtime Approval Gate",
     "Agent Runtime Decision Intake",
     "Agent Runtime Launcher Preflight",
+    "Agent Runtime Launcher Command Plan",
 ]
 missing_terms = [term for term in required_terms if term not in spec_text]
 if missing_terms:
@@ -336,9 +344,10 @@ compatibility = {
     "agent_runtime_approval_gate_implemented": True,
     "agent_runtime_decision_intake_implemented": True,
     "agent_runtime_launcher_preflight_implemented": True,
+    "agent_runtime_launcher_command_plan_implemented": True,
     "terminal_first": True,
     "human_gates_preserved": True,
-    "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony",
+    "next_cut": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony",
 }
 
 overall = "failed" if blockers else "spec_ready"
@@ -376,7 +385,8 @@ payload = {
         "agent_runtime_approval_gate_implemented": exists("scripts/artemis-agent-runtime-approval-gate.sh"),
         "agent_runtime_decision_intake_implemented": exists("scripts/artemis-agent-runtime-decision-intake.sh"),
         "agent_runtime_launcher_preflight_implemented": exists("scripts/artemis-agent-runtime-launcher-preflight.sh"),
-        "next_cut_defined": "TKT-063" in spec_text,
+        "agent_runtime_launcher_command_plan_implemented": exists("scripts/artemis-agent-runtime-launcher-command-plan.sh"),
+        "next_cut_defined": "TKT-064" in spec_text,
     },
     "compatibility": compatibility,
     "layers": layers,
@@ -406,6 +416,7 @@ payload = {
         "The implemented Agent Runtime Approval Gate requests human approval and never starts runtime.",
         "The implemented Agent Runtime Decision Intake classifies human decisions and never starts runtime.",
         "The implemented Agent Runtime Launcher Preflight revalidates approved decisions and never starts runtime.",
+        "The implemented Agent Runtime Launcher Command Plan materializes commands without executing them.",
     ],
 }
 
@@ -443,6 +454,7 @@ status_lines = [
     f"- Agent Runtime Approval Gate implemented: `{str(compatibility['agent_runtime_approval_gate_implemented']).lower()}`.",
     f"- Agent Runtime Decision Intake implemented: `{str(compatibility['agent_runtime_decision_intake_implemented']).lower()}`.",
     f"- Agent Runtime Launcher Preflight implemented: `{str(compatibility['agent_runtime_launcher_preflight_implemented']).lower()}`.",
+    f"- Agent Runtime Launcher Command Plan implemented: `{str(compatibility['agent_runtime_launcher_command_plan_implemented']).lower()}`.",
     f"- Terminal-first: `{str(compatibility['terminal_first']).lower()}`.",
     f"- Human Gates preserved: `{str(compatibility['human_gates_preserved']).lower()}`.",
     f"- Next cut: `{compatibility['next_cut']}`.",
@@ -501,12 +513,12 @@ handoff_lines = [
     "",
     "## Estado",
     "",
-    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel, a promocao local por decisao, a Memory Zone, o Project Operations Graph, o Project Graph View, o Project Brief, o Guided Collaboration, o Agent Launch Contract, o Agent Runtime Dry-Run, o Agent Runtime Approval Gate, o Agent Runtime Decision Intake e o Agent Runtime Launcher Preflight existem.",
+    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel, a promocao local por decisao, a Memory Zone, o Project Operations Graph, o Project Graph View, o Project Brief, o Guided Collaboration, o Agent Launch Contract, o Agent Runtime Dry-Run, o Agent Runtime Approval Gate, o Agent Runtime Decision Intake, o Agent Runtime Launcher Preflight e o Agent Runtime Launcher Command Plan existem.",
     "",
     "## Proximo corte",
     "",
-    "- Criar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.",
-    "- Usar o Agent Runtime Launcher Preflight como entrada obrigatoria antes de materializar comandos de launcher.",
+    "- Criar `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`.",
+    "- Usar o Agent Runtime Launcher Command Plan como entrada obrigatoria antes de qualquer execucao supervisionada.",
     "- Manter Validation Gate antes de qualquer execucao real.",
     "",
     "## Nao fazer",

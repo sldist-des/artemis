@@ -13,6 +13,7 @@ runtime_dry_run_path="artifacts/artemis-agent-runtime-dry-run/run-01/runtime-dry
 runtime_approval_gate_path="artifacts/artemis-agent-runtime-approval-gate/run-01/runtime-approval-gate.json"
 runtime_decision_intake_path="artifacts/artemis-agent-runtime-decision-intake/run-01/runtime-decision-intake.json"
 runtime_launcher_preflight_path="artifacts/artemis-agent-runtime-launcher-preflight/run-01/launcher-preflight.json"
+runtime_launcher_command_plan_path="artifacts/artemis-agent-runtime-launcher-command-plan/run-01/launcher-command-plan.json"
 format="text"
 
 usage() {
@@ -125,6 +126,7 @@ runtime_dry_run_payload = read_json(Path("artifacts/artemis-agent-runtime-dry-ru
 runtime_approval_gate_payload = read_json(Path("artifacts/artemis-agent-runtime-approval-gate/run-01/runtime-approval-gate.json"), {"summary": {}, "overall": "not_available"})
 runtime_decision_intake_payload = read_json(Path("artifacts/artemis-agent-runtime-decision-intake/run-01/runtime-decision-intake.json"), {"summary": {}, "overall": "not_available"})
 runtime_launcher_preflight_payload = read_json(Path("artifacts/artemis-agent-runtime-launcher-preflight/run-01/launcher-preflight.json"), {"summary": {}, "overall": "not_available"})
+runtime_launcher_command_plan_payload = read_json(Path("artifacts/artemis-agent-runtime-launcher-command-plan/run-01/launcher-command-plan.json"), {"summary": {}, "overall": "not_available"})
 
 tasks = tasks_payload.get("tasks", [])
 events = event_log_payload.get("events", [])
@@ -235,6 +237,15 @@ nodes = [
         "launcher_execution_allowed": runtime_launcher_preflight_payload.get("summary", {}).get("launcher_execution_allowed", False),
     },
     {
+        "id": "runtime:launcher_command_plan",
+        "type": "runtime_command_plan",
+        "label": "Agent Runtime Launcher Command Plan",
+        "status": runtime_launcher_command_plan_payload.get("overall", "not_available"),
+        "plan_state": runtime_launcher_command_plan_payload.get("plan_state", "unknown"),
+        "planned_commands": runtime_launcher_command_plan_payload.get("summary", {}).get("planned_commands_count", 0),
+        "launcher_execution_allowed": runtime_launcher_command_plan_payload.get("summary", {}).get("launcher_execution_allowed", False),
+    },
+    {
         "id": "control_plane:view",
         "type": "view",
         "label": "Control Plane",
@@ -263,6 +274,9 @@ edges = [
     {"from": "runtime:decision_intake", "to": "runtime:launcher_preflight", "type": "gates_preflight"},
     {"from": "runtime:launcher_preflight", "to": "validation:gate", "type": "rechecks"},
     {"from": "runtime:launcher_preflight", "to": "cost:budget", "type": "keeps_execution_blocked"},
+    {"from": "runtime:launcher_preflight", "to": "runtime:launcher_command_plan", "type": "gates_command_plan"},
+    {"from": "runtime:launcher_command_plan", "to": "validation:gate", "type": "declares_validation"},
+    {"from": "runtime:launcher_command_plan", "to": "cost:budget", "type": "keeps_execution_blocked"},
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
@@ -332,6 +346,7 @@ payload = {
         "validation_gate": str(validation_gate_path),
         "runtime_decision_intake": "artifacts/artemis-agent-runtime-decision-intake/run-01/runtime-decision-intake.json",
         "runtime_launcher_preflight": "artifacts/artemis-agent-runtime-launcher-preflight/run-01/launcher-preflight.json",
+        "runtime_launcher_command_plan": "artifacts/artemis-agent-runtime-launcher-command-plan/run-01/launcher-command-plan.json",
     },
     "summary": summary,
     "states": dict(states),
@@ -358,10 +373,11 @@ payload = {
         "runtime_approval_input": "artemis_agent_runtime_approval_gate",
         "runtime_decision_input": "artemis_agent_runtime_decision_intake",
         "runtime_launcher_preflight_input": "artemis_agent_runtime_launcher_preflight",
+        "runtime_launcher_command_plan_input": "artemis_agent_runtime_launcher_command_plan",
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },
-    "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony",
+    "next_cut": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony",
 }
 
 write_text(artifact_root / "project-graph.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
@@ -443,8 +459,8 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.",
-    "- Usar o Launcher Preflight como entrada obrigatoria antes de qualquer plano de comando.",
+    "- Implementar `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`.",
+    "- Usar o Launcher Command Plan como entrada obrigatoria antes de qualquer execucao supervisionada.",
     "",
     "## Nao fazer",
     "",

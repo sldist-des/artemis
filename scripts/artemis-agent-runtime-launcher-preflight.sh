@@ -337,7 +337,7 @@ payload = {
         "Remote writes, secrets, deploys and production remain separate Human Gates.",
         "Future launcher command plans must consume this artifact and preserve logs.",
     ],
-    "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony",
+    "next_cut": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony",
 }
 
 (artifact_root / "launcher-preflight.json").write_text(
@@ -426,9 +426,9 @@ handoff_lines = [
     "",
 ]
 if preflight_ready:
-    handoff_lines.append("- Implementar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony` usando este pacote de preflight.")
+    handoff_lines.append("- Implementar `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony` usando este pacote de preflight.")
 else:
-    handoff_lines.append("- Implementar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`, mantendo comando e runtime bloqueados ate existir `launcher_preflight_ready`.")
+    handoff_lines.append("- Implementar `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`, mantendo comando e runtime bloqueados ate existir `launcher_preflight_ready`.")
 handoff_lines.extend([
     "",
     "## Nao fazer",

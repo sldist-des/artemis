@@ -217,6 +217,7 @@ for events_path in [
     Path("artifacts/artemis-agent-runtime-approval-gate/run-01/events.json"),
     Path("artifacts/artemis-agent-runtime-decision-intake/run-01/events.json"),
     Path("artifacts/artemis-agent-runtime-launcher-preflight/run-01/events.json"),
+    Path("artifacts/artemis-agent-runtime-launcher-command-plan/run-01/events.json"),
 ]:
     if events_path.is_file():
         remote_log = read_json(events_path)

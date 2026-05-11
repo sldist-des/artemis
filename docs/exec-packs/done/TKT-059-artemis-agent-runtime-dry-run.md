@@ -52,4 +52,4 @@ O dry-run foi implementado como superficie de ensaio auditavel. Ele registra
 pedido, preflight, budget zero, Human Gates de auth/budget, workspace read-only,
 rollback e handoff sem iniciar runtime.
 
-O proximo corte e `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.
+O proximo corte e `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`.

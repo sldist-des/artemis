@@ -4,4 +4,4 @@ O briefing humano esta pronto como camada de explicacao do Project Operations Gr
 
 Proximo corte:
 
-- Implementar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.
+- Implementar `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`.

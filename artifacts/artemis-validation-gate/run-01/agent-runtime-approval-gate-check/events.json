@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T13:31:46Z",
+  "generated_at": "2026-05-11T13:51:05Z",
   "source": "scripts/artemis-agent-runtime-approval-gate.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-060_agent_runtime_approval_gate",
       "event_type": "approval.requested",
-      "generated_at": "2026-05-11T13:31:46Z",
+      "generated_at": "2026-05-11T13:51:05Z",
       "producer": {
         "adapter": "agent_runtime_approval_gate",
         "name": "scripts/artemis-agent-runtime-approval-gate.sh",
@@ -70,7 +70,7 @@
           "paid_tokens_authorized": 0
         },
         "decision_file": "artifacts/artemis-validation-gate/run-01/agent-runtime-approval-gate-check/runtime-approval-decision.json",
-        "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony"
+        "next_cut": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony"
       }
     }
   ]

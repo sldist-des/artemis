@@ -807,6 +807,40 @@ Resultado esperado:
 - `commands_executed=0`;
 - evento canonico `runner.preflight_recorded`.
 
+### Modo 3.13 - Agent Runtime Launcher Command Plan
+
+Implementado em `TKT-063` como plano read-only entre o Launcher Preflight e
+qualquer futura execucao supervisionada.
+
+- consome `launcher-preflight.json`;
+- exige `overall=launcher_preflight_ready`, `preflight_state=preflight_ready`
+  e `launcher_preflight_allowed=true` para ficar pronto;
+- enquanto o preflight estiver em Human Gate, permanece em `human_gate` com
+  `plan_state=waiting_for_launcher_preflight_ready`;
+- materializa comandos planejados apenas a partir do `launcher_package`;
+- vincula runtime, profile, command surface, budget, stop rule, workspace,
+  rollback, logs e validacoes;
+- captura contexto Git (`branch`, `HEAD` e dirty state) como evidencia;
+- nao inicia Codex app-server, Claude Code, SDK, CLI, subagente, fila, daemon,
+  dependencia, push, PR, deploy, segredo, producao ou tokens pagos;
+- nao executa comandos planejados.
+
+Agent Runtime Launcher Command Plan implementado:
+
+- `scripts/artemis-agent-runtime-launcher-command-plan.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_COMMAND_PLAN.md`
+
+Resultado esperado:
+
+- `human_gate` enquanto o Launcher Preflight nao estiver
+  `launcher_preflight_ready`;
+- `launcher_command_plan_ready` apenas quando o preflight aprovado passar na
+  materializacao local;
+- `launcher_execution_allowed=false`;
+- `runtime_execution_allowed=false`;
+- `commands_executed=0`;
+- evento canonico `runner.attempt_planned`.
+
 ## Invariantes
 
 - ARTEMIS Symphony nao executa cleanup real sem decisao humana.
@@ -819,15 +853,15 @@ Resultado esperado:
 
 ## Proximo corte recomendado
 
-`TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`
+`TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`
 
 Objetivo:
 
-- consumir apenas `launcher-preflight.json` em estado `launcher_preflight_ready`;
-- materializar um plano de comandos ainda read-only com runtime, perfil, budget,
-  stop rule, logs, validacoes e rollback;
-- confirmar que nenhum comando sera executado no corte de planejamento;
-- preparar a futura execucao supervisionada sem abrir mao dos Human Gates de
-  remoto, producao, secrets e custo.
+- consumir apenas `launcher-command-plan.json` em estado
+  `launcher_command_plan_ready`;
+- criar um gate explicito antes de qualquer execucao real;
+- exigir confirmacao final de comando, budget, logs, rollback, validacao e
+  limites de remoto/producao/secrets;
+- preservar controle terminal-first e Human Gates antes de acionar agentes.
 
 Esse sera o proximo passo de implementacao do nosso Symphony proprio.

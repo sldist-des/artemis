@@ -6,8 +6,8 @@ Project Operations Graph esta `project_graph_ready` como read model operacional.
 
 ## Proximo corte
 
-- Implementar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.
-- Usar o Launcher Preflight como entrada obrigatoria antes de qualquer plano de comando.
+- Implementar `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`.
+- Usar o Launcher Command Plan como entrada obrigatoria antes de qualquer execucao supervisionada.
 
 ## Nao fazer
 

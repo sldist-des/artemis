@@ -3,9 +3,9 @@
 ## Resultado local
 
 - Overall: `spec_ready`.
-- Layers: `27`.
+- Layers: `28`.
 - Layers with missing files: `0`.
-- Tasks: `63/63 done`.
+- Tasks: `64/64 done`.
 - Next cut defined: `true`.
 
 ## Comandos de verificacao

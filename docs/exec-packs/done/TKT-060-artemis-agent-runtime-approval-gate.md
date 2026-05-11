@@ -53,4 +53,4 @@ O gate foi implementado como pacote humano-preenchivel. Ele preserva o dry-run,
 lista os itens de Human Gate, gera template/checklist e bloqueia execucao ate
 uma decisao humana futura ser ingerida por um corte posterior.
 
-O proximo corte e `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.
+O proximo corte e `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`.

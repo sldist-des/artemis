@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T13:31:40Z",
+  "generated_at": "2026-05-11T13:50:59Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
   "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-compatibility-check",
   "spec": "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md",
   "summary": {
-    "layers_total": 27,
+    "layers_total": 28,
     "layers_with_missing_files": 0,
-    "tasks_total": 63,
-    "tasks_done": 63,
+    "tasks_total": 64,
+    "tasks_done": 64,
     "daemon_implemented": true,
     "kernel_implemented": true,
     "bridge_implemented": true,
@@ -32,6 +32,7 @@
     "agent_runtime_approval_gate_implemented": true,
     "agent_runtime_decision_intake_implemented": true,
     "agent_runtime_launcher_preflight_implemented": true,
+    "agent_runtime_launcher_command_plan_implemented": true,
     "next_cut_defined": true
   },
   "compatibility": {
@@ -59,9 +60,10 @@
     "agent_runtime_approval_gate_implemented": true,
     "agent_runtime_decision_intake_implemented": true,
     "agent_runtime_launcher_preflight_implemented": true,
+    "agent_runtime_launcher_command_plan_implemented": true,
     "terminal_first": true,
     "human_gates_preserved": true,
-    "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony"
+    "next_cut": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony"
   },
   "layers": [
     {
@@ -344,6 +346,16 @@
       ],
       "status": "implemented_runtime_launcher_preflight",
       "missing_files": []
+    },
+    {
+      "layer": "agent_runtime_launcher_command_plan",
+      "purpose": "Read-only launcher command plan that materializes commands only after launcher preflight is ready.",
+      "required_files": [
+        "scripts/artemis-agent-runtime-launcher-command-plan.sh",
+        "docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_COMMAND_PLAN.md"
+      ],
+      "status": "implemented_runtime_launcher_command_plan",
+      "missing_files": []
     }
   ],
   "blockers": [],
@@ -371,6 +383,7 @@
     "The implemented Agent Runtime Dry-Run materializes launch requests without starting agents or spending paid tokens.",
     "The implemented Agent Runtime Approval Gate requests human approval and never starts runtime.",
     "The implemented Agent Runtime Decision Intake classifies human decisions and never starts runtime.",
-    "The implemented Agent Runtime Launcher Preflight revalidates approved decisions and never starts runtime."
+    "The implemented Agent Runtime Launcher Preflight revalidates approved decisions and never starts runtime.",
+    "The implemented Agent Runtime Launcher Command Plan materializes commands without executing them."
   ]
 }

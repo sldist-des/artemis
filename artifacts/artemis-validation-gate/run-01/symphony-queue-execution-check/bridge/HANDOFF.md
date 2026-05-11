@@ -6,7 +6,7 @@ Bridge supervisionada concluida com overall `runner_executed`.
 
 ## Proximo corte
 
-- Implementar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.
+- Implementar `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`.
 - Consumir item revisado da fila com comando explicito e ponte plan-only por padrao.
 
 ## Nao fazer

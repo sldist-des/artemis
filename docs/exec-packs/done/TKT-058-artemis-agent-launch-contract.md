@@ -46,4 +46,4 @@ O ARTEMIS passa a ter um artifact canonico que explicita perfis de agente, gates
 
 O contrato foi implementado como superficie read-only. Ele fixa `execute=false`, `agents_started=0`, `runtime_started=false`, `commands_executed=0` e `remote_writes_allowed=false`.
 
-O proximo corte e `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.
+O proximo corte e `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`.

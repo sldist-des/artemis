@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T13:31:46Z",
+  "generated_at": "2026-05-11T13:51:05Z",
   "source": "scripts/artemis-agent-runtime-decision-intake.sh",
   "mode": "read_only_agent_runtime_decision_intake",
   "overall": "human_gate",
@@ -12,7 +12,7 @@
   },
   "approval_request": {
     "project": "ARTEMIS",
-    "task": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony",
+    "task": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony",
     "profile_id": "codex_terminal",
     "profile_name": "Codex terminal-first",
     "runtime": "codex_cli",
@@ -189,5 +189,5 @@
     "pending, deferred, rejected and invalid states do not execute commands.",
     "Remote writes, secrets, deploys and production remain separate Human Gates."
   ],
-  "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony"
+  "next_cut": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony"
 }

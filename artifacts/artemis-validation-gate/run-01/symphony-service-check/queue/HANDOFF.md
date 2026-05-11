@@ -6,7 +6,7 @@ Fila supervisionada gerada com `1` item(ns) e overall `queue_ready`.
 
 ## Proximo corte
 
-- Implementar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.
+- Implementar `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`.
 - Exigir comando explicito, terminal override e Validation Gate antes de qualquer execucao.
 
 ## Nao fazer

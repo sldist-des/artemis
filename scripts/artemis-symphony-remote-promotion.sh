@@ -254,7 +254,7 @@ payload = {
     "promoted_source": str(artifact_root / "promoted-source.json"),
     "blockers": blockers,
     "warnings": warnings,
-    "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony",
+    "next_cut": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony",
 }
 
 promoted_source = {
@@ -350,7 +350,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.",
+    "- Implementar `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`.",
     "- Manter comentarios, labels, branches e PRs atras de decisao humana exata.",
     "",
     "## Nao fazer",

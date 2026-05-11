@@ -49,4 +49,4 @@ scripts/artemis-symphony-remote-intake.sh \
 
 ## Proximo Corte
 
-`TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`
+`TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`

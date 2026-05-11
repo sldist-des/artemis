@@ -31,6 +31,6 @@ agente, gates, custo/risco e evidencia esperada antes de qualquer execucao real.
 
 ## Handoff
 
-O proximo corte e `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`,
+O proximo corte e `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`,
 materializando o contrato de lancamento como dry-run auditavel antes de qualquer
 runtime real.

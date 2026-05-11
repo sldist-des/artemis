@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T13:31:42Z",
+  "generated_at": "2026-05-11T13:51:01Z",
   "source": "scripts/artemis-symphony-queue-bridge.sh",
   "mode": "supervised_queue_bridge_plan_only",
   "overall": "bridge_plan_ready",
@@ -78,5 +78,5 @@
     "Validation Gate remains required before real execution.",
     "Human Gates remain explicit and non-bypassable."
   ],
-  "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony"
+  "next_cut": "TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony"
 }

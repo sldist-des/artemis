@@ -53,4 +53,4 @@ O preflight foi implementado como camada read-only. Ele revalida a decisao de
 runtime antes de qualquer planejamento de launcher e produz um pacote futuro
 somente quando o Decision Intake estiver `approved_ready`.
 
-O proximo corte e `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.
+O proximo corte e `TKT-064 - Agent Runtime Launcher Execution Gate do ARTEMIS Symphony`.

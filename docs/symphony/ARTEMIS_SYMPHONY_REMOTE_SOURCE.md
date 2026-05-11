@@ -59,4 +59,4 @@ scripts/artemis-symphony-remote-source.sh \
 
 ## Proximo Corte
 
-`TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony`
+`TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony`

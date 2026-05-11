@@ -61,4 +61,4 @@ scripts/artemis-symphony-queue-bridge.sh --ticket TKT-000 --command "cmd" --json
 
 ## Proximo corte
 
-`TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony`
+`TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony`

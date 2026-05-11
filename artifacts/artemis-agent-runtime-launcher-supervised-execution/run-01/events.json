@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-11T16:21:59Z",
+  "source": "scripts/artemis-agent-runtime-launcher-supervised-execution.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-065_agent_runtime_launcher_supervised_execution",
+      "event_type": "runner.attempt_planned",
+      "generated_at": "2026-05-11T16:21:59Z",
+      "producer": {
+        "adapter": "agent_runtime_launcher_supervised_execution",
+        "name": "scripts/artemis-agent-runtime-launcher-supervised-execution.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-065",
+        "task_id": "tkt-065",
+        "title": "Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony",
+        "exec_pack": "docs/exec-packs/done/TKT-065-artemis-agent-runtime-launcher-supervised-execution.md",
+        "artifact_root": "artifacts/artemis-agent-runtime-launcher-supervised-execution/run-01"
+      },
+      "runner": {
+        "kind": "agent_runtime_launcher_supervised_execution",
+        "execute": false,
+        "commands_planned": 0,
+        "commands_executed": 0
+      },
+      "state": {
+        "from": "human_gate",
+        "to": "human_gate",
+        "reason": "Supervised launcher execution was evaluated with ARTEMIS gates and evidence."
+      },
+      "gate": {
+        "kind": "human",
+        "status": "human_gate",
+        "reason": "Launcher execution gate remains required before supervised execution."
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-agent-runtime-launcher-supervised-execution/run-01",
+        "status_path": "artifacts/artemis-agent-runtime-launcher-supervised-execution/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-agent-runtime-launcher-supervised-execution/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-agent-runtime-launcher-supervised-execution/run-01/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-065"
+      },
+      "payload": {
+        "overall": "human_gate",
+        "reason": "Supervised launcher execution was evaluated with ARTEMIS gates and evidence.",
+        "summary": {
+          "launcher_execution_gate_ready": false,
+          "execute_requested": false,
+          "supervised_execution_ready": false,
+          "supervised_execution_completed": false,
+          "supervision_checks": 6,
+          "supervision_passed": 5,
+          "supervision_failed": 0,
+          "supervision_human_gate": 1,
+          "approved_commands_count": 0,
+          "commands_executed": 0,
+          "runtime_started": false,
+          "agents_started": 0,
+          "dependencies_installed": 0,
+          "remote_writes_allowed": false,
+          "production_allowed": false,
+          "secrets_allowed": false,
+          "paid_tokens_authorized": 0
+        },
+        "execution_state": "waiting_for_launcher_execution_gate_ready",
+        "next_action": "wait_for_launcher_execution_gate_ready",
+        "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
+      }
+    }
+  ]
+}

@@ -6,7 +6,7 @@ Daemon dry-run concluido com `1` heartbeat(s) e overall `heartbeat_ready`.
 
 ## Proximo corte
 
-- Implementar `TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony`.
+- Implementar `TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony`.
 - Consumir item revisado da fila com comando explicito e ponte plan-only por padrao.
 
 ## Nao fazer

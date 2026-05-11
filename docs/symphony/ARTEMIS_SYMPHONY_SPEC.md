@@ -875,6 +875,37 @@ Resultado esperado:
 - `remote_writes_allowed=false`;
 - evento canonico `approval.requested`.
 
+### Modo 3.15 - Agent Runtime Launcher Supervised Execution
+
+Implementado em `TKT-065` como runner supervisionado apos o Launcher Execution
+Gate.
+
+- consome `launcher-execution-gate.json`;
+- exige `overall=launcher_execution_gate_ready`, `gate_state=execution_gate_ready`
+  e `execution_gate_ready=true` antes de ficar pronto;
+- enquanto o Execution Gate estiver em Human Gate, permanece em `human_gate`
+  com `execution_state=waiting_for_launcher_execution_gate_ready`;
+- em modo padrao, nunca executa comandos;
+- com `--execute`, executa somente comandos aprovados exatamente pelo gate;
+- registra stdout, stderr, exit code, budget, stop rule, rollback e evidencia;
+- bloqueia remoto, producao, secrets e comandos destrutivos sem gate separado.
+
+Agent Runtime Launcher Supervised Execution implementado:
+
+- `scripts/artemis-agent-runtime-launcher-supervised-execution.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_SUPERVISED_EXECUTION.md`
+
+Resultado esperado:
+
+- `human_gate` enquanto o Launcher Execution Gate nao estiver
+  `launcher_execution_gate_ready`;
+- `supervised_execution_ready=false`;
+- `execute_requested=false`;
+- `runtime_started=false`;
+- `commands_executed=0`;
+- `remote_writes_allowed=false`;
+- evento canonico `runner.attempt_planned`.
+
 ## Invariantes
 
 - ARTEMIS Symphony nao executa cleanup real sem decisao humana.
@@ -887,14 +918,13 @@ Resultado esperado:
 
 ## Proximo corte recomendado
 
-`TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony`
+`TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony`
 
 Objetivo:
 
-- consumir apenas `launcher-execution-gate.json` em estado
-  `launcher_execution_gate_ready`;
-- executar somente comandos aprovados exatamente pelo gate;
-- preservar logs, budget, stop rule, rollback e validacao;
-- bloquear remoto, producao e secrets salvo gate humano separado.
+- consumir `launcher-supervised-execution.json`;
+- distinguir tentativa planejada, executada, concluida, falha e bloqueada;
+- preservar stdout, stderr, exit code, rollback, budget e Validation Gate;
+- preparar handoff claro para humanos e agentes leigos.
 
 Esse sera o proximo passo de implementacao do nosso Symphony proprio.

@@ -87,7 +87,8 @@
             "agent_runtime_decision_intake",
             "agent_runtime_launcher_preflight",
             "agent_runtime_launcher_command_plan",
-            "agent_runtime_launcher_execution_gate"
+            "agent_runtime_launcher_execution_gate",
+            "agent_runtime_launcher_supervised_execution"
           ]
         },
         "name": {

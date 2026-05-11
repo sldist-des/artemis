@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T14:32:07Z",
+  "generated_at": "2026-05-11T16:22:10Z",
   "source": "scripts/artemis-symphony-bridge.sh",
   "mode": "supervised_bridge",
   "overall": "runner_plan_ready",
   "task_source": "artifacts/artemis-validation-gate/run-01/runner-task-source.json",
   "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-service-check/queue-bridge/bridge",
   "kernel": "artifacts/artemis-validation-gate/run-01/symphony-service-check/queue-bridge/bridge/kernel/symphony-kernel.json",
-  "runner_attempt": "artifacts/artemis-validation-gate/run-01/symphony-service-check/queue-bridge/bridge/runner/attempts/20260511T143207Z-698-tkt-validate",
-  "runner_events": "artifacts/artemis-validation-gate/run-01/symphony-service-check/queue-bridge/bridge/runner/attempts/20260511T143207Z-698-tkt-validate/events.json",
+  "runner_attempt": "artifacts/artemis-validation-gate/run-01/symphony-service-check/queue-bridge/bridge/runner/attempts/20260511T162209Z-700-tkt-validate",
+  "runner_events": "artifacts/artemis-validation-gate/run-01/symphony-service-check/queue-bridge/bridge/runner/attempts/20260511T162209Z-700-tkt-validate/events.json",
   "summary": {
     "kernel_overall": "dispatch_plan_ready",
     "kernel_selected_for_dispatch": 1,
@@ -53,5 +53,5 @@
     "Runner execution requires explicit --execute.",
     "Remote, destructive and deployment commands remain blocked by the runner."
   ],
-  "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
+  "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
 }

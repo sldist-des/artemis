@@ -6,8 +6,8 @@ Project Operations Graph esta `project_graph_ready` como read model operacional.
 
 ## Proximo corte
 
-- Implementar `TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony`.
-- Usar o Launcher Execution Gate como entrada obrigatoria antes de qualquer execucao supervisionada.
+- Implementar `TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony`.
+- Usar o Launcher Supervised Execution como entrada obrigatoria para interpretar resultados de runtime.
 
 ## Nao fazer
 

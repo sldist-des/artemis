@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T14:32:13Z",
+  "generated_at": "2026-05-11T16:22:14Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-11T14:32:13Z",
+      "generated_at": "2026-05-11T16:22:14Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -74,7 +74,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-11T14:32:13Z",
+      "generated_at": "2026-05-11T16:22:14Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -161,7 +161,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-11T14:32:13Z",
+      "generated_at": "2026-05-11T16:22:14Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -254,7 +254,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-11T14:32:13Z",
+      "generated_at": "2026-05-11T16:22:14Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -294,7 +294,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 93,
+          "passed": 95,
           "failed": 0,
           "human_gate": 2
         },
@@ -564,6 +564,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_launcher_command_plan.txt"
+          },
+          {
+            "name": "shell_agent_runtime_launcher_execution_gate",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_launcher_execution_gate.txt"
           },
           {
             "name": "shell_approved_workspace_cleanup",
@@ -879,6 +886,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_launcher_command_plan.txt"
+          },
+          {
+            "name": "agent_runtime_launcher_execution_gate",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_launcher_execution_gate.txt"
           },
           {
             "name": "approved_workspace_cleanup",
@@ -1292,7 +1306,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-11T14:31:10Z",
+      "generated_at": "2026-05-11T16:21:17Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -1332,17 +1346,17 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 65,
-          "tasks_done": 65,
+          "tasks_total": 66,
+          "tasks_done": 66,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 8,
-          "events_total": 51,
-          "nodes_total": 16,
-          "edges_total": 30,
-          "evidence_count": 65,
-          "exec_pack_count": 65,
-          "validation_passed": 93,
+          "events_total": 53,
+          "nodes_total": 17,
+          "edges_total": 34,
+          "evidence_count": 66,
+          "exec_pack_count": 66,
+          "validation_passed": 95,
           "validation_failed": 0,
           "validation_human_gate": 2,
           "memory_zones": 3,
@@ -1353,14 +1367,14 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
+        "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-11T14:31:14Z",
+      "generated_at": "2026-05-11T16:21:23Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -1400,11 +1414,11 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 16,
-          "edges_rendered": 30,
+          "nodes_rendered": 17,
+          "edges_rendered": 34,
           "questions_rendered": 3,
           "invariants_rendered": 3,
-          "validation_passed": 93,
+          "validation_passed": 95,
           "human_gates": 2,
           "dependencies_installed": 0,
           "commands_executed": 0,
@@ -1412,7 +1426,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
+        "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
       }
     },
     {
@@ -3133,7 +3147,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-11T13:51:09Z",
+      "generated_at": "2026-05-11T14:32:13Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -3204,6 +3218,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_decision_intake.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_launcher_preflight.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_launcher_command_plan.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_launcher_execution_gate.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt",
@@ -3249,6 +3264,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_decision_intake.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_launcher_preflight.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_launcher_command_plan.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_launcher_execution_gate.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt",
@@ -3269,7 +3285,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 93,
+          "passed": 95,
           "failed": 0,
           "human_gate": 2
         },
@@ -3539,6 +3555,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_launcher_command_plan.txt"
+          },
+          {
+            "name": "shell_agent_runtime_launcher_execution_gate",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_launcher_execution_gate.txt"
           },
           {
             "name": "shell_approved_workspace_cleanup",
@@ -3854,6 +3877,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_launcher_command_plan.txt"
+          },
+          {
+            "name": "agent_runtime_launcher_execution_gate",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_launcher_execution_gate.txt"
           },
           {
             "name": "approved_workspace_cleanup",
@@ -4186,7 +4216,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-053_memory_zone",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-11T13:29:46Z",
+      "generated_at": "2026-05-11T16:21:14Z",
       "producer": {
         "adapter": "memory_zone",
         "name": "scripts/artemis-memory-zone.sh",
@@ -4239,14 +4269,14 @@
           "code_copied": false,
           "vendorization_allowed_without_human_gate": false
         },
-        "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony"
+        "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-11T14:31:10Z",
+      "generated_at": "2026-05-11T16:21:17Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -4286,17 +4316,17 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 65,
-          "tasks_done": 65,
+          "tasks_total": 66,
+          "tasks_done": 66,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 8,
-          "events_total": 51,
-          "nodes_total": 16,
-          "edges_total": 30,
-          "evidence_count": 65,
-          "exec_pack_count": 65,
-          "validation_passed": 93,
+          "events_total": 53,
+          "nodes_total": 17,
+          "edges_total": 34,
+          "evidence_count": 66,
+          "exec_pack_count": 66,
+          "validation_passed": 95,
           "validation_failed": 0,
           "validation_human_gate": 2,
           "memory_zones": 3,
@@ -4307,14 +4337,14 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
+        "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-11T14:31:14Z",
+      "generated_at": "2026-05-11T16:21:23Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -4354,11 +4384,11 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 16,
-          "edges_rendered": 30,
+          "nodes_rendered": 17,
+          "edges_rendered": 34,
           "questions_rendered": 3,
           "invariants_rendered": 3,
-          "validation_passed": 93,
+          "validation_passed": 95,
           "human_gates": 2,
           "dependencies_installed": 0,
           "commands_executed": 0,
@@ -4366,14 +4396,14 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
+        "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-11T14:31:19Z",
+      "generated_at": "2026-05-11T16:21:40Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -4413,12 +4443,12 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 65,
-          "tasks_done": 65,
-          "events_total": 51,
-          "nodes_total": 16,
-          "edges_total": 30,
-          "validation_passed": 93,
+          "tasks_total": 66,
+          "tasks_done": 66,
+          "events_total": 53,
+          "nodes_total": 17,
+          "edges_total": 34,
+          "validation_passed": 95,
           "validation_failed": 0,
           "human_gates": 2,
           "memory_zones": 3,
@@ -4428,14 +4458,14 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
+        "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-057_guided_collaboration",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-11T14:31:23Z",
+      "generated_at": "2026-05-11T16:21:27Z",
       "producer": {
         "adapter": "guided_collaboration",
         "name": "scripts/artemis-guided-collaboration.sh",
@@ -4479,11 +4509,11 @@
           "task_lanes": 4,
           "agent_profiles": 4,
           "gate_contracts": 4,
-          "tasks_total": 65,
-          "tasks_done": 65,
+          "tasks_total": 66,
+          "tasks_done": 66,
           "tasks_human": 0,
           "tasks_ready": 0,
-          "validation_passed": 93,
+          "validation_passed": 95,
           "validation_failed": 0,
           "human_gates": 2,
           "commands_executed": 0,
@@ -4493,14 +4523,14 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
+        "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-058_agent_launch_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-11T14:31:27Z",
+      "generated_at": "2026-05-11T16:21:31Z",
       "producer": {
         "adapter": "agent_launch_contract",
         "name": "scripts/artemis-agent-launch-contract.sh",
@@ -4543,10 +4573,10 @@
           "launch_profiles": 4,
           "launch_gates": 9,
           "evidence_requirements": 4,
-          "tasks_total": 65,
-          "tasks_done": 65,
+          "tasks_total": 66,
+          "tasks_done": 66,
           "tasks_human": 0,
-          "validation_passed": 93,
+          "validation_passed": 95,
           "validation_failed": 0,
           "human_gates": 2,
           "execute_default": false,
@@ -4562,20 +4592,20 @@
         },
         "candidate_launch": {
           "project": "ARTEMIS",
-          "task": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony",
+          "task": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony",
           "recommended_profile": "codex_terminal",
           "fallback_profile": "claude_code",
           "execute": false,
           "reason": "The next safe step is a command plan that consumes launcher preflight evidence without starting paid/runtime agents."
         },
-        "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
+        "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-059_agent_runtime_dry_run",
       "event_type": "runner.attempt_planned",
-      "generated_at": "2026-05-11T14:31:33Z",
+      "generated_at": "2026-05-11T16:21:34Z",
       "producer": {
         "adapter": "agent_runtime_dry_run",
         "name": "scripts/artemis-agent-runtime-dry-run.sh",
@@ -4619,9 +4649,9 @@
         "overall": "agent_runtime_dry_run_ready",
         "reason": "Runtime launch request was materialized as auditable dry-run without starting agents.",
         "summary": {
-          "tasks_total": 65,
-          "tasks_done": 65,
-          "validation_passed": 93,
+          "tasks_total": 66,
+          "tasks_done": 66,
+          "validation_passed": 95,
           "validation_failed": 0,
           "human_gates_from_project": 2,
           "preflight_checks": 13,
@@ -4640,7 +4670,7 @@
         },
         "launch_request": {
           "project": "ARTEMIS",
-          "task": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony",
+          "task": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony",
           "profile_id": "codex_terminal",
           "profile_name": "Codex terminal-first",
           "runtime": "codex_cli",
@@ -4686,14 +4716,14 @@
             "json": "artifacts/artemis-agent-runtime-dry-run/run-01/runtime-dry-run.json"
           }
         },
-        "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
+        "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-060_agent_runtime_approval_gate",
       "event_type": "approval.requested",
-      "generated_at": "2026-05-11T14:31:37Z",
+      "generated_at": "2026-05-11T16:21:40Z",
       "producer": {
         "adapter": "agent_runtime_approval_gate",
         "name": "scripts/artemis-agent-runtime-approval-gate.sh",
@@ -4756,14 +4786,14 @@
           "paid_tokens_authorized": 0
         },
         "decision_file": "artifacts/artemis-agent-runtime-approval-gate/run-01/runtime-approval-decision.json",
-        "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
+        "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-061_agent_runtime_decision_intake",
       "event_type": "approval.intake_recorded",
-      "generated_at": "2026-05-11T14:31:41Z",
+      "generated_at": "2026-05-11T16:21:44Z",
       "producer": {
         "adapter": "agent_runtime_decision_intake",
         "name": "scripts/artemis-agent-runtime-decision-intake.sh",
@@ -4821,14 +4851,14 @@
         },
         "intake_state": "pending",
         "next_action": "human_decision_required",
-        "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
+        "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-062_agent_runtime_launcher_preflight",
       "event_type": "runner.preflight_recorded",
-      "generated_at": "2026-05-11T14:31:45Z",
+      "generated_at": "2026-05-11T16:21:49Z",
       "producer": {
         "adapter": "agent_runtime_launcher_preflight",
         "name": "scripts/artemis-agent-runtime-launcher-preflight.sh",
@@ -4887,14 +4917,14 @@
         },
         "preflight_state": "waiting_for_approved_ready",
         "next_action": "wait_for_decision_intake_approved_ready",
-        "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
+        "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-063_agent_runtime_launcher_command_plan",
       "event_type": "runner.attempt_planned",
-      "generated_at": "2026-05-11T14:31:49Z",
+      "generated_at": "2026-05-11T16:21:52Z",
       "producer": {
         "adapter": "agent_runtime_launcher_command_plan",
         "name": "scripts/artemis-agent-runtime-launcher-command-plan.sh",
@@ -4956,14 +4986,14 @@
         },
         "plan_state": "waiting_for_launcher_preflight_ready",
         "next_action": "wait_for_launcher_preflight_ready",
-        "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
+        "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-064_agent_runtime_launcher_execution_gate",
       "event_type": "approval.requested",
-      "generated_at": "2026-05-11T14:31:53Z",
+      "generated_at": "2026-05-11T16:21:56Z",
       "producer": {
         "adapter": "agent_runtime_launcher_execution_gate",
         "name": "scripts/artemis-agent-runtime-launcher-execution-gate.sh",
@@ -5034,7 +5064,78 @@
         },
         "gate_state": "waiting_for_launcher_command_plan_ready",
         "next_action": "wait_for_launcher_command_plan_ready",
-        "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
+        "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-065_agent_runtime_launcher_supervised_execution",
+      "event_type": "runner.attempt_planned",
+      "generated_at": "2026-05-11T16:21:59Z",
+      "producer": {
+        "adapter": "agent_runtime_launcher_supervised_execution",
+        "name": "scripts/artemis-agent-runtime-launcher-supervised-execution.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-065",
+        "task_id": "tkt-065",
+        "title": "Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony",
+        "exec_pack": "docs/exec-packs/done/TKT-065-artemis-agent-runtime-launcher-supervised-execution.md",
+        "artifact_root": "artifacts/artemis-agent-runtime-launcher-supervised-execution/run-01"
+      },
+      "runner": {
+        "kind": "agent_runtime_launcher_supervised_execution",
+        "execute": false,
+        "commands_planned": 0,
+        "commands_executed": 0
+      },
+      "state": {
+        "from": "human_gate",
+        "to": "human_gate",
+        "reason": "Supervised launcher execution was evaluated with ARTEMIS gates and evidence."
+      },
+      "gate": {
+        "kind": "human",
+        "status": "human_gate",
+        "reason": "Launcher execution gate remains required before supervised execution."
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-agent-runtime-launcher-supervised-execution/run-01",
+        "status_path": "artifacts/artemis-agent-runtime-launcher-supervised-execution/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-agent-runtime-launcher-supervised-execution/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-agent-runtime-launcher-supervised-execution/run-01/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-065"
+      },
+      "payload": {
+        "overall": "human_gate",
+        "reason": "Supervised launcher execution was evaluated with ARTEMIS gates and evidence.",
+        "summary": {
+          "launcher_execution_gate_ready": false,
+          "execute_requested": false,
+          "supervised_execution_ready": false,
+          "supervised_execution_completed": false,
+          "supervision_checks": 6,
+          "supervision_passed": 5,
+          "supervision_failed": 0,
+          "supervision_human_gate": 1,
+          "approved_commands_count": 0,
+          "commands_executed": 0,
+          "runtime_started": false,
+          "agents_started": 0,
+          "dependencies_installed": 0,
+          "remote_writes_allowed": false,
+          "production_allowed": false,
+          "secrets_allowed": false,
+          "paid_tokens_authorized": 0
+        },
+        "execution_state": "waiting_for_launcher_execution_gate_ready",
+        "next_action": "wait_for_launcher_execution_gate_ready",
+        "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
       }
     }
   ]

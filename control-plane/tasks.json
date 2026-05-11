@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T14:31:02Z",
+  "generated_at": "2026-05-11T16:21:14Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -781,6 +781,18 @@
       "summary": "Com o command plan ainda em Human Gate, o execution gate deve reportar",
       "exec_pack": "docs/exec-packs/done/TKT-064-artemis-agent-runtime-launcher-execution-gate.md",
       "evidence": "artifacts/artemis-agent-runtime-launcher-execution-gate/run-01/launcher-execution-gate.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-065",
+      "ticket": "TKT-065",
+      "title": "Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "Criar a camada de execucao supervisionada que consome o",
+      "exec_pack": "docs/exec-packs/done/TKT-065-artemis-agent-runtime-launcher-supervised-execution.md",
+      "evidence": "docs/exec-packs/done/TKT-065-artemis-agent-runtime-launcher-supervised-execution.md",
       "tags": ["exec-pack", "done"]
     }
   ]

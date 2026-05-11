@@ -382,7 +382,7 @@ payload = {
         "Paid tokens are authorized only when command plan and exact human decision are both ready.",
         "Future execution runners must preserve logs and re-run Validation Gate before Done.",
     ],
-    "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony",
+    "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony",
 }
 
 (artifact_root / "launcher-execution-gate.json").write_text(
@@ -494,9 +494,9 @@ handoff_lines = [
     "",
 ]
 if gate_ready:
-    handoff_lines.append("- Implementar `TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony` consumindo este gate.")
+    handoff_lines.append("- Implementar `TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony` consumindo este gate.")
 else:
-    handoff_lines.append("- Implementar `TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony`, mantendo execucao bloqueada ate existir `launcher_execution_gate_ready`.")
+    handoff_lines.append("- Implementar `TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony`, mantendo execucao bloqueada ate existir `launcher_execution_gate_ready`.")
 handoff_lines.extend([
     "",
     "## Nao fazer",

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T14:32:13Z",
+  "generated_at": "2026-05-11T16:22:14Z",
   "overall": "passed",
   "reason": "Claude Code local contract check passed.",
   "mode": "read_only_contract_probe",

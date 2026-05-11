@@ -1,7 +1,7 @@
 # ARTEMIS AGENT RUNTIME APPROVAL REQUEST
 
 - Project: `ARTEMIS`
-- Task: `TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony`
+- Task: `TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony`
 - Profile: `codex_terminal`
 - Runtime: `codex_cli`
 - Command surface: `terminal`

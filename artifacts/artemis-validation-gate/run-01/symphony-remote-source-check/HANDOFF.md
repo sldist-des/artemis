@@ -6,7 +6,7 @@ Fonte remota supervisionada esta `remote_source_ready`. Ela gera intake e eviden
 
 ## Proximo corte
 
-- Implementar `TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony`.
+- Implementar `TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony`.
 - Revisar itens remotos antes de promover para fila/service.
 - Exigir Exec Pack local e decisao humana quando houver escrita remota, PR, merge ou deploy.
 

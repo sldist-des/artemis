@@ -8,5 +8,5 @@
 
 ## Proximo corte
 
-- Implementar `TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony`.
+- Implementar `TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony`.
 - Manter `--execute` dependente de Validation Gate e decisao exata.

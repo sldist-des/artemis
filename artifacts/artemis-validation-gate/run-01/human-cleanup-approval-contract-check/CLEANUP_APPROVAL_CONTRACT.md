@@ -1,6 +1,6 @@
 # ARTEMIS HUMAN CLEANUP APPROVAL CONTRACT
 
-- Generated at: 2026-05-11T14:32:00Z
+- Generated at: 2026-05-11T16:22:04Z
 - Overall: `human_gate`
 - Decision source: `artifacts/artemis-validation-gate/run-01/workspace-cleanup-review-check/cleanup-review.json`
 

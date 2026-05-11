@@ -15,6 +15,7 @@ runtime_decision_intake_path="artifacts/artemis-agent-runtime-decision-intake/ru
 runtime_launcher_preflight_path="artifacts/artemis-agent-runtime-launcher-preflight/run-01/launcher-preflight.json"
 runtime_launcher_command_plan_path="artifacts/artemis-agent-runtime-launcher-command-plan/run-01/launcher-command-plan.json"
 runtime_launcher_execution_gate_path="artifacts/artemis-agent-runtime-launcher-execution-gate/run-01/launcher-execution-gate.json"
+runtime_launcher_supervised_execution_path="artifacts/artemis-agent-runtime-launcher-supervised-execution/run-01/launcher-supervised-execution.json"
 format="text"
 
 usage() {
@@ -129,6 +130,7 @@ runtime_decision_intake_payload = read_json(Path("artifacts/artemis-agent-runtim
 runtime_launcher_preflight_payload = read_json(Path("artifacts/artemis-agent-runtime-launcher-preflight/run-01/launcher-preflight.json"), {"summary": {}, "overall": "not_available"})
 runtime_launcher_command_plan_payload = read_json(Path("artifacts/artemis-agent-runtime-launcher-command-plan/run-01/launcher-command-plan.json"), {"summary": {}, "overall": "not_available"})
 runtime_launcher_execution_gate_payload = read_json(Path("artifacts/artemis-agent-runtime-launcher-execution-gate/run-01/launcher-execution-gate.json"), {"summary": {}, "overall": "not_available"})
+runtime_launcher_supervised_execution_payload = read_json(Path("artifacts/artemis-agent-runtime-launcher-supervised-execution/run-01/launcher-supervised-execution.json"), {"summary": {}, "overall": "not_available"})
 
 tasks = tasks_payload.get("tasks", [])
 events = event_log_payload.get("events", [])
@@ -259,6 +261,18 @@ nodes = [
         "commands_executed": runtime_launcher_execution_gate_payload.get("summary", {}).get("commands_executed", 0),
     },
     {
+        "id": "runtime:launcher_supervised_execution",
+        "type": "runtime_supervised_execution",
+        "label": "Agent Runtime Launcher Supervised Execution",
+        "status": runtime_launcher_supervised_execution_payload.get("overall", "not_available"),
+        "execution_state": runtime_launcher_supervised_execution_payload.get("execution_state", "unknown"),
+        "execute_requested": runtime_launcher_supervised_execution_payload.get("summary", {}).get("execute_requested", False),
+        "supervised_execution_ready": runtime_launcher_supervised_execution_payload.get("summary", {}).get("supervised_execution_ready", False),
+        "runtime_started": runtime_launcher_supervised_execution_payload.get("summary", {}).get("runtime_started", False),
+        "agents_started": runtime_launcher_supervised_execution_payload.get("summary", {}).get("agents_started", 0),
+        "commands_executed": runtime_launcher_supervised_execution_payload.get("summary", {}).get("commands_executed", 0),
+    },
+    {
         "id": "control_plane:view",
         "type": "view",
         "label": "Control Plane",
@@ -294,6 +308,10 @@ edges = [
     {"from": "runtime:launcher_execution_gate", "to": "gate:human", "type": "requires_final_human_confirmation"},
     {"from": "runtime:launcher_execution_gate", "to": "validation:gate", "type": "requires_validation"},
     {"from": "runtime:launcher_execution_gate", "to": "cost:budget", "type": "binds_runtime_budget"},
+    {"from": "runtime:launcher_execution_gate", "to": "runtime:launcher_supervised_execution", "type": "gates_supervised_execution"},
+    {"from": "runtime:launcher_supervised_execution", "to": "validation:gate", "type": "produces_validation_evidence"},
+    {"from": "runtime:launcher_supervised_execution", "to": "cost:budget", "type": "spends_budget_only_when_ready"},
+    {"from": "runtime:launcher_supervised_execution", "to": "event_log:timeline", "type": "records_results"},
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
@@ -365,6 +383,7 @@ payload = {
         "runtime_launcher_preflight": "artifacts/artemis-agent-runtime-launcher-preflight/run-01/launcher-preflight.json",
         "runtime_launcher_command_plan": "artifacts/artemis-agent-runtime-launcher-command-plan/run-01/launcher-command-plan.json",
         "runtime_launcher_execution_gate": "artifacts/artemis-agent-runtime-launcher-execution-gate/run-01/launcher-execution-gate.json",
+        "runtime_launcher_supervised_execution": "artifacts/artemis-agent-runtime-launcher-supervised-execution/run-01/launcher-supervised-execution.json",
     },
     "summary": summary,
     "states": dict(states),
@@ -393,10 +412,11 @@ payload = {
         "runtime_launcher_preflight_input": "artemis_agent_runtime_launcher_preflight",
         "runtime_launcher_command_plan_input": "artemis_agent_runtime_launcher_command_plan",
         "runtime_launcher_execution_gate_input": "artemis_agent_runtime_launcher_execution_gate",
+        "runtime_launcher_supervised_execution_input": "artemis_agent_runtime_launcher_supervised_execution",
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },
-    "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony",
+    "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony",
 }
 
 write_text(artifact_root / "project-graph.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
@@ -478,8 +498,8 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony`.",
-    "- Usar o Launcher Execution Gate como entrada obrigatoria antes de qualquer execucao supervisionada.",
+    "- Implementar `TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony`.",
+    "- Usar o Launcher Supervised Execution como entrada obrigatoria para interpretar resultados de runtime.",
     "",
     "## Nao fazer",
     "",

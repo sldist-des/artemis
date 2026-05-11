@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T14:31:49Z",
+  "generated_at": "2026-05-11T16:21:52Z",
   "source": "scripts/artemis-agent-runtime-launcher-command-plan.sh",
   "mode": "read_only_agent_runtime_launcher_command_plan",
   "overall": "human_gate",
@@ -57,9 +57,14 @@
       " M artifacts/artemis-agent-runtime-launcher-preflight/run-01/HANDOFF.md",
       " M artifacts/artemis-agent-runtime-launcher-preflight/run-01/events.json",
       " M artifacts/artemis-agent-runtime-launcher-preflight/run-01/launcher-preflight.json",
+      " M artifacts/artemis-event-log/run-01/EVENT_LOG_SCHEMA.md",
+      " M artifacts/artemis-event-log/run-01/event-log.example.json",
       " M artifacts/artemis-guided-collaboration/run-01/HANDOFF.md",
       " M artifacts/artemis-guided-collaboration/run-01/events.json",
       " M artifacts/artemis-guided-collaboration/run-01/guided-collaboration.json",
+      " M artifacts/artemis-memory-zone/run-01/HANDOFF.md",
+      " M artifacts/artemis-memory-zone/run-01/events.json",
+      " M artifacts/artemis-memory-zone/run-01/memory-zone.json",
       " M artifacts/artemis-project-brief/run-01/HANDOFF.md",
       " M artifacts/artemis-project-brief/run-01/PROJECT_BRIEF.md",
       " M artifacts/artemis-project-brief/run-01/STATUS.md",
@@ -88,6 +93,7 @@
       " M docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_DECISION_INTAKE.md",
       " M docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_DRY_RUN.md",
       " M docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_COMMAND_PLAN.md",
+      " M docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_EXECUTION_GATE.md",
       " M docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_PREFLIGHT.md",
       " M docs/symphony/ARTEMIS_SYMPHONY_BRIDGE.md",
       " M docs/symphony/ARTEMIS_SYMPHONY_DAEMON.md",
@@ -106,6 +112,7 @@
       " M scripts/artemis-agent-runtime-decision-intake.sh",
       " M scripts/artemis-agent-runtime-dry-run.sh",
       " M scripts/artemis-agent-runtime-launcher-command-plan.sh",
+      " M scripts/artemis-agent-runtime-launcher-execution-gate.sh",
       " M scripts/artemis-agent-runtime-launcher-preflight.sh",
       " M scripts/artemis-event-log.sh",
       " M scripts/artemis-guided-collaboration.sh",
@@ -125,12 +132,12 @@
       " M scripts/artemis-symphony-service.sh",
       " M scripts/artemis-validation-gate.sh",
       " M scripts/validate-artemis.sh",
-      "?? artifacts/artemis-agent-runtime-launcher-execution-gate/",
-      "?? docs/exec-packs/done/TKT-064-artemis-agent-runtime-launcher-execution-gate.md",
-      "?? docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_EXECUTION_GATE.md",
-      "?? scripts/artemis-agent-runtime-launcher-execution-gate.sh"
+      "?? artifacts/artemis-agent-runtime-launcher-supervised-execution/",
+      "?? docs/exec-packs/done/TKT-065-artemis-agent-runtime-launcher-supervised-execution.md",
+      "?? docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_SUPERVISED_EXECUTION.md",
+      "?? scripts/artemis-agent-runtime-launcher-supervised-execution.sh"
     ],
-    "head": "9e25cb8"
+    "head": "f18b753"
   },
   "plan_checks": [
     {
@@ -191,5 +198,5 @@
     "Remote writes, secrets, deploys, production and paid runtime remain separate Human Gates.",
     "Future launcher execution gates must consume this artifact and preserve logs."
   ],
-  "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
+  "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
 }

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T14:32:08Z",
+  "generated_at": "2026-05-11T16:22:10Z",
   "source": "scripts/artemis-agent-runtime-launcher-preflight.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-062_agent_runtime_launcher_preflight",
       "event_type": "runner.preflight_recorded",
-      "generated_at": "2026-05-11T14:32:08Z",
+      "generated_at": "2026-05-11T16:22:10Z",
       "producer": {
         "adapter": "agent_runtime_launcher_preflight",
         "name": "scripts/artemis-agent-runtime-launcher-preflight.sh",
@@ -66,7 +66,7 @@
         },
         "preflight_state": "waiting_for_approved_ready",
         "next_action": "wait_for_decision_intake_approved_ready",
-        "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
+        "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
       }
     }
   ]

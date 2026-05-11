@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T14:32:08Z",
+  "generated_at": "2026-05-11T16:22:10Z",
   "source": "scripts/artemis-project-graph-view.sh",
   "mode": "read_only_control_plane_view_contract",
   "overall": "project_graph_view_ready",
@@ -11,8 +11,8 @@
     "control_plane": "control-plane/index.html"
   },
   "summary": {
-    "nodes_rendered": 16,
-    "edges_rendered": 30,
+    "nodes_rendered": 17,
+    "edges_rendered": 34,
     "questions_rendered": 3,
     "invariants_rendered": 3,
     "validation_passed": 1,
@@ -39,5 +39,5 @@
     "No graph database, canvas engine, frontend framework or runtime is introduced.",
     "Human Gates, Validation Gate, Event Log, Exec Packs and git remain authoritative."
   ],
-  "next_cut": "TKT-065 - Agent Runtime Launcher Supervised Execution do ARTEMIS Symphony"
+  "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
 }

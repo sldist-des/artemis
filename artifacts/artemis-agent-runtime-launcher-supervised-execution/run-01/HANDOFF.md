@@ -6,7 +6,7 @@ TKT-065 avaliou a execucao supervisionada como `human_gate` com estado `waiting_
 
 ## Proximo corte
 
-- Implementar `TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony`, mantendo execucao bloqueada ate existir resultado supervisionado.
+- Implementar `TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony`, mantendo execucao bloqueada ate existir resultado supervisionado.
 
 ## Nao fazer
 

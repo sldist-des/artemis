@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-11T16:42:26Z",
+  "source": "scripts/artemis-agent-runtime-execution-result-intake.sh",
+  "mode": "agent_runtime_execution_result_intake",
+  "overall": "human_gate",
+  "reason": "Supervised execution result was classified before post-execution validation.",
+  "artifact_root": "artifacts/artemis-agent-runtime-execution-result-intake/run-01",
+  "inputs": {
+    "supervised_execution": "artifacts/artemis-agent-runtime-launcher-supervised-execution/run-01/launcher-supervised-execution.json"
+  },
+  "intake_state": "waiting_for_supervised_execution_result",
+  "next_action": "wait_for_supervised_execution_completed_or_ready",
+  "summary": {
+    "supervised_execution_result_ready": false,
+    "supervised_execution_completed": false,
+    "supervised_execution_failed": false,
+    "supervised_execution_blocked": true,
+    "attempt_planned": true,
+    "attempt_executed": false,
+    "commands_executed": 0,
+    "failed_commands": 0,
+    "runtime_started": false,
+    "agents_started": 0,
+    "validation_ready": false,
+    "rollback_required": false,
+    "remote_writes_allowed": false,
+    "production_allowed": false,
+    "secrets_allowed": false,
+    "paid_tokens_authorized": 0,
+    "result_checks": 7,
+    "result_passed": 6,
+    "result_failed": 0,
+    "result_human_gate": 1
+  },
+  "supervised_execution": {
+    "overall": "human_gate",
+    "execution_state": "waiting_for_launcher_execution_gate_ready",
+    "next_action": "wait_for_launcher_execution_gate_ready"
+  },
+  "result_checks": [
+    {
+      "id": "supervised_execution_exists",
+      "status": "passed",
+      "proof": "artifacts/artemis-agent-runtime-launcher-supervised-execution/run-01/launcher-supervised-execution.json"
+    },
+    {
+      "id": "plan_only_not_success",
+      "status": "passed",
+      "proof": "attempt_planned=true result_ready=false"
+    },
+    {
+      "id": "supervised_execution_completed",
+      "status": "human_gate",
+      "proof": "overall=human_gate executed=false"
+    },
+    {
+      "id": "command_results_classified",
+      "status": "passed",
+      "proof": "commands_executed=0 failed_commands=0"
+    },
+    {
+      "id": "validation_evidence_required",
+      "status": "passed",
+      "proof": "required_before_done=None"
+    },
+    {
+      "id": "rollback_state_classified",
+      "status": "passed",
+      "proof": "rollback_required=false preserve_logs=None"
+    },
+    {
+      "id": "remote_writes_blocked",
+      "status": "passed",
+      "proof": "remote=false production=false secrets=false"
+    }
+  ],
+  "result_package": {
+    "result_kind": "blocked_pending_gate",
+    "ready_for_validation": false,
+    "ready_for_handoff": true,
+    "rollback_required": false,
+    "preserve_logs": false,
+    "commands": {
+      "planned": 0,
+      "executed": 0,
+      "failed": 0
+    },
+    "logs": [],
+    "validation": {
+      "required_before_done": false,
+      "commands": []
+    },
+    "rollback": {
+      "required": false,
+      "plan": {}
+    }
+  },
+  "command_results": [],
+  "blockers": [],
+  "warnings": [],
+  "invariants": [
+    "Execution Result Intake is read-only and never starts agents or commands.",
+    "Plan-only and Human Gate states must never be classified as successful execution.",
+    "A completed result needs executed command evidence before post-execution validation.",
+    "Failed commands require log preservation and rollback review before any Done state.",
+    "Remote writes, production and secrets remain blocked in this intake cut."
+  ],
+  "next_cut": "TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony"
+}

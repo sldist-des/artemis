@@ -59,6 +59,6 @@ scripts/artemis-symphony-bridge.sh \
 
 ## Proximo Corte
 
-`TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony`
+`TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony`
 
 Objetivo: consumir item revisado da fila com comando explicito, mantendo a ponte como acao de terminal.

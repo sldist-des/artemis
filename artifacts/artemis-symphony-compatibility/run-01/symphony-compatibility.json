@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T16:21:14Z",
+  "generated_at": "2026-05-11T16:40:42Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
   "artifact_root": "artifacts/artemis-symphony-compatibility/run-01",
   "spec": "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md",
   "summary": {
-    "layers_total": 30,
+    "layers_total": 31,
     "layers_with_missing_files": 0,
-    "tasks_total": 66,
-    "tasks_done": 66,
+    "tasks_total": 67,
+    "tasks_done": 67,
     "daemon_implemented": true,
     "kernel_implemented": true,
     "bridge_implemented": true,
@@ -35,6 +35,7 @@
     "agent_runtime_launcher_command_plan_implemented": true,
     "agent_runtime_launcher_execution_gate_implemented": true,
     "agent_runtime_launcher_supervised_execution_implemented": true,
+    "agent_runtime_execution_result_intake_implemented": true,
     "next_cut_defined": true
   },
   "compatibility": {
@@ -65,9 +66,10 @@
     "agent_runtime_launcher_command_plan_implemented": true,
     "agent_runtime_launcher_execution_gate_implemented": true,
     "agent_runtime_launcher_supervised_execution_implemented": true,
+    "agent_runtime_execution_result_intake_implemented": true,
     "terminal_first": true,
     "human_gates_preserved": true,
-    "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
+    "next_cut": "TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony"
   },
   "layers": [
     {
@@ -380,6 +382,16 @@
       ],
       "status": "implemented_runtime_launcher_supervised_execution",
       "missing_files": []
+    },
+    {
+      "layer": "agent_runtime_execution_result_intake",
+      "purpose": "Read-only intake that classifies supervised execution results before post-execution validation.",
+      "required_files": [
+        "scripts/artemis-agent-runtime-execution-result-intake.sh",
+        "docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_EXECUTION_RESULT_INTAKE.md"
+      ],
+      "status": "implemented_runtime_execution_result_intake",
+      "missing_files": []
     }
   ],
   "blockers": [],
@@ -410,6 +422,7 @@
     "The implemented Agent Runtime Launcher Preflight revalidates approved decisions and never starts runtime.",
     "The implemented Agent Runtime Launcher Command Plan materializes commands without executing them.",
     "The implemented Agent Runtime Launcher Execution Gate requires final human approval and never starts runtime.",
-    "The implemented Agent Runtime Launcher Supervised Execution remains plan-only unless --execute and the final gate are both ready."
+    "The implemented Agent Runtime Launcher Supervised Execution remains plan-only unless --execute and the final gate are both ready.",
+    "The implemented Agent Runtime Execution Result Intake classifies results and never treats plan-only as success."
   ]
 }

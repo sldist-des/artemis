@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `17`.
-- Edges: `34`.
-- Tasks: `66`.
-- Events: `53`.
+- Nodes: `18`.
+- Edges: `38`.
+- Tasks: `67`.
+- Events: `54`.
 
 ## Nos
 
@@ -27,6 +27,7 @@
 - `runtime:launcher_command_plan` (runtime_command_plan): Agent Runtime Launcher Command Plan.
 - `runtime:launcher_execution_gate` (runtime_execution_gate): Agent Runtime Launcher Execution Gate.
 - `runtime:launcher_supervised_execution` (runtime_supervised_execution): Agent Runtime Launcher Supervised Execution.
+- `runtime:execution_result_intake` (runtime_result_intake): Agent Runtime Execution Result Intake.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -62,6 +63,10 @@
 - `runtime:launcher_supervised_execution` --produces_validation_evidence--> `validation:gate`.
 - `runtime:launcher_supervised_execution` --spends_budget_only_when_ready--> `cost:budget`.
 - `runtime:launcher_supervised_execution` --records_results--> `event_log:timeline`.
+- `runtime:launcher_supervised_execution` --feeds_result_intake--> `runtime:execution_result_intake`.
+- `runtime:execution_result_intake` --gates_post_execution_validation--> `validation:gate`.
+- `runtime:execution_result_intake` --records_actual_spend--> `cost:budget`.
+- `runtime:execution_result_intake` --records_result_classification--> `event_log:timeline`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.

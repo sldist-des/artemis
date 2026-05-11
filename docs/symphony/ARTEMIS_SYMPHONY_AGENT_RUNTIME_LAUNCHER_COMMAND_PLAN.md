@@ -33,4 +33,4 @@ futura execucao supervisionada.
 
 ## Proximo corte
 
-`TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony`
+`TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony`

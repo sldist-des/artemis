@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-11T16:49:27Z",
+  "source": "scripts/artemis-agent-runtime-execution-result-intake.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-066_agent_runtime_execution_result_intake",
+      "event_type": "runner.result_blocked",
+      "generated_at": "2026-05-11T16:49:27Z",
+      "producer": {
+        "adapter": "agent_runtime_execution_result_intake",
+        "name": "scripts/artemis-agent-runtime-execution-result-intake.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-066",
+        "task_id": "tkt-066",
+        "title": "Agent Runtime Execution Result Intake do ARTEMIS Symphony",
+        "exec_pack": "docs/exec-packs/done/TKT-066-artemis-agent-runtime-execution-result-intake.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/agent-runtime-execution-result-intake-check"
+      },
+      "runner": {
+        "kind": "none",
+        "result_intake": "agent_runtime_execution_result_intake",
+        "attempt_executed": false,
+        "commands_executed": 0,
+        "failed_commands": 0
+      },
+      "state": {
+        "from": "human_gate",
+        "to": "human_gate",
+        "reason": "Supervised execution result was classified before post-execution validation."
+      },
+      "gate": {
+        "kind": "human",
+        "status": "human_gate",
+        "reason": "No completed supervised execution result is available yet."
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/agent-runtime-execution-result-intake-check",
+        "status_path": "artifacts/artemis-validation-gate/run-01/agent-runtime-execution-result-intake-check/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/agent-runtime-execution-result-intake-check/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/agent-runtime-execution-result-intake-check/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-066"
+      },
+      "payload": {
+        "overall": "human_gate",
+        "reason": "Supervised execution result was classified before post-execution validation.",
+        "summary": {
+          "supervised_execution_result_ready": false,
+          "supervised_execution_completed": false,
+          "supervised_execution_failed": false,
+          "supervised_execution_blocked": true,
+          "attempt_planned": true,
+          "attempt_executed": false,
+          "commands_executed": 0,
+          "failed_commands": 0,
+          "runtime_started": false,
+          "agents_started": 0,
+          "validation_ready": false,
+          "rollback_required": false,
+          "remote_writes_allowed": false,
+          "production_allowed": false,
+          "secrets_allowed": false,
+          "paid_tokens_authorized": 0,
+          "result_checks": 7,
+          "result_passed": 6,
+          "result_failed": 0,
+          "result_human_gate": 1
+        },
+        "intake_state": "waiting_for_supervised_execution_result",
+        "result_kind": "blocked_pending_gate",
+        "next_action": "wait_for_supervised_execution_completed_or_ready",
+        "next_cut": "TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony"
+      }
+    }
+  ]
+}

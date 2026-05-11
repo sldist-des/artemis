@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T16:22:03Z",
+  "generated_at": "2026-05-11T16:49:20Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -793,6 +793,18 @@
       "summary": "Criar a camada de execucao supervisionada que consome o",
       "exec_pack": "docs/exec-packs/done/TKT-065-artemis-agent-runtime-launcher-supervised-execution.md",
       "evidence": "docs/exec-packs/done/TKT-065-artemis-agent-runtime-launcher-supervised-execution.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-066",
+      "ticket": "TKT-066",
+      "title": "Agent Runtime Execution Result Intake do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "Agent Runtime Execution Result Intake do ARTEMIS Symphony",
+      "exec_pack": "docs/exec-packs/done/TKT-066-artemis-agent-runtime-execution-result-intake.md",
+      "evidence": "docs/exec-packs/done/TKT-066-artemis-agent-runtime-execution-result-intake.md",
       "tags": ["exec-pack", "done"]
     }
   ]

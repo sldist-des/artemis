@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T16:21:40Z",
+  "generated_at": "2026-05-11T16:41:52Z",
   "source": "scripts/artemis-agent-runtime-approval-gate.sh",
   "mode": "agent_runtime_approval_gate",
   "overall": "agent_runtime_approval_gate_ready",
@@ -46,7 +46,7 @@
   },
   "approval_request": {
     "project": "ARTEMIS",
-    "task": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony",
+    "task": "TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony",
     "profile_id": "codex_terminal",
     "profile_name": "Codex terminal-first",
     "runtime": "codex_cli",
@@ -249,5 +249,5 @@
     "Agents must not fill or approve the human decision record.",
     "Control Plane remains observational."
   ],
-  "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
+  "next_cut": "TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony"
 }

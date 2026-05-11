@@ -434,6 +434,8 @@ scripts/artemis-agent-runtime-launcher-execution-gate.sh --json
 scripts/artemis-agent-runtime-launcher-supervised-execution.sh
 scripts/artemis-agent-runtime-launcher-supervised-execution.sh --json
 scripts/artemis-agent-runtime-launcher-supervised-execution.sh --execute --json
+scripts/artemis-agent-runtime-execution-result-intake.sh
+scripts/artemis-agent-runtime-execution-result-intake.sh --json
 ```
 
 Esse grafo e um read model operacional. Ele ajuda humanos e agentes a entenderem
@@ -468,6 +470,10 @@ primeira camada que pode representar execucao operacional. Por padrao ele
 permanece plan-only; com `--execute`, so pode executar comandos aprovados
 exatamente pelo gate, mantendo logs, budget, rollback e bloqueios de remoto,
 producao e secrets.
+O Agent Runtime Execution Result Intake consome a execucao supervisionada e
+classifica plano, Human Gate, execucao concluida, falha, rollback e logs antes
+de qualquer validacao pos-execucao. Ele e read-only e impede tratar plan-only
+como sucesso.
 O Agent Launch Contract e o preflight supervisionado entre a entrada guiada e
 qualquer runtime real. Ele fixa `execute=false` por padrao e exige projeto,
 tarefa, auth, budget, comando, workspace, rollback e evidencia antes de Codex

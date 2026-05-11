@@ -9,7 +9,7 @@
 
 ## Proximo corte
 
-- Implementar `TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony`.
+- Implementar `TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony`.
 - Manter execucao real fora do service; usar Queue Bridge `--execute` apenas com Validation Gate e decisao exata.
 
 ## Nao fazer

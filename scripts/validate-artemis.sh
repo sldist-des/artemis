@@ -34,6 +34,7 @@ docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_PREFLIGHT.md
 docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_COMMAND_PLAN.md
 docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_EXECUTION_GATE.md
 docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_SUPERVISED_EXECUTION.md
+docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_EXECUTION_RESULT_INTAKE.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
@@ -95,6 +96,7 @@ scripts/artemis-agent-runtime-launcher-preflight.sh
 scripts/artemis-agent-runtime-launcher-command-plan.sh
 scripts/artemis-agent-runtime-launcher-execution-gate.sh
 scripts/artemis-agent-runtime-launcher-supervised-execution.sh
+scripts/artemis-agent-runtime-execution-result-intake.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -193,6 +195,7 @@ sh -n scripts/artemis-agent-runtime-launcher-preflight.sh
 sh -n scripts/artemis-agent-runtime-launcher-command-plan.sh
 sh -n scripts/artemis-agent-runtime-launcher-execution-gate.sh
 sh -n scripts/artemis-agent-runtime-launcher-supervised-execution.sh
+sh -n scripts/artemis-agent-runtime-execution-result-intake.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -1597,6 +1600,36 @@ if ! grep -q '"event_type": "runner.attempt_planned"' /tmp/artemis-agent-runtime
   exit 1
 fi
 
+scripts/artemis-agent-runtime-execution-result-intake.sh --artifact-root /tmp/artemis-agent-runtime-execution-result-intake --supervised-execution /tmp/artemis-agent-runtime-launcher-supervised-execution/launcher-supervised-execution.json --json >/tmp/artemis-agent-runtime-execution-result-intake.json
+if ! grep -q '"overall": "human_gate"' /tmp/artemis-agent-runtime-execution-result-intake.json; then
+  echo "scripts/artemis-agent-runtime-execution-result-intake.sh did not preserve pending Human Gate" >&2
+  exit 1
+fi
+if ! grep -q '"intake_state": "waiting_for_supervised_execution_result"' /tmp/artemis-agent-runtime-execution-result-intake.json; then
+  echo "ARTEMIS Agent Runtime Execution Result Intake did not wait for supervised execution result" >&2
+  exit 1
+fi
+if ! grep -q '"supervised_execution_result_ready": false' /tmp/artemis-agent-runtime-execution-result-intake.json; then
+  echo "ARTEMIS Agent Runtime Execution Result Intake became ready without execution result" >&2
+  exit 1
+fi
+if ! grep -q '"attempt_executed": false' /tmp/artemis-agent-runtime-execution-result-intake.json; then
+  echo "ARTEMIS Agent Runtime Execution Result Intake treated plan-only as executed" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-agent-runtime-execution-result-intake.json; then
+  echo "ARTEMIS Agent Runtime Execution Result Intake found commands that were not executed" >&2
+  exit 1
+fi
+if ! grep -q '"rollback_required": false' /tmp/artemis-agent-runtime-execution-result-intake.json; then
+  echo "ARTEMIS Agent Runtime Execution Result Intake required rollback without execution failure" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "runner.result_blocked"' /tmp/artemis-agent-runtime-execution-result-intake/events.json; then
+  echo "scripts/artemis-agent-runtime-execution-result-intake.sh did not emit canonical events" >&2
+  exit 1
+fi
+
 scripts/artemis-codex-app-server.sh --artifact-root /tmp/artemis-codex-app-server --json >/tmp/artemis-codex-app-server.json
 if ! grep -q '"overall": "passed"' /tmp/artemis-codex-app-server.json; then
   echo "scripts/artemis-codex-app-server.sh did not report the expected passed status" >&2
@@ -1853,6 +1886,18 @@ if ! grep -q "renderAgentRuntimeLauncherSupervisedExecution" control-plane/index
 fi
 if ! grep -q "waiting_for_launcher_execution_gate_ready" control-plane/index.html; then
   echo "control-plane/index.html does not show the ARTEMIS Agent Runtime Launcher Supervised Execution state" >&2
+  exit 1
+fi
+if ! grep -q "agent-runtime-execution-result-intake-section" control-plane/index.html; then
+  echo "control-plane/index.html does not render the ARTEMIS Agent Runtime Execution Result Intake section" >&2
+  exit 1
+fi
+if ! grep -q "renderAgentRuntimeExecutionResultIntake" control-plane/index.html; then
+  echo "control-plane/index.html does not include the Agent Runtime Execution Result Intake renderer" >&2
+  exit 1
+fi
+if ! grep -q "waiting_for_supervised_execution_result" control-plane/index.html; then
+  echo "control-plane/index.html does not show the ARTEMIS Agent Runtime Execution Result Intake state" >&2
   exit 1
 fi
 

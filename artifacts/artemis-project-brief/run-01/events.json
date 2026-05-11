@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T16:22:29Z",
+  "generated_at": "2026-05-11T16:49:55Z",
   "source": "scripts/artemis-project-brief.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-11T16:22:29Z",
+      "generated_at": "2026-05-11T16:49:55Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -47,12 +47,12 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 66,
-          "tasks_done": 66,
-          "events_total": 53,
-          "nodes_total": 17,
-          "edges_total": 34,
-          "validation_passed": 97,
+          "tasks_total": 67,
+          "tasks_done": 67,
+          "events_total": 54,
+          "nodes_total": 18,
+          "edges_total": 38,
+          "validation_passed": 99,
           "validation_failed": 0,
           "human_gates": 2,
           "memory_zones": 3,
@@ -62,7 +62,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony"
+        "next_cut": "TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony"
       }
     }
   ]

@@ -4,5 +4,5 @@ O contrato supervisionado de lancamento de agentes esta pronto como superficie r
 
 Proximo corte:
 
-- Implementar `TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony`.
+- Implementar `TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony`.
 - Usar o Agent Runtime Launcher Preflight como entrada obrigatoria antes de materializar comandos.

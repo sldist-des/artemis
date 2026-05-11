@@ -324,7 +324,7 @@ payload = {
         "Remote writes, secrets, deploys, production and paid runtime remain separate Human Gates.",
         "Future launcher execution gates must consume this artifact and preserve logs.",
     ],
-    "next_cut": "TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony",
+    "next_cut": "TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony",
 }
 
 (artifact_root / "launcher-command-plan.json").write_text(
@@ -417,9 +417,9 @@ handoff_lines = [
     "",
 ]
 if plan_ready:
-    handoff_lines.append("- Implementar `TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony` usando este plano de comandos.")
+    handoff_lines.append("- Implementar `TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony` usando este plano de comandos.")
 else:
-    handoff_lines.append("- Implementar `TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony`, mantendo execucao bloqueada ate existir `launcher_command_plan_ready`.")
+    handoff_lines.append("- Implementar `TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony`, mantendo execucao bloqueada ate existir `launcher_command_plan_ready`.")
 handoff_lines.extend([
     "",
     "## Nao fazer",

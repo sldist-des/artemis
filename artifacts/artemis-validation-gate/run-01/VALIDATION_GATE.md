@@ -1,7 +1,7 @@
 # VALIDATION GATE RESULT
 
 - Overall: human_gate
-- Passed: 97
+- Passed: 99
 - Failed: 0
 - Human Gate: 2
 
@@ -47,6 +47,7 @@
 - shell_agent_runtime_launcher_command_plan: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_launcher_command_plan.txt`
 - shell_agent_runtime_launcher_execution_gate: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_launcher_execution_gate.txt`
 - shell_agent_runtime_launcher_supervised_execution: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_launcher_supervised_execution.txt`
+- shell_agent_runtime_execution_result_intake: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_execution_result_intake.txt`
 - shell_approved_workspace_cleanup: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt`
 - shell_workspace_runtime_handoff: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt`
 - shell_runner: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt`
@@ -94,6 +95,7 @@
 - agent_runtime_launcher_command_plan: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_launcher_command_plan.txt`
 - agent_runtime_launcher_execution_gate: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_launcher_execution_gate.txt`
 - agent_runtime_launcher_supervised_execution: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_launcher_supervised_execution.txt`
+- agent_runtime_execution_result_intake: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_execution_result_intake.txt`
 - approved_workspace_cleanup: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt`
 - workspace_runtime_handoff: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt`
 - runner_plan: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt`

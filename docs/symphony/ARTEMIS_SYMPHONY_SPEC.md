@@ -906,6 +906,33 @@ Resultado esperado:
 - `remote_writes_allowed=false`;
 - evento canonico `runner.attempt_planned`.
 
+### Modo 3.16 - Agent Runtime Execution Result Intake
+
+Implementado em `TKT-066` como intake read-only do resultado da execucao
+supervisionada.
+
+- consome `launcher-supervised-execution.json`;
+- distingue plano, Human Gate, execucao concluida, falha, rollback e logs;
+- impede classificar plan-only como sucesso;
+- exige evidencia de execucao antes de liberar validacao pos-execucao;
+- preserva stdout, stderr, exit code, budget, rollback e handoff;
+- nao executa agentes, comandos, dependencias, remoto, PR, push ou deploy.
+
+Agent Runtime Execution Result Intake implementado:
+
+- `scripts/artemis-agent-runtime-execution-result-intake.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_EXECUTION_RESULT_INTAKE.md`
+
+Resultado esperado:
+
+- `human_gate` enquanto nao houver execucao supervisionada real;
+- `intake_state=waiting_for_supervised_execution_result`;
+- `supervised_execution_result_ready=false`;
+- `attempt_executed=false`;
+- `commands_executed=0`;
+- `rollback_required=false`;
+- evento canonico `runner.result_blocked`.
+
 ## Invariantes
 
 - ARTEMIS Symphony nao executa cleanup real sem decisao humana.
@@ -918,13 +945,14 @@ Resultado esperado:
 
 ## Proximo corte recomendado
 
-`TKT-066 - Agent Runtime Execution Result Intake do ARTEMIS Symphony`
+`TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony`
 
 Objetivo:
 
-- consumir `launcher-supervised-execution.json`;
-- distinguir tentativa planejada, executada, concluida, falha e bloqueada;
-- preservar stdout, stderr, exit code, rollback, budget e Validation Gate;
+- consumir `execution-result-intake.json`;
+- rodar validacao pos-execucao somente quando existir resultado real;
+- manter Human Gate quando o intake estiver em plano, bloqueio ou falha;
+- verificar logs, exit codes, rollback, budget e comandos de validacao;
 - preparar handoff claro para humanos e agentes leigos.
 
 Esse sera o proximo passo de implementacao do nosso Symphony proprio.

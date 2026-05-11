@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T13:01:24Z",
+  "generated_at": "2026-05-11T13:29:46Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
   "artifact_root": "artifacts/artemis-symphony-compatibility/run-01",
   "spec": "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md",
   "summary": {
-    "layers_total": 26,
+    "layers_total": 27,
     "layers_with_missing_files": 0,
-    "tasks_total": 62,
-    "tasks_done": 62,
+    "tasks_total": 63,
+    "tasks_done": 63,
     "daemon_implemented": true,
     "kernel_implemented": true,
     "bridge_implemented": true,
@@ -31,6 +31,7 @@
     "agent_runtime_dry_run_implemented": true,
     "agent_runtime_approval_gate_implemented": true,
     "agent_runtime_decision_intake_implemented": true,
+    "agent_runtime_launcher_preflight_implemented": true,
     "next_cut_defined": true
   },
   "compatibility": {
@@ -57,9 +58,10 @@
     "agent_runtime_dry_run_implemented": true,
     "agent_runtime_approval_gate_implemented": true,
     "agent_runtime_decision_intake_implemented": true,
+    "agent_runtime_launcher_preflight_implemented": true,
     "terminal_first": true,
     "human_gates_preserved": true,
-    "next_cut": "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony"
+    "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony"
   },
   "layers": [
     {
@@ -332,6 +334,16 @@
       ],
       "status": "implemented_runtime_decision_intake",
       "missing_files": []
+    },
+    {
+      "layer": "agent_runtime_launcher_preflight",
+      "purpose": "Read-only launcher preflight that revalidates approved decisions before command planning.",
+      "required_files": [
+        "scripts/artemis-agent-runtime-launcher-preflight.sh",
+        "docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_PREFLIGHT.md"
+      ],
+      "status": "implemented_runtime_launcher_preflight",
+      "missing_files": []
     }
   ],
   "blockers": [],
@@ -358,6 +370,7 @@
     "The implemented Agent Launch Contract is read-only, execute=false by default and never starts runtime.",
     "The implemented Agent Runtime Dry-Run materializes launch requests without starting agents or spending paid tokens.",
     "The implemented Agent Runtime Approval Gate requests human approval and never starts runtime.",
-    "The implemented Agent Runtime Decision Intake classifies human decisions and never starts runtime."
+    "The implemented Agent Runtime Decision Intake classifies human decisions and never starts runtime.",
+    "The implemented Agent Runtime Launcher Preflight revalidates approved decisions and never starts runtime."
   ]
 }

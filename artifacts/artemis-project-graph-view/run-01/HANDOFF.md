@@ -4,4 +4,4 @@ Project Graph View esta pronto como leitura visual no Control Plane.
 
 Próximo corte:
 
-- Implementar `TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`.
+- Implementar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T13:01:53Z",
+  "generated_at": "2026-05-11T13:31:46Z",
   "source": "scripts/artemis-project-brief.sh",
   "mode": "read_only_human_project_brief",
   "overall": "human_project_brief_ready",
@@ -18,11 +18,11 @@
     "claude_code"
   ],
   "summary": {
-    "tasks_total": 62,
-    "tasks_done": 62,
-    "events_total": 49,
-    "nodes_total": 13,
-    "edges_total": 20,
+    "tasks_total": 63,
+    "tasks_done": 63,
+    "events_total": 50,
+    "nodes_total": 14,
+    "edges_total": 23,
     "validation_passed": 1,
     "validation_failed": 0,
     "human_gates": 1,
@@ -37,9 +37,9 @@
     "headline": "ARTEMIS Symphony em linguagem de projeto",
     "status": "O ARTEMIS Symphony esta pronto como sistema local supervisionado: ele organiza tarefas, evidencia, validacao, memoria e limites antes de qualquer execucao automatica.",
     "ready": [
-      "62 de 62 Exec Packs estao concluidos e versionados.",
+      "63 de 63 Exec Packs estao concluidos e versionados.",
       "O Validation Gate registra 1 checks aprovados e 0 falhas tecnicas.",
-      "O Project Graph conecta 13 nos e 20 relacoes entre tarefas, agentes, gates, memoria, custos e evidencias.",
+      "O Project Graph conecta 14 nos e 23 relacoes entre tarefas, agentes, gates, memoria, custos e evidencias.",
       "A Memory Zone tem 3 zonas para contexto humano-AI versionado em Git."
     ],
     "human_attention": [
@@ -78,5 +78,5 @@
     "renderProjectBrief",
     "loadProjectBriefSource"
   ],
-  "next_cut": "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony"
+  "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony"
 }

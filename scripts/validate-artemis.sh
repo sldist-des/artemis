@@ -84,6 +84,7 @@ scripts/artemis-agent-launch-contract.sh
 scripts/artemis-agent-runtime-dry-run.sh
 scripts/artemis-agent-runtime-approval-gate.sh
 scripts/artemis-agent-runtime-decision-intake.sh
+scripts/artemis-agent-runtime-launcher-preflight.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -178,6 +179,7 @@ sh -n scripts/artemis-agent-launch-contract.sh
 sh -n scripts/artemis-agent-runtime-dry-run.sh
 sh -n scripts/artemis-agent-runtime-approval-gate.sh
 sh -n scripts/artemis-agent-runtime-decision-intake.sh
+sh -n scripts/artemis-agent-runtime-launcher-preflight.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -1464,6 +1466,31 @@ if ! grep -q '"event_type": "approval.intake_recorded"' /tmp/artemis-agent-runti
   echo "scripts/artemis-agent-runtime-decision-intake.sh did not emit canonical events" >&2
   exit 1
 fi
+scripts/artemis-agent-runtime-launcher-preflight.sh --artifact-root /tmp/artemis-agent-runtime-launcher-preflight --decision-intake /tmp/artemis-agent-runtime-decision-intake/runtime-decision-intake.json --json >/tmp/artemis-agent-runtime-launcher-preflight.json
+if ! grep -q '"overall": "human_gate"' /tmp/artemis-agent-runtime-launcher-preflight.json; then
+  echo "scripts/artemis-agent-runtime-launcher-preflight.sh did not preserve pending Human Gate" >&2
+  exit 1
+fi
+if ! grep -q '"preflight_state": "waiting_for_approved_ready"' /tmp/artemis-agent-runtime-launcher-preflight.json; then
+  echo "ARTEMIS Agent Runtime Launcher Preflight did not wait for approved_ready" >&2
+  exit 1
+fi
+if ! grep -q '"launcher_execution_allowed": false' /tmp/artemis-agent-runtime-launcher-preflight.json; then
+  echo "ARTEMIS Agent Runtime Launcher Preflight allowed launcher execution" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-agent-runtime-launcher-preflight.json; then
+  echo "ARTEMIS Agent Runtime Launcher Preflight allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-agent-runtime-launcher-preflight.json; then
+  echo "ARTEMIS Agent Runtime Launcher Preflight executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "runner.preflight_recorded"' /tmp/artemis-agent-runtime-launcher-preflight/events.json; then
+  echo "scripts/artemis-agent-runtime-launcher-preflight.sh did not emit canonical events" >&2
+  exit 1
+fi
 
 scripts/artemis-codex-app-server.sh --artifact-root /tmp/artemis-codex-app-server --json >/tmp/artemis-codex-app-server.json
 if ! grep -q '"overall": "passed"' /tmp/artemis-codex-app-server.json; then
@@ -1673,6 +1700,18 @@ if ! grep -q "renderAgentRuntimeDecisionIntake" control-plane/index.html; then
 fi
 if ! grep -q "human_gate" control-plane/index.html; then
   echo "control-plane/index.html does not show the ARTEMIS Agent Runtime Decision Intake state" >&2
+  exit 1
+fi
+if ! grep -q "agent-runtime-launcher-preflight-section" control-plane/index.html; then
+  echo "control-plane/index.html does not render the ARTEMIS Agent Runtime Launcher Preflight section" >&2
+  exit 1
+fi
+if ! grep -q "renderAgentRuntimeLauncherPreflight" control-plane/index.html; then
+  echo "control-plane/index.html does not include the Agent Runtime Launcher Preflight renderer" >&2
+  exit 1
+fi
+if ! grep -q "waiting_for_approved_ready" control-plane/index.html; then
+  echo "control-plane/index.html does not show the ARTEMIS Agent Runtime Launcher Preflight state" >&2
   exit 1
 fi
 

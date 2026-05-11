@@ -35,6 +35,7 @@
         "runner.attempt_planned",
         "runner.attempt_started",
         "runner.attempt_completed",
+        "runner.preflight_recorded",
         "tool.started",
         "tool.completed",
         "approval.requested",
@@ -83,7 +84,8 @@
             "agent_launch_contract",
             "agent_runtime_dry_run",
             "agent_runtime_approval_gate",
-            "agent_runtime_decision_intake"
+            "agent_runtime_decision_intake",
+            "agent_runtime_launcher_preflight"
           ]
         },
         "name": {

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T13:01:53Z",
+  "generated_at": "2026-05-11T13:31:45Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -11,19 +11,20 @@
     "event_log": "artifacts/artemis-event-log/run-01/event-log.example.json",
     "memory_zone": "artifacts/artemis-memory-zone/run-01/memory-zone.json",
     "validation_gate": "artifacts/artemis-validation-gate/run-01/validation-gate-fixture/validation-gate.json",
-    "runtime_decision_intake": "artifacts/artemis-agent-runtime-decision-intake/run-01/runtime-decision-intake.json"
+    "runtime_decision_intake": "artifacts/artemis-agent-runtime-decision-intake/run-01/runtime-decision-intake.json",
+    "runtime_launcher_preflight": "artifacts/artemis-agent-runtime-launcher-preflight/run-01/launcher-preflight.json"
   },
   "summary": {
-    "tasks_total": 62,
-    "tasks_done": 62,
+    "tasks_total": 63,
+    "tasks_done": 63,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 8,
-    "events_total": 49,
-    "nodes_total": 13,
-    "edges_total": 20,
-    "evidence_count": 62,
-    "exec_pack_count": 62,
+    "events_total": 50,
+    "nodes_total": 14,
+    "edges_total": 23,
+    "evidence_count": 63,
+    "exec_pack_count": 63,
     "validation_passed": 1,
     "validation_failed": 0,
     "validation_human_gate": 1,
@@ -36,12 +37,12 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 62
+    "done": 63
   },
   "risks": {
     "medium": 50,
     "low": 4,
-    "high": 8
+    "high": 9
   },
   "top_owners": [
     [
@@ -65,11 +66,11 @@
       4
     ],
     [
-      "Designer",
-      3
+      "Humano",
+      4
     ],
     [
-      "Humano",
+      "Designer",
       3
     ],
     [
@@ -80,11 +81,11 @@
   "top_tags": [
     [
       "exec-pack",
-      62
+      63
     ],
     [
       "done",
-      62
+      63
     ]
   ],
   "nodes": [
@@ -99,8 +100,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 62,
-      "done": 62,
+      "count": 63,
+      "done": 63,
       "human": 0
     },
     {
@@ -156,14 +157,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 62,
-      "exec_packs": 62
+      "task_evidence": 63,
+      "exec_packs": 63
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 49
+      "events": 50
     },
     {
       "id": "cost:budget",
@@ -195,6 +196,14 @@
       "status": "human_gate",
       "intake_state": "pending",
       "launcher_preflight_allowed": false
+    },
+    {
+      "id": "runtime:launcher_preflight",
+      "type": "runtime_preflight",
+      "label": "Agent Runtime Launcher Preflight",
+      "status": "human_gate",
+      "preflight_state": "waiting_for_approved_ready",
+      "launcher_execution_allowed": false
     },
     {
       "id": "control_plane:view",
@@ -290,6 +299,21 @@
       "type": "preserves_budget_limits"
     },
     {
+      "from": "runtime:decision_intake",
+      "to": "runtime:launcher_preflight",
+      "type": "gates_preflight"
+    },
+    {
+      "from": "runtime:launcher_preflight",
+      "to": "validation:gate",
+      "type": "rechecks"
+    },
+    {
+      "from": "runtime:launcher_preflight",
+      "to": "cost:budget",
+      "type": "keeps_execution_blocked"
+    },
+    {
       "from": "control_plane:view",
       "to": "project:artemis",
       "type": "observes"
@@ -358,8 +382,9 @@
     "runtime_input": "artemis_agent_runtime_dry_run",
     "runtime_approval_input": "artemis_agent_runtime_approval_gate",
     "runtime_decision_input": "artemis_agent_runtime_decision_intake",
+    "runtime_launcher_preflight_input": "artemis_agent_runtime_launcher_preflight",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },
-  "next_cut": "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony"
+  "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony"
 }

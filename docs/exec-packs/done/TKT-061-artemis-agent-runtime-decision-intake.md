@@ -51,4 +51,4 @@ O intake foi implementado como camada read-only. Ele preserva a decisao humana,
 classifica estados de runtime, rejeita aprovacao parcial ou insegura, e libera
 apenas o futuro launcher preflight quando houver `approved_ready` coerente.
 
-O proximo corte e `TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`.
+O proximo corte e `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.

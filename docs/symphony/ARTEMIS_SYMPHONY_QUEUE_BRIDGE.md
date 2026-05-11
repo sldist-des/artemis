@@ -61,4 +61,4 @@ scripts/artemis-symphony-queue-bridge.sh --ticket TKT-000 --command "cmd" --json
 
 ## Proximo corte
 
-`TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`
+`TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`

@@ -4,5 +4,5 @@ O contrato supervisionado de lancamento de agentes esta pronto como superficie r
 
 Proximo corte:
 
-- Implementar `TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`.
-- Usar o Agent Runtime Decision Intake como entrada obrigatoria antes de qualquer launcher real.
+- Implementar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.
+- Usar o Agent Runtime Launcher Preflight como entrada obrigatoria antes de materializar comandos.

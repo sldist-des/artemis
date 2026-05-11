@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T13:01:53Z",
+  "generated_at": "2026-05-11T13:31:45Z",
   "source": "scripts/artemis-symphony-remote-source.sh",
   "mode": "read_only_supervised_intake",
   "overall": "remote_source_ready",
@@ -89,5 +89,5 @@
       "remote_writes": "human_gate_only"
     }
   },
-  "next_cut": "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony"
+  "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony"
 }

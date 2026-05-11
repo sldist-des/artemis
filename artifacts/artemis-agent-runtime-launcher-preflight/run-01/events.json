@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-11T13:32:10Z",
+  "source": "scripts/artemis-agent-runtime-launcher-preflight.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-062_agent_runtime_launcher_preflight",
+      "event_type": "runner.preflight_recorded",
+      "generated_at": "2026-05-11T13:32:10Z",
+      "producer": {
+        "adapter": "agent_runtime_launcher_preflight",
+        "name": "scripts/artemis-agent-runtime-launcher-preflight.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-062",
+        "task_id": "tkt-062",
+        "title": "Agent Runtime Launcher Preflight do ARTEMIS Symphony",
+        "exec_pack": "docs/exec-packs/done/TKT-062-artemis-agent-runtime-launcher-preflight.md",
+        "artifact_root": "artifacts/artemis-agent-runtime-launcher-preflight/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "human_gate",
+        "to": "human_gate",
+        "reason": "Launcher preflight was evaluated without starting any agent runtime."
+      },
+      "gate": {
+        "kind": "human",
+        "status": "human_gate",
+        "reason": "Launcher execution remains blocked in TKT-062."
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-agent-runtime-launcher-preflight/run-01",
+        "status_path": "artifacts/artemis-agent-runtime-launcher-preflight/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-agent-runtime-launcher-preflight/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-agent-runtime-launcher-preflight/run-01/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-062"
+      },
+      "payload": {
+        "overall": "human_gate",
+        "reason": "Launcher preflight was evaluated without starting any agent runtime.",
+        "summary": {
+          "decision_intake_ready": false,
+          "preflight_checks": 5,
+          "preflight_passed": 4,
+          "preflight_failed": 0,
+          "preflight_human_gate": 1,
+          "approved_commands_count": 0,
+          "launcher_preflight_allowed": false,
+          "launcher_execution_allowed": false,
+          "runtime_execution_allowed": false,
+          "runtime_started": false,
+          "agents_started": 0,
+          "commands_executed": 0,
+          "dependencies_installed": 0,
+          "remote_writes_allowed": false,
+          "paid_tokens_authorized": 0
+        },
+        "preflight_state": "waiting_for_approved_ready",
+        "next_action": "wait_for_decision_intake_approved_ready",
+        "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony"
+      }
+    }
+  ]
+}

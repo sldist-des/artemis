@@ -332,7 +332,7 @@ payload = {
         "Validation Gate remains required before real execution.",
         "Human Gates remain explicit and non-bypassable.",
     ],
-    "next_cut": "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony",
+    "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony",
 }
 
 write_text(
@@ -448,7 +448,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`.",
+    "- Implementar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.",
     "- Manter `--execute` dependente de Validation Gate e decisao exata.",
 ]
 write_text(artifact_root / "HANDOFF.md", "\n".join(handoff_lines) + "\n")

@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 62
+    "done": 63
   },
   "decisions": [
     {
@@ -565,6 +565,15 @@
       "title": "Agent Runtime Decision Intake do ARTEMIS Symphony",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-061-artemis-agent-runtime-decision-intake.md"
+    },
+    {
+      "ticket": "TKT-062",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Agent Runtime Launcher Preflight do ARTEMIS Symphony",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-062-artemis-agent-runtime-launcher-preflight.md"
     }
   ]
 }

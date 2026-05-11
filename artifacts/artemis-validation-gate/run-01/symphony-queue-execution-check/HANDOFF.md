@@ -8,5 +8,5 @@
 
 ## Proximo corte
 
-- Implementar `TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`.
+- Implementar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.
 - Manter `--execute` dependente de Validation Gate e decisao exata.

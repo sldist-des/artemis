@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T13:01:53Z",
+  "generated_at": "2026-05-11T13:31:46Z",
   "source": "scripts/artemis-workspace-runtime-handoff.sh",
   "mode": "read_only",
   "summary": {

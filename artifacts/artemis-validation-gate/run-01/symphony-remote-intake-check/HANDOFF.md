@@ -6,7 +6,7 @@ Intake remoto revisavel esta `remote_intake_ready`. Ele prepara revisao local e 
 
 ## Proximo corte
 
-- Implementar `TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`.
+- Implementar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.
 - Exigir decisao humana exata antes de promover item remoto para fila/service.
 - Manter GitHub writes bloqueados ate contrato explicito.
 

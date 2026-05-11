@@ -361,7 +361,7 @@ payload = {
         "Agents must not fill or approve the human decision record.",
         "Control Plane remains observational.",
     ],
-    "next_cut": "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony",
+    "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony",
 }
 
 (artifact_root / "runtime-approval-gate.json").write_text(
@@ -461,7 +461,7 @@ handoff_lines = [
     "",
     "Proximo corte:",
     "",
-    "- Implementar `TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`.",
+    "- Implementar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.",
     "- Passar primeiro pelo Agent Runtime Decision Intake; o gate sozinho nao autoriza launcher.",
 ]
 (artifact_root / "HANDOFF.md").write_text("\n".join(handoff_lines) + "\n", encoding="utf-8")

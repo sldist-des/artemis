@@ -73,4 +73,4 @@ Esse modo chama o Queue Bridge sem `--execute`, produz
 
 ## Proximo corte
 
-`TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`
+`TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`

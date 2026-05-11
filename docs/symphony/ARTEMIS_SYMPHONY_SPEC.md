@@ -774,6 +774,39 @@ Resultado esperado:
 - `commands_executed=0`;
 - evento canonico `approval.intake_recorded`.
 
+### Modo 3.12 - Agent Runtime Launcher Preflight
+
+Implementado em `TKT-062` como preflight read-only entre o Decision Intake e
+qualquer plano futuro de comandos de launcher.
+
+- consome `runtime-decision-intake.json`;
+- exige `overall=ready_for_launcher_preflight`, `intake_state=approved_ready`
+  e `launcher_preflight_allowed=true` para ficar pronto;
+- enquanto a decisao humana estiver `pending`, permanece em `human_gate` com
+  `preflight_state=waiting_for_approved_ready`;
+- revalida identidade, timestamp, runtime, perfil, superficie de comando,
+  comandos aprovados, budget, auth, workspace, branch, dirty state, rollback e
+  evidencias de validacao;
+- captura contexto Git (`branch`, `HEAD` e dirty state) como evidencia;
+- produz `launcher_package` apenas para o proximo corte de planejamento;
+- nao inicia Codex app-server, Claude Code, SDK, CLI, subagente, fila, daemon,
+  dependencia, push, PR, deploy, segredo, producao ou tokens pagos.
+
+Agent Runtime Launcher Preflight implementado:
+
+- `scripts/artemis-agent-runtime-launcher-preflight.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_PREFLIGHT.md`
+
+Resultado esperado:
+
+- `human_gate` enquanto o Decision Intake nao estiver `approved_ready`;
+- `launcher_preflight_ready` apenas quando a decisao aprovada passar na
+  revalidacao local;
+- `launcher_execution_allowed=false`;
+- `runtime_execution_allowed=false`;
+- `commands_executed=0`;
+- evento canonico `runner.preflight_recorded`.
+
 ## Invariantes
 
 - ARTEMIS Symphony nao executa cleanup real sem decisao humana.
@@ -786,15 +819,15 @@ Resultado esperado:
 
 ## Proximo corte recomendado
 
-`TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`
+`TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`
 
 Objetivo:
 
-- consumir apenas `runtime-decision-intake.json` em estado `approved_ready`;
-- validar novamente auth, budget, workspace, dirty state, branch, worktree,
-  modelo, comandos, testes, rollback e evidencia;
-- confirmar que o comando exato ainda bate com a decisao humana aprovada;
-- produzir um pacote de preflight para o futuro launcher;
-- manter runtime bloqueado e nao executar agente neste corte.
+- consumir apenas `launcher-preflight.json` em estado `launcher_preflight_ready`;
+- materializar um plano de comandos ainda read-only com runtime, perfil, budget,
+  stop rule, logs, validacoes e rollback;
+- confirmar que nenhum comando sera executado no corte de planejamento;
+- preparar a futura execucao supervisionada sem abrir mao dos Human Gates de
+  remoto, producao, secrets e custo.
 
 Esse sera o proximo passo de implementacao do nosso Symphony proprio.

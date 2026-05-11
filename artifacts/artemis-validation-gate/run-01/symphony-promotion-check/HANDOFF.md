@@ -6,7 +6,7 @@ Promocao local do intake esta `remote_promotion_ready`. A fonte local promovida 
 
 ## Proximo corte
 
-- Implementar `TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`.
+- Implementar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.
 - Manter comentarios, labels, branches e PRs atras de decisao humana exata.
 
 ## Nao fazer

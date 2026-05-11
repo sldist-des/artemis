@@ -162,7 +162,7 @@ payload = {
         "dependency_policy": "no_new_dependency_without_explicit_decision",
         "reference_study_policy": "study_public_code_for_learning_then_recreate_original_artemis_implementation",
     },
-    "next_cut": "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony",
+    "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony",
 }
 
 write_text(artifact_root / "memory-zone.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
@@ -244,7 +244,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`.",
+    "- Implementar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.",
     "- Usar Memory Zone como fonte de contexto e o indice derivado como read model.",
     "",
     "## Nao fazer",

@@ -425,6 +425,8 @@ scripts/artemis-agent-runtime-approval-gate.sh
 scripts/artemis-agent-runtime-approval-gate.sh --json
 scripts/artemis-agent-runtime-decision-intake.sh
 scripts/artemis-agent-runtime-decision-intake.sh --json
+scripts/artemis-agent-runtime-launcher-preflight.sh
+scripts/artemis-agent-runtime-launcher-preflight.sh --json
 ```
 
 Esse grafo e um read model operacional. Ele ajuda humanos e agentes a entenderem
@@ -443,6 +445,9 @@ Codex, Claude, comandos, fila, daemon, tokens pagos ou escrita remota.
 O Agent Runtime Decision Intake le a decisao preenchida, classifica
 `approved_ready`, `pending`, `deferred`, `rejected` ou `invalid`, e ainda assim
 nao executa runtime; `approved_ready` so libera o proximo launcher preflight.
+O Agent Runtime Launcher Preflight consome o Decision Intake, revalida comando,
+budget, auth, workspace, branch, dirty state, rollback e evidencias, mas ainda
+nao executa launcher; sem `approved_ready`, ele permanece em Human Gate.
 O Agent Launch Contract e o preflight supervisionado entre a entrada guiada e
 qualquer runtime real. Ele fixa `execute=false` por padrao e exige projeto,
 tarefa, auth, budget, comando, workspace, rollback e evidencia antes de Codex

@@ -272,11 +272,11 @@ evidence_contract = [
 
 candidate_launch = {
     "project": "ARTEMIS",
-    "task": "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony",
+    "task": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony",
     "recommended_profile": "codex_terminal",
     "fallback_profile": "claude_code",
     "execute": False,
-    "reason": "The next safe step is a launcher preflight that consumes an approved_ready decision intake without starting paid/runtime agents.",
+    "reason": "The next safe step is a command plan that consumes launcher preflight evidence without starting paid/runtime agents.",
 }
 
 payload = {
@@ -329,7 +329,7 @@ payload = {
     "missing_tokens": missing_tokens,
     "missing_files": missing_files,
     "required_tokens": required_tokens,
-    "next_cut": "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony",
+    "next_cut": "TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony",
 }
 
 ready = (
@@ -412,8 +412,8 @@ handoff_lines = [
     "",
     "Proximo corte:",
     "",
-    "- Implementar `TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`.",
-    "- Usar o Agent Runtime Decision Intake como entrada obrigatoria antes de qualquer launcher real.",
+    "- Implementar `TKT-063 - Agent Runtime Launcher Command Plan do ARTEMIS Symphony`.",
+    "- Usar o Agent Runtime Launcher Preflight como entrada obrigatoria antes de materializar comandos.",
 ]
 (artifact_root / "HANDOFF.md").write_text("\n".join(handoff_lines) + "\n", encoding="utf-8")
 

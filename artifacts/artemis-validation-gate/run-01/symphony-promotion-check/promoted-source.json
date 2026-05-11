@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T13:01:53Z",
+  "generated_at": "2026-05-11T13:31:45Z",
   "source": "scripts/artemis-symphony-remote-promotion.sh",
   "mode": "local_promoted_task_source",
   "contract": {

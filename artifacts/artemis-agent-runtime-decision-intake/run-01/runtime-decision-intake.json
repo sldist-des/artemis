@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-11T13:02:12Z",
+  "source": "scripts/artemis-agent-runtime-decision-intake.sh",
+  "mode": "read_only_agent_runtime_decision_intake",
+  "overall": "human_gate",
+  "reason": "Runtime approval decision was classified without starting any agent runtime.",
+  "artifact_root": "artifacts/artemis-agent-runtime-decision-intake/run-01",
+  "inputs": {
+    "approval_gate": "artifacts/artemis-agent-runtime-approval-gate/run-01/runtime-approval-gate.json",
+    "decision": "artifacts/artemis-agent-runtime-approval-gate/run-01/runtime-approval-decision.json"
+  },
+  "approval_request": {
+    "project": "ARTEMIS",
+    "task": "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony",
+    "profile_id": "codex_terminal",
+    "profile_name": "Codex terminal-first",
+    "runtime": "codex_cli",
+    "command_surface": "terminal",
+    "model_policy": {
+      "selection": "inherited_or_human_approved",
+      "frontier_default": "gpt-5.4",
+      "claude_default": "human_account_runtime",
+      "override_allowed": false
+    },
+    "budget": {
+      "approval_state": "human_required_before_runtime",
+      "max_agents": 1,
+      "max_commands": 0,
+      "max_paid_tokens": 0,
+      "max_runtime_seconds": 0,
+      "stop_rule": "Stop before any real runtime, paid token use, remote write, production touch, secret access or missing validation evidence."
+    },
+    "auth": {
+      "required": false,
+      "state": "not_required_for_dry_run",
+      "secrets_touched": false
+    },
+    "workspace": {
+      "repo": "/srv/veri",
+      "write_scope": "none",
+      "branch_policy": "observe_only",
+      "worktree_policy": "not_materialized",
+      "dirty_state_policy": "record_only"
+    },
+    "rollback": {
+      "required_before_runtime": true,
+      "dry_run_abort": "Delete or ignore this artifact root; no runtime side effects were created.",
+      "runtime_abort": "Future runtime must preserve logs, stop agents and hand off unresolved gates before retry."
+    },
+    "evidence": {
+      "request": "artifacts/artemis-agent-runtime-dry-run/run-01/REQUEST.md",
+      "preflight": "artifacts/artemis-agent-runtime-dry-run/run-01/PREFLIGHT.md",
+      "runtime_log": "artifacts/artemis-agent-runtime-dry-run/run-01/RUNTIME_LOG.md",
+      "handoff": "artifacts/artemis-agent-runtime-dry-run/run-01/HANDOFF.md",
+      "json": "artifacts/artemis-agent-runtime-dry-run/run-01/runtime-dry-run.json"
+    },
+    "preflight": [
+      {
+        "id": "contract_ready",
+        "status": "passed",
+        "proof": "contract overall: agent_launch_contract_ready"
+      },
+      {
+        "id": "profile_selected",
+        "status": "passed",
+        "proof": "codex_terminal"
+      },
+      {
+        "id": "required_gates_present",
+        "status": "passed",
+        "proof": "auth_gate, budget_gate, command_gate, project_gate, remote_write_gate, rollback_gate, task_gate, validation_gate, workspace_gate"
+      },
+      {
+        "id": "execute_false",
+        "status": "passed",
+        "proof": "execute=false"
+      },
+      {
+        "id": "runtime_not_started",
+        "status": "passed",
+        "proof": "runtime_started=false"
+      },
+      {
+        "id": "agents_not_started",
+        "status": "passed",
+        "proof": "agents_started=0"
+      },
+      {
+        "id": "commands_not_executed",
+        "status": "passed",
+        "proof": "commands_executed=0"
+      },
+      {
+        "id": "remote_writes_blocked",
+        "status": "passed",
+        "proof": "remote_writes_allowed=false"
+      },
+      {
+        "id": "auth_gate",
+        "status": "passed",
+        "proof": "not_required_for_dry_run"
+      },
+      {
+        "id": "budget_gate",
+        "status": "human_gate",
+        "proof": "max_paid_tokens=0 until explicit budget approval"
+      },
+      {
+        "id": "workspace_gate",
+        "status": "passed",
+        "proof": "write_scope=none and worktree_policy=not_materialized"
+      },
+      {
+        "id": "rollback_gate",
+        "status": "passed",
+        "proof": "dry-run and future runtime abort rules recorded"
+      },
+      {
+        "id": "validation_gate",
+        "status": "passed",
+        "proof": "future runtime must declare tests/checks/screenshots before Done"
+      }
+    ]
+  },
+  "decision_record": {
+    "decision": "pending",
+    "decided_by": "",
+    "decided_at": "",
+    "reason": "",
+    "approved_profile_id": "",
+    "approved_runtime": "",
+    "approved_command_surface": "",
+    "approved_model_policy": {},
+    "approved_budget": {
+      "max_agents": 0,
+      "max_commands": 0,
+      "max_paid_tokens": 0,
+      "max_runtime_seconds": 0,
+      "stop_rule": ""
+    },
+    "approved_auth": {
+      "auth_confirmed": false,
+      "secrets_touched": false
+    },
+    "approved_workspace": {
+      "repo": "",
+      "write_scope": "none",
+      "branch_policy": "",
+      "worktree_policy": "",
+      "dirty_state_policy": ""
+    },
+    "approved_rollback": {
+      "required_before_runtime": true,
+      "abort_path": "",
+      "preserve_logs": true
+    },
+    "approved_validation": {
+      "required_before_done": true,
+      "checks": [],
+      "evidence_artifacts": []
+    },
+    "approved_commands": []
+  },
+  "intake_state": "pending",
+  "next_action": "human_decision_required",
+  "summary": {
+    "decision": "pending",
+    "pending": 1,
+    "approved_ready": 0,
+    "deferred": 0,
+    "rejected": 0,
+    "invalid": 0,
+    "runtime_execution_allowed": false,
+    "launcher_preflight_allowed": false,
+    "runtime_started": false,
+    "agents_started": 0,
+    "commands_executed": 0,
+    "dependencies_installed": 0,
+    "remote_writes_allowed": false,
+    "paid_tokens_authorized": 0
+  },
+  "blockers": [],
+  "warnings": [],
+  "invariants": [
+    "Decision Intake is read-only and never starts runtime.",
+    "Decision records remain human-owned.",
+    "approved_ready means eligible for launcher preflight, not executed.",
+    "pending, deferred, rejected and invalid states do not execute commands.",
+    "Remote writes, secrets, deploys and production remain separate Human Gates."
+  ],
+  "next_cut": "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony"
+}

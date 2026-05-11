@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-09T15:40:48Z",
+  "generated_at": "2026-05-11T13:01:23Z",
   "source": "scripts/artemis-symphony-remote-promotion.sh",
   "mode": "local_promotion_decision_gate",
   "overall": "remote_promotion_human_gate",
@@ -45,5 +45,5 @@
     "missing exact human promotion decision"
   ],
   "warnings": [],
-  "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony"
+  "next_cut": "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony"
 }

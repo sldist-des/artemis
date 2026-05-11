@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `12`.
-- Edges: `17`.
-- Tasks: `61`.
-- Events: `47`.
+- Nodes: `13`.
+- Edges: `20`.
+- Tasks: `62`.
+- Events: `49`.
 
 ## Nos
 
@@ -22,6 +22,7 @@
 - `cost:budget` (cost_guard): Token and runtime budget.
 - `runtime:dry_run` (runtime_plan): Agent Runtime Dry-Run.
 - `runtime:approval_gate` (human_gate): Agent Runtime Approval Gate.
+- `runtime:decision_intake` (human_gate): Agent Runtime Decision Intake.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -40,6 +41,9 @@
 - `runtime:dry_run` --requests_human_decision--> `runtime:approval_gate`.
 - `runtime:approval_gate` --opens--> `gate:human`.
 - `runtime:approval_gate` --requires_budget_approval--> `cost:budget`.
+- `runtime:approval_gate` --feeds_decision--> `runtime:decision_intake`.
+- `runtime:decision_intake` --requires_validation--> `validation:gate`.
+- `runtime:decision_intake` --preserves_budget_limits--> `cost:budget`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.

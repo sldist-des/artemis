@@ -59,6 +59,6 @@ scripts/artemis-symphony-bridge.sh \
 
 ## Proximo Corte
 
-`TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`
+`TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`
 
 Objetivo: consumir item revisado da fila com comando explicito, mantendo a ponte como acao de terminal.

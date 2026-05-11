@@ -4,4 +4,4 @@ Project Graph View esta pronto como leitura visual no Control Plane.
 
 Próximo corte:
 
-- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.
+- Implementar `TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`.

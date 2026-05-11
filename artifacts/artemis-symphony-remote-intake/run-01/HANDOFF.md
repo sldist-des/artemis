@@ -6,7 +6,7 @@ Intake remoto revisavel esta `human_gate`. Ele prepara revisao local e mantem qu
 
 ## Proximo corte
 
-- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.
+- Implementar `TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`.
 - Exigir decisao humana exata antes de promover item remoto para fila/service.
 - Manter GitHub writes bloqueados ate contrato explicito.
 

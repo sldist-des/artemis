@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-09T15:38:53Z",
+  "generated_at": "2026-05-11T13:01:53Z",
   "source": "scripts/artemis-project-graph.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-09T15:38:53Z",
+      "generated_at": "2026-05-11T13:01:53Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -47,16 +47,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 61,
-          "tasks_done": 61,
+          "tasks_total": 62,
+          "tasks_done": 62,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 8,
-          "events_total": 47,
-          "nodes_total": 12,
-          "edges_total": 17,
-          "evidence_count": 61,
-          "exec_pack_count": 61,
+          "events_total": 49,
+          "nodes_total": 13,
+          "edges_total": 20,
+          "evidence_count": 62,
+          "exec_pack_count": 62,
           "validation_passed": 1,
           "validation_failed": 0,
           "validation_human_gate": 1,
@@ -68,7 +68,7 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony"
+        "next_cut": "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony"
       }
     }
   ]

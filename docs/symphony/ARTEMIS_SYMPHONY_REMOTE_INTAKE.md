@@ -49,4 +49,4 @@ scripts/artemis-symphony-remote-intake.sh \
 
 ## Proximo Corte
 
-`TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`
+`TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`

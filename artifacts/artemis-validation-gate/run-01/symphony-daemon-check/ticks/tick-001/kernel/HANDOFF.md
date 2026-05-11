@@ -6,7 +6,7 @@ Kernel local read-only concluido com overall `dispatch_plan_ready`.
 
 ## Proximo corte
 
-- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.
+- Implementar `TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`.
 - Continuar com ponte plan-only por padrao e comando explicito por terminal.
 
 ## Nao fazer

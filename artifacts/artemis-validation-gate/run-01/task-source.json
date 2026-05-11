@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-09T15:38:48Z",
+  "generated_at": "2026-05-11T13:01:47Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -733,6 +733,18 @@
       "summary": "O gate deve reportar `agent_runtime_approval_gate_ready`, com decisao `pending`,",
       "exec_pack": "docs/exec-packs/done/TKT-060-artemis-agent-runtime-approval-gate.md",
       "evidence": "artifacts/artemis-agent-runtime-approval-gate/run-01/runtime-approval-gate.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-061",
+      "ticket": "TKT-061",
+      "title": "Agent Runtime Decision Intake do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Humano",
+      "risk": "high",
+      "summary": "O intake deve reportar a decisao atual como `pending`, com",
+      "exec_pack": "docs/exec-packs/done/TKT-061-artemis-agent-runtime-decision-intake.md",
+      "evidence": "artifacts/artemis-agent-runtime-decision-intake/run-01/runtime-decision-intake.json",
       "tags": ["exec-pack", "done"]
     }
   ]

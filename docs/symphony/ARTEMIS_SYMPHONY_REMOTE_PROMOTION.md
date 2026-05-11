@@ -60,4 +60,4 @@ Sem `--decision`, o resultado deve permanecer em Human Gate.
 
 ## Proximo corte
 
-`TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`
+`TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`

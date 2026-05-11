@@ -741,6 +741,39 @@ Resultado esperado:
 - `paid_tokens_authorized=0`;
 - evento canonico `approval.requested`.
 
+### Modo 3.11 - Agent Runtime Decision Intake
+
+Implementado em `TKT-061` como intake read-only da decisao humana emitida pelo
+Agent Runtime Approval Gate.
+
+- consome `runtime-approval-gate.json` e `runtime-approval-decision.json`;
+- classifica a decisao como `pending`, `approved_ready`, `deferred`,
+  `rejected` ou `invalid`;
+- preserva `runtime_execution_allowed=false` e `commands_executed=0`;
+- libera apenas `launcher_preflight_allowed=true` quando a decisao humana
+  aprovada estiver completa, coerente e rastreavel;
+- valida identidade, timestamp ISO, razao, projeto, tarefa, perfil, runtime,
+  superficie de comando, politica de modelo, budget, auth, workspace, rollback,
+  validacao e comandos aprovados exatos;
+- rejeita comandos remotos ou produtivos como `git push`, `gh pr`, `gh issue`,
+  `gh repo`, `gh api`, `deploy`, `kubectl`, `scp`, `rsync` e `ssh`;
+- nao inicia Codex app-server, Claude Code, SDK, CLI, subagente, fila, daemon,
+  dependencia, push, PR, deploy, segredo, producao ou tokens pagos.
+
+Agent Runtime Decision Intake implementado:
+
+- `scripts/artemis-agent-runtime-decision-intake.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_DECISION_INTAKE.md`
+
+Resultado esperado:
+
+- `human_gate` enquanto a decisao estiver `pending`;
+- `ready_for_launcher_preflight` apenas para `approved_ready`;
+- `launcher_preflight_allowed=false` por padrao;
+- `runtime_execution_allowed=false`;
+- `commands_executed=0`;
+- evento canonico `approval.intake_recorded`.
+
 ## Invariantes
 
 - ARTEMIS Symphony nao executa cleanup real sem decisao humana.
@@ -753,17 +786,15 @@ Resultado esperado:
 
 ## Proximo corte recomendado
 
-`TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`
+`TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`
 
 Objetivo:
 
-- ingerir `runtime-approval-decision.json` preenchido por humano;
-- validar identidade, timestamp, razao, budget, auth, workspace, rollback,
-  validacao e comandos aprovados exatos;
-- manter runtime bloqueado quando a decisao for `pending`, `deferred` ou
-  `rejected`;
-- produzir `approved_ready` somente quando a decisao humana for coerente,
-  completa e rastreavel;
-- preparar o futuro launcher/preflight sem executar agente neste corte.
+- consumir apenas `runtime-decision-intake.json` em estado `approved_ready`;
+- validar novamente auth, budget, workspace, dirty state, branch, worktree,
+  modelo, comandos, testes, rollback e evidencia;
+- confirmar que o comando exato ainda bate com a decisao humana aprovada;
+- produzir um pacote de preflight para o futuro launcher;
+- manter runtime bloqueado e nao executar agente neste corte.
 
 Esse sera o proximo passo de implementacao do nosso Symphony proprio.

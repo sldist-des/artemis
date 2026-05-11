@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-09T15:38:53Z",
+  "generated_at": "2026-05-11T13:01:53Z",
   "source": "scripts/artemis-agent-launch-contract.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-058_agent_launch_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-09T15:38:53Z",
+      "generated_at": "2026-05-11T13:01:53Z",
       "producer": {
         "adapter": "agent_launch_contract",
         "name": "scripts/artemis-agent-launch-contract.sh",
@@ -50,8 +50,8 @@
           "launch_profiles": 4,
           "launch_gates": 9,
           "evidence_requirements": 4,
-          "tasks_total": 61,
-          "tasks_done": 61,
+          "tasks_total": 62,
+          "tasks_done": 62,
           "tasks_human": 0,
           "validation_passed": 1,
           "validation_failed": 0,
@@ -69,13 +69,13 @@
         },
         "candidate_launch": {
           "project": "ARTEMIS",
-          "task": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony",
+          "task": "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony",
           "recommended_profile": "codex_terminal",
           "fallback_profile": "claude_code",
           "execute": false,
-          "reason": "The next safe step is a decision intake adapter that validates a human-filled runtime approval without starting paid/runtime agents."
+          "reason": "The next safe step is a launcher preflight that consumes an approved_ready decision intake without starting paid/runtime agents."
         },
-        "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony"
+        "next_cut": "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony"
       }
     }
   ]

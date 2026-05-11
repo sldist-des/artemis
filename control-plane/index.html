@@ -1601,6 +1601,30 @@
       </div>
     </section>
 
+    <section class="agent-launch-section agent-runtime-decision-section" aria-labelledby="agent-runtime-decision-title">
+      <header class="agent-launch-header">
+        <div>
+          <h2 id="agent-runtime-decision-title">Agent Runtime Decision Intake</h2>
+          <p>Leitura da decisao humana de runtime para separar pendente, rejeitado e aprovado para preflight.</p>
+        </div>
+        <p id="agent-runtime-decision-status" class="agent-launch-status">Fonte: seed do intake de decisao.</p>
+      </header>
+      <div class="agent-launch-layout" aria-label="Intake de decisao humana de runtime">
+        <section class="agent-launch-panel">
+          <h3>Pedido</h3>
+          <div id="agent-runtime-decision-request"></div>
+        </section>
+        <section class="agent-launch-panel">
+          <h3>Estado</h3>
+          <div id="agent-runtime-decision-state"></div>
+        </section>
+        <section class="agent-launch-panel">
+          <h3>Proximo</h3>
+          <div id="agent-runtime-decision-next"></div>
+        </section>
+      </div>
+    </section>
+
     <section class="decision-gate" aria-labelledby="decision-gate-title">
       <header>
         <h2 id="decision-gate-title">Human Gate cleanup</h2>
@@ -1644,6 +1668,7 @@
     const agentLaunchContractSourceUrl = "../artifacts/artemis-agent-launch-contract/run-01/agent-launch-contract.json";
     const agentRuntimeDryRunSourceUrl = "../artifacts/artemis-agent-runtime-dry-run/run-01/runtime-dry-run.json";
     const agentRuntimeApprovalGateSourceUrl = "../artifacts/artemis-agent-runtime-approval-gate/run-01/runtime-approval-gate.json";
+    const agentRuntimeDecisionIntakeSourceUrl = "../artifacts/artemis-agent-runtime-decision-intake/run-01/runtime-decision-intake.json";
 
     const columns = [
       { id: "intake", title: "Intake", help: "Ideia ou pedido bruto. Ainda nao tem contrato." },
@@ -2328,6 +2353,17 @@
         tags: ["symphony", "agents", "runtime-approval"]
       },
       {
+        id: "tkt-061",
+        state: "done",
+        ticket: "TKT-061",
+        title: "Agent Runtime Decision Intake do ARTEMIS Symphony",
+        summary: "Intake classifica decisao humana de runtime sem iniciar launcher, comandos ou tokens pagos.",
+        owner: "Codex",
+        risk: "high",
+        evidence: "artifacts/artemis-agent-runtime-decision-intake/run-01",
+        tags: ["symphony", "agents", "runtime-decision"]
+      },
+      {
         id: "github-auth",
         state: "human",
         ticket: "GIT",
@@ -2710,6 +2746,10 @@
     const agentRuntimeApprovalRequestNode = document.querySelector("#agent-runtime-approval-request");
     const agentRuntimeApprovalGatesNode = document.querySelector("#agent-runtime-approval-gates");
     const agentRuntimeApprovalDecisionNode = document.querySelector("#agent-runtime-approval-decision");
+    const agentRuntimeDecisionStatusNode = document.querySelector("#agent-runtime-decision-status");
+    const agentRuntimeDecisionRequestNode = document.querySelector("#agent-runtime-decision-request");
+    const agentRuntimeDecisionStateNode = document.querySelector("#agent-runtime-decision-state");
+    const agentRuntimeDecisionNextNode = document.querySelector("#agent-runtime-decision-next");
 
     const symphonyEvidence = {
       summary: "Kernel, bridge, runner, daemon dry-run e fila publicados como evidencia local. Exec Packs e artifacts continuam canonicos.",
@@ -2989,6 +3029,20 @@
             ["json", "../artifacts/artemis-agent-runtime-approval-gate/run-01/runtime-approval-gate.json"],
             ["decision", "../artifacts/artemis-agent-runtime-approval-gate/run-01/runtime-approval-decision.json"]
           ]
+        },
+        {
+          title: "Decision",
+          status: "human_gate",
+          summary: "human_gate: intake de decisao esta pendente e runtime continua bloqueado antes do launcher preflight.",
+          facts: [
+            ["intake", "pending"],
+            ["preflight", "false"]
+          ],
+          links: [
+            ["status", "../artifacts/artemis-agent-runtime-decision-intake/run-01/STATUS.md"],
+            ["json", "../artifacts/artemis-agent-runtime-decision-intake/run-01/runtime-decision-intake.json"],
+            ["handoff", "../artifacts/artemis-agent-runtime-decision-intake/run-01/HANDOFF.md"]
+          ]
         }
       ]
     };
@@ -2997,12 +3051,12 @@
       source: "seed",
       overall: "project_graph_ready",
       summary: {
-        tasks_total: 61,
-        tasks_done: 61,
-        events_total: 48,
-        nodes_total: 12,
-        edges_total: 17,
-        validation_passed: 87,
+        tasks_total: 62,
+        tasks_done: 62,
+        events_total: 49,
+        nodes_total: 13,
+        edges_total: 20,
+        validation_passed: 89,
         validation_human_gate: 2,
         memory_zones: 3,
         dependencies_installed: 0,
@@ -3010,16 +3064,17 @@
       },
       nodes: [
         { id: "project:artemis", type: "project", label: "ARTEMIS", status: "operational" },
-        { id: "task_set:exec_packs", type: "task_set", label: "Exec Packs", count: 61, done: 61 },
+        { id: "task_set:exec_packs", type: "task_set", label: "Exec Packs", count: 62, done: 62 },
         { id: "agent_roles:owners", type: "agent_roles", label: "Owners and agent roles", count: 7 },
         { id: "gate:human", type: "gate", label: "Human Gates", count: 2 },
-        { id: "validation:gate", type: "validation", label: "Validation Gate", passed: 87, failed: 0 },
+        { id: "validation:gate", type: "validation", label: "Validation Gate", passed: 89, failed: 0 },
         { id: "memory:zone", type: "memory", label: "Human-AI Memory Zone", zones: 3 },
-        { id: "artifact:evidence", type: "artifact_set", label: "Artifacts and evidence", task_evidence: 61 },
-        { id: "event_log:timeline", type: "event_log", label: "Canonical event timeline", events: 48 },
+        { id: "artifact:evidence", type: "artifact_set", label: "Artifacts and evidence", task_evidence: 62 },
+        { id: "event_log:timeline", type: "event_log", label: "Canonical event timeline", events: 49 },
         { id: "cost:budget", type: "cost_guard", label: "Token and runtime budget", dependencies_installed: 0 },
         { id: "runtime:dry_run", type: "runtime_plan", label: "Agent Runtime Dry-Run", status: "agent_runtime_dry_run_ready" },
         { id: "runtime:approval_gate", type: "human_gate", label: "Agent Runtime Approval Gate", status: "agent_runtime_approval_gate_ready", decision: "pending", runtime_execution_allowed: false },
+        { id: "runtime:decision_intake", type: "human_gate", label: "Agent Runtime Decision Intake", status: "human_gate", intake_state: "pending", launcher_preflight_allowed: false },
         { id: "control_plane:view", type: "view", label: "Control Plane", authority: "observational" }
       ],
       edges: [
@@ -3037,6 +3092,9 @@
         { from: "runtime:dry_run", to: "runtime:approval_gate", type: "requests_human_decision" },
         { from: "runtime:approval_gate", to: "gate:human", type: "opens" },
         { from: "runtime:approval_gate", to: "cost:budget", type: "requires_budget_approval" },
+        { from: "runtime:approval_gate", to: "runtime:decision_intake", type: "feeds_decision" },
+        { from: "runtime:decision_intake", to: "validation:gate", type: "requires_validation" },
+        { from: "runtime:decision_intake", to: "cost:budget", type: "preserves_budget_limits" },
         { from: "control_plane:view", to: "project:artemis", type: "observes" },
         { from: "control_plane:view", to: "validation:gate", type: "shows" },
         { from: "control_plane:view", to: "memory:zone", type: "shows" }
@@ -3057,9 +3115,9 @@
       source: "seed",
       overall: "human_project_brief_ready",
       summary: {
-        tasks_total: 61,
-        tasks_done: 61,
-        validation_passed: 87,
+        tasks_total: 62,
+        tasks_done: 62,
+        validation_passed: 89,
         validation_failed: 0,
         human_gates: 2,
         memory_zones: 3,
@@ -3070,9 +3128,9 @@
         headline: "ARTEMIS Symphony em linguagem de projeto",
         status: "O ARTEMIS Symphony esta pronto como sistema local supervisionado: ele organiza tarefas, evidencia, validacao, memoria e limites antes de qualquer execucao automatica.",
         ready: [
-          "61 de 61 Exec Packs estao concluidos e versionados.",
-          "O Validation Gate registra 87 checks aprovados e 0 falhas tecnicas.",
-          "O Project Graph conecta tarefas, agentes, gates, memoria, custos, runtime dry-run e approval gate."
+          "62 de 62 Exec Packs estao concluidos e versionados.",
+          "O Validation Gate registra 89 checks aprovados e 0 falhas tecnicas.",
+          "O Project Graph conecta tarefas, agentes, gates, memoria, custos, runtime dry-run, approval gate e decision intake."
         ],
         human_attention: [
           "Existem 2 Human Gates ativos para decisoes que exigem pessoa.",
@@ -3181,7 +3239,7 @@
       },
       launch_request: {
         project: "ARTEMIS",
-        task: "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony",
+        task: "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony",
         profile_id: "codex_terminal",
         runtime: "codex_cli",
         command_surface: "terminal",
@@ -3217,7 +3275,7 @@
       },
       launch_request: {
         project: "ARTEMIS",
-        task: "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony",
+        task: "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony",
         profile_id: "codex_terminal",
         runtime: "codex_cli",
         execute: false
@@ -3233,6 +3291,30 @@
         runtime_execution_allowed: false,
         decision_file: "artifacts/artemis-agent-runtime-approval-gate/run-01/runtime-approval-decision.json"
       }
+    };
+
+    const seedAgentRuntimeDecisionIntake = {
+      source: "seed",
+      overall: "human_gate",
+      intake_state: "pending",
+      approval_request: {
+        project: "ARTEMIS",
+        task: "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony",
+        profile_id: "codex_terminal",
+        runtime: "codex_cli",
+        command_surface: "terminal"
+      },
+      summary: {
+        decision: "pending",
+        launcher_preflight_allowed: false,
+        runtime_execution_allowed: false,
+        commands_executed: 0,
+        paid_tokens_authorized: 0,
+        approved_commands_count: 0,
+        blockers: 0
+      },
+      next_action: "Human fills or keeps runtime approval decision; launcher preflight stays blocked.",
+      next_cut: "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony"
     };
 
     function cloneCards(source) {
@@ -3381,6 +3463,8 @@
         ["zones", node.zones],
         ["events", node.events],
         ["decision", node.decision],
+        ["intake", node.intake_state],
+        ["preflight", node.launcher_preflight_allowed],
         ["runtime", node.runtime_execution_allowed],
         ["agents", node.agents_started],
         ["commands", node.commands_executed],
@@ -3611,6 +3695,50 @@
       );
     }
 
+    function renderAgentRuntimeDecisionIntake(model) {
+      const request = model.approval_request || model.launch_request || {};
+      const summary = model.summary || {};
+      const blockers = Array.isArray(model.blockers) ? model.blockers : [];
+      agentRuntimeDecisionStatusNode.textContent = `Fonte: ${model.source || agentRuntimeDecisionIntakeSourceUrl} | ${model.overall || "observed"}`;
+      renderAgentLaunchItems(
+        agentRuntimeDecisionRequestNode,
+        [
+          { label: "Projeto", value: request.project || "ARTEMIS" },
+          { label: "Tarefa", value: request.task || "Sem tarefa" },
+          { label: "Perfil", value: request.profile_id || summary.selected_profile || "Sem perfil" },
+          { label: "Runtime", value: request.runtime || "Sem runtime" },
+          { label: "Surface", value: request.command_surface || "Sem superficie" },
+          { label: "Decision", value: summary.decision || model.intake_state || "pending" }
+        ],
+        (item) => item.label,
+        (item) => item.value
+      );
+      renderAgentLaunchItems(
+        agentRuntimeDecisionStateNode,
+        [
+          { label: "Overall", value: model.overall || "human_gate" },
+          { label: "Intake", value: model.intake_state || "pending" },
+          { label: "Preflight", value: String(summary.launcher_preflight_allowed ?? false) },
+          { label: "Runtime allowed", value: String(summary.runtime_execution_allowed ?? false) },
+          { label: "Commands", value: String(summary.commands_executed ?? 0) },
+          { label: "Tokens", value: String(summary.paid_tokens_authorized ?? 0) }
+        ],
+        (item) => item.label,
+        (item) => item.value
+      );
+      renderAgentLaunchItems(
+        agentRuntimeDecisionNextNode,
+        [
+          { label: "Next", value: model.next_action || "Aguardar decisao humana coerente." },
+          { label: "Next cut", value: model.next_cut || "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony" },
+          { label: "Blockers", value: String(blockers.length || summary.blockers || 0) },
+          { label: "Approved commands", value: String(summary.approved_commands_count ?? 0) }
+        ],
+        (item) => item.label,
+        (item) => item.value
+      );
+    }
+
     async function loadProjectGraphSource() {
       try {
         const response = await fetch(projectGraphSourceUrl, { cache: "no-store" });
@@ -3677,6 +3805,18 @@
         if (!response.ok) return null;
         const payload = await response.json();
         if (!(payload.launch_request || payload.approval_request) || !payload.summary) return null;
+        return payload;
+      } catch {
+        return null;
+      }
+    }
+
+    async function loadAgentRuntimeDecisionIntakeSource() {
+      try {
+        const response = await fetch(agentRuntimeDecisionIntakeSourceUrl, { cache: "no-store" });
+        if (!response.ok) return null;
+        const payload = await response.json();
+        if (!payload.summary || !payload.intake_state) return null;
         return payload;
       } catch {
         return null;
@@ -3855,6 +3995,7 @@
       renderAgentLaunchContract(seedAgentLaunchContract);
       renderAgentRuntimeDryRun(seedAgentRuntimeDryRun);
       renderAgentRuntimeApprovalGate(seedAgentRuntimeApprovalGate);
+      renderAgentRuntimeDecisionIntake(seedAgentRuntimeDecisionIntake);
       const loadedGraph = await loadProjectGraphSource();
       if (loadedGraph) renderProjectGraph(loadedGraph);
       const loadedBrief = await loadProjectBriefSource();
@@ -3867,6 +4008,8 @@
       if (loadedAgentRuntimeDryRun) renderAgentRuntimeDryRun(loadedAgentRuntimeDryRun);
       const loadedAgentRuntimeApprovalGate = await loadAgentRuntimeApprovalGateSource();
       if (loadedAgentRuntimeApprovalGate) renderAgentRuntimeApprovalGate(loadedAgentRuntimeApprovalGate);
+      const loadedAgentRuntimeDecisionIntake = await loadAgentRuntimeDecisionIntakeSource();
+      if (loadedAgentRuntimeDecisionIntake) renderAgentRuntimeDecisionIntake(loadedAgentRuntimeDecisionIntake);
       const loadedEvents = await loadEventSource();
       renderTimeline(loadedEvents || seedEvents);
     }

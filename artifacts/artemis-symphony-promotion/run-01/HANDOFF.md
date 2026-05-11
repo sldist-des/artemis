@@ -6,7 +6,7 @@ Promocao local do intake esta `remote_promotion_human_gate`. A fonte local promo
 
 ## Proximo corte
 
-- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.
+- Implementar `TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`.
 - Manter comentarios, labels, branches e PRs atras de decisao humana exata.
 
 ## Nao fazer

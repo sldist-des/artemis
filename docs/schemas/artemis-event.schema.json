@@ -38,6 +38,7 @@
         "tool.started",
         "tool.completed",
         "approval.requested",
+        "approval.intake_recorded",
         "approval.resolved",
         "human_gate.opened",
         "human_gate.resolved",
@@ -81,7 +82,8 @@
             "guided_collaboration",
             "agent_launch_contract",
             "agent_runtime_dry_run",
-            "agent_runtime_approval_gate"
+            "agent_runtime_approval_gate",
+            "agent_runtime_decision_intake"
           ]
         },
         "name": {

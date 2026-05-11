@@ -43,4 +43,4 @@ O script `scripts/artemis-agent-launch-contract.sh` gera:
 
 ## Proximo corte
 
-`TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`
+`TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`

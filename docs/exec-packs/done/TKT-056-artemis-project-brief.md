@@ -41,6 +41,6 @@ git diff --check
 
 ## Handoff
 
-O proximo corte e `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`, usando
+O proximo corte e `TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`, usando
 o Agent Launch Contract como entrada para materializar lancamentos sem iniciar
 agentes reais.

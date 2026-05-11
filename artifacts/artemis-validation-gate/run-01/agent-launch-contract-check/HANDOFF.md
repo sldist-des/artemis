@@ -4,5 +4,5 @@ O contrato supervisionado de lancamento de agentes esta pronto como superficie r
 
 Proximo corte:
 
-- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.
-- Usar o Agent Runtime Approval Gate como entrada para validar a decisao humana preenchida.
+- Implementar `TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`.
+- Usar o Agent Runtime Decision Intake como entrada obrigatoria antes de qualquer launcher real.

@@ -286,7 +286,7 @@ payload = {
     "missing_tokens": missing_tokens,
     "missing_files": missing_files,
     "required_tokens": required_tokens,
-    "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony",
+    "next_cut": "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony",
 }
 
 ready = (
@@ -358,7 +358,7 @@ handoff_lines = [
     "",
     "Proximo corte:",
     "",
-    "- Implementar `TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`.",
+    "- Implementar `TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`.",
 ]
 (artifact_root / "HANDOFF.md").write_text("\n".join(handoff_lines) + "\n", encoding="utf-8")
 

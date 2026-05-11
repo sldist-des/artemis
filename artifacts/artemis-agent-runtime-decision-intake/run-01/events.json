@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-11T13:02:12Z",
+  "source": "scripts/artemis-agent-runtime-decision-intake.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-061_agent_runtime_decision_intake",
+      "event_type": "approval.intake_recorded",
+      "generated_at": "2026-05-11T13:02:12Z",
+      "producer": {
+        "adapter": "agent_runtime_decision_intake",
+        "name": "scripts/artemis-agent-runtime-decision-intake.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-061",
+        "task_id": "tkt-061",
+        "title": "Agent Runtime Decision Intake do ARTEMIS Symphony",
+        "exec_pack": "docs/exec-packs/done/TKT-061-artemis-agent-runtime-decision-intake.md",
+        "artifact_root": "artifacts/artemis-agent-runtime-decision-intake/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "human_gate",
+        "to": "human_gate",
+        "reason": "Runtime approval decision was classified without starting any agent runtime."
+      },
+      "gate": {
+        "kind": "human",
+        "status": "human_gate",
+        "reason": "Runtime remains blocked unless decision intake reaches approved_ready."
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-agent-runtime-decision-intake/run-01",
+        "status_path": "artifacts/artemis-agent-runtime-decision-intake/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-agent-runtime-decision-intake/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-agent-runtime-decision-intake/run-01/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-061"
+      },
+      "payload": {
+        "overall": "human_gate",
+        "reason": "Runtime approval decision was classified without starting any agent runtime.",
+        "summary": {
+          "decision": "pending",
+          "pending": 1,
+          "approved_ready": 0,
+          "deferred": 0,
+          "rejected": 0,
+          "invalid": 0,
+          "runtime_execution_allowed": false,
+          "launcher_preflight_allowed": false,
+          "runtime_started": false,
+          "agents_started": 0,
+          "commands_executed": 0,
+          "dependencies_installed": 0,
+          "remote_writes_allowed": false,
+          "paid_tokens_authorized": 0
+        },
+        "intake_state": "pending",
+        "next_action": "human_decision_required",
+        "next_cut": "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony"
+      }
+    }
+  ]
+}

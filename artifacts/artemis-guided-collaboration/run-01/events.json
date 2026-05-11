@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-09T15:41:31Z",
+  "generated_at": "2026-05-11T13:02:11Z",
   "source": "scripts/artemis-guided-collaboration.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-057_guided_collaboration",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-09T15:41:31Z",
+      "generated_at": "2026-05-11T13:02:11Z",
       "producer": {
         "adapter": "guided_collaboration",
         "name": "scripts/artemis-guided-collaboration.sh",
@@ -51,11 +51,11 @@
           "task_lanes": 4,
           "agent_profiles": 4,
           "gate_contracts": 4,
-          "tasks_total": 61,
-          "tasks_done": 61,
+          "tasks_total": 62,
+          "tasks_done": 62,
           "tasks_human": 0,
           "tasks_ready": 0,
-          "validation_passed": 87,
+          "validation_passed": 89,
           "validation_failed": 0,
           "human_gates": 2,
           "commands_executed": 0,
@@ -65,7 +65,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony"
+        "next_cut": "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony"
       }
     }
   ]

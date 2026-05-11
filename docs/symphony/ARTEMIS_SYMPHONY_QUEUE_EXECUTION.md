@@ -68,4 +68,4 @@ A decisao deve seguir este formato minimo:
 
 ## Proximo corte
 
-`TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony`
+`TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony`

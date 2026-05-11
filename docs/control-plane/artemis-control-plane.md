@@ -135,6 +135,7 @@ It exposes:
 - Agent Launch Contract evidence from `artifacts/artemis-agent-launch-contract/run-01/`;
 - Agent Runtime Dry-Run evidence from `artifacts/artemis-agent-runtime-dry-run/run-01/`;
 - Agent Runtime Approval Gate evidence from `artifacts/artemis-agent-runtime-approval-gate/run-01/`;
+- Agent Runtime Decision Intake evidence from `artifacts/artemis-agent-runtime-decision-intake/run-01/`;
 - Validation Gate evidence from `artifacts/artemis-validation-gate/run-01/`.
 
-This section is intentionally observational. It links to artifacts and summarizes facts such as `runner_plan_ready`, `bridge_plan_ready`, `runner_executed`, `remote_source_ready`, `remote_intake_ready`, `remote_promotion_ready`, `memory_zone_ready`, `project_graph_ready`, `project_graph_view_ready`, `human_project_brief_ready`, `guided_collaboration_ready`, `agent_launch_contract_ready`, `agent_runtime_dry_run_ready`, `agent_runtime_approval_gate_ready`, `execute=false`, `execute=true` and command counts, but it does not create tasks, execute runners, approve Human Gates, or become canonical state.
+This section is intentionally observational. It links to artifacts and summarizes facts such as `runner_plan_ready`, `bridge_plan_ready`, `runner_executed`, `remote_source_ready`, `remote_intake_ready`, `remote_promotion_ready`, `memory_zone_ready`, `project_graph_ready`, `project_graph_view_ready`, `human_project_brief_ready`, `guided_collaboration_ready`, `agent_launch_contract_ready`, `agent_runtime_dry_run_ready`, `agent_runtime_approval_gate_ready`, `human_gate`, `ready_for_launcher_preflight`, `execute=false`, `execute=true` and command counts, but it does not create tasks, execute runners, approve Human Gates, or become canonical state.

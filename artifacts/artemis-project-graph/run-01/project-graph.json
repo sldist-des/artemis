@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-09T15:41:25Z",
+  "generated_at": "2026-05-11T13:02:12Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -10,20 +10,21 @@
     "tasks": "control-plane/tasks.json",
     "event_log": "artifacts/artemis-event-log/run-01/event-log.example.json",
     "memory_zone": "artifacts/artemis-memory-zone/run-01/memory-zone.json",
-    "validation_gate": "artifacts/artemis-validation-gate/run-01/validation-gate.json"
+    "validation_gate": "artifacts/artemis-validation-gate/run-01/validation-gate.json",
+    "runtime_decision_intake": "artifacts/artemis-agent-runtime-decision-intake/run-01/runtime-decision-intake.json"
   },
   "summary": {
-    "tasks_total": 61,
-    "tasks_done": 61,
+    "tasks_total": 62,
+    "tasks_done": 62,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 8,
-    "events_total": 48,
-    "nodes_total": 12,
-    "edges_total": 17,
-    "evidence_count": 61,
-    "exec_pack_count": 61,
-    "validation_passed": 87,
+    "events_total": 49,
+    "nodes_total": 13,
+    "edges_total": 20,
+    "evidence_count": 62,
+    "exec_pack_count": 62,
+    "validation_passed": 89,
     "validation_failed": 0,
     "validation_human_gate": 2,
     "memory_zones": 3,
@@ -35,12 +36,12 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 61
+    "done": 62
   },
   "risks": {
     "medium": 50,
     "low": 4,
-    "high": 7
+    "high": 8
   },
   "top_owners": [
     [
@@ -69,7 +70,7 @@
     ],
     [
       "Humano",
-      2
+      3
     ],
     [
       "Memory Keeper",
@@ -79,11 +80,11 @@
   "top_tags": [
     [
       "exec-pack",
-      61
+      62
     ],
     [
       "done",
-      61
+      62
     ]
   ],
   "nodes": [
@@ -98,8 +99,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 61,
-      "done": 61,
+      "count": 62,
+      "done": 62,
       "human": 0
     },
     {
@@ -141,7 +142,7 @@
       "id": "validation:gate",
       "type": "validation",
       "label": "Validation Gate",
-      "passed": 87,
+      "passed": 89,
       "failed": 0
     },
     {
@@ -155,14 +156,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 61,
-      "exec_packs": 61
+      "task_evidence": 62,
+      "exec_packs": 62
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 48
+      "events": 49
     },
     {
       "id": "cost:budget",
@@ -186,6 +187,14 @@
       "status": "agent_runtime_approval_gate_ready",
       "decision": "pending",
       "runtime_execution_allowed": false
+    },
+    {
+      "id": "runtime:decision_intake",
+      "type": "human_gate",
+      "label": "Agent Runtime Decision Intake",
+      "status": "human_gate",
+      "intake_state": "pending",
+      "launcher_preflight_allowed": false
     },
     {
       "id": "control_plane:view",
@@ -266,6 +275,21 @@
       "type": "requires_budget_approval"
     },
     {
+      "from": "runtime:approval_gate",
+      "to": "runtime:decision_intake",
+      "type": "feeds_decision"
+    },
+    {
+      "from": "runtime:decision_intake",
+      "to": "validation:gate",
+      "type": "requires_validation"
+    },
+    {
+      "from": "runtime:decision_intake",
+      "to": "cost:budget",
+      "type": "preserves_budget_limits"
+    },
+    {
       "from": "control_plane:view",
       "to": "project:artemis",
       "type": "observes"
@@ -333,8 +357,9 @@
     "validation_input": "artemis_validation_gate",
     "runtime_input": "artemis_agent_runtime_dry_run",
     "runtime_approval_input": "artemis_agent_runtime_approval_gate",
+    "runtime_decision_input": "artemis_agent_runtime_decision_intake",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },
-  "next_cut": "TKT-061 - Agent Runtime Decision Intake do ARTEMIS Symphony"
+  "next_cut": "TKT-062 - Agent Runtime Launcher Preflight do ARTEMIS Symphony"
 }

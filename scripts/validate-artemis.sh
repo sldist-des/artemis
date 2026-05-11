@@ -83,6 +83,7 @@ scripts/artemis-guided-collaboration.sh
 scripts/artemis-agent-launch-contract.sh
 scripts/artemis-agent-runtime-dry-run.sh
 scripts/artemis-agent-runtime-approval-gate.sh
+scripts/artemis-agent-runtime-decision-intake.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -176,6 +177,7 @@ sh -n scripts/artemis-guided-collaboration.sh
 sh -n scripts/artemis-agent-launch-contract.sh
 sh -n scripts/artemis-agent-runtime-dry-run.sh
 sh -n scripts/artemis-agent-runtime-approval-gate.sh
+sh -n scripts/artemis-agent-runtime-decision-intake.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -1437,6 +1439,31 @@ if ! grep -q '"event_type": "approval.requested"' /tmp/artemis-agent-runtime-app
   echo "scripts/artemis-agent-runtime-approval-gate.sh did not emit canonical events" >&2
   exit 1
 fi
+scripts/artemis-agent-runtime-decision-intake.sh --artifact-root /tmp/artemis-agent-runtime-decision-intake --approval-gate /tmp/artemis-agent-runtime-approval-gate/runtime-approval-gate.json --decision /tmp/artemis-agent-runtime-approval-gate/runtime-approval-decision.json --json >/tmp/artemis-agent-runtime-decision-intake.json
+if ! grep -q '"overall": "human_gate"' /tmp/artemis-agent-runtime-decision-intake.json; then
+  echo "scripts/artemis-agent-runtime-decision-intake.sh did not preserve pending Human Gate" >&2
+  exit 1
+fi
+if ! grep -q '"intake_state": "pending"' /tmp/artemis-agent-runtime-decision-intake.json; then
+  echo "ARTEMIS Agent Runtime Decision Intake did not classify pending decision" >&2
+  exit 1
+fi
+if ! grep -q '"launcher_preflight_allowed": false' /tmp/artemis-agent-runtime-decision-intake.json; then
+  echo "ARTEMIS Agent Runtime Decision Intake allowed launcher preflight without approved_ready" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-agent-runtime-decision-intake.json; then
+  echo "ARTEMIS Agent Runtime Decision Intake allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-agent-runtime-decision-intake.json; then
+  echo "ARTEMIS Agent Runtime Decision Intake executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "approval.intake_recorded"' /tmp/artemis-agent-runtime-decision-intake/events.json; then
+  echo "scripts/artemis-agent-runtime-decision-intake.sh did not emit canonical events" >&2
+  exit 1
+fi
 
 scripts/artemis-codex-app-server.sh --artifact-root /tmp/artemis-codex-app-server --json >/tmp/artemis-codex-app-server.json
 if ! grep -q '"overall": "passed"' /tmp/artemis-codex-app-server.json; then
@@ -1634,6 +1661,18 @@ if ! grep -q "renderAgentRuntimeApprovalGate" control-plane/index.html; then
 fi
 if ! grep -q "agent_runtime_approval_gate_ready" control-plane/index.html; then
   echo "control-plane/index.html does not show the ARTEMIS Agent Runtime Approval Gate state" >&2
+  exit 1
+fi
+if ! grep -q "agent-runtime-decision-section" control-plane/index.html; then
+  echo "control-plane/index.html does not render the ARTEMIS Agent Runtime Decision Intake section" >&2
+  exit 1
+fi
+if ! grep -q "renderAgentRuntimeDecisionIntake" control-plane/index.html; then
+  echo "control-plane/index.html does not include the Agent Runtime Decision Intake renderer" >&2
+  exit 1
+fi
+if ! grep -q "human_gate" control-plane/index.html; then
+  echo "control-plane/index.html does not show the ARTEMIS Agent Runtime Decision Intake state" >&2
   exit 1
 fi
 

@@ -6,7 +6,7 @@ TKT-066 classificou o resultado supervisionado como `human_gate` com estado `wai
 
 ## Proximo corte
 
-- Implementar `TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`, mantendo validacao pos-execucao bloqueada ate existir execucao supervisionada real.
+- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`, mantendo validacao pos-execucao bloqueada ate existir execucao supervisionada real.
 
 ## Nao fazer
 

@@ -960,6 +960,33 @@ Resultado esperado:
 - `commands_executed=0`;
 - evento canonico `validation.completed`.
 
+### Modo 3.18 - Agent Runtime Completion Handoff
+
+Implementado em `TKT-068` como handoff read-only de conclusao.
+
+- consome `post-execution-validation-gate.json`;
+- so fica pronto quando a validacao pos-execucao esta `post_execution_validation_completed`;
+- consolida resultado, logs, custo, rollback e riscos residuais;
+- explica o estado para humanos e agentes;
+- mantem Human Gate quando a validacao estiver bloqueada, falha ou plan-only;
+- nao inicia agentes, nao executa comandos, nao aprova Human Gate;
+- nao faz remoto, PR, push, deploy, producao ou secrets.
+
+Agent Runtime Completion Handoff implementado:
+
+- `scripts/artemis-agent-runtime-completion-handoff.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_COMPLETION_HANDOFF.md`
+
+Resultado esperado:
+
+- `human_gate` enquanto a validacao pos-execucao nao estiver concluida;
+- `handoff_state=waiting_for_post_execution_validation_completed`;
+- `completion_handoff_ready=false`;
+- `ready_for_done=false`;
+- `commands_executed=0`;
+- `validations_executed=0`;
+- evento canonico `handoff.recorded`.
+
 ## Invariantes
 
 - ARTEMIS Symphony nao executa cleanup real sem decisao humana.
@@ -972,14 +999,14 @@ Resultado esperado:
 
 ## Proximo corte recomendado
 
-`TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`
+`TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`
 
 Objetivo:
 
-- consumir `post-execution-validation-gate.json`;
-- preparar handoff final somente quando houver validacao pos-execucao concluida;
-- consolidar resultado, logs, custo, rollback e residual risks;
-- manter Human Gate quando a validacao estiver bloqueada, falha ou plan-only;
-- apresentar resumo claro para humanos e agentes leigos.
+- consumir `completion-handoff.json`;
+- revisar o pacote final antes de qualquer Done externo;
+- distinguir aceite tecnico, aceite humano e bloqueios remanescentes;
+- manter Human Gate quando o handoff nao estiver pronto;
+- apresentar decisao final clara para humanos e agentes leigos.
 
 Esse sera o proximo passo de implementacao do nosso Symphony proprio.

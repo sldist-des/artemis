@@ -36,6 +36,7 @@ docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_EXECUTION_GATE.md
 docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_SUPERVISED_EXECUTION.md
 docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_EXECUTION_RESULT_INTAKE.md
 docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_POST_EXECUTION_VALIDATION_GATE.md
+docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_COMPLETION_HANDOFF.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
@@ -99,6 +100,7 @@ scripts/artemis-agent-runtime-launcher-execution-gate.sh
 scripts/artemis-agent-runtime-launcher-supervised-execution.sh
 scripts/artemis-agent-runtime-execution-result-intake.sh
 scripts/artemis-agent-runtime-post-execution-validation-gate.sh
+scripts/artemis-agent-runtime-completion-handoff.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -199,6 +201,7 @@ sh -n scripts/artemis-agent-runtime-launcher-execution-gate.sh
 sh -n scripts/artemis-agent-runtime-launcher-supervised-execution.sh
 sh -n scripts/artemis-agent-runtime-execution-result-intake.sh
 sh -n scripts/artemis-agent-runtime-post-execution-validation-gate.sh
+sh -n scripts/artemis-agent-runtime-completion-handoff.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -1663,6 +1666,36 @@ if ! grep -q '"event_type": "validation.completed"' /tmp/artemis-agent-runtime-p
   exit 1
 fi
 
+scripts/artemis-agent-runtime-completion-handoff.sh --artifact-root /tmp/artemis-agent-runtime-completion-handoff --post-validation-gate /tmp/artemis-agent-runtime-post-execution-validation-gate/post-execution-validation-gate.json --json >/tmp/artemis-agent-runtime-completion-handoff.json
+if ! grep -q '"overall": "human_gate"' /tmp/artemis-agent-runtime-completion-handoff.json; then
+  echo "scripts/artemis-agent-runtime-completion-handoff.sh did not preserve pending Human Gate" >&2
+  exit 1
+fi
+if ! grep -q '"handoff_state": "waiting_for_post_execution_validation_completed"' /tmp/artemis-agent-runtime-completion-handoff.json; then
+  echo "scripts/artemis-agent-runtime-completion-handoff.sh did not record waiting handoff state" >&2
+  exit 1
+fi
+if ! grep -q '"completion_handoff_ready": false' /tmp/artemis-agent-runtime-completion-handoff.json; then
+  echo "scripts/artemis-agent-runtime-completion-handoff.sh should not be ready without completed post-execution validation" >&2
+  exit 1
+fi
+if ! grep -q '"ready_for_done": false' /tmp/artemis-agent-runtime-completion-handoff.json; then
+  echo "scripts/artemis-agent-runtime-completion-handoff.sh should not mark ready_for_done" >&2
+  exit 1
+fi
+if ! grep -q '"validations_executed": 0' /tmp/artemis-agent-runtime-completion-handoff.json; then
+  echo "scripts/artemis-agent-runtime-completion-handoff.sh should preserve zero validations executed" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-agent-runtime-completion-handoff.json; then
+  echo "scripts/artemis-agent-runtime-completion-handoff.sh should preserve zero commands executed" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "handoff.recorded"' /tmp/artemis-agent-runtime-completion-handoff/events.json; then
+  echo "scripts/artemis-agent-runtime-completion-handoff.sh did not emit canonical events" >&2
+  exit 1
+fi
+
 scripts/artemis-codex-app-server.sh --artifact-root /tmp/artemis-codex-app-server --json >/tmp/artemis-codex-app-server.json
 if ! grep -q '"overall": "passed"' /tmp/artemis-codex-app-server.json; then
   echo "scripts/artemis-codex-app-server.sh did not report the expected passed status" >&2
@@ -1943,6 +1976,18 @@ if ! grep -q "renderAgentRuntimePostExecutionValidationGate" control-plane/index
 fi
 if ! grep -q "waiting_for_execution_result_intake_ready" control-plane/index.html; then
   echo "control-plane/index.html does not show the ARTEMIS Agent Runtime Post-Execution Validation Gate state" >&2
+  exit 1
+fi
+if ! grep -q "agent-runtime-completion-handoff-section" control-plane/index.html; then
+  echo "control-plane/index.html does not render the ARTEMIS Agent Runtime Completion Handoff section" >&2
+  exit 1
+fi
+if ! grep -q "renderAgentRuntimeCompletionHandoff" control-plane/index.html; then
+  echo "control-plane/index.html does not include the Agent Runtime Completion Handoff renderer" >&2
+  exit 1
+fi
+if ! grep -q "waiting_for_post_execution_validation_completed" control-plane/index.html; then
+  echo "control-plane/index.html does not show the ARTEMIS Agent Runtime Completion Handoff state" >&2
   exit 1
 fi
 

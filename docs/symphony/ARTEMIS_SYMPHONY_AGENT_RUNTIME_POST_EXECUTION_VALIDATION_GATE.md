@@ -79,6 +79,6 @@ execucao supervisionada real para validar.
 
 ## Proximo corte
 
-`TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony` deve consumir
+`TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony` deve consumir
 este gate e manter conclusao bloqueada ate existir
 `post_execution_validation_completed`.

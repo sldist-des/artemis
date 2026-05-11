@@ -4,4 +4,4 @@ O modo guiado esta pronto como contrato read-only para pessoas escolherem projet
 
 Proximo corte:
 
-- Implementar `TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`.
+- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`.

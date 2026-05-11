@@ -6,7 +6,7 @@ TKT-067 avaliou a validacao pos-execucao como `human_gate` com estado `waiting_f
 
 ## Proximo corte
 
-- Implementar `TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`, mantendo conclusao bloqueada ate existir validacao pos-execucao real.
+- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`, mantendo conclusao bloqueada ate existir validacao pos-execucao real.
 
 ## Nao fazer
 

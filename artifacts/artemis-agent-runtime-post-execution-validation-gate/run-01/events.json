@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T17:05:46Z",
+  "generated_at": "2026-05-11T18:39:08Z",
   "source": "scripts/artemis-agent-runtime-post-execution-validation-gate.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-067_agent_runtime_post_execution_validation_gate",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-11T17:05:46Z",
+      "generated_at": "2026-05-11T18:39:08Z",
       "producer": {
         "adapter": "agent_runtime_post_execution_validation_gate",
         "name": "scripts/artemis-agent-runtime-post-execution-validation-gate.sh",
@@ -76,7 +76,7 @@
         },
         "post_validation_state": "waiting_for_execution_result_intake_ready",
         "next_action": "wait_for_execution_result_intake_ready",
-        "next_cut": "TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony"
+        "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony"
       }
     }
   ]

@@ -6,7 +6,7 @@ Bridge supervisionada concluida com overall `runner_plan_ready`.
 
 ## Proximo corte
 
-- Implementar `TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`.
+- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`.
 - Consumir item revisado da fila com comando explicito e ponte plan-only por padrao.
 
 ## Nao fazer

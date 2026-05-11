@@ -288,7 +288,7 @@ payload = {
         "Validation evidence and logs must be preserved before Done.",
         "Failed commands stop the execution sequence and require handoff.",
     ],
-    "next_cut": "TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony",
+    "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony",
 }
 
 (artifact_root / "launcher-supervised-execution.json").write_text(
@@ -378,9 +378,9 @@ handoff_lines = [
     "",
 ]
 if overall == "supervised_execution_completed":
-    handoff_lines.append("- Implementar `TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony` lendo logs e resultados desta execucao.")
+    handoff_lines.append("- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony` lendo logs e resultados desta execucao.")
 else:
-    handoff_lines.append("- Implementar `TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`, mantendo execucao bloqueada ate existir resultado supervisionado.")
+    handoff_lines.append("- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`, mantendo execucao bloqueada ate existir resultado supervisionado.")
 handoff_lines.extend([
     "",
     "## Nao fazer",

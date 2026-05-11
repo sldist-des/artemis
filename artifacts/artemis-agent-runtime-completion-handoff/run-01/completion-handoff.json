@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-11T18:39:13Z",
+  "source": "scripts/artemis-agent-runtime-completion-handoff.sh",
+  "mode": "agent_runtime_completion_handoff",
+  "overall": "human_gate",
+  "reason": "Completion handoff was derived from post-execution validation evidence.",
+  "artifact_root": "artifacts/artemis-agent-runtime-completion-handoff/run-01",
+  "inputs": {
+    "post_execution_validation_gate": "artifacts/artemis-agent-runtime-post-execution-validation-gate/run-01/post-execution-validation-gate.json"
+  },
+  "handoff_state": "waiting_for_post_execution_validation_completed",
+  "next_action": "wait_for_post_execution_validation_completed",
+  "summary": {
+    "post_execution_validation_completed": false,
+    "completion_handoff_ready": false,
+    "ready_for_done": false,
+    "commands_executed": 0,
+    "failed_commands": 0,
+    "validations_executed": 0,
+    "validation_results": 0,
+    "runtime_logs": 0,
+    "rollback_required": false,
+    "remote_writes_allowed": false,
+    "production_allowed": false,
+    "secrets_allowed": false,
+    "paid_tokens_authorized": 0,
+    "handoff_checks": 7,
+    "handoff_passed": 6,
+    "handoff_failed": 0,
+    "handoff_human_gate": 1
+  },
+  "post_execution_validation_gate": {
+    "overall": "human_gate",
+    "post_validation_state": "waiting_for_execution_result_intake_ready",
+    "next_action": "wait_for_execution_result_intake_ready"
+  },
+  "handoff_checks": [
+    {
+      "id": "post_execution_validation_gate_exists",
+      "status": "passed",
+      "proof": "artifacts/artemis-agent-runtime-post-execution-validation-gate/run-01/post-execution-validation-gate.json"
+    },
+    {
+      "id": "post_execution_validation_completed",
+      "status": "human_gate",
+      "proof": "overall=human_gate completed=False"
+    },
+    {
+      "id": "completion_not_done_without_validation",
+      "status": "passed",
+      "proof": "post_completed=false ready_for_done=false"
+    },
+    {
+      "id": "runtime_result_classified",
+      "status": "passed",
+      "proof": "commands_executed=0 failed_commands=0"
+    },
+    {
+      "id": "validation_evidence_classified",
+      "status": "passed",
+      "proof": "validations_executed=0 validation_results=0"
+    },
+    {
+      "id": "rollback_state_classified",
+      "status": "passed",
+      "proof": "rollback_required=false rollback_keys=2"
+    },
+    {
+      "id": "remote_writes_blocked",
+      "status": "passed",
+      "proof": "remote=false production=false secrets=false"
+    }
+  ],
+  "completion_package": {
+    "ready_for_done": false,
+    "ready_for_human_acceptance": false,
+    "result_kind": "blocked_pending_gate",
+    "runtime_commands": {
+      "planned": 0,
+      "executed": 0,
+      "failed": 0
+    },
+    "runtime_logs": [],
+    "validation_commands": [],
+    "validation_results": [],
+    "rollback": {
+      "required": false,
+      "source": {
+        "required": false,
+        "plan": {}
+      }
+    },
+    "residual_risks": [
+      "post_execution_validation_not_completed"
+    ],
+    "evidence_artifacts": {
+      "post_execution_validation_gate": "artifacts/artemis-agent-runtime-post-execution-validation-gate/run-01/post-execution-validation-gate.json",
+      "completion_handoff": "artifacts/artemis-agent-runtime-completion-handoff/run-01/COMPLETION_HANDOFF.md",
+      "status": "artifacts/artemis-agent-runtime-completion-handoff/run-01/STATUS.md",
+      "validation": "artifacts/artemis-agent-runtime-completion-handoff/run-01/VALIDATION.md",
+      "handoff": "artifacts/artemis-agent-runtime-completion-handoff/run-01/HANDOFF.md"
+    }
+  },
+  "human_summary": {
+    "status": "human_gate",
+    "plain_language": "A tarefa ainda nao pode ser concluida porque falta validacao pos-execucao real.",
+    "operator_next_step": "wait_for_post_execution_validation_completed"
+  },
+  "blockers": [],
+  "warnings": [],
+  "invariants": [
+    "Completion Handoff consumes only Post-Execution Validation Gate evidence.",
+    "No Done state is allowed without post_execution_validation_completed=true.",
+    "Failed commands or rollback requirements stay visible to the human operator.",
+    "Remote writes, production and secrets remain blocked in this handoff.",
+    "The handoff explains status for both agents and non-technical humans."
+  ],
+  "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony"
+}

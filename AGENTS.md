@@ -34,6 +34,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 - `docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_SUPERVISED_EXECUTION.md`
 - `docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_EXECUTION_RESULT_INTAKE.md`
 - `docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_POST_EXECUTION_VALIDATION_GATE.md`
+- `docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_COMPLETION_HANDOFF.md`
 - Exec Pack ativo em `docs/exec-packs/active/`
 
 ## Comandos canonicos
@@ -51,6 +52,7 @@ scripts/artemis-agent-runtime-launcher-execution-gate.sh --json
 scripts/artemis-agent-runtime-launcher-supervised-execution.sh --json
 scripts/artemis-agent-runtime-execution-result-intake.sh --json
 scripts/artemis-agent-runtime-post-execution-validation-gate.sh --json
+scripts/artemis-agent-runtime-completion-handoff.sh --json
 scripts/github-readiness.sh
 sh -n scripts/bootstrap-artemis.sh
 git status --branch --short --ignored

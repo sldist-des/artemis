@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T17:05:55Z",
+  "generated_at": "2026-05-11T18:39:27Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -17,20 +17,21 @@
     "runtime_launcher_execution_gate": "artifacts/artemis-agent-runtime-launcher-execution-gate/run-01/launcher-execution-gate.json",
     "runtime_launcher_supervised_execution": "artifacts/artemis-agent-runtime-launcher-supervised-execution/run-01/launcher-supervised-execution.json",
     "runtime_execution_result_intake": "artifacts/artemis-agent-runtime-execution-result-intake/run-01/execution-result-intake.json",
-    "runtime_post_execution_validation_gate": "artifacts/artemis-agent-runtime-post-execution-validation-gate/run-01/post-execution-validation-gate.json"
+    "runtime_post_execution_validation_gate": "artifacts/artemis-agent-runtime-post-execution-validation-gate/run-01/post-execution-validation-gate.json",
+    "runtime_completion_handoff": "artifacts/artemis-agent-runtime-completion-handoff/run-01/completion-handoff.json"
   },
   "summary": {
-    "tasks_total": 68,
-    "tasks_done": 68,
+    "tasks_total": 69,
+    "tasks_done": 69,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 8,
-    "events_total": 55,
-    "nodes_total": 19,
-    "edges_total": 42,
-    "evidence_count": 68,
-    "exec_pack_count": 68,
-    "validation_passed": 101,
+    "events_total": 56,
+    "nodes_total": 20,
+    "edges_total": 46,
+    "evidence_count": 69,
+    "exec_pack_count": 69,
+    "validation_passed": 103,
     "validation_failed": 0,
     "validation_human_gate": 2,
     "memory_zones": 3,
@@ -42,10 +43,10 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 68
+    "done": 69
   },
   "risks": {
-    "medium": 53,
+    "medium": 54,
     "low": 4,
     "high": 11
   },
@@ -56,7 +57,7 @@
     ],
     [
       "Codex",
-      12
+      13
     ],
     [
       "Context Curator",
@@ -86,11 +87,11 @@
   "top_tags": [
     [
       "exec-pack",
-      68
+      69
     ],
     [
       "done",
-      68
+      69
     ]
   ],
   "nodes": [
@@ -105,8 +106,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 68,
-      "done": 68,
+      "count": 69,
+      "done": 69,
       "human": 0
     },
     {
@@ -121,7 +122,7 @@
         ],
         [
           "Codex",
-          12
+          13
         ],
         [
           "Context Curator",
@@ -148,7 +149,7 @@
       "id": "validation:gate",
       "type": "validation",
       "label": "Validation Gate",
-      "passed": 101,
+      "passed": 103,
       "failed": 0
     },
     {
@@ -162,14 +163,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 68,
-      "exec_packs": 68
+      "task_evidence": 69,
+      "exec_packs": 69
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 55
+      "events": 56
     },
     {
       "id": "cost:budget",
@@ -260,6 +261,18 @@
       "status": "human_gate",
       "post_validation_state": "waiting_for_execution_result_intake_ready",
       "validation_ready": false,
+      "validations_executed": 0,
+      "commands_executed": 0,
+      "rollback_required": false
+    },
+    {
+      "id": "runtime:completion_handoff",
+      "type": "runtime_completion_handoff",
+      "label": "Agent Runtime Completion Handoff",
+      "status": "human_gate",
+      "handoff_state": "waiting_for_post_execution_validation_completed",
+      "completion_ready": false,
+      "ready_for_done": false,
       "validations_executed": 0,
       "commands_executed": 0,
       "rollback_required": false
@@ -468,6 +481,26 @@
       "type": "records_validation_result"
     },
     {
+      "from": "runtime:post_execution_validation_gate",
+      "to": "runtime:completion_handoff",
+      "type": "gates_completion_handoff"
+    },
+    {
+      "from": "runtime:completion_handoff",
+      "to": "validation:gate",
+      "type": "records_completion_readiness"
+    },
+    {
+      "from": "runtime:completion_handoff",
+      "to": "cost:budget",
+      "type": "summarizes_runtime_budget"
+    },
+    {
+      "from": "runtime:completion_handoff",
+      "to": "event_log:timeline",
+      "type": "records_handoff"
+    },
+    {
       "from": "control_plane:view",
       "to": "project:artemis",
       "type": "observes"
@@ -542,8 +575,9 @@
     "runtime_launcher_supervised_execution_input": "artemis_agent_runtime_launcher_supervised_execution",
     "runtime_execution_result_intake_input": "artemis_agent_runtime_execution_result_intake",
     "runtime_post_execution_validation_gate_input": "artemis_agent_runtime_post_execution_validation_gate",
+    "runtime_completion_handoff_input": "artemis_agent_runtime_completion_handoff",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },
-  "next_cut": "TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony"
+  "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony"
 }

@@ -31,9 +31,10 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Agent Runtime Launcher Supervised Execution implemented: `true`.
 - Agent Runtime Execution Result Intake implemented: `true`.
 - Agent Runtime Post-Execution Validation Gate implemented: `true`.
+- Agent Runtime Completion Handoff implemented: `true`.
 - Terminal-first: `true`.
 - Human Gates preserved: `true`.
-- Next cut: `TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`.
+- Next cut: `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`.
 
 ## Camadas
 
@@ -229,6 +230,12 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Status: `implemented_runtime_post_execution_validation_gate`.
 - Missing files: `0`.
 
+### agent_runtime_completion_handoff
+
+- Purpose: Read-only completion handoff that consolidates post-execution validation evidence before final review.
+- Status: `implemented_runtime_completion_handoff`.
+- Missing files: `0`.
+
 ## Invariantes
 
 - OpenAI Symphony is a reference, not a vendored dependency.
@@ -260,3 +267,4 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - The implemented Agent Runtime Launcher Supervised Execution remains plan-only unless --execute and the final gate are both ready.
 - The implemented Agent Runtime Execution Result Intake classifies results and never treats plan-only as success.
 - The implemented Agent Runtime Post-Execution Validation Gate blocks completion until real result validation exists.
+- The implemented Agent Runtime Completion Handoff blocks Done until post-execution validation is complete.

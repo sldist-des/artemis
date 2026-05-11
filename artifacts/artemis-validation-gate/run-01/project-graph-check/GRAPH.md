@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `19`.
-- Edges: `42`.
-- Tasks: `68`.
-- Events: `55`.
+- Nodes: `20`.
+- Edges: `46`.
+- Tasks: `69`.
+- Events: `56`.
 
 ## Nos
 
@@ -29,6 +29,7 @@
 - `runtime:launcher_supervised_execution` (runtime_supervised_execution): Agent Runtime Launcher Supervised Execution.
 - `runtime:execution_result_intake` (runtime_result_intake): Agent Runtime Execution Result Intake.
 - `runtime:post_execution_validation_gate` (runtime_post_validation_gate): Agent Runtime Post-Execution Validation Gate.
+- `runtime:completion_handoff` (runtime_completion_handoff): Agent Runtime Completion Handoff.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -72,6 +73,10 @@
 - `runtime:post_execution_validation_gate` --records_post_execution_validation--> `validation:gate`.
 - `runtime:post_execution_validation_gate` --preserves_runtime_budget--> `cost:budget`.
 - `runtime:post_execution_validation_gate` --records_validation_result--> `event_log:timeline`.
+- `runtime:post_execution_validation_gate` --gates_completion_handoff--> `runtime:completion_handoff`.
+- `runtime:completion_handoff` --records_completion_readiness--> `validation:gate`.
+- `runtime:completion_handoff` --summarizes_runtime_budget--> `cost:budget`.
+- `runtime:completion_handoff` --records_handoff--> `event_log:timeline`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.

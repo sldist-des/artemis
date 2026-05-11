@@ -4,4 +4,4 @@ O briefing humano esta pronto como camada de explicacao do Project Operations Gr
 
 Proximo corte:
 
-- Implementar `TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`.
+- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`.

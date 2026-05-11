@@ -49,4 +49,4 @@ scripts/artemis-symphony-remote-intake.sh \
 
 ## Proximo Corte
 
-`TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`
+`TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`

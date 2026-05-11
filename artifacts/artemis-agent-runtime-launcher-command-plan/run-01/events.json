@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T17:05:29Z",
+  "generated_at": "2026-05-11T18:38:41Z",
   "source": "scripts/artemis-agent-runtime-launcher-command-plan.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-063_agent_runtime_launcher_command_plan",
       "event_type": "runner.attempt_planned",
-      "generated_at": "2026-05-11T17:05:29Z",
+      "generated_at": "2026-05-11T18:38:41Z",
       "producer": {
         "adapter": "agent_runtime_launcher_command_plan",
         "name": "scripts/artemis-agent-runtime-launcher-command-plan.sh",
@@ -69,7 +69,7 @@
         },
         "plan_state": "waiting_for_launcher_preflight_ready",
         "next_action": "wait_for_launcher_preflight_ready",
-        "next_cut": "TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony"
+        "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony"
       }
     }
   ]

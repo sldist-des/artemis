@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T17:05:41Z",
+  "generated_at": "2026-05-11T18:39:00Z",
   "source": "scripts/artemis-agent-runtime-execution-result-intake.sh",
   "mode": "agent_runtime_execution_result_intake",
   "overall": "human_gate",
@@ -106,5 +106,5 @@
     "Failed commands require log preservation and rollback review before any Done state.",
     "Remote writes, production and secrets remain blocked in this intake cut."
   ],
-  "next_cut": "TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony"
+  "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony"
 }

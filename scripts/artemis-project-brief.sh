@@ -189,7 +189,7 @@ payload = {
     "missing_tokens": missing_tokens,
     "missing_files": missing_files,
     "required_tokens": required_tokens,
-    "next_cut": "TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony",
+    "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony",
 }
 
 brief_ready = (
@@ -263,7 +263,7 @@ handoff_lines = [
     "",
     "Proximo corte:",
     "",
-    "- Implementar `TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`.",
+    "- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`.",
 ]
 (artifact_root / "HANDOFF.md").write_text("\n".join(handoff_lines) + "\n", encoding="utf-8")
 

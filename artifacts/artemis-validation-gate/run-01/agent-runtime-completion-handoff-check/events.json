@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-11T18:37:29Z",
+  "source": "scripts/artemis-agent-runtime-completion-handoff.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-068_agent_runtime_completion_handoff",
+      "event_type": "handoff.recorded",
+      "generated_at": "2026-05-11T18:37:29Z",
+      "producer": {
+        "adapter": "agent_runtime_completion_handoff",
+        "name": "scripts/artemis-agent-runtime-completion-handoff.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-068",
+        "task_id": "tkt-068",
+        "title": "Agent Runtime Completion Handoff do ARTEMIS Symphony",
+        "exec_pack": "docs/exec-packs/done/TKT-068-artemis-agent-runtime-completion-handoff.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/agent-runtime-completion-handoff-check"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "human_gate",
+        "to": "human_gate",
+        "reason": "Completion handoff was derived from post-execution validation evidence."
+      },
+      "gate": {
+        "kind": "human",
+        "status": "human_gate",
+        "reason": "Completion handoff result."
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/agent-runtime-completion-handoff-check",
+        "status_path": "artifacts/artemis-validation-gate/run-01/agent-runtime-completion-handoff-check/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/agent-runtime-completion-handoff-check/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/agent-runtime-completion-handoff-check/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-068"
+      },
+      "payload": {
+        "overall": "human_gate",
+        "reason": "Completion handoff was derived from post-execution validation evidence.",
+        "summary": {
+          "post_execution_validation_completed": false,
+          "completion_handoff_ready": false,
+          "ready_for_done": false,
+          "commands_executed": 0,
+          "failed_commands": 0,
+          "validations_executed": 0,
+          "validation_results": 0,
+          "runtime_logs": 0,
+          "rollback_required": false,
+          "remote_writes_allowed": false,
+          "production_allowed": false,
+          "secrets_allowed": false,
+          "paid_tokens_authorized": 0,
+          "handoff_checks": 7,
+          "handoff_passed": 6,
+          "handoff_failed": 0,
+          "handoff_human_gate": 1
+        },
+        "handoff_state": "waiting_for_post_execution_validation_completed",
+        "next_action": "wait_for_post_execution_validation_completed",
+        "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony"
+      }
+    }
+  ]
+}

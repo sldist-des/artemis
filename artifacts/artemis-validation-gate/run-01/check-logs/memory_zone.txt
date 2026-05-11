@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T17:04:25Z",
+  "generated_at": "2026-05-11T18:37:28Z",
   "source": "scripts/artemis-memory-zone.sh",
   "mode": "read_only_memory_contract",
   "overall": "memory_zone_ready",
@@ -94,5 +94,5 @@
     "dependency_policy": "no_new_dependency_without_explicit_decision",
     "reference_study_policy": "study_public_code_for_learning_then_recreate_original_artemis_implementation"
   },
-  "next_cut": "TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony"
+  "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony"
 }

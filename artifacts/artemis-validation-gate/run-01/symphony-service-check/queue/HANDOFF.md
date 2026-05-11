@@ -6,7 +6,7 @@ Fila supervisionada gerada com `1` item(ns) e overall `queue_ready`.
 
 ## Proximo corte
 
-- Implementar `TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`.
+- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`.
 - Exigir comando explicito, terminal override e Validation Gate antes de qualquer execucao.
 
 ## Nao fazer

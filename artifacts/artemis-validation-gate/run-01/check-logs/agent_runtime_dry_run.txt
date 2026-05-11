@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T17:04:26Z",
+  "generated_at": "2026-05-11T18:37:29Z",
   "source": "scripts/artemis-agent-runtime-dry-run.sh",
   "mode": "agent_runtime_dry_run",
   "overall": "agent_runtime_dry_run_ready",
@@ -13,7 +13,7 @@
   },
   "launch_request": {
     "project": "ARTEMIS",
-    "task": "TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony",
+    "task": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony",
     "profile_id": "codex_terminal",
     "profile_name": "Codex terminal-first",
     "runtime": "codex_cli",
@@ -127,8 +127,8 @@
     }
   ],
   "summary": {
-    "tasks_total": 68,
-    "tasks_done": 68,
+    "tasks_total": 69,
+    "tasks_done": 69,
     "validation_passed": 1,
     "validation_failed": 0,
     "human_gates_from_project": 1,
@@ -162,5 +162,5 @@
   ],
   "missing_files": [],
   "missing_gate_ids": [],
-  "next_cut": "TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony"
+  "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony"
 }

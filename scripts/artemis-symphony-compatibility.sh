@@ -275,6 +275,12 @@ layers = [
         "required_files": ["scripts/artemis-agent-runtime-post-execution-validation-gate.sh", "docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_POST_EXECUTION_VALIDATION_GATE.md"],
         "status": "implemented_runtime_post_execution_validation_gate",
     },
+    {
+        "layer": "agent_runtime_completion_handoff",
+        "purpose": "Read-only completion handoff that consolidates post-execution validation evidence before final review.",
+        "required_files": ["scripts/artemis-agent-runtime-completion-handoff.sh", "docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_COMPLETION_HANDOFF.md"],
+        "status": "implemented_runtime_completion_handoff",
+    },
 ]
 
 for layer in layers:
@@ -311,6 +317,7 @@ required_terms = [
     "TKT-066",
     "TKT-067",
     "TKT-068",
+    "TKT-069",
     "Queue Bridge",
     "Queue Execution",
     "Service",
@@ -332,6 +339,7 @@ required_terms = [
     "Agent Runtime Launcher Supervised Execution",
     "Agent Runtime Execution Result Intake",
     "Agent Runtime Post-Execution Validation Gate",
+    "Agent Runtime Completion Handoff",
 ]
 missing_terms = [term for term in required_terms if term not in spec_text]
 if missing_terms:
@@ -381,9 +389,10 @@ compatibility = {
     "agent_runtime_launcher_supervised_execution_implemented": True,
     "agent_runtime_execution_result_intake_implemented": True,
     "agent_runtime_post_execution_validation_gate_implemented": True,
+    "agent_runtime_completion_handoff_implemented": True,
     "terminal_first": True,
     "human_gates_preserved": True,
-    "next_cut": "TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony",
+    "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony",
 }
 
 overall = "failed" if blockers else "spec_ready"
@@ -426,7 +435,8 @@ payload = {
         "agent_runtime_launcher_supervised_execution_implemented": exists("scripts/artemis-agent-runtime-launcher-supervised-execution.sh"),
         "agent_runtime_execution_result_intake_implemented": exists("scripts/artemis-agent-runtime-execution-result-intake.sh"),
         "agent_runtime_post_execution_validation_gate_implemented": exists("scripts/artemis-agent-runtime-post-execution-validation-gate.sh"),
-        "next_cut_defined": "TKT-068" in spec_text,
+        "agent_runtime_completion_handoff_implemented": exists("scripts/artemis-agent-runtime-completion-handoff.sh"),
+        "next_cut_defined": "TKT-069" in spec_text,
     },
     "compatibility": compatibility,
     "layers": layers,
@@ -461,6 +471,7 @@ payload = {
         "The implemented Agent Runtime Launcher Supervised Execution remains plan-only unless --execute and the final gate are both ready.",
         "The implemented Agent Runtime Execution Result Intake classifies results and never treats plan-only as success.",
         "The implemented Agent Runtime Post-Execution Validation Gate blocks completion until real result validation exists.",
+        "The implemented Agent Runtime Completion Handoff blocks Done until post-execution validation is complete.",
     ],
 }
 
@@ -503,6 +514,7 @@ status_lines = [
     f"- Agent Runtime Launcher Supervised Execution implemented: `{str(compatibility['agent_runtime_launcher_supervised_execution_implemented']).lower()}`.",
     f"- Agent Runtime Execution Result Intake implemented: `{str(compatibility['agent_runtime_execution_result_intake_implemented']).lower()}`.",
     f"- Agent Runtime Post-Execution Validation Gate implemented: `{str(compatibility['agent_runtime_post_execution_validation_gate_implemented']).lower()}`.",
+    f"- Agent Runtime Completion Handoff implemented: `{str(compatibility['agent_runtime_completion_handoff_implemented']).lower()}`.",
     f"- Terminal-first: `{str(compatibility['terminal_first']).lower()}`.",
     f"- Human Gates preserved: `{str(compatibility['human_gates_preserved']).lower()}`.",
     f"- Next cut: `{compatibility['next_cut']}`.",
@@ -561,13 +573,13 @@ handoff_lines = [
     "",
     "## Estado",
     "",
-    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel, a promocao local por decisao, a Memory Zone, o Project Operations Graph, o Project Graph View, o Project Brief, o Guided Collaboration, o Agent Launch Contract, o Agent Runtime Dry-Run, o Agent Runtime Approval Gate, o Agent Runtime Decision Intake, o Agent Runtime Launcher Preflight, o Agent Runtime Launcher Command Plan, o Agent Runtime Launcher Execution Gate, o Agent Runtime Launcher Supervised Execution, o Agent Runtime Execution Result Intake e o Agent Runtime Post-Execution Validation Gate existem.",
+    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel, a promocao local por decisao, a Memory Zone, o Project Operations Graph, o Project Graph View, o Project Brief, o Guided Collaboration, o Agent Launch Contract, o Agent Runtime Dry-Run, o Agent Runtime Approval Gate, o Agent Runtime Decision Intake, o Agent Runtime Launcher Preflight, o Agent Runtime Launcher Command Plan, o Agent Runtime Launcher Execution Gate, o Agent Runtime Launcher Supervised Execution, o Agent Runtime Execution Result Intake, o Agent Runtime Post-Execution Validation Gate e o Agent Runtime Completion Handoff existem.",
     "",
     "## Proximo corte",
     "",
-    "- Criar `TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`.",
-    "- Usar o Agent Runtime Post-Execution Validation Gate como entrada obrigatoria para handoff final.",
-    "- Manter conclusao bloqueada ate existir validacao pos-execucao concluida.",
+    "- Criar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`.",
+    "- Usar o Agent Runtime Completion Handoff como entrada obrigatoria para revisao final.",
+    "- Manter Done externo bloqueado ate existir handoff pronto.",
     "",
     "## Nao fazer",
     "",

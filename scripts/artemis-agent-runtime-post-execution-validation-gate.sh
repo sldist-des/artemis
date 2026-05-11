@@ -302,7 +302,7 @@ payload = {
         "Failed runtime commands or validation commands require repair or rollback handoff.",
         "Remote writes, production and secrets remain blocked in this gate.",
     ],
-    "next_cut": "TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony",
+    "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony",
 }
 
 (artifact_root / "post-execution-validation-gate.json").write_text(
@@ -386,9 +386,9 @@ handoff_lines = [
     "",
 ]
 if overall == "post_execution_validation_completed":
-    handoff_lines.append("- Implementar `TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony` consolidando resultado, validacao, custo e rollback.")
+    handoff_lines.append("- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony` consolidando resultado, validacao, custo e rollback.")
 else:
-    handoff_lines.append("- Implementar `TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`, mantendo conclusao bloqueada ate existir validacao pos-execucao real.")
+    handoff_lines.append("- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`, mantendo conclusao bloqueada ate existir validacao pos-execucao real.")
 handoff_lines.extend([
     "",
     "## Nao fazer",

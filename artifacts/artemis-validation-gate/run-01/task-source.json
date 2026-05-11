@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T17:04:18Z",
+  "generated_at": "2026-05-11T18:37:22Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -817,6 +817,18 @@
       "summary": "Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony",
       "exec_pack": "docs/exec-packs/done/TKT-067-artemis-agent-runtime-post-execution-validation-gate.md",
       "evidence": "docs/exec-packs/done/TKT-067-artemis-agent-runtime-post-execution-validation-gate.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-068",
+      "ticket": "TKT-068",
+      "title": "Agent Runtime Completion Handoff do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "No estado atual, como a validacao pos-execucao ainda depende de resultado real",
+      "exec_pack": "docs/exec-packs/done/TKT-068-artemis-agent-runtime-completion-handoff.md",
+      "evidence": "docs/exec-packs/done/TKT-068-artemis-agent-runtime-completion-handoff.md",
       "tags": ["exec-pack", "done"]
     }
   ]

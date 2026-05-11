@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T17:04:20Z",
+  "generated_at": "2026-05-11T18:37:24Z",
   "source": "scripts/artemis-human-decision-reentry-contract.sh",
   "mode": "read_only",
   "overall": "human_gate",

@@ -14,7 +14,7 @@ TKT-061 classificou a decisao humana de runtime como `pending` com overall `huma
 
 ## Proximo corte
 
-- Implementar `TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony`, mantendo runtime bloqueado ate existir `approved_ready`.
+- Implementar `TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`, mantendo runtime bloqueado ate existir `approved_ready`.
 
 ## Nao fazer
 

@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 67
+    "done": 68
   },
   "decisions": [
     {
@@ -610,6 +610,15 @@
       "title": "Agent Runtime Execution Result Intake do ARTEMIS Symphony",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-066-artemis-agent-runtime-execution-result-intake.md"
+    },
+    {
+      "ticket": "TKT-067",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-067-artemis-agent-runtime-post-execution-validation-gate.md"
     }
   ]
 }

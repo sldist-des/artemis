@@ -933,6 +933,33 @@ Resultado esperado:
 - `rollback_required=false`;
 - evento canonico `runner.result_blocked`.
 
+### Modo 3.17 - Agent Runtime Post-Execution Validation Gate
+
+Implementado em `TKT-067` como gate read-only de validacao pos-execucao.
+
+- consome `execution-result-intake.json`;
+- so fica pronto quando o result intake esta `execution_result_intake_ready`;
+- mantem Human Gate para plano, dry-run, Human Gate e falha de intake;
+- por padrao nao executa comandos de validacao;
+- com `--execute`, roda somente comandos de validacao declarados pelo intake;
+- preserva logs de validacao, resultado, rollback, budget e handoff;
+- nao inicia agentes, remoto, PR, push, deploy, producao ou secrets.
+
+Agent Runtime Post-Execution Validation Gate implementado:
+
+- `scripts/artemis-agent-runtime-post-execution-validation-gate.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_POST_EXECUTION_VALIDATION_GATE.md`
+
+Resultado esperado:
+
+- `human_gate` enquanto o Result Intake nao estiver pronto;
+- `post_validation_state=waiting_for_execution_result_intake_ready`;
+- `post_execution_validation_ready=false`;
+- `execute_requested=false`;
+- `validations_executed=0`;
+- `commands_executed=0`;
+- evento canonico `validation.completed`.
+
 ## Invariantes
 
 - ARTEMIS Symphony nao executa cleanup real sem decisao humana.
@@ -945,14 +972,14 @@ Resultado esperado:
 
 ## Proximo corte recomendado
 
-`TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony`
+`TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`
 
 Objetivo:
 
-- consumir `execution-result-intake.json`;
-- rodar validacao pos-execucao somente quando existir resultado real;
-- manter Human Gate quando o intake estiver em plano, bloqueio ou falha;
-- verificar logs, exit codes, rollback, budget e comandos de validacao;
-- preparar handoff claro para humanos e agentes leigos.
+- consumir `post-execution-validation-gate.json`;
+- preparar handoff final somente quando houver validacao pos-execucao concluida;
+- consolidar resultado, logs, custo, rollback e residual risks;
+- manter Human Gate quando a validacao estiver bloqueada, falha ou plan-only;
+- apresentar resumo claro para humanos e agentes leigos.
 
 Esse sera o proximo passo de implementacao do nosso Symphony proprio.

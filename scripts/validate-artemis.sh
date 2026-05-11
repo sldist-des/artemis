@@ -35,6 +35,7 @@ docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_COMMAND_PLAN.md
 docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_EXECUTION_GATE.md
 docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_LAUNCHER_SUPERVISED_EXECUTION.md
 docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_EXECUTION_RESULT_INTAKE.md
+docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_POST_EXECUTION_VALIDATION_GATE.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
@@ -97,6 +98,7 @@ scripts/artemis-agent-runtime-launcher-command-plan.sh
 scripts/artemis-agent-runtime-launcher-execution-gate.sh
 scripts/artemis-agent-runtime-launcher-supervised-execution.sh
 scripts/artemis-agent-runtime-execution-result-intake.sh
+scripts/artemis-agent-runtime-post-execution-validation-gate.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -196,6 +198,7 @@ sh -n scripts/artemis-agent-runtime-launcher-command-plan.sh
 sh -n scripts/artemis-agent-runtime-launcher-execution-gate.sh
 sh -n scripts/artemis-agent-runtime-launcher-supervised-execution.sh
 sh -n scripts/artemis-agent-runtime-execution-result-intake.sh
+sh -n scripts/artemis-agent-runtime-post-execution-validation-gate.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -1630,6 +1633,36 @@ if ! grep -q '"event_type": "runner.result_blocked"' /tmp/artemis-agent-runtime-
   exit 1
 fi
 
+scripts/artemis-agent-runtime-post-execution-validation-gate.sh --artifact-root /tmp/artemis-agent-runtime-post-execution-validation-gate --result-intake /tmp/artemis-agent-runtime-execution-result-intake/execution-result-intake.json --json >/tmp/artemis-agent-runtime-post-execution-validation-gate.json
+if ! grep -q '"overall": "human_gate"' /tmp/artemis-agent-runtime-post-execution-validation-gate.json; then
+  echo "scripts/artemis-agent-runtime-post-execution-validation-gate.sh did not preserve pending Human Gate" >&2
+  exit 1
+fi
+if ! grep -q '"post_validation_state": "waiting_for_execution_result_intake_ready"' /tmp/artemis-agent-runtime-post-execution-validation-gate.json; then
+  echo "ARTEMIS Agent Runtime Post-Execution Validation Gate did not wait for result intake ready" >&2
+  exit 1
+fi
+if ! grep -q '"post_execution_validation_ready": false' /tmp/artemis-agent-runtime-post-execution-validation-gate.json; then
+  echo "ARTEMIS Agent Runtime Post-Execution Validation Gate became ready without executed result" >&2
+  exit 1
+fi
+if ! grep -q '"execute_requested": false' /tmp/artemis-agent-runtime-post-execution-validation-gate.json; then
+  echo "ARTEMIS Agent Runtime Post-Execution Validation Gate requested execution by default" >&2
+  exit 1
+fi
+if ! grep -q '"validations_executed": 0' /tmp/artemis-agent-runtime-post-execution-validation-gate.json; then
+  echo "ARTEMIS Agent Runtime Post-Execution Validation Gate executed validations" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-agent-runtime-post-execution-validation-gate.json; then
+  echo "ARTEMIS Agent Runtime Post-Execution Validation Gate found runtime commands without executed result" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "validation.completed"' /tmp/artemis-agent-runtime-post-execution-validation-gate/events.json; then
+  echo "scripts/artemis-agent-runtime-post-execution-validation-gate.sh did not emit canonical events" >&2
+  exit 1
+fi
+
 scripts/artemis-codex-app-server.sh --artifact-root /tmp/artemis-codex-app-server --json >/tmp/artemis-codex-app-server.json
 if ! grep -q '"overall": "passed"' /tmp/artemis-codex-app-server.json; then
   echo "scripts/artemis-codex-app-server.sh did not report the expected passed status" >&2
@@ -1898,6 +1931,18 @@ if ! grep -q "renderAgentRuntimeExecutionResultIntake" control-plane/index.html;
 fi
 if ! grep -q "waiting_for_supervised_execution_result" control-plane/index.html; then
   echo "control-plane/index.html does not show the ARTEMIS Agent Runtime Execution Result Intake state" >&2
+  exit 1
+fi
+if ! grep -q "agent-runtime-post-execution-validation-gate-section" control-plane/index.html; then
+  echo "control-plane/index.html does not render the ARTEMIS Agent Runtime Post-Execution Validation Gate section" >&2
+  exit 1
+fi
+if ! grep -q "renderAgentRuntimePostExecutionValidationGate" control-plane/index.html; then
+  echo "control-plane/index.html does not include the Agent Runtime Post-Execution Validation Gate renderer" >&2
+  exit 1
+fi
+if ! grep -q "waiting_for_execution_result_intake_ready" control-plane/index.html; then
+  echo "control-plane/index.html does not show the ARTEMIS Agent Runtime Post-Execution Validation Gate state" >&2
   exit 1
 fi
 

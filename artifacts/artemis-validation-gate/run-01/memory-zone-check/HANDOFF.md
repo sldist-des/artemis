@@ -6,7 +6,7 @@ Memory Zone esta `memory_zone_ready` como contrato read-only. Ela conecta memori
 
 ## Proximo corte
 
-- Implementar `TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony`.
+- Implementar `TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`.
 - Usar Memory Zone como fonte de contexto e o indice derivado como read model.
 
 ## Nao fazer

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T16:49:26Z",
+  "generated_at": "2026-05-11T17:04:26Z",
   "source": "scripts/artemis-agent-runtime-decision-intake.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-061_agent_runtime_decision_intake",
       "event_type": "approval.intake_recorded",
-      "generated_at": "2026-05-11T16:49:26Z",
+      "generated_at": "2026-05-11T17:04:26Z",
       "producer": {
         "adapter": "agent_runtime_decision_intake",
         "name": "scripts/artemis-agent-runtime-decision-intake.sh",
@@ -65,7 +65,7 @@
         },
         "intake_state": "pending",
         "next_action": "human_decision_required",
-        "next_cut": "TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony"
+        "next_cut": "TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony"
       }
     }
   ]

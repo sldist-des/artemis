@@ -436,6 +436,8 @@ scripts/artemis-agent-runtime-launcher-supervised-execution.sh --json
 scripts/artemis-agent-runtime-launcher-supervised-execution.sh --execute --json
 scripts/artemis-agent-runtime-execution-result-intake.sh
 scripts/artemis-agent-runtime-execution-result-intake.sh --json
+scripts/artemis-agent-runtime-post-execution-validation-gate.sh
+scripts/artemis-agent-runtime-post-execution-validation-gate.sh --json
 ```
 
 Esse grafo e um read model operacional. Ele ajuda humanos e agentes a entenderem
@@ -474,6 +476,9 @@ O Agent Runtime Execution Result Intake consome a execucao supervisionada e
 classifica plano, Human Gate, execucao concluida, falha, rollback e logs antes
 de qualquer validacao pos-execucao. Ele e read-only e impede tratar plan-only
 como sucesso.
+O Agent Runtime Post-Execution Validation Gate consome o Result Intake e so
+libera validacao pos-execucao quando existir resultado executado real; por
+padrao e read-only, e comandos de validacao exigem `--execute` e intake pronto.
 O Agent Launch Contract e o preflight supervisionado entre a entrada guiada e
 qualquer runtime real. Ele fixa `execute=false` por padrao e exige projeto,
 tarefa, auth, budget, comando, workspace, rollback e evidencia antes de Codex

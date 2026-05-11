@@ -90,6 +90,6 @@ O corte emite um destes eventos:
 
 ## Proximo corte
 
-`TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony`
+`TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`
 deve consumir `execution-result-intake.json` e manter a validacao bloqueada ate
 existir resultado executado, logs preservados e comandos de validacao definidos.

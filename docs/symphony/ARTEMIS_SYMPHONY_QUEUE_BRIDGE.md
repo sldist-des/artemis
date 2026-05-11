@@ -61,4 +61,4 @@ scripts/artemis-symphony-queue-bridge.sh --ticket TKT-000 --command "cmd" --json
 
 ## Proximo corte
 
-`TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony`
+`TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`

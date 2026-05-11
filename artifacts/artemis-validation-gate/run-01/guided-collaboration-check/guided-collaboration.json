@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T16:49:26Z",
+  "generated_at": "2026-05-11T17:04:26Z",
   "source": "scripts/artemis-guided-collaboration.sh",
   "mode": "read_only_guided_human_collaboration",
   "overall": "guided_collaboration_ready",
@@ -17,8 +17,8 @@
     "task_lanes": 4,
     "agent_profiles": 4,
     "gate_contracts": 4,
-    "tasks_total": 67,
-    "tasks_done": 67,
+    "tasks_total": 68,
+    "tasks_done": 68,
     "tasks_human": 0,
     "tasks_ready": 0,
     "validation_passed": 1,
@@ -169,5 +169,5 @@
     "renderGuidedCollaboration",
     "loadGuidedCollaborationSource"
   ],
-  "next_cut": "TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony"
+  "next_cut": "TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony"
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T16:40:37Z",
+  "generated_at": "2026-05-11T17:03:14Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -805,6 +805,18 @@
       "summary": "Agent Runtime Execution Result Intake do ARTEMIS Symphony",
       "exec_pack": "docs/exec-packs/done/TKT-066-artemis-agent-runtime-execution-result-intake.md",
       "evidence": "docs/exec-packs/done/TKT-066-artemis-agent-runtime-execution-result-intake.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-067",
+      "ticket": "TKT-067",
+      "title": "Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony",
+      "exec_pack": "docs/exec-packs/done/TKT-067-artemis-agent-runtime-post-execution-validation-gate.md",
+      "evidence": "docs/exec-packs/done/TKT-067-artemis-agent-runtime-post-execution-validation-gate.md",
       "tags": ["exec-pack", "done"]
     }
   ]

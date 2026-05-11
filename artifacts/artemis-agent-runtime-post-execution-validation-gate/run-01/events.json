@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-11T17:05:46Z",
+  "source": "scripts/artemis-agent-runtime-post-execution-validation-gate.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-067_agent_runtime_post_execution_validation_gate",
+      "event_type": "validation.completed",
+      "generated_at": "2026-05-11T17:05:46Z",
+      "producer": {
+        "adapter": "agent_runtime_post_execution_validation_gate",
+        "name": "scripts/artemis-agent-runtime-post-execution-validation-gate.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-067",
+        "task_id": "tkt-067",
+        "title": "Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony",
+        "exec_pack": "docs/exec-packs/done/TKT-067-artemis-agent-runtime-post-execution-validation-gate.md",
+        "artifact_root": "artifacts/artemis-agent-runtime-post-execution-validation-gate/run-01"
+      },
+      "runner": {
+        "kind": "none",
+        "post_execution_validation": "agent_runtime_post_execution_validation_gate",
+        "execute": false,
+        "validations_executed": 0,
+        "commands_executed": 0
+      },
+      "state": {
+        "from": "human_gate",
+        "to": "human_gate",
+        "reason": "Post-execution validation gate was evaluated from execution result intake evidence."
+      },
+      "gate": {
+        "kind": "human",
+        "status": "human_gate",
+        "reason": "Post-execution validation result."
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-agent-runtime-post-execution-validation-gate/run-01",
+        "status_path": "artifacts/artemis-agent-runtime-post-execution-validation-gate/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-agent-runtime-post-execution-validation-gate/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-agent-runtime-post-execution-validation-gate/run-01/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-067"
+      },
+      "payload": {
+        "overall": "human_gate",
+        "reason": "Post-execution validation gate was evaluated from execution result intake evidence.",
+        "summary": {
+          "execution_result_intake_ready": false,
+          "post_execution_validation_ready": false,
+          "post_execution_validation_completed": false,
+          "execute_requested": false,
+          "validation_required": false,
+          "validation_commands_count": 0,
+          "validations_executed": 0,
+          "validation_failed": 0,
+          "commands_executed": 0,
+          "failed_commands": 0,
+          "runtime_started": false,
+          "agents_started": 0,
+          "rollback_required": false,
+          "remote_writes_allowed": false,
+          "production_allowed": false,
+          "secrets_allowed": false,
+          "paid_tokens_authorized": 0,
+          "validation_checks": 7,
+          "validation_passed": 6,
+          "validation_failed_checks": 0,
+          "validation_human_gate": 1
+        },
+        "post_validation_state": "waiting_for_execution_result_intake_ready",
+        "next_action": "wait_for_execution_result_intake_ready",
+        "next_cut": "TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony"
+      }
+    }
+  ]
+}

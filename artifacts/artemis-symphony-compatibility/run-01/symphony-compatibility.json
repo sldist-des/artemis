@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T16:40:42Z",
+  "generated_at": "2026-05-11T17:03:14Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
   "artifact_root": "artifacts/artemis-symphony-compatibility/run-01",
   "spec": "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md",
   "summary": {
-    "layers_total": 31,
+    "layers_total": 32,
     "layers_with_missing_files": 0,
-    "tasks_total": 67,
-    "tasks_done": 67,
+    "tasks_total": 68,
+    "tasks_done": 68,
     "daemon_implemented": true,
     "kernel_implemented": true,
     "bridge_implemented": true,
@@ -36,6 +36,7 @@
     "agent_runtime_launcher_execution_gate_implemented": true,
     "agent_runtime_launcher_supervised_execution_implemented": true,
     "agent_runtime_execution_result_intake_implemented": true,
+    "agent_runtime_post_execution_validation_gate_implemented": true,
     "next_cut_defined": true
   },
   "compatibility": {
@@ -67,9 +68,10 @@
     "agent_runtime_launcher_execution_gate_implemented": true,
     "agent_runtime_launcher_supervised_execution_implemented": true,
     "agent_runtime_execution_result_intake_implemented": true,
+    "agent_runtime_post_execution_validation_gate_implemented": true,
     "terminal_first": true,
     "human_gates_preserved": true,
-    "next_cut": "TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony"
+    "next_cut": "TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony"
   },
   "layers": [
     {
@@ -392,6 +394,16 @@
       ],
       "status": "implemented_runtime_execution_result_intake",
       "missing_files": []
+    },
+    {
+      "layer": "agent_runtime_post_execution_validation_gate",
+      "purpose": "Read-only post-execution validation gate that consumes result intake before completion handoff.",
+      "required_files": [
+        "scripts/artemis-agent-runtime-post-execution-validation-gate.sh",
+        "docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_POST_EXECUTION_VALIDATION_GATE.md"
+      ],
+      "status": "implemented_runtime_post_execution_validation_gate",
+      "missing_files": []
     }
   ],
   "blockers": [],
@@ -423,6 +435,7 @@
     "The implemented Agent Runtime Launcher Command Plan materializes commands without executing them.",
     "The implemented Agent Runtime Launcher Execution Gate requires final human approval and never starts runtime.",
     "The implemented Agent Runtime Launcher Supervised Execution remains plan-only unless --execute and the final gate are both ready.",
-    "The implemented Agent Runtime Execution Result Intake classifies results and never treats plan-only as success."
+    "The implemented Agent Runtime Execution Result Intake classifies results and never treats plan-only as success.",
+    "The implemented Agent Runtime Post-Execution Validation Gate blocks completion until real result validation exists."
   ]
 }

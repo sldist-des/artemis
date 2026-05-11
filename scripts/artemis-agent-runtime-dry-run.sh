@@ -96,7 +96,7 @@ candidate = contract.get("candidate_launch", {})
 profiles = {item.get("id"): item for item in contract.get("launch_profiles", [])}
 profile_id = requested_profile or candidate.get("recommended_profile") or "codex_terminal"
 selected_profile = profiles.get(profile_id)
-task_text = requested_task or candidate.get("task") or "TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony"
+task_text = requested_task or candidate.get("task") or "TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony"
 
 required_gate_ids = {
     "project_gate",
@@ -303,7 +303,7 @@ payload = {
     ],
     "missing_files": missing_files,
     "missing_gate_ids": missing_gate_ids,
-    "next_cut": "TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony",
+    "next_cut": "TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony",
 }
 
 ready = (
@@ -404,7 +404,7 @@ handoff_lines = [
     "",
     "Proximo corte:",
     "",
-    "- Implementar `TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony`.",
+    "- Implementar `TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`.",
     "- Usar o Agent Runtime Launcher Preflight como entrada obrigatoria antes de materializar comandos.",
 ]
 (artifact_root / "HANDOFF.md").write_text("\n".join(handoff_lines) + "\n", encoding="utf-8")

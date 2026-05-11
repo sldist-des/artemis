@@ -4,5 +4,5 @@ O dry-run de runtime materializou pedido, budget zero, auth gate, workspace read
 
 Proximo corte:
 
-- Implementar `TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony`.
+- Implementar `TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony`.
 - Usar o Agent Runtime Launcher Preflight como entrada obrigatoria antes de materializar comandos.

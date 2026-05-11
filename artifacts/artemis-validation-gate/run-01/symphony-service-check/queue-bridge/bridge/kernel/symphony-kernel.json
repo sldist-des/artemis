@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T16:49:25Z",
+  "generated_at": "2026-05-11T17:04:24Z",
   "source": "scripts/artemis-symphony-kernel.sh",
   "mode": "read_only",
   "overall": "dispatch_plan_ready",
@@ -51,5 +51,5 @@
     "Human Gates are copied into the plan and never bypassed.",
     "Terminal override remains required for any future supervised execution."
   ],
-  "next_cut": "TKT-067 - Agent Runtime Post-Execution Validation Gate do ARTEMIS Symphony"
+  "next_cut": "TKT-068 - Agent Runtime Completion Handoff do ARTEMIS Symphony"
 }

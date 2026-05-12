@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T17:13:26Z",
+  "generated_at": "2026-05-12T17:35:38Z",
   "source": "scripts/artemis-project-brief.sh",
   "mode": "read_only_human_project_brief",
   "overall": "human_project_brief_ready",
@@ -18,11 +18,11 @@
     "claude_code"
   ],
   "summary": {
-    "tasks_total": 75,
-    "tasks_done": 75,
-    "events_total": 61,
-    "nodes_total": 25,
-    "edges_total": 75,
+    "tasks_total": 76,
+    "tasks_done": 76,
+    "events_total": 62,
+    "nodes_total": 26,
+    "edges_total": 82,
     "validation_passed": 1,
     "validation_failed": 0,
     "human_gates": 1,
@@ -37,9 +37,9 @@
     "headline": "ARTEMIS Symphony em linguagem de projeto",
     "status": "O ARTEMIS Symphony esta pronto como sistema local supervisionado: ele organiza tarefas, evidencia, validacao, memoria e limites antes de qualquer execucao automatica.",
     "ready": [
-      "75 de 75 Exec Packs estao concluidos e versionados.",
+      "76 de 76 Exec Packs estao concluidos e versionados.",
       "O Validation Gate registra 1 checks aprovados e 0 falhas tecnicas.",
-      "O Project Graph conecta 25 nos e 75 relacoes entre tarefas, agentes, gates, memoria, custos e evidencias.",
+      "O Project Graph conecta 26 nos e 82 relacoes entre tarefas, agentes, gates, memoria, custos e evidencias.",
       "A Memory Zone tem 3 zonas para contexto humano-AI versionado em Git."
     ],
     "human_attention": [
@@ -78,5 +78,5 @@
     "renderProjectBrief",
     "loadProjectBriefSource"
   ],
-  "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract"
+  "next_cut": "TKT-076 - ARTEMIS Portal Budget and Cost Ledger Contract"
 }

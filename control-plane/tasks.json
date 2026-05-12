@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T17:11:54Z",
+  "generated_at": "2026-05-12T17:34:14Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -901,6 +901,18 @@
       "summary": "Um contrato verificavel deve registrar perfis iniciais de agente, campos",
       "exec_pack": "docs/exec-packs/done/TKT-074-artemis-portal-agent-registry.md",
       "evidence": "artifacts/artemis-portal-agent-registry/run-01/agent-registry-contract.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-075",
+      "ticket": "TKT-075",
+      "title": "ARTEMIS Portal Run Assignment Contract",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "Um contrato verificavel deve definir assignment record, campos obrigatorios,",
+      "exec_pack": "docs/exec-packs/done/TKT-075-artemis-portal-run-assignment.md",
+      "evidence": "artifacts/artemis-portal-run-assignment/run-01/run-assignment-contract.json",
       "tags": ["exec-pack", "done"]
     }
   ]

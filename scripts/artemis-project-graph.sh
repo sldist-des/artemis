@@ -144,6 +144,7 @@ runtime_done_ledger_payload = read_json(Path("artifacts/artemis-agent-runtime-do
 portal_auth_payload = read_json(Path("artifacts/artemis-portal-auth-plan/run-01/portal-auth-plan.json"), {"portal_auth": {}, "overall": "not_available"})
 portal_credential_vault_payload = read_json(Path("artifacts/artemis-portal-credential-vault/run-01/credential-vault-contract.json"), {"vault_contract": {}, "overall": "not_available"})
 portal_agent_registry_payload = read_json(Path("artifacts/artemis-portal-agent-registry/run-01/agent-registry-contract.json"), {"registry_contract": {}, "overall": "not_available"})
+portal_run_assignment_payload = read_json(Path("artifacts/artemis-portal-run-assignment/run-01/run-assignment-contract.json"), {"assignment_contract": {}, "sample_assignment": {}, "overall": "not_available"})
 
 tasks = tasks_payload.get("tasks", [])
 events = event_log_payload.get("events", [])
@@ -385,6 +386,20 @@ nodes = [
         "next_cut": portal_agent_registry_payload.get("next_cut", "unknown"),
     },
     {
+        "id": "portal:run_assignment",
+        "type": "portal_run_assignment",
+        "label": "ARTEMIS Portal Run Assignment",
+        "status": portal_run_assignment_payload.get("overall", "not_available"),
+        "run_assignment_ready": portal_run_assignment_payload.get("run_assignment_ready", False),
+        "agent_profile_id": portal_run_assignment_payload.get("sample_assignment", {}).get("agent_profile_id", "unknown"),
+        "runtime_auth_executed": portal_run_assignment_payload.get("runtime_auth_executed", False),
+        "vault_lease_issued": portal_run_assignment_payload.get("vault_lease_issued", False),
+        "agents_started": portal_run_assignment_payload.get("agents_started", False),
+        "commands_executed": portal_run_assignment_payload.get("commands_executed", 0),
+        "tokens_spent": portal_run_assignment_payload.get("tokens_spent", 0),
+        "next_cut": portal_run_assignment_payload.get("next_cut", "unknown"),
+    },
+    {
         "id": "control_plane:view",
         "type": "view",
         "label": "Control Plane",
@@ -462,12 +477,19 @@ edges = [
     {"from": "portal:agent_registry", "to": "validation:gate", "type": "requires_validation_policy"},
     {"from": "portal:agent_registry", "to": "gate:human", "type": "requires_launch_and_remote_write_gates"},
     {"from": "portal:agent_registry", "to": "event_log:timeline", "type": "records_registry_contract"},
+    {"from": "portal:agent_registry", "to": "portal:run_assignment", "type": "selects_registered_profile"},
+    {"from": "portal:run_assignment", "to": "runtime:launcher_preflight", "type": "gates_launcher_preflight"},
+    {"from": "portal:run_assignment", "to": "cost:budget", "type": "binds_budget_policy"},
+    {"from": "portal:run_assignment", "to": "validation:gate", "type": "binds_validation_policy"},
+    {"from": "portal:run_assignment", "to": "gate:human", "type": "binds_human_gate_policy"},
+    {"from": "portal:run_assignment", "to": "event_log:timeline", "type": "records_assignment_contract"},
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:auth_plan", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:credential_vault", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:agent_registry", "type": "shows"},
+    {"from": "control_plane:view", "to": "portal:run_assignment", "type": "shows"},
 ]
 
 questions = [
@@ -545,6 +567,7 @@ payload = {
         "portal_auth_plan": "artifacts/artemis-portal-auth-plan/run-01/portal-auth-plan.json",
         "portal_credential_vault": "artifacts/artemis-portal-credential-vault/run-01/credential-vault-contract.json",
         "portal_agent_registry": "artifacts/artemis-portal-agent-registry/run-01/agent-registry-contract.json",
+        "portal_run_assignment": "artifacts/artemis-portal-run-assignment/run-01/run-assignment-contract.json",
     },
     "summary": summary,
     "states": dict(states),
@@ -582,10 +605,11 @@ payload = {
         "portal_auth_plan_input": "artemis_portal_auth_plan",
         "portal_credential_vault_input": "artemis_portal_credential_vault",
         "portal_agent_registry_input": "artemis_portal_agent_registry",
+        "portal_run_assignment_input": "artemis_portal_run_assignment",
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },
-    "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract",
+    "next_cut": "TKT-076 - ARTEMIS Portal Budget and Cost Ledger Contract",
 }
 
 write_text(artifact_root / "project-graph.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")

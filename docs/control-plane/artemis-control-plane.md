@@ -165,6 +165,20 @@ The registry contract lives in:
 docs/portal/ARTEMIS_PORTAL_AGENT_REGISTRY.md
 ```
 
+Run assignment is the next pre-launcher boundary. It binds a project task to a
+registered profile plus budget, workspace, credential lease, validation, Human
+Gate and stop-rule policies before any runtime starts:
+
+```bash
+scripts/artemis-portal-run-assignment.sh --artifact-root artifacts/artemis-portal-run-assignment/run-01
+```
+
+The run assignment contract lives in:
+
+```text
+docs/portal/ARTEMIS_PORTAL_RUN_ASSIGNMENT.md
+```
+
 ## ARTEMIS Symphony evidence
 
 The Control Plane includes a read-only `ARTEMIS Symphony` section for the local Symphony cuts.

@@ -43,6 +43,7 @@ docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_DONE_LEDGER.md
 docs/portal/ARTEMIS_PORTAL_AUTH_PLAN.md
 docs/portal/ARTEMIS_PORTAL_CREDENTIAL_VAULT.md
 docs/portal/ARTEMIS_PORTAL_AGENT_REGISTRY.md
+docs/portal/ARTEMIS_PORTAL_RUN_ASSIGNMENT.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
@@ -113,6 +114,7 @@ scripts/artemis-agent-runtime-done-ledger.sh
 scripts/artemis-portal-auth-plan.sh
 scripts/artemis-portal-credential-vault.sh
 scripts/artemis-portal-agent-registry.sh
+scripts/artemis-portal-run-assignment.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -220,6 +222,7 @@ sh -n scripts/artemis-agent-runtime-done-ledger.sh
 sh -n scripts/artemis-portal-auth-plan.sh
 sh -n scripts/artemis-portal-credential-vault.sh
 sh -n scripts/artemis-portal-agent-registry.sh
+sh -n scripts/artemis-portal-run-assignment.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -304,6 +307,27 @@ if ! grep -q '"agents_started": false' /tmp/artemis-portal-agent-registry.json; 
 fi
 if ! test -f /tmp/artemis-portal-agent-registry/AGENT_REGISTRY.md; then
   echo "scripts/artemis-portal-agent-registry.sh did not write registry documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-portal-run-assignment.sh --artifact-root /tmp/artemis-portal-run-assignment --json >/tmp/artemis-portal-run-assignment.json
+if ! grep -q '"overall": "assignment_ready"' /tmp/artemis-portal-run-assignment.json; then
+  echo "scripts/artemis-portal-run-assignment.sh did not report assignment_ready" >&2
+  exit 1
+fi
+if ! grep -q '"secret_values_recorded": false' /tmp/artemis-portal-run-assignment.json; then
+  echo "scripts/artemis-portal-run-assignment.sh recorded secret values" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": false' /tmp/artemis-portal-run-assignment.json; then
+  echo "scripts/artemis-portal-run-assignment.sh started agents" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-run-assignment.json; then
+  echo "scripts/artemis-portal-run-assignment.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-run-assignment/RUN_ASSIGNMENT.md; then
+  echo "scripts/artemis-portal-run-assignment.sh did not write run assignment documentation artifact" >&2
   exit 1
 fi
 

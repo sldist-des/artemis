@@ -103,7 +103,8 @@
             "agent_runtime_done_ledger",
             "portal_auth_plan",
             "portal_credential_vault",
-            "portal_agent_registry"
+            "portal_agent_registry",
+            "portal_run_assignment"
           ]
         },
         "name": {

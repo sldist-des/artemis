@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T17:13:26Z",
+  "generated_at": "2026-05-12T17:35:38Z",
   "source": "scripts/artemis-guided-collaboration.sh",
   "mode": "read_only_guided_human_collaboration",
   "overall": "guided_collaboration_ready",
@@ -17,8 +17,8 @@
     "task_lanes": 4,
     "agent_profiles": 4,
     "gate_contracts": 4,
-    "tasks_total": 75,
-    "tasks_done": 75,
+    "tasks_total": 76,
+    "tasks_done": 76,
     "tasks_human": 0,
     "tasks_ready": 0,
     "validation_passed": 1,
@@ -169,5 +169,5 @@
     "renderGuidedCollaboration",
     "loadGuidedCollaborationSource"
   ],
-  "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract"
+  "next_cut": "TKT-076 - ARTEMIS Portal Budget and Cost Ledger Contract"
 }

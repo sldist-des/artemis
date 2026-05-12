@@ -46,6 +46,7 @@ shell_agent_runtime_done_ledger	technical	passed	0	artifacts/artemis-validation-
 shell_portal_auth_plan	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_auth_plan.txt
 shell_portal_credential_vault	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_credential_vault.txt
 shell_portal_agent_registry	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_agent_registry.txt
+shell_portal_run_assignment	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_run_assignment.txt
 shell_approved_workspace_cleanup	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt
 shell_workspace_runtime_handoff	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt
 shell_runner	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt
@@ -101,6 +102,7 @@ agent_runtime_done_ledger	technical	passed	0	artifacts/artemis-validation-gate/r
 portal_auth_plan	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/portal_auth_plan.txt
 portal_credential_vault	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/portal_credential_vault.txt
 portal_agent_registry	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/portal_agent_registry.txt
+portal_run_assignment	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/portal_run_assignment.txt
 approved_workspace_cleanup	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt
 workspace_runtime_handoff	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt
 runner_plan	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt

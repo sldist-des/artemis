@@ -145,4 +145,5 @@ Capabilities proibidas por padrao:
 - criar banco real de registry;
 - criar scheduler real.
 
-Proximo corte recomendado: `TKT-075 - ARTEMIS Portal Run Assignment Contract`.
+O proximo contrato do portal e o Run Assignment em
+`docs/portal/ARTEMIS_PORTAL_RUN_ASSIGNMENT.md`.

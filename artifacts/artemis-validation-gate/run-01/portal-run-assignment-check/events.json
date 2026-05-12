@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-12T17:35:39Z",
+  "source": "scripts/artemis-portal-run-assignment.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_run_assignment_contract_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-12T17:35:39Z",
+      "producer": {
+        "adapter": "portal_run_assignment",
+        "name": "scripts/artemis-portal-run-assignment.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-075",
+        "task_id": "tkt-075",
+        "title": "ARTEMIS Portal Run Assignment Contract",
+        "exec_pack": "docs/exec-packs/done/TKT-075-artemis-portal-run-assignment.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/portal-run-assignment-check"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "context",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/portal-run-assignment-check",
+        "status_path": "artifacts/artemis-validation-gate/run-01/portal-run-assignment-check/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/portal-run-assignment-check/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/portal-run-assignment-check/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-validation-gate/run-01/portal-run-assignment-check/run-assignment-contract.json",
+          "artifacts/artemis-validation-gate/run-01/portal-run-assignment-check/RUN_ASSIGNMENT.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-075"
+      },
+      "payload": {
+        "run_assignment_ready": true,
+        "agent_profile_id": "codex_frontier_engineer",
+        "runtime_execution_allowed": false,
+        "vault_lease_issued": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "secret_values_recorded": false,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-076 - ARTEMIS Portal Budget and Cost Ledger Contract"
+      }
+    }
+  ]
+}

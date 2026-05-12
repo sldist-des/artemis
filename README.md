@@ -293,6 +293,8 @@ docs/portal/ARTEMIS_PORTAL_CREDENTIAL_VAULT.md
 scripts/artemis-portal-credential-vault.sh --artifact-root artifacts/artemis-portal-credential-vault/run-01
 docs/portal/ARTEMIS_PORTAL_AGENT_REGISTRY.md
 scripts/artemis-portal-agent-registry.sh --artifact-root artifacts/artemis-portal-agent-registry/run-01
+docs/portal/ARTEMIS_PORTAL_RUN_ASSIGNMENT.md
+scripts/artemis-portal-run-assignment.sh --artifact-root artifacts/artemis-portal-run-assignment/run-01
 ```
 
 ## Readiness de aplicacao

@@ -114,3 +114,11 @@ Codex, Claude Code e verificadores por capability, budget, workspace e gate:
 docs/portal/ARTEMIS_PORTAL_AGENT_REGISTRY.md
 scripts/artemis-portal-agent-registry.sh --json
 ```
+
+Depois do registry, o portal precisa do Run Assignment para vincular uma tarefa
+a um perfil registrado antes de qualquer launcher ou runtime:
+
+```bash
+docs/portal/ARTEMIS_PORTAL_RUN_ASSIGNMENT.md
+scripts/artemis-portal-run-assignment.sh --json
+```

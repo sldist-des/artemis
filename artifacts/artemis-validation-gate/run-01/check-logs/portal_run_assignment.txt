@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-12T17:35:39Z",
+  "overall": "assignment_ready",
+  "run_assignment_ready": true,
+  "secret_values_recorded": false,
+  "runtime_auth_executed": false,
+  "vault_lease_issued": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-076 - ARTEMIS Portal Budget and Cost Ledger Contract",
+  "missing_files": [],
+  "assignment_contract": {
+    "purpose": "Bind a project task to one registered agent profile under explicit policy before any runtime launch.",
+    "state": "contract_only",
+    "secret_values_recorded": false,
+    "runtime_auth_executed": false,
+    "vault_lease_issued": false,
+    "agents_started": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "remote_state_mutated": false,
+    "assignment_record": {
+      "required_fields": [
+        "assignment_id",
+        "project_id",
+        "task_id",
+        "ticket",
+        "exec_pack",
+        "requested_by",
+        "requested_at",
+        "risk",
+        "task_shape",
+        "agent_profile_id",
+        "provider_id",
+        "adapter",
+        "allowed_capabilities",
+        "forbidden_capabilities",
+        "budget_policy_id",
+        "validation_policy_id",
+        "human_gate_policy_id",
+        "workspace_policy_id",
+        "credential_lease_policy_id",
+        "evidence_policy_id",
+        "stop_rule",
+        "expires_at"
+      ],
+      "forbidden_fields": [
+        "plaintext_secret",
+        "raw_access_token",
+        "raw_refresh_token",
+        "private_key_material",
+        "session_cookie",
+        "runtime_command_output",
+        "provider_billing_secret"
+      ]
+    },
+    "state_model": [
+      "requested",
+      "policy_checking",
+      "waiting_for_provider_connection",
+      "waiting_for_vault_lease",
+      "waiting_for_budget",
+      "waiting_for_workspace",
+      "waiting_for_human_gate",
+      "ready_for_launcher_preflight",
+      "rejected",
+      "expired"
+    ],
+    "selection_rules": [
+      "Only profiles declared by the Agent Registry can be assigned.",
+      "Task risk, task shape and requested capabilities must fit the selected profile.",
+      "A writer profile requires an exclusive workspace or worktree lock.",
+      "A verifier assignment must be separate from the implementation assignment it validates.",
+      "Vault lease approval is planned here but issued only by the Credential Vault boundary.",
+      "Budget policy must exist before token spend or paid runtime.",
+      "Human Gate is required before remote write, provider auth, production, deploy or long-running runtime.",
+      "Launcher preflight consumes an accepted assignment; the assignment contract itself never starts runtime."
+    ],
+    "gates": [
+      "task_contract_present",
+      "agent_profile_registered",
+      "capability_allowed",
+      "forbidden_capability_absent",
+      "budget_policy_bound",
+      "workspace_policy_bound",
+      "validation_policy_bound",
+      "vault_lease_policy_bound",
+      "human_gate_policy_bound",
+      "stop_rule_bound"
+    ],
+    "evidence_policy": {
+      "required_before_ready": [
+        "Exec Pack path",
+        "selected agent profile",
+        "allowed capabilities",
+        "budget policy",
+        "workspace policy",
+        "validation policy",
+        "Human Gate policy",
+        "stop rule"
+      ],
+      "required_after_runtime": [
+        "runner logs",
+        "validation output",
+        "diff summary",
+        "handoff",
+        "cost ledger"
+      ]
+    }
+  },
+  "sample_assignment": {
+    "assignment_id": "assign-tkt-075-contract-fixture",
+    "project_id": "artemis",
+    "task_id": "tkt-075",
+    "ticket": "TKT-075",
+    "exec_pack": "docs/exec-packs/done/TKT-075-artemis-portal-run-assignment.md",
+    "requested_by": "ARTEMIS contract fixture",
+    "requested_at": "2026-05-12T17:35:39Z",
+    "risk": "medium",
+    "task_shape": "medium_to_long",
+    "agent_profile_id": "codex_frontier_engineer",
+    "provider_id": "openai_codex",
+    "adapter": "codex_app_server",
+    "allowed_capabilities": [
+      "read_repo",
+      "write_worktree",
+      "run_local_tests",
+      "produce_handoff",
+      "request_human_gate"
+    ],
+    "forbidden_capabilities": [
+      "read_plaintext_secrets",
+      "bypass_human_gate",
+      "push_without_gate",
+      "modify_branch_protection",
+      "deploy_production"
+    ],
+    "budget_policy_id": "budget:frontier-engineering",
+    "validation_policy_id": "validation:standard-plus",
+    "human_gate_policy_id": "human-gate:remote-write-and-high-risk",
+    "workspace_policy_id": "workspace:single-writer-worktree",
+    "credential_lease_policy_id": "lease:short-lived-provider-adapter",
+    "evidence_policy_id": "evidence:validation-handoff-cost-ledger",
+    "stop_rule": {
+      "max_wall_time_minutes": 180,
+      "max_consecutive_failures": 1,
+      "stop_on_secret_request": true,
+      "stop_on_unapproved_remote_write": true
+    },
+    "expires_at": "contract_fixture_no_runtime_expiry",
+    "assignment_state": "ready_for_launcher_preflight",
+    "runtime_execution_allowed": false,
+    "vault_lease_issued": false,
+    "agents_started": false,
+    "commands_executed": 0
+  },
+  "checks": [
+    {
+      "id": "agent_registry_ready",
+      "status": "passed",
+      "detail": "Run assignment consumes the Agent Registry before selecting a profile."
+    },
+    {
+      "id": "registered_profile_selected",
+      "status": "passed",
+      "detail": "The sample assignment selects only a registered agent profile."
+    },
+    {
+      "id": "policies_bound",
+      "status": "passed",
+      "detail": "Budget, validation, Human Gate, workspace, credential lease and evidence policies are bound."
+    },
+    {
+      "id": "no_runtime_execution",
+      "status": "passed",
+      "detail": "The assignment remains preflight-only and cannot start runtime."
+    },
+    {
+      "id": "no_secret_values_recorded",
+      "status": "passed",
+      "detail": "Assignment records policy metadata only and never store provider secrets."
+    }
+  ]
+}

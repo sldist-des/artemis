@@ -41,6 +41,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 - `docs/portal/ARTEMIS_PORTAL_AUTH_PLAN.md`
 - `docs/portal/ARTEMIS_PORTAL_CREDENTIAL_VAULT.md`
 - `docs/portal/ARTEMIS_PORTAL_AGENT_REGISTRY.md`
+- `docs/portal/ARTEMIS_PORTAL_RUN_ASSIGNMENT.md`
 - Exec Pack ativo em `docs/exec-packs/active/`
 
 ## Comandos canonicos
@@ -65,6 +66,7 @@ scripts/artemis-agent-runtime-done-ledger.sh --json
 scripts/artemis-portal-auth-plan.sh --json
 scripts/artemis-portal-credential-vault.sh --json
 scripts/artemis-portal-agent-registry.sh --json
+scripts/artemis-portal-run-assignment.sh --json
 scripts/github-readiness.sh
 sh -n scripts/bootstrap-artemis.sh
 git status --branch --short --ignored

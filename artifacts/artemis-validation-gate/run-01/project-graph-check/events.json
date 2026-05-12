@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T17:13:26Z",
+  "generated_at": "2026-05-12T17:35:38Z",
   "source": "scripts/artemis-project-graph.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-12T17:13:26Z",
+      "generated_at": "2026-05-12T17:35:38Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -47,16 +47,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 75,
-          "tasks_done": 75,
+          "tasks_total": 76,
+          "tasks_done": 76,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 8,
-          "events_total": 61,
-          "nodes_total": 25,
-          "edges_total": 75,
-          "evidence_count": 75,
-          "exec_pack_count": 75,
+          "events_total": 62,
+          "nodes_total": 26,
+          "edges_total": 82,
+          "evidence_count": 76,
+          "exec_pack_count": 76,
           "validation_passed": 1,
           "validation_failed": 0,
           "validation_human_gate": 1,
@@ -68,7 +68,7 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract"
+        "next_cut": "TKT-076 - ARTEMIS Portal Budget and Cost Ledger Contract"
       }
     }
   ]

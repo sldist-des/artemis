@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 75
+    "done": 76
   },
   "decisions": [
     {
@@ -682,6 +682,15 @@
       "title": "ARTEMIS Portal Agent Registry Contract",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-074-artemis-portal-agent-registry.md"
+    },
+    {
+      "ticket": "TKT-075",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "ARTEMIS Portal Run Assignment Contract",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-075-artemis-portal-run-assignment.md"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T17:13:26Z",
+  "generated_at": "2026-05-12T17:35:38Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -23,19 +23,20 @@
     "runtime_done_ledger": "artifacts/artemis-agent-runtime-done-ledger/run-01/done-ledger.json",
     "portal_auth_plan": "artifacts/artemis-portal-auth-plan/run-01/portal-auth-plan.json",
     "portal_credential_vault": "artifacts/artemis-portal-credential-vault/run-01/credential-vault-contract.json",
-    "portal_agent_registry": "artifacts/artemis-portal-agent-registry/run-01/agent-registry-contract.json"
+    "portal_agent_registry": "artifacts/artemis-portal-agent-registry/run-01/agent-registry-contract.json",
+    "portal_run_assignment": "artifacts/artemis-portal-run-assignment/run-01/run-assignment-contract.json"
   },
   "summary": {
-    "tasks_total": 75,
-    "tasks_done": 75,
+    "tasks_total": 76,
+    "tasks_done": 76,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 8,
-    "events_total": 61,
-    "nodes_total": 25,
-    "edges_total": 75,
-    "evidence_count": 75,
-    "exec_pack_count": 75,
+    "events_total": 62,
+    "nodes_total": 26,
+    "edges_total": 82,
+    "evidence_count": 76,
+    "exec_pack_count": 76,
     "validation_passed": 1,
     "validation_failed": 0,
     "validation_human_gate": 1,
@@ -48,10 +49,10 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 75
+    "done": 76
   },
   "risks": {
-    "medium": 60,
+    "medium": 61,
     "low": 4,
     "high": 11
   },
@@ -62,7 +63,7 @@
     ],
     [
       "Codex",
-      19
+      20
     ],
     [
       "Context Curator",
@@ -92,11 +93,11 @@
   "top_tags": [
     [
       "exec-pack",
-      75
+      76
     ],
     [
       "done",
-      75
+      76
     ]
   ],
   "nodes": [
@@ -111,8 +112,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 75,
-      "done": 75,
+      "count": 76,
+      "done": 76,
       "human": 0
     },
     {
@@ -127,7 +128,7 @@
         ],
         [
           "Codex",
-          19
+          20
         ],
         [
           "Context Curator",
@@ -168,14 +169,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 75,
-      "exec_packs": 75
+      "task_evidence": 76,
+      "exec_packs": 76
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 61
+      "events": 62
     },
     {
       "id": "cost:budget",
@@ -346,6 +347,20 @@
       "profiles": 3,
       "capabilities": 6,
       "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract"
+    },
+    {
+      "id": "portal:run_assignment",
+      "type": "portal_run_assignment",
+      "label": "ARTEMIS Portal Run Assignment",
+      "status": "assignment_ready",
+      "run_assignment_ready": true,
+      "agent_profile_id": "codex_frontier_engineer",
+      "runtime_auth_executed": false,
+      "vault_lease_issued": false,
+      "agents_started": false,
+      "commands_executed": 0,
+      "tokens_spent": 0,
+      "next_cut": "TKT-076 - ARTEMIS Portal Budget and Cost Ledger Contract"
     },
     {
       "id": "control_plane:view",
@@ -701,6 +716,36 @@
       "type": "records_registry_contract"
     },
     {
+      "from": "portal:agent_registry",
+      "to": "portal:run_assignment",
+      "type": "selects_registered_profile"
+    },
+    {
+      "from": "portal:run_assignment",
+      "to": "runtime:launcher_preflight",
+      "type": "gates_launcher_preflight"
+    },
+    {
+      "from": "portal:run_assignment",
+      "to": "cost:budget",
+      "type": "binds_budget_policy"
+    },
+    {
+      "from": "portal:run_assignment",
+      "to": "validation:gate",
+      "type": "binds_validation_policy"
+    },
+    {
+      "from": "portal:run_assignment",
+      "to": "gate:human",
+      "type": "binds_human_gate_policy"
+    },
+    {
+      "from": "portal:run_assignment",
+      "to": "event_log:timeline",
+      "type": "records_assignment_contract"
+    },
+    {
       "from": "control_plane:view",
       "to": "project:artemis",
       "type": "observes"
@@ -728,6 +773,11 @@
     {
       "from": "control_plane:view",
       "to": "portal:agent_registry",
+      "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "portal:run_assignment",
       "type": "shows"
     }
   ],
@@ -796,8 +846,9 @@
     "portal_auth_plan_input": "artemis_portal_auth_plan",
     "portal_credential_vault_input": "artemis_portal_credential_vault",
     "portal_agent_registry_input": "artemis_portal_agent_registry",
+    "portal_run_assignment_input": "artemis_portal_run_assignment",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },
-  "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract"
+  "next_cut": "TKT-076 - ARTEMIS Portal Budget and Cost Ledger Contract"
 }

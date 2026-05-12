@@ -286,7 +286,7 @@ payload = {
     "missing_tokens": missing_tokens,
     "missing_files": missing_files,
     "required_tokens": required_tokens,
-    "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract",
+    "next_cut": "TKT-076 - ARTEMIS Portal Budget and Cost Ledger Contract",
 }
 
 ready = (

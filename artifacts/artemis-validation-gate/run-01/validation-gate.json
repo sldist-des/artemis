@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T17:13:31Z",
+  "generated_at": "2026-05-12T17:35:43Z",
   "overall": "human_gate",
   "summary": {
-    "passed": 113,
+    "passed": 115,
     "failed": 0,
     "human_gate": 2
   },
@@ -343,6 +343,13 @@
       "status": "passed",
       "exit_code": 0,
       "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_agent_registry.txt"
+    },
+    {
+      "name": "shell_portal_run_assignment",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_run_assignment.txt"
     },
     {
       "name": "shell_approved_workspace_cleanup",
@@ -728,6 +735,13 @@
       "status": "passed",
       "exit_code": 0,
       "log": "artifacts/artemis-validation-gate/run-01/check-logs/portal_agent_registry.txt"
+    },
+    {
+      "name": "portal_run_assignment",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/portal_run_assignment.txt"
     },
     {
       "name": "approved_workspace_cleanup",

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T12:52:18Z",
+  "generated_at": "2026-05-12T13:33:49Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -865,6 +865,18 @@
       "summary": "Um humano deve conseguir instalar ARTEMIS em modo leve ou completo, gerar blocos",
       "exec_pack": "docs/exec-packs/done/TKT-071-artemis-portable-integration.md",
       "evidence": "docs/exec-packs/done/TKT-071-artemis-portable-integration.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-072",
+      "ticket": "TKT-072",
+      "title": "ARTEMIS Portal Auth Plan",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "Um contrato verificavel deve separar Portal Auth, Provider Auth e",
+      "exec_pack": "docs/exec-packs/done/TKT-072-artemis-portal-auth-plan.md",
+      "evidence": "artifacts/artemis-portal-auth-plan/run-01/portal-auth-plan.json",
       "tags": ["exec-pack", "done"]
     }
   ]

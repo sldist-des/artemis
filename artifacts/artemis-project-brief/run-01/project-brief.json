@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T12:28:52Z",
+  "generated_at": "2026-05-12T13:33:28Z",
   "source": "scripts/artemis-project-brief.sh",
   "mode": "read_only_human_project_brief",
   "overall": "human_project_brief_ready",
@@ -18,11 +18,11 @@
     "claude_code"
   ],
   "summary": {
-    "tasks_total": 71,
-    "tasks_done": 71,
-    "events_total": 58,
-    "nodes_total": 22,
-    "edges_total": 54,
+    "tasks_total": 73,
+    "tasks_done": 73,
+    "events_total": 59,
+    "nodes_total": 23,
+    "edges_total": 60,
     "validation_passed": 107,
     "validation_failed": 0,
     "human_gates": 2,
@@ -37,9 +37,9 @@
     "headline": "ARTEMIS Symphony em linguagem de projeto",
     "status": "O ARTEMIS Symphony esta pronto como sistema local supervisionado: ele organiza tarefas, evidencia, validacao, memoria e limites antes de qualquer execucao automatica.",
     "ready": [
-      "71 de 71 Exec Packs estao concluidos e versionados.",
+      "73 de 73 Exec Packs estao concluidos e versionados.",
       "O Validation Gate registra 107 checks aprovados e 0 falhas tecnicas.",
-      "O Project Graph conecta 22 nos e 54 relacoes entre tarefas, agentes, gates, memoria, custos e evidencias.",
+      "O Project Graph conecta 23 nos e 60 relacoes entre tarefas, agentes, gates, memoria, custos e evidencias.",
       "A Memory Zone tem 3 zonas para contexto humano-AI versionado em Git."
     ],
     "human_attention": [

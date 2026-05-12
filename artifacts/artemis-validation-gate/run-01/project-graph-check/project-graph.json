@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T12:25:37Z",
+  "generated_at": "2026-05-12T13:34:04Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -20,19 +20,20 @@
     "runtime_post_execution_validation_gate": "artifacts/artemis-agent-runtime-post-execution-validation-gate/run-01/post-execution-validation-gate.json",
     "runtime_completion_handoff": "artifacts/artemis-agent-runtime-completion-handoff/run-01/completion-handoff.json",
     "runtime_completion_review_gate": "artifacts/artemis-agent-runtime-completion-review-gate/run-01/completion-review-gate.json",
-    "runtime_done_ledger": "artifacts/artemis-agent-runtime-done-ledger/run-01/done-ledger.json"
+    "runtime_done_ledger": "artifacts/artemis-agent-runtime-done-ledger/run-01/done-ledger.json",
+    "portal_auth_plan": "artifacts/artemis-portal-auth-plan/run-01/portal-auth-plan.json"
   },
   "summary": {
-    "tasks_total": 71,
-    "tasks_done": 71,
+    "tasks_total": 73,
+    "tasks_done": 73,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 8,
-    "events_total": 57,
-    "nodes_total": 22,
-    "edges_total": 54,
-    "evidence_count": 71,
-    "exec_pack_count": 71,
+    "events_total": 59,
+    "nodes_total": 23,
+    "edges_total": 60,
+    "evidence_count": 73,
+    "exec_pack_count": 73,
     "validation_passed": 1,
     "validation_failed": 0,
     "validation_human_gate": 1,
@@ -45,10 +46,10 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 71
+    "done": 73
   },
   "risks": {
-    "medium": 56,
+    "medium": 58,
     "low": 4,
     "high": 11
   },
@@ -59,7 +60,7 @@
     ],
     [
       "Codex",
-      15
+      17
     ],
     [
       "Context Curator",
@@ -89,11 +90,11 @@
   "top_tags": [
     [
       "exec-pack",
-      71
+      73
     ],
     [
       "done",
-      71
+      73
     ]
   ],
   "nodes": [
@@ -108,8 +109,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 71,
-      "done": 71,
+      "count": 73,
+      "done": 73,
       "human": 0
     },
     {
@@ -124,7 +125,7 @@
         ],
         [
           "Codex",
-          15
+          17
         ],
         [
           "Context Curator",
@@ -165,14 +166,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 71,
-      "exec_packs": 71
+      "task_evidence": 73,
+      "exec_packs": 73
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 57
+      "events": 59
     },
     {
       "id": "cost:budget",
@@ -306,6 +307,18 @@
       "validations_executed": 0,
       "commands_executed": 0,
       "rollback_required": false
+    },
+    {
+      "id": "portal:auth_plan",
+      "type": "portal_auth_plan",
+      "label": "ARTEMIS Portal Auth Plan",
+      "status": "architecture_ready",
+      "portal_auth_ready": true,
+      "runtime_auth_executed": false,
+      "secrets_written": false,
+      "provider_connections": 3,
+      "mandatory_gates": 10,
+      "next_cut": "TKT-073 - ARTEMIS Portal Credential Vault Contract"
     },
     {
       "id": "control_plane:view",
@@ -571,6 +584,31 @@
       "type": "records_done_ledger"
     },
     {
+      "from": "portal:auth_plan",
+      "to": "adapter:codex_app_server",
+      "type": "connects_provider"
+    },
+    {
+      "from": "portal:auth_plan",
+      "to": "adapter:claude_code",
+      "type": "connects_provider"
+    },
+    {
+      "from": "portal:auth_plan",
+      "to": "gate:human",
+      "type": "requires_auth_and_budget_gates"
+    },
+    {
+      "from": "portal:auth_plan",
+      "to": "cost:budget",
+      "type": "requires_cost_ledger"
+    },
+    {
+      "from": "portal:auth_plan",
+      "to": "event_log:timeline",
+      "type": "records_auth_contract"
+    },
+    {
       "from": "control_plane:view",
       "to": "project:artemis",
       "type": "observes"
@@ -583,6 +621,11 @@
     {
       "from": "control_plane:view",
       "to": "memory:zone",
+      "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "portal:auth_plan",
       "type": "shows"
     }
   ],
@@ -648,6 +691,7 @@
     "runtime_completion_handoff_input": "artemis_agent_runtime_completion_handoff",
     "runtime_completion_review_gate_input": "artemis_agent_runtime_completion_review_gate",
     "runtime_done_ledger_input": "artemis_agent_runtime_done_ledger",
+    "portal_auth_plan_input": "artemis_portal_auth_plan",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },

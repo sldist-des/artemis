@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-12T13:29:48Z",
+  "source": "scripts/artemis-portal-auth-plan.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_auth_plan_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-12T13:29:48Z",
+      "producer": {
+        "adapter": "portal_auth_plan",
+        "name": "scripts/artemis-portal-auth-plan.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-072",
+        "task_id": "tkt-072",
+        "title": "ARTEMIS Portal Auth Plan",
+        "exec_pack": "docs/exec-packs/done/TKT-072-artemis-portal-auth-plan.md",
+        "artifact_root": "artifacts/artemis-portal-auth-plan/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "context",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-auth-plan/run-01",
+        "status_path": "artifacts/artemis-portal-auth-plan/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-auth-plan/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-auth-plan/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-auth-plan/run-01/portal-auth-plan.json",
+          "artifacts/artemis-portal-auth-plan/run-01/PORTAL_AUTH_PLAN.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-072"
+      },
+      "payload": {
+        "portal_auth_ready": true,
+        "runtime_auth_executed": false,
+        "secrets_written": false,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-073 - ARTEMIS Portal Credential Vault Contract"
+      }
+    }
+  ]
+}

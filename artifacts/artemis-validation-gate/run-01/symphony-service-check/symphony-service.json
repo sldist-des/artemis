@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T12:25:35Z",
+  "generated_at": "2026-05-12T13:34:02Z",
   "source": "scripts/artemis-symphony-service.sh",
   "mode": "finite_supervised_service",
   "overall": "service_bridge_plan_ready",

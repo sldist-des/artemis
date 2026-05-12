@@ -141,6 +141,7 @@ runtime_post_execution_validation_gate_payload = read_json(Path("artifacts/artem
 runtime_completion_handoff_payload = read_json(Path("artifacts/artemis-agent-runtime-completion-handoff/run-01/completion-handoff.json"), {"summary": {}, "overall": "not_available"})
 runtime_completion_review_gate_payload = read_json(Path("artifacts/artemis-agent-runtime-completion-review-gate/run-01/completion-review-gate.json"), {"summary": {}, "overall": "not_available"})
 runtime_done_ledger_payload = read_json(Path("artifacts/artemis-agent-runtime-done-ledger/run-01/done-ledger.json"), {"summary": {}, "overall": "not_available"})
+portal_auth_payload = read_json(Path("artifacts/artemis-portal-auth-plan/run-01/portal-auth-plan.json"), {"portal_auth": {}, "overall": "not_available"})
 
 tasks = tasks_payload.get("tasks", [])
 events = event_log_payload.get("events", [])
@@ -345,6 +346,18 @@ nodes = [
         "rollback_required": runtime_done_ledger_payload.get("summary", {}).get("rollback_required", False),
     },
     {
+        "id": "portal:auth_plan",
+        "type": "portal_auth_plan",
+        "label": "ARTEMIS Portal Auth Plan",
+        "status": portal_auth_payload.get("overall", "not_available"),
+        "portal_auth_ready": portal_auth_payload.get("portal_auth_ready", False),
+        "runtime_auth_executed": portal_auth_payload.get("runtime_auth_executed", False),
+        "secrets_written": portal_auth_payload.get("secrets_written", False),
+        "provider_connections": len(portal_auth_payload.get("portal_auth", {}).get("provider_connections", [])),
+        "mandatory_gates": len(portal_auth_payload.get("portal_auth", {}).get("mandatory_gates", [])),
+        "next_cut": portal_auth_payload.get("next_cut", "unknown"),
+    },
+    {
         "id": "control_plane:view",
         "type": "view",
         "label": "Control Plane",
@@ -404,9 +417,15 @@ edges = [
     {"from": "runtime:done_ledger", "to": "gate:human", "type": "requires_review_acceptance"},
     {"from": "runtime:done_ledger", "to": "validation:gate", "type": "records_done_readiness"},
     {"from": "runtime:done_ledger", "to": "event_log:timeline", "type": "records_done_ledger"},
+    {"from": "portal:auth_plan", "to": "adapter:codex_app_server", "type": "connects_provider"},
+    {"from": "portal:auth_plan", "to": "adapter:claude_code", "type": "connects_provider"},
+    {"from": "portal:auth_plan", "to": "gate:human", "type": "requires_auth_and_budget_gates"},
+    {"from": "portal:auth_plan", "to": "cost:budget", "type": "requires_cost_ledger"},
+    {"from": "portal:auth_plan", "to": "event_log:timeline", "type": "records_auth_contract"},
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
+    {"from": "control_plane:view", "to": "portal:auth_plan", "type": "shows"},
 ]
 
 questions = [
@@ -481,6 +500,7 @@ payload = {
         "runtime_completion_handoff": "artifacts/artemis-agent-runtime-completion-handoff/run-01/completion-handoff.json",
         "runtime_completion_review_gate": "artifacts/artemis-agent-runtime-completion-review-gate/run-01/completion-review-gate.json",
         "runtime_done_ledger": "artifacts/artemis-agent-runtime-done-ledger/run-01/done-ledger.json",
+        "portal_auth_plan": "artifacts/artemis-portal-auth-plan/run-01/portal-auth-plan.json",
     },
     "summary": summary,
     "states": dict(states),
@@ -515,6 +535,7 @@ payload = {
         "runtime_completion_handoff_input": "artemis_agent_runtime_completion_handoff",
         "runtime_completion_review_gate_input": "artemis_agent_runtime_completion_review_gate",
         "runtime_done_ledger_input": "artemis_agent_runtime_done_ledger",
+        "portal_auth_plan_input": "artemis_portal_auth_plan",
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },

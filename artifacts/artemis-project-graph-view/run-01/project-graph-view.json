@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T12:28:44Z",
+  "generated_at": "2026-05-12T13:33:27Z",
   "source": "scripts/artemis-project-graph-view.sh",
   "mode": "read_only_control_plane_view_contract",
   "overall": "project_graph_view_ready",
@@ -11,8 +11,8 @@
     "control_plane": "control-plane/index.html"
   },
   "summary": {
-    "nodes_rendered": 22,
-    "edges_rendered": 54,
+    "nodes_rendered": 23,
+    "edges_rendered": 60,
     "questions_rendered": 3,
     "invariants_rendered": 3,
     "validation_passed": 107,

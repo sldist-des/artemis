@@ -100,7 +100,8 @@
             "agent_runtime_post_execution_validation_gate",
             "agent_runtime_completion_handoff",
             "agent_runtime_completion_review_gate",
-            "agent_runtime_done_ledger"
+            "agent_runtime_done_ledger",
+            "portal_auth_plan"
           ]
         },
         "name": {

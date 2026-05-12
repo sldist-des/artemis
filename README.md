@@ -283,6 +283,14 @@ Gere os blocos de entrada para Codex CLI e Claude Code com:
 ./scripts/artemis-integrations.sh --project /caminho/do/projeto --agent both
 ```
 
+Para o portal futuro com gerenciamento proprio de agentes e auth por provedor,
+o contrato inicial vive em:
+
+```bash
+docs/portal/ARTEMIS_PORTAL_AUTH_PLAN.md
+scripts/artemis-portal-auth-plan.sh --artifact-root artifacts/artemis-portal-auth-plan/run-01
+```
+
 ## Readiness de aplicacao
 
 Para consolidar se o kit esta pronto para ser aplicado em outro projeto:

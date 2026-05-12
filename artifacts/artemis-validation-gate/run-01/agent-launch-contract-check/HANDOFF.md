@@ -4,5 +4,5 @@ O contrato supervisionado de lancamento de agentes esta pronto como superficie r
 
 Proximo corte:
 
-- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`.
-- Usar o Agent Runtime Launcher Preflight como entrada obrigatoria antes de materializar comandos.
+- Nenhum TKT planejado na espinha atual de runtime.
+- Usar o Agent Runtime Launcher Preflight como entrada obrigatoria antes de materializar comandos em novas fases.

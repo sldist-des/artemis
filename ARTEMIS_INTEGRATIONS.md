@@ -83,3 +83,18 @@ real ainda nao existe. O padrao de integracao sera:
 - nenhuma execucao remota sem Human Gate.
 
 Esse e o proximo nivel depois do bootstrap portavel.
+
+## Portal futuro
+
+O portal proprio do ARTEMIS deve separar tres camadas de autenticacao:
+
+- auth do portal para humano, time, role e sessao;
+- auth dos provedores como OpenAI/Codex, Anthropic/Claude e GitHub;
+- auth do projeto/runtime para repositorio, worktree, infra, secrets e deploy.
+
+O plano canonico esta em `docs/portal/ARTEMIS_PORTAL_AUTH_PLAN.md` e pode ser
+gerado como artifact por:
+
+```bash
+scripts/artemis-portal-auth-plan.sh --json
+```

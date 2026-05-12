@@ -40,6 +40,7 @@ docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_POST_EXECUTION_VALIDATION_GATE.md
 docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_COMPLETION_HANDOFF.md
 docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_COMPLETION_REVIEW_GATE.md
 docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_DONE_LEDGER.md
+docs/portal/ARTEMIS_PORTAL_AUTH_PLAN.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
@@ -107,6 +108,7 @@ scripts/artemis-agent-runtime-post-execution-validation-gate.sh
 scripts/artemis-agent-runtime-completion-handoff.sh
 scripts/artemis-agent-runtime-completion-review-gate.sh
 scripts/artemis-agent-runtime-done-ledger.sh
+scripts/artemis-portal-auth-plan.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -211,6 +213,7 @@ sh -n scripts/artemis-agent-runtime-post-execution-validation-gate.sh
 sh -n scripts/artemis-agent-runtime-completion-handoff.sh
 sh -n scripts/artemis-agent-runtime-completion-review-gate.sh
 sh -n scripts/artemis-agent-runtime-done-ledger.sh
+sh -n scripts/artemis-portal-auth-plan.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -239,6 +242,24 @@ fi
 scripts/artemis-integrations.sh --project /tmp/artemis-target --agent codex --format json >/tmp/artemis-integrations.json
 if ! grep -q '"agent": "codex"' /tmp/artemis-integrations.json; then
   echo "scripts/artemis-integrations.sh did not emit JSON integration metadata" >&2
+  exit 1
+fi
+
+scripts/artemis-portal-auth-plan.sh --artifact-root /tmp/artemis-portal-auth-plan --json >/tmp/artemis-portal-auth-plan.json
+if ! grep -q '"overall": "architecture_ready"' /tmp/artemis-portal-auth-plan.json; then
+  echo "scripts/artemis-portal-auth-plan.sh did not report architecture_ready" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_auth_executed": false' /tmp/artemis-portal-auth-plan.json; then
+  echo "scripts/artemis-portal-auth-plan.sh executed runtime auth" >&2
+  exit 1
+fi
+if ! grep -q '"secrets_written": false' /tmp/artemis-portal-auth-plan.json; then
+  echo "scripts/artemis-portal-auth-plan.sh wrote secrets" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-auth-plan/PORTAL_AUTH_PLAN.md; then
+  echo "scripts/artemis-portal-auth-plan.sh did not write portal auth documentation artifact" >&2
   exit 1
 fi
 

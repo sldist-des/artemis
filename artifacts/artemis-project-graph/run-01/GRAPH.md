@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `22`.
-- Edges: `54`.
-- Tasks: `71`.
-- Events: `58`.
+- Nodes: `23`.
+- Edges: `60`.
+- Tasks: `73`.
+- Events: `59`.
 
 ## Nos
 
@@ -32,6 +32,7 @@
 - `runtime:completion_handoff` (runtime_completion_handoff): Agent Runtime Completion Handoff.
 - `runtime:completion_review_gate` (runtime_completion_review_gate): Agent Runtime Completion Review Gate.
 - `runtime:done_ledger` (runtime_done_ledger): Agent Runtime Done Ledger.
+- `portal:auth_plan` (portal_auth_plan): ARTEMIS Portal Auth Plan.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -87,9 +88,15 @@
 - `runtime:done_ledger` --requires_review_acceptance--> `gate:human`.
 - `runtime:done_ledger` --records_done_readiness--> `validation:gate`.
 - `runtime:done_ledger` --records_done_ledger--> `event_log:timeline`.
+- `portal:auth_plan` --connects_provider--> `adapter:codex_app_server`.
+- `portal:auth_plan` --connects_provider--> `adapter:claude_code`.
+- `portal:auth_plan` --requires_auth_and_budget_gates--> `gate:human`.
+- `portal:auth_plan` --requires_cost_ledger--> `cost:budget`.
+- `portal:auth_plan` --records_auth_contract--> `event_log:timeline`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.
+- `control_plane:view` --shows--> `portal:auth_plan`.
 
 ## Perguntas operacionais
 

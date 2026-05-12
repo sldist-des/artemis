@@ -2,7 +2,7 @@
 
 - Overall: `human_project_brief_ready`
 - Reason: Human-readable Project Brief was derived from the Project Operations Graph.
-- Tasks done: `71` / `71`
+- Tasks done: `73` / `73`
 - Validation passed: `107`
 - Validation failed: `0`
 - Human Gates: `2`

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T12:28:44Z",
+  "generated_at": "2026-05-12T13:33:27Z",
   "source": "scripts/artemis-project-graph-view.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-12T12:28:44Z",
+      "generated_at": "2026-05-12T13:33:27Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -47,8 +47,8 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 22,
-          "edges_rendered": 54,
+          "nodes_rendered": 23,
+          "edges_rendered": 60,
           "questions_rendered": 3,
           "invariants_rendered": 3,
           "validation_passed": 107,

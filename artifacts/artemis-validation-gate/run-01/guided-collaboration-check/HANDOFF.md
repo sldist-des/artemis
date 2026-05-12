@@ -4,4 +4,5 @@ O modo guiado esta pronto como contrato read-only para pessoas escolherem projet
 
 Proximo corte:
 
-- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`.
+- Nenhum TKT planejado na espinha atual de runtime.
+- Abrir nova fase somente com Exec Pack explicito.

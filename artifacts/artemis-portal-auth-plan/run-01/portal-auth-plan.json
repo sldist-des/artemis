@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-12T13:29:48Z",
+  "overall": "architecture_ready",
+  "portal_auth_ready": true,
+  "runtime_auth_executed": false,
+  "secrets_written": false,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-073 - ARTEMIS Portal Credential Vault Contract",
+  "missing_files": [],
+  "portal_auth": {
+    "portal_identity": {
+      "purpose": "Authenticate humans before they can see projects, connect providers, launch agents or approve gates.",
+      "provider_options": [
+        "Auth0",
+        "Clerk",
+        "Supabase Auth",
+        "Keycloak",
+        "custom OIDC"
+      ],
+      "required_capabilities": [
+        "organization/team membership",
+        "role mapping",
+        "MFA support",
+        "session expiry",
+        "audit log identity",
+        "SCIM/SAML optional enterprise path"
+      ]
+    },
+    "roles": [
+      {
+        "id": "owner",
+        "can": [
+          "manage billing",
+          "connect providers",
+          "manage projects",
+          "approve high-risk gates"
+        ]
+      },
+      {
+        "id": "maintainer",
+        "can": [
+          "connect project repos",
+          "create tasks",
+          "launch approved agents",
+          "approve medium-risk gates"
+        ]
+      },
+      {
+        "id": "reviewer",
+        "can": [
+          "review diffs",
+          "approve technical review gates",
+          "request changes"
+        ]
+      },
+      {
+        "id": "operator",
+        "can": [
+          "create tasks",
+          "start low-risk supervised runs",
+          "view cost ledger"
+        ]
+      },
+      {
+        "id": "viewer",
+        "can": [
+          "view projects",
+          "view events",
+          "view handoffs"
+        ]
+      }
+    ],
+    "provider_connections": [
+      {
+        "id": "openai_codex",
+        "display_name": "OpenAI / Codex",
+        "adapter": "codex_app_server",
+        "auth_modes": [
+          "Codex app-server ChatGPT/browser auth where supported",
+          "device-code flow where supported",
+          "API key or service credential for API-backed paths",
+          "external bearer token only behind explicit enterprise policy"
+        ],
+        "token_owner": "user_or_organization",
+        "never_expose_to_agent": true
+      },
+      {
+        "id": "anthropic_claude",
+        "display_name": "Anthropic / Claude Code",
+        "adapter": "claude_agent_sdk",
+        "auth_modes": [
+          "ANTHROPIC_API_KEY",
+          "Amazon Bedrock credential",
+          "Google Vertex AI credential",
+          "enterprise provider credential"
+        ],
+        "token_owner": "user_or_organization",
+        "never_expose_to_agent": true
+      },
+      {
+        "id": "github",
+        "display_name": "GitHub",
+        "adapter": "github_app_or_oauth",
+        "auth_modes": [
+          "GitHub App",
+          "OAuth app",
+          "fine-grained PAT only as fallback"
+        ],
+        "token_owner": "user_or_organization",
+        "never_expose_to_agent": true
+      }
+    ],
+    "credential_vault": {
+      "state": "planned_required",
+      "rules": [
+        "encrypt provider tokens at rest",
+        "bind credentials to user/team/project scopes",
+        "inject short-lived runtime tokens only into supervised adapters",
+        "never write secrets into Exec Packs, artifacts, logs or prompts",
+        "support rotation, revocation and expiry",
+        "record audit entries for read, use, refresh and revoke",
+        "block provider use when budget, scope or policy is missing"
+      ]
+    },
+    "agent_management": {
+      "registry_entities": [
+        "agent profile",
+        "runner adapter",
+        "capability policy",
+        "project binding",
+        "budget policy",
+        "validation policy",
+        "human gate policy"
+      ],
+      "agent_states": [
+        "draft",
+        "ready",
+        "waiting_for_auth",
+        "waiting_for_budget",
+        "waiting_for_human_gate",
+        "running",
+        "validating",
+        "blocked",
+        "handoff",
+        "done"
+      ]
+    },
+    "mandatory_gates": [
+      "portal_login",
+      "provider_connected",
+      "project_bound",
+      "credential_scope_checked",
+      "budget_policy_checked",
+      "agent_launch_approved",
+      "workspace_scope_checked",
+      "remote_write_approved",
+      "validation_gate_passed",
+      "completion_review_accepted"
+    ],
+    "cost_controls": {
+      "required": true,
+      "dimensions": [
+        "organization",
+        "project",
+        "user",
+        "provider",
+        "model",
+        "agent",
+        "task",
+        "run"
+      ],
+      "limits": [
+        "max_tokens",
+        "max_cost",
+        "max_wall_time",
+        "max_parallel_agents",
+        "stop_rule"
+      ]
+    }
+  },
+  "checks": [
+    {
+      "id": "portal_identity_separated",
+      "status": "passed",
+      "detail": "Portal auth, provider auth and project/runtime auth are separate layers."
+    },
+    {
+      "id": "vault_required",
+      "status": "passed",
+      "detail": "Provider credentials require vault storage and scoped injection; agents never receive raw long-lived secrets."
+    },
+    {
+      "id": "human_gates_preserved",
+      "status": "passed",
+      "detail": "Provider connection, agent launch, remote write and completion acceptance remain Human Gate surfaces."
+    },
+    {
+      "id": "no_runtime_auth_executed",
+      "status": "passed",
+      "detail": "This cut does not authenticate Codex, Claude, GitHub or any provider."
+    }
+  ],
+  "sources": [
+    {
+      "name": "OpenAI Codex app-server",
+      "url": "https://developers.openai.com/codex/app-server",
+      "reason": "Codex portal/runtime auth and app-server integration surface."
+    },
+    {
+      "name": "Anthropic Claude Agent SDK",
+      "url": "https://code.claude.com/docs/en/agent-sdk/overview",
+      "reason": "Claude Code SDK credential and runner integration surface."
+    }
+  ]
+}

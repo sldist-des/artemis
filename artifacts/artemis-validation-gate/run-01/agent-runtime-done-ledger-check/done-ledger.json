@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-12T12:25:38Z",
+  "source": "scripts/artemis-agent-runtime-done-ledger.sh",
+  "mode": "agent_runtime_done_ledger",
+  "overall": "human_gate",
+  "reason": "Done Ledger was derived from completion review evidence without closing external systems.",
+  "artifact_root": "artifacts/artemis-validation-gate/run-01/agent-runtime-done-ledger-check",
+  "inputs": {
+    "completion_review_gate": "artifacts/artemis-validation-gate/run-01/agent-runtime-completion-review-gate-check/completion-review-gate.json"
+  },
+  "ledger_state": "waiting_for_completion_review_accepted",
+  "next_action": "wait_for_completion_review_accepted",
+  "summary": {
+    "completion_review_accepted": false,
+    "ready_for_done_ledger": false,
+    "done_ledger_recorded": false,
+    "technical_done": false,
+    "remote_done_closed": false,
+    "decision": "pending",
+    "commands_executed": 0,
+    "failed_commands": 0,
+    "validations_executed": 0,
+    "rollback_required": false,
+    "residual_risks": 1,
+    "remote_writes_allowed": false,
+    "production_allowed": false,
+    "secrets_allowed": false,
+    "paid_tokens_authorized": 0,
+    "ledger_checks": 7,
+    "ledger_passed": 6,
+    "ledger_failed": 0,
+    "ledger_human_gate": 1
+  },
+  "completion_review_gate": {
+    "overall": "human_gate",
+    "review_state": "waiting_for_completion_handoff_ready",
+    "next_action": "wait_for_completion_handoff_ready"
+  },
+  "ledger_checks": [
+    {
+      "id": "completion_review_gate_exists",
+      "status": "passed",
+      "proof": "artifacts/artemis-validation-gate/run-01/agent-runtime-completion-review-gate-check/completion-review-gate.json"
+    },
+    {
+      "id": "completion_review_accepted",
+      "status": "human_gate",
+      "proof": "overall=human_gate accepted=False"
+    },
+    {
+      "id": "done_ledger_requires_human_acceptance",
+      "status": "passed",
+      "proof": "review_accepted=false done_ledger_recorded=false"
+    },
+    {
+      "id": "remote_close_blocked",
+      "status": "passed",
+      "proof": "remote_close_authorized=false"
+    },
+    {
+      "id": "runtime_evidence_preserved",
+      "status": "passed",
+      "proof": "commands_executed=0 validations_executed=0"
+    },
+    {
+      "id": "no_commands_executed_by_done_ledger",
+      "status": "passed",
+      "proof": "done ledger is read-only and executes no commands"
+    },
+    {
+      "id": "done_record_consistent",
+      "status": "passed",
+      "proof": "done_authorized=false ledger_recorded=false"
+    }
+  ],
+  "done_record": {
+    "status": "blocked",
+    "recorded_at": "",
+    "recorded_by": "",
+    "technical_done": false,
+    "remote_done_closed": false,
+    "completion_review_gate": "artifacts/artemis-validation-gate/run-01/agent-runtime-completion-review-gate-check/completion-review-gate.json",
+    "completion_review": {
+      "overall": "human_gate",
+      "review_state": "waiting_for_completion_handoff_ready",
+      "decision": "pending"
+    },
+    "completion_handoff": {
+      "overall": "human_gate",
+      "handoff_state": "waiting_for_post_execution_validation_completed",
+      "next_action": "wait_for_post_execution_validation_completed"
+    },
+    "residual_risks": [
+      "post_execution_validation_not_completed"
+    ]
+  },
+  "human_summary": {
+    "status": "human_gate",
+    "plain_language": "O Done tecnico local ainda esta bloqueado ate a revisao humana final ser aceita.",
+    "operator_next_step": "wait_for_completion_review_accepted"
+  },
+  "blockers": [],
+  "warnings": [],
+  "invariants": [
+    "Done Ledger consumes only Completion Review Gate evidence.",
+    "Technical Done is blocked until completion_review_accepted=true.",
+    "Remote close, GitHub close, PR merge, deploy and production remain out of scope.",
+    "The Done Ledger never runs commands, starts agents, pushes, deploys, or touches secrets.",
+    "If recorded, this ledger records local technical Done only."
+  ],
+  "next_cut": "NONE - ARTEMIS Symphony runtime spine complete"
+}

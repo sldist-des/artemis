@@ -162,7 +162,7 @@ payload = {
         "dependency_policy": "no_new_dependency_without_explicit_decision",
         "reference_study_policy": "study_public_code_for_learning_then_recreate_original_artemis_implementation",
     },
-    "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony",
+    "next_cut": "NONE - ARTEMIS Symphony runtime spine complete",
 }
 
 write_text(artifact_root / "memory-zone.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
@@ -244,8 +244,8 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`.",
-    "- Usar Memory Zone como fonte de contexto e o indice derivado como read model.",
+    "- Nenhum TKT planejado na espinha atual de runtime.",
+    "- Usar Memory Zone como fonte de contexto e o indice derivado como read model em novas fases explicitas.",
     "",
     "## Nao fazer",
     "",

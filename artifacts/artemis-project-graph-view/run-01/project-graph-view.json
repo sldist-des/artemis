@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T11:52:29Z",
+  "generated_at": "2026-05-12T12:28:44Z",
   "source": "scripts/artemis-project-graph-view.sh",
   "mode": "read_only_control_plane_view_contract",
   "overall": "project_graph_view_ready",
@@ -11,11 +11,11 @@
     "control_plane": "control-plane/index.html"
   },
   "summary": {
-    "nodes_rendered": 21,
-    "edges_rendered": 50,
+    "nodes_rendered": 22,
+    "edges_rendered": 54,
     "questions_rendered": 3,
     "invariants_rendered": 3,
-    "validation_passed": 105,
+    "validation_passed": 107,
     "human_gates": 2,
     "dependencies_installed": 0,
     "commands_executed": 0,
@@ -39,5 +39,5 @@
     "No graph database, canvas engine, frontend framework or runtime is introduced.",
     "Human Gates, Validation Gate, Event Log, Exec Packs and git remain authoritative."
   ],
-  "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony"
+  "next_cut": "NONE - ARTEMIS Symphony runtime spine complete"
 }

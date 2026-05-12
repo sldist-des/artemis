@@ -1,4 +1,4 @@
-8 active agents
+9 active agents
 
 User agents:
   planner · sonnet
@@ -9,6 +9,7 @@ Plugin agents:
   superpowers:code-reviewer · inherit
 
 Built-in agents:
+  claude · inherit
   Explore · haiku
   general-purpose · inherit
   Plan · inherit

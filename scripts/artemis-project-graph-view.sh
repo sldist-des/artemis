@@ -132,7 +132,7 @@ payload = {
         "No graph database, canvas engine, frontend framework or runtime is introduced.",
         "Human Gates, Validation Gate, Event Log, Exec Packs and git remain authoritative.",
     ],
-    "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony",
+    "next_cut": "NONE - ARTEMIS Symphony runtime spine complete",
 }
 
 (artifact_root / "project-graph-view.json").write_text(
@@ -172,7 +172,8 @@ handoff_lines = [
     "",
     "Próximo corte:",
     "",
-    "- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`.",
+    "- Nenhum TKT planejado na espinha atual de runtime.",
+    "- Abrir nova fase somente com Exec Pack explicito.",
 ]
 (artifact_root / "HANDOFF.md").write_text("\n".join(handoff_lines) + "\n", encoding="utf-8")
 

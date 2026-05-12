@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T19:35:04Z",
+  "generated_at": "2026-05-12T12:25:37Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -19,19 +19,20 @@
     "runtime_execution_result_intake": "artifacts/artemis-agent-runtime-execution-result-intake/run-01/execution-result-intake.json",
     "runtime_post_execution_validation_gate": "artifacts/artemis-agent-runtime-post-execution-validation-gate/run-01/post-execution-validation-gate.json",
     "runtime_completion_handoff": "artifacts/artemis-agent-runtime-completion-handoff/run-01/completion-handoff.json",
-    "runtime_completion_review_gate": "artifacts/artemis-agent-runtime-completion-review-gate/run-01/completion-review-gate.json"
+    "runtime_completion_review_gate": "artifacts/artemis-agent-runtime-completion-review-gate/run-01/completion-review-gate.json",
+    "runtime_done_ledger": "artifacts/artemis-agent-runtime-done-ledger/run-01/done-ledger.json"
   },
   "summary": {
-    "tasks_total": 70,
-    "tasks_done": 70,
+    "tasks_total": 71,
+    "tasks_done": 71,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 8,
     "events_total": 57,
-    "nodes_total": 21,
-    "edges_total": 50,
-    "evidence_count": 70,
-    "exec_pack_count": 70,
+    "nodes_total": 22,
+    "edges_total": 54,
+    "evidence_count": 71,
+    "exec_pack_count": 71,
     "validation_passed": 1,
     "validation_failed": 0,
     "validation_human_gate": 1,
@@ -44,10 +45,10 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 70
+    "done": 71
   },
   "risks": {
-    "medium": 55,
+    "medium": 56,
     "low": 4,
     "high": 11
   },
@@ -58,7 +59,7 @@
     ],
     [
       "Codex",
-      14
+      15
     ],
     [
       "Context Curator",
@@ -88,11 +89,11 @@
   "top_tags": [
     [
       "exec-pack",
-      70
+      71
     ],
     [
       "done",
-      70
+      71
     ]
   ],
   "nodes": [
@@ -107,8 +108,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 70,
-      "done": 70,
+      "count": 71,
+      "done": 71,
       "human": 0
     },
     {
@@ -123,7 +124,7 @@
         ],
         [
           "Codex",
-          14
+          15
         ],
         [
           "Context Curator",
@@ -164,8 +165,8 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 70,
-      "exec_packs": 70
+      "task_evidence": 71,
+      "exec_packs": 71
     },
     {
       "id": "event_log:timeline",
@@ -288,6 +289,20 @@
       "review_accepted": false,
       "ready_for_done_ledger": false,
       "decision": "pending",
+      "validations_executed": 0,
+      "commands_executed": 0,
+      "rollback_required": false
+    },
+    {
+      "id": "runtime:done_ledger",
+      "type": "runtime_done_ledger",
+      "label": "Agent Runtime Done Ledger",
+      "status": "human_gate",
+      "ledger_state": "waiting_for_completion_review_accepted",
+      "done_ledger_recorded": false,
+      "technical_done": false,
+      "remote_done_closed": false,
+      "review_accepted": false,
       "validations_executed": 0,
       "commands_executed": 0,
       "rollback_required": false
@@ -536,6 +551,26 @@
       "type": "records_review_gate"
     },
     {
+      "from": "runtime:completion_review_gate",
+      "to": "runtime:done_ledger",
+      "type": "gates_done_ledger"
+    },
+    {
+      "from": "runtime:done_ledger",
+      "to": "gate:human",
+      "type": "requires_review_acceptance"
+    },
+    {
+      "from": "runtime:done_ledger",
+      "to": "validation:gate",
+      "type": "records_done_readiness"
+    },
+    {
+      "from": "runtime:done_ledger",
+      "to": "event_log:timeline",
+      "type": "records_done_ledger"
+    },
+    {
       "from": "control_plane:view",
       "to": "project:artemis",
       "type": "observes"
@@ -612,8 +647,9 @@
     "runtime_post_execution_validation_gate_input": "artemis_agent_runtime_post_execution_validation_gate",
     "runtime_completion_handoff_input": "artemis_agent_runtime_completion_handoff",
     "runtime_completion_review_gate_input": "artemis_agent_runtime_completion_review_gate",
+    "runtime_done_ledger_input": "artemis_agent_runtime_done_ledger",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },
-  "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony"
+  "next_cut": "NONE - ARTEMIS Symphony runtime spine complete"
 }

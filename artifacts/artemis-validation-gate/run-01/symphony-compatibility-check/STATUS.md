@@ -33,9 +33,10 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Agent Runtime Post-Execution Validation Gate implemented: `true`.
 - Agent Runtime Completion Handoff implemented: `true`.
 - Agent Runtime Completion Review Gate implemented: `true`.
+- Agent Runtime Done Ledger implemented: `true`.
 - Terminal-first: `true`.
 - Human Gates preserved: `true`.
-- Next cut: `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`.
+- Next cut: `NONE - ARTEMIS Symphony runtime spine complete`.
 
 ## Camadas
 
@@ -243,6 +244,12 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - Status: `implemented_runtime_completion_review_gate`.
 - Missing files: `0`.
 
+### agent_runtime_done_ledger
+
+- Purpose: Read-only local Done ledger that records technical Done only after completion review acceptance.
+- Status: `implemented_runtime_done_ledger`.
+- Missing files: `0`.
+
 ## Invariantes
 
 - OpenAI Symphony is a reference, not a vendored dependency.
@@ -276,3 +283,4 @@ TKT-041 definiu o ARTEMIS Symphony como especificacao propria inspirada pelo Ope
 - The implemented Agent Runtime Post-Execution Validation Gate blocks completion until real result validation exists.
 - The implemented Agent Runtime Completion Handoff blocks Done until post-execution validation is complete.
 - The implemented Agent Runtime Completion Review Gate blocks Done Ledger until human review acceptance exists.
+- The implemented Agent Runtime Done Ledger records only local technical Done and never closes remote work, PRs, deployments or product acceptance.

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T19:34:56Z",
+  "generated_at": "2026-05-12T12:25:31Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -841,6 +841,18 @@
       "summary": "- `overall=human_gate`",
       "exec_pack": "docs/exec-packs/done/TKT-069-artemis-agent-runtime-completion-review-gate.md",
       "evidence": "docs/exec-packs/done/TKT-069-artemis-agent-runtime-completion-review-gate.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-070",
+      "ticket": "TKT-070",
+      "title": "Agent Runtime Done Ledger do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "- `overall=human_gate`",
+      "exec_pack": "docs/exec-packs/done/TKT-070-artemis-agent-runtime-done-ledger.md",
+      "evidence": "docs/exec-packs/done/TKT-070-artemis-agent-runtime-done-ledger.md",
       "tags": ["exec-pack", "done"]
     }
   ]

@@ -1017,6 +1017,35 @@ Resultado esperado:
 - `decision=pending`;
 - evento canonico `approval.requested`.
 
+### Modo 3.20 - Agent Runtime Done Ledger
+
+Implementado em `TKT-070` como ledger read-only de Done tecnico local.
+
+- consome `completion-review-gate.json`;
+- so registra Done tecnico quando `completion_review_accepted=true`;
+- mantem Human Gate quando a revisao final ainda esta pendente, rejeitada, com
+  mudancas solicitadas ou sem Completion Handoff pronto;
+- separa Done tecnico local de fechamento remoto, merge, deploy, producao e
+  aceite de produto;
+- nao fecha GitHub, PR, issue, branch ou remoto;
+- nao inicia agentes, nao executa comandos e nao toca secrets.
+
+Agent Runtime Done Ledger implementado:
+
+- `scripts/artemis-agent-runtime-done-ledger.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_DONE_LEDGER.md`
+
+Resultado esperado:
+
+- `human_gate` enquanto o Completion Review Gate nao estiver aceito;
+- `ledger_state=waiting_for_completion_review_accepted`;
+- `completion_review_accepted=false`;
+- `ready_for_done_ledger=false`;
+- `done_ledger_recorded=false`;
+- `technical_done=false`;
+- `remote_done_closed=false`;
+- evento canonico `human_gate.opened`.
+
 ## Invariantes
 
 - ARTEMIS Symphony nao executa cleanup real sem decisao humana.
@@ -1029,15 +1058,13 @@ Resultado esperado:
 
 ## Proximo corte recomendado
 
-`TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`
+Nenhum TKT planejado na espinha atual de runtime.
 
 Objetivo:
 
-- consumir `completion-review-gate.json`;
-- registrar Done tecnico apenas quando `completion_review_accepted=true`;
-- preservar evidencias locais e nao fechar remoto por padrao;
-- manter Human Gate quando a revisao estiver pendente, rejeitada, com mudancas
-  solicitadas ou sem Completion Handoff pronto;
-- apresentar decisao final clara para humanos e agentes leigos.
+- abrir novos TKTs apenas como nova fase ou melhoria deliberada;
+- manter o Done Ledger como fechamento tecnico local;
+- tratar fechamento remoto, producao, PR, deploy e aceite de produto como gates
+  separados se forem necessarios no futuro.
 
-Esse sera o proximo passo de implementacao do nosso Symphony proprio.
+Com TKT-070, a espinha planejada do ARTEMIS Symphony fica completa.

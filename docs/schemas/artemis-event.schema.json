@@ -99,7 +99,8 @@
             "agent_runtime_execution_result_intake",
             "agent_runtime_post_execution_validation_gate",
             "agent_runtime_completion_handoff",
-            "agent_runtime_completion_review_gate"
+            "agent_runtime_completion_review_gate",
+            "agent_runtime_done_ledger"
           ]
         },
         "name": {

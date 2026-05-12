@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 70
+    "done": 71
   },
   "decisions": [
     {
@@ -637,6 +637,15 @@
       "title": "Agent Runtime Completion Review Gate do ARTEMIS Symphony",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-069-artemis-agent-runtime-completion-review-gate.md"
+    },
+    {
+      "ticket": "TKT-070",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Agent Runtime Done Ledger do ARTEMIS Symphony",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-070-artemis-agent-runtime-done-ledger.md"
     }
   ]
 }

@@ -287,6 +287,12 @@ layers = [
         "required_files": ["scripts/artemis-agent-runtime-completion-review-gate.sh", "docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_COMPLETION_REVIEW_GATE.md"],
         "status": "implemented_runtime_completion_review_gate",
     },
+    {
+        "layer": "agent_runtime_done_ledger",
+        "purpose": "Read-only local Done ledger that records technical Done only after completion review acceptance.",
+        "required_files": ["scripts/artemis-agent-runtime-done-ledger.sh", "docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_DONE_LEDGER.md"],
+        "status": "implemented_runtime_done_ledger",
+    },
 ]
 
 for layer in layers:
@@ -348,6 +354,7 @@ required_terms = [
     "Agent Runtime Post-Execution Validation Gate",
     "Agent Runtime Completion Handoff",
     "Agent Runtime Completion Review Gate",
+    "Agent Runtime Done Ledger",
 ]
 missing_terms = [term for term in required_terms if term not in spec_text]
 if missing_terms:
@@ -399,9 +406,10 @@ compatibility = {
     "agent_runtime_post_execution_validation_gate_implemented": True,
     "agent_runtime_completion_handoff_implemented": True,
     "agent_runtime_completion_review_gate_implemented": True,
+    "agent_runtime_done_ledger_implemented": True,
     "terminal_first": True,
     "human_gates_preserved": True,
-    "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony",
+    "next_cut": "NONE - ARTEMIS Symphony runtime spine complete",
 }
 
 overall = "failed" if blockers else "spec_ready"
@@ -446,7 +454,9 @@ payload = {
         "agent_runtime_post_execution_validation_gate_implemented": exists("scripts/artemis-agent-runtime-post-execution-validation-gate.sh"),
         "agent_runtime_completion_handoff_implemented": exists("scripts/artemis-agent-runtime-completion-handoff.sh"),
         "agent_runtime_completion_review_gate_implemented": exists("scripts/artemis-agent-runtime-completion-review-gate.sh"),
-        "next_cut_defined": "TKT-070" in spec_text,
+        "agent_runtime_done_ledger_implemented": exists("scripts/artemis-agent-runtime-done-ledger.sh"),
+        "next_cut_defined": "Nenhum TKT planejado" in spec_text and "Agent Runtime Done Ledger" in spec_text,
+        "runtime_spine_complete": exists("scripts/artemis-agent-runtime-done-ledger.sh") and "espinha planejada do ARTEMIS Symphony fica completa" in spec_text,
     },
     "compatibility": compatibility,
     "layers": layers,
@@ -483,6 +493,7 @@ payload = {
         "The implemented Agent Runtime Post-Execution Validation Gate blocks completion until real result validation exists.",
         "The implemented Agent Runtime Completion Handoff blocks Done until post-execution validation is complete.",
         "The implemented Agent Runtime Completion Review Gate blocks Done Ledger until human review acceptance exists.",
+        "The implemented Agent Runtime Done Ledger records only local technical Done and never closes remote work, PRs, deployments or product acceptance.",
     ],
 }
 
@@ -527,6 +538,7 @@ status_lines = [
     f"- Agent Runtime Post-Execution Validation Gate implemented: `{str(compatibility['agent_runtime_post_execution_validation_gate_implemented']).lower()}`.",
     f"- Agent Runtime Completion Handoff implemented: `{str(compatibility['agent_runtime_completion_handoff_implemented']).lower()}`.",
     f"- Agent Runtime Completion Review Gate implemented: `{str(compatibility['agent_runtime_completion_review_gate_implemented']).lower()}`.",
+    f"- Agent Runtime Done Ledger implemented: `{str(compatibility['agent_runtime_done_ledger_implemented']).lower()}`.",
     f"- Terminal-first: `{str(compatibility['terminal_first']).lower()}`.",
     f"- Human Gates preserved: `{str(compatibility['human_gates_preserved']).lower()}`.",
     f"- Next cut: `{compatibility['next_cut']}`.",
@@ -585,13 +597,13 @@ handoff_lines = [
     "",
     "## Estado",
     "",
-    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel, a promocao local por decisao, a Memory Zone, o Project Operations Graph, o Project Graph View, o Project Brief, o Guided Collaboration, o Agent Launch Contract, o Agent Runtime Dry-Run, o Agent Runtime Approval Gate, o Agent Runtime Decision Intake, o Agent Runtime Launcher Preflight, o Agent Runtime Launcher Command Plan, o Agent Runtime Launcher Execution Gate, o Agent Runtime Launcher Supervised Execution, o Agent Runtime Execution Result Intake, o Agent Runtime Post-Execution Validation Gate, o Agent Runtime Completion Handoff e o Agent Runtime Completion Review Gate existem.",
+    f"ARTEMIS Symphony esta `{overall}` como especificacao propria. O kernel, a ponte, o daemon dry-run, a fila supervisionada local, o service finito, a fonte remota read-only, o intake remoto revisavel, a promocao local por decisao, a Memory Zone, o Project Operations Graph, o Project Graph View, o Project Brief, o Guided Collaboration, o Agent Launch Contract, o Agent Runtime Dry-Run, o Agent Runtime Approval Gate, o Agent Runtime Decision Intake, o Agent Runtime Launcher Preflight, o Agent Runtime Launcher Command Plan, o Agent Runtime Launcher Execution Gate, o Agent Runtime Launcher Supervised Execution, o Agent Runtime Execution Result Intake, o Agent Runtime Post-Execution Validation Gate, o Agent Runtime Completion Handoff, o Agent Runtime Completion Review Gate e o Agent Runtime Done Ledger existem.",
     "",
     "## Proximo corte",
     "",
-    "- Criar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`.",
-    "- Usar o Agent Runtime Completion Review Gate como entrada obrigatoria para Done Ledger.",
-    "- Manter Done externo bloqueado ate existir revisao final aceita.",
+    "- Nenhum TKT planejado na espinha atual de runtime.",
+    "- Abrir nova fase apenas com Exec Pack explicito, objetivo, risco, evidencia e decisao humana.",
+    "- Manter Done externo, PR, merge, deploy e aceite de produto como gates separados quando forem necessarios.",
     "",
     "## Nao fazer",
     "",

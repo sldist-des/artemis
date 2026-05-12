@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T19:33:27Z",
+  "generated_at": "2026-05-12T12:28:34Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
   "artifact_root": "artifacts/artemis-symphony-compatibility/run-01",
   "spec": "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md",
   "summary": {
-    "layers_total": 34,
+    "layers_total": 35,
     "layers_with_missing_files": 0,
-    "tasks_total": 70,
-    "tasks_done": 70,
+    "tasks_total": 71,
+    "tasks_done": 71,
     "daemon_implemented": true,
     "kernel_implemented": true,
     "bridge_implemented": true,
@@ -39,7 +39,9 @@
     "agent_runtime_post_execution_validation_gate_implemented": true,
     "agent_runtime_completion_handoff_implemented": true,
     "agent_runtime_completion_review_gate_implemented": true,
-    "next_cut_defined": true
+    "agent_runtime_done_ledger_implemented": true,
+    "next_cut_defined": true,
+    "runtime_spine_complete": true
   },
   "compatibility": {
     "upstream_reference": "https://github.com/openai/symphony/blob/main/SPEC.md",
@@ -73,9 +75,10 @@
     "agent_runtime_post_execution_validation_gate_implemented": true,
     "agent_runtime_completion_handoff_implemented": true,
     "agent_runtime_completion_review_gate_implemented": true,
+    "agent_runtime_done_ledger_implemented": true,
     "terminal_first": true,
     "human_gates_preserved": true,
-    "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony"
+    "next_cut": "NONE - ARTEMIS Symphony runtime spine complete"
   },
   "layers": [
     {
@@ -428,6 +431,16 @@
       ],
       "status": "implemented_runtime_completion_review_gate",
       "missing_files": []
+    },
+    {
+      "layer": "agent_runtime_done_ledger",
+      "purpose": "Read-only local Done ledger that records technical Done only after completion review acceptance.",
+      "required_files": [
+        "scripts/artemis-agent-runtime-done-ledger.sh",
+        "docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_DONE_LEDGER.md"
+      ],
+      "status": "implemented_runtime_done_ledger",
+      "missing_files": []
     }
   ],
   "blockers": [],
@@ -462,6 +475,7 @@
     "The implemented Agent Runtime Execution Result Intake classifies results and never treats plan-only as success.",
     "The implemented Agent Runtime Post-Execution Validation Gate blocks completion until real result validation exists.",
     "The implemented Agent Runtime Completion Handoff blocks Done until post-execution validation is complete.",
-    "The implemented Agent Runtime Completion Review Gate blocks Done Ledger until human review acceptance exists."
+    "The implemented Agent Runtime Completion Review Gate blocks Done Ledger until human review acceptance exists.",
+    "The implemented Agent Runtime Done Ledger records only local technical Done and never closes remote work, PRs, deployments or product acceptance."
   ]
 }

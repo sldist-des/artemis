@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `21`.
-- Edges: `50`.
-- Tasks: `70`.
-- Events: `57`.
+- Nodes: `22`.
+- Edges: `54`.
+- Tasks: `71`.
+- Events: `58`.
 
 ## Nos
 
@@ -31,6 +31,7 @@
 - `runtime:post_execution_validation_gate` (runtime_post_validation_gate): Agent Runtime Post-Execution Validation Gate.
 - `runtime:completion_handoff` (runtime_completion_handoff): Agent Runtime Completion Handoff.
 - `runtime:completion_review_gate` (runtime_completion_review_gate): Agent Runtime Completion Review Gate.
+- `runtime:done_ledger` (runtime_done_ledger): Agent Runtime Done Ledger.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -82,6 +83,10 @@
 - `runtime:completion_review_gate` --requires_human_acceptance--> `gate:human`.
 - `runtime:completion_review_gate` --records_review_readiness--> `validation:gate`.
 - `runtime:completion_review_gate` --records_review_gate--> `event_log:timeline`.
+- `runtime:completion_review_gate` --gates_done_ledger--> `runtime:done_ledger`.
+- `runtime:done_ledger` --requires_review_acceptance--> `gate:human`.
+- `runtime:done_ledger` --records_done_readiness--> `validation:gate`.
+- `runtime:done_ledger` --records_done_ledger--> `event_log:timeline`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.

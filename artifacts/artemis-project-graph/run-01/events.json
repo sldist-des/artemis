@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T11:52:24Z",
+  "generated_at": "2026-05-12T12:28:34Z",
   "source": "scripts/artemis-project-graph.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-12T11:52:24Z",
+      "generated_at": "2026-05-12T12:28:34Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -47,17 +47,17 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 70,
-          "tasks_done": 70,
+          "tasks_total": 71,
+          "tasks_done": 71,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 8,
-          "events_total": 57,
-          "nodes_total": 21,
-          "edges_total": 50,
-          "evidence_count": 70,
-          "exec_pack_count": 70,
-          "validation_passed": 105,
+          "events_total": 58,
+          "nodes_total": 22,
+          "edges_total": 54,
+          "evidence_count": 71,
+          "exec_pack_count": 71,
+          "validation_passed": 107,
           "validation_failed": 0,
           "validation_human_gate": 2,
           "memory_zones": 3,
@@ -68,7 +68,7 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony"
+        "next_cut": "NONE - ARTEMIS Symphony runtime spine complete"
       }
     }
   ]

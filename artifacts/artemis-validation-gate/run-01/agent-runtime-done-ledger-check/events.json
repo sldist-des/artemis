@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-12T12:25:38Z",
+  "source": "scripts/artemis-agent-runtime-done-ledger.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-070_agent_runtime_done_ledger",
+      "event_type": "human_gate.opened",
+      "generated_at": "2026-05-12T12:25:38Z",
+      "producer": {
+        "adapter": "agent_runtime_done_ledger",
+        "name": "scripts/artemis-agent-runtime-done-ledger.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-070",
+        "task_id": "tkt-070",
+        "title": "Agent Runtime Done Ledger do ARTEMIS Symphony",
+        "exec_pack": "docs/exec-packs/done/TKT-070-artemis-agent-runtime-done-ledger.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/agent-runtime-done-ledger-check"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "review",
+        "to": "human_gate",
+        "reason": "Done Ledger was derived from completion review evidence without closing external systems."
+      },
+      "gate": {
+        "kind": "human",
+        "status": "human_gate",
+        "reason": "Done Ledger result."
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/agent-runtime-done-ledger-check",
+        "status_path": "artifacts/artemis-validation-gate/run-01/agent-runtime-done-ledger-check/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/agent-runtime-done-ledger-check/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/agent-runtime-done-ledger-check/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-070"
+      },
+      "payload": {
+        "overall": "human_gate",
+        "reason": "Done Ledger was derived from completion review evidence without closing external systems.",
+        "summary": {
+          "completion_review_accepted": false,
+          "ready_for_done_ledger": false,
+          "done_ledger_recorded": false,
+          "technical_done": false,
+          "remote_done_closed": false,
+          "decision": "pending",
+          "commands_executed": 0,
+          "failed_commands": 0,
+          "validations_executed": 0,
+          "rollback_required": false,
+          "residual_risks": 1,
+          "remote_writes_allowed": false,
+          "production_allowed": false,
+          "secrets_allowed": false,
+          "paid_tokens_authorized": 0,
+          "ledger_checks": 7,
+          "ledger_passed": 6,
+          "ledger_failed": 0,
+          "ledger_human_gate": 1
+        },
+        "ledger_state": "waiting_for_completion_review_accepted",
+        "next_action": "wait_for_completion_review_accepted",
+        "next_cut": "NONE - ARTEMIS Symphony runtime spine complete"
+      }
+    }
+  ]
+}

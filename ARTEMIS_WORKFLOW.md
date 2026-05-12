@@ -442,6 +442,8 @@ scripts/artemis-agent-runtime-completion-handoff.sh
 scripts/artemis-agent-runtime-completion-handoff.sh --json
 scripts/artemis-agent-runtime-completion-review-gate.sh
 scripts/artemis-agent-runtime-completion-review-gate.sh --json
+scripts/artemis-agent-runtime-done-ledger.sh
+scripts/artemis-agent-runtime-done-ledger.sh --json
 ```
 
 Esse grafo e um read model operacional. Ele ajuda humanos e agentes a entenderem
@@ -491,6 +493,10 @@ O Agent Runtime Completion Review Gate consome o Completion Handoff e abre a
 revisao humana final antes do Done Ledger. Ele nao aceita a propria revisao,
 nao marca Done, nao fecha remoto e permanece em Human Gate enquanto
 `completion_handoff_ready=false` ou `completion_review_accepted=false`.
+O Agent Runtime Done Ledger consome o Completion Review Gate e registra Done
+tecnico local apenas quando `completion_review_accepted=true`. Ele nao fecha
+GitHub, PR, issue, remoto, deploy ou producao; no estado atual permanece em
+Human Gate porque a revisao final ainda nao foi aceita.
 O Agent Launch Contract e o preflight supervisionado entre a entrada guiada e
 qualquer runtime real. Ele fixa `execute=false` por padrao e exige projeto,
 tarefa, auth, budget, comando, workspace, rollback e evidencia antes de Codex

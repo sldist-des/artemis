@@ -170,8 +170,8 @@ payload = {
         ],
         "next_actions": [
             "Usar este briefing como porta de entrada para pessoas que nao conhecem todos os artifacts.",
-            "Explicar cada tarefa futura em termos de objetivo, risco, evidencia esperada e decisao humana necessaria.",
-            "Usar o modo guiado como entrada para contratos de lancamento supervisionado de agentes sem perder controle terminal-first.",
+            "Abrir novos cortes somente como nova fase, com Exec Pack, risco, evidencia esperada e decisao humana necessaria.",
+            "Usar o modo guiado e o Done Ledger como entrada para operacao supervisionada sem perder controle terminal-first.",
         ],
         "how_to_collaborate": [
             "Leia o briefing primeiro para entender o estado geral.",
@@ -189,7 +189,7 @@ payload = {
     "missing_tokens": missing_tokens,
     "missing_files": missing_files,
     "required_tokens": required_tokens,
-    "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony",
+    "next_cut": "NONE - ARTEMIS Symphony runtime spine complete",
 }
 
 brief_ready = (
@@ -263,7 +263,9 @@ handoff_lines = [
     "",
     "Proximo corte:",
     "",
-    "- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`.",
+    "- Nenhum TKT planejado na espinha atual de runtime.",
+    "- Abrir nova fase somente com Exec Pack explicito, objetivo, risco, evidencia e decisao humana.",
+    "- Manter Done externo, PR, merge, deploy e aceite de produto como gates separados quando forem necessarios.",
 ]
 (artifact_root / "HANDOFF.md").write_text("\n".join(handoff_lines) + "\n", encoding="utf-8")
 

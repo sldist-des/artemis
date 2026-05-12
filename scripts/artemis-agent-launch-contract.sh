@@ -329,7 +329,7 @@ payload = {
     "missing_tokens": missing_tokens,
     "missing_files": missing_files,
     "required_tokens": required_tokens,
-    "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony",
+    "next_cut": "NONE - ARTEMIS Symphony runtime spine complete",
 }
 
 ready = (
@@ -412,8 +412,8 @@ handoff_lines = [
     "",
     "Proximo corte:",
     "",
-    "- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`.",
-    "- Usar o Agent Runtime Launcher Preflight como entrada obrigatoria antes de materializar comandos.",
+    "- Nenhum TKT planejado na espinha atual de runtime.",
+    "- Usar o Agent Runtime Launcher Preflight como entrada obrigatoria antes de materializar comandos em novas fases.",
 ]
 (artifact_root / "HANDOFF.md").write_text("\n".join(handoff_lines) + "\n", encoding="utf-8")
 

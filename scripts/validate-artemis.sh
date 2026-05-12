@@ -38,6 +38,7 @@ docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_EXECUTION_RESULT_INTAKE.md
 docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_POST_EXECUTION_VALIDATION_GATE.md
 docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_COMPLETION_HANDOFF.md
 docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_COMPLETION_REVIEW_GATE.md
+docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_DONE_LEDGER.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
@@ -103,6 +104,7 @@ scripts/artemis-agent-runtime-execution-result-intake.sh
 scripts/artemis-agent-runtime-post-execution-validation-gate.sh
 scripts/artemis-agent-runtime-completion-handoff.sh
 scripts/artemis-agent-runtime-completion-review-gate.sh
+scripts/artemis-agent-runtime-done-ledger.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -205,6 +207,7 @@ sh -n scripts/artemis-agent-runtime-execution-result-intake.sh
 sh -n scripts/artemis-agent-runtime-post-execution-validation-gate.sh
 sh -n scripts/artemis-agent-runtime-completion-handoff.sh
 sh -n scripts/artemis-agent-runtime-completion-review-gate.sh
+sh -n scripts/artemis-agent-runtime-done-ledger.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -1733,6 +1736,40 @@ if ! grep -q '"event_type": "approval.requested"' /tmp/artemis-agent-runtime-com
   exit 1
 fi
 
+scripts/artemis-agent-runtime-done-ledger.sh --artifact-root /tmp/artemis-agent-runtime-done-ledger --completion-review-gate /tmp/artemis-agent-runtime-completion-review-gate/completion-review-gate.json --json >/tmp/artemis-agent-runtime-done-ledger.json
+if ! grep -q '"overall": "human_gate"' /tmp/artemis-agent-runtime-done-ledger.json; then
+  echo "scripts/artemis-agent-runtime-done-ledger.sh did not preserve pending Human Gate" >&2
+  exit 1
+fi
+if ! grep -q '"ledger_state": "waiting_for_completion_review_accepted"' /tmp/artemis-agent-runtime-done-ledger.json; then
+  echo "scripts/artemis-agent-runtime-done-ledger.sh did not record waiting ledger state" >&2
+  exit 1
+fi
+if ! grep -q '"completion_review_accepted": false' /tmp/artemis-agent-runtime-done-ledger.json; then
+  echo "scripts/artemis-agent-runtime-done-ledger.sh should not accept review automatically" >&2
+  exit 1
+fi
+if ! grep -q '"ready_for_done_ledger": false' /tmp/artemis-agent-runtime-done-ledger.json; then
+  echo "scripts/artemis-agent-runtime-done-ledger.sh should not mark ready_for_done_ledger" >&2
+  exit 1
+fi
+if ! grep -q '"done_ledger_recorded": false' /tmp/artemis-agent-runtime-done-ledger.json; then
+  echo "scripts/artemis-agent-runtime-done-ledger.sh should not record Done automatically" >&2
+  exit 1
+fi
+if ! grep -q '"technical_done": false' /tmp/artemis-agent-runtime-done-ledger.json; then
+  echo "scripts/artemis-agent-runtime-done-ledger.sh should not mark technical_done automatically" >&2
+  exit 1
+fi
+if ! grep -q '"remote_done_closed": false' /tmp/artemis-agent-runtime-done-ledger.json; then
+  echo "scripts/artemis-agent-runtime-done-ledger.sh should never close remote Done" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "human_gate.opened"' /tmp/artemis-agent-runtime-done-ledger/events.json; then
+  echo "scripts/artemis-agent-runtime-done-ledger.sh did not emit canonical events" >&2
+  exit 1
+fi
+
 scripts/artemis-codex-app-server.sh --artifact-root /tmp/artemis-codex-app-server --json >/tmp/artemis-codex-app-server.json
 if ! grep -q '"overall": "passed"' /tmp/artemis-codex-app-server.json; then
   echo "scripts/artemis-codex-app-server.sh did not report the expected passed status" >&2
@@ -2037,6 +2074,18 @@ if ! grep -q "renderAgentRuntimeCompletionReviewGate" control-plane/index.html; 
 fi
 if ! grep -q "waiting_for_completion_handoff_ready" control-plane/index.html; then
   echo "control-plane/index.html does not show the ARTEMIS Agent Runtime Completion Review Gate state" >&2
+  exit 1
+fi
+if ! grep -q "agent-runtime-done-ledger-section" control-plane/index.html; then
+  echo "control-plane/index.html does not render the ARTEMIS Agent Runtime Done Ledger section" >&2
+  exit 1
+fi
+if ! grep -q "renderAgentRuntimeDoneLedger" control-plane/index.html; then
+  echo "control-plane/index.html does not include the Agent Runtime Done Ledger renderer" >&2
+  exit 1
+fi
+if ! grep -q "waiting_for_completion_review_accepted" control-plane/index.html; then
+  echo "control-plane/index.html does not show the ARTEMIS Agent Runtime Done Ledger state" >&2
   exit 1
 fi
 

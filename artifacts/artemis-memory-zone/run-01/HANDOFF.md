@@ -6,8 +6,8 @@ Memory Zone esta `memory_zone_ready` como contrato read-only. Ela conecta memori
 
 ## Proximo corte
 
-- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`.
-- Usar Memory Zone como fonte de contexto e o indice derivado como read model.
+- Nenhum TKT planejado na espinha atual de runtime.
+- Usar Memory Zone como fonte de contexto e o indice derivado como read model em novas fases explicitas.
 
 ## Nao fazer
 

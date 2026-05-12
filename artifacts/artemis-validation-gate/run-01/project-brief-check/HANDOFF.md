@@ -4,4 +4,6 @@ O briefing humano esta pronto como camada de explicacao do Project Operations Gr
 
 Proximo corte:
 
-- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`.
+- Nenhum TKT planejado na espinha atual de runtime.
+- Abrir nova fase somente com Exec Pack explicito, objetivo, risco, evidencia e decisao humana.
+- Manter Done externo, PR, merge, deploy e aceite de produto como gates separados quando forem necessarios.

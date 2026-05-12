@@ -286,7 +286,7 @@ payload = {
     "missing_tokens": missing_tokens,
     "missing_files": missing_files,
     "required_tokens": required_tokens,
-    "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony",
+    "next_cut": "NONE - ARTEMIS Symphony runtime spine complete",
 }
 
 ready = (
@@ -358,7 +358,8 @@ handoff_lines = [
     "",
     "Proximo corte:",
     "",
-    "- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`.",
+    "- Nenhum TKT planejado na espinha atual de runtime.",
+    "- Abrir nova fase somente com Exec Pack explicito.",
 ]
 (artifact_root / "HANDOFF.md").write_text("\n".join(handoff_lines) + "\n", encoding="utf-8")
 

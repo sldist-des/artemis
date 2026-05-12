@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T18:37:24Z",
+  "generated_at": "2026-05-11T19:34:57Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
   "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-compatibility-check",
   "spec": "docs/symphony/ARTEMIS_SYMPHONY_SPEC.md",
   "summary": {
-    "layers_total": 33,
+    "layers_total": 34,
     "layers_with_missing_files": 0,
-    "tasks_total": 69,
-    "tasks_done": 69,
+    "tasks_total": 70,
+    "tasks_done": 70,
     "daemon_implemented": true,
     "kernel_implemented": true,
     "bridge_implemented": true,
@@ -38,6 +38,7 @@
     "agent_runtime_execution_result_intake_implemented": true,
     "agent_runtime_post_execution_validation_gate_implemented": true,
     "agent_runtime_completion_handoff_implemented": true,
+    "agent_runtime_completion_review_gate_implemented": true,
     "next_cut_defined": true
   },
   "compatibility": {
@@ -71,9 +72,10 @@
     "agent_runtime_execution_result_intake_implemented": true,
     "agent_runtime_post_execution_validation_gate_implemented": true,
     "agent_runtime_completion_handoff_implemented": true,
+    "agent_runtime_completion_review_gate_implemented": true,
     "terminal_first": true,
     "human_gates_preserved": true,
-    "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony"
+    "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony"
   },
   "layers": [
     {
@@ -416,6 +418,16 @@
       ],
       "status": "implemented_runtime_completion_handoff",
       "missing_files": []
+    },
+    {
+      "layer": "agent_runtime_completion_review_gate",
+      "purpose": "Read-only final review gate that blocks Done Ledger until human acceptance is complete.",
+      "required_files": [
+        "scripts/artemis-agent-runtime-completion-review-gate.sh",
+        "docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_COMPLETION_REVIEW_GATE.md"
+      ],
+      "status": "implemented_runtime_completion_review_gate",
+      "missing_files": []
     }
   ],
   "blockers": [],
@@ -449,6 +461,7 @@
     "The implemented Agent Runtime Launcher Supervised Execution remains plan-only unless --execute and the final gate are both ready.",
     "The implemented Agent Runtime Execution Result Intake classifies results and never treats plan-only as success.",
     "The implemented Agent Runtime Post-Execution Validation Gate blocks completion until real result validation exists.",
-    "The implemented Agent Runtime Completion Handoff blocks Done until post-execution validation is complete."
+    "The implemented Agent Runtime Completion Handoff blocks Done until post-execution validation is complete.",
+    "The implemented Agent Runtime Completion Review Gate blocks Done Ledger until human review acceptance exists."
   ]
 }

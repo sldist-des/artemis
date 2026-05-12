@@ -987,6 +987,36 @@ Resultado esperado:
 - `validations_executed=0`;
 - evento canonico `handoff.recorded`.
 
+### Modo 3.19 - Agent Runtime Completion Review Gate
+
+Implementado em `TKT-069` como gate read-only de revisao final.
+
+- consome `completion-handoff.json`;
+- cria ou le `completion-review-decision.json` como decisao humana local;
+- so libera o Done Ledger quando o Completion Handoff esta pronto e a revisao
+  humana final foi aceita;
+- mantem Human Gate quando o handoff nao esta pronto, quando a decisao esta
+  pendente, quando mudancas foram solicitadas ou quando a revisao foi rejeitada;
+- nao aceita revisao em nome do agente;
+- nao marca Done, nao fecha remoto, nao inicia agentes e nao executa comandos;
+- preserva remoto, producao e secrets bloqueados.
+
+Agent Runtime Completion Review Gate implementado:
+
+- `scripts/artemis-agent-runtime-completion-review-gate.sh`
+- `docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_COMPLETION_REVIEW_GATE.md`
+
+Resultado esperado:
+
+- `human_gate` enquanto o Completion Handoff nao estiver pronto;
+- `review_state=waiting_for_completion_handoff_ready`;
+- `completion_handoff_ready=false`;
+- `completion_review_ready=false`;
+- `completion_review_accepted=false`;
+- `ready_for_done_ledger=false`;
+- `decision=pending`;
+- evento canonico `approval.requested`.
+
 ## Invariantes
 
 - ARTEMIS Symphony nao executa cleanup real sem decisao humana.
@@ -999,14 +1029,15 @@ Resultado esperado:
 
 ## Proximo corte recomendado
 
-`TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`
+`TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`
 
 Objetivo:
 
-- consumir `completion-handoff.json`;
-- revisar o pacote final antes de qualquer Done externo;
-- distinguir aceite tecnico, aceite humano e bloqueios remanescentes;
-- manter Human Gate quando o handoff nao estiver pronto;
+- consumir `completion-review-gate.json`;
+- registrar Done tecnico apenas quando `completion_review_accepted=true`;
+- preservar evidencias locais e nao fechar remoto por padrao;
+- manter Human Gate quando a revisao estiver pendente, rejeitada, com mudancas
+  solicitadas ou sem Completion Handoff pronto;
 - apresentar decisao final clara para humanos e agentes leigos.
 
 Esse sera o proximo passo de implementacao do nosso Symphony proprio.

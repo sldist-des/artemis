@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T18:37:29Z",
+  "generated_at": "2026-05-11T19:35:05Z",
   "source": "scripts/artemis-agent-runtime-completion-handoff.sh",
   "mode": "agent_runtime_completion_handoff",
   "overall": "human_gate",
@@ -116,5 +116,5 @@
     "Remote writes, production and secrets remain blocked in this handoff.",
     "The handoff explains status for both agents and non-technical humans."
   ],
-  "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony"
+  "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony"
 }

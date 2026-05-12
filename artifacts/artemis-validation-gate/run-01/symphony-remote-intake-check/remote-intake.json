@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T18:37:28Z",
+  "generated_at": "2026-05-11T19:35:03Z",
   "source": "scripts/artemis-symphony-remote-intake.sh",
   "mode": "read_only_remote_intake_review",
   "overall": "remote_intake_ready",
@@ -76,5 +76,5 @@
     }
   ],
   "review_source": "artifacts/artemis-validation-gate/run-01/symphony-remote-intake-check/review-source.json",
-  "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony"
+  "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony"
 }

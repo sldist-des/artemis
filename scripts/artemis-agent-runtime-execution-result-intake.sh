@@ -265,7 +265,7 @@ payload = {
         "Failed commands require log preservation and rollback review before any Done state.",
         "Remote writes, production and secrets remain blocked in this intake cut.",
     ],
-    "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony",
+    "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony",
 }
 
 (artifact_root / "execution-result-intake.json").write_text(
@@ -351,9 +351,9 @@ handoff_lines = [
     "",
 ]
 if supervised_execution_result_ready:
-    handoff_lines.append("- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony` rodando validacoes pos-execucao sobre logs e comandos executados.")
+    handoff_lines.append("- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony` rodando validacoes pos-execucao sobre logs e comandos executados.")
 else:
-    handoff_lines.append("- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`, mantendo validacao pos-execucao bloqueada ate existir execucao supervisionada real.")
+    handoff_lines.append("- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`, mantendo validacao pos-execucao bloqueada ate existir execucao supervisionada real.")
 handoff_lines.extend([
     "",
     "## Nao fazer",

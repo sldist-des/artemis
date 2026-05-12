@@ -19,6 +19,7 @@ runtime_launcher_supervised_execution_path="artifacts/artemis-agent-runtime-laun
 runtime_execution_result_intake_path="artifacts/artemis-agent-runtime-execution-result-intake/run-01/execution-result-intake.json"
 runtime_post_execution_validation_gate_path="artifacts/artemis-agent-runtime-post-execution-validation-gate/run-01/post-execution-validation-gate.json"
 runtime_completion_handoff_path="artifacts/artemis-agent-runtime-completion-handoff/run-01/completion-handoff.json"
+runtime_completion_review_gate_path="artifacts/artemis-agent-runtime-completion-review-gate/run-01/completion-review-gate.json"
 format="text"
 
 usage() {
@@ -137,6 +138,7 @@ runtime_launcher_supervised_execution_payload = read_json(Path("artifacts/artemi
 runtime_execution_result_intake_payload = read_json(Path("artifacts/artemis-agent-runtime-execution-result-intake/run-01/execution-result-intake.json"), {"summary": {}, "overall": "not_available"})
 runtime_post_execution_validation_gate_payload = read_json(Path("artifacts/artemis-agent-runtime-post-execution-validation-gate/run-01/post-execution-validation-gate.json"), {"summary": {}, "overall": "not_available"})
 runtime_completion_handoff_payload = read_json(Path("artifacts/artemis-agent-runtime-completion-handoff/run-01/completion-handoff.json"), {"summary": {}, "overall": "not_available"})
+runtime_completion_review_gate_payload = read_json(Path("artifacts/artemis-agent-runtime-completion-review-gate/run-01/completion-review-gate.json"), {"summary": {}, "overall": "not_available"})
 
 tasks = tasks_payload.get("tasks", [])
 events = event_log_payload.get("events", [])
@@ -313,6 +315,20 @@ nodes = [
         "rollback_required": runtime_completion_handoff_payload.get("summary", {}).get("rollback_required", False),
     },
     {
+        "id": "runtime:completion_review_gate",
+        "type": "runtime_completion_review_gate",
+        "label": "Agent Runtime Completion Review Gate",
+        "status": runtime_completion_review_gate_payload.get("overall", "not_available"),
+        "review_state": runtime_completion_review_gate_payload.get("review_state", "unknown"),
+        "review_ready": runtime_completion_review_gate_payload.get("summary", {}).get("completion_review_ready", False),
+        "review_accepted": runtime_completion_review_gate_payload.get("summary", {}).get("completion_review_accepted", False),
+        "ready_for_done_ledger": runtime_completion_review_gate_payload.get("summary", {}).get("ready_for_done_ledger", False),
+        "decision": runtime_completion_review_gate_payload.get("summary", {}).get("decision", "unknown"),
+        "validations_executed": runtime_completion_review_gate_payload.get("summary", {}).get("validations_executed", 0),
+        "commands_executed": runtime_completion_review_gate_payload.get("summary", {}).get("commands_executed", 0),
+        "rollback_required": runtime_completion_review_gate_payload.get("summary", {}).get("rollback_required", False),
+    },
+    {
         "id": "control_plane:view",
         "type": "view",
         "label": "Control Plane",
@@ -364,6 +380,10 @@ edges = [
     {"from": "runtime:completion_handoff", "to": "validation:gate", "type": "records_completion_readiness"},
     {"from": "runtime:completion_handoff", "to": "cost:budget", "type": "summarizes_runtime_budget"},
     {"from": "runtime:completion_handoff", "to": "event_log:timeline", "type": "records_handoff"},
+    {"from": "runtime:completion_handoff", "to": "runtime:completion_review_gate", "type": "gates_completion_review"},
+    {"from": "runtime:completion_review_gate", "to": "gate:human", "type": "requires_human_acceptance"},
+    {"from": "runtime:completion_review_gate", "to": "validation:gate", "type": "records_review_readiness"},
+    {"from": "runtime:completion_review_gate", "to": "event_log:timeline", "type": "records_review_gate"},
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
@@ -439,6 +459,7 @@ payload = {
         "runtime_execution_result_intake": "artifacts/artemis-agent-runtime-execution-result-intake/run-01/execution-result-intake.json",
         "runtime_post_execution_validation_gate": "artifacts/artemis-agent-runtime-post-execution-validation-gate/run-01/post-execution-validation-gate.json",
         "runtime_completion_handoff": "artifacts/artemis-agent-runtime-completion-handoff/run-01/completion-handoff.json",
+        "runtime_completion_review_gate": "artifacts/artemis-agent-runtime-completion-review-gate/run-01/completion-review-gate.json",
     },
     "summary": summary,
     "states": dict(states),
@@ -471,10 +492,11 @@ payload = {
         "runtime_execution_result_intake_input": "artemis_agent_runtime_execution_result_intake",
         "runtime_post_execution_validation_gate_input": "artemis_agent_runtime_post_execution_validation_gate",
         "runtime_completion_handoff_input": "artemis_agent_runtime_completion_handoff",
+        "runtime_completion_review_gate_input": "artemis_agent_runtime_completion_review_gate",
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },
-    "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony",
+    "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony",
 }
 
 write_text(artifact_root / "project-graph.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
@@ -556,7 +578,7 @@ handoff_lines = [
     "",
     "## Proximo corte",
     "",
-    "- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`.",
+    "- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`.",
     "- Usar o Launcher Supervised Execution como entrada obrigatoria para interpretar resultados de runtime.",
     "",
     "## Nao fazer",

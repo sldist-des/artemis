@@ -1,7 +1,7 @@
 # ARTEMIS AGENT RUNTIME DRY-RUN REQUEST
 
 - Project: `ARTEMIS`
-- Task: `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`
+- Task: `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`
 - Profile: `codex_terminal`
 - Runtime: `codex_cli`
 - Command surface: `terminal`

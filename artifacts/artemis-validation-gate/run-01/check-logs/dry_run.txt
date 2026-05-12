@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 69
+    "done": 70
   },
   "decisions": [
     {
@@ -628,6 +628,15 @@
       "title": "Agent Runtime Completion Handoff do ARTEMIS Symphony",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-068-artemis-agent-runtime-completion-handoff.md"
+    },
+    {
+      "ticket": "TKT-069",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "Agent Runtime Completion Review Gate do ARTEMIS Symphony",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-069-artemis-agent-runtime-completion-review-gate.md"
     }
   ]
 }

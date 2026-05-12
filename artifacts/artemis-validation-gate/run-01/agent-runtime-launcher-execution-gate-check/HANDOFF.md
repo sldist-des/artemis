@@ -6,7 +6,7 @@ TKT-064 avaliou o gate de execucao como `human_gate` com estado `waiting_for_lau
 
 ## Proximo corte
 
-- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`, mantendo execucao bloqueada ate existir `launcher_execution_gate_ready`.
+- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`, mantendo execucao bloqueada ate existir `launcher_execution_gate_ready`.
 
 ## Nao fazer
 

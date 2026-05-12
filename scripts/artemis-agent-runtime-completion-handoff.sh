@@ -263,7 +263,7 @@ payload = {
         "Remote writes, production and secrets remain blocked in this handoff.",
         "The handoff explains status for both agents and non-technical humans.",
     ],
-    "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony",
+    "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony",
 }
 
 (artifact_root / "completion-handoff.json").write_text(
@@ -344,9 +344,9 @@ next_handoff_lines = [
     "",
 ]
 if ready_for_done:
-    next_handoff_lines.append("- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony` para revisao humana final antes de Done externo.")
+    next_handoff_lines.append("- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony` para revisao humana final antes de Done externo.")
 else:
-    next_handoff_lines.append("- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`, mantendo revisao bloqueada ate existir handoff pronto.")
+    next_handoff_lines.append("- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`, mantendo revisao bloqueada ate existir handoff pronto.")
 next_handoff_lines.extend([
     "",
     "## Nao fazer",

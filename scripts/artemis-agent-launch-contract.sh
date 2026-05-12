@@ -272,7 +272,7 @@ evidence_contract = [
 
 candidate_launch = {
     "project": "ARTEMIS",
-    "task": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony",
+    "task": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony",
     "recommended_profile": "codex_terminal",
     "fallback_profile": "claude_code",
     "execute": False,
@@ -329,7 +329,7 @@ payload = {
     "missing_tokens": missing_tokens,
     "missing_files": missing_files,
     "required_tokens": required_tokens,
-    "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony",
+    "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony",
 }
 
 ready = (
@@ -412,7 +412,7 @@ handoff_lines = [
     "",
     "Proximo corte:",
     "",
-    "- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`.",
+    "- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`.",
     "- Usar o Agent Runtime Launcher Preflight como entrada obrigatoria antes de materializar comandos.",
 ]
 (artifact_root / "HANDOFF.md").write_text("\n".join(handoff_lines) + "\n", encoding="utf-8")

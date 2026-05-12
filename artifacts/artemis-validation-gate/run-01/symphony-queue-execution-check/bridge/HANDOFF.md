@@ -6,7 +6,7 @@ Bridge supervisionada concluida com overall `runner_executed`.
 
 ## Proximo corte
 
-- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`.
+- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`.
 - Consumir item revisado da fila com comando explicito e ponte plan-only por padrao.
 
 ## Nao fazer

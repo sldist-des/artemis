@@ -6,7 +6,7 @@ Daemon dry-run concluido com `2` heartbeat(s) e overall `heartbeat_ready`.
 
 ## Proximo corte
 
-- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`.
+- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`.
 - Consumir item revisado da fila com comando explicito e ponte plan-only por padrao.
 
 ## Nao fazer

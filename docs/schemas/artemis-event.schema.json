@@ -73,6 +73,10 @@
             "codex_app_server",
             "claude_code",
             "local_runner",
+            "local_daemon",
+            "local_queue",
+            "local_queue_bridge",
+            "local_symphony_service",
             "symphony_remote_source",
             "symphony_remote_intake",
             "symphony_remote_promotion",
@@ -94,7 +98,8 @@
             "agent_runtime_launcher_supervised_execution",
             "agent_runtime_execution_result_intake",
             "agent_runtime_post_execution_validation_gate",
-            "agent_runtime_completion_handoff"
+            "agent_runtime_completion_handoff",
+            "agent_runtime_completion_review_gate"
           ]
         },
         "name": {

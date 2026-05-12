@@ -6,7 +6,7 @@ TKT-065 avaliou a execucao supervisionada como `human_gate` com estado `waiting_
 
 ## Proximo corte
 
-- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`, mantendo execucao bloqueada ate existir resultado supervisionado.
+- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`, mantendo execucao bloqueada ate existir resultado supervisionado.
 
 ## Nao fazer
 

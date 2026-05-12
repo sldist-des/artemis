@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T18:35:46Z",
+  "generated_at": "2026-05-11T19:33:21Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -829,6 +829,18 @@
       "summary": "No estado atual, como a validacao pos-execucao ainda depende de resultado real",
       "exec_pack": "docs/exec-packs/done/TKT-068-artemis-agent-runtime-completion-handoff.md",
       "evidence": "docs/exec-packs/done/TKT-068-artemis-agent-runtime-completion-handoff.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-069",
+      "ticket": "TKT-069",
+      "title": "Agent Runtime Completion Review Gate do ARTEMIS Symphony",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "- `overall=human_gate`",
+      "exec_pack": "docs/exec-packs/done/TKT-069-artemis-agent-runtime-completion-review-gate.md",
+      "evidence": "docs/exec-packs/done/TKT-069-artemis-agent-runtime-completion-review-gate.md",
       "tags": ["exec-pack", "done"]
     }
   ]

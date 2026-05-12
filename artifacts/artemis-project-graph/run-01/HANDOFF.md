@@ -6,7 +6,7 @@ Project Operations Graph esta `project_graph_ready` como read model operacional.
 
 ## Proximo corte
 
-- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`.
+- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`.
 - Usar o Launcher Supervised Execution como entrada obrigatoria para interpretar resultados de runtime.
 
 ## Nao fazer

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "decision_record": {
+    "decision": "pending",
+    "decided_by": "",
+    "decided_at": "",
+    "reason": "",
+    "accepted_evidence": [],
+    "accepted_residual_risks": [],
+    "done_authorized": false,
+    "remote_close_authorized": false
+  }
+}

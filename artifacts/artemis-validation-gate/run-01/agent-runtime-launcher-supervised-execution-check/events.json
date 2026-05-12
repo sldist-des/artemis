@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T18:37:29Z",
+  "generated_at": "2026-05-11T19:35:05Z",
   "source": "scripts/artemis-agent-runtime-launcher-supervised-execution.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-065_agent_runtime_launcher_supervised_execution",
       "event_type": "runner.attempt_planned",
-      "generated_at": "2026-05-11T18:37:29Z",
+      "generated_at": "2026-05-11T19:35:05Z",
       "producer": {
         "adapter": "agent_runtime_launcher_supervised_execution",
         "name": "scripts/artemis-agent-runtime-launcher-supervised-execution.sh",
@@ -71,7 +71,7 @@
         },
         "execution_state": "waiting_for_launcher_execution_gate_ready",
         "next_action": "wait_for_launcher_execution_gate_ready",
-        "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony"
+        "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony"
       }
     }
   ]

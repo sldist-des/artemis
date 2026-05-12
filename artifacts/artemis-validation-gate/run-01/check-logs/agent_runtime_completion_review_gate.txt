@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-11T19:35:05Z",
+  "source": "scripts/artemis-agent-runtime-completion-review-gate.sh",
+  "mode": "agent_runtime_completion_review_gate",
+  "overall": "human_gate",
+  "reason": "Completion review gate was derived from completion handoff evidence and human review decision state.",
+  "artifact_root": "artifacts/artemis-validation-gate/run-01/agent-runtime-completion-review-gate-check",
+  "inputs": {
+    "completion_handoff": "artifacts/artemis-validation-gate/run-01/agent-runtime-completion-handoff-check/completion-handoff.json",
+    "decision": "artifacts/artemis-validation-gate/run-01/agent-runtime-completion-review-gate-check/completion-review-decision.json"
+  },
+  "review_state": "waiting_for_completion_handoff_ready",
+  "next_action": "wait_for_completion_handoff_ready",
+  "summary": {
+    "completion_handoff_ready": false,
+    "completion_review_ready": false,
+    "completion_review_accepted": false,
+    "ready_for_done_ledger": false,
+    "decision": "pending",
+    "commands_executed": 0,
+    "failed_commands": 0,
+    "validations_executed": 0,
+    "rollback_required": false,
+    "residual_risks": 1,
+    "remote_writes_allowed": false,
+    "production_allowed": false,
+    "secrets_allowed": false,
+    "paid_tokens_authorized": 0,
+    "review_checks": 7,
+    "review_passed": 6,
+    "review_failed": 0,
+    "review_human_gate": 1
+  },
+  "completion_handoff": {
+    "overall": "human_gate",
+    "handoff_state": "waiting_for_post_execution_validation_completed",
+    "next_action": "wait_for_post_execution_validation_completed"
+  },
+  "review_checks": [
+    {
+      "id": "completion_handoff_exists",
+      "status": "passed",
+      "proof": "artifacts/artemis-validation-gate/run-01/agent-runtime-completion-handoff-check/completion-handoff.json"
+    },
+    {
+      "id": "completion_handoff_ready",
+      "status": "human_gate",
+      "proof": "overall=human_gate ready=False"
+    },
+    {
+      "id": "human_decision_record_exists",
+      "status": "passed",
+      "proof": "artifacts/artemis-validation-gate/run-01/agent-runtime-completion-review-gate-check/completion-review-decision.json"
+    },
+    {
+      "id": "human_decision_pending_or_valid",
+      "status": "passed",
+      "proof": "decision=pending"
+    },
+    {
+      "id": "done_not_authorized_without_human_acceptance",
+      "status": "passed",
+      "proof": "accepted_ready=false done_authorized=False"
+    },
+    {
+      "id": "runtime_and_validation_evidence_reviewed",
+      "status": "passed",
+      "proof": "commands_executed=0 validations_executed=0"
+    },
+    {
+      "id": "remote_close_blocked",
+      "status": "passed",
+      "proof": "remote_close_authorized=False"
+    }
+  ],
+  "review_package": {
+    "ready_for_done_ledger": false,
+    "ready_for_human_review": false,
+    "decision_file": "artifacts/artemis-validation-gate/run-01/agent-runtime-completion-review-gate-check/completion-review-decision.json",
+    "decision_record": {
+      "decision": "pending",
+      "decided_by": "",
+      "decided_at": "",
+      "reason": "",
+      "accepted_evidence": [],
+      "accepted_residual_risks": [],
+      "done_authorized": false,
+      "remote_close_authorized": false
+    },
+    "completion_handoff": {
+      "overall": "human_gate",
+      "handoff_state": "waiting_for_post_execution_validation_completed",
+      "next_action": "wait_for_post_execution_validation_completed"
+    },
+    "evidence_artifacts": {
+      "post_execution_validation_gate": "artifacts/artemis-validation-gate/run-01/agent-runtime-post-execution-validation-gate-check/post-execution-validation-gate.json",
+      "completion_handoff": "artifacts/artemis-validation-gate/run-01/agent-runtime-completion-handoff-check/COMPLETION_HANDOFF.md",
+      "status": "artifacts/artemis-validation-gate/run-01/agent-runtime-completion-handoff-check/STATUS.md",
+      "validation": "artifacts/artemis-validation-gate/run-01/agent-runtime-completion-handoff-check/VALIDATION.md",
+      "handoff": "artifacts/artemis-validation-gate/run-01/agent-runtime-completion-handoff-check/HANDOFF.md"
+    },
+    "residual_risks": [
+      "post_execution_validation_not_completed"
+    ]
+  },
+  "human_summary": {
+    "status": "human_gate",
+    "plain_language": "A revisao final ainda nao pode aceitar Done porque falta handoff pronto ou decisao humana completa.",
+    "operator_next_step": "wait_for_completion_handoff_ready"
+  },
+  "blockers": [],
+  "warnings": [],
+  "invariants": [
+    "Completion Review Gate consumes only Completion Handoff evidence plus a human-owned decision record.",
+    "Agents must not accept final review on behalf of humans.",
+    "Done Ledger is blocked until completion_review_accepted=true.",
+    "Remote close remains blocked unless a later separate gate authorizes it.",
+    "The review gate never runs commands, starts agents, pushes, deploys, or touches secrets."
+  ],
+  "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony"
+}

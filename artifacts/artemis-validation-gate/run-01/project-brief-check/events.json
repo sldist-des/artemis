@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T18:37:28Z",
+  "generated_at": "2026-05-11T19:35:04Z",
   "source": "scripts/artemis-project-brief.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-11T18:37:28Z",
+      "generated_at": "2026-05-11T19:35:04Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -47,11 +47,11 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 69,
-          "tasks_done": 69,
-          "events_total": 56,
-          "nodes_total": 20,
-          "edges_total": 46,
+          "tasks_total": 70,
+          "tasks_done": 70,
+          "events_total": 57,
+          "nodes_total": 21,
+          "edges_total": 50,
           "validation_passed": 1,
           "validation_failed": 0,
           "human_gates": 1,
@@ -62,7 +62,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony"
+        "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony"
       }
     }
   ]

@@ -73,6 +73,6 @@ scripts/artemis-agent-runtime-completion-handoff.sh \
 
 ## Proximo corte
 
-`TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony` deve
+`TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony` deve
 consumir `completion-handoff.json` e preparar a revisao humana final antes de
 qualquer Done externo.

@@ -41,6 +41,7 @@ shell_agent_runtime_launcher_supervised_execution	technical	passed	0	artifacts/a
 shell_agent_runtime_execution_result_intake	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_execution_result_intake.txt
 shell_agent_runtime_post_execution_validation_gate	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_post_execution_validation_gate.txt
 shell_agent_runtime_completion_handoff	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_completion_handoff.txt
+shell_agent_runtime_completion_review_gate	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_completion_review_gate.txt
 shell_approved_workspace_cleanup	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt
 shell_workspace_runtime_handoff	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt
 shell_runner	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt
@@ -91,6 +92,7 @@ agent_runtime_launcher_supervised_execution	technical	passed	0	artifacts/artemis
 agent_runtime_execution_result_intake	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_execution_result_intake.txt
 agent_runtime_post_execution_validation_gate	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_post_execution_validation_gate.txt
 agent_runtime_completion_handoff	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_completion_handoff.txt
+agent_runtime_completion_review_gate	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_completion_review_gate.txt
 approved_workspace_cleanup	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt
 workspace_runtime_handoff	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt
 runner_plan	technical	passed	0	artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt

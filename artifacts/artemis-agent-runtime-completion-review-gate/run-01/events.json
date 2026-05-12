@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-11T19:36:29Z",
+  "source": "scripts/artemis-agent-runtime-completion-review-gate.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_tkt-069_agent_runtime_completion_review_gate",
+      "event_type": "approval.requested",
+      "generated_at": "2026-05-11T19:36:29Z",
+      "producer": {
+        "adapter": "agent_runtime_completion_review_gate",
+        "name": "scripts/artemis-agent-runtime-completion-review-gate.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-069",
+        "task_id": "tkt-069",
+        "title": "Agent Runtime Completion Review Gate do ARTEMIS Symphony",
+        "exec_pack": "docs/exec-packs/done/TKT-069-artemis-agent-runtime-completion-review-gate.md",
+        "artifact_root": "artifacts/artemis-agent-runtime-completion-review-gate/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "human_gate",
+        "to": "human_gate",
+        "reason": "Completion review gate was derived from completion handoff evidence and human review decision state."
+      },
+      "gate": {
+        "kind": "human",
+        "status": "human_gate",
+        "reason": "Completion review result."
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-agent-runtime-completion-review-gate/run-01",
+        "status_path": "artifacts/artemis-agent-runtime-completion-review-gate/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-agent-runtime-completion-review-gate/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-agent-runtime-completion-review-gate/run-01/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-069"
+      },
+      "payload": {
+        "overall": "human_gate",
+        "reason": "Completion review gate was derived from completion handoff evidence and human review decision state.",
+        "summary": {
+          "completion_handoff_ready": false,
+          "completion_review_ready": false,
+          "completion_review_accepted": false,
+          "ready_for_done_ledger": false,
+          "decision": "pending",
+          "commands_executed": 0,
+          "failed_commands": 0,
+          "validations_executed": 0,
+          "rollback_required": false,
+          "residual_risks": 1,
+          "remote_writes_allowed": false,
+          "production_allowed": false,
+          "secrets_allowed": false,
+          "paid_tokens_authorized": 0,
+          "review_checks": 7,
+          "review_passed": 6,
+          "review_failed": 0,
+          "review_human_gate": 1
+        },
+        "review_state": "waiting_for_completion_handoff_ready",
+        "next_action": "wait_for_completion_handoff_ready",
+        "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony"
+      }
+    }
+  ]
+}

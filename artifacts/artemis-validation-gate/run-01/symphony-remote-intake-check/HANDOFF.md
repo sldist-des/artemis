@@ -6,7 +6,7 @@ Intake remoto revisavel esta `remote_intake_ready`. Ele prepara revisao local e 
 
 ## Proximo corte
 
-- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`.
+- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`.
 - Exigir decisao humana exata antes de promover item remoto para fila/service.
 - Manter GitHub writes bloqueados ate contrato explicito.
 

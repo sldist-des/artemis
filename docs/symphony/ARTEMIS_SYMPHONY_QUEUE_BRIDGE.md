@@ -61,4 +61,4 @@ scripts/artemis-symphony-queue-bridge.sh --ticket TKT-000 --command "cmd" --json
 
 ## Proximo corte
 
-`TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`
+`TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`

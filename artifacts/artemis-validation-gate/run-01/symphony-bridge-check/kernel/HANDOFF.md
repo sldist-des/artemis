@@ -6,7 +6,7 @@ Kernel local read-only concluido com overall `dispatch_plan_ready`.
 
 ## Proximo corte
 
-- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`.
+- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`.
 - Continuar com ponte plan-only por padrao e comando explicito por terminal.
 
 ## Nao fazer

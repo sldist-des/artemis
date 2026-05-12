@@ -6,7 +6,7 @@ TKT-068 avaliou o handoff de conclusao como `human_gate` com estado `waiting_for
 
 ## Proximo corte
 
-- Implementar `TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`, mantendo revisao bloqueada ate existir handoff pronto.
+- Implementar `TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`, mantendo revisao bloqueada ate existir handoff pronto.
 
 ## Nao fazer
 

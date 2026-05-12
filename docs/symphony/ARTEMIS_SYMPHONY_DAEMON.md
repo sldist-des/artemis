@@ -57,6 +57,6 @@ scripts/artemis-symphony-daemon.sh --json
 
 ## Proximo Corte
 
-`TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony`
+`TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony`
 
 Objetivo: consumir item revisado da fila com comando explicito e ponte supervisionada plan-only por padrao.

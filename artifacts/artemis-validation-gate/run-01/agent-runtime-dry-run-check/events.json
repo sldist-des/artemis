@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-11T18:37:29Z",
+  "generated_at": "2026-05-11T19:35:04Z",
   "source": "scripts/artemis-agent-runtime-dry-run.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-059_agent_runtime_dry_run",
       "event_type": "runner.attempt_planned",
-      "generated_at": "2026-05-11T18:37:29Z",
+      "generated_at": "2026-05-11T19:35:04Z",
       "producer": {
         "adapter": "agent_runtime_dry_run",
         "name": "scripts/artemis-agent-runtime-dry-run.sh",
@@ -51,8 +51,8 @@
         "overall": "agent_runtime_dry_run_ready",
         "reason": "Runtime launch request was materialized as auditable dry-run without starting agents.",
         "summary": {
-          "tasks_total": 69,
-          "tasks_done": 69,
+          "tasks_total": 70,
+          "tasks_done": 70,
           "validation_passed": 1,
           "validation_failed": 0,
           "human_gates_from_project": 1,
@@ -72,7 +72,7 @@
         },
         "launch_request": {
           "project": "ARTEMIS",
-          "task": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony",
+          "task": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony",
           "profile_id": "codex_terminal",
           "profile_name": "Codex terminal-first",
           "runtime": "codex_cli",
@@ -118,7 +118,7 @@
             "json": "artifacts/artemis-validation-gate/run-01/agent-runtime-dry-run-check/runtime-dry-run.json"
           }
         },
-        "next_cut": "TKT-069 - Agent Runtime Completion Review Gate do ARTEMIS Symphony"
+        "next_cut": "TKT-070 - Agent Runtime Done Ledger do ARTEMIS Symphony"
       }
     }
   ]

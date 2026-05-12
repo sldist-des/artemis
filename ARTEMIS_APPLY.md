@@ -11,10 +11,16 @@ Use ARTEMIS quando o projeto precisa receber trabalho de Codex, Claude Code ou o
 Na raiz deste repositorio ARTEMIS, rode:
 
 ```bash
-scripts/bootstrap-artemis.sh /caminho/do/projeto
+scripts/bootstrap-artemis.sh --profile lite /caminho/do/projeto
 ```
 
-O bootstrap copia os templates sem sobrescrever arquivos existentes.
+O bootstrap copia os templates, guias e helper de integracao sem sobrescrever
+arquivos existentes. Para instalar tambem o Control Plane local e o gerador de
+`tasks.json`, use:
+
+```bash
+scripts/bootstrap-artemis.sh --profile full /caminho/do/projeto
+```
 
 ## Adaptar no projeto alvo
 
@@ -25,7 +31,8 @@ Depois do bootstrap:
 3. Edite `AI_PROCESS.md` com o fluxo operacional do time.
 4. Mantenha `CLAUDE.md` como adaptador fino apontando para `AGENTS.md`.
 5. Crie o primeiro Exec Pack em `docs/exec-packs/active/`.
-6. Rode validacoes do projeto e registre evidencias em `artifacts/`.
+6. Gere os blocos de entrada com `scripts/artemis-integrations.sh --project . --agent both`.
+7. Rode validacoes do projeto e registre evidencias em `artifacts/`.
 
 ## Primeiro ciclo recomendado
 

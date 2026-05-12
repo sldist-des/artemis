@@ -16,6 +16,7 @@ Descreva aqui, em poucas linhas:
 - `ARCHITECTURE.md`
 - `AI_PROCESS.md`
 - `ARTEMIS_WORKFLOW.md`
+- `ARTEMIS_INTEGRATIONS.md`
 - `docs/invariants/core.md`
 - Exec Pack ativo em `docs/exec-packs/active/`
 - ADRs relevantes em `docs/decisions/`

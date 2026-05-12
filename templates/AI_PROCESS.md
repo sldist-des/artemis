@@ -16,6 +16,14 @@ Issue ou Exec Pack
   -> Handoff
 ```
 
+## Entrada rapida para agentes
+
+Gere blocos prontos para Codex CLI e Claude Code:
+
+```bash
+scripts/artemis-integrations.sh --project . --agent both
+```
+
 ## Exec Packs
 
 Local:
@@ -59,4 +67,3 @@ artifacts/<ticket>/run-XX/
 - Nivel 2: subagentes especializados.
 - Nivel 3: multi-worktree coordenado.
 - Nivel 4: harness programavel.
-

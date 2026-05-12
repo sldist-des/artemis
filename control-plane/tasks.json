@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T12:24:56Z",
+  "generated_at": "2026-05-12T12:52:18Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -853,6 +853,18 @@
       "summary": "- `overall=human_gate`",
       "exec_pack": "docs/exec-packs/done/TKT-070-artemis-agent-runtime-done-ledger.md",
       "evidence": "docs/exec-packs/done/TKT-070-artemis-agent-runtime-done-ledger.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-071",
+      "ticket": "TKT-071",
+      "title": "ARTEMIS portable integration",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "Um humano deve conseguir instalar ARTEMIS em modo leve ou completo, gerar blocos",
+      "exec_pack": "docs/exec-packs/done/TKT-071-artemis-portable-integration.md",
+      "evidence": "docs/exec-packs/done/TKT-071-artemis-portable-integration.md",
       "tags": ["exec-pack", "done"]
     }
   ]

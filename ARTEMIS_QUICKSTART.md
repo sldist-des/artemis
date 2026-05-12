@@ -60,7 +60,13 @@ Nao transforme prompt em governanca. Regra importante deve virar arquivo, hook, 
 Use o bootstrap:
 
 ```bash
-scripts/bootstrap-artemis.sh /caminho/do/projeto
+scripts/bootstrap-artemis.sh --profile lite /caminho/do/projeto
 ```
 
 Depois adapte `AGENTS.md`, `ARCHITECTURE.md`, `AI_PROCESS.md` e o primeiro Exec Pack. Para o handoff curto, leia `ARTEMIS_APPLY.md`.
+
+Para gerar blocos prontos de entrada para Codex CLI e Claude Code no projeto alvo:
+
+```bash
+scripts/artemis-integrations.sh --project /caminho/do/projeto --agent both
+```

@@ -270,10 +270,18 @@ Leia tambem `ARTEMIS_APPLY.md` para o handoff curto de aplicacao.
 ## Bootstrap rapido
 
 ```bash
-./scripts/bootstrap-artemis.sh /caminho/do/projeto
+./scripts/bootstrap-artemis.sh --profile lite /caminho/do/projeto
 ```
 
-O script copia o kit base sem sobrescrever arquivos existentes. Revise manualmente os arquivos criados antes de usar em producao.
+O script copia o kit base sem sobrescrever arquivos existentes. Use
+`--profile full` para incluir Control Plane local e gerador de `tasks.json`.
+Revise manualmente os arquivos criados antes de usar em producao.
+
+Gere os blocos de entrada para Codex CLI e Claude Code com:
+
+```bash
+./scripts/artemis-integrations.sh --project /caminho/do/projeto --agent both
+```
 
 ## Readiness de aplicacao
 

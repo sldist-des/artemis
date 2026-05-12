@@ -10,6 +10,7 @@ README.md
 ARTEMIS_QUICKSTART.md
 ARTEMIS_WORKFLOW.md
 ARTEMIS_APPLY.md
+ARTEMIS_INTEGRATIONS.md
 .impeccable.md
 docs/symphony/ARTEMIS_SYMPHONY_SPEC.md
 docs/symphony/ARTEMIS_SYMPHONY_KERNEL.md
@@ -61,6 +62,7 @@ prompts/context-curator.md
 prompts/implementer.md
 prompts/reviewer.md
 scripts/bootstrap-artemis.sh
+scripts/artemis-integrations.sh
 scripts/github-readiness.sh
 scripts/artemis-tasks.sh
 scripts/artemis-dry-run.sh
@@ -164,6 +166,7 @@ if grep -R "$placeholder_owner" . \
 fi
 
 sh -n scripts/bootstrap-artemis.sh
+sh -n scripts/artemis-integrations.sh
 sh -n scripts/github-readiness.sh
 sh -n scripts/artemis-tasks.sh
 sh -n scripts/artemis-dry-run.sh
@@ -221,6 +224,46 @@ sh -n scripts/validate-artemis.sh
 scripts/artemis-tasks.sh >/tmp/artemis-tasks.json
 if ! grep -q '"tasks": \[' /tmp/artemis-tasks.json; then
   echo "scripts/artemis-tasks.sh did not emit the expected tasks JSON" >&2
+  exit 1
+fi
+
+scripts/artemis-integrations.sh --project /tmp/artemis-target --agent both >/tmp/artemis-integrations.md
+if ! grep -q '## Codex CLI' /tmp/artemis-integrations.md; then
+  echo "scripts/artemis-integrations.sh did not emit Codex integration block" >&2
+  exit 1
+fi
+if ! grep -q '## Claude Code' /tmp/artemis-integrations.md; then
+  echo "scripts/artemis-integrations.sh did not emit Claude integration block" >&2
+  exit 1
+fi
+scripts/artemis-integrations.sh --project /tmp/artemis-target --agent codex --format json >/tmp/artemis-integrations.json
+if ! grep -q '"agent": "codex"' /tmp/artemis-integrations.json; then
+  echo "scripts/artemis-integrations.sh did not emit JSON integration metadata" >&2
+  exit 1
+fi
+
+rm -rf /tmp/artemis-bootstrap-lite /tmp/artemis-bootstrap-full
+mkdir -p /tmp/artemis-bootstrap-lite /tmp/artemis-bootstrap-full
+scripts/bootstrap-artemis.sh --profile lite /tmp/artemis-bootstrap-lite >/tmp/artemis-bootstrap-lite.log
+if ! test -f /tmp/artemis-bootstrap-lite/AGENTS.md; then
+  echo "bootstrap lite did not install AGENTS.md" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-bootstrap-lite/ARTEMIS_WORKFLOW.md; then
+  echo "bootstrap lite did not install ARTEMIS_WORKFLOW.md" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-bootstrap-lite/scripts/artemis-integrations.sh; then
+  echo "bootstrap lite did not install integration helper" >&2
+  exit 1
+fi
+scripts/bootstrap-artemis.sh --profile full /tmp/artemis-bootstrap-full >/tmp/artemis-bootstrap-full.log
+if ! test -f /tmp/artemis-bootstrap-full/control-plane/index.html; then
+  echo "bootstrap full did not install Control Plane" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-bootstrap-full/scripts/artemis-tasks.sh; then
+  echo "bootstrap full did not install tasks generator" >&2
   exit 1
 fi
 

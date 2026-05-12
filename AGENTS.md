@@ -17,6 +17,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 - `README.md`
 - `ARTEMIS_QUICKSTART.md`
 - `ARTEMIS_WORKFLOW.md`
+- `ARTEMIS_INTEGRATIONS.md`
 - `fluxo-artemis-claude-codex-v1.3.md`
 - `artemis-arquitetura-agentes.md`
 - `artemis-github-operating-model.md`
@@ -43,6 +44,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 
 ```bash
 scripts/validate-artemis.sh
+scripts/artemis-integrations.sh --project . --agent both
 scripts/artemis-guided-collaboration.sh --json
 scripts/artemis-agent-launch-contract.sh --json
 scripts/artemis-agent-runtime-dry-run.sh --json

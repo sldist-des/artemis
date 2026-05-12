@@ -151,6 +151,20 @@ The contract lives in:
 docs/portal/ARTEMIS_PORTAL_CREDENTIAL_VAULT.md
 ```
 
+Agent selection is also a separate contract. The portal must choose registered
+agent profiles by capability, budget, workspace policy, validation policy and
+vault lease instead of letting arbitrary agents run arbitrary tasks:
+
+```bash
+scripts/artemis-portal-agent-registry.sh --artifact-root artifacts/artemis-portal-agent-registry/run-01
+```
+
+The registry contract lives in:
+
+```text
+docs/portal/ARTEMIS_PORTAL_AGENT_REGISTRY.md
+```
+
 ## ARTEMIS Symphony evidence
 
 The Control Plane includes a read-only `ARTEMIS Symphony` section for the local Symphony cuts.

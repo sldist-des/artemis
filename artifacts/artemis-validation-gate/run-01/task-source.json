@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T16:42:46Z",
+  "generated_at": "2026-05-12T17:13:20Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -889,6 +889,18 @@
       "summary": "Um contrato verificavel deve definir storage boundary, metadados de credencial,",
       "exec_pack": "docs/exec-packs/done/TKT-073-artemis-portal-credential-vault.md",
       "evidence": "artifacts/artemis-portal-credential-vault/run-01/credential-vault-contract.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-074",
+      "ticket": "TKT-074",
+      "title": "ARTEMIS Portal Agent Registry Contract",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "Um contrato verificavel deve registrar perfis iniciais de agente, campos",
+      "exec_pack": "docs/exec-packs/done/TKT-074-artemis-portal-agent-registry.md",
+      "evidence": "artifacts/artemis-portal-agent-registry/run-01/agent-registry-contract.json",
       "tags": ["exec-pack", "done"]
     }
   ]

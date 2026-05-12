@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `24`.
-- Edges: `66`.
-- Tasks: `74`.
-- Events: `60`.
+- Nodes: `25`.
+- Edges: `75`.
+- Tasks: `75`.
+- Events: `61`.
 
 ## Nos
 
@@ -34,6 +34,7 @@
 - `runtime:done_ledger` (runtime_done_ledger): Agent Runtime Done Ledger.
 - `portal:auth_plan` (portal_auth_plan): ARTEMIS Portal Auth Plan.
 - `portal:credential_vault` (portal_credential_vault): ARTEMIS Portal Credential Vault.
+- `portal:agent_registry` (portal_agent_registry): ARTEMIS Portal Agent Registry.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -95,15 +96,24 @@
 - `portal:auth_plan` --requires_cost_ledger--> `cost:budget`.
 - `portal:auth_plan` --records_auth_contract--> `event_log:timeline`.
 - `portal:auth_plan` --requires_vault_before_provider_auth--> `portal:credential_vault`.
+- `portal:auth_plan` --declares_agent_management_need--> `portal:agent_registry`.
 - `portal:credential_vault` --brokers_scoped_lease--> `adapter:codex_app_server`.
 - `portal:credential_vault` --brokers_scoped_lease--> `adapter:claude_code`.
 - `portal:credential_vault` --requires_lease_gate--> `gate:human`.
 - `portal:credential_vault` --records_vault_contract--> `event_log:timeline`.
+- `portal:credential_vault` --gates_provider_backed_profiles--> `portal:agent_registry`.
+- `portal:agent_registry` --registers_profile--> `adapter:codex_app_server`.
+- `portal:agent_registry` --registers_profile--> `adapter:claude_code`.
+- `portal:agent_registry` --requires_budget_policy--> `cost:budget`.
+- `portal:agent_registry` --requires_validation_policy--> `validation:gate`.
+- `portal:agent_registry` --requires_launch_and_remote_write_gates--> `gate:human`.
+- `portal:agent_registry` --records_registry_contract--> `event_log:timeline`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.
 - `control_plane:view` --shows--> `portal:auth_plan`.
 - `control_plane:view` --shows--> `portal:credential_vault`.
+- `control_plane:view` --shows--> `portal:agent_registry`.
 
 ## Perguntas operacionais
 

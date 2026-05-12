@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T16:42:36Z",
+  "generated_at": "2026-05-12T17:13:53Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -22,20 +22,21 @@
     "runtime_completion_review_gate": "artifacts/artemis-agent-runtime-completion-review-gate/run-01/completion-review-gate.json",
     "runtime_done_ledger": "artifacts/artemis-agent-runtime-done-ledger/run-01/done-ledger.json",
     "portal_auth_plan": "artifacts/artemis-portal-auth-plan/run-01/portal-auth-plan.json",
-    "portal_credential_vault": "artifacts/artemis-portal-credential-vault/run-01/credential-vault-contract.json"
+    "portal_credential_vault": "artifacts/artemis-portal-credential-vault/run-01/credential-vault-contract.json",
+    "portal_agent_registry": "artifacts/artemis-portal-agent-registry/run-01/agent-registry-contract.json"
   },
   "summary": {
-    "tasks_total": 74,
-    "tasks_done": 74,
+    "tasks_total": 75,
+    "tasks_done": 75,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 8,
-    "events_total": 60,
-    "nodes_total": 24,
-    "edges_total": 66,
-    "evidence_count": 74,
-    "exec_pack_count": 74,
-    "validation_passed": 109,
+    "events_total": 61,
+    "nodes_total": 25,
+    "edges_total": 75,
+    "evidence_count": 75,
+    "exec_pack_count": 75,
+    "validation_passed": 113,
     "validation_failed": 0,
     "validation_human_gate": 2,
     "memory_zones": 3,
@@ -47,10 +48,10 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 74
+    "done": 75
   },
   "risks": {
-    "medium": 59,
+    "medium": 60,
     "low": 4,
     "high": 11
   },
@@ -61,7 +62,7 @@
     ],
     [
       "Codex",
-      18
+      19
     ],
     [
       "Context Curator",
@@ -91,11 +92,11 @@
   "top_tags": [
     [
       "exec-pack",
-      74
+      75
     ],
     [
       "done",
-      74
+      75
     ]
   ],
   "nodes": [
@@ -110,8 +111,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 74,
-      "done": 74,
+      "count": 75,
+      "done": 75,
       "human": 0
     },
     {
@@ -126,7 +127,7 @@
         ],
         [
           "Codex",
-          18
+          19
         ],
         [
           "Context Curator",
@@ -153,7 +154,7 @@
       "id": "validation:gate",
       "type": "validation",
       "label": "Validation Gate",
-      "passed": 109,
+      "passed": 113,
       "failed": 0
     },
     {
@@ -167,14 +168,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 74,
-      "exec_packs": 74
+      "task_evidence": 75,
+      "exec_packs": 75
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 60
+      "events": 61
     },
     {
       "id": "cost:budget",
@@ -332,6 +333,19 @@
       "provider_bindings": 3,
       "policy_gates": 8,
       "next_cut": "TKT-074 - ARTEMIS Portal Agent Registry Contract"
+    },
+    {
+      "id": "portal:agent_registry",
+      "type": "portal_agent_registry",
+      "label": "ARTEMIS Portal Agent Registry",
+      "status": "registry_ready",
+      "agent_registry_ready": true,
+      "secret_values_recorded": false,
+      "runtime_auth_executed": false,
+      "agents_started": false,
+      "profiles": 3,
+      "capabilities": 6,
+      "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract"
     },
     {
       "id": "control_plane:view",
@@ -627,6 +641,11 @@
       "type": "requires_vault_before_provider_auth"
     },
     {
+      "from": "portal:auth_plan",
+      "to": "portal:agent_registry",
+      "type": "declares_agent_management_need"
+    },
+    {
       "from": "portal:credential_vault",
       "to": "adapter:codex_app_server",
       "type": "brokers_scoped_lease"
@@ -645,6 +664,41 @@
       "from": "portal:credential_vault",
       "to": "event_log:timeline",
       "type": "records_vault_contract"
+    },
+    {
+      "from": "portal:credential_vault",
+      "to": "portal:agent_registry",
+      "type": "gates_provider_backed_profiles"
+    },
+    {
+      "from": "portal:agent_registry",
+      "to": "adapter:codex_app_server",
+      "type": "registers_profile"
+    },
+    {
+      "from": "portal:agent_registry",
+      "to": "adapter:claude_code",
+      "type": "registers_profile"
+    },
+    {
+      "from": "portal:agent_registry",
+      "to": "cost:budget",
+      "type": "requires_budget_policy"
+    },
+    {
+      "from": "portal:agent_registry",
+      "to": "validation:gate",
+      "type": "requires_validation_policy"
+    },
+    {
+      "from": "portal:agent_registry",
+      "to": "gate:human",
+      "type": "requires_launch_and_remote_write_gates"
+    },
+    {
+      "from": "portal:agent_registry",
+      "to": "event_log:timeline",
+      "type": "records_registry_contract"
     },
     {
       "from": "control_plane:view",
@@ -669,6 +723,11 @@
     {
       "from": "control_plane:view",
       "to": "portal:credential_vault",
+      "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "portal:agent_registry",
       "type": "shows"
     }
   ],
@@ -736,8 +795,9 @@
     "runtime_done_ledger_input": "artemis_agent_runtime_done_ledger",
     "portal_auth_plan_input": "artemis_portal_auth_plan",
     "portal_credential_vault_input": "artemis_portal_credential_vault",
+    "portal_agent_registry_input": "artemis_portal_agent_registry",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },
-  "next_cut": "NONE - ARTEMIS Symphony runtime spine complete"
+  "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract"
 }

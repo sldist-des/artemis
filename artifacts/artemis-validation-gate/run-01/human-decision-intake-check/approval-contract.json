@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T16:42:47Z",
+  "generated_at": "2026-05-12T17:13:21Z",
   "source": "scripts/artemis-human-cleanup-approval-contract.sh",
   "mode": "read_only",
   "decision": "artifacts/artemis-validation-gate/run-01/real-cleanup-decision-package-check/real-cleanup-decision.json",

@@ -1,7 +1,7 @@
 # ARTEMIS EVENT LOG SCHEMA
 
 - Schema version: 1
-- Events: 60
+- Events: 61
 - Source: scripts/artemis-event-log.sh
 
 ## Event Types
@@ -66,6 +66,7 @@
 - `human_gate.opened`: `evt_tkt-070_agent_runtime_done_ledger` -> human_gate
 - `adapter.contract_recorded`: `evt_portal_auth_plan_recorded` -> done
 - `adapter.contract_recorded`: `evt_portal_credential_vault_contract_recorded` -> done
+- `adapter.contract_recorded`: `evt_portal_agent_registry_contract_recorded` -> done
 
 ## Invariants
 

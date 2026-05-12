@@ -143,6 +143,7 @@ runtime_completion_review_gate_payload = read_json(Path("artifacts/artemis-agent
 runtime_done_ledger_payload = read_json(Path("artifacts/artemis-agent-runtime-done-ledger/run-01/done-ledger.json"), {"summary": {}, "overall": "not_available"})
 portal_auth_payload = read_json(Path("artifacts/artemis-portal-auth-plan/run-01/portal-auth-plan.json"), {"portal_auth": {}, "overall": "not_available"})
 portal_credential_vault_payload = read_json(Path("artifacts/artemis-portal-credential-vault/run-01/credential-vault-contract.json"), {"vault_contract": {}, "overall": "not_available"})
+portal_agent_registry_payload = read_json(Path("artifacts/artemis-portal-agent-registry/run-01/agent-registry-contract.json"), {"registry_contract": {}, "overall": "not_available"})
 
 tasks = tasks_payload.get("tasks", [])
 events = event_log_payload.get("events", [])
@@ -371,6 +372,19 @@ nodes = [
         "next_cut": portal_credential_vault_payload.get("next_cut", "unknown"),
     },
     {
+        "id": "portal:agent_registry",
+        "type": "portal_agent_registry",
+        "label": "ARTEMIS Portal Agent Registry",
+        "status": portal_agent_registry_payload.get("overall", "not_available"),
+        "agent_registry_ready": portal_agent_registry_payload.get("agent_registry_ready", False),
+        "secret_values_recorded": portal_agent_registry_payload.get("secret_values_recorded", False),
+        "runtime_auth_executed": portal_agent_registry_payload.get("runtime_auth_executed", False),
+        "agents_started": portal_agent_registry_payload.get("agents_started", False),
+        "profiles": len(portal_agent_registry_payload.get("registry_contract", {}).get("profile_bindings", [])),
+        "capabilities": len(portal_agent_registry_payload.get("registry_contract", {}).get("capability_catalog", [])),
+        "next_cut": portal_agent_registry_payload.get("next_cut", "unknown"),
+    },
+    {
         "id": "control_plane:view",
         "type": "view",
         "label": "Control Plane",
@@ -436,15 +450,24 @@ edges = [
     {"from": "portal:auth_plan", "to": "cost:budget", "type": "requires_cost_ledger"},
     {"from": "portal:auth_plan", "to": "event_log:timeline", "type": "records_auth_contract"},
     {"from": "portal:auth_plan", "to": "portal:credential_vault", "type": "requires_vault_before_provider_auth"},
+    {"from": "portal:auth_plan", "to": "portal:agent_registry", "type": "declares_agent_management_need"},
     {"from": "portal:credential_vault", "to": "adapter:codex_app_server", "type": "brokers_scoped_lease"},
     {"from": "portal:credential_vault", "to": "adapter:claude_code", "type": "brokers_scoped_lease"},
     {"from": "portal:credential_vault", "to": "gate:human", "type": "requires_lease_gate"},
     {"from": "portal:credential_vault", "to": "event_log:timeline", "type": "records_vault_contract"},
+    {"from": "portal:credential_vault", "to": "portal:agent_registry", "type": "gates_provider_backed_profiles"},
+    {"from": "portal:agent_registry", "to": "adapter:codex_app_server", "type": "registers_profile"},
+    {"from": "portal:agent_registry", "to": "adapter:claude_code", "type": "registers_profile"},
+    {"from": "portal:agent_registry", "to": "cost:budget", "type": "requires_budget_policy"},
+    {"from": "portal:agent_registry", "to": "validation:gate", "type": "requires_validation_policy"},
+    {"from": "portal:agent_registry", "to": "gate:human", "type": "requires_launch_and_remote_write_gates"},
+    {"from": "portal:agent_registry", "to": "event_log:timeline", "type": "records_registry_contract"},
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:auth_plan", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:credential_vault", "type": "shows"},
+    {"from": "control_plane:view", "to": "portal:agent_registry", "type": "shows"},
 ]
 
 questions = [
@@ -521,6 +544,7 @@ payload = {
         "runtime_done_ledger": "artifacts/artemis-agent-runtime-done-ledger/run-01/done-ledger.json",
         "portal_auth_plan": "artifacts/artemis-portal-auth-plan/run-01/portal-auth-plan.json",
         "portal_credential_vault": "artifacts/artemis-portal-credential-vault/run-01/credential-vault-contract.json",
+        "portal_agent_registry": "artifacts/artemis-portal-agent-registry/run-01/agent-registry-contract.json",
     },
     "summary": summary,
     "states": dict(states),
@@ -557,10 +581,11 @@ payload = {
         "runtime_done_ledger_input": "artemis_agent_runtime_done_ledger",
         "portal_auth_plan_input": "artemis_portal_auth_plan",
         "portal_credential_vault_input": "artemis_portal_credential_vault",
+        "portal_agent_registry_input": "artemis_portal_agent_registry",
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },
-    "next_cut": "NONE - ARTEMIS Symphony runtime spine complete",
+    "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract",
 }
 
 write_text(artifact_root / "project-graph.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")

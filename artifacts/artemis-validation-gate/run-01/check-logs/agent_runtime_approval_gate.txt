@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T16:42:52Z",
+  "generated_at": "2026-05-12T17:13:26Z",
   "source": "scripts/artemis-agent-runtime-approval-gate.sh",
   "mode": "agent_runtime_approval_gate",
   "overall": "agent_runtime_approval_gate_ready",

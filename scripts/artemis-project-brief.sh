@@ -189,7 +189,7 @@ payload = {
     "missing_tokens": missing_tokens,
     "missing_files": missing_files,
     "required_tokens": required_tokens,
-    "next_cut": "NONE - ARTEMIS Symphony runtime spine complete",
+    "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract",
 }
 
 brief_ready = (

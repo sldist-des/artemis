@@ -132,7 +132,7 @@ payload = {
         "No graph database, canvas engine, frontend framework or runtime is introduced.",
         "Human Gates, Validation Gate, Event Log, Exec Packs and git remain authoritative.",
     ],
-    "next_cut": "NONE - ARTEMIS Symphony runtime spine complete",
+    "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract",
 }
 
 (artifact_root / "project-graph-view.json").write_text(

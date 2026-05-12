@@ -102,7 +102,8 @@
             "agent_runtime_completion_review_gate",
             "agent_runtime_done_ledger",
             "portal_auth_plan",
-            "portal_credential_vault"
+            "portal_credential_vault",
+            "portal_agent_registry"
           ]
         },
         "name": {

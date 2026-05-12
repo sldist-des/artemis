@@ -42,6 +42,7 @@ docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_COMPLETION_REVIEW_GATE.md
 docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_DONE_LEDGER.md
 docs/portal/ARTEMIS_PORTAL_AUTH_PLAN.md
 docs/portal/ARTEMIS_PORTAL_CREDENTIAL_VAULT.md
+docs/portal/ARTEMIS_PORTAL_AGENT_REGISTRY.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
@@ -111,6 +112,7 @@ scripts/artemis-agent-runtime-completion-review-gate.sh
 scripts/artemis-agent-runtime-done-ledger.sh
 scripts/artemis-portal-auth-plan.sh
 scripts/artemis-portal-credential-vault.sh
+scripts/artemis-portal-agent-registry.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -217,6 +219,7 @@ sh -n scripts/artemis-agent-runtime-completion-review-gate.sh
 sh -n scripts/artemis-agent-runtime-done-ledger.sh
 sh -n scripts/artemis-portal-auth-plan.sh
 sh -n scripts/artemis-portal-credential-vault.sh
+sh -n scripts/artemis-portal-agent-registry.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -280,6 +283,27 @@ if ! grep -q '"runtime_auth_executed": false' /tmp/artemis-portal-credential-vau
 fi
 if ! test -f /tmp/artemis-portal-credential-vault/CREDENTIAL_VAULT.md; then
   echo "scripts/artemis-portal-credential-vault.sh did not write vault documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-portal-agent-registry.sh --artifact-root /tmp/artemis-portal-agent-registry --json >/tmp/artemis-portal-agent-registry.json
+if ! grep -q '"overall": "registry_ready"' /tmp/artemis-portal-agent-registry.json; then
+  echo "scripts/artemis-portal-agent-registry.sh did not report registry_ready" >&2
+  exit 1
+fi
+if ! grep -q '"secret_values_recorded": false' /tmp/artemis-portal-agent-registry.json; then
+  echo "scripts/artemis-portal-agent-registry.sh recorded secret values" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_auth_executed": false' /tmp/artemis-portal-agent-registry.json; then
+  echo "scripts/artemis-portal-agent-registry.sh executed runtime auth" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": false' /tmp/artemis-portal-agent-registry.json; then
+  echo "scripts/artemis-portal-agent-registry.sh started agents" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-agent-registry/AGENT_REGISTRY.md; then
+  echo "scripts/artemis-portal-agent-registry.sh did not write registry documentation artifact" >&2
   exit 1
 fi
 

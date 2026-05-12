@@ -1,7 +1,7 @@
 # VALIDATION GATE RESULT
 
 - Overall: human_gate
-- Passed: 111
+- Passed: 113
 - Failed: 0
 - Human Gate: 2
 
@@ -54,6 +54,7 @@
 - shell_agent_runtime_done_ledger: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_done_ledger.txt`
 - shell_portal_auth_plan: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_auth_plan.txt`
 - shell_portal_credential_vault: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_credential_vault.txt`
+- shell_portal_agent_registry: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_agent_registry.txt`
 - shell_approved_workspace_cleanup: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt`
 - shell_workspace_runtime_handoff: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt`
 - shell_runner: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt`
@@ -108,6 +109,7 @@
 - agent_runtime_done_ledger: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_done_ledger.txt`
 - portal_auth_plan: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/portal_auth_plan.txt`
 - portal_credential_vault: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/portal_credential_vault.txt`
+- portal_agent_registry: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/portal_agent_registry.txt`
 - approved_workspace_cleanup: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt`
 - workspace_runtime_handoff: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt`
 - runner_plan: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt`

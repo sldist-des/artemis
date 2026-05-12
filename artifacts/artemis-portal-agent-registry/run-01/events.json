@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-12T17:11:20Z",
+  "source": "scripts/artemis-portal-agent-registry.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_agent_registry_contract_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-12T17:11:20Z",
+      "producer": {
+        "adapter": "portal_agent_registry",
+        "name": "scripts/artemis-portal-agent-registry.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-074",
+        "task_id": "tkt-074",
+        "title": "ARTEMIS Portal Agent Registry Contract",
+        "exec_pack": "docs/exec-packs/done/TKT-074-artemis-portal-agent-registry.md",
+        "artifact_root": "artifacts/artemis-portal-agent-registry/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "context",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-agent-registry/run-01",
+        "status_path": "artifacts/artemis-portal-agent-registry/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-agent-registry/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-agent-registry/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-agent-registry/run-01/agent-registry-contract.json",
+          "artifacts/artemis-portal-agent-registry/run-01/AGENT_REGISTRY.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-074"
+      },
+      "payload": {
+        "agent_registry_ready": true,
+        "profiles": 3,
+        "capabilities": 6,
+        "secret_values_recorded": false,
+        "runtime_auth_executed": false,
+        "agents_started": false,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract"
+      }
+    }
+  ]
+}

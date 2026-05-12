@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T16:42:36Z",
+  "generated_at": "2026-05-12T17:14:02Z",
   "source": "scripts/artemis-project-graph-view.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-12T16:42:36Z",
+      "generated_at": "2026-05-12T17:14:02Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -47,11 +47,11 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 24,
-          "edges_rendered": 66,
+          "nodes_rendered": 25,
+          "edges_rendered": 75,
           "questions_rendered": 3,
           "invariants_rendered": 3,
-          "validation_passed": 109,
+          "validation_passed": 113,
           "human_gates": 2,
           "dependencies_installed": 0,
           "commands_executed": 0,
@@ -59,7 +59,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "NONE - ARTEMIS Symphony runtime spine complete"
+        "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract"
       }
     }
   ]

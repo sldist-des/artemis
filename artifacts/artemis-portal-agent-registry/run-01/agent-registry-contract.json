@@ -1,0 +1,319 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-12T17:11:20Z",
+  "overall": "registry_ready",
+  "agent_registry_ready": true,
+  "secret_values_recorded": false,
+  "runtime_auth_executed": false,
+  "agents_started": false,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract",
+  "missing_files": [],
+  "registry_contract": {
+    "purpose": "Declare which supervised agents the ARTEMIS Portal may offer, what they are allowed to do, and which gates must pass before launch.",
+    "state": "contract_only",
+    "secret_values_recorded": false,
+    "runtime_auth_executed": false,
+    "agents_started": false,
+    "remote_state_mutated": false,
+    "model_selection": {
+      "rule": "Agent profiles reference model policies, not hardcoded provider credentials or immutable model names.",
+      "sources": [
+        "organization policy",
+        "provider capability discovery",
+        "project risk tier",
+        "budget policy",
+        "human override"
+      ],
+      "invariant": "Changing a model must not change credential scope, validation gates or authority boundaries."
+    },
+    "profile_record": {
+      "required_fields": [
+        "agent_id",
+        "display_name",
+        "provider_id",
+        "adapter",
+        "runtime_kind",
+        "model_policy",
+        "role_family",
+        "best_for",
+        "task_shape",
+        "requires_vault_lease",
+        "receives_raw_secret",
+        "default_capabilities",
+        "forbidden_capabilities",
+        "limits",
+        "budget_policy_id",
+        "validation_policy_id",
+        "human_gate_policy_id",
+        "workspace_policy_id"
+      ],
+      "forbidden_fields": [
+        "plaintext_secret",
+        "raw_access_token",
+        "raw_refresh_token",
+        "private_key_material",
+        "password",
+        "session_cookie",
+        "unbounded_system_prompt"
+      ]
+    },
+    "state_model": [
+      "draft",
+      "ready",
+      "waiting_for_provider_connection",
+      "waiting_for_vault_lease",
+      "waiting_for_budget",
+      "waiting_for_human_gate",
+      "available",
+      "assigned",
+      "running",
+      "validating",
+      "blocked",
+      "disabled"
+    ],
+    "assignment_rules": [
+      "One writer per worktree.",
+      "A verifier must not verify its own unreviewed implementation run.",
+      "Provider capability must exist before a profile becomes available.",
+      "Vault lease is required before provider-backed runtime launch.",
+      "Budget policy is required before token spend.",
+      "Remote write capability is disabled unless a Human Gate explicitly approves it.",
+      "Long or high-risk work defaults to the frontier Codex profile unless human policy chooses otherwise.",
+      "Repository mapping and medium bounded work may use the Claude Code profile when its provider connection is available."
+    ],
+    "capability_catalog": [
+      {
+        "capability": "read_repo",
+        "risk": "low",
+        "human_gate_required": false,
+        "validation_required": false
+      },
+      {
+        "capability": "write_worktree",
+        "risk": "medium",
+        "human_gate_required": false,
+        "validation_required": true
+      },
+      {
+        "capability": "run_local_tests",
+        "risk": "low",
+        "human_gate_required": false,
+        "validation_required": true
+      },
+      {
+        "capability": "open_pr_draft",
+        "risk": "medium",
+        "human_gate_required": true,
+        "validation_required": true
+      },
+      {
+        "capability": "push_branch",
+        "risk": "high",
+        "human_gate_required": true,
+        "validation_required": true
+      },
+      {
+        "capability": "deploy_production",
+        "risk": "critical",
+        "human_gate_required": true,
+        "validation_required": true,
+        "default_allowed": false
+      }
+    ],
+    "profile_bindings": [
+      {
+        "agent_id": "codex_frontier_engineer",
+        "display_name": "Codex Frontier Engineer",
+        "provider_id": "openai_codex",
+        "adapter": "codex_app_server",
+        "runtime_kind": "codex",
+        "model_policy": "organization_frontier_default",
+        "role_family": [
+          "architect",
+          "executor",
+          "code-reviewer",
+          "verifier"
+        ],
+        "best_for": [
+          "long-horizon implementation",
+          "complex refactors",
+          "multi-file reasoning",
+          "high-risk validation planning"
+        ],
+        "task_shape": "medium_to_long",
+        "requires_vault_lease": true,
+        "receives_raw_secret": false,
+        "budget_policy_id": "budget:frontier-engineering",
+        "validation_policy_id": "validation:standard-plus",
+        "human_gate_policy_id": "human-gate:remote-write-and-high-risk",
+        "workspace_policy_id": "workspace:single-writer-worktree",
+        "default_capabilities": [
+          "read_repo",
+          "write_worktree",
+          "run_local_tests",
+          "produce_handoff",
+          "request_human_gate"
+        ],
+        "forbidden_capabilities": [
+          "read_plaintext_secrets",
+          "bypass_human_gate",
+          "push_without_gate",
+          "modify_branch_protection",
+          "deploy_production"
+        ],
+        "limits": {
+          "max_concurrent_runs_per_project": 2,
+          "max_task_duration_minutes": 180,
+          "requires_budget_policy": true,
+          "requires_validation_policy": true
+        }
+      },
+      {
+        "agent_id": "claude_code_mapper",
+        "display_name": "Claude Code Mapper",
+        "provider_id": "anthropic_claude",
+        "adapter": "claude_agent_sdk",
+        "runtime_kind": "claude_code",
+        "model_policy": "organization_claude_code_default",
+        "role_family": [
+          "explore",
+          "debugger",
+          "executor",
+          "writer"
+        ],
+        "best_for": [
+          "repository mapping",
+          "language and framework orientation",
+          "medium implementation slices",
+          "documentation and handoff drafting"
+        ],
+        "task_shape": "short_to_medium",
+        "requires_vault_lease": true,
+        "receives_raw_secret": false,
+        "budget_policy_id": "budget:medium-slice",
+        "validation_policy_id": "validation:standard",
+        "human_gate_policy_id": "human-gate:remote-write",
+        "workspace_policy_id": "workspace:single-writer-worktree",
+        "default_capabilities": [
+          "read_repo",
+          "write_worktree",
+          "run_local_tests",
+          "produce_handoff",
+          "request_human_gate"
+        ],
+        "forbidden_capabilities": [
+          "read_plaintext_secrets",
+          "bypass_human_gate",
+          "push_without_gate",
+          "modify_branch_protection",
+          "deploy_production"
+        ],
+        "limits": {
+          "max_concurrent_runs_per_project": 3,
+          "max_task_duration_minutes": 90,
+          "requires_budget_policy": true,
+          "requires_validation_policy": true
+        }
+      },
+      {
+        "agent_id": "artemis_verifier",
+        "display_name": "ARTEMIS Verifier",
+        "provider_id": "openai_codex",
+        "adapter": "codex_app_server",
+        "runtime_kind": "codex",
+        "model_policy": "organization_standard_verifier_default",
+        "role_family": [
+          "verifier",
+          "test-engineer",
+          "code-reviewer"
+        ],
+        "best_for": [
+          "claim validation",
+          "test adequacy review",
+          "completion evidence",
+          "handoff acceptance checks"
+        ],
+        "task_shape": "short_to_medium",
+        "requires_vault_lease": true,
+        "receives_raw_secret": false,
+        "budget_policy_id": "budget:verification",
+        "validation_policy_id": "validation:review-only",
+        "human_gate_policy_id": "human-gate:completion-acceptance",
+        "workspace_policy_id": "workspace:read-mostly-verifier",
+        "default_capabilities": [
+          "read_repo",
+          "run_local_tests",
+          "read_artifacts",
+          "produce_review",
+          "request_human_gate"
+        ],
+        "forbidden_capabilities": [
+          "write_without_assignment",
+          "read_plaintext_secrets",
+          "bypass_human_gate",
+          "push_without_gate",
+          "deploy_production"
+        ],
+        "limits": {
+          "max_concurrent_runs_per_project": 2,
+          "max_task_duration_minutes": 60,
+          "requires_budget_policy": true,
+          "requires_validation_policy": true
+        }
+      }
+    ],
+    "provider_coverage": [
+      {
+        "provider_id": "openai_codex",
+        "agent_id": "codex_frontier_engineer",
+        "declared_in_vault": true,
+        "adapter": "codex_app_server"
+      },
+      {
+        "provider_id": "anthropic_claude",
+        "agent_id": "claude_code_mapper",
+        "declared_in_vault": true,
+        "adapter": "claude_agent_sdk"
+      },
+      {
+        "provider_id": "openai_codex",
+        "agent_id": "artemis_verifier",
+        "declared_in_vault": true,
+        "adapter": "codex_app_server"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "id": "credential_vault_ready",
+      "status": "passed",
+      "detail": "Agent registry consumes the Credential Vault contract before provider-backed runtime."
+    },
+    {
+      "id": "required_profile_fields_present",
+      "status": "passed",
+      "detail": "Every registered profile includes provider, model, policy, capability and workspace metadata."
+    },
+    {
+      "id": "no_secret_values_recorded",
+      "status": "passed",
+      "detail": "Agent profiles contain metadata, policy and capability boundaries only."
+    },
+    {
+      "id": "vault_lease_required",
+      "status": "passed",
+      "detail": "Provider-backed profiles require a vault lease and never receive raw secrets."
+    },
+    {
+      "id": "capabilities_deny_dangerous_defaults",
+      "status": "passed",
+      "detail": "Dangerous capabilities are forbidden or gated by validation and Human Gate policy."
+    },
+    {
+      "id": "model_policy_not_secret",
+      "status": "passed",
+      "detail": "Profiles reference model policies; they do not embed credentials or immutable secret-backed runtime state."
+    }
+  ]
+}

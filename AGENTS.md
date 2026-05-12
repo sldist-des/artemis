@@ -40,6 +40,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 - `docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_DONE_LEDGER.md`
 - `docs/portal/ARTEMIS_PORTAL_AUTH_PLAN.md`
 - `docs/portal/ARTEMIS_PORTAL_CREDENTIAL_VAULT.md`
+- `docs/portal/ARTEMIS_PORTAL_AGENT_REGISTRY.md`
 - Exec Pack ativo em `docs/exec-packs/active/`
 
 ## Comandos canonicos
@@ -63,6 +64,7 @@ scripts/artemis-agent-runtime-completion-review-gate.sh --json
 scripts/artemis-agent-runtime-done-ledger.sh --json
 scripts/artemis-portal-auth-plan.sh --json
 scripts/artemis-portal-credential-vault.sh --json
+scripts/artemis-portal-agent-registry.sh --json
 scripts/github-readiness.sh
 sh -n scripts/bootstrap-artemis.sh
 git status --branch --short --ignored

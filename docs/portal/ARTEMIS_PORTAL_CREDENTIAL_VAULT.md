@@ -145,4 +145,5 @@ Antes de emitir lease:
 - autenticar Codex, Claude, GitHub ou infra;
 - iniciar runtime.
 
-Proximo corte recomendado: `TKT-074 - ARTEMIS Portal Agent Registry Contract`.
+O proximo contrato do portal e o Agent Registry em
+`docs/portal/ARTEMIS_PORTAL_AGENT_REGISTRY.md`.

@@ -106,3 +106,11 @@ Vault:
 docs/portal/ARTEMIS_PORTAL_CREDENTIAL_VAULT.md
 scripts/artemis-portal-credential-vault.sh --json
 ```
+
+Depois do vault, o portal precisa do Agent Registry para escolher perfis de
+Codex, Claude Code e verificadores por capability, budget, workspace e gate:
+
+```bash
+docs/portal/ARTEMIS_PORTAL_AGENT_REGISTRY.md
+scripts/artemis-portal-agent-registry.sh --json
+```

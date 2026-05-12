@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T16:42:56Z",
+  "generated_at": "2026-05-12T17:13:31Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-12T16:42:56Z",
+      "generated_at": "2026-05-12T17:13:31Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -74,7 +74,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-12T16:42:56Z",
+      "generated_at": "2026-05-12T17:13:31Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -161,7 +161,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-12T16:42:56Z",
+      "generated_at": "2026-05-12T17:13:31Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -254,7 +254,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-12T16:42:56Z",
+      "generated_at": "2026-05-12T17:13:31Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -294,7 +294,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 109,
+          "passed": 111,
           "failed": 0,
           "human_gate": 2
         },
@@ -620,6 +620,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_auth_plan.txt"
+          },
+          {
+            "name": "shell_portal_credential_vault",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_credential_vault.txt"
           },
           {
             "name": "shell_approved_workspace_cleanup",
@@ -991,6 +998,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/portal_auth_plan.txt"
+          },
+          {
+            "name": "portal_credential_vault",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/portal_credential_vault.txt"
           },
           {
             "name": "approved_workspace_cleanup",
@@ -1404,7 +1418,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-12T16:42:36Z",
+      "generated_at": "2026-05-12T17:12:05Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -1444,17 +1458,17 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 74,
-          "tasks_done": 74,
+          "tasks_total": 75,
+          "tasks_done": 75,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 8,
-          "events_total": 60,
-          "nodes_total": 24,
-          "edges_total": 66,
-          "evidence_count": 74,
-          "exec_pack_count": 74,
-          "validation_passed": 109,
+          "events_total": 61,
+          "nodes_total": 25,
+          "edges_total": 75,
+          "evidence_count": 75,
+          "exec_pack_count": 75,
+          "validation_passed": 111,
           "validation_failed": 0,
           "validation_human_gate": 2,
           "memory_zones": 3,
@@ -1465,14 +1479,14 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "NONE - ARTEMIS Symphony runtime spine complete"
+        "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-12T16:42:36Z",
+      "generated_at": "2026-05-12T17:12:45Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -1512,11 +1526,11 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 24,
-          "edges_rendered": 66,
+          "nodes_rendered": 25,
+          "edges_rendered": 75,
           "questions_rendered": 3,
           "invariants_rendered": 3,
-          "validation_passed": 109,
+          "validation_passed": 111,
           "human_gates": 2,
           "dependencies_installed": 0,
           "commands_executed": 0,
@@ -1524,7 +1538,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "NONE - ARTEMIS Symphony runtime spine complete"
+        "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract"
       }
     },
     {
@@ -3245,7 +3259,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-12T13:34:10Z",
+      "generated_at": "2026-05-12T16:42:57Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -3324,6 +3338,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_completion_review_gate.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_done_ledger.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_auth_plan.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_credential_vault.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt",
@@ -3377,6 +3392,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_completion_review_gate.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_done_ledger.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/portal_auth_plan.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/portal_credential_vault.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt",
@@ -3397,7 +3413,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 109,
+          "passed": 111,
           "failed": 0,
           "human_gate": 2
         },
@@ -3723,6 +3739,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_auth_plan.txt"
+          },
+          {
+            "name": "shell_portal_credential_vault",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_credential_vault.txt"
           },
           {
             "name": "shell_approved_workspace_cleanup",
@@ -4094,6 +4117,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/portal_auth_plan.txt"
+          },
+          {
+            "name": "portal_credential_vault",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/portal_credential_vault.txt"
           },
           {
             "name": "approved_workspace_cleanup",
@@ -4486,7 +4516,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-12T16:42:36Z",
+      "generated_at": "2026-05-12T17:12:05Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -4526,17 +4556,17 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 74,
-          "tasks_done": 74,
+          "tasks_total": 75,
+          "tasks_done": 75,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 8,
-          "events_total": 60,
-          "nodes_total": 24,
-          "edges_total": 66,
-          "evidence_count": 74,
-          "exec_pack_count": 74,
-          "validation_passed": 109,
+          "events_total": 61,
+          "nodes_total": 25,
+          "edges_total": 75,
+          "evidence_count": 75,
+          "exec_pack_count": 75,
+          "validation_passed": 111,
           "validation_failed": 0,
           "validation_human_gate": 2,
           "memory_zones": 3,
@@ -4547,14 +4577,14 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "NONE - ARTEMIS Symphony runtime spine complete"
+        "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-12T16:42:36Z",
+      "generated_at": "2026-05-12T17:12:45Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -4594,11 +4624,11 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 24,
-          "edges_rendered": 66,
+          "nodes_rendered": 25,
+          "edges_rendered": 75,
           "questions_rendered": 3,
           "invariants_rendered": 3,
-          "validation_passed": 109,
+          "validation_passed": 111,
           "human_gates": 2,
           "dependencies_installed": 0,
           "commands_executed": 0,
@@ -4606,14 +4636,14 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "NONE - ARTEMIS Symphony runtime spine complete"
+        "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-12T16:42:36Z",
+      "generated_at": "2026-05-12T17:12:50Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -4653,12 +4683,12 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 74,
-          "tasks_done": 74,
-          "events_total": 60,
-          "nodes_total": 24,
-          "edges_total": 66,
-          "validation_passed": 109,
+          "tasks_total": 75,
+          "tasks_done": 75,
+          "events_total": 61,
+          "nodes_total": 25,
+          "edges_total": 75,
+          "validation_passed": 111,
           "validation_failed": 0,
           "human_gates": 2,
           "memory_zones": 3,
@@ -4668,14 +4698,14 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "NONE - ARTEMIS Symphony runtime spine complete"
+        "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-057_guided_collaboration",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-12T16:42:36Z",
+      "generated_at": "2026-05-12T17:12:56Z",
       "producer": {
         "adapter": "guided_collaboration",
         "name": "scripts/artemis-guided-collaboration.sh",
@@ -4719,11 +4749,11 @@
           "task_lanes": 4,
           "agent_profiles": 4,
           "gate_contracts": 4,
-          "tasks_total": 74,
-          "tasks_done": 74,
+          "tasks_total": 75,
+          "tasks_done": 75,
           "tasks_human": 0,
           "tasks_ready": 0,
-          "validation_passed": 109,
+          "validation_passed": 111,
           "validation_failed": 0,
           "human_gates": 2,
           "commands_executed": 0,
@@ -4733,14 +4763,14 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "NONE - ARTEMIS Symphony runtime spine complete"
+        "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-058_agent_launch_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-12T16:42:36Z",
+      "generated_at": "2026-05-12T17:13:04Z",
       "producer": {
         "adapter": "agent_launch_contract",
         "name": "scripts/artemis-agent-launch-contract.sh",
@@ -4783,10 +4813,10 @@
           "launch_profiles": 4,
           "launch_gates": 9,
           "evidence_requirements": 4,
-          "tasks_total": 74,
-          "tasks_done": 74,
+          "tasks_total": 75,
+          "tasks_done": 75,
           "tasks_human": 0,
-          "validation_passed": 109,
+          "validation_passed": 111,
           "validation_failed": 0,
           "human_gates": 2,
           "execute_default": false,
@@ -4808,7 +4838,7 @@
           "execute": false,
           "reason": "The next safe step is a command plan that consumes launcher preflight evidence without starting paid/runtime agents."
         },
-        "next_cut": "NONE - ARTEMIS Symphony runtime spine complete"
+        "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract"
       }
     },
     {
@@ -5807,6 +5837,60 @@
         "runtime_auth_executed": false,
         "remote_state_mutated": false,
         "next_cut": "TKT-074 - ARTEMIS Portal Agent Registry Contract"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_agent_registry_contract_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-12T17:11:20Z",
+      "producer": {
+        "adapter": "portal_agent_registry",
+        "name": "scripts/artemis-portal-agent-registry.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-074",
+        "task_id": "tkt-074",
+        "title": "ARTEMIS Portal Agent Registry Contract",
+        "exec_pack": "docs/exec-packs/done/TKT-074-artemis-portal-agent-registry.md",
+        "artifact_root": "artifacts/artemis-portal-agent-registry/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "context",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-agent-registry/run-01",
+        "status_path": "artifacts/artemis-portal-agent-registry/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-agent-registry/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-agent-registry/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-agent-registry/run-01/agent-registry-contract.json",
+          "artifacts/artemis-portal-agent-registry/run-01/AGENT_REGISTRY.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-074"
+      },
+      "payload": {
+        "agent_registry_ready": true,
+        "profiles": 3,
+        "capabilities": 6,
+        "secret_values_recorded": false,
+        "runtime_auth_executed": false,
+        "agents_started": false,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract"
       }
     }
   ]

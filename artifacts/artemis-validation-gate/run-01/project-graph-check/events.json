@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T16:42:52Z",
+  "generated_at": "2026-05-12T17:13:26Z",
   "source": "scripts/artemis-project-graph.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-12T16:42:52Z",
+      "generated_at": "2026-05-12T17:13:26Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -47,16 +47,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 74,
-          "tasks_done": 74,
+          "tasks_total": 75,
+          "tasks_done": 75,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 8,
-          "events_total": 60,
-          "nodes_total": 24,
-          "edges_total": 66,
-          "evidence_count": 74,
-          "exec_pack_count": 74,
+          "events_total": 61,
+          "nodes_total": 25,
+          "edges_total": 75,
+          "evidence_count": 75,
+          "exec_pack_count": 75,
           "validation_passed": 1,
           "validation_failed": 0,
           "validation_human_gate": 1,
@@ -68,7 +68,7 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "NONE - ARTEMIS Symphony runtime spine complete"
+        "next_cut": "TKT-075 - ARTEMIS Portal Run Assignment Contract"
       }
     }
   ]

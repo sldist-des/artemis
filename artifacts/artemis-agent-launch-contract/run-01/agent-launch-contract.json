@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T17:38:15Z",
+  "generated_at": "2026-05-12T18:02:58Z",
   "source": "scripts/artemis-agent-launch-contract.sh",
   "mode": "read_only_supervised_agent_launch_contract",
   "overall": "agent_launch_contract_ready",
@@ -17,10 +17,10 @@
     "launch_profiles": 4,
     "launch_gates": 9,
     "evidence_requirements": 4,
-    "tasks_total": 76,
-    "tasks_done": 76,
+    "tasks_total": 77,
+    "tasks_done": 77,
     "tasks_human": 0,
-    "validation_passed": 115,
+    "validation_passed": 117,
     "validation_failed": 0,
     "human_gates": 2,
     "execute_default": false,
@@ -245,5 +245,5 @@
     "renderAgentLaunchContract",
     "loadAgentLaunchContractSource"
   ],
-  "next_cut": "TKT-076 - ARTEMIS Portal Budget and Cost Ledger Contract"
+  "next_cut": "TKT-077 - ARTEMIS Portal Workspace Session Contract"
 }

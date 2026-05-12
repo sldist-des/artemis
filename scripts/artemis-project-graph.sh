@@ -145,6 +145,7 @@ portal_auth_payload = read_json(Path("artifacts/artemis-portal-auth-plan/run-01/
 portal_credential_vault_payload = read_json(Path("artifacts/artemis-portal-credential-vault/run-01/credential-vault-contract.json"), {"vault_contract": {}, "overall": "not_available"})
 portal_agent_registry_payload = read_json(Path("artifacts/artemis-portal-agent-registry/run-01/agent-registry-contract.json"), {"registry_contract": {}, "overall": "not_available"})
 portal_run_assignment_payload = read_json(Path("artifacts/artemis-portal-run-assignment/run-01/run-assignment-contract.json"), {"assignment_contract": {}, "sample_assignment": {}, "overall": "not_available"})
+portal_budget_ledger_payload = read_json(Path("artifacts/artemis-portal-budget-ledger/run-01/budget-ledger-contract.json"), {"budget_contract": {}, "sample_ledger_entry": {}, "overall": "not_available"})
 
 tasks = tasks_payload.get("tasks", [])
 events = event_log_payload.get("events", [])
@@ -219,6 +220,12 @@ nodes = [
         "id": "cost:budget",
         "type": "cost_guard",
         "label": "Token and runtime budget",
+        "status": portal_budget_ledger_payload.get("overall", "not_available"),
+        "budget_ledger_ready": portal_budget_ledger_payload.get("budget_ledger_ready", False),
+        "spend_authorized": portal_budget_ledger_payload.get("spend_authorized", False),
+        "tokens_spent": portal_budget_ledger_payload.get("tokens_spent", 0),
+        "actual_cost_units": portal_budget_ledger_payload.get("actual_cost_units", 0),
+        "budget_policies": len(portal_budget_ledger_payload.get("budget_contract", {}).get("budget_policies", [])),
         "runtime_started": False,
         "dependencies_installed": 0,
     },
@@ -400,6 +407,21 @@ nodes = [
         "next_cut": portal_run_assignment_payload.get("next_cut", "unknown"),
     },
     {
+        "id": "portal:budget_ledger",
+        "type": "portal_budget_ledger",
+        "label": "ARTEMIS Portal Budget and Cost Ledger",
+        "status": portal_budget_ledger_payload.get("overall", "not_available"),
+        "budget_ledger_ready": portal_budget_ledger_payload.get("budget_ledger_ready", False),
+        "budget_policy_id": portal_budget_ledger_payload.get("sample_ledger_entry", {}).get("budget_policy_id", "unknown"),
+        "spend_authorized": portal_budget_ledger_payload.get("spend_authorized", False),
+        "tokens_spent": portal_budget_ledger_payload.get("tokens_spent", 0),
+        "estimated_cost_units": portal_budget_ledger_payload.get("estimated_cost_units", 0),
+        "actual_cost_units": portal_budget_ledger_payload.get("actual_cost_units", 0),
+        "agents_started": portal_budget_ledger_payload.get("agents_started", False),
+        "commands_executed": portal_budget_ledger_payload.get("commands_executed", 0),
+        "next_cut": portal_budget_ledger_payload.get("next_cut", "unknown"),
+    },
+    {
         "id": "control_plane:view",
         "type": "view",
         "label": "Control Plane",
@@ -483,6 +505,11 @@ edges = [
     {"from": "portal:run_assignment", "to": "validation:gate", "type": "binds_validation_policy"},
     {"from": "portal:run_assignment", "to": "gate:human", "type": "binds_human_gate_policy"},
     {"from": "portal:run_assignment", "to": "event_log:timeline", "type": "records_assignment_contract"},
+    {"from": "portal:run_assignment", "to": "portal:budget_ledger", "type": "binds_budget_policy"},
+    {"from": "portal:budget_ledger", "to": "cost:budget", "type": "defines_budget_limits"},
+    {"from": "portal:budget_ledger", "to": "runtime:launcher_preflight", "type": "gates_spend_preflight"},
+    {"from": "portal:budget_ledger", "to": "gate:human", "type": "requires_budget_threshold_gate"},
+    {"from": "portal:budget_ledger", "to": "event_log:timeline", "type": "records_budget_contract"},
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
@@ -490,6 +517,7 @@ edges = [
     {"from": "control_plane:view", "to": "portal:credential_vault", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:agent_registry", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:run_assignment", "type": "shows"},
+    {"from": "control_plane:view", "to": "portal:budget_ledger", "type": "shows"},
 ]
 
 questions = [
@@ -568,6 +596,7 @@ payload = {
         "portal_credential_vault": "artifacts/artemis-portal-credential-vault/run-01/credential-vault-contract.json",
         "portal_agent_registry": "artifacts/artemis-portal-agent-registry/run-01/agent-registry-contract.json",
         "portal_run_assignment": "artifacts/artemis-portal-run-assignment/run-01/run-assignment-contract.json",
+        "portal_budget_ledger": "artifacts/artemis-portal-budget-ledger/run-01/budget-ledger-contract.json",
     },
     "summary": summary,
     "states": dict(states),
@@ -606,10 +635,11 @@ payload = {
         "portal_credential_vault_input": "artemis_portal_credential_vault",
         "portal_agent_registry_input": "artemis_portal_agent_registry",
         "portal_run_assignment_input": "artemis_portal_run_assignment",
+        "portal_budget_ledger_input": "artemis_portal_budget_ledger",
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },
-    "next_cut": "TKT-076 - ARTEMIS Portal Budget and Cost Ledger Contract",
+    "next_cut": "TKT-077 - ARTEMIS Portal Workspace Session Contract",
 }
 
 write_text(artifact_root / "project-graph.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")

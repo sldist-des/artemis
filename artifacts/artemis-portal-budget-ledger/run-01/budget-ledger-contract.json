@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-12T18:00:53Z",
+  "overall": "budget_ledger_ready",
+  "budget_ledger_ready": true,
+  "spend_authorized": false,
+  "secret_values_recorded": false,
+  "runtime_auth_executed": false,
+  "vault_lease_issued": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "estimated_cost_units": 0,
+  "actual_cost_units": 0,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-077 - ARTEMIS Portal Workspace Session Contract",
+  "missing_files": [],
+  "budget_contract": {
+    "purpose": "Bind every portal run assignment to explicit token, cost, duration and agent-count limits before runtime spend.",
+    "state": "contract_only",
+    "budget_ledger_ready": true,
+    "spend_authorized": false,
+    "runtime_auth_executed": false,
+    "vault_lease_issued": false,
+    "agents_started": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "actual_cost_units": 0,
+    "remote_state_mutated": false,
+    "unit_policy": {
+      "currency": "policy_units",
+      "reason": "Avoid coupling this contract to live provider billing before billing adapters exist.",
+      "conversion_source": "future_provider_billing_adapter",
+      "raw_billing_values_allowed": false
+    },
+    "budget_policies": [
+      {
+        "budget_policy_id": "budget:frontier-engineering",
+        "label": "Frontier engineering",
+        "applies_to": [
+          "codex_frontier_engineer"
+        ],
+        "max_agents": 2,
+        "max_wall_time_minutes": 180,
+        "max_prompt_tokens": 300000,
+        "max_completion_tokens": 120000,
+        "max_total_tokens": 420000,
+        "max_estimated_cost_units": 100,
+        "hard_stop_on_limit": true,
+        "human_gate_required_above_cost_units": 40
+      },
+      {
+        "budget_policy_id": "budget:medium-slice",
+        "label": "Medium implementation slice",
+        "applies_to": [
+          "claude_code_mapper"
+        ],
+        "max_agents": 3,
+        "max_wall_time_minutes": 90,
+        "max_prompt_tokens": 180000,
+        "max_completion_tokens": 70000,
+        "max_total_tokens": 250000,
+        "max_estimated_cost_units": 45,
+        "hard_stop_on_limit": true,
+        "human_gate_required_above_cost_units": 20
+      },
+      {
+        "budget_policy_id": "budget:verification",
+        "label": "Verification",
+        "applies_to": [
+          "artemis_verifier"
+        ],
+        "max_agents": 2,
+        "max_wall_time_minutes": 60,
+        "max_prompt_tokens": 120000,
+        "max_completion_tokens": 30000,
+        "max_total_tokens": 150000,
+        "max_estimated_cost_units": 20,
+        "hard_stop_on_limit": true,
+        "human_gate_required_above_cost_units": 10
+      }
+    ],
+    "ledger_entry_schema": {
+      "required_fields": [
+        "ledger_entry_id",
+        "assignment_id",
+        "ticket",
+        "agent_profile_id",
+        "budget_policy_id",
+        "provider_id",
+        "model_policy",
+        "phase",
+        "recorded_at",
+        "prompt_tokens",
+        "completion_tokens",
+        "total_tokens",
+        "estimated_cost_units",
+        "actual_cost_units",
+        "limit_state",
+        "human_gate_required",
+        "evidence"
+      ],
+      "forbidden_fields": [
+        "raw_provider_invoice",
+        "billing_api_secret",
+        "card_number",
+        "provider_account_secret",
+        "plaintext_token",
+        "runtime_command_output"
+      ]
+    },
+    "state_model": [
+      "draft",
+      "estimated",
+      "waiting_for_human_budget_gate",
+      "approved_for_preflight",
+      "spending",
+      "limit_warning",
+      "hard_stopped",
+      "closed",
+      "reconciled"
+    ],
+    "enforcement_rules": [
+      "A Run Assignment must bind a known budget policy before launcher preflight.",
+      "Budget approval is not runtime execution permission.",
+      "Human Gate is required when estimated cost exceeds policy threshold.",
+      "Runtime must stop when max_total_tokens, max_wall_time_minutes or max_agents is exceeded.",
+      "Ledger entries are append-only and must reference assignment id, ticket and evidence.",
+      "Actual provider billing reconciliation is future work and must not store secrets or raw billing credentials.",
+      "Remote writes remain blocked even when budget is approved."
+    ]
+  },
+  "sample_ledger_entry": {
+    "ledger_entry_id": "cost-tkt-076-contract-fixture",
+    "assignment_id": "assign-tkt-075-contract-fixture",
+    "ticket": "TKT-076",
+    "agent_profile_id": "codex_frontier_engineer",
+    "budget_policy_id": "budget:frontier-engineering",
+    "provider_id": "openai_codex",
+    "model_policy": "organization_policy_reference_only",
+    "phase": "contract_fixture",
+    "recorded_at": "2026-05-12T18:00:53Z",
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "estimated_cost_units": 0,
+    "actual_cost_units": 0,
+    "limit_state": "within_budget",
+    "human_gate_required": false,
+    "evidence": [
+      "artifacts/artemis-portal-budget-ledger/run-01/budget-ledger-contract.json",
+      "artifacts/artemis-portal-budget-ledger/run-01/BUDGET_LEDGER.md"
+    ]
+  },
+  "checks": [
+    {
+      "id": "run_assignment_ready",
+      "status": "passed",
+      "detail": "Budget Ledger consumes an accepted Run Assignment before defining spend limits."
+    },
+    {
+      "id": "budget_policy_bound",
+      "status": "passed",
+      "detail": "The assignment budget policy resolves to a concrete limit policy."
+    },
+    {
+      "id": "ledger_schema_declared",
+      "status": "passed",
+      "detail": "Append-only cost ledger fields and forbidden billing/secret fields are declared."
+    },
+    {
+      "id": "no_runtime_spend",
+      "status": "passed",
+      "detail": "This cut records policy and zero-spend fixture data only."
+    },
+    {
+      "id": "hard_limits_present",
+      "status": "passed",
+      "detail": "Every budget policy has hard stop behavior for runtime enforcement."
+    },
+    {
+      "id": "no_secret_values_recorded",
+      "status": "passed",
+      "detail": "No provider secrets, payment data or raw billing credentials are stored."
+    }
+  ]
+}

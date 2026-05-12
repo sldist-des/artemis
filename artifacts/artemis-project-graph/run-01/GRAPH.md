@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `26`.
-- Edges: `82`.
-- Tasks: `76`.
-- Events: `62`.
+- Nodes: `27`.
+- Edges: `88`.
+- Tasks: `77`.
+- Events: `63`.
 
 ## Nos
 
@@ -36,6 +36,7 @@
 - `portal:credential_vault` (portal_credential_vault): ARTEMIS Portal Credential Vault.
 - `portal:agent_registry` (portal_agent_registry): ARTEMIS Portal Agent Registry.
 - `portal:run_assignment` (portal_run_assignment): ARTEMIS Portal Run Assignment.
+- `portal:budget_ledger` (portal_budget_ledger): ARTEMIS Portal Budget and Cost Ledger.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -115,6 +116,11 @@
 - `portal:run_assignment` --binds_validation_policy--> `validation:gate`.
 - `portal:run_assignment` --binds_human_gate_policy--> `gate:human`.
 - `portal:run_assignment` --records_assignment_contract--> `event_log:timeline`.
+- `portal:run_assignment` --binds_budget_policy--> `portal:budget_ledger`.
+- `portal:budget_ledger` --defines_budget_limits--> `cost:budget`.
+- `portal:budget_ledger` --gates_spend_preflight--> `runtime:launcher_preflight`.
+- `portal:budget_ledger` --requires_budget_threshold_gate--> `gate:human`.
+- `portal:budget_ledger` --records_budget_contract--> `event_log:timeline`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.
@@ -122,6 +128,7 @@
 - `control_plane:view` --shows--> `portal:credential_vault`.
 - `control_plane:view` --shows--> `portal:agent_registry`.
 - `control_plane:view` --shows--> `portal:run_assignment`.
+- `control_plane:view` --shows--> `portal:budget_ledger`.
 
 ## Perguntas operacionais
 

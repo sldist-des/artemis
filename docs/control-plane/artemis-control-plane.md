@@ -179,6 +179,20 @@ The run assignment contract lives in:
 docs/portal/ARTEMIS_PORTAL_RUN_ASSIGNMENT.md
 ```
 
+Budget and cost controls are the next pre-runtime boundary. They bind every
+assignment to explicit token, cost, duration, agent-count and hard-stop limits
+before launcher preflight can proceed:
+
+```bash
+scripts/artemis-portal-budget-ledger.sh --artifact-root artifacts/artemis-portal-budget-ledger/run-01
+```
+
+The budget ledger contract lives in:
+
+```text
+docs/portal/ARTEMIS_PORTAL_BUDGET_LEDGER.md
+```
+
 ## ARTEMIS Symphony evidence
 
 The Control Plane includes a read-only `ARTEMIS Symphony` section for the local Symphony cuts.

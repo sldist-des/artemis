@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T17:34:14Z",
+  "generated_at": "2026-05-12T18:01:02Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -913,6 +913,18 @@
       "summary": "Um contrato verificavel deve definir assignment record, campos obrigatorios,",
       "exec_pack": "docs/exec-packs/done/TKT-075-artemis-portal-run-assignment.md",
       "evidence": "artifacts/artemis-portal-run-assignment/run-01/run-assignment-contract.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-076",
+      "ticket": "TKT-076",
+      "title": "ARTEMIS Portal Budget and Cost Ledger Contract",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "Um contrato verificavel deve definir budget policies, schema append-only de cost",
+      "exec_pack": "docs/exec-packs/done/TKT-076-artemis-portal-budget-ledger.md",
+      "evidence": "artifacts/artemis-portal-budget-ledger/run-01/budget-ledger-contract.json",
       "tags": ["exec-pack", "done"]
     }
   ]

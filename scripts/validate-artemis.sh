@@ -44,6 +44,7 @@ docs/portal/ARTEMIS_PORTAL_AUTH_PLAN.md
 docs/portal/ARTEMIS_PORTAL_CREDENTIAL_VAULT.md
 docs/portal/ARTEMIS_PORTAL_AGENT_REGISTRY.md
 docs/portal/ARTEMIS_PORTAL_RUN_ASSIGNMENT.md
+docs/portal/ARTEMIS_PORTAL_BUDGET_LEDGER.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
@@ -115,6 +116,7 @@ scripts/artemis-portal-auth-plan.sh
 scripts/artemis-portal-credential-vault.sh
 scripts/artemis-portal-agent-registry.sh
 scripts/artemis-portal-run-assignment.sh
+scripts/artemis-portal-budget-ledger.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -223,6 +225,7 @@ sh -n scripts/artemis-portal-auth-plan.sh
 sh -n scripts/artemis-portal-credential-vault.sh
 sh -n scripts/artemis-portal-agent-registry.sh
 sh -n scripts/artemis-portal-run-assignment.sh
+sh -n scripts/artemis-portal-budget-ledger.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -328,6 +331,31 @@ if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-run-assignment.json; then
 fi
 if ! test -f /tmp/artemis-portal-run-assignment/RUN_ASSIGNMENT.md; then
   echo "scripts/artemis-portal-run-assignment.sh did not write run assignment documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-portal-budget-ledger.sh --artifact-root /tmp/artemis-portal-budget-ledger --json >/tmp/artemis-portal-budget-ledger.json
+if ! grep -q '"overall": "budget_ledger_ready"' /tmp/artemis-portal-budget-ledger.json; then
+  echo "scripts/artemis-portal-budget-ledger.sh did not report budget_ledger_ready" >&2
+  exit 1
+fi
+if ! grep -q '"secret_values_recorded": false' /tmp/artemis-portal-budget-ledger.json; then
+  echo "scripts/artemis-portal-budget-ledger.sh recorded secret values" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": false' /tmp/artemis-portal-budget-ledger.json; then
+  echo "scripts/artemis-portal-budget-ledger.sh started agents" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-budget-ledger.json; then
+  echo "scripts/artemis-portal-budget-ledger.sh spent tokens" >&2
+  exit 1
+fi
+if ! grep -q '"actual_cost_units": 0' /tmp/artemis-portal-budget-ledger.json; then
+  echo "scripts/artemis-portal-budget-ledger.sh recorded actual cost" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-budget-ledger/BUDGET_LEDGER.md; then
+  echo "scripts/artemis-portal-budget-ledger.sh did not write budget ledger documentation artifact" >&2
   exit 1
 fi
 

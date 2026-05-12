@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-12T18:02:06Z",
+  "source": "scripts/artemis-portal-budget-ledger.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_budget_ledger_contract_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-12T18:02:06Z",
+      "producer": {
+        "adapter": "portal_budget_ledger",
+        "name": "scripts/artemis-portal-budget-ledger.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-076",
+        "task_id": "tkt-076",
+        "title": "ARTEMIS Portal Budget and Cost Ledger Contract",
+        "exec_pack": "docs/exec-packs/done/TKT-076-artemis-portal-budget-ledger.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/portal-budget-ledger-check"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "context",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/portal-budget-ledger-check",
+        "status_path": "artifacts/artemis-validation-gate/run-01/portal-budget-ledger-check/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/portal-budget-ledger-check/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/portal-budget-ledger-check/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-validation-gate/run-01/portal-budget-ledger-check/budget-ledger-contract.json",
+          "artifacts/artemis-validation-gate/run-01/portal-budget-ledger-check/BUDGET_LEDGER.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-076"
+      },
+      "payload": {
+        "budget_ledger_ready": true,
+        "budget_policy_id": "budget:frontier-engineering",
+        "spend_authorized": false,
+        "tokens_spent": 0,
+        "estimated_cost_units": 0,
+        "actual_cost_units": 0,
+        "runtime_auth_executed": false,
+        "vault_lease_issued": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "secret_values_recorded": false,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-077 - ARTEMIS Portal Workspace Session Contract"
+      }
+    }
+  ]
+}

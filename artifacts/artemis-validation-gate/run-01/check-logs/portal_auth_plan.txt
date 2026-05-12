@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T17:35:39Z",
+  "generated_at": "2026-05-12T18:02:06Z",
   "overall": "architecture_ready",
   "portal_auth_ready": true,
   "runtime_auth_executed": false,

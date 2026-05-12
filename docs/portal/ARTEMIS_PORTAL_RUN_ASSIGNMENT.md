@@ -110,4 +110,5 @@ Antes de ficar pronto para launcher preflight:
 - criar fila/scheduler real;
 - fazer push, PR, deploy ou mutacao remota.
 
-Proximo corte recomendado: `TKT-076 - ARTEMIS Portal Budget and Cost Ledger Contract`.
+O proximo contrato do portal e o Budget and Cost Ledger em
+`docs/portal/ARTEMIS_PORTAL_BUDGET_LEDGER.md`.

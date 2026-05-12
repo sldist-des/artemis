@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T17:37:54Z",
+  "generated_at": "2026-05-12T18:02:28Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -24,20 +24,21 @@
     "portal_auth_plan": "artifacts/artemis-portal-auth-plan/run-01/portal-auth-plan.json",
     "portal_credential_vault": "artifacts/artemis-portal-credential-vault/run-01/credential-vault-contract.json",
     "portal_agent_registry": "artifacts/artemis-portal-agent-registry/run-01/agent-registry-contract.json",
-    "portal_run_assignment": "artifacts/artemis-portal-run-assignment/run-01/run-assignment-contract.json"
+    "portal_run_assignment": "artifacts/artemis-portal-run-assignment/run-01/run-assignment-contract.json",
+    "portal_budget_ledger": "artifacts/artemis-portal-budget-ledger/run-01/budget-ledger-contract.json"
   },
   "summary": {
-    "tasks_total": 76,
-    "tasks_done": 76,
+    "tasks_total": 77,
+    "tasks_done": 77,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 8,
-    "events_total": 62,
-    "nodes_total": 26,
-    "edges_total": 82,
-    "evidence_count": 76,
-    "exec_pack_count": 76,
-    "validation_passed": 115,
+    "events_total": 63,
+    "nodes_total": 27,
+    "edges_total": 88,
+    "evidence_count": 77,
+    "exec_pack_count": 77,
+    "validation_passed": 117,
     "validation_failed": 0,
     "validation_human_gate": 2,
     "memory_zones": 3,
@@ -49,10 +50,10 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 76
+    "done": 77
   },
   "risks": {
-    "medium": 61,
+    "medium": 62,
     "low": 4,
     "high": 11
   },
@@ -63,7 +64,7 @@
     ],
     [
       "Codex",
-      20
+      21
     ],
     [
       "Context Curator",
@@ -93,11 +94,11 @@
   "top_tags": [
     [
       "exec-pack",
-      76
+      77
     ],
     [
       "done",
-      76
+      77
     ]
   ],
   "nodes": [
@@ -112,8 +113,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 76,
-      "done": 76,
+      "count": 77,
+      "done": 77,
       "human": 0
     },
     {
@@ -128,7 +129,7 @@
         ],
         [
           "Codex",
-          20
+          21
         ],
         [
           "Context Curator",
@@ -155,7 +156,7 @@
       "id": "validation:gate",
       "type": "validation",
       "label": "Validation Gate",
-      "passed": 115,
+      "passed": 117,
       "failed": 0
     },
     {
@@ -169,19 +170,25 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 76,
-      "exec_packs": 76
+      "task_evidence": 77,
+      "exec_packs": 77
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 62
+      "events": 63
     },
     {
       "id": "cost:budget",
       "type": "cost_guard",
       "label": "Token and runtime budget",
+      "status": "budget_ledger_ready",
+      "budget_ledger_ready": true,
+      "spend_authorized": false,
+      "tokens_spent": 0,
+      "actual_cost_units": 0,
+      "budget_policies": 3,
       "runtime_started": false,
       "dependencies_installed": 0
     },
@@ -361,6 +368,21 @@
       "commands_executed": 0,
       "tokens_spent": 0,
       "next_cut": "TKT-076 - ARTEMIS Portal Budget and Cost Ledger Contract"
+    },
+    {
+      "id": "portal:budget_ledger",
+      "type": "portal_budget_ledger",
+      "label": "ARTEMIS Portal Budget and Cost Ledger",
+      "status": "budget_ledger_ready",
+      "budget_ledger_ready": true,
+      "budget_policy_id": "budget:frontier-engineering",
+      "spend_authorized": false,
+      "tokens_spent": 0,
+      "estimated_cost_units": 0,
+      "actual_cost_units": 0,
+      "agents_started": false,
+      "commands_executed": 0,
+      "next_cut": "TKT-077 - ARTEMIS Portal Workspace Session Contract"
     },
     {
       "id": "control_plane:view",
@@ -746,6 +768,31 @@
       "type": "records_assignment_contract"
     },
     {
+      "from": "portal:run_assignment",
+      "to": "portal:budget_ledger",
+      "type": "binds_budget_policy"
+    },
+    {
+      "from": "portal:budget_ledger",
+      "to": "cost:budget",
+      "type": "defines_budget_limits"
+    },
+    {
+      "from": "portal:budget_ledger",
+      "to": "runtime:launcher_preflight",
+      "type": "gates_spend_preflight"
+    },
+    {
+      "from": "portal:budget_ledger",
+      "to": "gate:human",
+      "type": "requires_budget_threshold_gate"
+    },
+    {
+      "from": "portal:budget_ledger",
+      "to": "event_log:timeline",
+      "type": "records_budget_contract"
+    },
+    {
       "from": "control_plane:view",
       "to": "project:artemis",
       "type": "observes"
@@ -778,6 +825,11 @@
     {
       "from": "control_plane:view",
       "to": "portal:run_assignment",
+      "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "portal:budget_ledger",
       "type": "shows"
     }
   ],
@@ -847,8 +899,9 @@
     "portal_credential_vault_input": "artemis_portal_credential_vault",
     "portal_agent_registry_input": "artemis_portal_agent_registry",
     "portal_run_assignment_input": "artemis_portal_run_assignment",
+    "portal_budget_ledger_input": "artemis_portal_budget_ledger",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },
-  "next_cut": "TKT-076 - ARTEMIS Portal Budget and Cost Ledger Contract"
+  "next_cut": "TKT-077 - ARTEMIS Portal Workspace Session Contract"
 }

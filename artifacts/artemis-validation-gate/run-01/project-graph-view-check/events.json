@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T17:35:38Z",
+  "generated_at": "2026-05-12T18:02:04Z",
   "source": "scripts/artemis-project-graph-view.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-12T17:35:38Z",
+      "generated_at": "2026-05-12T18:02:04Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -47,8 +47,8 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 26,
-          "edges_rendered": 82,
+          "nodes_rendered": 27,
+          "edges_rendered": 88,
           "questions_rendered": 3,
           "invariants_rendered": 3,
           "validation_passed": 1,
@@ -59,7 +59,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-076 - ARTEMIS Portal Budget and Cost Ledger Contract"
+        "next_cut": "TKT-077 - ARTEMIS Portal Workspace Session Contract"
       }
     }
   ]

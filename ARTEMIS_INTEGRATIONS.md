@@ -122,3 +122,11 @@ a um perfil registrado antes de qualquer launcher ou runtime:
 docs/portal/ARTEMIS_PORTAL_RUN_ASSIGNMENT.md
 scripts/artemis-portal-run-assignment.sh --json
 ```
+
+Depois do assignment, o portal precisa do Budget and Cost Ledger para vincular
+limites de tokens, custo, duracao, agentes e hard stops antes de qualquer gasto:
+
+```bash
+docs/portal/ARTEMIS_PORTAL_BUDGET_LEDGER.md
+scripts/artemis-portal-budget-ledger.sh --json
+```

@@ -45,6 +45,7 @@ docs/portal/ARTEMIS_PORTAL_CREDENTIAL_VAULT.md
 docs/portal/ARTEMIS_PORTAL_AGENT_REGISTRY.md
 docs/portal/ARTEMIS_PORTAL_RUN_ASSIGNMENT.md
 docs/portal/ARTEMIS_PORTAL_BUDGET_LEDGER.md
+docs/portal/ARTEMIS_PORTAL_WORKSPACE_SESSION.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
@@ -117,6 +118,7 @@ scripts/artemis-portal-credential-vault.sh
 scripts/artemis-portal-agent-registry.sh
 scripts/artemis-portal-run-assignment.sh
 scripts/artemis-portal-budget-ledger.sh
+scripts/artemis-portal-workspace-session.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -226,6 +228,7 @@ sh -n scripts/artemis-portal-credential-vault.sh
 sh -n scripts/artemis-portal-agent-registry.sh
 sh -n scripts/artemis-portal-run-assignment.sh
 sh -n scripts/artemis-portal-budget-ledger.sh
+sh -n scripts/artemis-portal-workspace-session.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -356,6 +359,35 @@ if ! grep -q '"actual_cost_units": 0' /tmp/artemis-portal-budget-ledger.json; th
 fi
 if ! test -f /tmp/artemis-portal-budget-ledger/BUDGET_LEDGER.md; then
   echo "scripts/artemis-portal-budget-ledger.sh did not write budget ledger documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-portal-workspace-session.sh --artifact-root /tmp/artemis-portal-workspace-session --json >/tmp/artemis-portal-workspace-session.json
+if ! grep -q '"overall": "workspace_session_ready"' /tmp/artemis-portal-workspace-session.json; then
+  echo "scripts/artemis-portal-workspace-session.sh did not report workspace_session_ready" >&2
+  exit 1
+fi
+if ! grep -q '"secret_values_recorded": false' /tmp/artemis-portal-workspace-session.json; then
+  echo "scripts/artemis-portal-workspace-session.sh recorded secret values" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": false' /tmp/artemis-portal-workspace-session.json; then
+  echo "scripts/artemis-portal-workspace-session.sh started agents" >&2
+  exit 1
+fi
+if ! grep -q '"worktree_created": false' /tmp/artemis-portal-workspace-session.json; then
+  echo "scripts/artemis-portal-workspace-session.sh created a worktree" >&2
+  exit 1
+fi
+if ! grep -q '"branch_changed": false' /tmp/artemis-portal-workspace-session.json; then
+  echo "scripts/artemis-portal-workspace-session.sh changed branch" >&2
+  exit 1
+fi
+if ! grep -q '"remote_state_mutated": false' /tmp/artemis-portal-workspace-session.json; then
+  echo "scripts/artemis-portal-workspace-session.sh mutated remote state" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-workspace-session/WORKSPACE_SESSION.md; then
+  echo "scripts/artemis-portal-workspace-session.sh did not write workspace session documentation artifact" >&2
   exit 1
 fi
 

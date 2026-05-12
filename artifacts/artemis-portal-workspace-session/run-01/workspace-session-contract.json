@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-12T18:28:12Z",
+  "overall": "workspace_session_ready",
+  "workspace_session_ready": true,
+  "secret_values_recorded": false,
+  "runtime_auth_executed": false,
+  "vault_lease_issued": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "estimated_cost_units": 0,
+  "actual_cost_units": 0,
+  "worktree_created": false,
+  "branch_changed": false,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-078 - ARTEMIS Portal Runtime Session Contract",
+  "missing_files": [],
+  "workspace_contract": {
+    "purpose": "Bind a portal run assignment and budget ledger to one concrete repository/worktree session before launcher preflight.",
+    "state": "contract_only",
+    "workspace_session_ready": true,
+    "runtime_auth_executed": false,
+    "vault_lease_issued": false,
+    "agents_started": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "actual_cost_units": 0,
+    "worktree_created": false,
+    "branch_changed": false,
+    "remote_state_mutated": false,
+    "session_record_schema": {
+      "required_fields": [
+        "workspace_session_id",
+        "assignment_id",
+        "project_id",
+        "ticket",
+        "agent_profile_id",
+        "workspace_policy_id",
+        "budget_policy_id",
+        "repository_path",
+        "worktree_path",
+        "branch_policy",
+        "writer_lock",
+        "allowed_write_roots",
+        "forbidden_paths",
+        "dirty_worktree_policy",
+        "validation_policy_id",
+        "opened_at",
+        "expires_at",
+        "session_state",
+        "evidence"
+      ],
+      "forbidden_fields": [
+        "plaintext_secret",
+        "raw_access_token",
+        "raw_refresh_token",
+        "private_key_material",
+        "session_cookie",
+        "provider_billing_secret",
+        "runtime_command_output",
+        "git_remote_token",
+        "ssh_private_key"
+      ]
+    },
+    "state_model": [
+      "requested",
+      "assignment_bound",
+      "budget_bound",
+      "workspace_selecting",
+      "lock_pending",
+      "locked_for_preflight",
+      "dirty_state_review",
+      "ready_for_launcher_preflight",
+      "released",
+      "rejected",
+      "expired"
+    ],
+    "workspace_policies": [
+      {
+        "workspace_policy_id": "workspace:single-writer-worktree",
+        "label": "Single writer worktree",
+        "max_writers": 1,
+        "requires_writer_lock": true,
+        "verifier_requires_separate_session": true,
+        "remote_writes_allowed": false,
+        "dirty_worktree_policy": "detect_and_report_before_launch"
+      },
+      {
+        "workspace_policy_id": "workspace:read-only-review",
+        "label": "Read-only review",
+        "max_writers": 0,
+        "requires_writer_lock": false,
+        "verifier_requires_separate_session": false,
+        "remote_writes_allowed": false,
+        "dirty_worktree_policy": "read_only_no_changes"
+      }
+    ],
+    "allowed_write_roots": [
+      "repository_worktree",
+      "artifact_root",
+      "tmp_validation_root"
+    ],
+    "forbidden_paths": [
+      ".git/config",
+      ".git/hooks",
+      ".env",
+      ".env.*",
+      "secrets/",
+      "private/",
+      "production/",
+      "node_modules/",
+      "vendor/"
+    ],
+    "branch_policy": {
+      "base_branch": "main",
+      "session_branch": "contract_fixture_no_branch_created",
+      "may_create_branch": false,
+      "may_push": false,
+      "requires_human_gate_for_remote_write": true,
+      "requires_clean_or_acknowledged_dirty_state": true
+    },
+    "lock_policy": {
+      "lock_scope": "project_worktree",
+      "one_writer_per_worktree": true,
+      "writer_must_release_on_completion": true,
+      "stale_lock_requires_human_review": true,
+      "lock_file_contains_secrets": false
+    },
+    "release_policy": {
+      "release_requires_handoff": true,
+      "release_requires_validation_result": true,
+      "release_records_dirty_state": true,
+      "release_may_not_delete_user_changes": true
+    },
+    "enforcement_rules": [
+      "A Workspace Session must consume an accepted Run Assignment and ready Budget Ledger.",
+      "A writer agent requires an exclusive writer lock before launcher preflight.",
+      "Verifier agents must use read-only mode or a separate workspace session.",
+      "Dirty worktree state must be detected and reported before runtime launch.",
+      "Forbidden paths cannot be written by portal-managed agents.",
+      "Remote writes, branch protection changes and deploys require separate Human Gate authority.",
+      "Workspace approval is not runtime execution permission.",
+      "The session record must not contain secrets, provider tokens, private keys or raw command output."
+    ]
+  },
+  "sample_workspace_session": {
+    "workspace_session_id": "workspace-session-tkt-077-contract-fixture",
+    "assignment_id": "assign-tkt-075-contract-fixture",
+    "ledger_entry_id": "cost-tkt-076-contract-fixture",
+    "project_id": "artemis",
+    "ticket": "TKT-077",
+    "source_ticket": "TKT-075",
+    "agent_profile_id": "codex_frontier_engineer",
+    "workspace_policy_id": "workspace:single-writer-worktree",
+    "budget_policy_id": "budget:frontier-engineering",
+    "repository_path": ".",
+    "worktree_path": ".",
+    "branch_policy": {
+      "base_branch": "main",
+      "session_branch": "contract_fixture_no_branch_created",
+      "may_create_branch": false,
+      "may_push": false,
+      "requires_human_gate_for_remote_write": true,
+      "requires_clean_or_acknowledged_dirty_state": true
+    },
+    "writer_lock": {
+      "required": true,
+      "max_writers": 1,
+      "lock_state": "contract_fixture_not_acquired",
+      "lock_owner": "none"
+    },
+    "allowed_write_roots": [
+      "repository_worktree",
+      "artifact_root",
+      "tmp_validation_root"
+    ],
+    "forbidden_paths": [
+      ".git/config",
+      ".git/hooks",
+      ".env",
+      ".env.*",
+      "secrets/",
+      "private/",
+      "production/",
+      "node_modules/",
+      "vendor/"
+    ],
+    "dirty_worktree_policy": "detect_and_report_before_launch",
+    "validation_policy_id": "validation:standard-plus",
+    "opened_at": "2026-05-12T18:28:12Z",
+    "expires_at": "contract_fixture_no_runtime_expiry",
+    "session_state": "ready_for_launcher_preflight",
+    "runtime_execution_allowed": false,
+    "remote_writes_allowed": false,
+    "worktree_created": false,
+    "branch_changed": false,
+    "agents_started": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "evidence": [
+      "artifacts/artemis-portal-workspace-session/run-01/workspace-session-contract.json",
+      "artifacts/artemis-portal-workspace-session/run-01/WORKSPACE_SESSION.md"
+    ]
+  },
+  "checks": [
+    {
+      "id": "run_assignment_ready",
+      "status": "passed",
+      "detail": "Workspace Session consumes an accepted Run Assignment."
+    },
+    {
+      "id": "budget_ledger_ready",
+      "status": "passed",
+      "detail": "Workspace Session consumes a ready Budget Ledger before runtime spend."
+    },
+    {
+      "id": "workspace_policy_bound",
+      "status": "passed",
+      "detail": "Assignment workspace policy resolves to a concrete workspace policy."
+    },
+    {
+      "id": "single_writer_lock_declared",
+      "status": "passed",
+      "detail": "Writer sessions are constrained to one writer per worktree."
+    },
+    {
+      "id": "write_scope_declared",
+      "status": "passed",
+      "detail": "Allowed write roots and forbidden paths are declared."
+    },
+    {
+      "id": "no_runtime_execution",
+      "status": "passed",
+      "detail": "This cut records workspace policy only and cannot start runtime."
+    },
+    {
+      "id": "no_remote_mutation",
+      "status": "passed",
+      "detail": "Remote writes remain blocked until an explicit Human Gate."
+    },
+    {
+      "id": "no_secret_values_recorded",
+      "status": "passed",
+      "detail": "No provider secrets, project secrets, SSH keys or raw command output are stored."
+    }
+  ]
+}

@@ -5,7 +5,7 @@
 - Overall: `spec_ready`.
 - Layers: `35`.
 - Layers with missing files: `0`.
-- Tasks: `77/77 done`.
+- Tasks: `78/78 done`.
 - Next cut defined: `true`.
 
 ## Comandos de verificacao

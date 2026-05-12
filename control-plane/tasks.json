@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T18:01:02Z",
+  "generated_at": "2026-05-12T18:28:35Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -925,6 +925,18 @@
       "summary": "Um contrato verificavel deve definir budget policies, schema append-only de cost",
       "exec_pack": "docs/exec-packs/done/TKT-076-artemis-portal-budget-ledger.md",
       "evidence": "artifacts/artemis-portal-budget-ledger/run-01/budget-ledger-contract.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-077",
+      "ticket": "TKT-077",
+      "title": "ARTEMIS Portal Workspace Session Contract",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "Um contrato verificavel deve definir session record, workspace policies, writer",
+      "exec_pack": "docs/exec-packs/done/TKT-077-artemis-portal-workspace-session.md",
+      "evidence": "artifacts/artemis-portal-workspace-session/run-01/workspace-session-contract.json",
       "tags": ["exec-pack", "done"]
     }
   ]

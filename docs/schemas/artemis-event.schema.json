@@ -105,7 +105,8 @@
             "portal_credential_vault",
             "portal_agent_registry",
             "portal_run_assignment",
-            "portal_budget_ledger"
+            "portal_budget_ledger",
+            "portal_workspace_session"
           ]
         },
         "name": {

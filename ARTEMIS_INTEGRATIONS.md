@@ -130,3 +130,12 @@ limites de tokens, custo, duracao, agentes e hard stops antes de qualquer gasto:
 docs/portal/ARTEMIS_PORTAL_BUDGET_LEDGER.md
 scripts/artemis-portal-budget-ledger.sh --json
 ```
+
+Depois do budget ledger, o portal precisa do Workspace Session para vincular
+assignment e budget a projeto, worktree, branch policy, writer lock e escopo de
+escrita antes de qualquer launcher:
+
+```bash
+docs/portal/ARTEMIS_PORTAL_WORKSPACE_SESSION.md
+scripts/artemis-portal-workspace-session.sh --json
+```

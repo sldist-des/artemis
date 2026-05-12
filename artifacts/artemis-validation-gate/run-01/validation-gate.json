@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T18:02:11Z",
+  "generated_at": "2026-05-12T18:28:51Z",
   "overall": "human_gate",
   "summary": {
-    "passed": 117,
+    "passed": 119,
     "failed": 0,
     "human_gate": 2
   },
@@ -357,6 +357,13 @@
       "status": "passed",
       "exit_code": 0,
       "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_budget_ledger.txt"
+    },
+    {
+      "name": "shell_portal_workspace_session",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_workspace_session.txt"
     },
     {
       "name": "shell_approved_workspace_cleanup",
@@ -756,6 +763,13 @@
       "status": "passed",
       "exit_code": 0,
       "log": "artifacts/artemis-validation-gate/run-01/check-logs/portal_budget_ledger.txt"
+    },
+    {
+      "name": "portal_workspace_session",
+      "kind": "technical",
+      "status": "passed",
+      "exit_code": 0,
+      "log": "artifacts/artemis-validation-gate/run-01/check-logs/portal_workspace_session.txt"
     },
     {
       "name": "approved_workspace_cleanup",

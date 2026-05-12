@@ -193,6 +193,20 @@ The budget ledger contract lives in:
 docs/portal/ARTEMIS_PORTAL_BUDGET_LEDGER.md
 ```
 
+Workspace session is the next pre-launcher boundary. It binds an assignment and
+budget ledger to a project, worktree, branch policy, writer lock and write scope
+before any portal-managed agent can enter launcher preflight:
+
+```bash
+scripts/artemis-portal-workspace-session.sh --artifact-root artifacts/artemis-portal-workspace-session/run-01
+```
+
+The workspace session contract lives in:
+
+```text
+docs/portal/ARTEMIS_PORTAL_WORKSPACE_SESSION.md
+```
+
 ## ARTEMIS Symphony evidence
 
 The Control Plane includes a read-only `ARTEMIS Symphony` section for the local Symphony cuts.

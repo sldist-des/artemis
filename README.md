@@ -297,6 +297,8 @@ docs/portal/ARTEMIS_PORTAL_RUN_ASSIGNMENT.md
 scripts/artemis-portal-run-assignment.sh --artifact-root artifacts/artemis-portal-run-assignment/run-01
 docs/portal/ARTEMIS_PORTAL_BUDGET_LEDGER.md
 scripts/artemis-portal-budget-ledger.sh --artifact-root artifacts/artemis-portal-budget-ledger/run-01
+docs/portal/ARTEMIS_PORTAL_WORKSPACE_SESSION.md
+scripts/artemis-portal-workspace-session.sh --artifact-root artifacts/artemis-portal-workspace-session/run-01
 ```
 
 ## Readiness de aplicacao

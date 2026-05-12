@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-12T18:28:47Z",
+  "source": "scripts/artemis-portal-workspace-session.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_workspace_session_contract_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-12T18:28:47Z",
+      "producer": {
+        "adapter": "portal_workspace_session",
+        "name": "scripts/artemis-portal-workspace-session.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-077",
+        "task_id": "tkt-077",
+        "title": "ARTEMIS Portal Workspace Session Contract",
+        "exec_pack": "docs/exec-packs/done/TKT-077-artemis-portal-workspace-session.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/portal-workspace-session-check"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "context",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/portal-workspace-session-check",
+        "status_path": "artifacts/artemis-validation-gate/run-01/portal-workspace-session-check/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/portal-workspace-session-check/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/portal-workspace-session-check/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-validation-gate/run-01/portal-workspace-session-check/workspace-session-contract.json",
+          "artifacts/artemis-validation-gate/run-01/portal-workspace-session-check/WORKSPACE_SESSION.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-077"
+      },
+      "payload": {
+        "workspace_session_ready": true,
+        "workspace_session_id": "workspace-session-tkt-077-contract-fixture",
+        "workspace_policy_id": "workspace:single-writer-worktree",
+        "assignment_id": "assign-tkt-075-contract-fixture",
+        "budget_policy_id": "budget:frontier-engineering",
+        "writer_lock_required": true,
+        "max_writers": 1,
+        "runtime_auth_executed": false,
+        "vault_lease_issued": false,
+        "worktree_created": false,
+        "branch_changed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "secret_values_recorded": false,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-078 - ARTEMIS Portal Runtime Session Contract"
+      }
+    }
+  ]
+}

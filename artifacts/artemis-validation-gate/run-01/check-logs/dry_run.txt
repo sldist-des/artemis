@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 77
+    "done": 78
   },
   "decisions": [
     {
@@ -700,6 +700,15 @@
       "title": "ARTEMIS Portal Budget and Cost Ledger Contract",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-076-artemis-portal-budget-ledger.md"
+    },
+    {
+      "ticket": "TKT-077",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "ARTEMIS Portal Workspace Session Contract",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-077-artemis-portal-workspace-session.md"
     }
   ]
 }

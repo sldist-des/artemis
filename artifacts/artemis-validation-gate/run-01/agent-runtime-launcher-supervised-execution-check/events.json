@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T18:02:05Z",
+  "generated_at": "2026-05-12T18:28:46Z",
   "source": "scripts/artemis-agent-runtime-launcher-supervised-execution.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-065_agent_runtime_launcher_supervised_execution",
       "event_type": "runner.attempt_planned",
-      "generated_at": "2026-05-12T18:02:05Z",
+      "generated_at": "2026-05-12T18:28:46Z",
       "producer": {
         "adapter": "agent_runtime_launcher_supervised_execution",
         "name": "scripts/artemis-agent-runtime-launcher-supervised-execution.sh",

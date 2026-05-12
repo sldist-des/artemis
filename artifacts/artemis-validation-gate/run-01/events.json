@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T18:02:11Z",
+  "generated_at": "2026-05-12T18:28:51Z",
   "source": "scripts/artemis-validation-gate.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-12T18:02:11Z",
+      "generated_at": "2026-05-12T18:28:51Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -90,6 +90,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_agent_registry.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_run_assignment.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_budget_ledger.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_workspace_session.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt",
@@ -147,6 +148,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/portal_agent_registry.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/portal_run_assignment.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/portal_budget_ledger.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/portal_workspace_session.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt",
@@ -167,7 +169,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 117,
+          "passed": 119,
           "failed": 0,
           "human_gate": 2
         },
@@ -521,6 +523,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_budget_ledger.txt"
+          },
+          {
+            "name": "shell_portal_workspace_session",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_workspace_session.txt"
           },
           {
             "name": "shell_approved_workspace_cleanup",
@@ -920,6 +929,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/portal_budget_ledger.txt"
+          },
+          {
+            "name": "portal_workspace_session",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/portal_workspace_session.txt"
           },
           {
             "name": "approved_workspace_cleanup",

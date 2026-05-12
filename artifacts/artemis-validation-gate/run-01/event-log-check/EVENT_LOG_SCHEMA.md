@@ -1,7 +1,7 @@
 # ARTEMIS EVENT LOG SCHEMA
 
 - Schema version: 1
-- Events: 63
+- Events: 64
 - Source: scripts/artemis-event-log.sh
 
 ## Event Types
@@ -69,6 +69,7 @@
 - `adapter.contract_recorded`: `evt_portal_agent_registry_contract_recorded` -> done
 - `adapter.contract_recorded`: `evt_portal_run_assignment_contract_recorded` -> done
 - `adapter.contract_recorded`: `evt_portal_budget_ledger_contract_recorded` -> done
+- `adapter.contract_recorded`: `evt_portal_workspace_session_contract_recorded` -> done
 
 ## Invariants
 

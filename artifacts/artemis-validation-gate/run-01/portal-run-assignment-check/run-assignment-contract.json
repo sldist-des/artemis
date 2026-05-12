@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T18:02:06Z",
+  "generated_at": "2026-05-12T18:28:47Z",
   "overall": "assignment_ready",
   "run_assignment_ready": true,
   "secret_values_recorded": false,
@@ -114,11 +114,11 @@
   "sample_assignment": {
     "assignment_id": "assign-tkt-075-contract-fixture",
     "project_id": "artemis",
-    "task_id": "tkt-076",
-    "ticket": "TKT-076",
-    "exec_pack": "docs/exec-packs/done/TKT-076-artemis-portal-budget-ledger.md",
+    "task_id": "tkt-077",
+    "ticket": "TKT-077",
+    "exec_pack": "docs/exec-packs/done/TKT-077-artemis-portal-workspace-session.md",
     "requested_by": "ARTEMIS contract fixture",
-    "requested_at": "2026-05-12T18:02:06Z",
+    "requested_at": "2026-05-12T18:28:47Z",
     "risk": "medium",
     "task_shape": "medium_to_long",
     "agent_profile_id": "codex_frontier_engineer",

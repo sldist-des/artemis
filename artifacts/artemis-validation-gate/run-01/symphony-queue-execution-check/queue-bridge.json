@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T18:02:01Z",
+  "generated_at": "2026-05-12T18:28:44Z",
   "source": "scripts/artemis-symphony-queue-bridge.sh",
   "mode": "supervised_queue_bridge_execute",
   "overall": "runner_executed",

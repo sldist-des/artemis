@@ -146,6 +146,7 @@ portal_credential_vault_payload = read_json(Path("artifacts/artemis-portal-crede
 portal_agent_registry_payload = read_json(Path("artifacts/artemis-portal-agent-registry/run-01/agent-registry-contract.json"), {"registry_contract": {}, "overall": "not_available"})
 portal_run_assignment_payload = read_json(Path("artifacts/artemis-portal-run-assignment/run-01/run-assignment-contract.json"), {"assignment_contract": {}, "sample_assignment": {}, "overall": "not_available"})
 portal_budget_ledger_payload = read_json(Path("artifacts/artemis-portal-budget-ledger/run-01/budget-ledger-contract.json"), {"budget_contract": {}, "sample_ledger_entry": {}, "overall": "not_available"})
+portal_workspace_session_payload = read_json(Path("artifacts/artemis-portal-workspace-session/run-01/workspace-session-contract.json"), {"workspace_contract": {}, "sample_workspace_session": {}, "overall": "not_available"})
 
 tasks = tasks_payload.get("tasks", [])
 events = event_log_payload.get("events", [])
@@ -422,6 +423,22 @@ nodes = [
         "next_cut": portal_budget_ledger_payload.get("next_cut", "unknown"),
     },
     {
+        "id": "portal:workspace_session",
+        "type": "portal_workspace_session",
+        "label": "ARTEMIS Portal Workspace Session",
+        "status": portal_workspace_session_payload.get("overall", "not_available"),
+        "workspace_session_ready": portal_workspace_session_payload.get("workspace_session_ready", False),
+        "workspace_session_id": portal_workspace_session_payload.get("sample_workspace_session", {}).get("workspace_session_id", "unknown"),
+        "workspace_policy_id": portal_workspace_session_payload.get("sample_workspace_session", {}).get("workspace_policy_id", "unknown"),
+        "worktree_created": portal_workspace_session_payload.get("worktree_created", False),
+        "branch_changed": portal_workspace_session_payload.get("branch_changed", False),
+        "agents_started": portal_workspace_session_payload.get("agents_started", False),
+        "commands_executed": portal_workspace_session_payload.get("commands_executed", 0),
+        "tokens_spent": portal_workspace_session_payload.get("tokens_spent", 0),
+        "remote_state_mutated": portal_workspace_session_payload.get("remote_state_mutated", False),
+        "next_cut": portal_workspace_session_payload.get("next_cut", "unknown"),
+    },
+    {
         "id": "control_plane:view",
         "type": "view",
         "label": "Control Plane",
@@ -510,6 +527,11 @@ edges = [
     {"from": "portal:budget_ledger", "to": "runtime:launcher_preflight", "type": "gates_spend_preflight"},
     {"from": "portal:budget_ledger", "to": "gate:human", "type": "requires_budget_threshold_gate"},
     {"from": "portal:budget_ledger", "to": "event_log:timeline", "type": "records_budget_contract"},
+    {"from": "portal:budget_ledger", "to": "portal:workspace_session", "type": "requires_workspace_before_launch"},
+    {"from": "portal:workspace_session", "to": "runtime:launcher_preflight", "type": "gates_workspace_preflight"},
+    {"from": "portal:workspace_session", "to": "validation:gate", "type": "requires_workspace_validation"},
+    {"from": "portal:workspace_session", "to": "gate:human", "type": "requires_remote_write_gate"},
+    {"from": "portal:workspace_session", "to": "event_log:timeline", "type": "records_workspace_contract"},
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
@@ -518,6 +540,7 @@ edges = [
     {"from": "control_plane:view", "to": "portal:agent_registry", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:run_assignment", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:budget_ledger", "type": "shows"},
+    {"from": "control_plane:view", "to": "portal:workspace_session", "type": "shows"},
 ]
 
 questions = [
@@ -597,6 +620,7 @@ payload = {
         "portal_agent_registry": "artifacts/artemis-portal-agent-registry/run-01/agent-registry-contract.json",
         "portal_run_assignment": "artifacts/artemis-portal-run-assignment/run-01/run-assignment-contract.json",
         "portal_budget_ledger": "artifacts/artemis-portal-budget-ledger/run-01/budget-ledger-contract.json",
+        "portal_workspace_session": "artifacts/artemis-portal-workspace-session/run-01/workspace-session-contract.json",
     },
     "summary": summary,
     "states": dict(states),
@@ -636,10 +660,11 @@ payload = {
         "portal_agent_registry_input": "artemis_portal_agent_registry",
         "portal_run_assignment_input": "artemis_portal_run_assignment",
         "portal_budget_ledger_input": "artemis_portal_budget_ledger",
+        "portal_workspace_session_input": "artemis_portal_workspace_session",
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },
-    "next_cut": "TKT-077 - ARTEMIS Portal Workspace Session Contract",
+    "next_cut": "TKT-078 - ARTEMIS Portal Runtime Session Contract",
 }
 
 write_text(artifact_root / "project-graph.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")

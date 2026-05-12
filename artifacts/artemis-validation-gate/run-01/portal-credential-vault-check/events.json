@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-12T16:42:53Z",
+  "source": "scripts/artemis-portal-credential-vault.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_credential_vault_contract_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-12T16:42:53Z",
+      "producer": {
+        "adapter": "portal_credential_vault",
+        "name": "scripts/artemis-portal-credential-vault.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-073",
+        "task_id": "tkt-073",
+        "title": "ARTEMIS Portal Credential Vault Contract",
+        "exec_pack": "docs/exec-packs/done/TKT-073-artemis-portal-credential-vault.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/portal-credential-vault-check"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "context",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/portal-credential-vault-check",
+        "status_path": "artifacts/artemis-validation-gate/run-01/portal-credential-vault-check/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/portal-credential-vault-check/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/portal-credential-vault-check/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-validation-gate/run-01/portal-credential-vault-check/credential-vault-contract.json",
+          "artifacts/artemis-validation-gate/run-01/portal-credential-vault-check/CREDENTIAL_VAULT.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-073"
+      },
+      "payload": {
+        "credential_vault_ready": true,
+        "secret_values_recorded": false,
+        "runtime_auth_executed": false,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-074 - ARTEMIS Portal Agent Registry Contract"
+      }
+    }
+  ]
+}

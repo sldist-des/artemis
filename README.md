@@ -289,6 +289,8 @@ o contrato inicial vive em:
 ```bash
 docs/portal/ARTEMIS_PORTAL_AUTH_PLAN.md
 scripts/artemis-portal-auth-plan.sh --artifact-root artifacts/artemis-portal-auth-plan/run-01
+docs/portal/ARTEMIS_PORTAL_CREDENTIAL_VAULT.md
+scripts/artemis-portal-credential-vault.sh --artifact-root artifacts/artemis-portal-credential-vault/run-01
 ```
 
 ## Readiness de aplicacao

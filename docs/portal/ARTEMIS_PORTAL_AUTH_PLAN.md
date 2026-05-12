@@ -141,4 +141,5 @@ Todo launch real deve registrar limites antes de rodar:
 - criar GitHub App;
 - executar agente pago.
 
-Proximo corte recomendado: `TKT-073 - ARTEMIS Portal Credential Vault Contract`.
+O corte seguinte materializa esse requisito em
+`docs/portal/ARTEMIS_PORTAL_CREDENTIAL_VAULT.md`.

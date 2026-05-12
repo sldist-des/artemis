@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T13:34:10Z",
+  "generated_at": "2026-05-12T16:42:57Z",
   "source": "scripts/artemis-validation-gate.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-12T13:34:10Z",
+      "generated_at": "2026-05-12T16:42:57Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -86,6 +86,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_completion_review_gate.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_done_ledger.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_auth_plan.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_credential_vault.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt",
@@ -139,6 +140,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_completion_review_gate.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_done_ledger.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/portal_auth_plan.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/portal_credential_vault.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt",
@@ -159,7 +161,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 109,
+          "passed": 111,
           "failed": 0,
           "human_gate": 2
         },
@@ -485,6 +487,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_auth_plan.txt"
+          },
+          {
+            "name": "shell_portal_credential_vault",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_credential_vault.txt"
           },
           {
             "name": "shell_approved_workspace_cleanup",
@@ -856,6 +865,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/portal_auth_plan.txt"
+          },
+          {
+            "name": "portal_credential_vault",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/portal_credential_vault.txt"
           },
           {
             "name": "approved_workspace_cleanup",

@@ -142,6 +142,7 @@ runtime_completion_handoff_payload = read_json(Path("artifacts/artemis-agent-run
 runtime_completion_review_gate_payload = read_json(Path("artifacts/artemis-agent-runtime-completion-review-gate/run-01/completion-review-gate.json"), {"summary": {}, "overall": "not_available"})
 runtime_done_ledger_payload = read_json(Path("artifacts/artemis-agent-runtime-done-ledger/run-01/done-ledger.json"), {"summary": {}, "overall": "not_available"})
 portal_auth_payload = read_json(Path("artifacts/artemis-portal-auth-plan/run-01/portal-auth-plan.json"), {"portal_auth": {}, "overall": "not_available"})
+portal_credential_vault_payload = read_json(Path("artifacts/artemis-portal-credential-vault/run-01/credential-vault-contract.json"), {"vault_contract": {}, "overall": "not_available"})
 
 tasks = tasks_payload.get("tasks", [])
 events = event_log_payload.get("events", [])
@@ -358,6 +359,18 @@ nodes = [
         "next_cut": portal_auth_payload.get("next_cut", "unknown"),
     },
     {
+        "id": "portal:credential_vault",
+        "type": "portal_credential_vault",
+        "label": "ARTEMIS Portal Credential Vault",
+        "status": portal_credential_vault_payload.get("overall", "not_available"),
+        "credential_vault_ready": portal_credential_vault_payload.get("credential_vault_ready", False),
+        "secret_values_recorded": portal_credential_vault_payload.get("secret_values_recorded", False),
+        "runtime_auth_executed": portal_credential_vault_payload.get("runtime_auth_executed", False),
+        "provider_bindings": len(portal_credential_vault_payload.get("vault_contract", {}).get("provider_bindings", [])),
+        "policy_gates": len(portal_credential_vault_payload.get("vault_contract", {}).get("policy_gates", [])),
+        "next_cut": portal_credential_vault_payload.get("next_cut", "unknown"),
+    },
+    {
         "id": "control_plane:view",
         "type": "view",
         "label": "Control Plane",
@@ -422,10 +435,16 @@ edges = [
     {"from": "portal:auth_plan", "to": "gate:human", "type": "requires_auth_and_budget_gates"},
     {"from": "portal:auth_plan", "to": "cost:budget", "type": "requires_cost_ledger"},
     {"from": "portal:auth_plan", "to": "event_log:timeline", "type": "records_auth_contract"},
+    {"from": "portal:auth_plan", "to": "portal:credential_vault", "type": "requires_vault_before_provider_auth"},
+    {"from": "portal:credential_vault", "to": "adapter:codex_app_server", "type": "brokers_scoped_lease"},
+    {"from": "portal:credential_vault", "to": "adapter:claude_code", "type": "brokers_scoped_lease"},
+    {"from": "portal:credential_vault", "to": "gate:human", "type": "requires_lease_gate"},
+    {"from": "portal:credential_vault", "to": "event_log:timeline", "type": "records_vault_contract"},
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:auth_plan", "type": "shows"},
+    {"from": "control_plane:view", "to": "portal:credential_vault", "type": "shows"},
 ]
 
 questions = [
@@ -501,6 +520,7 @@ payload = {
         "runtime_completion_review_gate": "artifacts/artemis-agent-runtime-completion-review-gate/run-01/completion-review-gate.json",
         "runtime_done_ledger": "artifacts/artemis-agent-runtime-done-ledger/run-01/done-ledger.json",
         "portal_auth_plan": "artifacts/artemis-portal-auth-plan/run-01/portal-auth-plan.json",
+        "portal_credential_vault": "artifacts/artemis-portal-credential-vault/run-01/credential-vault-contract.json",
     },
     "summary": summary,
     "states": dict(states),
@@ -536,6 +556,7 @@ payload = {
         "runtime_completion_review_gate_input": "artemis_agent_runtime_completion_review_gate",
         "runtime_done_ledger_input": "artemis_agent_runtime_done_ledger",
         "portal_auth_plan_input": "artemis_portal_auth_plan",
+        "portal_credential_vault_input": "artemis_portal_credential_vault",
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },

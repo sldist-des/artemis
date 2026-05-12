@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T13:34:04Z",
+  "generated_at": "2026-05-12T16:42:52Z",
   "source": "scripts/artemis-agent-runtime-approval-gate.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-060_agent_runtime_approval_gate",
       "event_type": "approval.requested",
-      "generated_at": "2026-05-12T13:34:04Z",
+      "generated_at": "2026-05-12T16:42:52Z",
       "producer": {
         "adapter": "agent_runtime_approval_gate",
         "name": "scripts/artemis-agent-runtime-approval-gate.sh",

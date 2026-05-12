@@ -41,6 +41,7 @@ docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_COMPLETION_HANDOFF.md
 docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_COMPLETION_REVIEW_GATE.md
 docs/symphony/ARTEMIS_SYMPHONY_AGENT_RUNTIME_DONE_LEDGER.md
 docs/portal/ARTEMIS_PORTAL_AUTH_PLAN.md
+docs/portal/ARTEMIS_PORTAL_CREDENTIAL_VAULT.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
@@ -109,6 +110,7 @@ scripts/artemis-agent-runtime-completion-handoff.sh
 scripts/artemis-agent-runtime-completion-review-gate.sh
 scripts/artemis-agent-runtime-done-ledger.sh
 scripts/artemis-portal-auth-plan.sh
+scripts/artemis-portal-credential-vault.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -214,6 +216,7 @@ sh -n scripts/artemis-agent-runtime-completion-handoff.sh
 sh -n scripts/artemis-agent-runtime-completion-review-gate.sh
 sh -n scripts/artemis-agent-runtime-done-ledger.sh
 sh -n scripts/artemis-portal-auth-plan.sh
+sh -n scripts/artemis-portal-credential-vault.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -260,6 +263,23 @@ if ! grep -q '"secrets_written": false' /tmp/artemis-portal-auth-plan.json; then
 fi
 if ! test -f /tmp/artemis-portal-auth-plan/PORTAL_AUTH_PLAN.md; then
   echo "scripts/artemis-portal-auth-plan.sh did not write portal auth documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-portal-credential-vault.sh --artifact-root /tmp/artemis-portal-credential-vault --json >/tmp/artemis-portal-credential-vault.json
+if ! grep -q '"overall": "contract_ready"' /tmp/artemis-portal-credential-vault.json; then
+  echo "scripts/artemis-portal-credential-vault.sh did not report contract_ready" >&2
+  exit 1
+fi
+if ! grep -q '"secret_values_recorded": false' /tmp/artemis-portal-credential-vault.json; then
+  echo "scripts/artemis-portal-credential-vault.sh recorded secret values" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_auth_executed": false' /tmp/artemis-portal-credential-vault.json; then
+  echo "scripts/artemis-portal-credential-vault.sh executed runtime auth" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-credential-vault/CREDENTIAL_VAULT.md; then
+  echo "scripts/artemis-portal-credential-vault.sh did not write vault documentation artifact" >&2
   exit 1
 fi
 

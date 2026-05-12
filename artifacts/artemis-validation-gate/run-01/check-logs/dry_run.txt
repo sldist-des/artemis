@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 73
+    "done": 74
   },
   "decisions": [
     {
@@ -664,6 +664,15 @@
       "title": "ARTEMIS Portal Auth Plan",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-072-artemis-portal-auth-plan.md"
+    },
+    {
+      "ticket": "TKT-073",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "ARTEMIS Portal Credential Vault Contract",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-073-artemis-portal-credential-vault.md"
     }
   ]
 }

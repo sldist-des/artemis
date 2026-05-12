@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T13:33:49Z",
+  "generated_at": "2026-05-12T16:42:36Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-12T13:33:49Z",
+      "generated_at": "2026-05-12T16:42:36Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -74,7 +74,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-12T13:33:49Z",
+      "generated_at": "2026-05-12T16:42:36Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -161,7 +161,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-12T13:33:49Z",
+      "generated_at": "2026-05-12T16:42:36Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -254,7 +254,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-12T13:33:49Z",
+      "generated_at": "2026-05-12T16:42:36Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -294,7 +294,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 107,
+          "passed": 109,
           "failed": 0,
           "human_gate": 2
         },
@@ -613,6 +613,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_done_ledger.txt"
+          },
+          {
+            "name": "shell_portal_auth_plan",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_auth_plan.txt"
           },
           {
             "name": "shell_approved_workspace_cleanup",
@@ -977,6 +984,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_done_ledger.txt"
+          },
+          {
+            "name": "portal_auth_plan",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/portal_auth_plan.txt"
           },
           {
             "name": "approved_workspace_cleanup",
@@ -3231,7 +3245,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-12T12:25:42Z",
+      "generated_at": "2026-05-12T13:34:10Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -3309,6 +3323,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_completion_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_completion_review_gate.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_done_ledger.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_auth_plan.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt",
@@ -3361,6 +3376,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_completion_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_completion_review_gate.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_done_ledger.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/portal_auth_plan.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt",
@@ -3381,7 +3397,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 107,
+          "passed": 109,
           "failed": 0,
           "human_gate": 2
         },
@@ -3700,6 +3716,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_agent_runtime_done_ledger.txt"
+          },
+          {
+            "name": "shell_portal_auth_plan",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_auth_plan.txt"
           },
           {
             "name": "shell_approved_workspace_cleanup",
@@ -4064,6 +4087,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/agent_runtime_done_ledger.txt"
+          },
+          {
+            "name": "portal_auth_plan",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/portal_auth_plan.txt"
           },
           {
             "name": "approved_workspace_cleanup",
@@ -5726,6 +5756,57 @@
         "secrets_written": false,
         "remote_state_mutated": false,
         "next_cut": "TKT-073 - ARTEMIS Portal Credential Vault Contract"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_credential_vault_contract_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-12T16:42:10Z",
+      "producer": {
+        "adapter": "portal_credential_vault",
+        "name": "scripts/artemis-portal-credential-vault.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-073",
+        "task_id": "tkt-073",
+        "title": "ARTEMIS Portal Credential Vault Contract",
+        "exec_pack": "docs/exec-packs/done/TKT-073-artemis-portal-credential-vault.md",
+        "artifact_root": "artifacts/artemis-portal-credential-vault/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "context",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-credential-vault/run-01",
+        "status_path": "artifacts/artemis-portal-credential-vault/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-credential-vault/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-credential-vault/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-credential-vault/run-01/credential-vault-contract.json",
+          "artifacts/artemis-portal-credential-vault/run-01/CREDENTIAL_VAULT.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-073"
+      },
+      "payload": {
+        "credential_vault_ready": true,
+        "secret_values_recorded": false,
+        "runtime_auth_executed": false,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-074 - ARTEMIS Portal Agent Registry Contract"
       }
     }
   ]

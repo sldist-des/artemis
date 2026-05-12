@@ -137,6 +137,20 @@ and documented in:
 docs/portal/ARTEMIS_PORTAL_AUTH_PLAN.md
 ```
 
+Credential storage is a separate contract. The portal must not store or use
+provider tokens until the Credential Vault boundary defines encryption, scope,
+leases, rotation, revocation and audit behavior:
+
+```bash
+scripts/artemis-portal-credential-vault.sh --artifact-root artifacts/artemis-portal-credential-vault/run-01
+```
+
+The contract lives in:
+
+```text
+docs/portal/ARTEMIS_PORTAL_CREDENTIAL_VAULT.md
+```
+
 ## ARTEMIS Symphony evidence
 
 The Control Plane includes a read-only `ARTEMIS Symphony` section for the local Symphony cuts.

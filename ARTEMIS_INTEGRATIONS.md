@@ -98,3 +98,11 @@ gerado como artifact por:
 ```bash
 scripts/artemis-portal-auth-plan.sh --json
 ```
+
+Antes de qualquer token real, o portal tambem precisa do contrato do Credential
+Vault:
+
+```bash
+docs/portal/ARTEMIS_PORTAL_CREDENTIAL_VAULT.md
+scripts/artemis-portal-credential-vault.sh --json
+```

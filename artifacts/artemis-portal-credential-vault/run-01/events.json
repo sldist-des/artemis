@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-12T16:42:10Z",
+  "source": "scripts/artemis-portal-credential-vault.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_credential_vault_contract_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-12T16:42:10Z",
+      "producer": {
+        "adapter": "portal_credential_vault",
+        "name": "scripts/artemis-portal-credential-vault.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-073",
+        "task_id": "tkt-073",
+        "title": "ARTEMIS Portal Credential Vault Contract",
+        "exec_pack": "docs/exec-packs/done/TKT-073-artemis-portal-credential-vault.md",
+        "artifact_root": "artifacts/artemis-portal-credential-vault/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "context",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-credential-vault/run-01",
+        "status_path": "artifacts/artemis-portal-credential-vault/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-credential-vault/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-credential-vault/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-credential-vault/run-01/credential-vault-contract.json",
+          "artifacts/artemis-portal-credential-vault/run-01/CREDENTIAL_VAULT.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-073"
+      },
+      "payload": {
+        "credential_vault_ready": true,
+        "secret_values_recorded": false,
+        "runtime_auth_executed": false,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-074 - ARTEMIS Portal Agent Registry Contract"
+      }
+    }
+  ]
+}

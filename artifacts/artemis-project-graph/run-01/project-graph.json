@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T13:33:27Z",
+  "generated_at": "2026-05-12T16:42:36Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -21,20 +21,21 @@
     "runtime_completion_handoff": "artifacts/artemis-agent-runtime-completion-handoff/run-01/completion-handoff.json",
     "runtime_completion_review_gate": "artifacts/artemis-agent-runtime-completion-review-gate/run-01/completion-review-gate.json",
     "runtime_done_ledger": "artifacts/artemis-agent-runtime-done-ledger/run-01/done-ledger.json",
-    "portal_auth_plan": "artifacts/artemis-portal-auth-plan/run-01/portal-auth-plan.json"
+    "portal_auth_plan": "artifacts/artemis-portal-auth-plan/run-01/portal-auth-plan.json",
+    "portal_credential_vault": "artifacts/artemis-portal-credential-vault/run-01/credential-vault-contract.json"
   },
   "summary": {
-    "tasks_total": 73,
-    "tasks_done": 73,
+    "tasks_total": 74,
+    "tasks_done": 74,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 8,
-    "events_total": 59,
-    "nodes_total": 23,
-    "edges_total": 60,
-    "evidence_count": 73,
-    "exec_pack_count": 73,
-    "validation_passed": 107,
+    "events_total": 60,
+    "nodes_total": 24,
+    "edges_total": 66,
+    "evidence_count": 74,
+    "exec_pack_count": 74,
+    "validation_passed": 109,
     "validation_failed": 0,
     "validation_human_gate": 2,
     "memory_zones": 3,
@@ -46,10 +47,10 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 73
+    "done": 74
   },
   "risks": {
-    "medium": 58,
+    "medium": 59,
     "low": 4,
     "high": 11
   },
@@ -60,7 +61,7 @@
     ],
     [
       "Codex",
-      17
+      18
     ],
     [
       "Context Curator",
@@ -90,11 +91,11 @@
   "top_tags": [
     [
       "exec-pack",
-      73
+      74
     ],
     [
       "done",
-      73
+      74
     ]
   ],
   "nodes": [
@@ -109,8 +110,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 73,
-      "done": 73,
+      "count": 74,
+      "done": 74,
       "human": 0
     },
     {
@@ -125,7 +126,7 @@
         ],
         [
           "Codex",
-          17
+          18
         ],
         [
           "Context Curator",
@@ -152,7 +153,7 @@
       "id": "validation:gate",
       "type": "validation",
       "label": "Validation Gate",
-      "passed": 107,
+      "passed": 109,
       "failed": 0
     },
     {
@@ -166,14 +167,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 73,
-      "exec_packs": 73
+      "task_evidence": 74,
+      "exec_packs": 74
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 59
+      "events": 60
     },
     {
       "id": "cost:budget",
@@ -319,6 +320,18 @@
       "provider_connections": 3,
       "mandatory_gates": 10,
       "next_cut": "TKT-073 - ARTEMIS Portal Credential Vault Contract"
+    },
+    {
+      "id": "portal:credential_vault",
+      "type": "portal_credential_vault",
+      "label": "ARTEMIS Portal Credential Vault",
+      "status": "contract_ready",
+      "credential_vault_ready": true,
+      "secret_values_recorded": false,
+      "runtime_auth_executed": false,
+      "provider_bindings": 3,
+      "policy_gates": 8,
+      "next_cut": "TKT-074 - ARTEMIS Portal Agent Registry Contract"
     },
     {
       "id": "control_plane:view",
@@ -609,6 +622,31 @@
       "type": "records_auth_contract"
     },
     {
+      "from": "portal:auth_plan",
+      "to": "portal:credential_vault",
+      "type": "requires_vault_before_provider_auth"
+    },
+    {
+      "from": "portal:credential_vault",
+      "to": "adapter:codex_app_server",
+      "type": "brokers_scoped_lease"
+    },
+    {
+      "from": "portal:credential_vault",
+      "to": "adapter:claude_code",
+      "type": "brokers_scoped_lease"
+    },
+    {
+      "from": "portal:credential_vault",
+      "to": "gate:human",
+      "type": "requires_lease_gate"
+    },
+    {
+      "from": "portal:credential_vault",
+      "to": "event_log:timeline",
+      "type": "records_vault_contract"
+    },
+    {
       "from": "control_plane:view",
       "to": "project:artemis",
       "type": "observes"
@@ -626,6 +664,11 @@
     {
       "from": "control_plane:view",
       "to": "portal:auth_plan",
+      "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "portal:credential_vault",
       "type": "shows"
     }
   ],
@@ -692,6 +735,7 @@
     "runtime_completion_review_gate_input": "artemis_agent_runtime_completion_review_gate",
     "runtime_done_ledger_input": "artemis_agent_runtime_done_ledger",
     "portal_auth_plan_input": "artemis_portal_auth_plan",
+    "portal_credential_vault_input": "artemis_portal_credential_vault",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },

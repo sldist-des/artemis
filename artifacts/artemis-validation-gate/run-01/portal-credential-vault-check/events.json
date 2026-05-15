@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T17:23:19Z",
+  "generated_at": "2026-05-15T17:33:53Z",
   "source": "scripts/artemis-portal-credential-vault.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_portal_credential_vault_contract_recorded",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:23:19Z",
+      "generated_at": "2026-05-15T17:33:53Z",
       "producer": {
         "adapter": "portal_credential_vault",
         "name": "scripts/artemis-portal-credential-vault.sh",

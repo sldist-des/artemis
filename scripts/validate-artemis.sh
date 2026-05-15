@@ -50,6 +50,7 @@ docs/portal/ARTEMIS_PORTAL_RUNTIME_SESSION.md
 docs/portal/ARTEMIS_PORTAL_AGENT_CONVERSATION.md
 docs/portal/ARTEMIS_PORTAL_TASK_CONTROL_SURFACE.md
 docs/portal/ARTEMIS_PORTAL_VALIDATION_EVIDENCE_SURFACE.md
+docs/portal/ARTEMIS_PORTAL_HUMAN_ACCEPTANCE_SURFACE.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
@@ -127,6 +128,7 @@ scripts/artemis-portal-runtime-session.sh
 scripts/artemis-portal-agent-conversation.sh
 scripts/artemis-portal-task-control-surface.sh
 scripts/artemis-portal-validation-evidence-surface.sh
+scripts/artemis-portal-human-acceptance-surface.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -241,6 +243,7 @@ sh -n scripts/artemis-portal-runtime-session.sh
 sh -n scripts/artemis-portal-agent-conversation.sh
 sh -n scripts/artemis-portal-task-control-surface.sh
 sh -n scripts/artemis-portal-validation-evidence-surface.sh
+sh -n scripts/artemis-portal-human-acceptance-surface.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -520,6 +523,43 @@ if ! grep -q '"commands_executed": 0' /tmp/artemis-portal-validation-evidence-su
 fi
 if ! test -f /tmp/artemis-portal-validation-evidence-surface/VALIDATION_EVIDENCE_SURFACE.md; then
   echo "scripts/artemis-portal-validation-evidence-surface.sh did not write validation evidence documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-portal-human-acceptance-surface.sh --artifact-root /tmp/artemis-portal-human-acceptance-surface --json >/tmp/artemis-portal-human-acceptance-surface.json
+if ! grep -q '"overall": "human_acceptance_surface_ready"' /tmp/artemis-portal-human-acceptance-surface.json; then
+  echo "scripts/artemis-portal-human-acceptance-surface.sh did not report human_acceptance_surface_ready" >&2
+  exit 1
+fi
+if ! grep -q '"secret_values_recorded": false' /tmp/artemis-portal-human-acceptance-surface.json; then
+  echo "scripts/artemis-portal-human-acceptance-surface.sh recorded secret values" >&2
+  exit 1
+fi
+if ! grep -q '"acceptance_recorded": false' /tmp/artemis-portal-human-acceptance-surface.json; then
+  echo "scripts/artemis-portal-human-acceptance-surface.sh recorded acceptance" >&2
+  exit 1
+fi
+if ! grep -q '"accepted": false' /tmp/artemis-portal-human-acceptance-surface.json; then
+  echo "scripts/artemis-portal-human-acceptance-surface.sh accepted work" >&2
+  exit 1
+fi
+if ! grep -q '"done_ledger_handoff_allowed": false' /tmp/artemis-portal-human-acceptance-surface.json; then
+  echo "scripts/artemis-portal-human-acceptance-surface.sh allowed Done Ledger handoff" >&2
+  exit 1
+fi
+if ! grep -q '"task_state_mutated": false' /tmp/artemis-portal-human-acceptance-surface.json; then
+  echo "scripts/artemis-portal-human-acceptance-surface.sh mutated task state" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-portal-human-acceptance-surface.json; then
+  echo "scripts/artemis-portal-human-acceptance-surface.sh allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-portal-human-acceptance-surface.json; then
+  echo "scripts/artemis-portal-human-acceptance-surface.sh executed commands" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-human-acceptance-surface/HUMAN_ACCEPTANCE_SURFACE.md; then
+  echo "scripts/artemis-portal-human-acceptance-surface.sh did not write human acceptance documentation artifact" >&2
   exit 1
 fi
 

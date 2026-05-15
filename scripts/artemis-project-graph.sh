@@ -151,6 +151,7 @@ portal_runtime_session_payload = read_json(Path("artifacts/artemis-portal-runtim
 portal_agent_conversation_payload = read_json(Path("artifacts/artemis-portal-agent-conversation/run-01/agent-conversation-contract.json"), {"conversation_contract": {}, "sample_conversation": {}, "overall": "not_available"})
 portal_task_control_payload = read_json(Path("artifacts/artemis-portal-task-control-surface/run-01/task-control-surface-contract.json"), {"task_control_contract": {}, "sample_task_control": {}, "overall": "not_available"})
 portal_validation_evidence_payload = read_json(Path("artifacts/artemis-portal-validation-evidence-surface/run-01/validation-evidence-surface-contract.json"), {"validation_evidence_contract": {}, "sample_evidence": {}, "overall": "not_available"})
+portal_human_acceptance_payload = read_json(Path("artifacts/artemis-portal-human-acceptance-surface/run-01/human-acceptance-surface-contract.json"), {"human_acceptance_contract": {}, "sample_acceptance": {}, "overall": "not_available"})
 
 tasks = tasks_payload.get("tasks", [])
 events = event_log_payload.get("events", [])
@@ -509,6 +510,24 @@ nodes = [
         "next_cut": portal_validation_evidence_payload.get("next_cut", "unknown"),
     },
     {
+        "id": "portal:human_acceptance_surface",
+        "type": "portal_human_acceptance_surface",
+        "label": "ARTEMIS Portal Human Acceptance Surface",
+        "status": portal_human_acceptance_payload.get("overall", "not_available"),
+        "human_acceptance_surface_ready": portal_human_acceptance_payload.get("human_acceptance_surface_ready", False),
+        "acceptance_state": portal_human_acceptance_payload.get("acceptance_state", "unknown"),
+        "acceptance_surface_id": portal_human_acceptance_payload.get("sample_acceptance", {}).get("acceptance_surface_id", "unknown"),
+        "acceptance_recorded": portal_human_acceptance_payload.get("acceptance_recorded", False),
+        "accepted": portal_human_acceptance_payload.get("accepted", False),
+        "done_ledger_handoff_allowed": portal_human_acceptance_payload.get("done_ledger_handoff_allowed", False),
+        "task_state_mutated": portal_human_acceptance_payload.get("task_state_mutated", False),
+        "runtime_execution_allowed": portal_human_acceptance_payload.get("runtime_execution_allowed", False),
+        "commands_executed": portal_human_acceptance_payload.get("commands_executed", 0),
+        "tokens_spent": portal_human_acceptance_payload.get("tokens_spent", 0),
+        "remote_state_mutated": portal_human_acceptance_payload.get("remote_state_mutated", False),
+        "next_cut": portal_human_acceptance_payload.get("next_cut", "unknown"),
+    },
+    {
         "id": "control_plane:view",
         "type": "view",
         "label": "Control Plane",
@@ -625,6 +644,11 @@ edges = [
     {"from": "portal:validation_evidence_surface", "to": "artifact:evidence", "type": "renders_evidence"},
     {"from": "portal:validation_evidence_surface", "to": "event_log:timeline", "type": "records_evidence_surface_contract"},
     {"from": "portal:validation_evidence_surface", "to": "runtime:done_ledger", "type": "cannot_mark_done"},
+    {"from": "portal:validation_evidence_surface", "to": "portal:human_acceptance_surface", "type": "feeds_explicit_human_decision"},
+    {"from": "portal:human_acceptance_surface", "to": "gate:human", "type": "requires_human_owner_decision"},
+    {"from": "portal:human_acceptance_surface", "to": "runtime:completion_review_gate", "type": "checks_completion_review"},
+    {"from": "portal:human_acceptance_surface", "to": "runtime:done_ledger", "type": "blocks_done_ledger_without_acceptance"},
+    {"from": "portal:human_acceptance_surface", "to": "event_log:timeline", "type": "records_acceptance_surface_contract"},
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
@@ -638,6 +662,7 @@ edges = [
     {"from": "control_plane:view", "to": "portal:agent_conversation", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:task_control_surface", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:validation_evidence_surface", "type": "shows"},
+    {"from": "control_plane:view", "to": "portal:human_acceptance_surface", "type": "shows"},
 ]
 
 questions = [
@@ -722,6 +747,7 @@ payload = {
         "portal_agent_conversation": "artifacts/artemis-portal-agent-conversation/run-01/agent-conversation-contract.json",
         "portal_task_control_surface": "artifacts/artemis-portal-task-control-surface/run-01/task-control-surface-contract.json",
         "portal_validation_evidence_surface": "artifacts/artemis-portal-validation-evidence-surface/run-01/validation-evidence-surface-contract.json",
+        "portal_human_acceptance_surface": "artifacts/artemis-portal-human-acceptance-surface/run-01/human-acceptance-surface-contract.json",
     },
     "summary": summary,
     "states": dict(states),
@@ -766,10 +792,11 @@ payload = {
         "portal_agent_conversation_input": "artemis_portal_agent_conversation",
         "portal_task_control_surface_input": "artemis_portal_task_control_surface",
         "portal_validation_evidence_surface_input": "artemis_portal_validation_evidence_surface",
+        "portal_human_acceptance_surface_input": "artemis_portal_human_acceptance_surface",
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },
-    "next_cut": "TKT-082 - ARTEMIS Portal Human Acceptance Surface Contract",
+    "next_cut": "NONE - ARTEMIS Portal supervised control spine complete",
 }
 
 write_text(artifact_root / "project-graph.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")

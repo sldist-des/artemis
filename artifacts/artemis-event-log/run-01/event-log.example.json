@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T17:25:38Z",
+  "generated_at": "2026-05-15T17:35:25Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-15T17:25:38Z",
+      "generated_at": "2026-05-15T17:35:25Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -74,7 +74,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:25:38Z",
+      "generated_at": "2026-05-15T17:35:25Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -161,7 +161,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:25:38Z",
+      "generated_at": "2026-05-15T17:35:25Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -254,7 +254,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-15T17:25:38Z",
+      "generated_at": "2026-05-15T17:35:25Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -294,7 +294,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 127,
+          "passed": 129,
           "failed": 0,
           "human_gate": 2
         },
@@ -683,6 +683,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_validation_evidence_surface.txt"
+          },
+          {
+            "name": "shell_portal_human_acceptance_surface",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_human_acceptance_surface.txt"
           },
           {
             "name": "shell_approved_workspace_cleanup",
@@ -1119,6 +1126,13 @@
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/portal_validation_evidence_surface.txt"
           },
           {
+            "name": "portal_human_acceptance_surface",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/portal_human_acceptance_surface.txt"
+          },
+          {
             "name": "approved_workspace_cleanup",
             "kind": "technical",
             "status": "passed",
@@ -1530,7 +1544,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:23:39Z",
+      "generated_at": "2026-05-15T17:34:15Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -1570,17 +1584,17 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 82,
-          "tasks_done": 82,
+          "tasks_total": 83,
+          "tasks_done": 83,
           "tasks_human": 0,
           "tasks_ready": 0,
-          "owners_total": 8,
-          "events_total": 68,
-          "nodes_total": 32,
-          "edges_total": 121,
-          "evidence_count": 82,
-          "exec_pack_count": 82,
-          "validation_passed": 127,
+          "owners_total": 9,
+          "events_total": 69,
+          "nodes_total": 33,
+          "edges_total": 127,
+          "evidence_count": 83,
+          "exec_pack_count": 83,
+          "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,
           "memory_zones": 3,
@@ -1591,14 +1605,14 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-082 - ARTEMIS Portal Human Acceptance Surface Contract"
+        "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:23:39Z",
+      "generated_at": "2026-05-15T17:34:24Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -1638,11 +1652,11 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 32,
-          "edges_rendered": 121,
+          "nodes_rendered": 33,
+          "edges_rendered": 127,
           "questions_rendered": 3,
           "invariants_rendered": 3,
-          "validation_passed": 127,
+          "validation_passed": 129,
           "human_gates": 2,
           "dependencies_installed": 0,
           "commands_executed": 0,
@@ -1650,7 +1664,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-082 - ARTEMIS Portal Human Acceptance Surface Contract"
+        "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
       }
     },
     {
@@ -3371,7 +3385,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-15T17:23:24Z",
+      "generated_at": "2026-05-15T17:33:57Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -3459,6 +3473,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_agent_conversation.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_task_control_surface.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_validation_evidence_surface.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_human_acceptance_surface.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt",
@@ -3521,6 +3536,7 @@
           "artifacts/artemis-validation-gate/run-01/check-logs/portal_agent_conversation.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/portal_task_control_surface.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/portal_validation_evidence_surface.txt",
+          "artifacts/artemis-validation-gate/run-01/check-logs/portal_human_acceptance_surface.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt",
           "artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt",
@@ -3541,7 +3557,7 @@
       "payload": {
         "overall": "human_gate",
         "summary": {
-          "passed": 127,
+          "passed": 129,
           "failed": 0,
           "human_gate": 2
         },
@@ -3930,6 +3946,13 @@
             "status": "passed",
             "exit_code": 0,
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_validation_evidence_surface.txt"
+          },
+          {
+            "name": "shell_portal_human_acceptance_surface",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_human_acceptance_surface.txt"
           },
           {
             "name": "shell_approved_workspace_cleanup",
@@ -4366,6 +4389,13 @@
             "log": "artifacts/artemis-validation-gate/run-01/check-logs/portal_validation_evidence_surface.txt"
           },
           {
+            "name": "portal_human_acceptance_surface",
+            "kind": "technical",
+            "status": "passed",
+            "exit_code": 0,
+            "log": "artifacts/artemis-validation-gate/run-01/check-logs/portal_human_acceptance_surface.txt"
+          },
+          {
             "name": "approved_workspace_cleanup",
             "kind": "technical",
             "status": "passed",
@@ -4756,7 +4786,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:23:39Z",
+      "generated_at": "2026-05-15T17:35:25Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -4796,17 +4826,17 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 82,
-          "tasks_done": 82,
+          "tasks_total": 83,
+          "tasks_done": 83,
           "tasks_human": 0,
           "tasks_ready": 0,
-          "owners_total": 8,
-          "events_total": 68,
-          "nodes_total": 32,
-          "edges_total": 121,
-          "evidence_count": 82,
-          "exec_pack_count": 82,
-          "validation_passed": 127,
+          "owners_total": 9,
+          "events_total": 69,
+          "nodes_total": 33,
+          "edges_total": 127,
+          "evidence_count": 83,
+          "exec_pack_count": 83,
+          "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,
           "memory_zones": 3,
@@ -4817,14 +4847,14 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-082 - ARTEMIS Portal Human Acceptance Surface Contract"
+        "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:23:39Z",
+      "generated_at": "2026-05-15T17:34:24Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -4864,11 +4894,11 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 32,
-          "edges_rendered": 121,
+          "nodes_rendered": 33,
+          "edges_rendered": 127,
           "questions_rendered": 3,
           "invariants_rendered": 3,
-          "validation_passed": 127,
+          "validation_passed": 129,
           "human_gates": 2,
           "dependencies_installed": 0,
           "commands_executed": 0,
@@ -4876,14 +4906,14 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-082 - ARTEMIS Portal Human Acceptance Surface Contract"
+        "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:23:39Z",
+      "generated_at": "2026-05-15T17:34:24Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -4923,12 +4953,12 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 82,
-          "tasks_done": 82,
-          "events_total": 68,
-          "nodes_total": 32,
-          "edges_total": 121,
-          "validation_passed": 127,
+          "tasks_total": 83,
+          "tasks_done": 83,
+          "events_total": 69,
+          "nodes_total": 33,
+          "edges_total": 127,
+          "validation_passed": 129,
           "validation_failed": 0,
           "human_gates": 2,
           "memory_zones": 3,
@@ -4938,14 +4968,14 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-082 - ARTEMIS Portal Human Acceptance Surface Contract"
+        "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-057_guided_collaboration",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:23:48Z",
+      "generated_at": "2026-05-15T17:34:24Z",
       "producer": {
         "adapter": "guided_collaboration",
         "name": "scripts/artemis-guided-collaboration.sh",
@@ -4989,11 +5019,11 @@
           "task_lanes": 4,
           "agent_profiles": 4,
           "gate_contracts": 4,
-          "tasks_total": 82,
-          "tasks_done": 82,
+          "tasks_total": 83,
+          "tasks_done": 83,
           "tasks_human": 0,
           "tasks_ready": 0,
-          "validation_passed": 127,
+          "validation_passed": 129,
           "validation_failed": 0,
           "human_gates": 2,
           "commands_executed": 0,
@@ -5003,14 +5033,14 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-082 - ARTEMIS Portal Human Acceptance Surface Contract"
+        "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-058_agent_launch_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:23:48Z",
+      "generated_at": "2026-05-15T17:34:24Z",
       "producer": {
         "adapter": "agent_launch_contract",
         "name": "scripts/artemis-agent-launch-contract.sh",
@@ -5053,10 +5083,10 @@
           "launch_profiles": 4,
           "launch_gates": 9,
           "evidence_requirements": 4,
-          "tasks_total": 82,
-          "tasks_done": 82,
+          "tasks_total": 83,
+          "tasks_done": 83,
           "tasks_human": 0,
-          "validation_passed": 127,
+          "validation_passed": 129,
           "validation_failed": 0,
           "human_gates": 2,
           "execute_default": false,
@@ -5078,7 +5108,7 @@
           "execute": false,
           "reason": "The next safe step is a command plan that consumes launcher preflight evidence without starting paid/runtime agents."
         },
-        "next_cut": "TKT-082 - ARTEMIS Portal Human Acceptance Surface Contract"
+        "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
       }
     },
     {
@@ -6494,7 +6524,7 @@
       "schema_version": 1,
       "event_id": "evt_portal_validation_evidence_surface_contract_recorded",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:25:38Z",
+      "generated_at": "2026-05-15T17:35:16Z",
       "producer": {
         "adapter": "portal_validation_evidence_surface",
         "name": "scripts/artemis-portal-validation-evidence-surface.sh",
@@ -6537,7 +6567,7 @@
         "validation_evidence_surface_ready": true,
         "readiness_state": "human_gate",
         "evidence_surface_id": "validation-evidence-tkt-081-contract-fixture",
-        "validation_passed": 127,
+        "validation_passed": 129,
         "validation_failed": 0,
         "validation_human_gate": 2,
         "acceptance_recorded": false,
@@ -6550,6 +6580,70 @@
         "secret_values_recorded": false,
         "remote_state_mutated": false,
         "next_cut": "TKT-082 - ARTEMIS Portal Human Acceptance Surface Contract"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_human_acceptance_surface_contract_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-15T17:35:16Z",
+      "producer": {
+        "adapter": "portal_human_acceptance_surface",
+        "name": "scripts/artemis-portal-human-acceptance-surface.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-082",
+        "task_id": "tkt-082",
+        "title": "ARTEMIS Portal Human Acceptance Surface Contract",
+        "exec_pack": "docs/exec-packs/done/TKT-082-artemis-portal-human-acceptance-surface.md",
+        "artifact_root": "artifacts/artemis-portal-human-acceptance-surface/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "context",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-human-acceptance-surface/run-01",
+        "status_path": "artifacts/artemis-portal-human-acceptance-surface/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-human-acceptance-surface/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-human-acceptance-surface/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-human-acceptance-surface/run-01/human-acceptance-surface-contract.json",
+          "artifacts/artemis-portal-human-acceptance-surface/run-01/HUMAN_ACCEPTANCE_SURFACE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-082"
+      },
+      "payload": {
+        "human_acceptance_surface_ready": true,
+        "acceptance_state": "blocked_by_human_gate_ack",
+        "acceptance_surface_id": "human-acceptance-tkt-082-contract-fixture",
+        "validation_passed": 129,
+        "validation_failed": 0,
+        "validation_human_gate": 2,
+        "acceptance_recorded": false,
+        "accepted": false,
+        "done_ledger_handoff_allowed": false,
+        "task_state_mutated": false,
+        "runtime_execution_allowed": false,
+        "runtime_session_started": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "secret_values_recorded": false,
+        "remote_state_mutated": false,
+        "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
       }
     }
   ]

@@ -175,3 +175,13 @@ sem aceitar entrega, marcar done ou executar comandos:
 docs/portal/ARTEMIS_PORTAL_VALIDATION_EVIDENCE_SURFACE.md
 scripts/artemis-portal-validation-evidence-surface.sh --json
 ```
+
+Depois do Validation Evidence Surface, o portal precisa do Human Acceptance
+Surface para separar evidencia tecnica de decisao humana explicita. Agentes
+podem preparar sumario e handoff, mas nao podem aceitar o proprio trabalho,
+marcar done ou alimentar o Done Ledger sem decisao humana:
+
+```bash
+docs/portal/ARTEMIS_PORTAL_HUMAN_ACCEPTANCE_SURFACE.md
+scripts/artemis-portal-human-acceptance-surface.sh --json
+```

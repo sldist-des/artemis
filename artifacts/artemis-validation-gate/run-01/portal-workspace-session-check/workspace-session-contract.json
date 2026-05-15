@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T17:23:19Z",
-  "overall": "blocked",
-  "workspace_session_ready": false,
+  "generated_at": "2026-05-15T17:33:53Z",
+  "overall": "workspace_session_ready",
+  "workspace_session_ready": true,
   "secret_values_recorded": false,
   "runtime_auth_executed": false,
   "vault_lease_issued": false,
@@ -150,10 +150,10 @@
     "ledger_entry_id": "cost-tkt-076-contract-fixture",
     "project_id": "artemis",
     "ticket": "TKT-077",
-    "source_ticket": "TKT-081",
-    "agent_profile_id": "artemis_verifier",
+    "source_ticket": "TKT-082",
+    "agent_profile_id": "codex_frontier_engineer",
     "workspace_policy_id": "workspace:single-writer-worktree",
-    "budget_policy_id": "budget:verification",
+    "budget_policy_id": "budget:frontier-engineering",
     "repository_path": ".",
     "worktree_path": ".",
     "branch_policy": {
@@ -187,8 +187,8 @@
       "vendor/"
     ],
     "dirty_worktree_policy": "detect_and_report_before_launch",
-    "validation_policy_id": "validation:review-only",
-    "opened_at": "2026-05-15T17:23:19Z",
+    "validation_policy_id": "validation:standard-plus",
+    "opened_at": "2026-05-15T17:33:53Z",
     "expires_at": "contract_fixture_no_runtime_expiry",
     "session_state": "ready_for_launcher_preflight",
     "runtime_execution_allowed": false,
@@ -216,7 +216,7 @@
     },
     {
       "id": "workspace_policy_bound",
-      "status": "failed",
+      "status": "passed",
       "detail": "Assignment workspace policy resolves to a concrete workspace policy."
     },
     {

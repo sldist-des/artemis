@@ -2,7 +2,7 @@
 
 - Overall: `validation_evidence_surface_ready`
 - Readiness state: `human_gate`
-- Validation passed: `127`
+- Validation passed: `129`
 - Validation failed: `0`
 - Human gates: `2`
 - Acceptance recorded: `false`

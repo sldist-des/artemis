@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T17:23:11Z",
+  "generated_at": "2026-05-15T17:33:44Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -985,6 +985,18 @@
       "summary": "Um contrato verificavel deve definir evidence record, evidence kinds, status",
       "exec_pack": "docs/exec-packs/done/TKT-081-artemis-portal-validation-evidence-surface.md",
       "evidence": "artifacts/artemis-portal-validation-evidence-surface/run-01/validation-evidence-surface-contract.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-082",
+      "ticket": "TKT-082",
+      "title": "ARTEMIS Portal Human Acceptance Surface Contract",
+      "state": "done",
+      "owner": "Humano owner",
+      "risk": "medium",
+      "summary": "Um contrato verificavel deve definir decision record, estados de aceite,",
+      "exec_pack": "docs/exec-packs/done/TKT-082-artemis-portal-human-acceptance-surface.md",
+      "evidence": "artifacts/artemis-portal-human-acceptance-surface/run-01/human-acceptance-surface-contract.json",
       "tags": ["exec-pack", "done"]
     }
   ]

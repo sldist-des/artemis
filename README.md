@@ -307,6 +307,8 @@ docs/portal/ARTEMIS_PORTAL_TASK_CONTROL_SURFACE.md
 scripts/artemis-portal-task-control-surface.sh --artifact-root artifacts/artemis-portal-task-control-surface/run-01
 docs/portal/ARTEMIS_PORTAL_VALIDATION_EVIDENCE_SURFACE.md
 scripts/artemis-portal-validation-evidence-surface.sh --artifact-root artifacts/artemis-portal-validation-evidence-surface/run-01
+docs/portal/ARTEMIS_PORTAL_HUMAN_ACCEPTANCE_SURFACE.md
+scripts/artemis-portal-human-acceptance-surface.sh --artifact-root artifacts/artemis-portal-human-acceptance-surface/run-01
 ```
 
 ## Readiness de aplicacao

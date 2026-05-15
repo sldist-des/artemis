@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T17:23:19Z",
-  "overall": "blocked",
-  "validation_evidence_surface_ready": false,
+  "generated_at": "2026-05-15T17:33:53Z",
+  "overall": "validation_evidence_surface_ready",
+  "validation_evidence_surface_ready": true,
   "readiness_state": "human_gate",
   "acceptance_recorded": false,
   "task_state_mutated": false,
@@ -22,11 +22,11 @@
     "human_gate": 1
   },
   "project_summary": {
-    "tasks_total": 82,
-    "tasks_done": 82,
-    "events_total": 68,
-    "nodes_total": 32,
-    "edges_total": 121
+    "tasks_total": 83,
+    "tasks_done": 83,
+    "events_total": 69,
+    "nodes_total": 33,
+    "edges_total": 127
   },
   "next_cut": "TKT-082 - ARTEMIS Portal Human Acceptance Surface Contract",
   "missing_files": [],
@@ -161,12 +161,12 @@
     "event_refs": [
       "evt_portal_validation_evidence_surface_contract_recorded"
     ],
-    "generated_at": "2026-05-15T17:23:19Z"
+    "generated_at": "2026-05-15T17:33:53Z"
   },
   "checks": [
     {
       "id": "task_control_surface_ready",
-      "status": "failed",
+      "status": "passed",
       "detail": "Validation Evidence Surface consumes a ready Task Control Surface contract."
     },
     {

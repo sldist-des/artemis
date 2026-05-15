@@ -17,11 +17,11 @@ Nenhum assignment pode chegar ao launcher sem budget policy resolvida, limites d
 
 ## Selected policy
 
-- Budget policy: `budget:verification`
+- Budget policy: `budget:frontier-engineering`
 - Max agents: `2`
-- Max wall time minutes: `60`
-- Max total tokens: `150000`
-- Max estimated cost units: `20`
+- Max wall time minutes: `180`
+- Max total tokens: `420000`
+- Max estimated cost units: `100`
 
 ## Ledger required fields
 

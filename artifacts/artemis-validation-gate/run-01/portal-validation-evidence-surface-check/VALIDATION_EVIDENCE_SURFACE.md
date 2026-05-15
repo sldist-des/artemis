@@ -1,6 +1,6 @@
 # ARTEMIS Portal Validation Evidence Surface Contract
 
-- Overall: `blocked`
+- Overall: `validation_evidence_surface_ready`
 - Readiness state: `human_gate`
 - Validation passed: `1`
 - Validation failed: `0`
@@ -86,7 +86,7 @@ Validation evidence mostra provas, falhas, Human Gates e lacunas em linguagem hu
 
 ## Validation
 
-- `task_control_surface_ready`: failed - Validation Evidence Surface consumes a ready Task Control Surface contract.
+- `task_control_surface_ready`: passed - Validation Evidence Surface consumes a ready Task Control Surface contract.
 - `validation_gate_available`: passed - Validation Gate summary is available for evidence rendering.
 - `project_graph_available`: passed - Project Graph summary is available for project-level evidence context.
 - `evidence_schema_declared`: passed - Evidence fields and forbidden raw/secret fields are declared.

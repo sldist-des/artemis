@@ -1,6 +1,6 @@
 # ARTEMIS Portal Workspace Session Contract
 
-- Overall: `blocked`
+- Overall: `workspace_session_ready`
 - Runtime auth executed: `false`
 - Vault lease issued: `false`
 - Agents started: `false`
@@ -90,7 +90,7 @@ Nenhum assignment pode chegar ao launcher sem uma sessao de workspace que declar
 
 - `run_assignment_ready`: passed - Workspace Session consumes an accepted Run Assignment.
 - `budget_ledger_ready`: passed - Workspace Session consumes a ready Budget Ledger before runtime spend.
-- `workspace_policy_bound`: failed - Assignment workspace policy resolves to a concrete workspace policy.
+- `workspace_policy_bound`: passed - Assignment workspace policy resolves to a concrete workspace policy.
 - `single_writer_lock_declared`: passed - Writer sessions are constrained to one writer per worktree.
 - `write_scope_declared`: passed - Allowed write roots and forbidden paths are declared.
 - `no_runtime_execution`: passed - This cut records workspace policy only and cannot start runtime.

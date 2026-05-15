@@ -263,6 +263,21 @@ The validation evidence surface contract lives in:
 docs/portal/ARTEMIS_PORTAL_VALIDATION_EVIDENCE_SURFACE.md
 ```
 
+Human acceptance surface is the explicit decision boundary after evidence is
+visible. It defines accepted, rejected and deferred decisions, but the contract
+fixture records no real acceptance, does not mark done and does not hand off to
+Done Ledger:
+
+```bash
+scripts/artemis-portal-human-acceptance-surface.sh --artifact-root artifacts/artemis-portal-human-acceptance-surface/run-01
+```
+
+The human acceptance surface contract lives in:
+
+```text
+docs/portal/ARTEMIS_PORTAL_HUMAN_ACCEPTANCE_SURFACE.md
+```
+
 ## ARTEMIS Symphony evidence
 
 The Control Plane includes a read-only `ARTEMIS Symphony` section for the local Symphony cuts.

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T17:25:46Z",
+  "generated_at": "2026-05-15T17:35:30Z",
   "source": "scripts/artemis-agent-launch-contract.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-058_agent_launch_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:25:46Z",
+      "generated_at": "2026-05-15T17:35:30Z",
       "producer": {
         "adapter": "agent_launch_contract",
         "name": "scripts/artemis-agent-launch-contract.sh",
@@ -50,10 +50,10 @@
           "launch_profiles": 4,
           "launch_gates": 9,
           "evidence_requirements": 4,
-          "tasks_total": 82,
-          "tasks_done": 82,
+          "tasks_total": 83,
+          "tasks_done": 83,
           "tasks_human": 0,
-          "validation_passed": 127,
+          "validation_passed": 129,
           "validation_failed": 0,
           "human_gates": 2,
           "execute_default": false,
@@ -75,7 +75,7 @@
           "execute": false,
           "reason": "The next safe step is a command plan that consumes launcher preflight evidence without starting paid/runtime agents."
         },
-        "next_cut": "TKT-082 - ARTEMIS Portal Human Acceptance Surface Contract"
+        "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
       }
     }
   ]

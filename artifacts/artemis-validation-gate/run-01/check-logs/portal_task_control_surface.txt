@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T17:23:19Z",
-  "overall": "blocked",
-  "task_control_surface_ready": false,
+  "generated_at": "2026-05-15T17:33:53Z",
+  "overall": "task_control_surface_ready",
+  "task_control_surface_ready": true,
   "secret_values_recorded": false,
   "controls_triggered": 0,
   "task_state_mutated": false,
@@ -223,7 +223,7 @@
   "checks": [
     {
       "id": "agent_conversation_ready",
-      "status": "failed",
+      "status": "passed",
       "detail": "Task Control Surface consumes a ready Agent Conversation contract."
     },
     {

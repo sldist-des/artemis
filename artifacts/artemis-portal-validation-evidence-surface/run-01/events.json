@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T17:25:38Z",
+  "generated_at": "2026-05-15T17:35:16Z",
   "source": "scripts/artemis-portal-validation-evidence-surface.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_portal_validation_evidence_surface_contract_recorded",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:25:38Z",
+      "generated_at": "2026-05-15T17:35:16Z",
       "producer": {
         "adapter": "portal_validation_evidence_surface",
         "name": "scripts/artemis-portal-validation-evidence-surface.sh",
@@ -50,7 +50,7 @@
         "validation_evidence_surface_ready": true,
         "readiness_state": "human_gate",
         "evidence_surface_id": "validation-evidence-tkt-081-contract-fixture",
-        "validation_passed": 127,
+        "validation_passed": 129,
         "validation_failed": 0,
         "validation_human_gate": 2,
         "acceptance_recorded": false,

@@ -1,6 +1,6 @@
 # ARTEMIS Portal Agent Conversation Contract
 
-- Overall: `blocked`
+- Overall: `agent_conversation_ready`
 - Messages sent to provider: `0`
 - Agent messages received: `0`
 - Runtime execution allowed: `false`
@@ -83,7 +83,7 @@ Conversas do portal podem registrar intencao, status, perguntas, respostas resum
 
 ## Validation
 
-- `runtime_session_ready`: failed - Agent Conversation consumes a ready Runtime Session.
+- `runtime_session_ready`: passed - Agent Conversation consumes a ready Runtime Session.
 - `message_schema_declared`: passed - Conversation message fields and forbidden raw/secret fields are declared.
 - `intent_policy_declared`: passed - Allowed intents and gated intents are explicit.
 - `redaction_policy_declared`: passed - Raw prompts are blocked and summaries are required.

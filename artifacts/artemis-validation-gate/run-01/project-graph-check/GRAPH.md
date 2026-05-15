@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `32`.
-- Edges: `121`.
-- Tasks: `82`.
-- Events: `68`.
+- Nodes: `33`.
+- Edges: `127`.
+- Tasks: `83`.
+- Events: `69`.
 
 ## Nos
 
@@ -42,6 +42,7 @@
 - `portal:agent_conversation` (portal_agent_conversation): ARTEMIS Portal Agent Conversation.
 - `portal:task_control_surface` (portal_task_control_surface): ARTEMIS Portal Task Control Surface.
 - `portal:validation_evidence_surface` (portal_validation_evidence_surface): ARTEMIS Portal Validation Evidence Surface.
+- `portal:human_acceptance_surface` (portal_human_acceptance_surface): ARTEMIS Portal Human Acceptance Surface.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -154,6 +155,11 @@
 - `portal:validation_evidence_surface` --renders_evidence--> `artifact:evidence`.
 - `portal:validation_evidence_surface` --records_evidence_surface_contract--> `event_log:timeline`.
 - `portal:validation_evidence_surface` --cannot_mark_done--> `runtime:done_ledger`.
+- `portal:validation_evidence_surface` --feeds_explicit_human_decision--> `portal:human_acceptance_surface`.
+- `portal:human_acceptance_surface` --requires_human_owner_decision--> `gate:human`.
+- `portal:human_acceptance_surface` --checks_completion_review--> `runtime:completion_review_gate`.
+- `portal:human_acceptance_surface` --blocks_done_ledger_without_acceptance--> `runtime:done_ledger`.
+- `portal:human_acceptance_surface` --records_acceptance_surface_contract--> `event_log:timeline`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.
@@ -167,6 +173,7 @@
 - `control_plane:view` --shows--> `portal:agent_conversation`.
 - `control_plane:view` --shows--> `portal:task_control_surface`.
 - `control_plane:view` --shows--> `portal:validation_evidence_surface`.
+- `control_plane:view` --shows--> `portal:human_acceptance_surface`.
 
 ## Perguntas operacionais
 

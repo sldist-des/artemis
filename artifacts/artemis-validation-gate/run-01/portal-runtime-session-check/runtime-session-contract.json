@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T17:23:19Z",
-  "overall": "blocked",
-  "runtime_session_ready": false,
+  "generated_at": "2026-05-15T17:33:53Z",
+  "overall": "runtime_session_ready",
+  "runtime_session_ready": true,
   "secret_values_recorded": false,
   "runtime_execution_allowed": false,
   "runtime_session_started": false,
@@ -147,13 +147,13 @@
     "project_id": "artemis",
     "ticket": "TKT-078",
     "source_ticket": "TKT-077",
-    "agent_profile_id": "artemis_verifier",
+    "agent_profile_id": "codex_frontier_engineer",
     "provider_id": "openai_codex",
     "adapter": "codex_app_server",
     "runtime_surface": "portal_supervised_runtime",
     "credential_lease_policy_id": "lease:short-lived-provider-adapter",
     "workspace_policy_id": "workspace:single-writer-worktree",
-    "budget_policy_id": "budget:verification",
+    "budget_policy_id": "budget:frontier-engineering",
     "supervision_policy_id": "supervision:portal-controlled-runtime",
     "command_boundary": {
       "source": "future_launcher_command_plan",
@@ -185,8 +185,8 @@
       "Stop on validation failure if no approved retry policy exists.",
       "Stop immediately on human stop request."
     ],
-    "validation_policy_id": "validation:review-only",
-    "opened_at": "2026-05-15T17:23:19Z",
+    "validation_policy_id": "validation:standard-plus",
+    "opened_at": "2026-05-15T17:33:53Z",
     "expires_at": "contract_fixture_no_runtime_expiry",
     "session_state": "waiting_for_human_runtime_gate",
     "runtime_execution_allowed": false,
@@ -205,7 +205,7 @@
   "checks": [
     {
       "id": "workspace_session_ready",
-      "status": "failed",
+      "status": "passed",
       "detail": "Runtime Session consumes a ready Workspace Session."
     },
     {

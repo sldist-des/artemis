@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-15T17:33:53Z",
+  "source": "scripts/artemis-portal-human-acceptance-surface.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_human_acceptance_surface_contract_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-15T17:33:53Z",
+      "producer": {
+        "adapter": "portal_human_acceptance_surface",
+        "name": "scripts/artemis-portal-human-acceptance-surface.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-082",
+        "task_id": "tkt-082",
+        "title": "ARTEMIS Portal Human Acceptance Surface Contract",
+        "exec_pack": "docs/exec-packs/done/TKT-082-artemis-portal-human-acceptance-surface.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/portal-human-acceptance-surface-check"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "context",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/portal-human-acceptance-surface-check",
+        "status_path": "artifacts/artemis-validation-gate/run-01/portal-human-acceptance-surface-check/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/portal-human-acceptance-surface-check/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/portal-human-acceptance-surface-check/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-validation-gate/run-01/portal-human-acceptance-surface-check/human-acceptance-surface-contract.json",
+          "artifacts/artemis-validation-gate/run-01/portal-human-acceptance-surface-check/HUMAN_ACCEPTANCE_SURFACE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-082"
+      },
+      "payload": {
+        "human_acceptance_surface_ready": true,
+        "acceptance_state": "blocked_by_human_gate_ack",
+        "acceptance_surface_id": "human-acceptance-tkt-082-contract-fixture",
+        "validation_passed": 1,
+        "validation_failed": 0,
+        "validation_human_gate": 1,
+        "acceptance_recorded": false,
+        "accepted": false,
+        "done_ledger_handoff_allowed": false,
+        "task_state_mutated": false,
+        "runtime_execution_allowed": false,
+        "runtime_session_started": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "secret_values_recorded": false,
+        "remote_state_mutated": false,
+        "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
+      }
+    }
+  ]
+}

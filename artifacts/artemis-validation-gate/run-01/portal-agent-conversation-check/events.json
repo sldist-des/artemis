@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T17:23:19Z",
+  "generated_at": "2026-05-15T17:33:53Z",
   "source": "scripts/artemis-portal-agent-conversation.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_portal_agent_conversation_contract_recorded",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:23:19Z",
+      "generated_at": "2026-05-15T17:33:53Z",
       "producer": {
         "adapter": "portal_agent_conversation",
         "name": "scripts/artemis-portal-agent-conversation.sh",
@@ -25,7 +25,7 @@
       },
       "state": {
         "from": "context",
-        "to": "blocked",
+        "to": "done",
         "reason": ""
       },
       "gate": {
@@ -47,7 +47,7 @@
         "correlation_id": "tkt-079"
       },
       "payload": {
-        "agent_conversation_ready": false,
+        "agent_conversation_ready": true,
         "conversation_id": "conversation-tkt-079-contract-fixture",
         "runtime_session_id": "runtime-session-tkt-078-contract-fixture",
         "messages_sent_to_provider": 0,

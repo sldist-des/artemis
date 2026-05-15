@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T17:23:18Z",
+  "generated_at": "2026-05-15T17:33:51Z",
   "source": "scripts/artemis-guided-collaboration.sh",
   "mode": "read_only_guided_human_collaboration",
   "overall": "guided_collaboration_ready",
@@ -17,8 +17,8 @@
     "task_lanes": 4,
     "agent_profiles": 4,
     "gate_contracts": 4,
-    "tasks_total": 82,
-    "tasks_done": 82,
+    "tasks_total": 83,
+    "tasks_done": 83,
     "tasks_human": 0,
     "tasks_ready": 0,
     "validation_passed": 1,
@@ -169,5 +169,5 @@
     "renderGuidedCollaboration",
     "loadGuidedCollaborationSource"
   ],
-  "next_cut": "TKT-082 - ARTEMIS Portal Human Acceptance Surface Contract"
+  "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
 }

@@ -132,7 +132,7 @@ payload = {
         "No graph database, canvas engine, frontend framework or runtime is introduced.",
         "Human Gates, Validation Gate, Event Log, Exec Packs and git remain authoritative.",
     ],
-    "next_cut": "TKT-082 - ARTEMIS Portal Human Acceptance Surface Contract",
+    "next_cut": "NONE - ARTEMIS Portal supervised control spine complete",
 }
 
 (artifact_root / "project-graph-view.json").write_text(

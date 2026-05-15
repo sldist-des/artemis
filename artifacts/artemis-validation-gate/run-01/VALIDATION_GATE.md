@@ -1,7 +1,7 @@
 # VALIDATION GATE RESULT
 
 - Overall: human_gate
-- Passed: 127
+- Passed: 129
 - Failed: 0
 - Human Gate: 2
 
@@ -62,6 +62,7 @@
 - shell_portal_agent_conversation: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_agent_conversation.txt`
 - shell_portal_task_control_surface: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_task_control_surface.txt`
 - shell_portal_validation_evidence_surface: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_validation_evidence_surface.txt`
+- shell_portal_human_acceptance_surface: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_human_acceptance_surface.txt`
 - shell_approved_workspace_cleanup: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt`
 - shell_workspace_runtime_handoff: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt`
 - shell_runner: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt`
@@ -124,6 +125,7 @@
 - portal_agent_conversation: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/portal_agent_conversation.txt`
 - portal_task_control_surface: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/portal_task_control_surface.txt`
 - portal_validation_evidence_surface: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/portal_validation_evidence_surface.txt`
+- portal_human_acceptance_surface: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/portal_human_acceptance_surface.txt`
 - approved_workspace_cleanup: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt`
 - workspace_runtime_handoff: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt`
 - runner_plan: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt`

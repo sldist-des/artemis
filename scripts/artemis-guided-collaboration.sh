@@ -286,7 +286,7 @@ payload = {
     "missing_tokens": missing_tokens,
     "missing_files": missing_files,
     "required_tokens": required_tokens,
-    "next_cut": "TKT-082 - ARTEMIS Portal Human Acceptance Surface Contract",
+    "next_cut": "NONE - ARTEMIS Portal supervised control spine complete",
 }
 
 ready = (

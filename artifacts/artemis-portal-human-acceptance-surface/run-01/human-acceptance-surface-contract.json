@@ -1,0 +1,280 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-15T17:35:16Z",
+  "overall": "human_acceptance_surface_ready",
+  "human_acceptance_surface_ready": true,
+  "acceptance_state": "blocked_by_human_gate_ack",
+  "acceptance_recorded": false,
+  "accepted": false,
+  "rejected": false,
+  "deferred": true,
+  "done_ledger_handoff_allowed": false,
+  "task_state_mutated": false,
+  "secret_values_recorded": false,
+  "controls_triggered": 0,
+  "messages_sent_to_provider": 0,
+  "agent_messages_received": 0,
+  "runtime_execution_allowed": false,
+  "runtime_session_started": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "validation_summary": {
+    "passed": 129,
+    "failed": 0,
+    "human_gate": 2
+  },
+  "completion_review_summary": {
+    "completion_review_ready": false,
+    "completion_review_accepted": false,
+    "ready_for_done_ledger": false
+  },
+  "done_ledger_summary": {
+    "done_ledger_recorded": false,
+    "technical_done": false,
+    "remote_done_closed": false
+  },
+  "next_cut": "NONE - ARTEMIS Portal supervised control spine complete",
+  "missing_files": [],
+  "human_acceptance_contract": {
+    "purpose": "Let a human explicitly accept, reject or defer validated work after evidence is visible.",
+    "state": "contract_only",
+    "human_acceptance_surface_ready": true,
+    "acceptance_recorded": false,
+    "accepted": false,
+    "rejected": false,
+    "deferred": true,
+    "done_ledger_handoff_allowed": false,
+    "task_state_mutated": false,
+    "secret_values_recorded": false,
+    "controls_triggered": 0,
+    "messages_sent_to_provider": 0,
+    "agent_messages_received": 0,
+    "runtime_execution_allowed": false,
+    "runtime_session_started": false,
+    "agents_started": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "remote_state_mutated": false,
+    "acceptance_schema": {
+      "required_fields": [
+        "acceptance_surface_id",
+        "project_id",
+        "ticket",
+        "evidence_surface_id",
+        "validation_gate_ref",
+        "completion_review_gate_ref",
+        "done_ledger_ref",
+        "decision",
+        "decided_by",
+        "decision_authority",
+        "reason",
+        "accepted_evidence_refs",
+        "rejected_evidence_refs",
+        "deferred_blocker_refs",
+        "residual_risk_acknowledged",
+        "human_gate_acknowledged",
+        "done_ledger_handoff_allowed",
+        "event_refs",
+        "decided_at"
+      ],
+      "forbidden_fields": [
+        "plaintext_secret",
+        "raw_access_token",
+        "raw_refresh_token",
+        "private_key_material",
+        "session_cookie",
+        "raw_prompt",
+        "full_prompt_transcript",
+        "raw_runtime_stdout",
+        "raw_runtime_stderr",
+        "provider_secret",
+        "git_remote_token",
+        "ssh_private_key",
+        "unredacted_user_data",
+        "auto_accept_flag",
+        "background_approval",
+        "implicit_acceptance"
+      ]
+    },
+    "decision_model": [
+      "accepted",
+      "rejected",
+      "deferred",
+      "needs_more_evidence",
+      "blocked_by_human_gate"
+    ],
+    "authority_model": {
+      "human_owner_required": [
+        "accepted",
+        "rejected",
+        "override_residual_risk",
+        "acknowledge_human_gate"
+      ],
+      "agent_allowed": [
+        "prepare_acceptance_summary",
+        "list_evidence_refs",
+        "list_unresolved_gates",
+        "prepare_done_ledger_handoff"
+      ],
+      "agent_forbidden": [
+        "record_acceptance",
+        "mark_done",
+        "close_remote_task",
+        "approve_budget",
+        "approve_secret_access",
+        "approve_production_write"
+      ]
+    },
+    "preconditions": [
+      "Validation Evidence Surface is ready.",
+      "Failed checks are zero before accepted is allowed.",
+      "Human Gates are explicit and acknowledged by a human owner before accepted is allowed.",
+      "Residual risks and not-tested gaps are visible before accepted is allowed.",
+      "Done Ledger handoff is separate from evidence display and requires an explicit accepted decision."
+    ],
+    "transition_policy": [
+      {
+        "from": "evidence_visible",
+        "decision": "accepted",
+        "to": "accepted_pending_done_ledger",
+        "requires_human_owner": true,
+        "requires_failed_checks_zero": true,
+        "requires_human_gate_ack": true,
+        "effect": "record_acceptance_event_then_prepare_done_ledger_handoff"
+      },
+      {
+        "from": "evidence_visible",
+        "decision": "rejected",
+        "to": "rejected_needs_rework",
+        "requires_human_owner": true,
+        "requires_reason": true,
+        "effect": "record_rejection_event_only"
+      },
+      {
+        "from": "evidence_visible",
+        "decision": "deferred",
+        "to": "deferred_human_gate",
+        "requires_human_owner": true,
+        "requires_blocker_refs": true,
+        "effect": "record_deferral_event_only"
+      }
+    ],
+    "ui_policy": {
+      "accept_button_disabled_when_failed_checks_exist": true,
+      "accept_button_disabled_until_human_gate_ack": true,
+      "reject_requires_reason": true,
+      "defer_requires_blocker_refs": true,
+      "show_done_ledger_handoff_preview": true,
+      "raw_logs_default_collapsed": true,
+      "raw_runtime_output_allowed": false,
+      "secret_values_allowed": false,
+      "implicit_acceptance_allowed": false
+    },
+    "event_bridge": {
+      "writes_canonical_events": true,
+      "event_types": [
+        "human_acceptance.surface_recorded",
+        "human_acceptance.summary_prepared",
+        "human_acceptance.decision_pending",
+        "human_acceptance.done_ledger_handoff_blocked"
+      ],
+      "raw_log_in_event_allowed": false,
+      "secret_values_in_event_allowed": false,
+      "implicit_acceptance_allowed": false
+    },
+    "enforcement_rules": [
+      "Evidence can recommend readiness, but only a human owner can accept.",
+      "No acceptance is recorded by this contract fixture.",
+      "Accepted cannot be available while failed checks exist.",
+      "Human Gates must be acknowledged explicitly before accepted can feed Done Ledger.",
+      "Reject and defer decisions must preserve reason or blocker references.",
+      "Agents can prepare summaries and handoffs but cannot approve their own work.",
+      "Done Ledger handoff remains blocked until a real accepted decision exists."
+    ]
+  },
+  "sample_acceptance": {
+    "acceptance_surface_id": "human-acceptance-tkt-082-contract-fixture",
+    "project_id": "artemis",
+    "ticket": "TKT-082",
+    "evidence_surface_id": "validation-evidence-tkt-081-contract-fixture",
+    "validation_gate_ref": "artifacts/artemis-portal-validation-evidence-surface/run-01/validation-evidence-surface-contract.json",
+    "completion_review_gate_ref": "artifacts/artemis-agent-runtime-completion-review-gate/run-01/completion-review-gate.json",
+    "done_ledger_ref": "artifacts/artemis-agent-runtime-done-ledger/run-01/done-ledger.json",
+    "decision": "deferred",
+    "decided_by": "human_owner_required",
+    "decision_authority": "human_owner",
+    "reason": "Contract fixture only; real acceptance must be entered by a human owner.",
+    "accepted_evidence_refs": [],
+    "rejected_evidence_refs": [],
+    "deferred_blocker_refs": [
+      "github_auth",
+      "github_issues"
+    ],
+    "residual_risk_acknowledged": false,
+    "human_gate_acknowledged": false,
+    "done_ledger_handoff_allowed": false,
+    "event_refs": [
+      "evt_portal_human_acceptance_surface_contract_recorded"
+    ],
+    "decided_at": "2026-05-15T17:35:16Z"
+  },
+  "checks": [
+    {
+      "id": "validation_evidence_surface_ready",
+      "status": "passed",
+      "detail": "Human Acceptance Surface consumes a ready Validation Evidence Surface contract."
+    },
+    {
+      "id": "acceptance_schema_declared",
+      "status": "passed",
+      "detail": "Acceptance fields and forbidden raw/secret/implicit acceptance fields are declared."
+    },
+    {
+      "id": "authority_model_declared",
+      "status": "passed",
+      "detail": "Agents can prepare evidence but cannot approve or mark done."
+    },
+    {
+      "id": "failed_checks_gate_declared",
+      "status": "passed",
+      "detail": "Acceptance is disabled while failed checks exist."
+    },
+    {
+      "id": "human_gate_ack_required",
+      "status": "passed",
+      "detail": "Human Gates require explicit human acknowledgement before acceptance."
+    },
+    {
+      "id": "done_ledger_handoff_blocked",
+      "status": "passed",
+      "detail": "Done Ledger handoff remains blocked because no real acceptance was recorded."
+    },
+    {
+      "id": "no_runtime_execution",
+      "status": "passed",
+      "detail": "Human acceptance contract cannot start runtime or execute commands in this cut."
+    },
+    {
+      "id": "no_acceptance_recorded",
+      "status": "passed",
+      "detail": "This cut defines acceptance semantics but records no real acceptance."
+    },
+    {
+      "id": "no_task_state_mutation",
+      "status": "passed",
+      "detail": "No task state, remote state or Done Ledger state is mutated."
+    },
+    {
+      "id": "no_secret_values_recorded",
+      "status": "passed",
+      "detail": "No secrets, raw prompts, raw runtime output or full transcripts are stored."
+    }
+  ],
+  "inputs": {
+    "validation_evidence_surface": "artifacts/artemis-portal-validation-evidence-surface/run-01/validation-evidence-surface-contract.json",
+    "completion_review_gate": "artifacts/artemis-agent-runtime-completion-review-gate/run-01/completion-review-gate.json",
+    "done_ledger": "artifacts/artemis-agent-runtime-done-ledger/run-01/done-ledger.json"
+  }
+}

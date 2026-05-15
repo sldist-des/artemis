@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T17:23:18Z",
+  "generated_at": "2026-05-15T17:33:51Z",
   "source": "scripts/artemis-project-graph.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:23:18Z",
+      "generated_at": "2026-05-15T17:33:51Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -47,16 +47,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 82,
-          "tasks_done": 82,
+          "tasks_total": 83,
+          "tasks_done": 83,
           "tasks_human": 0,
           "tasks_ready": 0,
-          "owners_total": 8,
-          "events_total": 68,
-          "nodes_total": 32,
-          "edges_total": 121,
-          "evidence_count": 82,
-          "exec_pack_count": 82,
+          "owners_total": 9,
+          "events_total": 69,
+          "nodes_total": 33,
+          "edges_total": 127,
+          "evidence_count": 83,
+          "exec_pack_count": 83,
           "validation_passed": 1,
           "validation_failed": 0,
           "validation_human_gate": 1,
@@ -68,7 +68,7 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-082 - ARTEMIS Portal Human Acceptance Surface Contract"
+        "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
       }
     }
   ]

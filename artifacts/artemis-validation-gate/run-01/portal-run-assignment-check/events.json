@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T17:23:19Z",
+  "generated_at": "2026-05-15T17:33:53Z",
   "source": "scripts/artemis-portal-run-assignment.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_portal_run_assignment_contract_recorded",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:23:19Z",
+      "generated_at": "2026-05-15T17:33:53Z",
       "producer": {
         "adapter": "portal_run_assignment",
         "name": "scripts/artemis-portal-run-assignment.sh",
@@ -48,7 +48,7 @@
       },
       "payload": {
         "run_assignment_ready": true,
-        "agent_profile_id": "artemis_verifier",
+        "agent_profile_id": "codex_frontier_engineer",
         "runtime_execution_allowed": false,
         "vault_lease_issued": false,
         "agents_started": false,

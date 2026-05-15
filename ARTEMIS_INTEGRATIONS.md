@@ -157,3 +157,12 @@ gates sem transformar conversa em execucao automatica:
 docs/portal/ARTEMIS_PORTAL_AGENT_CONVERSATION.md
 scripts/artemis-portal-agent-conversation.sh --json
 ```
+
+Depois do agent conversation, o portal precisa do Task Control Surface para
+converter intents em controles visiveis de tarefa sem mutar estado canonico,
+iniciar runtime ou executar comandos sem gates separados:
+
+```bash
+docs/portal/ARTEMIS_PORTAL_TASK_CONTROL_SURFACE.md
+scripts/artemis-portal-task-control-surface.sh --json
+```

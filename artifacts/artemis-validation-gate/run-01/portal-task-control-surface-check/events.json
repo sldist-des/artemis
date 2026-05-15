@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-15T16:59:22Z",
+  "source": "scripts/artemis-portal-task-control-surface.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_task_control_surface_contract_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-15T16:59:22Z",
+      "producer": {
+        "adapter": "portal_task_control_surface",
+        "name": "scripts/artemis-portal-task-control-surface.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-080",
+        "task_id": "tkt-080",
+        "title": "ARTEMIS Portal Task Control Surface Contract",
+        "exec_pack": "docs/exec-packs/done/TKT-080-artemis-portal-task-control-surface.md",
+        "artifact_root": "artifacts/artemis-validation-gate/run-01/portal-task-control-surface-check"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "context",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-validation-gate/run-01/portal-task-control-surface-check",
+        "status_path": "artifacts/artemis-validation-gate/run-01/portal-task-control-surface-check/STATUS.md",
+        "validation_path": "artifacts/artemis-validation-gate/run-01/portal-task-control-surface-check/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-validation-gate/run-01/portal-task-control-surface-check/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-validation-gate/run-01/portal-task-control-surface-check/task-control-surface-contract.json",
+          "artifacts/artemis-validation-gate/run-01/portal-task-control-surface-check/TASK_CONTROL_SURFACE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-080"
+      },
+      "payload": {
+        "task_control_surface_ready": true,
+        "control_id": "task-control-tkt-080-contract-fixture",
+        "conversation_id": "conversation-tkt-079-contract-fixture",
+        "controls_triggered": 0,
+        "task_state_mutated": false,
+        "messages_sent_to_provider": 0,
+        "runtime_execution_allowed": false,
+        "runtime_session_started": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "secret_values_recorded": false,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-081 - ARTEMIS Portal Validation Evidence Surface Contract"
+      }
+    }
+  ]
+}

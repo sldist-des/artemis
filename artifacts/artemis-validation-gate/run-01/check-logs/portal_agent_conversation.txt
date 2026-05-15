@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T16:30:12Z",
+  "generated_at": "2026-05-15T16:59:22Z",
   "overall": "agent_conversation_ready",
   "agent_conversation_ready": true,
   "secret_values_recorded": false,
@@ -173,7 +173,7 @@
       "sender_type": "human",
       "sender_id": "human:portal-user",
       "recipient_type": "agent",
-      "created_at": "2026-05-15T16:30:12Z",
+      "created_at": "2026-05-15T16:59:22Z",
       "message_kind": "human_instruction",
       "visibility": "portal_team",
       "body_summary": "Ask the agent to report status and next blocked gate.",

@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 80
+    "done": 81
   },
   "decisions": [
     {
@@ -727,6 +727,15 @@
       "title": "ARTEMIS Portal Agent Conversation Contract",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-079-artemis-portal-agent-conversation.md"
+    },
+    {
+      "ticket": "TKT-080",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "ARTEMIS Portal Task Control Surface Contract",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-080-artemis-portal-task-control-surface.md"
     }
   ]
 }

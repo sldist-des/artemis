@@ -1,6 +1,6 @@
 # ARTEMIS HUMAN DECISION RUNBOOK CONSISTENCY
 
-- Generated at: 2026-05-15T16:30:00Z
+- Generated at: 2026-05-15T16:59:15Z
 - Overall: `passed`
 - Decision: `artifacts/artemis-real-cleanup-decision-package/run-01/real-cleanup-decision.json`
 - Runbook root: `artifacts/artemis-assisted-human-decision-runbook/run-01`

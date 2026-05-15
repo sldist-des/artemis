@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T16:30:01Z",
+  "generated_at": "2026-05-15T16:59:15Z",
   "source": "scripts/artemis-symphony-compatibility.sh",
   "mode": "read_only",
   "overall": "spec_ready",
@@ -9,8 +9,8 @@
   "summary": {
     "layers_total": 35,
     "layers_with_missing_files": 0,
-    "tasks_total": 80,
-    "tasks_done": 80,
+    "tasks_total": 81,
+    "tasks_done": 81,
     "daemon_implemented": true,
     "kernel_implemented": true,
     "bridge_implemented": true,

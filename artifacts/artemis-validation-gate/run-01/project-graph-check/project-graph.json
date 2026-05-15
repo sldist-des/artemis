@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T16:30:10Z",
+  "generated_at": "2026-05-15T16:59:20Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -28,19 +28,20 @@
     "portal_budget_ledger": "artifacts/artemis-portal-budget-ledger/run-01/budget-ledger-contract.json",
     "portal_workspace_session": "artifacts/artemis-portal-workspace-session/run-01/workspace-session-contract.json",
     "portal_runtime_session": "artifacts/artemis-portal-runtime-session/run-01/runtime-session-contract.json",
-    "portal_agent_conversation": "artifacts/artemis-portal-agent-conversation/run-01/agent-conversation-contract.json"
+    "portal_agent_conversation": "artifacts/artemis-portal-agent-conversation/run-01/agent-conversation-contract.json",
+    "portal_task_control_surface": "artifacts/artemis-portal-task-control-surface/run-01/task-control-surface-contract.json"
   },
   "summary": {
-    "tasks_total": 80,
-    "tasks_done": 80,
+    "tasks_total": 81,
+    "tasks_done": 81,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 8,
-    "events_total": 65,
-    "nodes_total": 30,
-    "edges_total": 107,
-    "evidence_count": 80,
-    "exec_pack_count": 80,
+    "events_total": 67,
+    "nodes_total": 31,
+    "edges_total": 114,
+    "evidence_count": 81,
+    "exec_pack_count": 81,
     "validation_passed": 1,
     "validation_failed": 0,
     "validation_human_gate": 1,
@@ -53,10 +54,10 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 80
+    "done": 81
   },
   "risks": {
-    "medium": 65,
+    "medium": 66,
     "low": 4,
     "high": 11
   },
@@ -67,7 +68,7 @@
     ],
     [
       "Codex",
-      24
+      25
     ],
     [
       "Context Curator",
@@ -97,11 +98,11 @@
   "top_tags": [
     [
       "exec-pack",
-      80
+      81
     ],
     [
       "done",
-      80
+      81
     ]
   ],
   "nodes": [
@@ -116,8 +117,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 80,
-      "done": 80,
+      "count": 81,
+      "done": 81,
       "human": 0
     },
     {
@@ -132,7 +133,7 @@
         ],
         [
           "Codex",
-          24
+          25
         ],
         [
           "Context Curator",
@@ -173,14 +174,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 80,
-      "exec_packs": 80
+      "task_evidence": 81,
+      "exec_packs": 81
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 65
+      "events": 67
     },
     {
       "id": "cost:budget",
@@ -433,6 +434,22 @@
       "tokens_spent": 0,
       "remote_state_mutated": false,
       "next_cut": "TKT-080 - ARTEMIS Portal Task Control Surface Contract"
+    },
+    {
+      "id": "portal:task_control_surface",
+      "type": "portal_task_control_surface",
+      "label": "ARTEMIS Portal Task Control Surface",
+      "status": "task_control_surface_ready",
+      "task_control_surface_ready": true,
+      "control_id": "task-control-tkt-080-contract-fixture",
+      "control_kind": "request_validation",
+      "controls_triggered": 0,
+      "task_state_mutated": false,
+      "runtime_execution_allowed": false,
+      "commands_executed": 0,
+      "tokens_spent": 0,
+      "remote_state_mutated": false,
+      "next_cut": "TKT-081 - ARTEMIS Portal Validation Evidence Surface Contract"
     },
     {
       "id": "control_plane:view",
@@ -923,6 +940,36 @@
       "type": "cannot_bypass_command_plan"
     },
     {
+      "from": "portal:agent_conversation",
+      "to": "portal:task_control_surface",
+      "type": "provides_task_intents"
+    },
+    {
+      "from": "portal:task_control_surface",
+      "to": "task_set:exec_packs",
+      "type": "shows_task_controls"
+    },
+    {
+      "from": "portal:task_control_surface",
+      "to": "validation:gate",
+      "type": "routes_validation_requests"
+    },
+    {
+      "from": "portal:task_control_surface",
+      "to": "gate:human",
+      "type": "routes_sensitive_controls"
+    },
+    {
+      "from": "portal:task_control_surface",
+      "to": "event_log:timeline",
+      "type": "records_task_control_contract"
+    },
+    {
+      "from": "portal:task_control_surface",
+      "to": "runtime:launcher_execution_gate",
+      "type": "cannot_bypass_execution_gate"
+    },
+    {
       "from": "control_plane:view",
       "to": "project:artemis",
       "type": "observes"
@@ -975,6 +1022,11 @@
     {
       "from": "control_plane:view",
       "to": "portal:agent_conversation",
+      "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "portal:task_control_surface",
       "type": "shows"
     }
   ],
@@ -1048,8 +1100,9 @@
     "portal_workspace_session_input": "artemis_portal_workspace_session",
     "portal_runtime_session_input": "artemis_portal_runtime_session",
     "portal_agent_conversation_input": "artemis_portal_agent_conversation",
+    "portal_task_control_surface_input": "artemis_portal_task_control_surface",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },
-  "next_cut": "TKT-080 - ARTEMIS Portal Task Control Surface Contract"
+  "next_cut": "TKT-081 - ARTEMIS Portal Validation Evidence Surface Contract"
 }

@@ -235,6 +235,20 @@ The agent conversation contract lives in:
 docs/portal/ARTEMIS_PORTAL_AGENT_CONVERSATION.md
 ```
 
+Task control surface is the next portal boundary. It turns conversation intents
+into visible task controls while keeping canonical state changes, runtime start,
+commands, remote writes, secrets and budget changes behind their proper gates:
+
+```bash
+scripts/artemis-portal-task-control-surface.sh --artifact-root artifacts/artemis-portal-task-control-surface/run-01
+```
+
+The task control surface contract lives in:
+
+```text
+docs/portal/ARTEMIS_PORTAL_TASK_CONTROL_SURFACE.md
+```
+
 ## ARTEMIS Symphony evidence
 
 The Control Plane includes a read-only `ARTEMIS Symphony` section for the local Symphony cuts.

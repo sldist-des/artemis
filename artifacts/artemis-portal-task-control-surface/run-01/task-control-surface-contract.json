@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-15T16:58:23Z",
+  "overall": "task_control_surface_ready",
+  "task_control_surface_ready": true,
+  "secret_values_recorded": false,
+  "controls_triggered": 0,
+  "task_state_mutated": false,
+  "messages_sent_to_provider": 0,
+  "agent_messages_received": 0,
+  "runtime_execution_allowed": false,
+  "runtime_session_started": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-081 - ARTEMIS Portal Validation Evidence Surface Contract",
+  "missing_files": [],
+  "task_control_contract": {
+    "purpose": "Turn safe conversation intents into visible task controls without bypassing gates.",
+    "state": "contract_only",
+    "task_control_surface_ready": true,
+    "controls_triggered": 0,
+    "task_state_mutated": false,
+    "messages_sent_to_provider": 0,
+    "agent_messages_received": 0,
+    "runtime_execution_allowed": false,
+    "runtime_session_started": false,
+    "agents_started": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "remote_state_mutated": false,
+    "control_schema": {
+      "required_fields": [
+        "control_id",
+        "project_id",
+        "ticket",
+        "conversation_id",
+        "runtime_session_id",
+        "assignment_id",
+        "control_kind",
+        "label",
+        "current_task_state",
+        "requested_transition",
+        "actor_type",
+        "actor_id",
+        "authority_level",
+        "gate_requirement",
+        "validation_requirement",
+        "budget_impact",
+        "command_plan_ref",
+        "event_refs",
+        "evidence"
+      ],
+      "forbidden_fields": [
+        "plaintext_secret",
+        "raw_access_token",
+        "raw_refresh_token",
+        "private_key_material",
+        "session_cookie",
+        "raw_prompt",
+        "full_prompt_transcript",
+        "raw_runtime_stdout",
+        "raw_runtime_stderr",
+        "git_remote_token",
+        "ssh_private_key",
+        "unreviewed_command",
+        "auto_execute_flag"
+      ]
+    },
+    "control_kinds": [
+      "view_task",
+      "assign_task_intent",
+      "request_agent_status",
+      "request_validation",
+      "open_human_gate",
+      "pause_runtime_session",
+      "stop_runtime_session",
+      "request_handoff_review"
+    ],
+    "blocked_without_gate": [
+      "start_runtime",
+      "execute_command",
+      "push_remote",
+      "deploy_production",
+      "read_secret",
+      "increase_budget",
+      "change_branch_protection",
+      "mark_done_without_validation"
+    ],
+    "task_state_model": [
+      "visible",
+      "intent_recorded",
+      "pending_assignment",
+      "pending_budget",
+      "pending_workspace",
+      "pending_runtime_gate",
+      "running_observed",
+      "validation_pending",
+      "human_gate",
+      "handoff_ready",
+      "done_ready",
+      "blocked",
+      "closed"
+    ],
+    "authority_model": {
+      "read_only": [
+        "view_task",
+        "request_agent_status"
+      ],
+      "intent_only": [
+        "assign_task_intent",
+        "request_validation",
+        "request_handoff_review"
+      ],
+      "human_gate_required": [
+        "open_human_gate",
+        "pause_runtime_session",
+        "stop_runtime_session"
+      ],
+      "separate_runtime_gate_required": [
+        "start_runtime",
+        "execute_command",
+        "push_remote",
+        "deploy_production",
+        "read_secret",
+        "increase_budget"
+      ]
+    },
+    "transition_policy": [
+      {
+        "from": "visible",
+        "control": "assign_task_intent",
+        "to": "intent_recorded",
+        "effect": "record_intent_event_only",
+        "requires_gate": false
+      },
+      {
+        "from": "intent_recorded",
+        "control": "request_validation",
+        "to": "validation_pending",
+        "effect": "record_validation_request_only",
+        "requires_gate": false
+      },
+      {
+        "from": "running_observed",
+        "control": "pause_runtime_session",
+        "to": "human_gate",
+        "effect": "route_to_runtime_stop_policy",
+        "requires_gate": true
+      },
+      {
+        "from": "running_observed",
+        "control": "stop_runtime_session",
+        "to": "human_gate",
+        "effect": "route_to_runtime_stop_policy",
+        "requires_gate": true
+      },
+      {
+        "from": "validation_pending",
+        "control": "request_handoff_review",
+        "to": "handoff_ready",
+        "effect": "record_review_request_only",
+        "requires_gate": false
+      }
+    ],
+    "ui_policy": {
+      "disabled_controls_must_explain_gate": true,
+      "every_click_records_event": true,
+      "destructive_controls_default_disabled": true,
+      "budget_controls_show_remaining_limit": true,
+      "validation_controls_show_latest_evidence": true,
+      "agent_controls_show_runtime_session_state": true,
+      "raw_transcript_display_allowed": false
+    },
+    "event_bridge": {
+      "writes_canonical_events": true,
+      "event_types": [
+        "task_control.surface_recorded",
+        "task_control.intent_recorded",
+        "task_control.human_gate_requested",
+        "task_control.stop_requested"
+      ],
+      "raw_transcript_in_event_allowed": false,
+      "task_mutation_in_event_allowed": false
+    },
+    "enforcement_rules": [
+      "Task controls are visible intent controls, not direct execution authority.",
+      "Controls that affect runtime, commands, remote writes, secrets or budget must route to Human Gate or runtime gates.",
+      "A task control can create an event and evidence record, but cannot mutate canonical task state by itself.",
+      "Disabled controls must show the missing gate, validation or budget dependency.",
+      "Done transitions require validation evidence and completion review before ledger update.",
+      "Stop controls have priority over new task assignment or runtime start controls.",
+      "Raw prompts, full transcripts, secrets and raw runtime output are forbidden in task-control artifacts."
+    ]
+  },
+  "sample_task_control": {
+    "control_id": "task-control-tkt-080-contract-fixture",
+    "project_id": "artemis",
+    "ticket": "TKT-080",
+    "conversation_id": "conversation-tkt-079-contract-fixture",
+    "runtime_session_id": "runtime-session-tkt-078-contract-fixture",
+    "assignment_id": "assign-tkt-075-contract-fixture",
+    "control_kind": "request_validation",
+    "label": "Request validation",
+    "current_task_state": "intent_recorded",
+    "requested_transition": "validation_pending",
+    "actor_type": "human",
+    "actor_id": "human:portal-user",
+    "authority_level": "intent_only",
+    "gate_requirement": "none",
+    "validation_requirement": "records_validation_request_only",
+    "budget_impact": "none",
+    "command_plan_ref": null,
+    "event_refs": [
+      "evt_portal_task_control_surface_contract_recorded"
+    ],
+    "evidence": [
+      "artifacts/artemis-portal-task-control-surface/run-01/task-control-surface-contract.json",
+      "artifacts/artemis-portal-task-control-surface/run-01/TASK_CONTROL_SURFACE.md"
+    ]
+  },
+  "checks": [
+    {
+      "id": "agent_conversation_ready",
+      "status": "passed",
+      "detail": "Task Control Surface consumes a ready Agent Conversation contract."
+    },
+    {
+      "id": "control_schema_declared",
+      "status": "passed",
+      "detail": "Control fields and forbidden raw/secret fields are declared."
+    },
+    {
+      "id": "gated_controls_declared",
+      "status": "passed",
+      "detail": "Runtime, command, remote write, secret and budget controls are blocked without gates."
+    },
+    {
+      "id": "ui_policy_declared",
+      "status": "passed",
+      "detail": "Disabled controls must show missing gate, validation or budget dependency."
+    },
+    {
+      "id": "event_bridge_declared",
+      "status": "passed",
+      "detail": "Task-control events are canonical and do not mutate task state."
+    },
+    {
+      "id": "no_task_state_mutation",
+      "status": "passed",
+      "detail": "This cut records the contract only and triggers no task control."
+    },
+    {
+      "id": "no_runtime_execution",
+      "status": "passed",
+      "detail": "Task controls cannot start runtime or execute commands in this cut."
+    },
+    {
+      "id": "no_secret_values_recorded",
+      "status": "passed",
+      "detail": "No secrets, raw prompts, raw runtime output or full transcripts are stored."
+    }
+  ],
+  "inputs": {
+    "agent_conversation": "artifacts/artemis-portal-agent-conversation/run-01/agent-conversation-contract.json"
+  }
+}

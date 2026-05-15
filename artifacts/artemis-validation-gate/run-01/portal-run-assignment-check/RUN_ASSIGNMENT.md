@@ -17,7 +17,7 @@ Uma tarefa so pode chegar ao launcher quando estiver vinculada a um perfil regis
 ## Sample assignment
 
 - Assignment id: `assign-tkt-075-contract-fixture`
-- Ticket: `TKT-079`
+- Ticket: `TKT-080`
 - Agent profile: `codex_frontier_engineer`
 - Provider: `openai_codex`
 - Adapter: `codex_app_server`

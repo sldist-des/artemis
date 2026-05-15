@@ -149,6 +149,7 @@ portal_budget_ledger_payload = read_json(Path("artifacts/artemis-portal-budget-l
 portal_workspace_session_payload = read_json(Path("artifacts/artemis-portal-workspace-session/run-01/workspace-session-contract.json"), {"workspace_contract": {}, "sample_workspace_session": {}, "overall": "not_available"})
 portal_runtime_session_payload = read_json(Path("artifacts/artemis-portal-runtime-session/run-01/runtime-session-contract.json"), {"runtime_contract": {}, "sample_runtime_session": {}, "overall": "not_available"})
 portal_agent_conversation_payload = read_json(Path("artifacts/artemis-portal-agent-conversation/run-01/agent-conversation-contract.json"), {"conversation_contract": {}, "sample_conversation": {}, "overall": "not_available"})
+portal_task_control_payload = read_json(Path("artifacts/artemis-portal-task-control-surface/run-01/task-control-surface-contract.json"), {"task_control_contract": {}, "sample_task_control": {}, "overall": "not_available"})
 
 tasks = tasks_payload.get("tasks", [])
 events = event_log_payload.get("events", [])
@@ -472,6 +473,22 @@ nodes = [
         "next_cut": portal_agent_conversation_payload.get("next_cut", "unknown"),
     },
     {
+        "id": "portal:task_control_surface",
+        "type": "portal_task_control_surface",
+        "label": "ARTEMIS Portal Task Control Surface",
+        "status": portal_task_control_payload.get("overall", "not_available"),
+        "task_control_surface_ready": portal_task_control_payload.get("task_control_surface_ready", False),
+        "control_id": portal_task_control_payload.get("sample_task_control", {}).get("control_id", "unknown"),
+        "control_kind": portal_task_control_payload.get("sample_task_control", {}).get("control_kind", "unknown"),
+        "controls_triggered": portal_task_control_payload.get("controls_triggered", 0),
+        "task_state_mutated": portal_task_control_payload.get("task_state_mutated", False),
+        "runtime_execution_allowed": portal_task_control_payload.get("runtime_execution_allowed", False),
+        "commands_executed": portal_task_control_payload.get("commands_executed", 0),
+        "tokens_spent": portal_task_control_payload.get("tokens_spent", 0),
+        "remote_state_mutated": portal_task_control_payload.get("remote_state_mutated", False),
+        "next_cut": portal_task_control_payload.get("next_cut", "unknown"),
+    },
+    {
         "id": "control_plane:view",
         "type": "view",
         "label": "Control Plane",
@@ -576,6 +593,12 @@ edges = [
     {"from": "portal:agent_conversation", "to": "task_set:exec_packs", "type": "routes_task_updates"},
     {"from": "portal:agent_conversation", "to": "event_log:timeline", "type": "records_conversation_contract"},
     {"from": "portal:agent_conversation", "to": "runtime:launcher_command_plan", "type": "cannot_bypass_command_plan"},
+    {"from": "portal:agent_conversation", "to": "portal:task_control_surface", "type": "provides_task_intents"},
+    {"from": "portal:task_control_surface", "to": "task_set:exec_packs", "type": "shows_task_controls"},
+    {"from": "portal:task_control_surface", "to": "validation:gate", "type": "routes_validation_requests"},
+    {"from": "portal:task_control_surface", "to": "gate:human", "type": "routes_sensitive_controls"},
+    {"from": "portal:task_control_surface", "to": "event_log:timeline", "type": "records_task_control_contract"},
+    {"from": "portal:task_control_surface", "to": "runtime:launcher_execution_gate", "type": "cannot_bypass_execution_gate"},
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
@@ -587,6 +610,7 @@ edges = [
     {"from": "control_plane:view", "to": "portal:workspace_session", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:runtime_session", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:agent_conversation", "type": "shows"},
+    {"from": "control_plane:view", "to": "portal:task_control_surface", "type": "shows"},
 ]
 
 questions = [
@@ -669,6 +693,7 @@ payload = {
         "portal_workspace_session": "artifacts/artemis-portal-workspace-session/run-01/workspace-session-contract.json",
         "portal_runtime_session": "artifacts/artemis-portal-runtime-session/run-01/runtime-session-contract.json",
         "portal_agent_conversation": "artifacts/artemis-portal-agent-conversation/run-01/agent-conversation-contract.json",
+        "portal_task_control_surface": "artifacts/artemis-portal-task-control-surface/run-01/task-control-surface-contract.json",
     },
     "summary": summary,
     "states": dict(states),
@@ -711,10 +736,11 @@ payload = {
         "portal_workspace_session_input": "artemis_portal_workspace_session",
         "portal_runtime_session_input": "artemis_portal_runtime_session",
         "portal_agent_conversation_input": "artemis_portal_agent_conversation",
+        "portal_task_control_surface_input": "artemis_portal_task_control_surface",
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },
-    "next_cut": "TKT-080 - ARTEMIS Portal Task Control Surface Contract",
+    "next_cut": "TKT-081 - ARTEMIS Portal Validation Evidence Surface Contract",
 }
 
 write_text(artifact_root / "project-graph.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")

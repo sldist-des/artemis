@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T16:32:01Z",
+  "generated_at": "2026-05-15T17:00:37Z",
   "source": "scripts/artemis-agent-launch-contract.sh",
   "mode": "read_only_supervised_agent_launch_contract",
   "overall": "agent_launch_contract_ready",
@@ -17,10 +17,10 @@
     "launch_profiles": 4,
     "launch_gates": 9,
     "evidence_requirements": 4,
-    "tasks_total": 80,
-    "tasks_done": 80,
+    "tasks_total": 81,
+    "tasks_done": 81,
     "tasks_human": 0,
-    "validation_passed": 123,
+    "validation_passed": 125,
     "validation_failed": 0,
     "human_gates": 2,
     "execute_default": false,
@@ -245,5 +245,5 @@
     "renderAgentLaunchContract",
     "loadAgentLaunchContractSource"
   ],
-  "next_cut": "TKT-080 - ARTEMIS Portal Task Control Surface Contract"
+  "next_cut": "TKT-081 - ARTEMIS Portal Validation Evidence Surface Contract"
 }

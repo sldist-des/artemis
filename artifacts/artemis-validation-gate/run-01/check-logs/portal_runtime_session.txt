@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T16:30:12Z",
+  "generated_at": "2026-05-15T16:59:22Z",
   "overall": "runtime_session_ready",
   "runtime_session_ready": true,
   "secret_values_recorded": false,
@@ -186,7 +186,7 @@
       "Stop immediately on human stop request."
     ],
     "validation_policy_id": "validation:standard-plus",
-    "opened_at": "2026-05-15T16:30:12Z",
+    "opened_at": "2026-05-15T16:59:22Z",
     "expires_at": "contract_fixture_no_runtime_expiry",
     "session_state": "waiting_for_human_runtime_gate",
     "runtime_execution_allowed": false,

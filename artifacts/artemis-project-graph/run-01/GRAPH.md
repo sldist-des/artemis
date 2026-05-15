@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `30`.
-- Edges: `107`.
-- Tasks: `80`.
-- Events: `66`.
+- Nodes: `31`.
+- Edges: `114`.
+- Tasks: `81`.
+- Events: `67`.
 
 ## Nos
 
@@ -40,6 +40,7 @@
 - `portal:workspace_session` (portal_workspace_session): ARTEMIS Portal Workspace Session.
 - `portal:runtime_session` (portal_runtime_session): ARTEMIS Portal Runtime Session.
 - `portal:agent_conversation` (portal_agent_conversation): ARTEMIS Portal Agent Conversation.
+- `portal:task_control_surface` (portal_task_control_surface): ARTEMIS Portal Task Control Surface.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -140,6 +141,12 @@
 - `portal:agent_conversation` --routes_task_updates--> `task_set:exec_packs`.
 - `portal:agent_conversation` --records_conversation_contract--> `event_log:timeline`.
 - `portal:agent_conversation` --cannot_bypass_command_plan--> `runtime:launcher_command_plan`.
+- `portal:agent_conversation` --provides_task_intents--> `portal:task_control_surface`.
+- `portal:task_control_surface` --shows_task_controls--> `task_set:exec_packs`.
+- `portal:task_control_surface` --routes_validation_requests--> `validation:gate`.
+- `portal:task_control_surface` --routes_sensitive_controls--> `gate:human`.
+- `portal:task_control_surface` --records_task_control_contract--> `event_log:timeline`.
+- `portal:task_control_surface` --cannot_bypass_execution_gate--> `runtime:launcher_execution_gate`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.
@@ -151,6 +158,7 @@
 - `control_plane:view` --shows--> `portal:workspace_session`.
 - `control_plane:view` --shows--> `portal:runtime_session`.
 - `control_plane:view` --shows--> `portal:agent_conversation`.
+- `control_plane:view` --shows--> `portal:task_control_surface`.
 
 ## Perguntas operacionais
 

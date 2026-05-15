@@ -108,7 +108,8 @@
             "portal_budget_ledger",
             "portal_workspace_session",
             "portal_runtime_session",
-            "portal_agent_conversation"
+            "portal_agent_conversation",
+            "portal_task_control_surface"
           ]
         },
         "name": {

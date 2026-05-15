@@ -221,6 +221,20 @@ The runtime session contract lives in:
 docs/portal/ARTEMIS_PORTAL_RUNTIME_SESSION.md
 ```
 
+Agent conversation is the next portal boundary. It maps human messages, agent
+summaries, task updates and runtime events into a safe conversation surface with
+intent classification, redaction and Human Gate routing:
+
+```bash
+scripts/artemis-portal-agent-conversation.sh --artifact-root artifacts/artemis-portal-agent-conversation/run-01
+```
+
+The agent conversation contract lives in:
+
+```text
+docs/portal/ARTEMIS_PORTAL_AGENT_CONVERSATION.md
+```
+
 ## ARTEMIS Symphony evidence
 
 The Control Plane includes a read-only `ARTEMIS Symphony` section for the local Symphony cuts.

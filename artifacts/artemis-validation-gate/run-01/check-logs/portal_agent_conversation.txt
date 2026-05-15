@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-15T16:30:12Z",
+  "overall": "agent_conversation_ready",
+  "agent_conversation_ready": true,
+  "secret_values_recorded": false,
+  "messages_sent_to_provider": 0,
+  "agent_messages_received": 0,
+  "runtime_execution_allowed": false,
+  "runtime_session_started": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-080 - ARTEMIS Portal Task Control Surface Contract",
+  "missing_files": [],
+  "conversation_contract": {
+    "purpose": "Map human messages, agent replies, task updates and runtime events into a safe portal conversation surface.",
+    "state": "contract_only",
+    "agent_conversation_ready": true,
+    "messages_sent_to_provider": 0,
+    "agent_messages_received": 0,
+    "runtime_execution_allowed": false,
+    "runtime_session_started": false,
+    "agents_started": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "remote_state_mutated": false,
+    "message_schema": {
+      "required_fields": [
+        "message_id",
+        "conversation_id",
+        "runtime_session_id",
+        "project_id",
+        "ticket",
+        "sender_type",
+        "sender_id",
+        "recipient_type",
+        "created_at",
+        "message_kind",
+        "visibility",
+        "body_summary",
+        "intent",
+        "safety_classification",
+        "redaction_state",
+        "event_refs",
+        "evidence"
+      ],
+      "forbidden_fields": [
+        "plaintext_secret",
+        "raw_access_token",
+        "raw_refresh_token",
+        "private_key_material",
+        "session_cookie",
+        "provider_billing_secret",
+        "raw_prompt",
+        "full_prompt_transcript",
+        "raw_runtime_stdout",
+        "raw_runtime_stderr",
+        "git_remote_token",
+        "ssh_private_key"
+      ]
+    },
+    "state_model": [
+      "draft",
+      "human_message_received",
+      "classified",
+      "redacted",
+      "routed_to_task",
+      "waiting_for_agent_runtime",
+      "agent_summary_received",
+      "waiting_for_human_gate",
+      "closed"
+    ],
+    "sender_types": [
+      "human",
+      "agent",
+      "system",
+      "validator",
+      "event_adapter"
+    ],
+    "message_kinds": [
+      "human_instruction",
+      "agent_status",
+      "agent_question",
+      "agent_answer",
+      "task_update",
+      "validation_result",
+      "runtime_event_summary",
+      "human_gate_request",
+      "stop_request"
+    ],
+    "intent_policy": {
+      "allowed_intents": [
+        "ask_status",
+        "assign_task",
+        "clarify_requirement",
+        "request_validation",
+        "approve_gate",
+        "reject_gate",
+        "pause_agent",
+        "stop_agent",
+        "summarize_context"
+      ],
+      "blocked_intents_without_gate": [
+        "execute_command",
+        "push_remote",
+        "deploy_production",
+        "read_secret",
+        "change_branch_protection",
+        "increase_budget"
+      ],
+      "ambiguous_intent_action": "ask_clarifying_question_without_runtime"
+    },
+    "redaction_policy": {
+      "raw_prompt_storage_allowed": false,
+      "summary_required": true,
+      "secret_detection_required": true,
+      "raw_runtime_output_allowed": false,
+      "provider_message_id_allowed": true,
+      "provider_secret_allowed": false
+    },
+    "routing_policy": {
+      "conversation_can_create_task_intent": true,
+      "conversation_can_update_task_status": true,
+      "conversation_can_request_human_gate": true,
+      "conversation_can_start_runtime": false,
+      "conversation_can_execute_command": false,
+      "conversation_can_push_remote": false,
+      "task_changes_require_event": true
+    },
+    "event_bridge": {
+      "writes_canonical_events": true,
+      "event_types": [
+        "conversation.message_recorded",
+        "conversation.intent_classified",
+        "conversation.human_gate_requested",
+        "conversation.stop_requested"
+      ],
+      "raw_transcript_in_event_allowed": false
+    },
+    "enforcement_rules": [
+      "Conversation messages must reference a Runtime Session when discussing a live or planned agent run.",
+      "Conversation approval does not execute commands or start agents.",
+      "Command, remote write, deploy, secret access and budget increase intents require separate gates.",
+      "Raw prompts, full transcripts, secrets, private keys and raw runtime output are forbidden in git artifacts.",
+      "Every task-impacting message must produce an event reference and evidence.",
+      "Stop requests must route to Runtime Session stop policy before any further agent action.",
+      "Agent replies shown to humans must be summarized or redacted before persistence."
+    ]
+  },
+  "sample_conversation": {
+    "conversation_id": "conversation-tkt-079-contract-fixture",
+    "runtime_session_id": "runtime-session-tkt-078-contract-fixture",
+    "workspace_session_id": "workspace-session-tkt-077-contract-fixture",
+    "assignment_id": "assign-tkt-075-contract-fixture",
+    "project_id": "artemis",
+    "ticket": "TKT-079",
+    "agent_profile_id": "codex_frontier_engineer",
+    "conversation_state": "classified",
+    "messages_sent_to_provider": 0,
+    "agent_messages_received": 0,
+    "runtime_execution_allowed": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "remote_state_mutated": false,
+    "sample_message": {
+      "message_id": "msg-tkt-079-contract-fixture",
+      "conversation_id": "conversation-tkt-079-contract-fixture",
+      "runtime_session_id": "runtime-session-tkt-078-contract-fixture",
+      "project_id": "artemis",
+      "ticket": "TKT-079",
+      "sender_type": "human",
+      "sender_id": "human:portal-user",
+      "recipient_type": "agent",
+      "created_at": "2026-05-15T16:30:12Z",
+      "message_kind": "human_instruction",
+      "visibility": "portal_team",
+      "body_summary": "Ask the agent to report status and next blocked gate.",
+      "intent": "ask_status",
+      "safety_classification": "safe_no_runtime",
+      "redaction_state": "redacted_summary_only",
+      "event_refs": [
+        "evt_portal_agent_conversation_contract_recorded"
+      ],
+      "evidence": [
+        "artifacts/artemis-portal-agent-conversation/run-01/agent-conversation-contract.json",
+        "artifacts/artemis-portal-agent-conversation/run-01/AGENT_CONVERSATION.md"
+      ]
+    }
+  },
+  "checks": [
+    {
+      "id": "runtime_session_ready",
+      "status": "passed",
+      "detail": "Agent Conversation consumes a ready Runtime Session."
+    },
+    {
+      "id": "message_schema_declared",
+      "status": "passed",
+      "detail": "Conversation message fields and forbidden raw/secret fields are declared."
+    },
+    {
+      "id": "intent_policy_declared",
+      "status": "passed",
+      "detail": "Allowed intents and gated intents are explicit."
+    },
+    {
+      "id": "redaction_policy_declared",
+      "status": "passed",
+      "detail": "Raw prompts are blocked and summaries are required."
+    },
+    {
+      "id": "event_bridge_declared",
+      "status": "passed",
+      "detail": "Conversation events are canonical but raw transcripts are not stored."
+    },
+    {
+      "id": "no_provider_messages",
+      "status": "passed",
+      "detail": "This cut does not send or receive provider-backed messages."
+    },
+    {
+      "id": "no_runtime_execution",
+      "status": "passed",
+      "detail": "Conversation cannot start runtime or execute commands."
+    },
+    {
+      "id": "no_secret_values_recorded",
+      "status": "passed",
+      "detail": "No secrets, raw prompts, raw runtime output or full transcripts are stored."
+    }
+  ],
+  "inputs": {
+    "runtime_session": "artifacts/artemis-validation-gate/run-01/portal-runtime-session-check/runtime-session-contract.json"
+  }
+}

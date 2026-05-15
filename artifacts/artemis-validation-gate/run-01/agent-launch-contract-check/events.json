@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T16:14:29Z",
+  "generated_at": "2026-05-15T16:30:10Z",
   "source": "scripts/artemis-agent-launch-contract.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-058_agent_launch_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T16:14:29Z",
+      "generated_at": "2026-05-15T16:30:10Z",
       "producer": {
         "adapter": "agent_launch_contract",
         "name": "scripts/artemis-agent-launch-contract.sh",
@@ -50,8 +50,8 @@
           "launch_profiles": 4,
           "launch_gates": 9,
           "evidence_requirements": 4,
-          "tasks_total": 79,
-          "tasks_done": 79,
+          "tasks_total": 80,
+          "tasks_done": 80,
           "tasks_human": 0,
           "validation_passed": 1,
           "validation_failed": 0,
@@ -75,7 +75,7 @@
           "execute": false,
           "reason": "The next safe step is a command plan that consumes launcher preflight evidence without starting paid/runtime agents."
         },
-        "next_cut": "TKT-079 - ARTEMIS Portal Agent Conversation Contract"
+        "next_cut": "TKT-080 - ARTEMIS Portal Task Control Surface Contract"
       }
     }
   ]

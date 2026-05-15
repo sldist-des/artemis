@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 79
+    "done": 80
   },
   "decisions": [
     {
@@ -718,6 +718,15 @@
       "title": "ARTEMIS Portal Runtime Session Contract",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-078-artemis-portal-runtime-session.md"
+    },
+    {
+      "ticket": "TKT-079",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "ARTEMIS Portal Agent Conversation Contract",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-079-artemis-portal-agent-conversation.md"
     }
   ]
 }

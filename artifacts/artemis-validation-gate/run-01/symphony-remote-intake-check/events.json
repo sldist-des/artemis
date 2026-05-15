@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T16:14:28Z",
+  "generated_at": "2026-05-15T16:30:10Z",
   "source": "scripts/artemis-symphony-remote-intake.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-051_symphony_remote_intake",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T16:14:28Z",
+      "generated_at": "2026-05-15T16:30:10Z",
       "producer": {
         "adapter": "symphony_remote_intake",
         "name": "scripts/artemis-symphony-remote-intake.sh",

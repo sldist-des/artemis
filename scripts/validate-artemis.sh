@@ -47,6 +47,7 @@ docs/portal/ARTEMIS_PORTAL_RUN_ASSIGNMENT.md
 docs/portal/ARTEMIS_PORTAL_BUDGET_LEDGER.md
 docs/portal/ARTEMIS_PORTAL_WORKSPACE_SESSION.md
 docs/portal/ARTEMIS_PORTAL_RUNTIME_SESSION.md
+docs/portal/ARTEMIS_PORTAL_AGENT_CONVERSATION.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
@@ -121,6 +122,7 @@ scripts/artemis-portal-run-assignment.sh
 scripts/artemis-portal-budget-ledger.sh
 scripts/artemis-portal-workspace-session.sh
 scripts/artemis-portal-runtime-session.sh
+scripts/artemis-portal-agent-conversation.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -232,6 +234,7 @@ sh -n scripts/artemis-portal-run-assignment.sh
 sh -n scripts/artemis-portal-budget-ledger.sh
 sh -n scripts/artemis-portal-workspace-session.sh
 sh -n scripts/artemis-portal-runtime-session.sh
+sh -n scripts/artemis-portal-agent-conversation.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -424,6 +427,35 @@ if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-runtime-session.json; then
 fi
 if ! test -f /tmp/artemis-portal-runtime-session/RUNTIME_SESSION.md; then
   echo "scripts/artemis-portal-runtime-session.sh did not write runtime session documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-portal-agent-conversation.sh --artifact-root /tmp/artemis-portal-agent-conversation --json >/tmp/artemis-portal-agent-conversation.json
+if ! grep -q '"overall": "agent_conversation_ready"' /tmp/artemis-portal-agent-conversation.json; then
+  echo "scripts/artemis-portal-agent-conversation.sh did not report agent_conversation_ready" >&2
+  exit 1
+fi
+if ! grep -q '"secret_values_recorded": false' /tmp/artemis-portal-agent-conversation.json; then
+  echo "scripts/artemis-portal-agent-conversation.sh recorded secret values" >&2
+  exit 1
+fi
+if ! grep -q '"messages_sent_to_provider": 0' /tmp/artemis-portal-agent-conversation.json; then
+  echo "scripts/artemis-portal-agent-conversation.sh sent provider messages" >&2
+  exit 1
+fi
+if ! grep -q '"agent_messages_received": 0' /tmp/artemis-portal-agent-conversation.json; then
+  echo "scripts/artemis-portal-agent-conversation.sh received agent messages" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-portal-agent-conversation.json; then
+  echo "scripts/artemis-portal-agent-conversation.sh allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-portal-agent-conversation.json; then
+  echo "scripts/artemis-portal-agent-conversation.sh executed commands" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-agent-conversation/AGENT_CONVERSATION.md; then
+  echo "scripts/artemis-portal-agent-conversation.sh did not write agent conversation documentation artifact" >&2
   exit 1
 fi
 

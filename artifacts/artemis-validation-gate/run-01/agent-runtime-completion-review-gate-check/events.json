@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T16:14:30Z",
+  "generated_at": "2026-05-15T16:30:12Z",
   "source": "scripts/artemis-agent-runtime-completion-review-gate.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-069_agent_runtime_completion_review_gate",
       "event_type": "approval.requested",
-      "generated_at": "2026-05-15T16:14:30Z",
+      "generated_at": "2026-05-15T16:30:12Z",
       "producer": {
         "adapter": "agent_runtime_completion_review_gate",
         "name": "scripts/artemis-agent-runtime-completion-review-gate.sh",

@@ -301,6 +301,8 @@ docs/portal/ARTEMIS_PORTAL_WORKSPACE_SESSION.md
 scripts/artemis-portal-workspace-session.sh --artifact-root artifacts/artemis-portal-workspace-session/run-01
 docs/portal/ARTEMIS_PORTAL_RUNTIME_SESSION.md
 scripts/artemis-portal-runtime-session.sh --artifact-root artifacts/artemis-portal-runtime-session/run-01
+docs/portal/ARTEMIS_PORTAL_AGENT_CONVERSATION.md
+scripts/artemis-portal-agent-conversation.sh --artifact-root artifacts/artemis-portal-agent-conversation/run-01
 ```
 
 ## Readiness de aplicacao

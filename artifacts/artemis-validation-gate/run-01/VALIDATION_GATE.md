@@ -1,7 +1,7 @@
 # VALIDATION GATE RESULT
 
 - Overall: human_gate
-- Passed: 121
+- Passed: 123
 - Failed: 0
 - Human Gate: 2
 
@@ -59,6 +59,7 @@
 - shell_portal_budget_ledger: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_budget_ledger.txt`
 - shell_portal_workspace_session: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_workspace_session.txt`
 - shell_portal_runtime_session: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_runtime_session.txt`
+- shell_portal_agent_conversation: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_portal_agent_conversation.txt`
 - shell_approved_workspace_cleanup: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_approved_workspace_cleanup.txt`
 - shell_workspace_runtime_handoff: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_workspace_runtime_handoff.txt`
 - shell_runner: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/shell_runner.txt`
@@ -118,6 +119,7 @@
 - portal_budget_ledger: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/portal_budget_ledger.txt`
 - portal_workspace_session: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/portal_workspace_session.txt`
 - portal_runtime_session: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/portal_runtime_session.txt`
+- portal_agent_conversation: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/portal_agent_conversation.txt`
 - approved_workspace_cleanup: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/approved_workspace_cleanup.txt`
 - workspace_runtime_handoff: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/workspace_runtime_handoff.txt`
 - runner_plan: passed (exit 0) -> `artifacts/artemis-validation-gate/run-01/check-logs/runner_plan.txt`

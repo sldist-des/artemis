@@ -148,3 +148,12 @@ antes de qualquer agente real:
 docs/portal/ARTEMIS_PORTAL_RUNTIME_SESSION.md
 scripts/artemis-portal-runtime-session.sh --json
 ```
+
+Depois do runtime session, o portal precisa do Agent Conversation para registrar
+mensagens humanas, respostas resumidas de agentes, intents, redaction, eventos e
+gates sem transformar conversa em execucao automatica:
+
+```bash
+docs/portal/ARTEMIS_PORTAL_AGENT_CONVERSATION.md
+scripts/artemis-portal-agent-conversation.sh --json
+```

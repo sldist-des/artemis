@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T16:14:22Z",
+  "generated_at": "2026-05-15T16:29:59Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -949,6 +949,18 @@
       "summary": "Um contrato verificavel deve definir runtime session record, lifecycle gates,",
       "exec_pack": "docs/exec-packs/done/TKT-078-artemis-portal-runtime-session.md",
       "evidence": "artifacts/artemis-portal-runtime-session/run-01/runtime-session-contract.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-079",
+      "ticket": "TKT-079",
+      "title": "ARTEMIS Portal Agent Conversation Contract",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "Um contrato verificavel deve definir message record, sender types, message",
+      "exec_pack": "docs/exec-packs/done/TKT-079-artemis-portal-agent-conversation.md",
+      "evidence": "artifacts/artemis-portal-agent-conversation/run-01/agent-conversation-contract.json",
       "tags": ["exec-pack", "done"]
     }
   ]

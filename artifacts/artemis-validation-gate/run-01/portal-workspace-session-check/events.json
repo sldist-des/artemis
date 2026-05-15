@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T16:14:30Z",
+  "generated_at": "2026-05-15T16:30:12Z",
   "source": "scripts/artemis-portal-workspace-session.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_portal_workspace_session_contract_recorded",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T16:14:30Z",
+      "generated_at": "2026-05-15T16:30:12Z",
       "producer": {
         "adapter": "portal_workspace_session",
         "name": "scripts/artemis-portal-workspace-session.sh",

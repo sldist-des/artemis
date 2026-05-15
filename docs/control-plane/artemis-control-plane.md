@@ -249,6 +249,20 @@ The task control surface contract lives in:
 docs/portal/ARTEMIS_PORTAL_TASK_CONTROL_SURFACE.md
 ```
 
+Validation evidence surface is the next review boundary. It renders proof,
+failed checks, Human Gates and not-tested gaps for humans without accepting work
+or marking tasks done:
+
+```bash
+scripts/artemis-portal-validation-evidence-surface.sh --artifact-root artifacts/artemis-portal-validation-evidence-surface/run-01
+```
+
+The validation evidence surface contract lives in:
+
+```text
+docs/portal/ARTEMIS_PORTAL_VALIDATION_EVIDENCE_SURFACE.md
+```
+
 ## ARTEMIS Symphony evidence
 
 The Control Plane includes a read-only `ARTEMIS Symphony` section for the local Symphony cuts.

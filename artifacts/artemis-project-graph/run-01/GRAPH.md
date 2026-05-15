@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `31`.
-- Edges: `114`.
-- Tasks: `81`.
-- Events: `67`.
+- Nodes: `32`.
+- Edges: `121`.
+- Tasks: `82`.
+- Events: `68`.
 
 ## Nos
 
@@ -41,6 +41,7 @@
 - `portal:runtime_session` (portal_runtime_session): ARTEMIS Portal Runtime Session.
 - `portal:agent_conversation` (portal_agent_conversation): ARTEMIS Portal Agent Conversation.
 - `portal:task_control_surface` (portal_task_control_surface): ARTEMIS Portal Task Control Surface.
+- `portal:validation_evidence_surface` (portal_validation_evidence_surface): ARTEMIS Portal Validation Evidence Surface.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -147,6 +148,12 @@
 - `portal:task_control_surface` --routes_sensitive_controls--> `gate:human`.
 - `portal:task_control_surface` --records_task_control_contract--> `event_log:timeline`.
 - `portal:task_control_surface` --cannot_bypass_execution_gate--> `runtime:launcher_execution_gate`.
+- `portal:task_control_surface` --requests_evidence_review--> `portal:validation_evidence_surface`.
+- `portal:validation_evidence_surface` --summarizes_validation--> `validation:gate`.
+- `portal:validation_evidence_surface` --shows_human_gate_blockers--> `gate:human`.
+- `portal:validation_evidence_surface` --renders_evidence--> `artifact:evidence`.
+- `portal:validation_evidence_surface` --records_evidence_surface_contract--> `event_log:timeline`.
+- `portal:validation_evidence_surface` --cannot_mark_done--> `runtime:done_ledger`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.
@@ -159,6 +166,7 @@
 - `control_plane:view` --shows--> `portal:runtime_session`.
 - `control_plane:view` --shows--> `portal:agent_conversation`.
 - `control_plane:view` --shows--> `portal:task_control_surface`.
+- `control_plane:view` --shows--> `portal:validation_evidence_surface`.
 
 ## Perguntas operacionais
 

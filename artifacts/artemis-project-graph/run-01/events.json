@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T17:00:26Z",
+  "generated_at": "2026-05-15T17:25:38Z",
   "source": "scripts/artemis-project-graph.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:00:26Z",
+      "generated_at": "2026-05-15T17:25:38Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -47,17 +47,17 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 81,
-          "tasks_done": 81,
+          "tasks_total": 82,
+          "tasks_done": 82,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 8,
-          "events_total": 67,
-          "nodes_total": 31,
-          "edges_total": 114,
-          "evidence_count": 81,
-          "exec_pack_count": 81,
-          "validation_passed": 125,
+          "events_total": 68,
+          "nodes_total": 32,
+          "edges_total": 121,
+          "evidence_count": 82,
+          "exec_pack_count": 82,
+          "validation_passed": 127,
           "validation_failed": 0,
           "validation_human_gate": 2,
           "memory_zones": 3,
@@ -68,7 +68,7 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-081 - ARTEMIS Portal Validation Evidence Surface Contract"
+        "next_cut": "TKT-082 - ARTEMIS Portal Human Acceptance Surface Contract"
       }
     }
   ]

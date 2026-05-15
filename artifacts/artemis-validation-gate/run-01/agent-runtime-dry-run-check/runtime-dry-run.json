@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T16:59:20Z",
+  "generated_at": "2026-05-15T17:23:18Z",
   "source": "scripts/artemis-agent-runtime-dry-run.sh",
   "mode": "agent_runtime_dry_run",
   "overall": "agent_runtime_dry_run_ready",
@@ -127,8 +127,8 @@
     }
   ],
   "summary": {
-    "tasks_total": 81,
-    "tasks_done": 81,
+    "tasks_total": 82,
+    "tasks_done": 82,
     "validation_passed": 1,
     "validation_failed": 0,
     "human_gates_from_project": 1,

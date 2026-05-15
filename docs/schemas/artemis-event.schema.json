@@ -109,7 +109,8 @@
             "portal_workspace_session",
             "portal_runtime_session",
             "portal_agent_conversation",
-            "portal_task_control_surface"
+            "portal_task_control_surface",
+            "portal_validation_evidence_surface"
           ]
         },
         "name": {

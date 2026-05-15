@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T16:58:27Z",
+  "generated_at": "2026-05-15T17:22:24Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -973,6 +973,18 @@
       "summary": "Um contrato verificavel deve definir control record, control kinds, autoridade,",
       "exec_pack": "docs/exec-packs/done/TKT-080-artemis-portal-task-control-surface.md",
       "evidence": "artifacts/artemis-portal-task-control-surface/run-01/task-control-surface-contract.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-081",
+      "ticket": "TKT-081",
+      "title": "ARTEMIS Portal Validation Evidence Surface Contract",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "Um contrato verificavel deve definir evidence record, evidence kinds, status",
+      "exec_pack": "docs/exec-packs/done/TKT-081-artemis-portal-validation-evidence-surface.md",
+      "evidence": "artifacts/artemis-portal-validation-evidence-surface/run-01/validation-evidence-surface-contract.json",
       "tags": ["exec-pack", "done"]
     }
   ]

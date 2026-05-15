@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T17:00:31Z",
+  "generated_at": "2026-05-15T17:25:46Z",
   "source": "scripts/artemis-project-brief.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:00:31Z",
+      "generated_at": "2026-05-15T17:25:46Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -47,12 +47,12 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 81,
-          "tasks_done": 81,
-          "events_total": 67,
-          "nodes_total": 31,
-          "edges_total": 114,
-          "validation_passed": 125,
+          "tasks_total": 82,
+          "tasks_done": 82,
+          "events_total": 68,
+          "nodes_total": 32,
+          "edges_total": 121,
+          "validation_passed": 127,
           "validation_failed": 0,
           "human_gates": 2,
           "memory_zones": 3,
@@ -62,7 +62,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-081 - ARTEMIS Portal Validation Evidence Surface Contract"
+        "next_cut": "TKT-082 - ARTEMIS Portal Human Acceptance Surface Contract"
       }
     }
   ]

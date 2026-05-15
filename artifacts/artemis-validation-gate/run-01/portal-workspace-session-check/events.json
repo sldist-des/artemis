@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T16:59:22Z",
+  "generated_at": "2026-05-15T17:23:19Z",
   "source": "scripts/artemis-portal-workspace-session.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_portal_workspace_session_contract_recorded",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T16:59:22Z",
+      "generated_at": "2026-05-15T17:23:19Z",
       "producer": {
         "adapter": "portal_workspace_session",
         "name": "scripts/artemis-portal-workspace-session.sh",
@@ -25,7 +25,7 @@
       },
       "state": {
         "from": "context",
-        "to": "done",
+        "to": "blocked",
         "reason": ""
       },
       "gate": {
@@ -47,11 +47,11 @@
         "correlation_id": "tkt-077"
       },
       "payload": {
-        "workspace_session_ready": true,
+        "workspace_session_ready": false,
         "workspace_session_id": "workspace-session-tkt-077-contract-fixture",
         "workspace_policy_id": "workspace:single-writer-worktree",
         "assignment_id": "assign-tkt-075-contract-fixture",
-        "budget_policy_id": "budget:frontier-engineering",
+        "budget_policy_id": "budget:verification",
         "writer_lock_required": true,
         "max_writers": 1,
         "runtime_auth_executed": false,

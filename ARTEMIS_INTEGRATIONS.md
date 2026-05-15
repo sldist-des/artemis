@@ -166,3 +166,12 @@ iniciar runtime ou executar comandos sem gates separados:
 docs/portal/ARTEMIS_PORTAL_TASK_CONTROL_SURFACE.md
 scripts/artemis-portal-task-control-surface.sh --json
 ```
+
+Depois do task control surface, o portal precisa do Validation Evidence Surface
+para mostrar provas, falhas, Human Gates e lacunas de teste em linguagem humana
+sem aceitar entrega, marcar done ou executar comandos:
+
+```bash
+docs/portal/ARTEMIS_PORTAL_VALIDATION_EVIDENCE_SURFACE.md
+scripts/artemis-portal-validation-evidence-surface.sh --json
+```

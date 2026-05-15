@@ -17,8 +17,8 @@ Uma tarefa so pode chegar ao launcher quando estiver vinculada a um perfil regis
 ## Sample assignment
 
 - Assignment id: `assign-tkt-075-contract-fixture`
-- Ticket: `TKT-080`
-- Agent profile: `codex_frontier_engineer`
+- Ticket: `TKT-081`
+- Agent profile: `artemis_verifier`
 - Provider: `openai_codex`
 - Adapter: `codex_app_server`
 - State: `ready_for_launcher_preflight`

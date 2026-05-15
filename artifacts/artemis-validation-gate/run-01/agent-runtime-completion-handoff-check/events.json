@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T16:59:21Z",
+  "generated_at": "2026-05-15T17:23:19Z",
   "source": "scripts/artemis-agent-runtime-completion-handoff.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-068_agent_runtime_completion_handoff",
       "event_type": "handoff.recorded",
-      "generated_at": "2026-05-15T16:59:21Z",
+      "generated_at": "2026-05-15T17:23:19Z",
       "producer": {
         "adapter": "agent_runtime_completion_handoff",
         "name": "scripts/artemis-agent-runtime-completion-handoff.sh",

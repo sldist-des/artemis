@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T16:59:20Z",
+  "generated_at": "2026-05-15T17:23:18Z",
   "source": "scripts/artemis-project-graph-view.sh",
   "mode": "read_only_control_plane_view_contract",
   "overall": "project_graph_view_ready",
@@ -11,8 +11,8 @@
     "control_plane": "control-plane/index.html"
   },
   "summary": {
-    "nodes_rendered": 31,
-    "edges_rendered": 114,
+    "nodes_rendered": 32,
+    "edges_rendered": 121,
     "questions_rendered": 3,
     "invariants_rendered": 3,
     "validation_passed": 1,
@@ -39,5 +39,5 @@
     "No graph database, canvas engine, frontend framework or runtime is introduced.",
     "Human Gates, Validation Gate, Event Log, Exec Packs and git remain authoritative."
   ],
-  "next_cut": "TKT-081 - ARTEMIS Portal Validation Evidence Surface Contract"
+  "next_cut": "TKT-082 - ARTEMIS Portal Human Acceptance Surface Contract"
 }

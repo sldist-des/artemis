@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T16:59:16Z",
+  "generated_at": "2026-05-15T17:23:14Z",
   "source": "scripts/artemis-symphony-bridge.sh",
   "mode": "supervised_bridge",
   "overall": "runner_plan_ready",
   "task_source": "artifacts/artemis-validation-gate/run-01/runner-task-source.json",
   "artifact_root": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check",
   "kernel": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/kernel/symphony-kernel.json",
-  "runner_attempt": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260515T165916Z-377-tkt-validate",
-  "runner_events": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260515T165916Z-377-tkt-validate/events.json",
+  "runner_attempt": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260515T172314Z-379-tkt-validate",
+  "runner_events": "artifacts/artemis-validation-gate/run-01/symphony-bridge-check/runner/attempts/20260515T172314Z-379-tkt-validate/events.json",
   "summary": {
     "kernel_overall": "dispatch_plan_ready",
     "kernel_selected_for_dispatch": 1,

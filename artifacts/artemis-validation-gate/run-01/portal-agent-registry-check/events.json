@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T16:59:22Z",
+  "generated_at": "2026-05-15T17:23:19Z",
   "source": "scripts/artemis-portal-agent-registry.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_portal_agent_registry_contract_recorded",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T16:59:22Z",
+      "generated_at": "2026-05-15T17:23:19Z",
       "producer": {
         "adapter": "portal_agent_registry",
         "name": "scripts/artemis-portal-agent-registry.sh",

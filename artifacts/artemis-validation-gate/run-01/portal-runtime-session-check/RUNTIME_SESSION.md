@@ -1,6 +1,6 @@
 # ARTEMIS Portal Runtime Session Contract
 
-- Overall: `runtime_session_ready`
+- Overall: `blocked`
 - Runtime execution allowed: `false`
 - Runtime session started: `false`
 - Runtime auth executed: `false`
@@ -89,7 +89,7 @@ Nenhuma sessao de runtime do portal pode iniciar agente sem Workspace Session pr
 
 ## Validation
 
-- `workspace_session_ready`: passed - Runtime Session consumes a ready Workspace Session.
+- `workspace_session_ready`: failed - Runtime Session consumes a ready Workspace Session.
 - `launcher_preflight_present`: passed - Runtime Session can reference launcher preflight evidence.
 - `preflight_does_not_allow_runtime`: passed - Existing launcher preflight artifact still blocks runtime execution until Human Gate.
 - `credential_vault_contract_present`: passed - Runtime Session references the Credential Vault contract without issuing a lease.

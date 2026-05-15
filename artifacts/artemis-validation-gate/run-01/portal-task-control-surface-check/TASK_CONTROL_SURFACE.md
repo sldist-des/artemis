@@ -1,6 +1,6 @@
 # ARTEMIS Portal Task Control Surface Contract
 
-- Overall: `task_control_surface_ready`
+- Overall: `blocked`
 - Controls triggered: `0`
 - Task state mutated: `false`
 - Messages sent to provider: `0`
@@ -88,7 +88,7 @@ Task controls tornam intents visiveis e auditaveis, mas nao mudam estado canonic
 
 ## Validation
 
-- `agent_conversation_ready`: passed - Task Control Surface consumes a ready Agent Conversation contract.
+- `agent_conversation_ready`: failed - Task Control Surface consumes a ready Agent Conversation contract.
 - `control_schema_declared`: passed - Control fields and forbidden raw/secret fields are declared.
 - `gated_controls_declared`: passed - Runtime, command, remote write, secret and budget controls are blocked without gates.
 - `ui_policy_declared`: passed - Disabled controls must show missing gate, validation or budget dependency.

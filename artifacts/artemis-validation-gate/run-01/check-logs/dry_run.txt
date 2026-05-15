@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 81
+    "done": 82
   },
   "decisions": [
     {
@@ -736,6 +736,15 @@
       "title": "ARTEMIS Portal Task Control Surface Contract",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-080-artemis-portal-task-control-surface.md"
+    },
+    {
+      "ticket": "TKT-081",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "ARTEMIS Portal Validation Evidence Surface Contract",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-081-artemis-portal-validation-evidence-surface.md"
     }
   ]
 }

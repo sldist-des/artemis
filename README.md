@@ -305,6 +305,8 @@ docs/portal/ARTEMIS_PORTAL_AGENT_CONVERSATION.md
 scripts/artemis-portal-agent-conversation.sh --artifact-root artifacts/artemis-portal-agent-conversation/run-01
 docs/portal/ARTEMIS_PORTAL_TASK_CONTROL_SURFACE.md
 scripts/artemis-portal-task-control-surface.sh --artifact-root artifacts/artemis-portal-task-control-surface/run-01
+docs/portal/ARTEMIS_PORTAL_VALIDATION_EVIDENCE_SURFACE.md
+scripts/artemis-portal-validation-evidence-surface.sh --artifact-root artifacts/artemis-portal-validation-evidence-surface/run-01
 ```
 
 ## Readiness de aplicacao

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T18:28:44Z",
+  "generated_at": "2026-05-15T16:14:27Z",
   "source": "scripts/artemis-symphony-kernel.sh",
   "mode": "read_only",
   "overall": "dispatch_plan_ready",

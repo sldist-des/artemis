@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T18:30:48Z",
+  "generated_at": "2026-05-15T16:15:33Z",
   "source": "scripts/artemis-project-brief.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-12T18:30:48Z",
+      "generated_at": "2026-05-15T16:15:33Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -47,12 +47,12 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 78,
-          "tasks_done": 78,
-          "events_total": 64,
-          "nodes_total": 28,
-          "edges_total": 94,
-          "validation_passed": 119,
+          "tasks_total": 79,
+          "tasks_done": 79,
+          "events_total": 65,
+          "nodes_total": 29,
+          "edges_total": 101,
+          "validation_passed": 121,
           "validation_failed": 0,
           "human_gates": 2,
           "memory_zones": 3,
@@ -62,7 +62,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-078 - ARTEMIS Portal Runtime Session Contract"
+        "next_cut": "TKT-079 - ARTEMIS Portal Agent Conversation Contract"
       }
     }
   ]

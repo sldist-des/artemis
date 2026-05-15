@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-15T16:14:13Z",
+  "overall": "runtime_session_ready",
+  "runtime_session_ready": true,
+  "secret_values_recorded": false,
+  "runtime_execution_allowed": false,
+  "runtime_session_started": false,
+  "runtime_auth_executed": false,
+  "vault_lease_issued": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "estimated_cost_units": 0,
+  "actual_cost_units": 0,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-079 - ARTEMIS Portal Agent Conversation Contract",
+  "missing_files": [],
+  "runtime_contract": {
+    "purpose": "Bind workspace, budget, credential lease policy and launcher preflight into a supervised portal runtime session contract.",
+    "state": "contract_only",
+    "runtime_session_ready": true,
+    "runtime_execution_allowed": false,
+    "runtime_session_started": false,
+    "runtime_auth_executed": false,
+    "vault_lease_issued": false,
+    "agents_started": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "actual_cost_units": 0,
+    "remote_state_mutated": false,
+    "runtime_session_schema": {
+      "required_fields": [
+        "runtime_session_id",
+        "workspace_session_id",
+        "assignment_id",
+        "project_id",
+        "ticket",
+        "agent_profile_id",
+        "provider_id",
+        "adapter",
+        "runtime_surface",
+        "credential_lease_policy_id",
+        "workspace_policy_id",
+        "budget_policy_id",
+        "supervision_policy_id",
+        "command_boundary",
+        "heartbeat_policy",
+        "transcript_policy",
+        "stop_rules",
+        "validation_policy_id",
+        "opened_at",
+        "expires_at",
+        "session_state",
+        "evidence"
+      ],
+      "forbidden_fields": [
+        "plaintext_secret",
+        "raw_access_token",
+        "raw_refresh_token",
+        "private_key_material",
+        "session_cookie",
+        "provider_billing_secret",
+        "raw_runtime_stdout",
+        "raw_runtime_stderr",
+        "full_prompt_transcript",
+        "git_remote_token",
+        "ssh_private_key"
+      ]
+    },
+    "state_model": [
+      "requested",
+      "workspace_bound",
+      "budget_bound",
+      "waiting_for_credential_lease",
+      "waiting_for_launcher_preflight",
+      "waiting_for_human_runtime_gate",
+      "ready_for_supervised_execution",
+      "running",
+      "pausing",
+      "stopping",
+      "stopped",
+      "failed",
+      "handoff_ready",
+      "closed"
+    ],
+    "lifecycle_gates": [
+      "workspace_session_ready",
+      "budget_ledger_bound",
+      "credential_lease_policy_bound",
+      "launcher_preflight_present",
+      "command_plan_required",
+      "human_execution_gate_required",
+      "validation_policy_bound",
+      "cost_ledger_update_required",
+      "completion_handoff_required"
+    ],
+    "supervision_policy": {
+      "supervision_policy_id": "supervision:portal-controlled-runtime",
+      "heartbeat_required": true,
+      "heartbeat_interval_seconds": 30,
+      "event_stream_required": true,
+      "human_stop_supported": true,
+      "agent_pause_supported": true,
+      "raw_output_storage_allowed": false,
+      "summary_transcript_required": true
+    },
+    "command_boundary": {
+      "source": "future_launcher_command_plan",
+      "ad_hoc_commands_allowed": false,
+      "remote_write_commands_allowed": false,
+      "production_commands_allowed": false,
+      "requires_exact_command_plan": true,
+      "requires_pre_execution_gate": true
+    },
+    "transcript_policy": {
+      "summary_allowed": true,
+      "raw_prompt_storage_allowed": false,
+      "raw_secret_redaction_required": true,
+      "human_visible_status_required": true,
+      "agent_message_event_required": true
+    },
+    "stop_rules": [
+      "Stop before any secret request or plaintext credential exposure.",
+      "Stop before any command outside the approved command plan.",
+      "Stop before remote write unless a separate Human Gate allows it.",
+      "Stop when budget, token, agent-count or duration limits are reached.",
+      "Stop when forbidden paths are touched.",
+      "Stop when dirty-worktree conflict is detected.",
+      "Stop on validation failure if no approved retry policy exists.",
+      "Stop immediately on human stop request."
+    ],
+    "enforcement_rules": [
+      "Runtime Session must consume a ready Workspace Session.",
+      "Runtime Session must reference a launcher preflight artifact before command planning.",
+      "Credential lease policy may be bound, but no real lease is issued in this cut.",
+      "Runtime Session approval is not command execution permission.",
+      "A command plan and execution gate remain required before any real agent command.",
+      "Every runtime state transition must write an event and cost/usage evidence.",
+      "Raw secrets, provider tokens, private keys, raw stdout/stderr and full prompt transcripts are forbidden in git artifacts."
+    ]
+  },
+  "sample_runtime_session": {
+    "runtime_session_id": "runtime-session-tkt-078-contract-fixture",
+    "workspace_session_id": "workspace-session-tkt-077-contract-fixture",
+    "assignment_id": "assign-tkt-075-contract-fixture",
+    "project_id": "artemis",
+    "ticket": "TKT-078",
+    "source_ticket": "TKT-077",
+    "agent_profile_id": "codex_frontier_engineer",
+    "provider_id": "openai_codex",
+    "adapter": "codex_app_server",
+    "runtime_surface": "portal_supervised_runtime",
+    "credential_lease_policy_id": "lease:short-lived-provider-adapter",
+    "workspace_policy_id": "workspace:single-writer-worktree",
+    "budget_policy_id": "budget:frontier-engineering",
+    "supervision_policy_id": "supervision:portal-controlled-runtime",
+    "command_boundary": {
+      "source": "future_launcher_command_plan",
+      "ad_hoc_commands_allowed": false,
+      "remote_write_commands_allowed": false,
+      "production_commands_allowed": false,
+      "requires_exact_command_plan": true,
+      "requires_pre_execution_gate": true
+    },
+    "heartbeat_policy": {
+      "required": true,
+      "interval_seconds": 30,
+      "started": false
+    },
+    "transcript_policy": {
+      "summary_allowed": true,
+      "raw_prompt_storage_allowed": false,
+      "raw_secret_redaction_required": true,
+      "human_visible_status_required": true,
+      "agent_message_event_required": true
+    },
+    "stop_rules": [
+      "Stop before any secret request or plaintext credential exposure.",
+      "Stop before any command outside the approved command plan.",
+      "Stop before remote write unless a separate Human Gate allows it.",
+      "Stop when budget, token, agent-count or duration limits are reached.",
+      "Stop when forbidden paths are touched.",
+      "Stop when dirty-worktree conflict is detected.",
+      "Stop on validation failure if no approved retry policy exists.",
+      "Stop immediately on human stop request."
+    ],
+    "validation_policy_id": "validation:standard-plus",
+    "opened_at": "2026-05-15T16:14:13Z",
+    "expires_at": "contract_fixture_no_runtime_expiry",
+    "session_state": "waiting_for_human_runtime_gate",
+    "runtime_execution_allowed": false,
+    "runtime_session_started": false,
+    "runtime_auth_executed": false,
+    "vault_lease_issued": false,
+    "agents_started": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "remote_state_mutated": false,
+    "evidence": [
+      "artifacts/artemis-portal-runtime-session/run-01/runtime-session-contract.json",
+      "artifacts/artemis-portal-runtime-session/run-01/RUNTIME_SESSION.md"
+    ]
+  },
+  "checks": [
+    {
+      "id": "workspace_session_ready",
+      "status": "passed",
+      "detail": "Runtime Session consumes a ready Workspace Session."
+    },
+    {
+      "id": "launcher_preflight_present",
+      "status": "passed",
+      "detail": "Runtime Session can reference launcher preflight evidence."
+    },
+    {
+      "id": "preflight_does_not_allow_runtime",
+      "status": "passed",
+      "detail": "Existing launcher preflight artifact still blocks runtime execution until Human Gate."
+    },
+    {
+      "id": "credential_vault_contract_present",
+      "status": "passed",
+      "detail": "Runtime Session references the Credential Vault contract without issuing a lease."
+    },
+    {
+      "id": "supervision_policy_declared",
+      "status": "passed",
+      "detail": "Heartbeat, event stream, human stop and transcript policy are declared."
+    },
+    {
+      "id": "command_boundary_declared",
+      "status": "passed",
+      "detail": "Runtime commands must come from a future exact command plan."
+    },
+    {
+      "id": "no_runtime_execution",
+      "status": "passed",
+      "detail": "This cut records runtime session policy only and cannot execute commands."
+    },
+    {
+      "id": "no_secret_values_recorded",
+      "status": "passed",
+      "detail": "No provider secrets, project secrets, raw stdout/stderr or full prompt transcripts are stored."
+    }
+  ],
+  "inputs": {
+    "workspace_session": "artifacts/artemis-portal-workspace-session/run-01/workspace-session-contract.json",
+    "launcher_preflight": "artifacts/artemis-agent-runtime-launcher-preflight/run-01/launcher-preflight.json",
+    "credential_vault": "artifacts/artemis-portal-credential-vault/run-01/credential-vault-contract.json",
+    "credential_vault_sections": 9
+  }
+}

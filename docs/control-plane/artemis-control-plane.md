@@ -207,6 +207,20 @@ The workspace session contract lives in:
 docs/portal/ARTEMIS_PORTAL_WORKSPACE_SESSION.md
 ```
 
+Runtime session is the next pre-execution boundary. It binds workspace, budget,
+credential lease policy and launcher preflight into a supervised portal session
+with heartbeat, transcript policy, command boundary and stop rules:
+
+```bash
+scripts/artemis-portal-runtime-session.sh --artifact-root artifacts/artemis-portal-runtime-session/run-01
+```
+
+The runtime session contract lives in:
+
+```text
+docs/portal/ARTEMIS_PORTAL_RUNTIME_SESSION.md
+```
+
 ## ARTEMIS Symphony evidence
 
 The Control Plane includes a read-only `ARTEMIS Symphony` section for the local Symphony cuts.

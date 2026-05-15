@@ -329,7 +329,7 @@ payload = {
     "missing_tokens": missing_tokens,
     "missing_files": missing_files,
     "required_tokens": required_tokens,
-    "next_cut": "TKT-078 - ARTEMIS Portal Runtime Session Contract",
+    "next_cut": "TKT-079 - ARTEMIS Portal Agent Conversation Contract",
 }
 
 ready = (

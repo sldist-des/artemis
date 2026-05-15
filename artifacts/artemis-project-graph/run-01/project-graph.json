@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T18:30:34Z",
+  "generated_at": "2026-05-15T16:15:23Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -26,20 +26,21 @@
     "portal_agent_registry": "artifacts/artemis-portal-agent-registry/run-01/agent-registry-contract.json",
     "portal_run_assignment": "artifacts/artemis-portal-run-assignment/run-01/run-assignment-contract.json",
     "portal_budget_ledger": "artifacts/artemis-portal-budget-ledger/run-01/budget-ledger-contract.json",
-    "portal_workspace_session": "artifacts/artemis-portal-workspace-session/run-01/workspace-session-contract.json"
+    "portal_workspace_session": "artifacts/artemis-portal-workspace-session/run-01/workspace-session-contract.json",
+    "portal_runtime_session": "artifacts/artemis-portal-runtime-session/run-01/runtime-session-contract.json"
   },
   "summary": {
-    "tasks_total": 78,
-    "tasks_done": 78,
+    "tasks_total": 79,
+    "tasks_done": 79,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 8,
-    "events_total": 64,
-    "nodes_total": 28,
-    "edges_total": 94,
-    "evidence_count": 78,
-    "exec_pack_count": 78,
-    "validation_passed": 119,
+    "events_total": 65,
+    "nodes_total": 29,
+    "edges_total": 101,
+    "evidence_count": 79,
+    "exec_pack_count": 79,
+    "validation_passed": 121,
     "validation_failed": 0,
     "validation_human_gate": 2,
     "memory_zones": 3,
@@ -51,10 +52,10 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 78
+    "done": 79
   },
   "risks": {
-    "medium": 63,
+    "medium": 64,
     "low": 4,
     "high": 11
   },
@@ -65,7 +66,7 @@
     ],
     [
       "Codex",
-      22
+      23
     ],
     [
       "Context Curator",
@@ -95,11 +96,11 @@
   "top_tags": [
     [
       "exec-pack",
-      78
+      79
     ],
     [
       "done",
-      78
+      79
     ]
   ],
   "nodes": [
@@ -114,8 +115,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 78,
-      "done": 78,
+      "count": 79,
+      "done": 79,
       "human": 0
     },
     {
@@ -130,7 +131,7 @@
         ],
         [
           "Codex",
-          22
+          23
         ],
         [
           "Context Curator",
@@ -157,7 +158,7 @@
       "id": "validation:gate",
       "type": "validation",
       "label": "Validation Gate",
-      "passed": 119,
+      "passed": 121,
       "failed": 0
     },
     {
@@ -171,14 +172,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 78,
-      "exec_packs": 78
+      "task_evidence": 79,
+      "exec_packs": 79
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 64
+      "events": 65
     },
     {
       "id": "cost:budget",
@@ -400,6 +401,22 @@
       "tokens_spent": 0,
       "remote_state_mutated": false,
       "next_cut": "TKT-078 - ARTEMIS Portal Runtime Session Contract"
+    },
+    {
+      "id": "portal:runtime_session",
+      "type": "portal_runtime_session",
+      "label": "ARTEMIS Portal Runtime Session",
+      "status": "runtime_session_ready",
+      "runtime_session_ready": true,
+      "runtime_session_id": "runtime-session-tkt-078-contract-fixture",
+      "supervision_policy_id": "supervision:portal-controlled-runtime",
+      "runtime_execution_allowed": false,
+      "runtime_session_started": false,
+      "agents_started": false,
+      "commands_executed": 0,
+      "tokens_spent": 0,
+      "remote_state_mutated": false,
+      "next_cut": "TKT-079 - ARTEMIS Portal Agent Conversation Contract"
     },
     {
       "id": "control_plane:view",
@@ -835,6 +852,36 @@
       "type": "records_workspace_contract"
     },
     {
+      "from": "portal:workspace_session",
+      "to": "portal:runtime_session",
+      "type": "gates_runtime_session"
+    },
+    {
+      "from": "portal:runtime_session",
+      "to": "runtime:launcher_preflight",
+      "type": "requires_launcher_preflight"
+    },
+    {
+      "from": "portal:runtime_session",
+      "to": "runtime:launcher_command_plan",
+      "type": "requires_command_plan"
+    },
+    {
+      "from": "portal:runtime_session",
+      "to": "cost:budget",
+      "type": "preserves_runtime_budget"
+    },
+    {
+      "from": "portal:runtime_session",
+      "to": "gate:human",
+      "type": "requires_execution_gate"
+    },
+    {
+      "from": "portal:runtime_session",
+      "to": "event_log:timeline",
+      "type": "records_runtime_contract"
+    },
+    {
       "from": "control_plane:view",
       "to": "project:artemis",
       "type": "observes"
@@ -877,6 +924,11 @@
     {
       "from": "control_plane:view",
       "to": "portal:workspace_session",
+      "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "portal:runtime_session",
       "type": "shows"
     }
   ],
@@ -948,8 +1000,9 @@
     "portal_run_assignment_input": "artemis_portal_run_assignment",
     "portal_budget_ledger_input": "artemis_portal_budget_ledger",
     "portal_workspace_session_input": "artemis_portal_workspace_session",
+    "portal_runtime_session_input": "artemis_portal_runtime_session",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },
-  "next_cut": "TKT-078 - ARTEMIS Portal Runtime Session Contract"
+  "next_cut": "TKT-079 - ARTEMIS Portal Agent Conversation Contract"
 }

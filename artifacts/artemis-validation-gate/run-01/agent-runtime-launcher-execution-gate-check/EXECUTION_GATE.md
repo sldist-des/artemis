@@ -5,7 +5,7 @@
 - Overall: `human_gate`
 - Gate state: `waiting_for_launcher_command_plan_ready`
 - Eligible for supervised launcher runner: `false`
-- Command plan hash: `391790e9ea1dac0423c3a4aef51def75ce5a6a189dad8eca0c2b1c30b51262f8`
+- Command plan hash: `61d5dafbc55b827d4e560780c69071bffcc0f79a93bfc1f712c77b3bf5432d70`
 
 ## Decisao humana requerida
 

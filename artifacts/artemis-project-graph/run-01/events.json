@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T18:30:34Z",
+  "generated_at": "2026-05-15T16:15:23Z",
   "source": "scripts/artemis-project-graph.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-12T18:30:34Z",
+      "generated_at": "2026-05-15T16:15:23Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -47,17 +47,17 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 78,
-          "tasks_done": 78,
+          "tasks_total": 79,
+          "tasks_done": 79,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 8,
-          "events_total": 64,
-          "nodes_total": 28,
-          "edges_total": 94,
-          "evidence_count": 78,
-          "exec_pack_count": 78,
-          "validation_passed": 119,
+          "events_total": 65,
+          "nodes_total": 29,
+          "edges_total": 101,
+          "evidence_count": 79,
+          "exec_pack_count": 79,
+          "validation_passed": 121,
           "validation_failed": 0,
           "validation_human_gate": 2,
           "memory_zones": 3,
@@ -68,7 +68,7 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-078 - ARTEMIS Portal Runtime Session Contract"
+        "next_cut": "TKT-079 - ARTEMIS Portal Agent Conversation Contract"
       }
     }
   ]

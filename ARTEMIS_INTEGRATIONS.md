@@ -139,3 +139,12 @@ escrita antes de qualquer launcher:
 docs/portal/ARTEMIS_PORTAL_WORKSPACE_SESSION.md
 scripts/artemis-portal-workspace-session.sh --json
 ```
+
+Depois do workspace session, o portal precisa do Runtime Session para vincular
+workspace, budget, lease policy e launcher preflight a uma sessao supervisionada
+antes de qualquer agente real:
+
+```bash
+docs/portal/ARTEMIS_PORTAL_RUNTIME_SESSION.md
+scripts/artemis-portal-runtime-session.sh --json
+```

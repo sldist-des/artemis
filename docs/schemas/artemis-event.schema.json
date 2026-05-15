@@ -106,7 +106,8 @@
             "portal_agent_registry",
             "portal_run_assignment",
             "portal_budget_ledger",
-            "portal_workspace_session"
+            "portal_workspace_session",
+            "portal_runtime_session"
           ]
         },
         "name": {

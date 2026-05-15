@@ -44,6 +44,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 - `docs/portal/ARTEMIS_PORTAL_RUN_ASSIGNMENT.md`
 - `docs/portal/ARTEMIS_PORTAL_BUDGET_LEDGER.md`
 - `docs/portal/ARTEMIS_PORTAL_WORKSPACE_SESSION.md`
+- `docs/portal/ARTEMIS_PORTAL_RUNTIME_SESSION.md`
 - Exec Pack ativo em `docs/exec-packs/active/`
 
 ## Comandos canonicos
@@ -71,6 +72,7 @@ scripts/artemis-portal-agent-registry.sh --json
 scripts/artemis-portal-run-assignment.sh --json
 scripts/artemis-portal-budget-ledger.sh --json
 scripts/artemis-portal-workspace-session.sh --json
+scripts/artemis-portal-runtime-session.sh --json
 scripts/github-readiness.sh
 sh -n scripts/bootstrap-artemis.sh
 git status --branch --short --ignored

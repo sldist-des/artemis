@@ -5,7 +5,7 @@
     "eligible": 0,
     "blocked": 0,
     "human_gate": 0,
-    "done": 78
+    "done": 79
   },
   "decisions": [
     {
@@ -709,6 +709,15 @@
       "title": "ARTEMIS Portal Workspace Session Contract",
       "state": "done",
       "exec_pack": "docs/exec-packs/done/TKT-077-artemis-portal-workspace-session.md"
+    },
+    {
+      "ticket": "TKT-078",
+      "decision": "done",
+      "runner": "none",
+      "reason": "Task already archived in done state.",
+      "title": "ARTEMIS Portal Runtime Session Contract",
+      "state": "done",
+      "exec_pack": "docs/exec-packs/done/TKT-078-artemis-portal-runtime-session.md"
     }
   ]
 }

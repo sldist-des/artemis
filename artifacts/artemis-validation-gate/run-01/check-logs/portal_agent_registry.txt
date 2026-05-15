@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T18:28:47Z",
+  "generated_at": "2026-05-15T16:14:30Z",
   "overall": "registry_ready",
   "agent_registry_ready": true,
   "secret_values_recorded": false,

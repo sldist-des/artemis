@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T18:28:47Z",
+  "generated_at": "2026-05-15T16:14:30Z",
   "overall": "budget_ledger_ready",
   "budget_ledger_ready": true,
   "spend_authorized": false,
@@ -139,7 +139,7 @@
     "provider_id": "openai_codex",
     "model_policy": "organization_policy_reference_only",
     "phase": "contract_fixture",
-    "recorded_at": "2026-05-12T18:28:47Z",
+    "recorded_at": "2026-05-15T16:14:30Z",
     "prompt_tokens": 0,
     "completion_tokens": 0,
     "total_tokens": 0,

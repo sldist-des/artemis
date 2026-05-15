@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T18:30:54Z",
+  "generated_at": "2026-05-15T16:15:39Z",
   "source": "scripts/artemis-guided-collaboration.sh",
   "mode": "read_only_guided_human_collaboration",
   "overall": "guided_collaboration_ready",
@@ -17,11 +17,11 @@
     "task_lanes": 4,
     "agent_profiles": 4,
     "gate_contracts": 4,
-    "tasks_total": 78,
-    "tasks_done": 78,
+    "tasks_total": 79,
+    "tasks_done": 79,
     "tasks_human": 0,
     "tasks_ready": 0,
-    "validation_passed": 119,
+    "validation_passed": 121,
     "validation_failed": 0,
     "human_gates": 2,
     "commands_executed": 0,
@@ -169,5 +169,5 @@
     "renderGuidedCollaboration",
     "loadGuidedCollaborationSource"
   ],
-  "next_cut": "TKT-078 - ARTEMIS Portal Runtime Session Contract"
+  "next_cut": "TKT-079 - ARTEMIS Portal Agent Conversation Contract"
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-12T18:28:40Z",
+  "generated_at": "2026-05-15T16:14:22Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -937,6 +937,18 @@
       "summary": "Um contrato verificavel deve definir session record, workspace policies, writer",
       "exec_pack": "docs/exec-packs/done/TKT-077-artemis-portal-workspace-session.md",
       "evidence": "artifacts/artemis-portal-workspace-session/run-01/workspace-session-contract.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-078",
+      "ticket": "TKT-078",
+      "title": "ARTEMIS Portal Runtime Session Contract",
+      "state": "done",
+      "owner": "Codex",
+      "risk": "medium",
+      "summary": "Um contrato verificavel deve definir runtime session record, lifecycle gates,",
+      "exec_pack": "docs/exec-packs/done/TKT-078-artemis-portal-runtime-session.md",
+      "evidence": "artifacts/artemis-portal-runtime-session/run-01/runtime-session-contract.json",
       "tags": ["exec-pack", "done"]
     }
   ]

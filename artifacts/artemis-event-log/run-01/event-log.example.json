@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T12:19:05Z",
+  "generated_at": "2026-05-20T12:26:10Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-20T12:19:05Z",
+      "generated_at": "2026-05-20T12:26:10Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -74,7 +74,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-20T12:19:05Z",
+      "generated_at": "2026-05-20T12:26:10Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -161,7 +161,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-20T12:19:05Z",
+      "generated_at": "2026-05-20T12:26:10Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -254,7 +254,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-20T12:19:05Z",
+      "generated_at": "2026-05-20T12:26:10Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -6701,6 +6701,62 @@
         "tokens_spent": 0,
         "remote_state_mutated": false,
         "next_cut": "TKT-084 - ARTEMIS Portal Runtime Gateway Read-only Service"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_runtime_gateway_service_contract_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-20T12:26:02Z",
+      "producer": {
+        "adapter": "portal_runtime_gateway_service",
+        "name": "scripts/artemis-portal-runtime-gateway-service.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-084",
+        "task_id": "tkt-084",
+        "title": "ARTEMIS Portal Runtime Gateway Read-only Service",
+        "exec_pack": "docs/exec-packs/done/TKT-084-artemis-portal-runtime-gateway-service.md",
+        "artifact_root": "artifacts/artemis-portal-runtime-gateway-service/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "context",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-runtime-gateway-service/run-01",
+        "status_path": "artifacts/artemis-portal-runtime-gateway-service/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-runtime-gateway-service/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-runtime-gateway-service/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-runtime-gateway-service/run-01/runtime-gateway-service.json",
+          "artifacts/artemis-portal-runtime-gateway-service/run-01/RUNTIME_GATEWAY_SERVICE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-084"
+      },
+      "payload": {
+        "runtime_gateway_service_ready": true,
+        "http_server_started": false,
+        "websocket_opened": false,
+        "post_routes_enabled": false,
+        "operator_count": 3,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-085 - Control Plane Runtime Gateway Status View"
       }
     }
   ]

@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-20T12:26:02Z",
+  "overall": "runtime_gateway_service_ready",
+  "runtime_gateway_service_ready": true,
+  "secret_values_recorded": false,
+  "runtime_auth_executed": false,
+  "runtime_session_started": false,
+  "http_server_started": false,
+  "websocket_opened": false,
+  "post_routes_enabled": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-085 - Control Plane Runtime Gateway Status View",
+  "missing_files": [],
+  "service_contract": {
+    "purpose": "Expose Runtime Gateway state to the Control Plane as read-only data before any real runtime operation.",
+    "state": "read_only_contract",
+    "transport": "static_json_artifact_first",
+    "control_plane_source_url": "../artifacts/artemis-portal-runtime-gateway-service/run-01/runtime-gateway-service.json",
+    "http_server_started": false,
+    "allowed_methods": [
+      "GET"
+    ],
+    "forbidden_methods": [
+      "POST",
+      "PATCH",
+      "PUT",
+      "DELETE"
+    ],
+    "routes": [
+      {
+        "method": "GET",
+        "path": "/runtime-gateway/health",
+        "purpose": "Read service health and read-only mode.",
+        "mutates_state": false,
+        "requires_human_gate": false
+      },
+      {
+        "method": "GET",
+        "path": "/runtime-gateway/status",
+        "purpose": "Read gateway state, side effects, gates and next cut.",
+        "mutates_state": false,
+        "requires_human_gate": false
+      },
+      {
+        "method": "GET",
+        "path": "/runtime-gateway/operators",
+        "purpose": "List registered runtime operators and connection states.",
+        "mutates_state": false,
+        "requires_human_gate": false
+      },
+      {
+        "method": "GET",
+        "path": "/runtime-gateway/projects",
+        "purpose": "List the current local project source and future project selector shape.",
+        "mutates_state": false,
+        "requires_human_gate": false
+      },
+      {
+        "method": "GET",
+        "path": "/runtime-gateway/readiness",
+        "purpose": "Explain what remains blocked before real runtime launch.",
+        "mutates_state": false,
+        "requires_human_gate": false
+      },
+      {
+        "method": "GET",
+        "path": "/runtime-gateway/evidence",
+        "purpose": "Return artifact paths for status, validation and handoff.",
+        "mutates_state": false,
+        "requires_human_gate": false
+      }
+    ],
+    "operator_summary": [
+      {
+        "operator_id": "codex_app_server",
+        "display_name": "Codex app-server",
+        "provider_id": "openai_codex",
+        "adapter": "codex_app_server",
+        "runtime_surface": "app_server",
+        "connection_state": "planned_not_connected",
+        "auth_state": "requires_provider_connection_and_vault_lease",
+        "available_for_runtime": false,
+        "human_text": "Planejado, mas ainda nao conectado."
+      },
+      {
+        "operator_id": "claude_code",
+        "display_name": "Claude Code",
+        "provider_id": "anthropic_claude",
+        "adapter": "claude_agent_sdk",
+        "runtime_surface": "cli_or_sdk",
+        "connection_state": "planned_not_connected",
+        "auth_state": "requires_provider_connection_and_vault_lease",
+        "available_for_runtime": false,
+        "human_text": "Planejado, mas ainda nao conectado."
+      },
+      {
+        "operator_id": "antigravity_cli",
+        "display_name": "Antigravity CLI",
+        "provider_id": "antigravity",
+        "adapter": "antigravity_cli",
+        "runtime_surface": "cli_unverified",
+        "connection_state": "unverified_adapter",
+        "auth_state": "blocked_until_capability_discovery",
+        "available_for_runtime": false,
+        "human_text": "Bloqueado ate descoberta de capacidades."
+      }
+    ],
+    "readiness": {
+      "panel_can_start_runtime": false,
+      "runtime_gateway_required": true,
+      "server_started": false,
+      "websocket_opened": false,
+      "post_routes_enabled": false,
+      "runtime_auth_executed": false,
+      "runtime_session_started": false,
+      "agents_started": false,
+      "commands_executed": 0,
+      "tokens_spent": 0,
+      "remote_state_mutated": false,
+      "blocked_until": [
+        "provider_auth_connected",
+        "credential_vault_lease_real",
+        "budget_policy_accepted",
+        "workspace_session_bound_to_project",
+        "command_plan_created",
+        "human_execution_gate_accepted",
+        "runtime_adapter_capability_discovery",
+        "validation_policy_bound"
+      ]
+    },
+    "human_explanation": [
+      "Este service mostra quais operadores existem e por que ainda nao podem rodar.",
+      "Codex app-server e Claude Code estao planejados, mas nao conectados ao painel.",
+      "Antigravity CLI e um slot futuro e fica bloqueado ate capability discovery.",
+      "O painel continua proibido de iniciar runtime diretamente."
+    ],
+    "evidence": {
+      "gateway_contract": "artifacts/artemis-portal-runtime-gateway/run-01/runtime-gateway-contract.json",
+      "service_contract": "artifacts/artemis-portal-runtime-gateway-service/run-01/runtime-gateway-service.json",
+      "status": "artifacts/artemis-portal-runtime-gateway-service/run-01/STATUS.md",
+      "validation": "artifacts/artemis-portal-runtime-gateway-service/run-01/VALIDATION.md",
+      "handoff": "artifacts/artemis-portal-runtime-gateway-service/run-01/HANDOFF.md"
+    }
+  },
+  "checks": [
+    {
+      "id": "gateway_contract_ready",
+      "status": "passed",
+      "detail": "Service consumes the Runtime Gateway contract before exposing panel data."
+    },
+    {
+      "id": "read_only_routes_only",
+      "status": "passed",
+      "detail": "Every declared endpoint is GET-only and non-mutating."
+    },
+    {
+      "id": "no_server_started",
+      "status": "passed",
+      "detail": "This cut writes a static read-only artifact and starts no persistent service."
+    },
+    {
+      "id": "panel_still_cannot_start_runtime",
+      "status": "passed",
+      "detail": "The Control Plane remains a reader and cannot launch provider runtime."
+    },
+    {
+      "id": "operators_visible",
+      "status": "passed",
+      "detail": "Codex app-server, Claude Code and Antigravity CLI appear in the read-only operator list."
+    },
+    {
+      "id": "no_runtime_side_effects",
+      "status": "passed",
+      "detail": "No auth, socket, agent launch, token spend, command execution or remote mutation happened."
+    }
+  ]
+}

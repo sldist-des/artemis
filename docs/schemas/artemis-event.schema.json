@@ -112,7 +112,8 @@
             "portal_task_control_surface",
             "portal_validation_evidence_surface",
             "portal_human_acceptance_surface",
-            "portal_runtime_gateway"
+            "portal_runtime_gateway",
+            "portal_runtime_gateway_service"
           ]
         },
         "name": {

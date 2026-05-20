@@ -52,6 +52,7 @@ docs/portal/ARTEMIS_PORTAL_TASK_CONTROL_SURFACE.md
 docs/portal/ARTEMIS_PORTAL_VALIDATION_EVIDENCE_SURFACE.md
 docs/portal/ARTEMIS_PORTAL_HUMAN_ACCEPTANCE_SURFACE.md
 docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY.md
+docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY_SERVICE.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
@@ -131,6 +132,7 @@ scripts/artemis-portal-task-control-surface.sh
 scripts/artemis-portal-validation-evidence-surface.sh
 scripts/artemis-portal-human-acceptance-surface.sh
 scripts/artemis-portal-runtime-gateway.sh
+scripts/artemis-portal-runtime-gateway-service.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -247,6 +249,7 @@ sh -n scripts/artemis-portal-task-control-surface.sh
 sh -n scripts/artemis-portal-validation-evidence-surface.sh
 sh -n scripts/artemis-portal-human-acceptance-surface.sh
 sh -n scripts/artemis-portal-runtime-gateway.sh
+sh -n scripts/artemis-portal-runtime-gateway-service.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -616,6 +619,55 @@ if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-runtime-gateway.json; then
 fi
 if ! test -f /tmp/artemis-portal-runtime-gateway/RUNTIME_GATEWAY.md; then
   echo "scripts/artemis-portal-runtime-gateway.sh did not write runtime gateway documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-portal-runtime-gateway-service.sh --artifact-root /tmp/artemis-portal-runtime-gateway-service --json >/tmp/artemis-portal-runtime-gateway-service.json
+if ! grep -q '"overall": "runtime_gateway_service_ready"' /tmp/artemis-portal-runtime-gateway-service.json; then
+  echo "scripts/artemis-portal-runtime-gateway-service.sh did not report runtime_gateway_service_ready" >&2
+  exit 1
+fi
+if ! grep -q '"http_server_started": false' /tmp/artemis-portal-runtime-gateway-service.json; then
+  echo "scripts/artemis-portal-runtime-gateway-service.sh started an HTTP server" >&2
+  exit 1
+fi
+if ! grep -q '"websocket_opened": false' /tmp/artemis-portal-runtime-gateway-service.json; then
+  echo "scripts/artemis-portal-runtime-gateway-service.sh opened a websocket" >&2
+  exit 1
+fi
+if ! grep -q '"post_routes_enabled": false' /tmp/artemis-portal-runtime-gateway-service.json; then
+  echo "scripts/artemis-portal-runtime-gateway-service.sh enabled POST routes" >&2
+  exit 1
+fi
+if ! grep -q '"operator_id": "codex_app_server"' /tmp/artemis-portal-runtime-gateway-service.json; then
+  echo "scripts/artemis-portal-runtime-gateway-service.sh did not expose Codex app-server operator" >&2
+  exit 1
+fi
+if ! grep -q '"operator_id": "claude_code"' /tmp/artemis-portal-runtime-gateway-service.json; then
+  echo "scripts/artemis-portal-runtime-gateway-service.sh did not expose Claude Code operator" >&2
+  exit 1
+fi
+if ! grep -q '"operator_id": "antigravity_cli"' /tmp/artemis-portal-runtime-gateway-service.json; then
+  echo "scripts/artemis-portal-runtime-gateway-service.sh did not expose Antigravity CLI operator slot" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_auth_executed": false' /tmp/artemis-portal-runtime-gateway-service.json; then
+  echo "scripts/artemis-portal-runtime-gateway-service.sh executed runtime auth" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": false' /tmp/artemis-portal-runtime-gateway-service.json; then
+  echo "scripts/artemis-portal-runtime-gateway-service.sh started agents" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-portal-runtime-gateway-service.json; then
+  echo "scripts/artemis-portal-runtime-gateway-service.sh executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-runtime-gateway-service.json; then
+  echo "scripts/artemis-portal-runtime-gateway-service.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-runtime-gateway-service/RUNTIME_GATEWAY_SERVICE.md; then
+  echo "scripts/artemis-portal-runtime-gateway-service.sh did not write runtime gateway service documentation artifact" >&2
   exit 1
 fi
 

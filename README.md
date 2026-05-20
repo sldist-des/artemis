@@ -311,6 +311,8 @@ docs/portal/ARTEMIS_PORTAL_HUMAN_ACCEPTANCE_SURFACE.md
 scripts/artemis-portal-human-acceptance-surface.sh --artifact-root artifacts/artemis-portal-human-acceptance-surface/run-01
 docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY.md
 scripts/artemis-portal-runtime-gateway.sh --artifact-root artifacts/artemis-portal-runtime-gateway/run-01
+docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY_SERVICE.md
+scripts/artemis-portal-runtime-gateway-service.sh --artifact-root artifacts/artemis-portal-runtime-gateway-service/run-01
 ```
 
 ## Readiness de aplicacao

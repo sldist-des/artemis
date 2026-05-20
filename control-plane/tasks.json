@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T12:19:40Z",
+  "generated_at": "2026-05-20T12:26:10Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1009,6 +1009,18 @@
       "summary": "O ARTEMIS passa a ter uma fronteira explicita para operacao multi-operador:",
       "exec_pack": "docs/exec-packs/done/TKT-083-artemis-portal-runtime-gateway.md",
       "evidence": "artifacts/artemis-portal-runtime-gateway/run-01/runtime-gateway-contract.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-084",
+      "ticket": "TKT-084",
+      "title": "ARTEMIS Portal Runtime Gateway Read-only Service",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O ARTEMIS passa a ter um artifact de service read-only que o painel pode ler",
+      "exec_pack": "docs/exec-packs/done/TKT-084-artemis-portal-runtime-gateway-service.md",
+      "evidence": "artifacts/artemis-portal-runtime-gateway-service/run-01/runtime-gateway-service.json",
       "tags": ["exec-pack", "done"]
     }
   ]

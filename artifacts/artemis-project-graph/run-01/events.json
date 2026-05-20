@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T14:51:32Z",
+  "generated_at": "2026-05-20T17:45:06Z",
   "source": "scripts/artemis-project-graph.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-20T14:51:32Z",
+      "generated_at": "2026-05-20T17:45:06Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -47,16 +47,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 95,
-          "tasks_done": 95,
+          "tasks_total": 96,
+          "tasks_done": 96,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 10,
-          "events_total": 78,
+          "events_total": 79,
           "nodes_total": 33,
           "edges_total": 127,
-          "evidence_count": 95,
-          "exec_pack_count": 95,
+          "evidence_count": 96,
+          "exec_pack_count": 96,
           "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,

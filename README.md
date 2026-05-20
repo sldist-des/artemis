@@ -324,6 +324,8 @@ scripts/artemis-portal-runtime-gateway-service.sh --artifact-root artifacts/arte
 scripts/artemis-control-plane-external-project-registration-view.sh --artifact-root artifacts/artemis-control-plane-external-project-registration-view/run-01
 scripts/artemis-control-plane-local-project-connect-view.sh --artifact-root artifacts/artemis-control-plane-local-project-connect-view/run-01
 scripts/artemis-control-plane-runtime-gateway-view.sh --artifact-root artifacts/artemis-control-plane-runtime-gateway-view/run-01
+docs/control-plane/ARTEMIS_CONTROL_PLANE_PROJECT_REGISTRY_HOME_STATE.md
+scripts/artemis-control-plane-project-registry-home-state.sh --artifact-root artifacts/artemis-control-plane-project-registry-home-state/run-01
 ```
 
 ## Readiness de aplicacao

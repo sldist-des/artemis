@@ -245,6 +245,7 @@ for events_path in [
     Path("artifacts/artemis-control-plane-external-project-registration-view/run-01/events.json"),
     Path("artifacts/artemis-control-plane-local-project-connect-view/run-01/events.json"),
     Path("artifacts/artemis-control-plane-runtime-gateway-view/run-01/events.json"),
+    Path("artifacts/artemis-control-plane-project-registry-home-state/run-01/events.json"),
 ]:
     if events_path.is_file():
         remote_log = read_json(events_path)

@@ -2174,6 +2174,7 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
+      min-width: 0;
     }
 
     .plain-lead {
@@ -2208,6 +2209,7 @@
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 8px;
+      min-width: 0;
     }
 
     .plain-fact {
@@ -2215,6 +2217,7 @@
       border-radius: 6px;
       padding: 10px 12px;
       background: #fbf8f0;
+      min-width: 0;
     }
 
     .plain-fact b {
@@ -2364,7 +2367,8 @@
 
     @media (max-width: 760px) {
       .shell {
-        width: min(100% - 20px, 520px);
+        width: calc(100vw - 20px);
+        max-width: 520px;
         padding-top: 14px;
       }
 
@@ -2395,7 +2399,7 @@
       }
 
       .plain-strip {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
       }
 
       .operations-header {
@@ -2442,8 +2446,8 @@
         </div>
         <div class="plain-actions" aria-label="Atalhos principais">
           <a href="../artifacts/artemis-project-brief/run-01/PROJECT_BRIEF.md">Resumo</a>
-          <a href="../artifacts/artemis-control-plane-minimal-simple-view/run-01/VALIDATION.md">Validacao</a>
-          <a href="../artifacts/artemis-control-plane-minimal-simple-view/run-01/HANDOFF.md">Handoff</a>
+          <a href="../artifacts/artemis-control-plane-project-registry-home-state/run-01/VALIDATION.md">Validacao</a>
+          <a href="../artifacts/artemis-control-plane-project-registry-home-state/run-01/HANDOFF.md">Handoff</a>
         </div>
       </div>
 
@@ -4178,6 +4182,7 @@
     const plainActionListNode = document.querySelector("#plain-action-list");
     const runtimeGatewaySummaryNode = document.querySelector("#operation-runtime-summary");
     const runtimeGatewayStateNode = document.querySelector("#operation-runtime-state");
+    const runtimeGatewayTitleNode = document.querySelector("#operation-runtime-title");
     const runtimeGatewayPanelCanStartNode = document.querySelector("#operation-runtime-panel");
     const runtimeGatewayCommandsNode = document.querySelector("#operation-runtime-commands");
     const runtimeGatewayTokensNode = document.querySelector("#operation-runtime-tokens");
@@ -4185,6 +4190,7 @@
     const operatorStripNode = document.querySelector("#operation-operator-strip");
     const localProjectSummaryNode = document.querySelector("#operation-project-summary");
     const localProjectStateNode = document.querySelector("#operation-project-state");
+    const localProjectTitleNode = document.querySelector("#operation-project-title");
     const localProjectPathNode = document.querySelector("#operation-project-path");
     const localProjectProviderCountNode = document.querySelector("#operation-provider-count");
     const localProjectBrowserAccessNode = document.querySelector("#operation-project-browser-access");
@@ -4193,6 +4199,7 @@
     const localProviderStripNode = document.querySelector("#operation-provider-strip");
     const externalRegistrationSummaryNode = document.querySelector("#operation-registration-summary");
     const externalRegistrationStateNode = document.querySelector("#operation-registration-state");
+    const externalRegistrationTitleNode = document.querySelector("#operation-registration-title");
     const externalRegistrationCandidatesNode = document.querySelector("#operation-registration-candidates");
     const externalRegistrationRegisteredNode = document.querySelector("#operation-registration-registered");
     const externalRegistrationSwitchingNode = document.querySelector("#operation-registration-switching");
@@ -5710,14 +5717,20 @@
       const candidates = Array.isArray(contract.candidate_entries) ? contract.candidate_entries : [];
       const selectedRoot = selected.repo_root || selected.project_path || selected.display_name || "Projeto";
 
+      plainStatusCopyNode.textContent = candidates.length
+        ? "Projeto selecionado. Candidato em revisao. Runtime bloqueado."
+        : "Projeto selecionado. Runtime bloqueado.";
       localProjectStateNode.textContent = "selecionado";
+      localProjectTitleNode.textContent = "Projeto selecionado";
       localProjectPathNode.textContent = compactPath(selectedRoot);
       localProjectPathNode.title = selectedRoot;
       externalRegistrationStateNode.textContent = candidates.length ? "revisao" : "sem fila";
+      externalRegistrationTitleNode.textContent = candidates.length ? "Candidato em revisao" : "Sem candidato";
       externalRegistrationCandidatesNode.textContent = String(candidates.length);
       externalRegistrationRegisteredNode.textContent = String(contract.external_projects_registered ?? 0);
       externalRegistrationSwitchingNode.textContent = contract.project_switching_allowed ? "sim" : "nao";
       runtimeGatewayStateNode.textContent = contract.runtime_execution_allowed ? "liberado" : "bloqueado";
+      runtimeGatewayTitleNode.textContent = contract.runtime_execution_allowed ? "Runtime liberado" : "Runtime bloqueado";
       runtimeGatewayPanelCanStartNode.textContent = contract.runtime_execution_allowed ? "sim" : "nao";
     }
 

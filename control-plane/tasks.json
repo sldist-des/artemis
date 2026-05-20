@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T14:51:05Z",
+  "generated_at": "2026-05-20T17:35:37Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1141,6 +1141,18 @@
       "summary": "O ARTEMIS registra que o projeto atual segue como `selected_read_only`, que o",
       "exec_pack": "docs/exec-packs/done/TKT-094-artemis-portal-project-selector-registry-intake.md",
       "evidence": "artifacts/artemis-portal-project-selector-registry-intake/run-01/project-selector-registry-intake.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-095",
+      "ticket": "TKT-095",
+      "title": "ARTEMIS Control Plane Project Registry Home State",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "A home mostra projeto selecionado, candidato em revisao e runtime bloqueado,",
+      "exec_pack": "docs/exec-packs/done/TKT-095-artemis-control-plane-project-registry-home-state.md",
+      "evidence": "artifacts/artemis-control-plane-project-registry-home-state/run-01/control-plane-project-registry-home-state.json",
       "tags": ["exec-pack", "done"]
     }
   ]

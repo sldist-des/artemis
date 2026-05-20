@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-20T17:44:20Z",
+  "overall": "control_plane_project_registry_home_state_ready",
+  "control_plane_project_registry_home_state_ready": true,
+  "secret_values_recorded": false,
+  "provider_auth_connected": false,
+  "runtime_auth_executed": false,
+  "http_server_started": false,
+  "websocket_opened": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "project_switching_allowed": false,
+  "runtime_execution_allowed": false,
+  "next_cut": "TKT-096 - Project Registry Human Review Gate",
+  "missing_files": [],
+  "home_contract": {
+    "control_plane": "control-plane/index.html",
+    "registry_intake": "artifacts/artemis-portal-project-selector-registry-intake/run-01/project-selector-registry-intake.json",
+    "source_url": "../artifacts/artemis-portal-project-selector-registry-intake/run-01/project-selector-registry-intake.json",
+    "selected_project_id": "artemis_method_kit",
+    "selected_project_root": "/srv/veri",
+    "candidate_count": 1,
+    "candidate_states": [
+      "candidate_review_pending"
+    ],
+    "technical_surface_primary": false,
+    "project_switching_allowed": false,
+    "runtime_execution_allowed": false,
+    "surface": "human_home_state"
+  },
+  "checks": [
+    {
+      "id": "control_plane_tokens_present",
+      "status": "passed",
+      "detail": "Control Plane contains registry intake source, loader, renderer and home-state tokens."
+    },
+    {
+      "id": "registry_intake_ready",
+      "status": "passed",
+      "detail": "Registry Intake artifact is ready for home consumption."
+    },
+    {
+      "id": "selected_project_visible",
+      "status": "passed",
+      "detail": "Home state can show the selected read-only project."
+    },
+    {
+      "id": "candidate_review_visible",
+      "status": "passed",
+      "detail": "Home state can show candidate review without making it selectable."
+    },
+    {
+      "id": "technical_surface_not_primary",
+      "status": "passed",
+      "detail": "Technical audit detail remains hidden from the primary home surface."
+    },
+    {
+      "id": "project_switching_still_blocked",
+      "status": "passed",
+      "detail": "Home state does not allow project switching."
+    },
+    {
+      "id": "runtime_still_blocked",
+      "status": "passed",
+      "detail": "Home state does not allow runtime execution."
+    },
+    {
+      "id": "no_runtime_side_effects",
+      "status": "passed",
+      "detail": "No agents, commands or tokens are produced by the home state contract."
+    }
+  ]
+}

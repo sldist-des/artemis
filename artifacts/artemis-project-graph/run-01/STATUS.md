@@ -3,8 +3,8 @@
 ## Resultado
 
 - Overall: `project_graph_ready`.
-- Tasks total: `95`.
-- Tasks done: `95`.
+- Tasks total: `96`.
+- Tasks done: `96`.
 - Nodes: `33`.
 - Edges: `127`.
 - Validation passed: `129`.

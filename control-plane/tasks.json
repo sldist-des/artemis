@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T17:35:37Z",
+  "generated_at": "2026-05-20T20:05:40Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1153,6 +1153,18 @@
       "summary": "A home mostra projeto selecionado, candidato em revisao e runtime bloqueado,",
       "exec_pack": "docs/exec-packs/done/TKT-095-artemis-control-plane-project-registry-home-state.md",
       "evidence": "artifacts/artemis-control-plane-project-registry-home-state/run-01/control-plane-project-registry-home-state.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-096",
+      "ticket": "TKT-096",
+      "title": "ARTEMIS Project Registry Human Review Gate",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O candidato fica claramente aguardando decisao humana, com schema minimo de",
+      "exec_pack": "docs/exec-packs/done/TKT-096-artemis-project-registry-human-review-gate.md",
+      "evidence": "artifacts/artemis-portal-project-registry-human-review-gate/run-01/project-registry-human-review-gate.json",
       "tags": ["exec-pack", "done"]
     }
   ]

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T17:45:06Z",
+  "generated_at": "2026-05-20T20:05:51Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -34,16 +34,16 @@
     "portal_human_acceptance_surface": "artifacts/artemis-portal-human-acceptance-surface/run-01/human-acceptance-surface-contract.json"
   },
   "summary": {
-    "tasks_total": 96,
-    "tasks_done": 96,
+    "tasks_total": 97,
+    "tasks_done": 97,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 10,
-    "events_total": 79,
+    "events_total": 80,
     "nodes_total": 33,
     "edges_total": 127,
-    "evidence_count": 96,
-    "exec_pack_count": 96,
+    "evidence_count": 97,
+    "exec_pack_count": 97,
     "validation_passed": 129,
     "validation_failed": 0,
     "validation_human_gate": 2,
@@ -56,10 +56,10 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 96
+    "done": 97
   },
   "risks": {
-    "medium": 81,
+    "medium": 82,
     "low": 4,
     "high": 11
   },
@@ -74,7 +74,7 @@
     ],
     [
       "Codex executor",
-      13
+      14
     ],
     [
       "Context Curator",
@@ -108,11 +108,11 @@
   "top_tags": [
     [
       "exec-pack",
-      96
+      97
     ],
     [
       "done",
-      96
+      97
     ]
   ],
   "nodes": [
@@ -127,8 +127,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 96,
-      "done": 96,
+      "count": 97,
+      "done": 97,
       "human": 0
     },
     {
@@ -147,7 +147,7 @@
         ],
         [
           "Codex executor",
-          13
+          14
         ],
         [
           "Context Curator",
@@ -184,14 +184,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 96,
-      "exec_packs": 96
+      "task_evidence": 97,
+      "exec_packs": 97
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 79
+      "events": 80
     },
     {
       "id": "cost:budget",

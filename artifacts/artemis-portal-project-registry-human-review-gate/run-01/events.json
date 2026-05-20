@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-20T20:05:33Z",
+  "source": "scripts/artemis-portal-project-registry-human-review-gate.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_project_registry_human_review_gate_ready",
+      "event_type": "human_gate.waiting",
+      "generated_at": "2026-05-20T20:05:33Z",
+      "producer": {
+        "adapter": "portal_project_registry",
+        "name": "scripts/artemis-portal-project-registry-human-review-gate.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-096",
+        "task_id": "tkt-096",
+        "title": "ARTEMIS Project Registry Human Review Gate",
+        "exec_pack": "docs/exec-packs/done/TKT-096-artemis-project-registry-human-review-gate.md",
+        "artifact_root": "artifacts/artemis-portal-project-registry-human-review-gate/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "registry_intake",
+        "to": "human_gate",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "human",
+        "status": "waiting_for_human_decision",
+        "reason": "Candidate project requires explicit owner review before registration.",
+        "options": [
+          "approved",
+          "rejected",
+          "deferred"
+        ]
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-project-registry-human-review-gate/run-01",
+        "status_path": "artifacts/artemis-portal-project-registry-human-review-gate/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-project-registry-human-review-gate/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-project-registry-human-review-gate/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-project-registry-human-review-gate/run-01/project-registry-human-review-gate.json",
+          "artifacts/artemis-portal-project-registry-human-review-gate/run-01/PROJECT_REGISTRY_HUMAN_REVIEW_GATE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-096"
+      },
+      "payload": {
+        "project_registry_human_review_gate_ready": true,
+        "review_state": "waiting_for_human_decision",
+        "candidate_count": 1,
+        "pending_candidate_count": 1,
+        "human_decision_required": true,
+        "human_decision_recorded": false,
+        "candidate_registration_allowed": false,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-097 - Project Registry Decision Intake"
+      }
+    }
+  ]
+}

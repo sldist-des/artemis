@@ -3025,6 +3025,7 @@
     const localProjectConnectSourceUrl = "../artifacts/artemis-portal-local-project-connect/run-01/local-project-connect.json";
     const externalProjectRegistrationSourceUrl = "../artifacts/artemis-portal-external-project-registration/run-01/external-project-registration.json";
     const projectSelectorRegistryIntakeSourceUrl = "../artifacts/artemis-portal-project-selector-registry-intake/run-01/project-selector-registry-intake.json";
+    const projectRegistryHumanReviewGateSourceUrl = "../artifacts/artemis-portal-project-registry-human-review-gate/run-01/project-registry-human-review-gate.json";
     const runtimeGatewayServiceSourceUrl = "../artifacts/artemis-portal-runtime-gateway-service/run-01/runtime-gateway-service.json";
 
     const columns = [
@@ -5734,6 +5735,23 @@
       runtimeGatewayPanelCanStartNode.textContent = contract.runtime_execution_allowed ? "sim" : "nao";
     }
 
+    function renderProjectRegistryHumanReviewGate(model) {
+      const contract = model.review_contract || {};
+      const pending = Number(contract.pending_candidate_count ?? 0);
+
+      if (pending > 0) {
+        plainStatusCopyNode.textContent = "Projeto selecionado. Candidato aguardando decisao. Runtime bloqueado.";
+        externalRegistrationStateNode.textContent = "decisao";
+        externalRegistrationTitleNode.textContent = "Candidato aguardando decisao";
+      }
+      externalRegistrationCandidatesNode.textContent = String(contract.candidate_count ?? pending);
+      externalRegistrationRegisteredNode.textContent = "0";
+      externalRegistrationSwitchingNode.textContent = contract.project_switching_allowed ? "sim" : "nao";
+      runtimeGatewayStateNode.textContent = contract.runtime_execution_allowed ? "liberado" : "bloqueado";
+      runtimeGatewayTitleNode.textContent = contract.runtime_execution_allowed ? "Runtime liberado" : "Runtime bloqueado";
+      runtimeGatewayPanelCanStartNode.textContent = contract.runtime_execution_allowed ? "sim" : "nao";
+    }
+
     function normalizeCard(item) {
       const states = new Set(columns.map((column) => column.id));
       const state = states.has(item.state) ? item.state : "ready";
@@ -6767,6 +6785,18 @@
       }
     }
 
+    async function loadProjectRegistryHumanReviewGateSource() {
+      try {
+        const response = await fetch(projectRegistryHumanReviewGateSourceUrl, { cache: "no-store" });
+        if (!response.ok) return null;
+        const payload = await response.json();
+        if (!payload.review_contract) return null;
+        return payload;
+      } catch {
+        return null;
+      }
+    }
+
     async function loadEventSource() {
       try {
         const response = await fetch(eventSourceUrl, { cache: "no-store" });
@@ -7000,6 +7030,8 @@
       if (loadedRuntimeGatewayService) renderRuntimeGatewayService(loadedRuntimeGatewayService);
       const loadedProjectSelectorRegistryIntake = await loadProjectSelectorRegistryIntakeSource();
       if (loadedProjectSelectorRegistryIntake) renderProjectSelectorRegistryIntake(loadedProjectSelectorRegistryIntake);
+      const loadedProjectRegistryHumanReviewGate = await loadProjectRegistryHumanReviewGateSource();
+      if (loadedProjectRegistryHumanReviewGate) renderProjectRegistryHumanReviewGate(loadedProjectRegistryHumanReviewGate);
       const loadedEvents = await loadEventSource();
       renderTimeline(loadedEvents || seedEvents);
     }

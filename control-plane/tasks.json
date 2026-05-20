@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T14:32:21Z",
+  "generated_at": "2026-05-20T14:41:15Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1117,6 +1117,18 @@
       "summary": "O modo simples mostra apenas resumo, operacao e acesso a visao tecnica completa.",
       "exec_pack": "docs/exec-packs/done/TKT-092-artemis-control-plane-minimal-simple-view.md",
       "evidence": "artifacts/artemis-control-plane-minimal-simple-view/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-093",
+      "ticket": "TKT-093",
+      "title": "ARTEMIS Control Plane Human Home Redesign",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "A primeira tela mostra apenas estado atual, operacao e tres links de evidencia.",
+      "exec_pack": "docs/exec-packs/done/TKT-093-artemis-control-plane-human-home-redesign.md",
+      "evidence": "artifacts/artemis-control-plane-human-home-redesign/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

@@ -2101,6 +2101,312 @@
         justify-content: start;
       }
     }
+    /* Control Plane redesign: human-facing home first, audit detail off-screen. */
+    :root {
+      --paper: #f7f5ee;
+      --ink: #20241f;
+      --muted: #697064;
+      --line: #d9d4c8;
+      --panel: #fffdf8;
+      --panel-strong: #ece6d8;
+      --blue: #2d5c72;
+      --green: #3b7554;
+      --gold: #8b6a22;
+      --red: #9b4339;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    .shell {
+      width: min(1120px, calc(100vw - 32px));
+      padding: 24px 0 28px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border: 0;
+      padding: 0 0 18px;
+    }
+
+    .mark {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sigil {
+      width: 40px;
+      border: 1px solid var(--ink);
+      box-shadow: none;
+      font-size: 20px;
+    }
+
+    h1 {
+      font-size: clamp(26px, 4vw, 44px);
+      line-height: 1;
+    }
+
+    .subtitle,
+    .control-panel,
+    .plain-grid,
+    .operations-header p,
+    .operation-step p,
+    .operation-facts,
+    .operator-strip,
+    .technical-details,
+    .footer-note {
+      display: none !important;
+    }
+
+    .plain-overview {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin: 0 0 14px;
+      padding: clamp(18px, 3vw, 28px);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .plain-lead {
+      display: grid;
+      grid-template-columns: minmax(180px, .42fr) minmax(0, 1fr);
+      align-items: end;
+      gap: 18px;
+    }
+
+    .plain-lead .plain-eyebrow {
+      grid-column: 1 / -1;
+      color: var(--green);
+      font-size: 11px;
+      letter-spacing: .12em;
+    }
+
+    .plain-lead h2 {
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: .92;
+    }
+
+    .plain-lead p {
+      display: block;
+      max-width: 46ch;
+      font-size: 15px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .plain-strip {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .plain-fact {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 10px 12px;
+      background: #fbf8f0;
+    }
+
+    .plain-fact b {
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .plain-fact span {
+      display: block;
+      margin-top: 4px;
+      font-size: 10px;
+      letter-spacing: .08em;
+    }
+
+    .plain-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .plain-actions a {
+      min-height: 32px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      box-shadow: none;
+      background: transparent;
+      padding: 7px 10px;
+      color: var(--ink);
+      font-size: 12px;
+    }
+
+    .plain-actions a:first-child {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: var(--panel);
+    }
+
+    .operations-overview {
+      display: grid;
+      grid-template-columns: minmax(190px, .34fr) minmax(0, 1fr);
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .operations-header {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .operations-header h2 {
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1;
+    }
+
+    .operations-status-strip {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .operations-metric {
+      display: grid;
+      grid-template-columns: minmax(72px, auto) 1fr;
+      gap: 8px;
+      align-items: baseline;
+      border: 0;
+      border-top: 1px solid var(--line);
+      padding: 7px 0 0;
+      background: transparent;
+    }
+
+    .operations-metric:nth-child(3),
+    .operations-metric:nth-child(4) {
+      display: none;
+    }
+
+    .operations-metric b {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .operations-metric span {
+      order: -1;
+      margin: 0;
+      font-size: 10px;
+      letter-spacing: .08em;
+    }
+
+    .operations-step-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .operation-step {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: center;
+      gap: 10px;
+      min-height: 54px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 12px 14px;
+    }
+
+    .operation-step header {
+      display: contents;
+    }
+
+    .operation-state {
+      width: auto;
+      border: 0;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--green) 13%, transparent);
+      color: var(--green);
+      padding: 5px 8px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+
+    #operation-registration-state {
+      background: color-mix(in srgb, var(--gold) 16%, transparent);
+      color: var(--gold);
+    }
+
+    #operation-runtime-state {
+      background: color-mix(in srgb, var(--red) 14%, transparent);
+      color: var(--red);
+    }
+
+    .operation-step h3 {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.15;
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        width: min(100% - 20px, 520px);
+        padding-top: 14px;
+      }
+
+      .topbar {
+        padding-bottom: 12px;
+      }
+
+      .sigil {
+        width: 34px;
+        font-size: 18px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .plain-overview {
+        padding: 16px;
+      }
+
+      .plain-lead,
+      .operations-overview {
+        grid-template-columns: 1fr;
+      }
+
+      .plain-lead h2 {
+        font-size: 34px;
+      }
+
+      .plain-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .operations-header {
+        padding: 16px;
+      }
+
+      .operation-step {
+        min-height: 50px;
+        padding: 10px 12px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2127,17 +2433,17 @@
       <div class="plain-lead">
         <span class="plain-eyebrow">Modo simples</span>
         <h2 id="plain-title">Estado atual</h2>
-        <p id="plain-status-copy">Carregando o resumo humano do ARTEMIS.</p>
+        <p id="plain-status-copy">Pronto para operar. Execucao real so no terminal.</p>
         <div class="plain-strip" aria-label="Resumo simples do projeto">
-          <div class="plain-fact"><b id="plain-tasks">--</b><span>tarefas fechadas</span></div>
-          <div class="plain-fact"><b id="plain-validation">--</b><span>validacoes</span></div>
-          <div class="plain-fact"><b id="plain-gates">--</b><span>decisoes humanas</span></div>
-          <div class="plain-fact"><b id="plain-next">--</b><span>proximo corte</span></div>
+          <div class="plain-fact"><b id="plain-tasks">83/83</b><span>tarefas fechadas</span></div>
+          <div class="plain-fact"><b id="plain-validation">129/0</b><span>validacoes</span></div>
+          <div class="plain-fact"><b id="plain-gates">2</b><span>decisoes humanas</span></div>
+          <div class="plain-fact"><b id="plain-next">nenhum</b><span>proximo corte</span></div>
         </div>
         <div class="plain-actions" aria-label="Atalhos principais">
-          <a href="#project-brief-title">Ler resumo</a>
-          <a href="#decision-gate-title">Ver decisoes</a>
-          <a href="#board">Ver tarefas</a>
+          <a href="../artifacts/artemis-project-brief/run-01/PROJECT_BRIEF.md">Resumo</a>
+          <a href="../artifacts/artemis-control-plane-minimal-simple-view/run-01/VALIDATION.md">Validacao</a>
+          <a href="../artifacts/artemis-control-plane-minimal-simple-view/run-01/HANDOFF.md">Handoff</a>
         </div>
       </div>
 
@@ -2172,11 +2478,11 @@
         <h2 id="operations-title">Projeto, registro e runtime</h2>
         <p>O painel mostra o estado essencial. A visao tecnica fica aberta apenas para auditoria.</p>
         <div class="operations-status-strip" aria-label="Resumo operacional compacto">
-          <div class="operations-metric"><b id="operation-project-path">--</b><span>projeto</span></div>
-          <div class="operations-metric"><b id="operation-provider-count">--</b><span>providers</span></div>
+          <div class="operations-metric"><b id="operation-project-path">/srv/veri</b><span>projeto</span></div>
+          <div class="operations-metric"><b id="operation-provider-count">3</b><span>providers</span></div>
           <div class="operations-metric"><b id="operation-registration-candidates">--</b><span>candidatos</span></div>
           <div class="operations-metric"><b id="operation-registration-registered">--</b><span>registrados</span></div>
-          <div class="operations-metric"><b id="operation-runtime-panel">--</b><span>runtime</span></div>
+          <div class="operations-metric"><b id="operation-runtime-panel">nao</b><span>runtime</span></div>
         </div>
       </header>
       <div class="operations-step-grid">
@@ -4496,9 +4802,9 @@
       source: "seed",
       overall: "human_project_brief_ready",
       summary: {
-        tasks_total: 71,
-        tasks_done: 71,
-        validation_passed: 107,
+        tasks_total: 83,
+        tasks_done: 83,
+        validation_passed: 129,
         validation_failed: 0,
         human_gates: 2,
         memory_zones: 3,
@@ -4509,8 +4815,8 @@
         headline: "ARTEMIS Symphony em linguagem de projeto",
         status: "O ARTEMIS Symphony esta pronto como sistema local supervisionado: ele organiza tarefas, evidencia, validacao, memoria e limites antes de qualquer execucao automatica.",
         ready: [
-          "71 de 71 Exec Packs estao concluidos e versionados.",
-          "O Validation Gate registra 107 checks aprovados e 0 falhas tecnicas.",
+          "83 de 83 Exec Packs estao concluidos e versionados.",
+          "O Validation Gate registra 129 checks aprovados e 0 falhas tecnicas.",
           "O Project Graph conecta tarefas, agentes, gates, memoria, custos, runtime dry-run, approval gate, decision intake, launcher, validacao, handoff, review gate e Done Ledger."
         ],
         human_attention: [
@@ -5247,7 +5553,7 @@
       const validationFailed = Number(summary.validation_failed ?? 0);
       const humanGates = Number(summary.human_gates ?? 0);
 
-      plainStatusCopyNode.textContent = brief.status || "O ARTEMIS esta pronto como sistema local supervisionado; use a visao tecnica apenas para auditoria.";
+      plainStatusCopyNode.textContent = "Pronto para operar. Execucao real so no terminal.";
       plainTasksNode.textContent = `${tasksDone}/${tasksTotal}`;
       plainValidationNode.textContent = `${validationPassed}/${validationFailed}`;
       plainGatesNode.textContent = String(humanGates);

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T14:32:14Z",
+  "generated_at": "2026-05-20T14:41:08Z",
   "source": "scripts/artemis-control-plane-runtime-gateway-view.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_control_plane_runtime_gateway_view_ready",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-20T14:32:14Z",
+      "generated_at": "2026-05-20T14:41:08Z",
       "producer": {
         "adapter": "control_plane",
         "name": "scripts/artemis-control-plane-runtime-gateway-view.sh",

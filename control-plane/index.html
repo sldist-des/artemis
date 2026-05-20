@@ -287,6 +287,8 @@
       align-content: start;
       gap: 10px;
       min-width: 0;
+      overflow: hidden;
+      overflow-wrap: anywhere;
     }
 
     .plain-panel[data-tone="attention"] {
@@ -312,9 +314,110 @@
       color: var(--muted);
       font-size: 13px;
       line-height: 1.36;
+      min-width: 0;
+      overflow-wrap: anywhere;
     }
 
     .plain-panel li {
+      overflow-wrap: anywhere;
+    }
+
+    .runtime-gateway-overview {
+      border-bottom: 2px solid var(--ink);
+      margin: -2px 0 18px;
+      padding: 0 0 18px;
+      display: grid;
+      grid-template-columns: minmax(260px, .35fr) minmax(0, 1fr);
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .gateway-header {
+      display: grid;
+      align-content: start;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .gateway-header h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 26px;
+      line-height: 1.02;
+    }
+
+    .gateway-header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+    }
+
+    .gateway-status {
+      border-top: 2px solid var(--ink);
+      padding-top: 8px;
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .gateway-status b {
+      color: var(--ink);
+    }
+
+    .operator-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .operator-card {
+      border: 1px solid var(--ink);
+      background: var(--panel);
+      padding: 12px;
+      display: grid;
+      gap: 10px;
+      align-content: start;
+      min-width: 0;
+      overflow: hidden;
+      overflow-wrap: anywhere;
+    }
+
+    .operator-card[data-state="unverified_adapter"] {
+      background: color-mix(in srgb, var(--panel) 78%, #f3d6bf);
+    }
+
+    .operator-card[data-state="planned_not_connected"] {
+      background: color-mix(in srgb, var(--panel) 86%, #d9e2ea);
+    }
+
+    .operator-card h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 21px;
+      line-height: 1.05;
+    }
+
+    .operator-state {
+      width: fit-content;
+      border: 1px solid var(--ink);
+      padding: 4px 6px;
+      font-size: 10px;
+      font-weight: 800;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+    }
+
+    .operator-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
       overflow-wrap: anywhere;
     }
 
@@ -1496,6 +1599,8 @@
 
       .plain-overview,
       .plain-grid,
+      .runtime-gateway-overview,
+      .operator-strip,
       .technical-tools {
         grid-template-columns: 1fr;
       }
@@ -1589,7 +1694,8 @@
       }
 
       .plain-lead,
-      .plain-grid {
+      .plain-grid,
+      .runtime-gateway-overview {
         width: calc(100vw - 28px);
         max-width: calc(100vw - 28px);
       }
@@ -1701,6 +1807,37 @@
             <li>Comece pelo resumo; abra a visao tecnica so quando precisar auditar.</li>
             <li>Use o terminal para qualquer execucao real.</li>
           </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="runtime-gateway-overview" aria-labelledby="runtime-gateway-title">
+      <header class="gateway-header">
+        <span class="plain-eyebrow">Runtime Gateway</span>
+        <h2 id="runtime-gateway-title">Operadores do portal</h2>
+        <p id="runtime-gateway-summary">Carregando estado dos operadores.</p>
+        <div class="gateway-status" aria-label="Estado do runtime">
+          <span><b>Painel inicia runtime?</b> <span id="gateway-panel-can-start">--</span></span>
+          <span><b>Comandos executados:</b> <span id="gateway-commands">--</span></span>
+          <span><b>Tokens gastos:</b> <span id="gateway-tokens">--</span></span>
+          <span><b>Fonte:</b> <span id="gateway-source">artifact local</span></span>
+        </div>
+      </header>
+      <div id="operator-strip" class="operator-strip" aria-label="Operadores registrados no Runtime Gateway">
+        <article class="operator-card" data-state="planned_not_connected">
+          <span class="operator-state">planejado</span>
+          <h3>Codex app-server</h3>
+          <p>Planejado, mas ainda nao conectado ao painel.</p>
+        </article>
+        <article class="operator-card" data-state="planned_not_connected">
+          <span class="operator-state">planejado</span>
+          <h3>Claude Code</h3>
+          <p>Planejado, mas ainda nao conectado ao painel.</p>
+        </article>
+        <article class="operator-card" data-state="unverified_adapter">
+          <span class="operator-state">bloqueado</span>
+          <h3>Antigravity CLI</h3>
+          <p>Bloqueado ate descoberta de capacidades.</p>
         </article>
       </div>
     </section>
@@ -2184,6 +2321,7 @@
     const agentRuntimeCompletionHandoffSourceUrl = "../artifacts/artemis-agent-runtime-completion-handoff/run-01/completion-handoff.json";
     const agentRuntimeCompletionReviewGateSourceUrl = "../artifacts/artemis-agent-runtime-completion-review-gate/run-01/completion-review-gate.json";
     const agentRuntimeDoneLedgerSourceUrl = "../artifacts/artemis-agent-runtime-done-ledger/run-01/done-ledger.json";
+    const runtimeGatewayServiceSourceUrl = "../artifacts/artemis-portal-runtime-gateway-service/run-01/runtime-gateway-service.json";
 
     const columns = [
       { id: "intake", title: "Intake", help: "Ideia ou pedido bruto. Ainda nao tem contrato." },
@@ -3338,6 +3476,12 @@
     const plainStateListNode = document.querySelector("#plain-state-list");
     const plainHumanListNode = document.querySelector("#plain-human-list");
     const plainActionListNode = document.querySelector("#plain-action-list");
+    const runtimeGatewaySummaryNode = document.querySelector("#runtime-gateway-summary");
+    const runtimeGatewayPanelCanStartNode = document.querySelector("#gateway-panel-can-start");
+    const runtimeGatewayCommandsNode = document.querySelector("#gateway-commands");
+    const runtimeGatewayTokensNode = document.querySelector("#gateway-tokens");
+    const runtimeGatewaySourceNode = document.querySelector("#gateway-source");
+    const operatorStripNode = document.querySelector("#operator-strip");
     const symphonyEvidenceNode = document.querySelector("#symphony-evidence");
     const symphonySummaryNode = document.querySelector("#symphony-summary");
     const projectGraphStatusNode = document.querySelector("#project-graph-status");
@@ -4531,6 +4675,60 @@
       next_cut: "NONE - ARTEMIS Symphony runtime spine complete"
     };
 
+    const seedRuntimeGatewayService = {
+      overall: "runtime_gateway_service_ready",
+      http_server_started: false,
+      websocket_opened: false,
+      post_routes_enabled: false,
+      agents_started: false,
+      commands_executed: 0,
+      tokens_spent: 0,
+      service_contract: {
+        readiness: {
+          panel_can_start_runtime: false,
+          commands_executed: 0,
+          tokens_spent: 0,
+          blocked_until: [
+            "provider_auth_connected",
+            "credential_vault_lease_real",
+            "budget_policy_accepted",
+            "workspace_session_bound_to_project",
+            "command_plan_created",
+            "human_execution_gate_accepted"
+          ]
+        },
+        human_explanation: [
+          "Este service mostra quais operadores existem e por que ainda nao podem rodar.",
+          "Codex app-server e Claude Code estao planejados, mas nao conectados ao painel.",
+          "Antigravity CLI e um slot futuro e fica bloqueado ate capability discovery.",
+          "O painel continua proibido de iniciar runtime diretamente."
+        ],
+        operator_summary: [
+          {
+            operator_id: "codex_app_server",
+            display_name: "Codex app-server",
+            connection_state: "planned_not_connected",
+            auth_state: "requires_provider_connection_and_vault_lease",
+            human_text: "Planejado, mas ainda nao conectado."
+          },
+          {
+            operator_id: "claude_code",
+            display_name: "Claude Code",
+            connection_state: "planned_not_connected",
+            auth_state: "requires_provider_connection_and_vault_lease",
+            human_text: "Planejado, mas ainda nao conectado."
+          },
+          {
+            operator_id: "antigravity_cli",
+            display_name: "Antigravity CLI",
+            connection_state: "unverified_adapter",
+            auth_state: "blocked_until_capability_discovery",
+            human_text: "Bloqueado ate descoberta de capacidades."
+          }
+        ]
+      }
+    };
+
     function cloneCards(source) {
       return JSON.parse(JSON.stringify(source));
     }
@@ -4580,6 +4778,43 @@
         "Abra a visao tecnica completa somente para auditar grafo, eventos ou contratos.",
         "Quando for executar algo real, use um comando pequeno, validavel e reversivel."
       ]);
+    }
+
+    function labelConnectionState(value) {
+      const labels = {
+        planned_not_connected: "planejado",
+        unverified_adapter: "bloqueado",
+        connected: "conectado",
+        disabled: "desativado"
+      };
+      return labels[value] || "revisar";
+    }
+
+    function renderRuntimeGatewayService(model) {
+      const contract = model.service_contract || {};
+      const readiness = contract.readiness || {};
+      const operators = Array.isArray(contract.operator_summary) ? contract.operator_summary : [];
+      const explanation = Array.isArray(contract.human_explanation) ? contract.human_explanation : [];
+      const blockedUntil = Array.isArray(readiness.blocked_until) ? readiness.blocked_until : [];
+
+      runtimeGatewaySummaryNode.textContent = explanation[0] || "O Runtime Gateway esta em modo read-only; ele mostra operadores, mas nao inicia runtime.";
+      runtimeGatewayPanelCanStartNode.textContent = readiness.panel_can_start_runtime ? "sim" : "nao";
+      runtimeGatewayCommandsNode.textContent = String(readiness.commands_executed ?? model.commands_executed ?? 0);
+      runtimeGatewayTokensNode.textContent = String(readiness.tokens_spent ?? model.tokens_spent ?? 0);
+      runtimeGatewaySourceNode.textContent = `${model.source || runtimeGatewayServiceSourceUrl} | ${model.overall || "observed"}`;
+
+      operatorStripNode.innerHTML = operators.map((operator) => {
+        const state = operator.connection_state || "planned_not_connected";
+        const blocked = blockedUntil.length ? `Falta: ${blockedUntil.slice(0, 2).join(", ")}.` : operator.auth_state || "Sem bloqueio declarado.";
+        return `
+          <article class="operator-card" data-state="${escapeHtml(state)}">
+            <span class="operator-state">${escapeHtml(labelConnectionState(state))}</span>
+            <h3>${escapeHtml(operator.display_name || operator.operator_id || "Operador")}</h3>
+            <p>${escapeHtml(operator.human_text || "Estado do operador precisa ser revisado.")}</p>
+            <p>${escapeHtml(blocked)}</p>
+          </article>
+        `;
+      }).join("");
     }
 
     function normalizeCard(item) {
@@ -5567,6 +5802,18 @@
       }
     }
 
+    async function loadRuntimeGatewayServiceSource() {
+      try {
+        const response = await fetch(runtimeGatewayServiceSourceUrl, { cache: "no-store" });
+        if (!response.ok) return null;
+        const payload = await response.json();
+        if (!payload.service_contract || !payload.service_contract.operator_summary) return null;
+        return payload;
+      } catch {
+        return null;
+      }
+    }
+
     async function loadEventSource() {
       try {
         const response = await fetch(eventSourceUrl, { cache: "no-store" });
@@ -5757,6 +6004,7 @@
       renderAgentRuntimeCompletionHandoff(seedAgentRuntimeCompletionHandoff);
       renderAgentRuntimeCompletionReviewGate(seedAgentRuntimeCompletionReviewGate);
       renderAgentRuntimeDoneLedger(seedAgentRuntimeDoneLedger);
+      renderRuntimeGatewayService(seedRuntimeGatewayService);
       const loadedGraph = await loadProjectGraphSource();
       if (loadedGraph) renderProjectGraph(loadedGraph);
       const loadedBrief = await loadProjectBriefSource();
@@ -5789,6 +6037,8 @@
       if (loadedAgentRuntimeCompletionReviewGate) renderAgentRuntimeCompletionReviewGate(loadedAgentRuntimeCompletionReviewGate);
       const loadedAgentRuntimeDoneLedger = await loadAgentRuntimeDoneLedgerSource();
       if (loadedAgentRuntimeDoneLedger) renderAgentRuntimeDoneLedger(loadedAgentRuntimeDoneLedger);
+      const loadedRuntimeGatewayService = await loadRuntimeGatewayServiceSource();
+      if (loadedRuntimeGatewayService) renderRuntimeGatewayService(loadedRuntimeGatewayService);
       const loadedEvents = await loadEventSource();
       renderTimeline(loadedEvents || seedEvents);
     }

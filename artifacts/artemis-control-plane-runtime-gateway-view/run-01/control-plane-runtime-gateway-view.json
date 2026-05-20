@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-20T12:40:40Z",
+  "overall": "control_plane_runtime_gateway_view_ready",
+  "control_plane_runtime_gateway_view_ready": true,
+  "secret_values_recorded": false,
+  "runtime_auth_executed": false,
+  "http_server_started": false,
+  "websocket_opened": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-086 - Runtime Gateway Project Selector Contract",
+  "missing_files": [],
+  "view_contract": {
+    "control_plane": "control-plane/index.html",
+    "runtime_gateway_service": "artifacts/artemis-portal-runtime-gateway-service/run-01/runtime-gateway-service.json",
+    "source_url": "../artifacts/artemis-portal-runtime-gateway-service/run-01/runtime-gateway-service.json",
+    "operators_rendered": [
+      "antigravity_cli",
+      "claude_code",
+      "codex_app_server"
+    ],
+    "panel_can_start_runtime": false,
+    "surface": "read_only_status_view"
+  },
+  "checks": [
+    {
+      "id": "control_plane_tokens_present",
+      "status": "passed",
+      "detail": "Control Plane contains the Runtime Gateway view, source URL, loader and renderer tokens."
+    },
+    {
+      "id": "runtime_gateway_service_ready",
+      "status": "passed",
+      "detail": "Runtime Gateway Service artifact is ready for read-only consumption."
+    },
+    {
+      "id": "operator_cards_supported",
+      "status": "passed",
+      "detail": "Service exposes Codex app-server, Claude Code and Antigravity CLI for the panel."
+    },
+    {
+      "id": "panel_still_read_only",
+      "status": "passed",
+      "detail": "The rendered state must keep direct runtime launch disabled."
+    },
+    {
+      "id": "no_runtime_side_effects",
+      "status": "passed",
+      "detail": "No agents, commands or tokens are produced by the view contract."
+    }
+  ]
+}

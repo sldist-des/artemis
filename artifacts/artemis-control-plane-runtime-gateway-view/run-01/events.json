@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-20T12:40:40Z",
+  "source": "scripts/artemis-control-plane-runtime-gateway-view.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_control_plane_runtime_gateway_view_ready",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-20T12:40:40Z",
+      "producer": {
+        "adapter": "control_plane",
+        "name": "scripts/artemis-control-plane-runtime-gateway-view.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-085",
+        "task_id": "tkt-085",
+        "title": "ARTEMIS Control Plane Runtime Gateway Status View",
+        "exec_pack": "docs/exec-packs/done/TKT-085-artemis-control-plane-runtime-gateway-view.md",
+        "artifact_root": "artifacts/artemis-control-plane-runtime-gateway-view/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "context",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-control-plane-runtime-gateway-view/run-01",
+        "status_path": "artifacts/artemis-control-plane-runtime-gateway-view/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-control-plane-runtime-gateway-view/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-control-plane-runtime-gateway-view/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-control-plane-runtime-gateway-view/run-01/control-plane-runtime-gateway-view.json",
+          "artifacts/artemis-control-plane-runtime-gateway-view/run-01/CONTROL_PLANE_RUNTIME_GATEWAY_VIEW.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-085"
+      },
+      "payload": {
+        "control_plane_runtime_gateway_view_ready": true,
+        "operators_rendered": 3,
+        "panel_can_start_runtime": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-086 - Runtime Gateway Project Selector Contract"
+      }
+    }
+  ]
+}

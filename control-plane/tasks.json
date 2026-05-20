@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T12:26:10Z",
+  "generated_at": "2026-05-20T12:40:40Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1021,6 +1021,18 @@
       "summary": "O ARTEMIS passa a ter um artifact de service read-only que o painel pode ler",
       "exec_pack": "docs/exec-packs/done/TKT-084-artemis-portal-runtime-gateway-service.md",
       "evidence": "artifacts/artemis-portal-runtime-gateway-service/run-01/runtime-gateway-service.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-085",
+      "ticket": "TKT-085",
+      "title": "ARTEMIS Control Plane Runtime Gateway Status View",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O primeiro modo do Control Plane deve mostrar uma faixa clara de operadores:",
+      "exec_pack": "docs/exec-packs/done/TKT-085-artemis-control-plane-runtime-gateway-view.md",
+      "evidence": "artifacts/artemis-control-plane-runtime-gateway-view/run-01/control-plane-runtime-gateway-view.json",
       "tags": ["exec-pack", "done"]
     }
   ]

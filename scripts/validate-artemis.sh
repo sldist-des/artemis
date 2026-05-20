@@ -133,6 +133,7 @@ scripts/artemis-portal-validation-evidence-surface.sh
 scripts/artemis-portal-human-acceptance-surface.sh
 scripts/artemis-portal-runtime-gateway.sh
 scripts/artemis-portal-runtime-gateway-service.sh
+scripts/artemis-control-plane-runtime-gateway-view.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -250,6 +251,7 @@ sh -n scripts/artemis-portal-validation-evidence-surface.sh
 sh -n scripts/artemis-portal-human-acceptance-surface.sh
 sh -n scripts/artemis-portal-runtime-gateway.sh
 sh -n scripts/artemis-portal-runtime-gateway-service.sh
+sh -n scripts/artemis-control-plane-runtime-gateway-view.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -668,6 +670,43 @@ if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-runtime-gateway-service.jso
 fi
 if ! test -f /tmp/artemis-portal-runtime-gateway-service/RUNTIME_GATEWAY_SERVICE.md; then
   echo "scripts/artemis-portal-runtime-gateway-service.sh did not write runtime gateway service documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-control-plane-runtime-gateway-view.sh --artifact-root /tmp/artemis-control-plane-runtime-gateway-view --json >/tmp/artemis-control-plane-runtime-gateway-view.json
+if ! grep -q '"overall": "control_plane_runtime_gateway_view_ready"' /tmp/artemis-control-plane-runtime-gateway-view.json; then
+  echo "scripts/artemis-control-plane-runtime-gateway-view.sh did not report control_plane_runtime_gateway_view_ready" >&2
+  exit 1
+fi
+if ! grep -q '"panel_can_start_runtime": false' /tmp/artemis-control-plane-runtime-gateway-view.json; then
+  echo "scripts/artemis-control-plane-runtime-gateway-view.sh allowed panel runtime start" >&2
+  exit 1
+fi
+if ! grep -q '"codex_app_server"' /tmp/artemis-control-plane-runtime-gateway-view.json; then
+  echo "scripts/artemis-control-plane-runtime-gateway-view.sh did not render Codex app-server" >&2
+  exit 1
+fi
+if ! grep -q '"claude_code"' /tmp/artemis-control-plane-runtime-gateway-view.json; then
+  echo "scripts/artemis-control-plane-runtime-gateway-view.sh did not render Claude Code" >&2
+  exit 1
+fi
+if ! grep -q '"antigravity_cli"' /tmp/artemis-control-plane-runtime-gateway-view.json; then
+  echo "scripts/artemis-control-plane-runtime-gateway-view.sh did not render Antigravity CLI" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": false' /tmp/artemis-control-plane-runtime-gateway-view.json; then
+  echo "scripts/artemis-control-plane-runtime-gateway-view.sh started agents" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-control-plane-runtime-gateway-view.json; then
+  echo "scripts/artemis-control-plane-runtime-gateway-view.sh executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-control-plane-runtime-gateway-view.json; then
+  echo "scripts/artemis-control-plane-runtime-gateway-view.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-control-plane-runtime-gateway-view/CONTROL_PLANE_RUNTIME_GATEWAY_VIEW.md; then
+  echo "scripts/artemis-control-plane-runtime-gateway-view.sh did not write runtime gateway view documentation artifact" >&2
   exit 1
 fi
 

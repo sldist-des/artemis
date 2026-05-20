@@ -85,6 +85,7 @@ scripts/artemis-portal-validation-evidence-surface.sh --json
 scripts/artemis-portal-human-acceptance-surface.sh --json
 scripts/artemis-portal-runtime-gateway.sh --json
 scripts/artemis-portal-runtime-gateway-service.sh --json
+scripts/artemis-control-plane-runtime-gateway-view.sh --json
 scripts/github-readiness.sh
 sh -n scripts/bootstrap-artemis.sh
 git status --branch --short --ignored

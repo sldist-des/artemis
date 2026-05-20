@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T12:40:40Z",
+  "generated_at": "2026-05-20T14:16:04Z",
   "overall": "control_plane_runtime_gateway_view_ready",
   "control_plane_runtime_gateway_view_ready": true,
   "secret_values_recorded": false,
@@ -23,7 +23,7 @@
       "codex_app_server"
     ],
     "panel_can_start_runtime": false,
-    "surface": "read_only_status_view"
+    "surface": "compact_read_only_status_view"
   },
   "checks": [
     {
@@ -37,9 +37,9 @@
       "detail": "Runtime Gateway Service artifact is ready for read-only consumption."
     },
     {
-      "id": "operator_cards_supported",
+      "id": "operator_summary_supported",
       "status": "passed",
-      "detail": "Service exposes Codex app-server, Claude Code and Antigravity CLI for the panel."
+      "detail": "Service exposes Codex app-server, Claude Code and Antigravity CLI for the compact panel summary."
     },
     {
       "id": "panel_still_read_only",

@@ -322,19 +322,17 @@
       overflow-wrap: anywhere;
     }
 
-    .local-project-overview,
-    .external-registration-overview,
-    .runtime-gateway-overview {
+    .operations-overview {
       border-bottom: 2px solid var(--ink);
       margin: -2px 0 18px;
-      padding: 0 0 18px;
+      padding: 0 0 14px;
       display: grid;
-      grid-template-columns: minmax(260px, .35fr) minmax(0, 1fr);
-      gap: 16px;
+      grid-template-columns: minmax(240px, .3fr) minmax(0, 1fr);
+      gap: 14px;
       min-width: 0;
     }
 
-    .gateway-header {
+    .operations-header {
       display: grid;
       align-content: start;
       gap: 8px;
@@ -343,14 +341,14 @@
       overflow-wrap: anywhere;
     }
 
-    .gateway-header h2 {
+    .operations-header h2 {
       margin: 0;
       font-family: var(--font-display);
       font-size: 26px;
       line-height: 1.02;
     }
 
-    .gateway-header p {
+    .operations-header p {
       margin: 0;
       color: var(--muted);
       font-size: 13px;
@@ -358,92 +356,153 @@
       overflow-wrap: anywhere;
     }
 
-    .gateway-status {
-      border-top: 2px solid var(--ink);
-      padding-top: 8px;
+    .operations-status-strip {
       display: grid;
-      gap: 6px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.35;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
       min-width: 0;
-      overflow-wrap: anywhere;
     }
 
-    .gateway-status b {
+    .operations-metric {
+      border: 1px solid var(--ink);
+      background: var(--paper);
+      padding: 8px 9px;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .operations-metric b {
+      display: block;
       color: var(--ink);
-    }
-
-    .gateway-status span {
-      min-width: 0;
+      font-family: var(--font-display);
+      font-size: 18px;
+      line-height: 1;
       overflow-wrap: anywhere;
     }
 
-    .operator-strip {
+    .operations-metric span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .operations-step-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
       min-width: 0;
     }
 
-    .operator-card {
+    .operation-step {
       border: 1px solid var(--ink);
       background: var(--panel);
-      padding: 12px;
+      padding: 10px;
       display: grid;
-      gap: 10px;
+      gap: 8px;
       align-content: start;
       min-width: 0;
       overflow: hidden;
       overflow-wrap: anywhere;
     }
 
-    .operator-card[data-state="unverified_adapter"] {
+    .operation-step header {
+      display: grid;
+      gap: 5px;
+      min-width: 0;
+    }
+
+    .operation-step h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 19px;
+      line-height: 1.02;
+    }
+
+    .operation-state {
+      width: max-content;
+      max-width: 100%;
+      border: 1px solid var(--ink);
+      padding: 3px 6px;
+      color: var(--ink);
+      background: var(--paper);
+      font-size: 10px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      overflow-wrap: anywhere;
+    }
+
+    .operation-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .operation-facts {
+      border-top: 2px solid var(--ink);
+      padding-top: 8px;
+      display: grid;
+      gap: 5px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.3;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .operation-facts b {
+      color: var(--ink);
+    }
+
+    .operation-facts span {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .operator-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      min-width: 0;
+    }
+
+    .operator-pill {
+      border: 1px solid var(--ink);
+      background: var(--panel);
+      padding: 4px 6px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.15;
+      min-width: 0;
+      overflow: hidden;
+      overflow-wrap: anywhere;
+    }
+
+    .operator-pill[data-state="unverified_adapter"] {
       background: color-mix(in srgb, var(--panel) 78%, #f3d6bf);
     }
 
-    .operator-card[data-state="planned_not_connected"] {
+    .operator-pill[data-state="planned_not_connected"] {
       background: color-mix(in srgb, var(--panel) 86%, #d9e2ea);
     }
 
-    .operator-card[data-state="terminal_binary_detected"] {
+    .operator-pill[data-state="terminal_binary_detected"] {
       background: color-mix(in srgb, var(--panel) 82%, #d8e5d2);
     }
 
-    .operator-card[data-state="candidate_from_terminal_connect"],
-    .operator-card[data-state="waiting_for_human_review"] {
+    .operator-pill[data-state="candidate_from_terminal_connect"],
+    .operator-pill[data-state="waiting_for_human_review"] {
       background: color-mix(in srgb, var(--panel) 78%, #f2e1bb);
     }
 
-    .operator-card[data-state="not_found_on_path"],
-    .operator-card[data-state="blocked"] {
+    .operator-pill[data-state="not_found_on_path"],
+    .operator-pill[data-state="blocked"] {
       background: color-mix(in srgb, var(--panel) 78%, #f3d6bf);
-    }
-
-    .operator-card h3 {
-      margin: 0;
-      font-family: var(--font-display);
-      font-size: 21px;
-      line-height: 1.05;
-    }
-
-    .operator-state {
-      width: fit-content;
-      border: 1px solid var(--ink);
-      padding: 4px 6px;
-      font-size: 10px;
-      font-weight: 800;
-      line-height: 1;
-      text-transform: uppercase;
-      letter-spacing: .07em;
-    }
-
-    .operator-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.35;
-      overflow-wrap: anywhere;
     }
 
     .plain-actions {
@@ -1609,6 +1668,11 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .plain-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 360px;
+      }
+
       .timeline-row {
         grid-template-columns: 12px minmax(72px, .28fr) minmax(0, 1fr);
       }
@@ -1624,10 +1688,9 @@
 
       .plain-overview,
       .plain-grid,
-      .local-project-overview,
-      .external-registration-overview,
-      .runtime-gateway-overview,
-      .operator-strip,
+      .operations-overview,
+      .operations-status-strip,
+      .operations-step-grid,
       .technical-tools {
         grid-template-columns: 1fr;
       }
@@ -1704,10 +1767,53 @@
         width: 50px;
       }
 
-      .principles,
-      .metrics,
       .footer-note {
         grid-template-columns: 1fr;
+      }
+
+      .principles {
+        display: none;
+      }
+
+      .metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .plain-grid,
+      .footer-note {
+        display: none;
+      }
+
+      .operations-status-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 5px;
+      }
+
+      .operations-status-strip,
+      .operations-step-grid {
+        max-width: 360px;
+      }
+
+      .operations-metric {
+        padding: 6px 5px;
+      }
+
+      .operations-metric b {
+        font-size: 15px;
+      }
+
+      .operations-metric span {
+        font-size: 8px;
+      }
+
+      .operation-step p,
+      .operator-pill {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+      }
+
+      .operations-header p {
+        display: none;
       }
 
       .source-links {
@@ -1722,9 +1828,7 @@
 
       .plain-lead,
       .plain-grid,
-      .local-project-overview,
-      .external-registration-overview,
-      .runtime-gateway-overview {
+      .operations-overview {
         width: calc(100vw - 28px);
         max-width: calc(100vw - 28px);
       }
@@ -1754,7 +1858,6 @@
       }
 
       .gate-stats,
-      .plain-strip,
       .graph-metrics,
       .graph-map,
       .brief-metrics,
@@ -1840,85 +1943,69 @@
       </div>
     </section>
 
-    <section class="local-project-overview" aria-labelledby="local-project-title">
-      <header class="gateway-header">
-        <span class="plain-eyebrow">Projeto local</span>
-        <h2 id="local-project-title">Conectado pelo terminal</h2>
-        <p id="local-project-summary">Carregando projeto conectado.</p>
-        <div class="gateway-status" aria-label="Estado do projeto local">
-          <span><b>Projeto:</b> <span id="local-project-path">--</span></span>
-          <span><b>Navegador acessa filesystem?</b> <span id="local-project-browser-access">--</span></span>
-          <span><b>Runtime liberado?</b> <span id="local-project-runtime">--</span></span>
-          <span><b>Fonte:</b> <span id="local-project-source">artifact local</span></span>
+    <section class="operations-overview" aria-labelledby="operations-title">
+      <header class="operations-header">
+        <span class="plain-eyebrow">Operacao</span>
+        <h2 id="operations-title">Projeto, registro e runtime</h2>
+        <p>O painel mostra o estado essencial. A visao tecnica fica aberta apenas para auditoria.</p>
+        <div class="operations-status-strip" aria-label="Resumo operacional compacto">
+          <div class="operations-metric"><b id="operation-project-path">--</b><span>projeto</span></div>
+          <div class="operations-metric"><b id="operation-provider-count">--</b><span>providers</span></div>
+          <div class="operations-metric"><b id="operation-registration-candidates">--</b><span>candidatos</span></div>
+          <div class="operations-metric"><b id="operation-registration-registered">--</b><span>registrados</span></div>
+          <div class="operations-metric"><b id="operation-runtime-panel">--</b><span>runtime</span></div>
         </div>
       </header>
-      <div id="local-provider-strip" class="operator-strip" aria-label="Fornecedores detectados no terminal">
-        <article class="operator-card" data-state="blocked">
-          <span class="operator-state">aguardando</span>
-          <h3>Codex</h3>
-          <p>Aguardando connect pelo terminal.</p>
+      <div class="operations-step-grid">
+        <article class="operation-step" aria-labelledby="operation-project-title">
+          <header>
+            <span id="operation-project-state" class="operation-state">aguardando</span>
+            <h3 id="operation-project-title">Projeto local</h3>
+            <p id="operation-project-summary">Carregando projeto conectado.</p>
+          </header>
+          <div class="operation-facts" aria-label="Estado do projeto local">
+            <span><b>Navegador filesystem:</b> <span id="operation-project-browser-access">--</span></span>
+            <span><b>Runtime liberado:</b> <span id="operation-project-runtime">--</span></span>
+            <span><b>Fonte:</b> <span id="operation-project-source">artifact local</span></span>
+          </div>
+          <div id="operation-provider-strip" class="operator-strip" aria-label="Fornecedores detectados no terminal">
+            <span class="operator-pill" data-state="blocked">Codex aguardando</span>
+            <span class="operator-pill" data-state="blocked">Claude aguardando</span>
+            <span class="operator-pill" data-state="blocked">AGY aguardando</span>
+          </div>
         </article>
-        <article class="operator-card" data-state="blocked">
-          <span class="operator-state">aguardando</span>
-          <h3>Claude Code</h3>
-          <p>Aguardando connect pelo terminal.</p>
-        </article>
-        <article class="operator-card" data-state="blocked">
-          <span class="operator-state">aguardando</span>
-          <h3>Antigravity CLI</h3>
-          <p>Aguardando descoberta local.</p>
-        </article>
-      </div>
-    </section>
 
-    <section class="external-registration-overview" aria-labelledby="external-registration-title">
-      <header class="gateway-header">
-        <span class="plain-eyebrow">Registro externo</span>
-        <h2 id="external-registration-title">Candidatos do portal</h2>
-        <p id="external-registration-summary">Carregando fila de registro.</p>
-        <div class="gateway-status" aria-label="Estado do registro externo">
-          <span><b>Candidatos:</b> <span id="external-registration-candidates">--</span></span>
-          <span><b>Projetos registrados:</b> <span id="external-registration-registered">--</span></span>
-          <span><b>Troca de projeto liberada?</b> <span id="external-registration-switching">--</span></span>
-          <span><b>Fonte:</b> <span id="external-registration-source">artifact local</span></span>
-        </div>
-      </header>
-      <div id="external-candidate-strip" class="operator-strip" aria-label="Candidatos de projeto externo">
-        <article class="operator-card" data-state="waiting_for_human_review">
-          <span class="operator-state">revisao</span>
-          <h3>Aguardando candidato</h3>
-          <p>Projetos externos entram por connect no terminal e revisao humana.</p>
+        <article class="operation-step" aria-labelledby="operation-registration-title">
+          <header>
+            <span id="operation-registration-state" class="operation-state">revisao</span>
+            <h3 id="operation-registration-title">Registro externo</h3>
+            <p id="operation-registration-summary">Carregando fila de registro.</p>
+          </header>
+          <div class="operation-facts" aria-label="Estado do registro externo">
+            <span><b>Troca de projeto:</b> <span id="operation-registration-switching">--</span></span>
+            <span><b>Fonte:</b> <span id="operation-registration-source">artifact local</span></span>
+          </div>
+          <div id="operation-candidate-strip" class="operator-strip" aria-label="Candidatos de projeto externo">
+            <span class="operator-pill" data-state="waiting_for_human_review">sem candidato</span>
+          </div>
         </article>
-      </div>
-    </section>
 
-    <section class="runtime-gateway-overview" aria-labelledby="runtime-gateway-title">
-      <header class="gateway-header">
-        <span class="plain-eyebrow">Runtime Gateway</span>
-        <h2 id="runtime-gateway-title">Operadores do portal</h2>
-        <p id="runtime-gateway-summary">Carregando estado dos operadores.</p>
-        <div class="gateway-status" aria-label="Estado do runtime">
-          <span><b>Painel inicia runtime?</b> <span id="gateway-panel-can-start">--</span></span>
-          <span><b>Comandos executados:</b> <span id="gateway-commands">--</span></span>
-          <span><b>Tokens gastos:</b> <span id="gateway-tokens">--</span></span>
-          <span><b>Fonte:</b> <span id="gateway-source">artifact local</span></span>
-        </div>
-      </header>
-      <div id="operator-strip" class="operator-strip" aria-label="Operadores registrados no Runtime Gateway">
-        <article class="operator-card" data-state="planned_not_connected">
-          <span class="operator-state">planejado</span>
-          <h3>Codex app-server</h3>
-          <p>Planejado, mas ainda nao conectado ao painel.</p>
-        </article>
-        <article class="operator-card" data-state="planned_not_connected">
-          <span class="operator-state">planejado</span>
-          <h3>Claude Code</h3>
-          <p>Planejado, mas ainda nao conectado ao painel.</p>
-        </article>
-        <article class="operator-card" data-state="unverified_adapter">
-          <span class="operator-state">bloqueado</span>
-          <h3>Antigravity CLI</h3>
-          <p>Bloqueado ate descoberta de capacidades.</p>
+        <article class="operation-step" aria-labelledby="operation-runtime-title">
+          <header>
+            <span id="operation-runtime-state" class="operation-state">planejado</span>
+            <h3 id="operation-runtime-title">Runtime Gateway</h3>
+            <p id="operation-runtime-summary">Carregando estado dos operadores.</p>
+          </header>
+          <div class="operation-facts" aria-label="Estado do runtime">
+            <span><b>Comandos:</b> <span id="operation-runtime-commands">--</span></span>
+            <span><b>Tokens:</b> <span id="operation-runtime-tokens">--</span></span>
+            <span><b>Fonte:</b> <span id="operation-runtime-source">artifact local</span></span>
+          </div>
+          <div id="operation-operator-strip" class="operator-strip" aria-label="Operadores registrados no Runtime Gateway">
+            <span class="operator-pill" data-state="planned_not_connected">Codex planejado</span>
+            <span class="operator-pill" data-state="planned_not_connected">Claude planejado</span>
+            <span class="operator-pill" data-state="unverified_adapter">AGY bloqueado</span>
+          </div>
         </article>
       </div>
     </section>
@@ -3559,24 +3646,28 @@
     const plainStateListNode = document.querySelector("#plain-state-list");
     const plainHumanListNode = document.querySelector("#plain-human-list");
     const plainActionListNode = document.querySelector("#plain-action-list");
-    const runtimeGatewaySummaryNode = document.querySelector("#runtime-gateway-summary");
-    const runtimeGatewayPanelCanStartNode = document.querySelector("#gateway-panel-can-start");
-    const runtimeGatewayCommandsNode = document.querySelector("#gateway-commands");
-    const runtimeGatewayTokensNode = document.querySelector("#gateway-tokens");
-    const runtimeGatewaySourceNode = document.querySelector("#gateway-source");
-    const operatorStripNode = document.querySelector("#operator-strip");
-    const localProjectSummaryNode = document.querySelector("#local-project-summary");
-    const localProjectPathNode = document.querySelector("#local-project-path");
-    const localProjectBrowserAccessNode = document.querySelector("#local-project-browser-access");
-    const localProjectRuntimeNode = document.querySelector("#local-project-runtime");
-    const localProjectSourceNode = document.querySelector("#local-project-source");
-    const localProviderStripNode = document.querySelector("#local-provider-strip");
-    const externalRegistrationSummaryNode = document.querySelector("#external-registration-summary");
-    const externalRegistrationCandidatesNode = document.querySelector("#external-registration-candidates");
-    const externalRegistrationRegisteredNode = document.querySelector("#external-registration-registered");
-    const externalRegistrationSwitchingNode = document.querySelector("#external-registration-switching");
-    const externalRegistrationSourceNode = document.querySelector("#external-registration-source");
-    const externalCandidateStripNode = document.querySelector("#external-candidate-strip");
+    const runtimeGatewaySummaryNode = document.querySelector("#operation-runtime-summary");
+    const runtimeGatewayStateNode = document.querySelector("#operation-runtime-state");
+    const runtimeGatewayPanelCanStartNode = document.querySelector("#operation-runtime-panel");
+    const runtimeGatewayCommandsNode = document.querySelector("#operation-runtime-commands");
+    const runtimeGatewayTokensNode = document.querySelector("#operation-runtime-tokens");
+    const runtimeGatewaySourceNode = document.querySelector("#operation-runtime-source");
+    const operatorStripNode = document.querySelector("#operation-operator-strip");
+    const localProjectSummaryNode = document.querySelector("#operation-project-summary");
+    const localProjectStateNode = document.querySelector("#operation-project-state");
+    const localProjectPathNode = document.querySelector("#operation-project-path");
+    const localProjectProviderCountNode = document.querySelector("#operation-provider-count");
+    const localProjectBrowserAccessNode = document.querySelector("#operation-project-browser-access");
+    const localProjectRuntimeNode = document.querySelector("#operation-project-runtime");
+    const localProjectSourceNode = document.querySelector("#operation-project-source");
+    const localProviderStripNode = document.querySelector("#operation-provider-strip");
+    const externalRegistrationSummaryNode = document.querySelector("#operation-registration-summary");
+    const externalRegistrationStateNode = document.querySelector("#operation-registration-state");
+    const externalRegistrationCandidatesNode = document.querySelector("#operation-registration-candidates");
+    const externalRegistrationRegisteredNode = document.querySelector("#operation-registration-registered");
+    const externalRegistrationSwitchingNode = document.querySelector("#operation-registration-switching");
+    const externalRegistrationSourceNode = document.querySelector("#operation-registration-source");
+    const externalCandidateStripNode = document.querySelector("#operation-candidate-strip");
     const symphonyEvidenceNode = document.querySelector("#symphony-evidence");
     const symphonySummaryNode = document.querySelector("#symphony-summary");
     const projectGraphStatusNode = document.querySelector("#project-graph-status");
@@ -4981,6 +5072,14 @@
       return parts.length > 1 ? parts.slice(-2).join("/") : raw;
     }
 
+    function compactPath(value) {
+      const raw = String(value || "").trim();
+      if (!raw) return "--";
+      const parts = raw.split("/").filter(Boolean);
+      if (parts.length <= 2) return raw;
+      return `/${parts.slice(-2).join("/")}`;
+    }
+
     function labelRegistrationState(value) {
       const labels = {
         candidate_from_terminal_connect: "candidato",
@@ -5006,26 +5105,21 @@
       const browserAllowed = project.browser_filesystem_access_allowed ?? contract.browser_filesystem_access_allowed ?? false;
       const runtimeAllowed = project.runtime_execution_allowed ?? contract.runtime_execution_allowed ?? false;
 
+      localProjectStateNode.textContent = terminalRequired ? "terminal" : "pendente";
       localProjectSummaryNode.textContent = terminalRequired
         ? "O projeto foi concedido pelo terminal; o painel apenas observa contexto e fornecedores locais."
         : "O projeto precisa passar pelo connect local antes de qualquer rota de operador.";
-      localProjectPathNode.textContent = projectLabel;
+      localProjectPathNode.textContent = compactPath(projectLabel);
+      localProjectPathNode.title = projectLabel;
+      localProjectProviderCountNode.textContent = String(providers.length);
       localProjectBrowserAccessNode.textContent = browserAllowed ? "sim" : "nao";
       localProjectRuntimeNode.textContent = runtimeAllowed ? "sim" : "nao";
       localProjectSourceNode.textContent = `${conciseSource(model.source, localProjectConnectSourceUrl)} | ${model.overall || "observed"}`;
 
       localProviderStripNode.innerHTML = providers.map((provider) => {
         const state = provider.state || (provider.detected ? "terminal_binary_detected" : "not_found_on_path");
-        const binary = provider.detected_binary || "nao encontrado no PATH";
-        const auth = provider.auth_connected ? "Auth conectado." : "Auth ainda nao conectado.";
-        const runtime = provider.runtime_allowed ? "Runtime permitido." : "Runtime bloqueado por gates.";
         return `
-          <article class="operator-card" data-state="${escapeHtml(state)}">
-            <span class="operator-state">${escapeHtml(labelProviderState(state, provider.detected))}</span>
-            <h3>${escapeHtml(provider.display_name || provider.provider_id || "Fornecedor")}</h3>
-            <p>${escapeHtml(binary)}</p>
-            <p>${escapeHtml(`${auth} ${runtime}`)}</p>
-          </article>
+          <span class="operator-pill" data-state="${escapeHtml(state)}">${escapeHtml(provider.display_name || provider.provider_id || "Fornecedor")}: ${escapeHtml(labelProviderState(state, provider.detected))}</span>
         `;
       }).join("");
     }
@@ -5041,6 +5135,7 @@
       const switchingAllowed = model.project_switching_allowed ?? contract.project_switching_allowed ?? false;
       const registeredCount = model.external_projects_registered ?? contract.external_projects_registered ?? registered.length;
 
+      externalRegistrationStateNode.textContent = candidates.length ? "revisao" : "vazio";
       externalRegistrationSummaryNode.textContent = candidates.length
         ? "Projetos conectados pelo terminal aparecem como candidatos; nenhum vira selecionavel sem revisao humana."
         : "Nenhum candidato externo foi registrado; conecte um projeto pelo terminal para iniciar revisao.";
@@ -5051,18 +5146,10 @@
 
       externalCandidateStripNode.innerHTML = candidates.map((candidate) => {
         const state = candidate.registration_state || candidate.trust_review_state || "waiting_for_human_review";
-        const selected = candidate.selected ? "Selecionado." : "Nao selecionado.";
-        const runtime = candidate.runtime_execution_allowed ? "Runtime permitido." : "Runtime bloqueado.";
-        const review = candidate.human_review_required ? "Revisao humana pendente." : "Revisao humana registrada.";
         return `
-          <article class="operator-card" data-state="${escapeHtml(state)}">
-            <span class="operator-state">${escapeHtml(labelRegistrationState(state))}</span>
-            <h3>${escapeHtml(candidate.display_name || candidate.project_id || "Projeto candidato")}</h3>
-            <p>${escapeHtml(candidate.repo_root || candidate.project_path || "Sem caminho registrado.")}</p>
-            <p>${escapeHtml(`${review} ${selected} ${runtime}`)}</p>
-          </article>
+          <span class="operator-pill" data-state="${escapeHtml(state)}">${escapeHtml(candidate.display_name || candidate.project_id || "Projeto candidato")}: ${escapeHtml(labelRegistrationState(state))}</span>
         `;
-      }).join("");
+      }).join("") || '<span class="operator-pill" data-state="waiting_for_human_review">sem candidato</span>';
     }
 
     function renderRuntimeGatewayService(model) {
@@ -5073,6 +5160,7 @@
       const blockedUntil = Array.isArray(readiness.blocked_until) ? readiness.blocked_until : [];
 
       runtimeGatewaySummaryNode.textContent = explanation[0] || "O Runtime Gateway esta em modo read-only; ele mostra operadores, mas nao inicia runtime.";
+      runtimeGatewayStateNode.textContent = readiness.panel_can_start_runtime ? "liberado" : "bloqueado";
       runtimeGatewayPanelCanStartNode.textContent = readiness.panel_can_start_runtime ? "sim" : "nao";
       runtimeGatewayCommandsNode.textContent = String(readiness.commands_executed ?? model.commands_executed ?? 0);
       runtimeGatewayTokensNode.textContent = String(readiness.tokens_spent ?? model.tokens_spent ?? 0);
@@ -5080,14 +5168,8 @@
 
       operatorStripNode.innerHTML = operators.map((operator) => {
         const state = operator.connection_state || "planned_not_connected";
-        const blocked = blockedUntil.length ? `Falta: ${blockedUntil.slice(0, 2).join(", ")}.` : operator.auth_state || "Sem bloqueio declarado.";
         return `
-          <article class="operator-card" data-state="${escapeHtml(state)}">
-            <span class="operator-state">${escapeHtml(labelConnectionState(state))}</span>
-            <h3>${escapeHtml(operator.display_name || operator.operator_id || "Operador")}</h3>
-            <p>${escapeHtml(operator.human_text || "Estado do operador precisa ser revisado.")}</p>
-            <p>${escapeHtml(blocked)}</p>
-          </article>
+          <span class="operator-pill" data-state="${escapeHtml(state)}">${escapeHtml(operator.display_name || operator.operator_id || "Operador")}: ${escapeHtml(labelConnectionState(state))}</span>
         `;
       }).join("");
     }

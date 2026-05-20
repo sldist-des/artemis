@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T13:24:52Z",
+  "generated_at": "2026-05-20T14:16:04Z",
   "overall": "control_plane_external_project_registration_view_ready",
   "control_plane_external_project_registration_view_ready": true,
   "secret_values_recorded": false,
@@ -14,7 +14,7 @@
   "remote_state_mutated": false,
   "project_switching_allowed": false,
   "external_projects_registered": 0,
-  "next_cut": "TKT-091 - Project Selector Registry Intake",
+  "next_cut": "TKT-092 - Project Selector Registry Intake",
   "missing_files": [],
   "view_contract": {
     "control_plane": "control-plane/index.html",
@@ -27,7 +27,7 @@
     ],
     "project_switching_allowed": false,
     "runtime_execution_allowed": false,
-    "surface": "read_only_status_view"
+    "surface": "compact_read_only_status_view"
   },
   "checks": [
     {

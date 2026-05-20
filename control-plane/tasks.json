@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T13:25:03Z",
+  "generated_at": "2026-05-20T14:16:10Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1093,6 +1093,18 @@
       "summary": "O Control Plane mostra o candidato vindo do Local Project Connect, registra que",
       "exec_pack": "docs/exec-packs/done/TKT-090-artemis-control-plane-external-project-registration-view.md",
       "evidence": "artifacts/artemis-control-plane-external-project-registration-view/run-01/control-plane-external-project-registration-view.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-091",
+      "ticket": "TKT-091",
+      "title": "ARTEMIS Control Plane Compact Operations View",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O Control Plane deixa de empilhar tres secoes grandes e passa a mostrar uma",
+      "exec_pack": "docs/exec-packs/done/TKT-091-artemis-control-plane-compact-operations-view.md",
+      "evidence": "artifacts/artemis-control-plane-compact-operations-view/run-01/STATUS.md",
       "tags": ["exec-pack", "done"]
     }
   ]

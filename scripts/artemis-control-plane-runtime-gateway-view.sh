@@ -80,15 +80,15 @@ html = control_plane_path.read_text(encoding="utf-8") if control_plane_path.is_f
 service_payload = json.loads(service_path.read_text(encoding="utf-8")) if service_path.is_file() else {}
 
 required_tokens = [
-    "runtime-gateway-overview",
-    "runtime-gateway-title",
-    "operator-strip",
+    "operations-overview",
+    "operation-runtime-title",
+    "operation-operator-strip",
     "runtimeGatewayServiceSourceUrl",
     "loadRuntimeGatewayServiceSource",
     "renderRuntimeGatewayService",
-    "gateway-panel-can-start",
-    "gateway-commands",
-    "gateway-tokens",
+    "operation-runtime-panel",
+    "operation-runtime-commands",
+    "operation-runtime-tokens",
 ]
 
 operators = service_payload.get("service_contract", {}).get("operator_summary", [])
@@ -107,9 +107,9 @@ checks = [
         "detail": "Runtime Gateway Service artifact is ready for read-only consumption.",
     },
     {
-        "id": "operator_cards_supported",
+        "id": "operator_summary_supported",
         "status": "passed" if operator_ids >= {"codex_app_server", "claude_code", "antigravity_cli"} else "failed",
-        "detail": "Service exposes Codex app-server, Claude Code and Antigravity CLI for the panel.",
+        "detail": "Service exposes Codex app-server, Claude Code and Antigravity CLI for the compact panel summary.",
     },
     {
         "id": "panel_still_read_only",
@@ -147,7 +147,7 @@ payload = {
         "source_url": "../artifacts/artemis-portal-runtime-gateway-service/run-01/runtime-gateway-service.json",
         "operators_rendered": sorted(operator_ids),
         "panel_can_start_runtime": bool(readiness.get("panel_can_start_runtime", False)),
-        "surface": "read_only_status_view",
+        "surface": "compact_read_only_status_view",
     },
     "checks": checks,
 }

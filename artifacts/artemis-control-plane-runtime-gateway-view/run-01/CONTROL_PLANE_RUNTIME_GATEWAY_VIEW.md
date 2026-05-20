@@ -15,6 +15,6 @@ The Control Plane now shows Runtime Gateway operator status in the simple view. 
 
 - `control_plane_tokens_present`: passed - Control Plane contains the Runtime Gateway view, source URL, loader and renderer tokens.
 - `runtime_gateway_service_ready`: passed - Runtime Gateway Service artifact is ready for read-only consumption.
-- `operator_cards_supported`: passed - Service exposes Codex app-server, Claude Code and Antigravity CLI for the panel.
+- `operator_summary_supported`: passed - Service exposes Codex app-server, Claude Code and Antigravity CLI for the compact panel summary.
 - `panel_still_read_only`: passed - The rendered state must keep direct runtime launch disabled.
 - `no_runtime_side_effects`: passed - No agents, commands or tokens are produced by the view contract.

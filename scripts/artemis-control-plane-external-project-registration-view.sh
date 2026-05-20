@@ -86,15 +86,15 @@ provider_auth_connected = registration_payload.get("provider_auth_connected", co
 runtime_execution_allowed = registration_payload.get("runtime_execution_allowed", contract.get("runtime_execution_allowed", False))
 
 required_tokens = [
-    "external-registration-overview",
-    "external-registration-title",
-    "external-registration-summary",
-    "external-candidate-strip",
+    "operations-overview",
+    "operation-registration-title",
+    "operation-registration-summary",
+    "operation-candidate-strip",
     "externalProjectRegistrationSourceUrl",
     "loadExternalProjectRegistrationSource",
     "renderExternalProjectRegistration",
-    "external-registration-switching",
-    "external-registration-registered",
+    "operation-registration-switching",
+    "operation-registration-registered",
 ]
 
 checks = [
@@ -154,7 +154,7 @@ payload = {
     "remote_state_mutated": False,
     "project_switching_allowed": False,
     "external_projects_registered": int(registration_payload.get("external_projects_registered", 0)),
-    "next_cut": "TKT-091 - Project Selector Registry Intake",
+    "next_cut": "TKT-092 - Project Selector Registry Intake",
     "missing_files": missing_files,
     "view_contract": {
         "control_plane": str(control_plane_path),
@@ -165,7 +165,7 @@ payload = {
         "candidate_states": sorted(item for item in candidate_states if item),
         "project_switching_allowed": False,
         "runtime_execution_allowed": False,
-        "surface": "read_only_status_view",
+        "surface": "compact_read_only_status_view",
     },
     "checks": checks,
 }

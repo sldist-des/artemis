@@ -83,15 +83,16 @@ providers = connect_payload.get("provider_discovery", [])
 provider_ids = {item.get("provider_id") for item in providers}
 
 required_tokens = [
-    "local-project-overview",
-    "local-project-title",
-    "local-project-summary",
-    "local-provider-strip",
+    "operations-overview",
+    "operations-title",
+    "operation-project-title",
+    "operation-project-summary",
+    "operation-provider-strip",
     "localProjectConnectSourceUrl",
     "loadLocalProjectConnectSource",
     "renderLocalProjectConnect",
-    "local-project-browser-access",
-    "local-project-runtime",
+    "operation-project-browser-access",
+    "operation-project-runtime",
 ]
 
 checks = [
@@ -156,7 +157,7 @@ payload = {
         "terminal_project_access_required": bool(project.get("terminal_project_access_required", True)),
         "browser_filesystem_access_allowed": bool(project.get("browser_filesystem_access_allowed", False)),
         "runtime_execution_allowed": bool(project.get("runtime_execution_allowed", False)),
-        "surface": "read_only_status_view",
+        "surface": "compact_read_only_status_view",
     },
     "checks": checks,
 }

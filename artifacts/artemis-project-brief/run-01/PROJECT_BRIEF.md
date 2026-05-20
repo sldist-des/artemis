@@ -6,7 +6,7 @@ O ARTEMIS Symphony esta pronto como sistema local supervisionado: ele organiza t
 
 ## O que esta pronto
 
-- 83 de 83 Exec Packs estao concluidos e versionados.
+- 95 de 95 Exec Packs estao concluidos e versionados.
 - O Validation Gate registra 129 checks aprovados e 0 falhas tecnicas.
 - O Project Graph conecta 33 nos e 127 relacoes entre tarefas, agentes, gates, memoria, custos e evidencias.
 - A Memory Zone tem 3 zonas para contexto humano-AI versionado em Git.

@@ -2435,7 +2435,7 @@
         <h2 id="plain-title">Estado atual</h2>
         <p id="plain-status-copy">Pronto para operar. Execucao real so no terminal.</p>
         <div class="plain-strip" aria-label="Resumo simples do projeto">
-          <div class="plain-fact"><b id="plain-tasks">83/83</b><span>tarefas fechadas</span></div>
+          <div class="plain-fact"><b id="plain-tasks">95/95</b><span>tarefas fechadas</span></div>
           <div class="plain-fact"><b id="plain-validation">129/0</b><span>validacoes</span></div>
           <div class="plain-fact"><b id="plain-gates">2</b><span>decisoes humanas</span></div>
           <div class="plain-fact"><b id="plain-next">nenhum</b><span>proximo corte</span></div>
@@ -3020,6 +3020,7 @@
     const agentRuntimeDoneLedgerSourceUrl = "../artifacts/artemis-agent-runtime-done-ledger/run-01/done-ledger.json";
     const localProjectConnectSourceUrl = "../artifacts/artemis-portal-local-project-connect/run-01/local-project-connect.json";
     const externalProjectRegistrationSourceUrl = "../artifacts/artemis-portal-external-project-registration/run-01/external-project-registration.json";
+    const projectSelectorRegistryIntakeSourceUrl = "../artifacts/artemis-portal-project-selector-registry-intake/run-01/project-selector-registry-intake.json";
     const runtimeGatewayServiceSourceUrl = "../artifacts/artemis-portal-runtime-gateway-service/run-01/runtime-gateway-service.json";
 
     const columns = [
@@ -4802,8 +4803,8 @@
       source: "seed",
       overall: "human_project_brief_ready",
       summary: {
-        tasks_total: 83,
-        tasks_done: 83,
+        tasks_total: 95,
+        tasks_done: 95,
         validation_passed: 129,
         validation_failed: 0,
         human_gates: 2,
@@ -4815,7 +4816,7 @@
         headline: "ARTEMIS Symphony em linguagem de projeto",
         status: "O ARTEMIS Symphony esta pronto como sistema local supervisionado: ele organiza tarefas, evidencia, validacao, memoria e limites antes de qualquer execucao automatica.",
         ready: [
-          "83 de 83 Exec Packs estao concluidos e versionados.",
+          "95 de 95 Exec Packs estao concluidos e versionados.",
           "O Validation Gate registra 129 checks aprovados e 0 falhas tecnicas.",
           "O Project Graph conecta tarefas, agentes, gates, memoria, custos, runtime dry-run, approval gate, decision intake, launcher, validacao, handoff, review gate e Done Ledger."
         ],
@@ -5701,6 +5702,23 @@
           <span class="operator-pill" data-state="${escapeHtml(state)}">${escapeHtml(operator.display_name || operator.operator_id || "Operador")}: ${escapeHtml(labelConnectionState(state))}</span>
         `;
       }).join("");
+    }
+
+    function renderProjectSelectorRegistryIntake(model) {
+      const contract = model.registry_contract || {};
+      const selected = contract.selected_project || {};
+      const candidates = Array.isArray(contract.candidate_entries) ? contract.candidate_entries : [];
+      const selectedRoot = selected.repo_root || selected.project_path || selected.display_name || "Projeto";
+
+      localProjectStateNode.textContent = "selecionado";
+      localProjectPathNode.textContent = compactPath(selectedRoot);
+      localProjectPathNode.title = selectedRoot;
+      externalRegistrationStateNode.textContent = candidates.length ? "revisao" : "sem fila";
+      externalRegistrationCandidatesNode.textContent = String(candidates.length);
+      externalRegistrationRegisteredNode.textContent = String(contract.external_projects_registered ?? 0);
+      externalRegistrationSwitchingNode.textContent = contract.project_switching_allowed ? "sim" : "nao";
+      runtimeGatewayStateNode.textContent = contract.runtime_execution_allowed ? "liberado" : "bloqueado";
+      runtimeGatewayPanelCanStartNode.textContent = contract.runtime_execution_allowed ? "sim" : "nao";
     }
 
     function normalizeCard(item) {
@@ -6724,6 +6742,18 @@
       }
     }
 
+    async function loadProjectSelectorRegistryIntakeSource() {
+      try {
+        const response = await fetch(projectSelectorRegistryIntakeSourceUrl, { cache: "no-store" });
+        if (!response.ok) return null;
+        const payload = await response.json();
+        if (!payload.registry_contract) return null;
+        return payload;
+      } catch {
+        return null;
+      }
+    }
+
     async function loadEventSource() {
       try {
         const response = await fetch(eventSourceUrl, { cache: "no-store" });
@@ -6955,6 +6985,8 @@
       if (loadedExternalProjectRegistration) renderExternalProjectRegistration(loadedExternalProjectRegistration);
       const loadedRuntimeGatewayService = await loadRuntimeGatewayServiceSource();
       if (loadedRuntimeGatewayService) renderRuntimeGatewayService(loadedRuntimeGatewayService);
+      const loadedProjectSelectorRegistryIntake = await loadProjectSelectorRegistryIntakeSource();
+      if (loadedProjectSelectorRegistryIntake) renderProjectSelectorRegistryIntake(loadedProjectSelectorRegistryIntake);
       const loadedEvents = await loadEventSource();
       renderTimeline(loadedEvents || seedEvents);
     }

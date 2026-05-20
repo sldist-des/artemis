@@ -311,6 +311,8 @@ docs/portal/ARTEMIS_PORTAL_HUMAN_ACCEPTANCE_SURFACE.md
 scripts/artemis-portal-human-acceptance-surface.sh --artifact-root artifacts/artemis-portal-human-acceptance-surface/run-01
 docs/portal/ARTEMIS_PORTAL_PROJECT_SELECTOR.md
 scripts/artemis-portal-project-selector.sh --artifact-root artifacts/artemis-portal-project-selector/run-01
+docs/portal/ARTEMIS_PORTAL_PROJECT_SELECTOR_REGISTRY_INTAKE.md
+scripts/artemis-portal-project-selector-registry-intake.sh --artifact-root artifacts/artemis-portal-project-selector-registry-intake/run-01
 docs/portal/ARTEMIS_PORTAL_LOCAL_PROJECT_CONNECT.md
 scripts/artemis-portal-local-project-connect.sh --project . --artifact-root artifacts/artemis-portal-local-project-connect/run-01
 docs/portal/ARTEMIS_PORTAL_EXTERNAL_PROJECT_REGISTRATION.md

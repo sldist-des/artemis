@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T14:41:15Z",
+  "generated_at": "2026-05-20T14:51:05Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1129,6 +1129,18 @@
       "summary": "A primeira tela mostra apenas estado atual, operacao e tres links de evidencia.",
       "exec_pack": "docs/exec-packs/done/TKT-093-artemis-control-plane-human-home-redesign.md",
       "evidence": "artifacts/artemis-control-plane-human-home-redesign/run-01/STATUS.md",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-094",
+      "ticket": "TKT-094",
+      "title": "ARTEMIS Portal Project Selector Registry Intake",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O ARTEMIS registra que o projeto atual segue como `selected_read_only`, que o",
+      "exec_pack": "docs/exec-packs/done/TKT-094-artemis-portal-project-selector-registry-intake.md",
+      "evidence": "artifacts/artemis-portal-project-selector-registry-intake/run-01/project-selector-registry-intake.json",
       "tags": ["exec-pack", "done"]
     }
   ]

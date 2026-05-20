@@ -877,6 +877,47 @@ if ! test -f /tmp/artemis-portal-external-project-registration/EXTERNAL_PROJECT_
   echo "scripts/artemis-portal-external-project-registration.sh did not write external project registration documentation artifact" >&2
   exit 1
 fi
+scripts/artemis-portal-project-selector-registry-intake.sh --artifact-root /tmp/artemis-portal-project-selector-registry-intake --json >/tmp/artemis-portal-project-selector-registry-intake.json
+if ! grep -q '"overall": "project_selector_registry_intake_ready"' /tmp/artemis-portal-project-selector-registry-intake.json; then
+  echo "scripts/artemis-portal-project-selector-registry-intake.sh did not report project_selector_registry_intake_ready" >&2
+  exit 1
+fi
+if ! grep -q '"selected_project_id": "artemis_method_kit"' /tmp/artemis-portal-project-selector-registry-intake.json; then
+  echo "scripts/artemis-portal-project-selector-registry-intake.sh did not preserve selected ARTEMIS project" >&2
+  exit 1
+fi
+if ! grep -q '"candidate_count": 1' /tmp/artemis-portal-project-selector-registry-intake.json; then
+  echo "scripts/artemis-portal-project-selector-registry-intake.sh did not preserve the terminal-connect candidate" >&2
+  exit 1
+fi
+if ! grep -q '"external_projects_registered": 0' /tmp/artemis-portal-project-selector-registry-intake.json; then
+  echo "scripts/artemis-portal-project-selector-registry-intake.sh registered external projects unexpectedly" >&2
+  exit 1
+fi
+if ! grep -q '"project_switching_allowed": false' /tmp/artemis-portal-project-selector-registry-intake.json; then
+  echo "scripts/artemis-portal-project-selector-registry-intake.sh allowed project switching" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-portal-project-selector-registry-intake.json; then
+  echo "scripts/artemis-portal-project-selector-registry-intake.sh allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": false' /tmp/artemis-portal-project-selector-registry-intake.json; then
+  echo "scripts/artemis-portal-project-selector-registry-intake.sh started agents" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-portal-project-selector-registry-intake.json; then
+  echo "scripts/artemis-portal-project-selector-registry-intake.sh executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-project-selector-registry-intake.json; then
+  echo "scripts/artemis-portal-project-selector-registry-intake.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-project-selector-registry-intake/PROJECT_SELECTOR_REGISTRY_INTAKE.md; then
+  echo "scripts/artemis-portal-project-selector-registry-intake.sh did not write registry intake documentation artifact" >&2
+  exit 1
+fi
 scripts/artemis-control-plane-external-project-registration-view.sh --artifact-root /tmp/artemis-control-plane-external-project-registration-view --json >/tmp/artemis-control-plane-external-project-registration-view.json
 if ! grep -q '"overall": "control_plane_external_project_registration_view_ready"' /tmp/artemis-control-plane-external-project-registration-view.json; then
   echo "scripts/artemis-control-plane-external-project-registration-view.sh did not report control_plane_external_project_registration_view_ready" >&2

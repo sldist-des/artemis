@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-20T14:52:20Z",
+  "source": "scripts/artemis-portal-project-selector-registry-intake.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_project_selector_registry_intake_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-20T14:52:20Z",
+      "producer": {
+        "adapter": "portal_project_selector",
+        "name": "scripts/artemis-portal-project-selector-registry-intake.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-094",
+        "task_id": "tkt-094",
+        "title": "ARTEMIS Portal Project Selector Registry Intake",
+        "exec_pack": "docs/exec-packs/done/TKT-094-artemis-portal-project-selector-registry-intake.md",
+        "artifact_root": "artifacts/artemis-portal-project-selector-registry-intake/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "registry_intake",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-project-selector-registry-intake/run-01",
+        "status_path": "artifacts/artemis-portal-project-selector-registry-intake/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-project-selector-registry-intake/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-project-selector-registry-intake/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-project-selector-registry-intake/run-01/project-selector-registry-intake.json",
+          "artifacts/artemis-portal-project-selector-registry-intake/run-01/PROJECT_SELECTOR_REGISTRY_INTAKE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-094"
+      },
+      "payload": {
+        "project_selector_registry_intake_ready": true,
+        "selected_project_id": "artemis_method_kit",
+        "candidate_count": 1,
+        "external_projects_registered": 0,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-095 - Control Plane Project Registry Home State"
+      }
+    }
+  ]
+}

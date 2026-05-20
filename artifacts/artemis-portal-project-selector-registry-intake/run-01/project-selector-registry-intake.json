@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-20T14:52:20Z",
+  "overall": "project_selector_registry_intake_ready",
+  "project_selector_registry_intake_ready": true,
+  "secret_values_recorded": false,
+  "provider_auth_connected": false,
+  "runtime_auth_executed": false,
+  "runtime_session_started": false,
+  "worktree_created": false,
+  "branch_changed": false,
+  "project_switching_allowed": false,
+  "runtime_execution_allowed": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-095 - Control Plane Project Registry Home State",
+  "missing_files": [],
+  "registry_contract": {
+    "purpose": "Join selected project context with terminal-connect candidates before any project switcher or runtime route.",
+    "state": "registry_intake_read_model",
+    "source_authority": [
+      "artifacts/artemis-portal-project-selector/run-01/project-selector-contract.json",
+      "artifacts/artemis-portal-external-project-registration/run-01/external-project-registration.json"
+    ],
+    "selected_project_id": "artemis_method_kit",
+    "selected_project": {
+      "project_id": "artemis_method_kit",
+      "display_name": "ARTEMIS Method Kit",
+      "repo_root": "/srv/veri",
+      "git_branch": "main",
+      "selection_state": "selected_read_only",
+      "registry_state": "selected_read_only",
+      "runtime_execution_allowed": false,
+      "remote_writes_allowed": false,
+      "human_review_required_for_runtime": true
+    },
+    "registry_entries": [
+      {
+        "project_id": "artemis_method_kit",
+        "display_name": "ARTEMIS Method Kit",
+        "repo_root": "/srv/veri",
+        "git_branch": "main",
+        "selection_state": "selected_read_only",
+        "registry_state": "selected_read_only",
+        "runtime_execution_allowed": false,
+        "remote_writes_allowed": false,
+        "human_review_required_for_runtime": true
+      }
+    ],
+    "candidate_entries": [
+      {
+        "project_id": "veri_d55ae65706",
+        "display_name": "veri",
+        "repo_root": "/srv/veri",
+        "git_branch": "main",
+        "selection_state": "not_selectable",
+        "registry_state": "candidate_review_pending",
+        "source_connect_artifact": "artifacts/artemis-portal-local-project-connect/run-01/local-project-connect.json",
+        "provider_count": 3,
+        "runtime_execution_allowed": false,
+        "remote_writes_allowed": false,
+        "human_review_required": true
+      }
+    ],
+    "candidate_count": 1,
+    "registered_project_count": 1,
+    "external_projects_registered": 0,
+    "selectable_project_count": 1,
+    "project_switching_allowed": false,
+    "runtime_execution_allowed": false,
+    "provider_auth_connected": false,
+    "worktree_created": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "state_model": [
+      "selected_read_only",
+      "candidate_review_pending",
+      "registered_read_only",
+      "runtime_blocked",
+      "rejected"
+    ],
+    "intake_rules": [
+      "Selected ARTEMIS method project is visible as read-only context.",
+      "Terminal-connect candidates remain review-only and not selectable.",
+      "External candidates do not become registered projects automatically.",
+      "Project switching remains blocked until human review records a registry decision.",
+      "Runtime remains blocked until workspace, provider auth, budget, validation and human runtime gates pass."
+    ]
+  },
+  "checks": [
+    {
+      "id": "project_selector_ready",
+      "status": "passed",
+      "detail": "Registry Intake consumes the Project Selector read-only contract."
+    },
+    {
+      "id": "external_registration_ready",
+      "status": "passed",
+      "detail": "Registry Intake consumes terminal-connect registration candidates."
+    },
+    {
+      "id": "selected_project_preserved",
+      "status": "passed",
+      "detail": "Current ARTEMIS project remains selected read-only."
+    },
+    {
+      "id": "candidate_not_selectable",
+      "status": "passed",
+      "detail": "Candidates remain review-only and cannot be selected by this cut."
+    },
+    {
+      "id": "external_projects_not_registered",
+      "status": "passed",
+      "detail": "No external project is registered automatically."
+    },
+    {
+      "id": "project_switching_blocked",
+      "status": "passed",
+      "detail": "The registry intake does not allow switching active project."
+    },
+    {
+      "id": "runtime_still_blocked",
+      "status": "passed",
+      "detail": "Registry intake does not permit runtime execution."
+    },
+    {
+      "id": "no_runtime_side_effects",
+      "status": "passed",
+      "detail": "No provider auth, worktree, agent, command, token spend or remote mutation happened."
+    }
+  ]
+}

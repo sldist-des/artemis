@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T17:35:25Z",
+  "generated_at": "2026-05-20T12:19:05Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-15T17:35:25Z",
+      "generated_at": "2026-05-20T12:19:05Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -74,7 +74,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:35:25Z",
+      "generated_at": "2026-05-20T12:19:05Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -161,7 +161,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:35:25Z",
+      "generated_at": "2026-05-20T12:19:05Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -254,7 +254,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-15T17:35:25Z",
+      "generated_at": "2026-05-20T12:19:05Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -1544,7 +1544,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:34:15Z",
+      "generated_at": "2026-05-15T17:35:25Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -1612,7 +1612,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:34:24Z",
+      "generated_at": "2026-05-15T17:35:25Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -4854,7 +4854,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:34:24Z",
+      "generated_at": "2026-05-15T17:35:25Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -4913,7 +4913,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:34:24Z",
+      "generated_at": "2026-05-15T17:35:25Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -4975,7 +4975,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-057_guided_collaboration",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:34:24Z",
+      "generated_at": "2026-05-15T17:35:30Z",
       "producer": {
         "adapter": "guided_collaboration",
         "name": "scripts/artemis-guided-collaboration.sh",
@@ -5040,7 +5040,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-058_agent_launch_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:34:24Z",
+      "generated_at": "2026-05-15T17:35:30Z",
       "producer": {
         "adapter": "agent_launch_contract",
         "name": "scripts/artemis-agent-launch-contract.sh",
@@ -6644,6 +6644,63 @@
         "secret_values_recorded": false,
         "remote_state_mutated": false,
         "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_runtime_gateway_contract_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-20T12:18:50Z",
+      "producer": {
+        "adapter": "portal_runtime_gateway",
+        "name": "scripts/artemis-portal-runtime-gateway.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-083",
+        "task_id": "tkt-083",
+        "title": "ARTEMIS Portal Runtime Gateway Contract",
+        "exec_pack": "docs/exec-packs/done/TKT-083-artemis-portal-runtime-gateway.md",
+        "artifact_root": "artifacts/artemis-portal-runtime-gateway/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "context",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-runtime-gateway/run-01",
+        "status_path": "artifacts/artemis-portal-runtime-gateway/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-runtime-gateway/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-runtime-gateway/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-runtime-gateway/run-01/runtime-gateway-contract.json",
+          "artifacts/artemis-portal-runtime-gateway/run-01/RUNTIME_GATEWAY.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-083"
+      },
+      "payload": {
+        "runtime_gateway_ready": true,
+        "operator_adapters": 3,
+        "panel_can_start_runtime": false,
+        "secret_values_recorded": false,
+        "runtime_auth_executed": false,
+        "runtime_session_started": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-084 - ARTEMIS Portal Runtime Gateway Read-only Service"
       }
     }
   ]

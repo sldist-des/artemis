@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-20T12:18:50Z",
+  "overall": "runtime_gateway_ready",
+  "runtime_gateway_ready": true,
+  "secret_values_recorded": false,
+  "runtime_auth_executed": false,
+  "runtime_session_started": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-084 - ARTEMIS Portal Runtime Gateway Read-only Service",
+  "missing_files": [],
+  "gateway_contract": {
+    "purpose": "Define the safe multi-operator boundary between the ARTEMIS Portal UI and provider-backed agent runtimes.",
+    "state": "contract_only",
+    "panel_can_start_runtime": false,
+    "runtime_gateway_required": true,
+    "secret_values_recorded": false,
+    "runtime_auth_executed": false,
+    "runtime_session_started": false,
+    "agents_started": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "remote_state_mutated": false,
+    "operator_adapters": [
+      {
+        "operator_id": "codex_app_server",
+        "display_name": "Codex app-server",
+        "provider_id": "openai_codex",
+        "adapter": "codex_app_server",
+        "runtime_surface": "app_server",
+        "connection_state": "planned_not_connected",
+        "auth_state": "requires_provider_connection_and_vault_lease",
+        "best_for": [
+          "long implementation",
+          "complex refactor",
+          "frontier reasoning",
+          "supervised approvals and artifacts"
+        ],
+        "credential_lease_required": true,
+        "budget_policy_required": true,
+        "workspace_session_required": true,
+        "command_plan_required": true,
+        "human_execution_gate_required": true,
+        "validation_required": true,
+        "cost_tracking_required": true,
+        "allowed_operations": [
+          "read_status",
+          "draft_assignment",
+          "draft_command_plan",
+          "stream_redacted_events_after_gate",
+          "produce_handoff"
+        ],
+        "forbidden_operations": [
+          "start_without_gate",
+          "receive_raw_secret",
+          "run_unplanned_command",
+          "remote_write_without_gate",
+          "store_raw_stdout",
+          "store_full_prompt_transcript"
+        ],
+        "evidence_outputs": [
+          "redacted_event_stream",
+          "command_plan",
+          "validation_results",
+          "completion_handoff"
+        ]
+      },
+      {
+        "operator_id": "claude_code",
+        "display_name": "Claude Code",
+        "provider_id": "anthropic_claude",
+        "adapter": "claude_agent_sdk",
+        "runtime_surface": "cli_or_sdk",
+        "connection_state": "planned_not_connected",
+        "auth_state": "requires_provider_connection_and_vault_lease",
+        "best_for": [
+          "repository mapping",
+          "language and framework orientation",
+          "short to medium implementation slices",
+          "handoff drafting"
+        ],
+        "credential_lease_required": true,
+        "budget_policy_required": true,
+        "workspace_session_required": true,
+        "command_plan_required": true,
+        "human_execution_gate_required": true,
+        "validation_required": true,
+        "cost_tracking_required": true,
+        "allowed_operations": [
+          "read_status",
+          "draft_assignment",
+          "draft_command_plan",
+          "capture_redacted_tool_events_after_gate",
+          "produce_handoff"
+        ],
+        "forbidden_operations": [
+          "start_without_gate",
+          "receive_raw_secret",
+          "run_unplanned_command",
+          "remote_write_without_gate",
+          "store_raw_stdout",
+          "store_full_prompt_transcript"
+        ],
+        "evidence_outputs": [
+          "redacted_tool_events",
+          "command_plan",
+          "validation_results",
+          "completion_handoff"
+        ]
+      },
+      {
+        "operator_id": "antigravity_cli",
+        "display_name": "Antigravity CLI",
+        "provider_id": "antigravity",
+        "adapter": "antigravity_cli",
+        "runtime_surface": "cli_unverified",
+        "connection_state": "unverified_adapter",
+        "auth_state": "blocked_until_capability_discovery",
+        "best_for": [
+          "future operator adapter",
+          "experimental runtime after local discovery",
+          "only bounded tasks after contract review"
+        ],
+        "credential_lease_required": true,
+        "budget_policy_required": true,
+        "workspace_session_required": true,
+        "command_plan_required": true,
+        "human_execution_gate_required": true,
+        "validation_required": true,
+        "cost_tracking_required": true,
+        "allowed_operations": [
+          "read_status_after_adapter_exists",
+          "draft_assignment_only",
+          "record_capability_discovery"
+        ],
+        "forbidden_operations": [
+          "available_before_discovery",
+          "start_without_gate",
+          "receive_raw_secret",
+          "run_unplanned_command",
+          "remote_write_without_gate",
+          "store_raw_stdout",
+          "store_full_prompt_transcript"
+        ],
+        "evidence_outputs": [
+          "capability_discovery_report",
+          "adapter_contract",
+          "validation_results"
+        ]
+      }
+    ],
+    "operator_rules": [
+      "Portal UI talks to Runtime Gateway, never directly to provider CLIs.",
+      "Every operator must be registered as an adapter before assignment.",
+      "One writer per worktree.",
+      "Every provider-backed operator requires Credential Vault lease, Budget Ledger binding, Workspace Session, Command Plan and Human Execution Gate.",
+      "Experimental operators stay blocked until local capability discovery and adapter contract review pass.",
+      "Verifier runs must be separated from the implementation run they review.",
+      "Human owner can pause, stop, reject or require more evidence at any time."
+    ],
+    "portal_operations": {
+      "allowed_before_gate": [
+        "list_projects",
+        "list_registered_operators",
+        "show_connection_state",
+        "create_draft_task",
+        "draft_assignment",
+        "draft_command_plan",
+        "request_human_gate",
+        "show_planned_budget",
+        "show_validation_evidence"
+      ],
+      "forbidden_before_gate": [
+        "send_prompt_to_provider",
+        "start_runtime",
+        "execute_command",
+        "spend_tokens",
+        "open_runtime_websocket",
+        "remote_write",
+        "push_branch",
+        "open_pr",
+        "deploy",
+        "store_secret",
+        "store_raw_runtime_logs"
+      ]
+    },
+    "record_contract": {
+      "required_fields": [
+        "operator_id",
+        "display_name",
+        "provider_id",
+        "adapter",
+        "runtime_surface",
+        "connection_state",
+        "auth_state",
+        "credential_lease_required",
+        "budget_policy_required",
+        "workspace_session_required",
+        "command_plan_required",
+        "human_execution_gate_required",
+        "validation_required",
+        "cost_tracking_required",
+        "allowed_operations",
+        "forbidden_operations",
+        "evidence_outputs"
+      ],
+      "forbidden_fields": [
+        "plaintext_secret",
+        "raw_access_token",
+        "raw_refresh_token",
+        "private_key_material",
+        "session_cookie",
+        "full_prompt_transcript",
+        "raw_runtime_stdout",
+        "raw_runtime_stderr",
+        "provider_billing_secret",
+        "git_remote_token"
+      ]
+    },
+    "upstream_state": {
+      "runtime_session_overall": "runtime_session_ready",
+      "agent_registry_overall": "registry_ready",
+      "credential_vault_overall": "contract_ready",
+      "registered_profile_count": 3,
+      "known_vault_providers": [
+        "anthropic_claude",
+        "github",
+        "openai_codex"
+      ]
+    }
+  },
+  "checks": [
+    {
+      "id": "runtime_session_contract_ready",
+      "status": "passed",
+      "detail": "Gateway consumes Runtime Session before any provider launch."
+    },
+    {
+      "id": "agent_registry_contract_ready",
+      "status": "passed",
+      "detail": "Gateway operators are derived from registered/provider-aware profiles."
+    },
+    {
+      "id": "credential_vault_contract_ready",
+      "status": "passed",
+      "detail": "Gateway requires vault lease policy and never stores raw secrets."
+    },
+    {
+      "id": "multi_operator_adapters_declared",
+      "status": "passed",
+      "detail": "Codex app-server, Claude Code and Antigravity CLI adapter slots are declared."
+    },
+    {
+      "id": "experimental_adapter_blocked",
+      "status": "passed",
+      "detail": "Antigravity remains blocked until capability discovery confirms the local CLI contract."
+    },
+    {
+      "id": "no_runtime_side_effects",
+      "status": "passed",
+      "detail": "No auth, runtime session, agent launch, token spend, command execution or remote mutation happened."
+    },
+    {
+      "id": "gateway_required_before_panel_execution",
+      "status": "passed",
+      "detail": "Control Plane cannot directly start providers; it must pass through the Gateway."
+    }
+  ]
+}

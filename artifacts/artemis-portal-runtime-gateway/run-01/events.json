@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-20T12:18:50Z",
+  "source": "scripts/artemis-portal-runtime-gateway.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_runtime_gateway_contract_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-20T12:18:50Z",
+      "producer": {
+        "adapter": "portal_runtime_gateway",
+        "name": "scripts/artemis-portal-runtime-gateway.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-083",
+        "task_id": "tkt-083",
+        "title": "ARTEMIS Portal Runtime Gateway Contract",
+        "exec_pack": "docs/exec-packs/done/TKT-083-artemis-portal-runtime-gateway.md",
+        "artifact_root": "artifacts/artemis-portal-runtime-gateway/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "context",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-runtime-gateway/run-01",
+        "status_path": "artifacts/artemis-portal-runtime-gateway/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-runtime-gateway/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-runtime-gateway/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-runtime-gateway/run-01/runtime-gateway-contract.json",
+          "artifacts/artemis-portal-runtime-gateway/run-01/RUNTIME_GATEWAY.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-083"
+      },
+      "payload": {
+        "runtime_gateway_ready": true,
+        "operator_adapters": 3,
+        "panel_can_start_runtime": false,
+        "secret_values_recorded": false,
+        "runtime_auth_executed": false,
+        "runtime_session_started": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-084 - ARTEMIS Portal Runtime Gateway Read-only Service"
+      }
+    }
+  ]
+}

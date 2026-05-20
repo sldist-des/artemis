@@ -51,6 +51,7 @@ docs/portal/ARTEMIS_PORTAL_AGENT_CONVERSATION.md
 docs/portal/ARTEMIS_PORTAL_TASK_CONTROL_SURFACE.md
 docs/portal/ARTEMIS_PORTAL_VALIDATION_EVIDENCE_SURFACE.md
 docs/portal/ARTEMIS_PORTAL_HUMAN_ACCEPTANCE_SURFACE.md
+docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
@@ -129,6 +130,7 @@ scripts/artemis-portal-agent-conversation.sh
 scripts/artemis-portal-task-control-surface.sh
 scripts/artemis-portal-validation-evidence-surface.sh
 scripts/artemis-portal-human-acceptance-surface.sh
+scripts/artemis-portal-runtime-gateway.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -244,6 +246,7 @@ sh -n scripts/artemis-portal-agent-conversation.sh
 sh -n scripts/artemis-portal-task-control-surface.sh
 sh -n scripts/artemis-portal-validation-evidence-surface.sh
 sh -n scripts/artemis-portal-human-acceptance-surface.sh
+sh -n scripts/artemis-portal-runtime-gateway.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -560,6 +563,59 @@ if ! grep -q '"commands_executed": 0' /tmp/artemis-portal-human-acceptance-surfa
 fi
 if ! test -f /tmp/artemis-portal-human-acceptance-surface/HUMAN_ACCEPTANCE_SURFACE.md; then
   echo "scripts/artemis-portal-human-acceptance-surface.sh did not write human acceptance documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-portal-runtime-gateway.sh --artifact-root /tmp/artemis-portal-runtime-gateway --json >/tmp/artemis-portal-runtime-gateway.json
+if ! grep -q '"overall": "runtime_gateway_ready"' /tmp/artemis-portal-runtime-gateway.json; then
+  echo "scripts/artemis-portal-runtime-gateway.sh did not report runtime_gateway_ready" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_gateway_required": true' /tmp/artemis-portal-runtime-gateway.json; then
+  echo "scripts/artemis-portal-runtime-gateway.sh did not require the gateway" >&2
+  exit 1
+fi
+if ! grep -q '"panel_can_start_runtime": false' /tmp/artemis-portal-runtime-gateway.json; then
+  echo "scripts/artemis-portal-runtime-gateway.sh allowed panel direct runtime start" >&2
+  exit 1
+fi
+if ! grep -q '"operator_id": "codex_app_server"' /tmp/artemis-portal-runtime-gateway.json; then
+  echo "scripts/artemis-portal-runtime-gateway.sh did not declare Codex app-server operator" >&2
+  exit 1
+fi
+if ! grep -q '"operator_id": "claude_code"' /tmp/artemis-portal-runtime-gateway.json; then
+  echo "scripts/artemis-portal-runtime-gateway.sh did not declare Claude Code operator" >&2
+  exit 1
+fi
+if ! grep -q '"operator_id": "antigravity_cli"' /tmp/artemis-portal-runtime-gateway.json; then
+  echo "scripts/artemis-portal-runtime-gateway.sh did not declare Antigravity CLI operator slot" >&2
+  exit 1
+fi
+if ! grep -q '"connection_state": "unverified_adapter"' /tmp/artemis-portal-runtime-gateway.json; then
+  echo "scripts/artemis-portal-runtime-gateway.sh did not block unverified adapter" >&2
+  exit 1
+fi
+if ! grep -q '"secret_values_recorded": false' /tmp/artemis-portal-runtime-gateway.json; then
+  echo "scripts/artemis-portal-runtime-gateway.sh recorded secret values" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_auth_executed": false' /tmp/artemis-portal-runtime-gateway.json; then
+  echo "scripts/artemis-portal-runtime-gateway.sh executed runtime auth" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": false' /tmp/artemis-portal-runtime-gateway.json; then
+  echo "scripts/artemis-portal-runtime-gateway.sh started agents" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-portal-runtime-gateway.json; then
+  echo "scripts/artemis-portal-runtime-gateway.sh executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-runtime-gateway.json; then
+  echo "scripts/artemis-portal-runtime-gateway.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-runtime-gateway/RUNTIME_GATEWAY.md; then
+  echo "scripts/artemis-portal-runtime-gateway.sh did not write runtime gateway documentation artifact" >&2
   exit 1
 fi
 

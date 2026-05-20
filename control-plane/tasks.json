@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-15T17:33:28Z",
+  "generated_at": "2026-05-20T12:19:40Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -997,6 +997,18 @@
       "summary": "Um contrato verificavel deve definir decision record, estados de aceite,",
       "exec_pack": "docs/exec-packs/done/TKT-082-artemis-portal-human-acceptance-surface.md",
       "evidence": "artifacts/artemis-portal-human-acceptance-surface/run-01/human-acceptance-surface-contract.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-083",
+      "ticket": "TKT-083",
+      "title": "ARTEMIS Portal Runtime Gateway",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O ARTEMIS passa a ter uma fronteira explicita para operacao multi-operador:",
+      "exec_pack": "docs/exec-packs/done/TKT-083-artemis-portal-runtime-gateway.md",
+      "evidence": "artifacts/artemis-portal-runtime-gateway/run-01/runtime-gateway-contract.json",
       "tags": ["exec-pack", "done"]
     }
   ]

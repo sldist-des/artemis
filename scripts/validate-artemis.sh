@@ -139,6 +139,7 @@ scripts/artemis-portal-local-project-connect.sh
 scripts/artemis-portal-external-project-registration.sh
 scripts/artemis-portal-runtime-gateway.sh
 scripts/artemis-portal-runtime-gateway-service.sh
+scripts/artemis-control-plane-external-project-registration-view.sh
 scripts/artemis-control-plane-local-project-connect-view.sh
 scripts/artemis-control-plane-runtime-gateway-view.sh
 scripts/artemis-approved-workspace-cleanup.sh
@@ -261,6 +262,7 @@ sh -n scripts/artemis-portal-local-project-connect.sh
 sh -n scripts/artemis-portal-external-project-registration.sh
 sh -n scripts/artemis-portal-runtime-gateway.sh
 sh -n scripts/artemis-portal-runtime-gateway-service.sh
+sh -n scripts/artemis-control-plane-external-project-registration-view.sh
 sh -n scripts/artemis-control-plane-local-project-connect-view.sh
 sh -n scripts/artemis-control-plane-runtime-gateway-view.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
@@ -873,6 +875,51 @@ if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-external-project-registrati
 fi
 if ! test -f /tmp/artemis-portal-external-project-registration/EXTERNAL_PROJECT_REGISTRATION.md; then
   echo "scripts/artemis-portal-external-project-registration.sh did not write external project registration documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-control-plane-external-project-registration-view.sh --artifact-root /tmp/artemis-control-plane-external-project-registration-view --json >/tmp/artemis-control-plane-external-project-registration-view.json
+if ! grep -q '"overall": "control_plane_external_project_registration_view_ready"' /tmp/artemis-control-plane-external-project-registration-view.json; then
+  echo "scripts/artemis-control-plane-external-project-registration-view.sh did not report control_plane_external_project_registration_view_ready" >&2
+  exit 1
+fi
+if ! grep -q '"candidate_count": 1' /tmp/artemis-control-plane-external-project-registration-view.json; then
+  echo "scripts/artemis-control-plane-external-project-registration-view.sh did not render the terminal-connect candidate" >&2
+  exit 1
+fi
+if ! grep -q '"external_projects_registered": 0' /tmp/artemis-control-plane-external-project-registration-view.json; then
+  echo "scripts/artemis-control-plane-external-project-registration-view.sh registered external projects unexpectedly" >&2
+  exit 1
+fi
+if ! grep -q '"project_switching_allowed": false' /tmp/artemis-control-plane-external-project-registration-view.json; then
+  echo "scripts/artemis-control-plane-external-project-registration-view.sh allowed project switching" >&2
+  exit 1
+fi
+if ! grep -q '"candidate_from_terminal_connect"' /tmp/artemis-control-plane-external-project-registration-view.json; then
+  echo "scripts/artemis-control-plane-external-project-registration-view.sh did not preserve candidate_from_terminal_connect state" >&2
+  exit 1
+fi
+if ! grep -q '"provider_auth_connected": false' /tmp/artemis-control-plane-external-project-registration-view.json; then
+  echo "scripts/artemis-control-plane-external-project-registration-view.sh connected provider auth" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-control-plane-external-project-registration-view.json; then
+  echo "scripts/artemis-control-plane-external-project-registration-view.sh allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": false' /tmp/artemis-control-plane-external-project-registration-view.json; then
+  echo "scripts/artemis-control-plane-external-project-registration-view.sh started agents" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-control-plane-external-project-registration-view.json; then
+  echo "scripts/artemis-control-plane-external-project-registration-view.sh executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-control-plane-external-project-registration-view.json; then
+  echo "scripts/artemis-control-plane-external-project-registration-view.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-control-plane-external-project-registration-view/CONTROL_PLANE_EXTERNAL_PROJECT_REGISTRATION_VIEW.md; then
+  echo "scripts/artemis-control-plane-external-project-registration-view.sh did not write external project registration view documentation artifact" >&2
   exit 1
 fi
 scripts/artemis-control-plane-local-project-connect-view.sh --artifact-root /tmp/artemis-control-plane-local-project-connect-view --json >/tmp/artemis-control-plane-local-project-connect-view.json

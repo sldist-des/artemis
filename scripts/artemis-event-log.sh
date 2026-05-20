@@ -241,6 +241,7 @@ for events_path in [
     Path("artifacts/artemis-portal-external-project-registration/run-01/events.json"),
     Path("artifacts/artemis-portal-runtime-gateway/run-01/events.json"),
     Path("artifacts/artemis-portal-runtime-gateway-service/run-01/events.json"),
+    Path("artifacts/artemis-control-plane-external-project-registration-view/run-01/events.json"),
     Path("artifacts/artemis-control-plane-local-project-connect-view/run-01/events.json"),
     Path("artifacts/artemis-control-plane-runtime-gateway-view/run-01/events.json"),
 ]:

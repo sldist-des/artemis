@@ -115,5 +115,5 @@ Campos proibidos:
 - gastar tokens;
 - fazer push, PR, deploy ou mutacao remota.
 
-Proximo corte recomendado: renderizar a fila de candidatos/registro externo no
-Control Plane antes de permitir troca de projeto.
+Proximo corte recomendado: permitir que o Project Selector consuma registros
+revisados, ainda sem liberar runtime.

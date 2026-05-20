@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-20T13:24:52Z",
+  "overall": "control_plane_external_project_registration_view_ready",
+  "control_plane_external_project_registration_view_ready": true,
+  "secret_values_recorded": false,
+  "provider_auth_connected": false,
+  "runtime_auth_executed": false,
+  "http_server_started": false,
+  "websocket_opened": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "project_switching_allowed": false,
+  "external_projects_registered": 0,
+  "next_cut": "TKT-091 - Project Selector Registry Intake",
+  "missing_files": [],
+  "view_contract": {
+    "control_plane": "control-plane/index.html",
+    "external_project_registration": "artifacts/artemis-portal-external-project-registration/run-01/external-project-registration.json",
+    "source_url": "../artifacts/artemis-portal-external-project-registration/run-01/external-project-registration.json",
+    "candidate_count": 1,
+    "registered_count": 0,
+    "candidate_states": [
+      "candidate_from_terminal_connect"
+    ],
+    "project_switching_allowed": false,
+    "runtime_execution_allowed": false,
+    "surface": "read_only_status_view"
+  },
+  "checks": [
+    {
+      "id": "control_plane_tokens_present",
+      "status": "passed",
+      "detail": "Control Plane contains External Project Registration markup, source URL, loader and renderer tokens."
+    },
+    {
+      "id": "external_project_registration_ready",
+      "status": "passed",
+      "detail": "External Project Registration artifact is ready for read-only consumption."
+    },
+    {
+      "id": "candidate_visible_without_registration",
+      "status": "passed",
+      "detail": "The view supports terminal-connect candidates without auto-registering projects."
+    },
+    {
+      "id": "project_switching_still_blocked",
+      "status": "passed",
+      "detail": "Project switching remains blocked while candidates wait for review."
+    },
+    {
+      "id": "browser_and_scan_still_blocked",
+      "status": "passed",
+      "detail": "The view preserves no-browser-filesystem and no-server-scan boundaries."
+    },
+    {
+      "id": "runtime_still_blocked",
+      "status": "passed",
+      "detail": "Rendered registration state must not imply provider auth or runtime permission."
+    },
+    {
+      "id": "no_runtime_side_effects",
+      "status": "passed",
+      "detail": "No agents, commands or tokens are produced by the view contract."
+    }
+  ]
+}

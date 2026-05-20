@@ -323,6 +323,7 @@
     }
 
     .local-project-overview,
+    .external-registration-overview,
     .runtime-gateway-overview {
       border-bottom: 2px solid var(--ink);
       margin: -2px 0 18px;
@@ -407,6 +408,11 @@
 
     .operator-card[data-state="terminal_binary_detected"] {
       background: color-mix(in srgb, var(--panel) 82%, #d8e5d2);
+    }
+
+    .operator-card[data-state="candidate_from_terminal_connect"],
+    .operator-card[data-state="waiting_for_human_review"] {
+      background: color-mix(in srgb, var(--panel) 78%, #f2e1bb);
     }
 
     .operator-card[data-state="not_found_on_path"],
@@ -1619,6 +1625,7 @@
       .plain-overview,
       .plain-grid,
       .local-project-overview,
+      .external-registration-overview,
       .runtime-gateway-overview,
       .operator-strip,
       .technical-tools {
@@ -1716,6 +1723,7 @@
       .plain-lead,
       .plain-grid,
       .local-project-overview,
+      .external-registration-overview,
       .runtime-gateway-overview {
         width: calc(100vw - 28px);
         max-width: calc(100vw - 28px);
@@ -1859,6 +1867,27 @@
           <span class="operator-state">aguardando</span>
           <h3>Antigravity CLI</h3>
           <p>Aguardando descoberta local.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="external-registration-overview" aria-labelledby="external-registration-title">
+      <header class="gateway-header">
+        <span class="plain-eyebrow">Registro externo</span>
+        <h2 id="external-registration-title">Candidatos do portal</h2>
+        <p id="external-registration-summary">Carregando fila de registro.</p>
+        <div class="gateway-status" aria-label="Estado do registro externo">
+          <span><b>Candidatos:</b> <span id="external-registration-candidates">--</span></span>
+          <span><b>Projetos registrados:</b> <span id="external-registration-registered">--</span></span>
+          <span><b>Troca de projeto liberada?</b> <span id="external-registration-switching">--</span></span>
+          <span><b>Fonte:</b> <span id="external-registration-source">artifact local</span></span>
+        </div>
+      </header>
+      <div id="external-candidate-strip" class="operator-strip" aria-label="Candidatos de projeto externo">
+        <article class="operator-card" data-state="waiting_for_human_review">
+          <span class="operator-state">revisao</span>
+          <h3>Aguardando candidato</h3>
+          <p>Projetos externos entram por connect no terminal e revisao humana.</p>
         </article>
       </div>
     </section>
@@ -2374,6 +2403,7 @@
     const agentRuntimeCompletionReviewGateSourceUrl = "../artifacts/artemis-agent-runtime-completion-review-gate/run-01/completion-review-gate.json";
     const agentRuntimeDoneLedgerSourceUrl = "../artifacts/artemis-agent-runtime-done-ledger/run-01/done-ledger.json";
     const localProjectConnectSourceUrl = "../artifacts/artemis-portal-local-project-connect/run-01/local-project-connect.json";
+    const externalProjectRegistrationSourceUrl = "../artifacts/artemis-portal-external-project-registration/run-01/external-project-registration.json";
     const runtimeGatewayServiceSourceUrl = "../artifacts/artemis-portal-runtime-gateway-service/run-01/runtime-gateway-service.json";
 
     const columns = [
@@ -3541,6 +3571,12 @@
     const localProjectRuntimeNode = document.querySelector("#local-project-runtime");
     const localProjectSourceNode = document.querySelector("#local-project-source");
     const localProviderStripNode = document.querySelector("#local-provider-strip");
+    const externalRegistrationSummaryNode = document.querySelector("#external-registration-summary");
+    const externalRegistrationCandidatesNode = document.querySelector("#external-registration-candidates");
+    const externalRegistrationRegisteredNode = document.querySelector("#external-registration-registered");
+    const externalRegistrationSwitchingNode = document.querySelector("#external-registration-switching");
+    const externalRegistrationSourceNode = document.querySelector("#external-registration-source");
+    const externalCandidateStripNode = document.querySelector("#external-candidate-strip");
     const symphonyEvidenceNode = document.querySelector("#symphony-evidence");
     const symphonySummaryNode = document.querySelector("#symphony-summary");
     const projectGraphStatusNode = document.querySelector("#project-graph-status");
@@ -4840,6 +4876,37 @@
       }
     };
 
+    const seedExternalProjectRegistration = {
+      overall: "external_project_registration_ready",
+      external_projects_registered: 0,
+      project_switching_allowed: false,
+      browser_filesystem_access_allowed: false,
+      server_scan_allowed: false,
+      provider_auth_connected: false,
+      runtime_execution_allowed: false,
+      external_project_registration_contract: {
+        source_authority: "local_project_connect_artifact",
+        external_projects_registered: 0,
+        project_switching_allowed: false,
+        candidate_projects: [
+          {
+            project_id: "veri_d55ae65706",
+            display_name: "veri",
+            project_path: "/srv/veri",
+            repo_root: "/srv/veri",
+            git_branch: "main",
+            trust_review_state: "waiting_for_human_review",
+            registration_state: "candidate_from_terminal_connect",
+            selected: false,
+            runtime_execution_allowed: false,
+            remote_writes_allowed: false,
+            human_review_required: true
+          }
+        ],
+        registered_projects: []
+      }
+    };
+
     function cloneCards(source) {
       return JSON.parse(JSON.stringify(source));
     }
@@ -4914,6 +4981,18 @@
       return parts.length > 1 ? parts.slice(-2).join("/") : raw;
     }
 
+    function labelRegistrationState(value) {
+      const labels = {
+        candidate_from_terminal_connect: "candidato",
+        waiting_for_human_review: "revisao",
+        registered_read_only: "registrado",
+        selected_read_only: "selecionado",
+        blocked: "bloqueado",
+        rejected: "rejeitado"
+      };
+      return labels[value] || "revisar";
+    }
+
     function renderLocalProjectConnect(model) {
       const contract = model.local_project_connect_contract || {};
       const project = model.connected_project || contract.connected_project || {};
@@ -4946,6 +5025,41 @@
             <h3>${escapeHtml(provider.display_name || provider.provider_id || "Fornecedor")}</h3>
             <p>${escapeHtml(binary)}</p>
             <p>${escapeHtml(`${auth} ${runtime}`)}</p>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function renderExternalProjectRegistration(model) {
+      const contract = model.external_project_registration_contract || {};
+      const candidates = Array.isArray(contract.candidate_projects)
+        ? contract.candidate_projects
+        : model.candidate_project
+          ? [model.candidate_project]
+          : [];
+      const registered = Array.isArray(contract.registered_projects) ? contract.registered_projects : [];
+      const switchingAllowed = model.project_switching_allowed ?? contract.project_switching_allowed ?? false;
+      const registeredCount = model.external_projects_registered ?? contract.external_projects_registered ?? registered.length;
+
+      externalRegistrationSummaryNode.textContent = candidates.length
+        ? "Projetos conectados pelo terminal aparecem como candidatos; nenhum vira selecionavel sem revisao humana."
+        : "Nenhum candidato externo foi registrado; conecte um projeto pelo terminal para iniciar revisao.";
+      externalRegistrationCandidatesNode.textContent = String(candidates.length);
+      externalRegistrationRegisteredNode.textContent = String(registeredCount);
+      externalRegistrationSwitchingNode.textContent = switchingAllowed ? "sim" : "nao";
+      externalRegistrationSourceNode.textContent = `${conciseSource(model.source, externalProjectRegistrationSourceUrl)} | ${model.overall || "observed"}`;
+
+      externalCandidateStripNode.innerHTML = candidates.map((candidate) => {
+        const state = candidate.registration_state || candidate.trust_review_state || "waiting_for_human_review";
+        const selected = candidate.selected ? "Selecionado." : "Nao selecionado.";
+        const runtime = candidate.runtime_execution_allowed ? "Runtime permitido." : "Runtime bloqueado.";
+        const review = candidate.human_review_required ? "Revisao humana pendente." : "Revisao humana registrada.";
+        return `
+          <article class="operator-card" data-state="${escapeHtml(state)}">
+            <span class="operator-state">${escapeHtml(labelRegistrationState(state))}</span>
+            <h3>${escapeHtml(candidate.display_name || candidate.project_id || "Projeto candidato")}</h3>
+            <p>${escapeHtml(candidate.repo_root || candidate.project_path || "Sem caminho registrado.")}</p>
+            <p>${escapeHtml(`${review} ${selected} ${runtime}`)}</p>
           </article>
         `;
       }).join("");
@@ -5987,6 +6101,18 @@
       }
     }
 
+    async function loadExternalProjectRegistrationSource() {
+      try {
+        const response = await fetch(externalProjectRegistrationSourceUrl, { cache: "no-store" });
+        if (!response.ok) return null;
+        const payload = await response.json();
+        if (!payload.external_project_registration_contract) return null;
+        return payload;
+      } catch {
+        return null;
+      }
+    }
+
     async function loadEventSource() {
       try {
         const response = await fetch(eventSourceUrl, { cache: "no-store" });
@@ -6178,6 +6304,7 @@
       renderAgentRuntimeCompletionReviewGate(seedAgentRuntimeCompletionReviewGate);
       renderAgentRuntimeDoneLedger(seedAgentRuntimeDoneLedger);
       renderLocalProjectConnect(seedLocalProjectConnect);
+      renderExternalProjectRegistration(seedExternalProjectRegistration);
       renderRuntimeGatewayService(seedRuntimeGatewayService);
       const loadedGraph = await loadProjectGraphSource();
       if (loadedGraph) renderProjectGraph(loadedGraph);
@@ -6213,6 +6340,8 @@
       if (loadedAgentRuntimeDoneLedger) renderAgentRuntimeDoneLedger(loadedAgentRuntimeDoneLedger);
       const loadedLocalProjectConnect = await loadLocalProjectConnectSource();
       if (loadedLocalProjectConnect) renderLocalProjectConnect(loadedLocalProjectConnect);
+      const loadedExternalProjectRegistration = await loadExternalProjectRegistrationSource();
+      if (loadedExternalProjectRegistration) renderExternalProjectRegistration(loadedExternalProjectRegistration);
       const loadedRuntimeGatewayService = await loadRuntimeGatewayServiceSource();
       if (loadedRuntimeGatewayService) renderRuntimeGatewayService(loadedRuntimeGatewayService);
       const loadedEvents = await loadEventSource();

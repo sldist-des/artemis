@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T13:18:18Z",
+  "generated_at": "2026-05-20T13:25:03Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1081,6 +1081,18 @@
       "summary": "O ARTEMIS passa a diferenciar projeto conectado pelo terminal de projeto",
       "exec_pack": "docs/exec-packs/done/TKT-089-artemis-portal-external-project-registration.md",
       "evidence": "artifacts/artemis-portal-external-project-registration/run-01/external-project-registration.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-090",
+      "ticket": "TKT-090",
+      "title": "ARTEMIS Control Plane External Project Registration View",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O Control Plane mostra o candidato vindo do Local Project Connect, registra que",
+      "exec_pack": "docs/exec-packs/done/TKT-090-artemis-control-plane-external-project-registration-view.md",
+      "evidence": "artifacts/artemis-control-plane-external-project-registration-view/run-01/control-plane-external-project-registration-view.json",
       "tags": ["exec-pack", "done"]
     }
   ]

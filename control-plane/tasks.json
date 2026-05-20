@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T13:12:22Z",
+  "generated_at": "2026-05-20T13:18:18Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1069,6 +1069,18 @@
       "summary": "O Control Plane mostra que `/srv/veri` foi conectado pelo terminal, que o",
       "exec_pack": "docs/exec-packs/done/TKT-088-artemis-control-plane-local-project-connect-view.md",
       "evidence": "artifacts/artemis-control-plane-local-project-connect-view/run-01/control-plane-local-project-connect-view.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-089",
+      "ticket": "TKT-089",
+      "title": "ARTEMIS Portal External Project Registration",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O ARTEMIS passa a diferenciar projeto conectado pelo terminal de projeto",
+      "exec_pack": "docs/exec-packs/done/TKT-089-artemis-portal-external-project-registration.md",
+      "evidence": "artifacts/artemis-portal-external-project-registration/run-01/external-project-registration.json",
       "tags": ["exec-pack", "done"]
     }
   ]

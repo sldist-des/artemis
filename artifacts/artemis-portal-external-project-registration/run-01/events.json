@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-20T13:18:10Z",
+  "source": "scripts/artemis-portal-external-project-registration.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_external_project_registration_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-20T13:18:10Z",
+      "producer": {
+        "adapter": "portal_external_project_registration",
+        "name": "scripts/artemis-portal-external-project-registration.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-089",
+        "task_id": "tkt-089",
+        "title": "ARTEMIS Portal External Project Registration",
+        "exec_pack": "docs/exec-packs/done/TKT-089-artemis-portal-external-project-registration.md",
+        "artifact_root": "artifacts/artemis-portal-external-project-registration/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "terminal_connect",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-external-project-registration/run-01",
+        "status_path": "artifacts/artemis-portal-external-project-registration/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-external-project-registration/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-external-project-registration/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-external-project-registration/run-01/external-project-registration.json",
+          "artifacts/artemis-portal-external-project-registration/run-01/EXTERNAL_PROJECT_REGISTRATION.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-089"
+      },
+      "payload": {
+        "external_project_registration_ready": true,
+        "candidate_project_id": "veri_d55ae65706",
+        "external_projects_registered": 0,
+        "project_switching_allowed": false,
+        "server_scan_allowed": false,
+        "browser_filesystem_access_allowed": false,
+        "provider_auth_connected": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-090 - Control Plane External Project Registration View"
+      }
+    }
+  ]
+}

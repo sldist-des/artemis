@@ -53,6 +53,7 @@ docs/portal/ARTEMIS_PORTAL_VALIDATION_EVIDENCE_SURFACE.md
 docs/portal/ARTEMIS_PORTAL_HUMAN_ACCEPTANCE_SURFACE.md
 docs/portal/ARTEMIS_PORTAL_PROJECT_SELECTOR.md
 docs/portal/ARTEMIS_PORTAL_LOCAL_PROJECT_CONNECT.md
+docs/portal/ARTEMIS_PORTAL_EXTERNAL_PROJECT_REGISTRATION.md
 docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY.md
 docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY_SERVICE.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
@@ -135,6 +136,7 @@ scripts/artemis-portal-validation-evidence-surface.sh
 scripts/artemis-portal-human-acceptance-surface.sh
 scripts/artemis-portal-project-selector.sh
 scripts/artemis-portal-local-project-connect.sh
+scripts/artemis-portal-external-project-registration.sh
 scripts/artemis-portal-runtime-gateway.sh
 scripts/artemis-portal-runtime-gateway-service.sh
 scripts/artemis-control-plane-local-project-connect-view.sh
@@ -256,6 +258,7 @@ sh -n scripts/artemis-portal-validation-evidence-surface.sh
 sh -n scripts/artemis-portal-human-acceptance-surface.sh
 sh -n scripts/artemis-portal-project-selector.sh
 sh -n scripts/artemis-portal-local-project-connect.sh
+sh -n scripts/artemis-portal-external-project-registration.sh
 sh -n scripts/artemis-portal-runtime-gateway.sh
 sh -n scripts/artemis-portal-runtime-gateway-service.sh
 sh -n scripts/artemis-control-plane-local-project-connect-view.sh
@@ -817,6 +820,59 @@ if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-local-project-connect.json;
 fi
 if ! test -f /tmp/artemis-portal-local-project-connect/LOCAL_PROJECT_CONNECT.md; then
   echo "scripts/artemis-portal-local-project-connect.sh did not write local project connect documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-portal-external-project-registration.sh --artifact-root /tmp/artemis-portal-external-project-registration --json >/tmp/artemis-portal-external-project-registration.json
+if ! grep -q '"overall": "external_project_registration_ready"' /tmp/artemis-portal-external-project-registration.json; then
+  echo "scripts/artemis-portal-external-project-registration.sh did not report external_project_registration_ready" >&2
+  exit 1
+fi
+if ! grep -q '"external_projects_registered": 0' /tmp/artemis-portal-external-project-registration.json; then
+  echo "scripts/artemis-portal-external-project-registration.sh registered external projects unexpectedly" >&2
+  exit 1
+fi
+if ! grep -q '"project_switching_allowed": false' /tmp/artemis-portal-external-project-registration.json; then
+  echo "scripts/artemis-portal-external-project-registration.sh allowed project switching" >&2
+  exit 1
+fi
+if ! grep -q '"server_scan_allowed": false' /tmp/artemis-portal-external-project-registration.json; then
+  echo "scripts/artemis-portal-external-project-registration.sh allowed server scan" >&2
+  exit 1
+fi
+if ! grep -q '"browser_filesystem_access_allowed": false' /tmp/artemis-portal-external-project-registration.json; then
+  echo "scripts/artemis-portal-external-project-registration.sh allowed browser filesystem access" >&2
+  exit 1
+fi
+if ! grep -q '"registration_state": "candidate_from_terminal_connect"' /tmp/artemis-portal-external-project-registration.json; then
+  echo "scripts/artemis-portal-external-project-registration.sh did not create terminal-connect candidate state" >&2
+  exit 1
+fi
+if ! grep -q '"human_review_required": true' /tmp/artemis-portal-external-project-registration.json; then
+  echo "scripts/artemis-portal-external-project-registration.sh did not require human review" >&2
+  exit 1
+fi
+if ! grep -q '"provider_auth_connected": false' /tmp/artemis-portal-external-project-registration.json; then
+  echo "scripts/artemis-portal-external-project-registration.sh connected provider auth" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-portal-external-project-registration.json; then
+  echo "scripts/artemis-portal-external-project-registration.sh allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": false' /tmp/artemis-portal-external-project-registration.json; then
+  echo "scripts/artemis-portal-external-project-registration.sh started agents" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-portal-external-project-registration.json; then
+  echo "scripts/artemis-portal-external-project-registration.sh executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-external-project-registration.json; then
+  echo "scripts/artemis-portal-external-project-registration.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-external-project-registration/EXTERNAL_PROJECT_REGISTRATION.md; then
+  echo "scripts/artemis-portal-external-project-registration.sh did not write external project registration documentation artifact" >&2
   exit 1
 fi
 scripts/artemis-control-plane-local-project-connect-view.sh --artifact-root /tmp/artemis-control-plane-local-project-connect-view --json >/tmp/artemis-control-plane-local-project-connect-view.json

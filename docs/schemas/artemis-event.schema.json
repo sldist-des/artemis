@@ -114,6 +114,7 @@
             "portal_human_acceptance_surface",
             "portal_project_selector",
             "portal_local_project_connect",
+            "portal_external_project_registration",
             "portal_runtime_gateway",
             "portal_runtime_gateway_service"
           ]

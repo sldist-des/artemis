@@ -154,7 +154,7 @@ payload = {
     "remote_state_mutated": False,
     "project_switching_allowed": False,
     "external_projects_registered": int(registration_payload.get("external_projects_registered", 0)),
-    "next_cut": "TKT-092 - Project Selector Registry Intake",
+    "next_cut": "TKT-093 - Project Selector Registry Intake",
     "missing_files": missing_files,
     "view_contract": {
         "control_plane": str(control_plane_path),

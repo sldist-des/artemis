@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T14:16:04Z",
+  "generated_at": "2026-05-20T14:32:14Z",
   "source": "scripts/artemis-control-plane-external-project-registration-view.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_control_plane_external_project_registration_view_ready",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-20T14:16:04Z",
+      "generated_at": "2026-05-20T14:32:14Z",
       "producer": {
         "adapter": "control_plane",
         "name": "scripts/artemis-control-plane-external-project-registration-view.sh",
@@ -57,7 +57,7 @@
         "commands_executed": 0,
         "tokens_spent": 0,
         "remote_state_mutated": false,
-        "next_cut": "TKT-092 - Project Selector Registry Intake"
+        "next_cut": "TKT-093 - Project Selector Registry Intake"
       }
     }
   ]

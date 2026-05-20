@@ -1878,6 +1878,229 @@
         flex-basis: 100%;
       }
     }
+    /* Minimal simple-mode pass: first screen is status, not audit detail. */
+    .topbar {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      padding-bottom: 10px;
+    }
+
+    .mark {
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+    }
+
+    .sigil {
+      width: 48px;
+      box-shadow: 4px 4px 0 var(--ink);
+      font-size: 24px;
+    }
+
+    h1 {
+      font-size: clamp(30px, 4vw, 52px);
+      line-height: 1;
+    }
+
+    .subtitle,
+    .principles,
+    .plain-grid,
+    .operations-header p,
+    .operation-step p,
+    .operator-strip,
+    .operation-source {
+      display: none;
+    }
+
+    .control-panel {
+      display: none;
+    }
+
+    .plain-overview {
+      margin: 0 0 10px;
+      padding: 10px 0;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .plain-lead {
+      display: grid;
+      grid-template-columns: minmax(160px, .28fr) minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 10px;
+    }
+
+    .plain-lead .plain-eyebrow {
+      grid-column: 1 / -1;
+    }
+
+    .plain-lead h2 {
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .plain-lead p {
+      display: none;
+    }
+
+    .plain-strip {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 6px;
+      align-items: stretch;
+    }
+
+    .plain-fact {
+      border: 1px solid var(--ink);
+      padding: 6px 7px;
+    }
+
+    .plain-fact b {
+      font-size: 20px;
+    }
+
+    .plain-fact span {
+      font-size: 9px;
+      letter-spacing: .04em;
+    }
+
+    .plain-actions {
+      justify-content: flex-end;
+      align-items: end;
+    }
+
+    .plain-actions a {
+      min-height: 30px;
+      padding: 6px 8px;
+      box-shadow: 2px 2px 0 var(--ink);
+      font-size: 11px;
+    }
+
+    .operations-overview {
+      margin: 0 0 10px;
+      padding: 8px 0 10px;
+      grid-template-columns: minmax(180px, .24fr) minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .operations-header {
+      gap: 6px;
+    }
+
+    .operations-header h2 {
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .operations-status-strip {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .operations-metric {
+      padding: 6px 7px;
+    }
+
+    .operations-metric b {
+      font-size: 16px;
+    }
+
+    .operations-metric span {
+      font-size: 9px;
+      letter-spacing: .03em;
+    }
+
+    .operations-step-grid {
+      grid-template-columns: 1fr;
+      gap: 5px;
+    }
+
+    .operation-step {
+      padding: 7px 8px;
+      grid-template-columns: minmax(170px, .32fr) minmax(0, 1fr);
+      gap: 8px;
+      align-items: center;
+    }
+
+    .operation-step header {
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: center;
+      gap: 7px;
+    }
+
+    .operation-step h3 {
+      font-size: 16px;
+    }
+
+    .operation-state {
+      padding: 3px 5px;
+      font-size: 9px;
+    }
+
+    .operation-facts {
+      border-top: 0;
+      padding-top: 0;
+      grid-template-columns: repeat(2, minmax(0, max-content));
+      gap: 8px;
+      justify-content: end;
+      font-size: 11px;
+    }
+
+    @media (max-width: 680px) {
+      .shell {
+        width: calc(100vw - 16px);
+        padding-top: 10px;
+      }
+
+      .mark {
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 10px;
+      }
+
+      .sigil {
+        width: 38px;
+        font-size: 20px;
+      }
+
+      h1 {
+        font-size: 25px;
+        line-height: 1;
+      }
+
+      .plain-overview,
+      .operations-overview {
+        width: auto;
+        max-width: none;
+        grid-template-columns: 1fr;
+      }
+
+      .plain-lead {
+        grid-template-columns: 1fr;
+        gap: 7px;
+      }
+
+      .plain-lead h2,
+      .operations-header h2 {
+        font-size: 22px;
+      }
+
+      .plain-strip,
+      .operations-status-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: none;
+      }
+
+      .plain-actions {
+        justify-content: flex-start;
+      }
+
+      .operation-step {
+        grid-template-columns: 1fr;
+      }
+
+      .operation-facts {
+        justify-content: start;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1966,7 +2189,7 @@
           <div class="operation-facts" aria-label="Estado do projeto local">
             <span><b>Navegador filesystem:</b> <span id="operation-project-browser-access">--</span></span>
             <span><b>Runtime liberado:</b> <span id="operation-project-runtime">--</span></span>
-            <span><b>Fonte:</b> <span id="operation-project-source">artifact local</span></span>
+            <span class="operation-source"><b>Fonte:</b> <span id="operation-project-source">artifact local</span></span>
           </div>
           <div id="operation-provider-strip" class="operator-strip" aria-label="Fornecedores detectados no terminal">
             <span class="operator-pill" data-state="blocked">Codex aguardando</span>
@@ -1983,7 +2206,7 @@
           </header>
           <div class="operation-facts" aria-label="Estado do registro externo">
             <span><b>Troca de projeto:</b> <span id="operation-registration-switching">--</span></span>
-            <span><b>Fonte:</b> <span id="operation-registration-source">artifact local</span></span>
+            <span class="operation-source"><b>Fonte:</b> <span id="operation-registration-source">artifact local</span></span>
           </div>
           <div id="operation-candidate-strip" class="operator-strip" aria-label="Candidatos de projeto externo">
             <span class="operator-pill" data-state="waiting_for_human_review">sem candidato</span>
@@ -1999,7 +2222,7 @@
           <div class="operation-facts" aria-label="Estado do runtime">
             <span><b>Comandos:</b> <span id="operation-runtime-commands">--</span></span>
             <span><b>Tokens:</b> <span id="operation-runtime-tokens">--</span></span>
-            <span><b>Fonte:</b> <span id="operation-runtime-source">artifact local</span></span>
+            <span class="operation-source"><b>Fonte:</b> <span id="operation-runtime-source">artifact local</span></span>
           </div>
           <div id="operation-operator-strip" class="operator-strip" aria-label="Operadores registrados no Runtime Gateway">
             <span class="operator-pill" data-state="planned_not_connected">Codex planejado</span>

@@ -10,7 +10,7 @@
 - Agents started: `false`
 - Commands executed: `0`
 - Tokens spent: `0`
-- Next cut: `TKT-092 - Project Selector Registry Intake`
+- Next cut: `TKT-093 - Project Selector Registry Intake`
 
 ## Rendered meaning
 

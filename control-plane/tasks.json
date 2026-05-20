@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T12:52:50Z",
+  "generated_at": "2026-05-20T13:02:53Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1045,6 +1045,18 @@
       "summary": "O ARTEMIS passa a registrar explicitamente que o Control Plane atual esta",
       "exec_pack": "docs/exec-packs/done/TKT-086-artemis-portal-project-selector.md",
       "evidence": "artifacts/artemis-portal-project-selector/run-01/project-selector-contract.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-087",
+      "ticket": "TKT-087",
+      "title": "ARTEMIS Portal Local Project Connect",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O ARTEMIS passa a registrar que acesso a projeto local deve ser dado pelo",
+      "exec_pack": "docs/exec-packs/done/TKT-087-artemis-portal-local-project-connect.md",
+      "evidence": "artifacts/artemis-portal-local-project-connect/run-01/local-project-connect.json",
       "tags": ["exec-pack", "done"]
     }
   ]

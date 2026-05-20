@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T12:52:38Z",
+  "generated_at": "2026-05-20T13:02:49Z",
   "overall": "project_selector_ready",
   "project_selector_ready": true,
   "secret_values_recorded": false,
@@ -11,7 +11,7 @@
   "commands_executed": 0,
   "tokens_spent": 0,
   "remote_state_mutated": false,
-  "next_cut": "TKT-087 - Control Plane Project Selector View",
+  "next_cut": "TKT-088 - Control Plane Local Project Connect View",
   "missing_files": [],
   "selector_contract": {
     "purpose": "Select the active project context before any Runtime Gateway operator, workspace session or provider-backed launch.",

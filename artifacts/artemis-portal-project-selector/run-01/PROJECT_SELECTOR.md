@@ -10,7 +10,7 @@
 - Agents started: `false`
 - Commands executed: `0`
 - Tokens spent: `0`
-- Next cut: `TKT-087 - Control Plane Project Selector View`
+- Next cut: `TKT-088 - Control Plane Local Project Connect View`
 
 ## Leitura humana
 

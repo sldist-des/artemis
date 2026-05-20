@@ -108,6 +108,24 @@ Ainda nao e:
 
 Antes de usar operadores reais, o portal precisa deixar isso visivel.
 
+## Ligacao com projeto local
+
+Projeto local externo nao deve ser escolhido pelo navegador. O caminho correto e
+o humano abrir um terminal no projeto e executar o connect do ARTEMIS:
+
+```bash
+npx artemis connect --project .
+```
+
+Enquanto o pacote npm nao existe, o contrato local validado e:
+
+```bash
+scripts/artemis-portal-local-project-connect.sh --project . --json
+```
+
+Esse connect alimenta o Project Selector com contexto de projeto e descoberta
+read-only dos fornecedores instalados no PATH local.
+
 ## Fora de escopo neste corte
 
 - cadastrar projetos externos reais;
@@ -123,5 +141,5 @@ Antes de usar operadores reais, o portal precisa deixar isso visivel.
 - gastar tokens;
 - fazer push, PR, deploy ou mutacao remota.
 
-Proximo corte recomendado: renderizar o Project Selector no Control Plane antes
-de qualquer ação de operador.
+Proximo corte recomendado: renderizar o Project Selector e o Local Project
+Connect no Control Plane antes de qualquer acao de operador.

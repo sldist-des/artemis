@@ -254,7 +254,7 @@ payload = {
     "commands_executed": 0,
     "tokens_spent": 0,
     "remote_state_mutated": False,
-    "next_cut": "TKT-087 - Control Plane Project Selector View",
+    "next_cut": "TKT-088 - Control Plane Local Project Connect View",
     "missing_files": missing_files,
     "selector_contract": selector_contract,
     "selected_project": selected_project,
@@ -322,7 +322,7 @@ for check in checks:
         "",
         "TKT-086 defines the read-only Project Selector contract.",
         "",
-        "The next cut should render this selected-project state in the Control Plane before adding any authenticated runtime action.",
+        "The next cut should render selected-project and local-provider discovery state in the Control Plane before adding any authenticated runtime action.",
     ]) + "\n",
     encoding="utf-8",
 )

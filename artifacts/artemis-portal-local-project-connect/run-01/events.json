@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-20T13:01:28Z",
+  "source": "scripts/artemis-portal-local-project-connect.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_local_project_connect_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-20T13:01:28Z",
+      "producer": {
+        "adapter": "portal_local_project_connect",
+        "name": "scripts/artemis-portal-local-project-connect.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-087",
+        "task_id": "tkt-087",
+        "title": "ARTEMIS Portal Local Project Connect",
+        "exec_pack": "docs/exec-packs/done/TKT-087-artemis-portal-local-project-connect.md",
+        "artifact_root": "artifacts/artemis-portal-local-project-connect/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "project_selector",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-local-project-connect/run-01",
+        "status_path": "artifacts/artemis-portal-local-project-connect/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-local-project-connect/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-local-project-connect/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-local-project-connect/run-01/local-project-connect.json",
+          "artifacts/artemis-portal-local-project-connect/run-01/LOCAL_PROJECT_CONNECT.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-087"
+      },
+      "payload": {
+        "local_project_connect_ready": true,
+        "project_path": "/srv/veri",
+        "repo_root": "/srv/veri",
+        "provider_ids": [
+          "codex",
+          "claude_code",
+          "antigravity_cli"
+        ],
+        "provider_auth_connected": false,
+        "terminal_project_access_required": true,
+        "browser_filesystem_access_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-088 - Control Plane Local Project Connect View"
+      }
+    }
+  ]
+}

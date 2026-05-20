@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T12:52:38Z",
+  "generated_at": "2026-05-20T13:02:49Z",
   "source": "scripts/artemis-portal-project-selector.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_portal_project_selector_contract_recorded",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-20T12:52:38Z",
+      "generated_at": "2026-05-20T13:02:49Z",
       "producer": {
         "adapter": "portal_project_selector",
         "name": "scripts/artemis-portal-project-selector.sh",
@@ -55,7 +55,7 @@
         "commands_executed": 0,
         "tokens_spent": 0,
         "remote_state_mutated": false,
-        "next_cut": "TKT-087 - Control Plane Project Selector View"
+        "next_cut": "TKT-088 - Control Plane Local Project Connect View"
       }
     }
   ]

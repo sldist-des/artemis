@@ -1,0 +1,280 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-20T13:01:28Z",
+  "overall": "local_project_connect_ready",
+  "local_project_connect_ready": true,
+  "secret_values_recorded": false,
+  "provider_auth_connected": false,
+  "runtime_auth_executed": false,
+  "runtime_session_started": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-088 - Control Plane Local Project Connect View",
+  "missing_files": [],
+  "local_project_connect_contract": {
+    "purpose": "Register a local project context from the terminal before the ARTEMIS Portal can route tasks to provider-backed operators.",
+    "state": "registered_read_only",
+    "project_access_granted_by": "terminal_current_working_directory",
+    "npx_package_planned": true,
+    "npx_published": false,
+    "local_script_available_now": true,
+    "provider_detection_only": true,
+    "provider_auth_connected": false,
+    "secret_values_recorded": false,
+    "terminal_project_access_required": true,
+    "browser_filesystem_access_allowed": false,
+    "runtime_execution_allowed": false,
+    "state_model": [
+      "not_connected",
+      "terminal_discovered",
+      "registered_read_only",
+      "waiting_for_provider_auth",
+      "waiting_for_vault_lease",
+      "waiting_for_budget",
+      "waiting_for_human_gate",
+      "ready_for_runtime_gateway",
+      "blocked"
+    ],
+    "connected_project": {
+      "project_path": "/srv/veri",
+      "repo_root": "/srv/veri",
+      "is_git_project": true,
+      "git_branch": "main",
+      "git_remote": "https://github.com/sldist-des/artemis.git",
+      "agents_contract_present": true,
+      "agents_contract_path": "/srv/veri/AGENTS.md",
+      "claude_adapter_present": true,
+      "claude_adapter_path": "/srv/veri/CLAUDE.md",
+      "provider_discovery": [
+        {
+          "provider_id": "codex",
+          "display_name": "Codex CLI / app-server",
+          "runtime_surface": "cli_and_app_server",
+          "binary_candidates": [
+            "codex"
+          ],
+          "detected": true,
+          "detected_binary": "/usr/bin/codex",
+          "auth_connected": false,
+          "vault_lease_issued": false,
+          "runtime_allowed": false,
+          "state": "terminal_binary_detected",
+          "reason": "Binary found on PATH; auth and runtime still require gates."
+        },
+        {
+          "provider_id": "claude_code",
+          "display_name": "Claude Code",
+          "runtime_surface": "cli_or_sdk",
+          "binary_candidates": [
+            "claude"
+          ],
+          "detected": true,
+          "detected_binary": "/root/.local/bin/claude",
+          "auth_connected": false,
+          "vault_lease_issued": false,
+          "runtime_allowed": false,
+          "state": "terminal_binary_detected",
+          "reason": "Binary found on PATH; auth and runtime still require gates."
+        },
+        {
+          "provider_id": "antigravity_cli",
+          "display_name": "Antigravity CLI",
+          "runtime_surface": "cli_unverified",
+          "binary_candidates": [
+            "agy",
+            "antigravity"
+          ],
+          "detected": true,
+          "detected_binary": "/root/.local/bin/agy",
+          "auth_connected": false,
+          "vault_lease_issued": false,
+          "runtime_allowed": false,
+          "state": "terminal_binary_detected",
+          "reason": "Binary found on PATH; auth and runtime still require gates."
+        }
+      ],
+      "npx_entrypoint": "npx artemis connect --project .",
+      "local_script_equivalent": "scripts/artemis-portal-local-project-connect.sh --project . --json",
+      "terminal_project_access_required": true,
+      "browser_filesystem_access_allowed": false,
+      "provider_auth_connected": false,
+      "runtime_execution_allowed": false,
+      "human_confirmation_required_for_runtime": true,
+      "remote_writes_allowed": false
+    },
+    "forbidden_fields": [
+      "plaintext_secret",
+      "raw_access_token",
+      "raw_refresh_token",
+      "private_key_material",
+      "session_cookie",
+      "ssh_private_key",
+      "provider_billing_secret",
+      "raw_provider_auth_state",
+      "raw_stdout",
+      "raw_stderr",
+      "full_prompt_transcript"
+    ],
+    "rules": [
+      "Local project access is granted from the terminal, not from browser filesystem selection.",
+      "The connect command discovers project metadata and provider binaries only.",
+      "Detected provider binaries do not imply authenticated provider sessions.",
+      "Runtime remains blocked until Project Selector, Credential Vault, Budget Ledger, Workspace Session, Runtime Gateway, Human Gate and Validation Gate pass.",
+      "Experimental providers remain blocked until capability discovery and adapter contract review pass."
+    ]
+  },
+  "connected_project": {
+    "project_path": "/srv/veri",
+    "repo_root": "/srv/veri",
+    "is_git_project": true,
+    "git_branch": "main",
+    "git_remote": "https://github.com/sldist-des/artemis.git",
+    "agents_contract_present": true,
+    "agents_contract_path": "/srv/veri/AGENTS.md",
+    "claude_adapter_present": true,
+    "claude_adapter_path": "/srv/veri/CLAUDE.md",
+    "provider_discovery": [
+      {
+        "provider_id": "codex",
+        "display_name": "Codex CLI / app-server",
+        "runtime_surface": "cli_and_app_server",
+        "binary_candidates": [
+          "codex"
+        ],
+        "detected": true,
+        "detected_binary": "/usr/bin/codex",
+        "auth_connected": false,
+        "vault_lease_issued": false,
+        "runtime_allowed": false,
+        "state": "terminal_binary_detected",
+        "reason": "Binary found on PATH; auth and runtime still require gates."
+      },
+      {
+        "provider_id": "claude_code",
+        "display_name": "Claude Code",
+        "runtime_surface": "cli_or_sdk",
+        "binary_candidates": [
+          "claude"
+        ],
+        "detected": true,
+        "detected_binary": "/root/.local/bin/claude",
+        "auth_connected": false,
+        "vault_lease_issued": false,
+        "runtime_allowed": false,
+        "state": "terminal_binary_detected",
+        "reason": "Binary found on PATH; auth and runtime still require gates."
+      },
+      {
+        "provider_id": "antigravity_cli",
+        "display_name": "Antigravity CLI",
+        "runtime_surface": "cli_unverified",
+        "binary_candidates": [
+          "agy",
+          "antigravity"
+        ],
+        "detected": true,
+        "detected_binary": "/root/.local/bin/agy",
+        "auth_connected": false,
+        "vault_lease_issued": false,
+        "runtime_allowed": false,
+        "state": "terminal_binary_detected",
+        "reason": "Binary found on PATH; auth and runtime still require gates."
+      }
+    ],
+    "npx_entrypoint": "npx artemis connect --project .",
+    "local_script_equivalent": "scripts/artemis-portal-local-project-connect.sh --project . --json",
+    "terminal_project_access_required": true,
+    "browser_filesystem_access_allowed": false,
+    "provider_auth_connected": false,
+    "runtime_execution_allowed": false,
+    "human_confirmation_required_for_runtime": true,
+    "remote_writes_allowed": false
+  },
+  "provider_discovery": [
+    {
+      "provider_id": "codex",
+      "display_name": "Codex CLI / app-server",
+      "runtime_surface": "cli_and_app_server",
+      "binary_candidates": [
+        "codex"
+      ],
+      "detected": true,
+      "detected_binary": "/usr/bin/codex",
+      "auth_connected": false,
+      "vault_lease_issued": false,
+      "runtime_allowed": false,
+      "state": "terminal_binary_detected",
+      "reason": "Binary found on PATH; auth and runtime still require gates."
+    },
+    {
+      "provider_id": "claude_code",
+      "display_name": "Claude Code",
+      "runtime_surface": "cli_or_sdk",
+      "binary_candidates": [
+        "claude"
+      ],
+      "detected": true,
+      "detected_binary": "/root/.local/bin/claude",
+      "auth_connected": false,
+      "vault_lease_issued": false,
+      "runtime_allowed": false,
+      "state": "terminal_binary_detected",
+      "reason": "Binary found on PATH; auth and runtime still require gates."
+    },
+    {
+      "provider_id": "antigravity_cli",
+      "display_name": "Antigravity CLI",
+      "runtime_surface": "cli_unverified",
+      "binary_candidates": [
+        "agy",
+        "antigravity"
+      ],
+      "detected": true,
+      "detected_binary": "/root/.local/bin/agy",
+      "auth_connected": false,
+      "vault_lease_issued": false,
+      "runtime_allowed": false,
+      "state": "terminal_binary_detected",
+      "reason": "Binary found on PATH; auth and runtime still require gates."
+    }
+  ],
+  "checks": [
+    {
+      "id": "project_directory_exists",
+      "status": "passed",
+      "detail": "The terminal-provided project path must exist."
+    },
+    {
+      "id": "git_context_detected",
+      "status": "passed",
+      "detail": "A Git root is recorded for the local project."
+    },
+    {
+      "id": "agent_contract_detected",
+      "status": "passed",
+      "detail": "AGENTS.md is present before the project can be trusted by ARTEMIS operators."
+    },
+    {
+      "id": "provider_slots_declared",
+      "status": "passed",
+      "detail": "Codex, Claude Code and Antigravity CLI slots are declared for local discovery."
+    },
+    {
+      "id": "terminal_first_boundary",
+      "status": "passed",
+      "detail": "Project access is terminal-first and browser filesystem access is blocked."
+    },
+    {
+      "id": "runtime_still_blocked",
+      "status": "passed",
+      "detail": "Provider discovery does not authenticate providers or allow runtime."
+    },
+    {
+      "id": "no_runtime_side_effects",
+      "status": "passed",
+      "detail": "No provider auth, runtime, agent launch, task command, token spend or remote mutation happened."
+    }
+  ]
+}

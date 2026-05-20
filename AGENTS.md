@@ -50,6 +50,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 - `docs/portal/ARTEMIS_PORTAL_VALIDATION_EVIDENCE_SURFACE.md`
 - `docs/portal/ARTEMIS_PORTAL_HUMAN_ACCEPTANCE_SURFACE.md`
 - `docs/portal/ARTEMIS_PORTAL_PROJECT_SELECTOR.md`
+- `docs/portal/ARTEMIS_PORTAL_LOCAL_PROJECT_CONNECT.md`
 - `docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY.md`
 - `docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY_SERVICE.md`
 - Exec Pack ativo em `docs/exec-packs/active/`
@@ -85,6 +86,7 @@ scripts/artemis-portal-task-control-surface.sh --json
 scripts/artemis-portal-validation-evidence-surface.sh --json
 scripts/artemis-portal-human-acceptance-surface.sh --json
 scripts/artemis-portal-project-selector.sh --json
+scripts/artemis-portal-local-project-connect.sh --project . --json
 scripts/artemis-portal-runtime-gateway.sh --json
 scripts/artemis-portal-runtime-gateway-service.sh --json
 scripts/artemis-control-plane-runtime-gateway-view.sh --json

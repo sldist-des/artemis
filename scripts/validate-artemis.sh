@@ -52,6 +52,7 @@ docs/portal/ARTEMIS_PORTAL_TASK_CONTROL_SURFACE.md
 docs/portal/ARTEMIS_PORTAL_VALIDATION_EVIDENCE_SURFACE.md
 docs/portal/ARTEMIS_PORTAL_HUMAN_ACCEPTANCE_SURFACE.md
 docs/portal/ARTEMIS_PORTAL_PROJECT_SELECTOR.md
+docs/portal/ARTEMIS_PORTAL_LOCAL_PROJECT_CONNECT.md
 docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY.md
 docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY_SERVICE.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
@@ -133,6 +134,7 @@ scripts/artemis-portal-task-control-surface.sh
 scripts/artemis-portal-validation-evidence-surface.sh
 scripts/artemis-portal-human-acceptance-surface.sh
 scripts/artemis-portal-project-selector.sh
+scripts/artemis-portal-local-project-connect.sh
 scripts/artemis-portal-runtime-gateway.sh
 scripts/artemis-portal-runtime-gateway-service.sh
 scripts/artemis-control-plane-runtime-gateway-view.sh
@@ -252,6 +254,7 @@ sh -n scripts/artemis-portal-task-control-surface.sh
 sh -n scripts/artemis-portal-validation-evidence-surface.sh
 sh -n scripts/artemis-portal-human-acceptance-surface.sh
 sh -n scripts/artemis-portal-project-selector.sh
+sh -n scripts/artemis-portal-local-project-connect.sh
 sh -n scripts/artemis-portal-runtime-gateway.sh
 sh -n scripts/artemis-portal-runtime-gateway-service.sh
 sh -n scripts/artemis-control-plane-runtime-gateway-view.sh
@@ -759,6 +762,59 @@ if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-project-selector.json; then
 fi
 if ! test -f /tmp/artemis-portal-project-selector/PROJECT_SELECTOR.md; then
   echo "scripts/artemis-portal-project-selector.sh did not write project selector documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-portal-local-project-connect.sh --project . --artifact-root /tmp/artemis-portal-local-project-connect --json >/tmp/artemis-portal-local-project-connect.json
+if ! grep -q '"overall": "local_project_connect_ready"' /tmp/artemis-portal-local-project-connect.json; then
+  echo "scripts/artemis-portal-local-project-connect.sh did not report local_project_connect_ready" >&2
+  exit 1
+fi
+if ! grep -q '"terminal_project_access_required": true' /tmp/artemis-portal-local-project-connect.json; then
+  echo "scripts/artemis-portal-local-project-connect.sh did not require terminal project access" >&2
+  exit 1
+fi
+if ! grep -q '"browser_filesystem_access_allowed": false' /tmp/artemis-portal-local-project-connect.json; then
+  echo "scripts/artemis-portal-local-project-connect.sh allowed browser filesystem access" >&2
+  exit 1
+fi
+if ! grep -q '"npx_entrypoint": "npx artemis connect --project ."' /tmp/artemis-portal-local-project-connect.json; then
+  echo "scripts/artemis-portal-local-project-connect.sh did not declare npx entrypoint" >&2
+  exit 1
+fi
+if ! grep -q '"provider_id": "codex"' /tmp/artemis-portal-local-project-connect.json; then
+  echo "scripts/artemis-portal-local-project-connect.sh did not declare Codex provider discovery" >&2
+  exit 1
+fi
+if ! grep -q '"provider_id": "claude_code"' /tmp/artemis-portal-local-project-connect.json; then
+  echo "scripts/artemis-portal-local-project-connect.sh did not declare Claude Code provider discovery" >&2
+  exit 1
+fi
+if ! grep -q '"provider_id": "antigravity_cli"' /tmp/artemis-portal-local-project-connect.json; then
+  echo "scripts/artemis-portal-local-project-connect.sh did not declare Antigravity CLI provider discovery" >&2
+  exit 1
+fi
+if ! grep -q '"provider_auth_connected": false' /tmp/artemis-portal-local-project-connect.json; then
+  echo "scripts/artemis-portal-local-project-connect.sh connected provider auth" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-portal-local-project-connect.json; then
+  echo "scripts/artemis-portal-local-project-connect.sh allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": false' /tmp/artemis-portal-local-project-connect.json; then
+  echo "scripts/artemis-portal-local-project-connect.sh started agents" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-portal-local-project-connect.json; then
+  echo "scripts/artemis-portal-local-project-connect.sh executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-local-project-connect.json; then
+  echo "scripts/artemis-portal-local-project-connect.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-local-project-connect/LOCAL_PROJECT_CONNECT.md; then
+  echo "scripts/artemis-portal-local-project-connect.sh did not write local project connect documentation artifact" >&2
   exit 1
 fi
 

@@ -200,6 +200,218 @@
       letter-spacing: .08em;
     }
 
+    .plain-overview {
+      border-top: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+      margin: 0 0 18px;
+      padding: 16px 0;
+      display: grid;
+      grid-template-columns: minmax(280px, .52fr) minmax(0, 1fr);
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .plain-lead {
+      display: grid;
+      align-content: start;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .plain-eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .plain-lead h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(30px, 4vw, 54px);
+      line-height: .94;
+      letter-spacing: 0;
+      text-wrap: balance;
+      overflow-wrap: anywhere;
+    }
+
+    .plain-lead p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .plain-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .plain-fact {
+      border-top: 2px solid var(--ink);
+      padding-top: 8px;
+      min-width: 0;
+    }
+
+    .plain-fact b {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 26px;
+      line-height: 1;
+      overflow-wrap: anywhere;
+    }
+
+    .plain-fact span {
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+    }
+
+    .plain-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .plain-panel {
+      border: 1px solid var(--ink);
+      background: var(--panel);
+      padding: 12px;
+      display: grid;
+      align-content: start;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .plain-panel[data-tone="attention"] {
+      background: color-mix(in srgb, var(--panel) 78%, #f3d6bf);
+    }
+
+    .plain-panel[data-tone="ready"] {
+      background: color-mix(in srgb, var(--panel) 82%, #d8e5d2);
+    }
+
+    .plain-panel h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 20px;
+      line-height: 1.05;
+    }
+
+    .plain-panel ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.36;
+    }
+
+    .plain-panel li {
+      overflow-wrap: anywhere;
+    }
+
+    .plain-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .plain-actions a {
+      min-height: 34px;
+      border: 1px solid var(--ink);
+      background: var(--panel);
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 10px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+      box-shadow: 3px 3px 0 var(--ink);
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+
+    .plain-actions a:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+
+    .technical-details {
+      border-bottom: 2px solid var(--ink);
+      margin: 0 0 18px;
+      padding-bottom: 12px;
+    }
+
+    .technical-details > summary {
+      cursor: pointer;
+      list-style: none;
+      border: 2px solid var(--ink);
+      background: var(--panel-strong);
+      padding: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      font-weight: 800;
+    }
+
+    .technical-details > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .technical-details > summary::after {
+      content: "+";
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--ink);
+      background: var(--panel);
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+    }
+
+    .technical-details[open] > summary::after {
+      content: "-";
+    }
+
+    .technical-stack {
+      padding-top: 18px;
+    }
+
+    .technical-tools {
+      border: 1px solid var(--ink);
+      background: var(--panel);
+      padding: 12px;
+      margin-bottom: 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, .55fr);
+      gap: 12px;
+      align-items: center;
+    }
+
+    .technical-tools h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 22px;
+      line-height: 1.05;
+    }
+
+    .technical-tools p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
     .timeline-section {
       border-top: 2px solid var(--ink);
       border-bottom: 1px solid var(--line);
@@ -1282,6 +1494,12 @@
         grid-template-columns: 1fr;
       }
 
+      .plain-overview,
+      .plain-grid,
+      .technical-tools {
+        grid-template-columns: 1fr;
+      }
+
       .project-graph-header,
       .graph-body,
       .project-brief-header,
@@ -1364,6 +1582,22 @@
         justify-content: flex-start;
       }
 
+      .plain-lead h2 {
+        font-size: 28px;
+        line-height: 1.02;
+        text-wrap: wrap;
+      }
+
+      .plain-lead,
+      .plain-grid {
+        width: calc(100vw - 28px);
+        max-width: calc(100vw - 28px);
+      }
+
+      .plain-lead p {
+        max-width: 30ch;
+      }
+
       .timeline-header {
         display: grid;
         align-items: start;
@@ -1385,6 +1619,7 @@
       }
 
       .gate-stats,
+      .plain-strip,
       .graph-metrics,
       .graph-map,
       .brief-metrics,
@@ -1414,7 +1649,7 @@
         <div class="sigil" aria-hidden="true">A</div>
         <div>
           <h1 id="page-title">ARTEMIS Control Plane</h1>
-          <p class="subtitle">Uma superficie visual para governar trabalho agentic: intencao, contexto, execucao, evidencia, revisao e decisao humana no mesmo quadro.</p>
+          <p class="subtitle">Comece pelo modo simples. A visao tecnica completa fica fechada ate voce precisar auditar contratos, evidencias ou tarefas.</p>
         </div>
       </div>
 
@@ -1424,14 +1659,67 @@
           <div class="principle"><strong>State-of-the-art</strong><span>App-server e Symphony, sem complexidade prematura.</span></div>
           <div class="principle"><strong>Completude</strong><span>Uma tarefa termina com evidencia, revisao e handoff.</span></div>
         </div>
-        <div class="actions">
-          <input id="search" type="search" placeholder="Filtrar por ticket, titulo, owner ou tag" aria-label="Filtrar cards">
-          <button id="reset" type="button">Resetar quadro</button>
-        </div>
       </aside>
     </section>
 
-    <section class="metrics" aria-label="Resumo do fluxo">
+    <section class="plain-overview" aria-labelledby="plain-title">
+      <div class="plain-lead">
+        <span class="plain-eyebrow">Modo simples</span>
+        <h2 id="plain-title">Estado atual</h2>
+        <p id="plain-status-copy">Carregando o resumo humano do ARTEMIS.</p>
+        <div class="plain-strip" aria-label="Resumo simples do projeto">
+          <div class="plain-fact"><b id="plain-tasks">--</b><span>tarefas fechadas</span></div>
+          <div class="plain-fact"><b id="plain-validation">--</b><span>validacoes</span></div>
+          <div class="plain-fact"><b id="plain-gates">--</b><span>decisoes humanas</span></div>
+          <div class="plain-fact"><b id="plain-next">--</b><span>proximo corte</span></div>
+        </div>
+        <div class="plain-actions" aria-label="Atalhos principais">
+          <a href="#project-brief-title">Ler resumo</a>
+          <a href="#decision-gate-title">Ver decisoes</a>
+          <a href="#board">Ver tarefas</a>
+        </div>
+      </div>
+
+      <div class="plain-grid">
+        <article class="plain-panel" data-tone="ready">
+          <h3>Estado</h3>
+          <ul id="plain-state-list">
+            <li>O metodo local esta pronto para revisao.</li>
+            <li>O painel mostra contratos e evidencias; nao executa agentes sozinho.</li>
+          </ul>
+        </article>
+        <article class="plain-panel" data-tone="attention">
+          <h3>Atencao humana</h3>
+          <ul id="plain-human-list">
+            <li>Auth GitHub e integracao com issues continuam como Human Gates.</li>
+            <li>Aceite real precisa ser feito por humano owner.</li>
+          </ul>
+        </article>
+        <article class="plain-panel">
+          <h3>Como usar</h3>
+          <ul id="plain-action-list">
+            <li>Comece pelo resumo; abra a visao tecnica so quando precisar auditar.</li>
+            <li>Use o terminal para qualquer execucao real.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <details class="technical-details">
+      <summary>Mostrar visao tecnica completa</summary>
+      <div class="technical-stack">
+    <section class="technical-tools" aria-labelledby="technical-tools-title">
+      <div>
+        <h2 id="technical-tools-title">Ferramentas da visao tecnica</h2>
+        <p>Use estes controles apenas quando abrir o quadro completo para auditar cards, owners ou tags.</p>
+      </div>
+      <div class="actions">
+        <input id="search" type="search" placeholder="Filtrar por ticket, titulo, owner ou tag" aria-label="Filtrar cards">
+        <button id="reset" type="button">Resetar quadro</button>
+      </div>
+    </section>
+
+    <section class="metrics" aria-label="Resumo tecnico do fluxo">
       <div class="metric"><b id="metric-total">0</b><span>cards</span></div>
       <div class="metric"><b id="metric-active">0</b><span>ativos</span></div>
       <div class="metric"><b id="metric-human">0</b><span>decisoes humanas</span></div>
@@ -1859,6 +2147,8 @@
     </section>
 
     <section id="board" class="board" aria-label="Quadro ARTEMIS"></section>
+      </div>
+    </details>
 
     <footer class="footer-note">
       <div>
@@ -3039,6 +3329,15 @@
     const sourceStatus = document.querySelector("#source-status");
     const eventTimeline = document.querySelector("#event-timeline");
     const timelineStatus = document.querySelector("#timeline-status");
+    const technicalDetailsNode = document.querySelector(".technical-details");
+    const plainStatusCopyNode = document.querySelector("#plain-status-copy");
+    const plainTasksNode = document.querySelector("#plain-tasks");
+    const plainValidationNode = document.querySelector("#plain-validation");
+    const plainGatesNode = document.querySelector("#plain-gates");
+    const plainNextNode = document.querySelector("#plain-next");
+    const plainStateListNode = document.querySelector("#plain-state-list");
+    const plainHumanListNode = document.querySelector("#plain-human-list");
+    const plainActionListNode = document.querySelector("#plain-action-list");
     const symphonyEvidenceNode = document.querySelector("#symphony-evidence");
     const symphonySummaryNode = document.querySelector("#symphony-summary");
     const projectGraphStatusNode = document.querySelector("#project-graph-status");
@@ -4245,6 +4544,44 @@
         .replaceAll("'", "&#39;");
     }
 
+    function renderPlainList(target, items) {
+      target.innerHTML = items.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+    }
+
+    function updatePlainFromBrief(model) {
+      const summary = model.summary || {};
+      const brief = model.brief || {};
+      const tasksDone = Number(summary.tasks_done ?? 0);
+      const tasksTotal = Number(summary.tasks_total ?? 0);
+      const validationPassed = Number(summary.validation_passed ?? 0);
+      const validationFailed = Number(summary.validation_failed ?? 0);
+      const humanGates = Number(summary.human_gates ?? 0);
+
+      plainStatusCopyNode.textContent = brief.status || "O ARTEMIS esta pronto como sistema local supervisionado; use a visao tecnica apenas para auditoria.";
+      plainTasksNode.textContent = `${tasksDone}/${tasksTotal}`;
+      plainValidationNode.textContent = `${validationPassed}/${validationFailed}`;
+      plainGatesNode.textContent = String(humanGates);
+      plainNextNode.textContent = (model.next_cut || "NONE").startsWith("NONE") ? "nenhum" : "aberto";
+
+      renderPlainList(plainStateListNode, [
+        `${tasksDone} de ${tasksTotal} Exec Packs estao concluidos.`,
+        `Validacao tecnica: ${validationPassed} checks passaram e ${validationFailed} falharam.`,
+        "O painel continua sendo observacional; execucao real fica no terminal."
+      ]);
+
+      renderPlainList(plainHumanListNode, [
+        humanGates ? `${humanGates} Human Gates seguem como pontos de decisao.` : "Nao ha Human Gates tecnicos pendentes.",
+        "Auth, custo, escrita remota, secrets e aceite real exigem humano owner.",
+        "Agentes podem preparar evidencia, mas nao aprovam o proprio trabalho."
+      ]);
+
+      renderPlainList(plainActionListNode, [
+        "Leia o Project Brief para entender o estado sem entrar em detalhes tecnicos.",
+        "Abra a visao tecnica completa somente para auditar grafo, eventos ou contratos.",
+        "Quando for executar algo real, use um comando pequeno, validavel e reversivel."
+      ]);
+    }
+
     function normalizeCard(item) {
       const states = new Set(columns.map((column) => column.id));
       const state = states.has(item.state) ? item.state : "ready";
@@ -4492,6 +4829,7 @@
           <span>${escapeHtml(label)}</span>
         </span>
       `).join("");
+      updatePlainFromBrief(model);
       renderBriefItems(projectBriefReadyNode, brief.ready);
       renderBriefItems(projectBriefHumanNode, brief.human_attention);
       renderBriefItems(projectBriefNextNode, brief.next_actions);
@@ -5387,6 +5725,14 @@
       cards = cloneCards(initialCards);
       saveCards();
       render();
+    });
+
+    document.querySelectorAll(".plain-actions a").forEach((link) => {
+      link.addEventListener("click", () => {
+        if (technicalDetailsNode) {
+          technicalDetailsNode.open = true;
+        }
+      });
     });
 
     async function boot() {

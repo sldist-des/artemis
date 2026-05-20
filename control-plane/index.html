@@ -322,6 +322,7 @@
       overflow-wrap: anywhere;
     }
 
+    .local-project-overview,
     .runtime-gateway-overview {
       border-bottom: 2px solid var(--ink);
       margin: -2px 0 18px;
@@ -337,6 +338,8 @@
       align-content: start;
       gap: 8px;
       min-width: 0;
+      overflow: hidden;
+      overflow-wrap: anywhere;
     }
 
     .gateway-header h2 {
@@ -362,10 +365,17 @@
       color: var(--muted);
       font-size: 12px;
       line-height: 1.35;
+      min-width: 0;
+      overflow-wrap: anywhere;
     }
 
     .gateway-status b {
       color: var(--ink);
+    }
+
+    .gateway-status span {
+      min-width: 0;
+      overflow-wrap: anywhere;
     }
 
     .operator-strip {
@@ -393,6 +403,15 @@
 
     .operator-card[data-state="planned_not_connected"] {
       background: color-mix(in srgb, var(--panel) 86%, #d9e2ea);
+    }
+
+    .operator-card[data-state="terminal_binary_detected"] {
+      background: color-mix(in srgb, var(--panel) 82%, #d8e5d2);
+    }
+
+    .operator-card[data-state="not_found_on_path"],
+    .operator-card[data-state="blocked"] {
+      background: color-mix(in srgb, var(--panel) 78%, #f3d6bf);
     }
 
     .operator-card h3 {
@@ -1599,6 +1618,7 @@
 
       .plain-overview,
       .plain-grid,
+      .local-project-overview,
       .runtime-gateway-overview,
       .operator-strip,
       .technical-tools {
@@ -1695,6 +1715,7 @@
 
       .plain-lead,
       .plain-grid,
+      .local-project-overview,
       .runtime-gateway-overview {
         width: calc(100vw - 28px);
         max-width: calc(100vw - 28px);
@@ -1807,6 +1828,37 @@
             <li>Comece pelo resumo; abra a visao tecnica so quando precisar auditar.</li>
             <li>Use o terminal para qualquer execucao real.</li>
           </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="local-project-overview" aria-labelledby="local-project-title">
+      <header class="gateway-header">
+        <span class="plain-eyebrow">Projeto local</span>
+        <h2 id="local-project-title">Conectado pelo terminal</h2>
+        <p id="local-project-summary">Carregando projeto conectado.</p>
+        <div class="gateway-status" aria-label="Estado do projeto local">
+          <span><b>Projeto:</b> <span id="local-project-path">--</span></span>
+          <span><b>Navegador acessa filesystem?</b> <span id="local-project-browser-access">--</span></span>
+          <span><b>Runtime liberado?</b> <span id="local-project-runtime">--</span></span>
+          <span><b>Fonte:</b> <span id="local-project-source">artifact local</span></span>
+        </div>
+      </header>
+      <div id="local-provider-strip" class="operator-strip" aria-label="Fornecedores detectados no terminal">
+        <article class="operator-card" data-state="blocked">
+          <span class="operator-state">aguardando</span>
+          <h3>Codex</h3>
+          <p>Aguardando connect pelo terminal.</p>
+        </article>
+        <article class="operator-card" data-state="blocked">
+          <span class="operator-state">aguardando</span>
+          <h3>Claude Code</h3>
+          <p>Aguardando connect pelo terminal.</p>
+        </article>
+        <article class="operator-card" data-state="blocked">
+          <span class="operator-state">aguardando</span>
+          <h3>Antigravity CLI</h3>
+          <p>Aguardando descoberta local.</p>
         </article>
       </div>
     </section>
@@ -2321,6 +2373,7 @@
     const agentRuntimeCompletionHandoffSourceUrl = "../artifacts/artemis-agent-runtime-completion-handoff/run-01/completion-handoff.json";
     const agentRuntimeCompletionReviewGateSourceUrl = "../artifacts/artemis-agent-runtime-completion-review-gate/run-01/completion-review-gate.json";
     const agentRuntimeDoneLedgerSourceUrl = "../artifacts/artemis-agent-runtime-done-ledger/run-01/done-ledger.json";
+    const localProjectConnectSourceUrl = "../artifacts/artemis-portal-local-project-connect/run-01/local-project-connect.json";
     const runtimeGatewayServiceSourceUrl = "../artifacts/artemis-portal-runtime-gateway-service/run-01/runtime-gateway-service.json";
 
     const columns = [
@@ -3482,6 +3535,12 @@
     const runtimeGatewayTokensNode = document.querySelector("#gateway-tokens");
     const runtimeGatewaySourceNode = document.querySelector("#gateway-source");
     const operatorStripNode = document.querySelector("#operator-strip");
+    const localProjectSummaryNode = document.querySelector("#local-project-summary");
+    const localProjectPathNode = document.querySelector("#local-project-path");
+    const localProjectBrowserAccessNode = document.querySelector("#local-project-browser-access");
+    const localProjectRuntimeNode = document.querySelector("#local-project-runtime");
+    const localProjectSourceNode = document.querySelector("#local-project-source");
+    const localProviderStripNode = document.querySelector("#local-provider-strip");
     const symphonyEvidenceNode = document.querySelector("#symphony-evidence");
     const symphonySummaryNode = document.querySelector("#symphony-summary");
     const projectGraphStatusNode = document.querySelector("#project-graph-status");
@@ -4729,6 +4788,58 @@
       }
     };
 
+    const seedLocalProjectConnect = {
+      overall: "local_project_connect_ready",
+      provider_auth_connected: false,
+      runtime_auth_executed: false,
+      agents_started: false,
+      commands_executed: 0,
+      tokens_spent: 0,
+      connected_project: {
+        project_path: "/srv/veri",
+        repo_root: "/srv/veri",
+        is_git_project: true,
+        git_branch: "main",
+        git_remote: "https://github.com/sldist-des/artemis.git",
+        agents_contract_present: true,
+        claude_adapter_present: true,
+        npx_entrypoint: "npx artemis connect --project .",
+        terminal_project_access_required: true,
+        browser_filesystem_access_allowed: false,
+        provider_auth_connected: false,
+        runtime_execution_allowed: false,
+        provider_discovery: [
+          {
+            provider_id: "codex",
+            display_name: "Codex CLI / app-server",
+            detected: true,
+            detected_binary: "/usr/bin/codex",
+            auth_connected: false,
+            runtime_allowed: false,
+            state: "terminal_binary_detected"
+          },
+          {
+            provider_id: "claude_code",
+            display_name: "Claude Code",
+            detected: true,
+            detected_binary: "/root/.local/bin/claude",
+            auth_connected: false,
+            runtime_allowed: false,
+            state: "terminal_binary_detected"
+          },
+          {
+            provider_id: "antigravity_cli",
+            display_name: "Antigravity CLI",
+            detected: true,
+            detected_binary: "/root/.local/bin/agy",
+            auth_connected: false,
+            runtime_allowed: false,
+            state: "terminal_binary_detected"
+          }
+        ]
+      }
+    };
+
     function cloneCards(source) {
       return JSON.parse(JSON.stringify(source));
     }
@@ -4790,6 +4901,56 @@
       return labels[value] || "revisar";
     }
 
+    function labelProviderState(value, detected) {
+      if (value === "terminal_binary_detected" || detected) return "detectado";
+      if (value === "not_found_on_path") return "ausente";
+      if (value === "blocked") return "bloqueado";
+      return "revisar";
+    }
+
+    function conciseSource(value, fallback) {
+      const raw = String(value || fallback || "artifact local");
+      const parts = raw.split("/").filter(Boolean);
+      return parts.length > 1 ? parts.slice(-2).join("/") : raw;
+    }
+
+    function renderLocalProjectConnect(model) {
+      const contract = model.local_project_connect_contract || {};
+      const project = model.connected_project || contract.connected_project || {};
+      const providers = Array.isArray(model.provider_discovery)
+        ? model.provider_discovery
+        : Array.isArray(project.provider_discovery)
+          ? project.provider_discovery
+          : [];
+      const projectLabel = project.repo_root || project.project_path || "Projeto local nao conectado";
+      const terminalRequired = project.terminal_project_access_required ?? contract.terminal_project_access_required ?? true;
+      const browserAllowed = project.browser_filesystem_access_allowed ?? contract.browser_filesystem_access_allowed ?? false;
+      const runtimeAllowed = project.runtime_execution_allowed ?? contract.runtime_execution_allowed ?? false;
+
+      localProjectSummaryNode.textContent = terminalRequired
+        ? "O projeto foi concedido pelo terminal; o painel apenas observa contexto e fornecedores locais."
+        : "O projeto precisa passar pelo connect local antes de qualquer rota de operador.";
+      localProjectPathNode.textContent = projectLabel;
+      localProjectBrowserAccessNode.textContent = browserAllowed ? "sim" : "nao";
+      localProjectRuntimeNode.textContent = runtimeAllowed ? "sim" : "nao";
+      localProjectSourceNode.textContent = `${conciseSource(model.source, localProjectConnectSourceUrl)} | ${model.overall || "observed"}`;
+
+      localProviderStripNode.innerHTML = providers.map((provider) => {
+        const state = provider.state || (provider.detected ? "terminal_binary_detected" : "not_found_on_path");
+        const binary = provider.detected_binary || "nao encontrado no PATH";
+        const auth = provider.auth_connected ? "Auth conectado." : "Auth ainda nao conectado.";
+        const runtime = provider.runtime_allowed ? "Runtime permitido." : "Runtime bloqueado por gates.";
+        return `
+          <article class="operator-card" data-state="${escapeHtml(state)}">
+            <span class="operator-state">${escapeHtml(labelProviderState(state, provider.detected))}</span>
+            <h3>${escapeHtml(provider.display_name || provider.provider_id || "Fornecedor")}</h3>
+            <p>${escapeHtml(binary)}</p>
+            <p>${escapeHtml(`${auth} ${runtime}`)}</p>
+          </article>
+        `;
+      }).join("");
+    }
+
     function renderRuntimeGatewayService(model) {
       const contract = model.service_contract || {};
       const readiness = contract.readiness || {};
@@ -4801,7 +4962,7 @@
       runtimeGatewayPanelCanStartNode.textContent = readiness.panel_can_start_runtime ? "sim" : "nao";
       runtimeGatewayCommandsNode.textContent = String(readiness.commands_executed ?? model.commands_executed ?? 0);
       runtimeGatewayTokensNode.textContent = String(readiness.tokens_spent ?? model.tokens_spent ?? 0);
-      runtimeGatewaySourceNode.textContent = `${model.source || runtimeGatewayServiceSourceUrl} | ${model.overall || "observed"}`;
+      runtimeGatewaySourceNode.textContent = `${conciseSource(model.source, runtimeGatewayServiceSourceUrl)} | ${model.overall || "observed"}`;
 
       operatorStripNode.innerHTML = operators.map((operator) => {
         const state = operator.connection_state || "planned_not_connected";
@@ -5814,6 +5975,18 @@
       }
     }
 
+    async function loadLocalProjectConnectSource() {
+      try {
+        const response = await fetch(localProjectConnectSourceUrl, { cache: "no-store" });
+        if (!response.ok) return null;
+        const payload = await response.json();
+        if (!payload.connected_project || !Array.isArray(payload.provider_discovery)) return null;
+        return payload;
+      } catch {
+        return null;
+      }
+    }
+
     async function loadEventSource() {
       try {
         const response = await fetch(eventSourceUrl, { cache: "no-store" });
@@ -6004,6 +6177,7 @@
       renderAgentRuntimeCompletionHandoff(seedAgentRuntimeCompletionHandoff);
       renderAgentRuntimeCompletionReviewGate(seedAgentRuntimeCompletionReviewGate);
       renderAgentRuntimeDoneLedger(seedAgentRuntimeDoneLedger);
+      renderLocalProjectConnect(seedLocalProjectConnect);
       renderRuntimeGatewayService(seedRuntimeGatewayService);
       const loadedGraph = await loadProjectGraphSource();
       if (loadedGraph) renderProjectGraph(loadedGraph);
@@ -6037,6 +6211,8 @@
       if (loadedAgentRuntimeCompletionReviewGate) renderAgentRuntimeCompletionReviewGate(loadedAgentRuntimeCompletionReviewGate);
       const loadedAgentRuntimeDoneLedger = await loadAgentRuntimeDoneLedgerSource();
       if (loadedAgentRuntimeDoneLedger) renderAgentRuntimeDoneLedger(loadedAgentRuntimeDoneLedger);
+      const loadedLocalProjectConnect = await loadLocalProjectConnectSource();
+      if (loadedLocalProjectConnect) renderLocalProjectConnect(loadedLocalProjectConnect);
       const loadedRuntimeGatewayService = await loadRuntimeGatewayServiceSource();
       if (loadedRuntimeGatewayService) renderRuntimeGatewayService(loadedRuntimeGatewayService);
       const loadedEvents = await loadEventSource();

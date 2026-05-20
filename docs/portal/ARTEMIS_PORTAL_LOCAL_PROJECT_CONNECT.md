@@ -121,5 +121,5 @@ Campos proibidos:
 - gastar tokens;
 - fazer push, PR, deploy ou mutacao remota.
 
-Proximo corte recomendado: renderizar o projeto conectado e os fornecedores
-detectados no Control Plane antes de adicionar cadastro de projetos externos.
+Proximo corte recomendado: definir o cadastro de projetos externos antes de
+permitir troca de projeto ou assignment real pelo portal.

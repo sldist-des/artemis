@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T13:02:53Z",
+  "generated_at": "2026-05-20T13:12:22Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1057,6 +1057,18 @@
       "summary": "O ARTEMIS passa a registrar que acesso a projeto local deve ser dado pelo",
       "exec_pack": "docs/exec-packs/done/TKT-087-artemis-portal-local-project-connect.md",
       "evidence": "artifacts/artemis-portal-local-project-connect/run-01/local-project-connect.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-088",
+      "ticket": "TKT-088",
+      "title": "ARTEMIS Control Plane Local Project Connect View",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O Control Plane mostra que `/srv/veri` foi conectado pelo terminal, que o",
+      "exec_pack": "docs/exec-packs/done/TKT-088-artemis-control-plane-local-project-connect-view.md",
+      "evidence": "artifacts/artemis-control-plane-local-project-connect-view/run-01/control-plane-local-project-connect-view.json",
       "tags": ["exec-pack", "done"]
     }
   ]

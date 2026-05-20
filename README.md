@@ -317,6 +317,7 @@ docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY.md
 scripts/artemis-portal-runtime-gateway.sh --artifact-root artifacts/artemis-portal-runtime-gateway/run-01
 docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY_SERVICE.md
 scripts/artemis-portal-runtime-gateway-service.sh --artifact-root artifacts/artemis-portal-runtime-gateway-service/run-01
+scripts/artemis-control-plane-local-project-connect-view.sh --artifact-root artifacts/artemis-control-plane-local-project-connect-view/run-01
 scripts/artemis-control-plane-runtime-gateway-view.sh --artifact-root artifacts/artemis-control-plane-runtime-gateway-view/run-01
 ```
 

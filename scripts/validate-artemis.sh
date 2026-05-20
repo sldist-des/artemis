@@ -137,6 +137,7 @@ scripts/artemis-portal-project-selector.sh
 scripts/artemis-portal-local-project-connect.sh
 scripts/artemis-portal-runtime-gateway.sh
 scripts/artemis-portal-runtime-gateway-service.sh
+scripts/artemis-control-plane-local-project-connect-view.sh
 scripts/artemis-control-plane-runtime-gateway-view.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
@@ -257,6 +258,7 @@ sh -n scripts/artemis-portal-project-selector.sh
 sh -n scripts/artemis-portal-local-project-connect.sh
 sh -n scripts/artemis-portal-runtime-gateway.sh
 sh -n scripts/artemis-portal-runtime-gateway-service.sh
+sh -n scripts/artemis-control-plane-local-project-connect-view.sh
 sh -n scripts/artemis-control-plane-runtime-gateway-view.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
@@ -815,6 +817,55 @@ if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-local-project-connect.json;
 fi
 if ! test -f /tmp/artemis-portal-local-project-connect/LOCAL_PROJECT_CONNECT.md; then
   echo "scripts/artemis-portal-local-project-connect.sh did not write local project connect documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-control-plane-local-project-connect-view.sh --artifact-root /tmp/artemis-control-plane-local-project-connect-view --json >/tmp/artemis-control-plane-local-project-connect-view.json
+if ! grep -q '"overall": "control_plane_local_project_connect_view_ready"' /tmp/artemis-control-plane-local-project-connect-view.json; then
+  echo "scripts/artemis-control-plane-local-project-connect-view.sh did not report control_plane_local_project_connect_view_ready" >&2
+  exit 1
+fi
+if ! grep -q '"terminal_project_access_required": true' /tmp/artemis-control-plane-local-project-connect-view.json; then
+  echo "scripts/artemis-control-plane-local-project-connect-view.sh did not preserve terminal project access" >&2
+  exit 1
+fi
+if ! grep -q '"browser_filesystem_access_allowed": false' /tmp/artemis-control-plane-local-project-connect-view.json; then
+  echo "scripts/artemis-control-plane-local-project-connect-view.sh allowed browser filesystem access" >&2
+  exit 1
+fi
+if ! grep -q '"codex"' /tmp/artemis-control-plane-local-project-connect-view.json; then
+  echo "scripts/artemis-control-plane-local-project-connect-view.sh did not render Codex provider discovery" >&2
+  exit 1
+fi
+if ! grep -q '"claude_code"' /tmp/artemis-control-plane-local-project-connect-view.json; then
+  echo "scripts/artemis-control-plane-local-project-connect-view.sh did not render Claude Code provider discovery" >&2
+  exit 1
+fi
+if ! grep -q '"antigravity_cli"' /tmp/artemis-control-plane-local-project-connect-view.json; then
+  echo "scripts/artemis-control-plane-local-project-connect-view.sh did not render Antigravity CLI provider discovery" >&2
+  exit 1
+fi
+if ! grep -q '"provider_auth_connected": false' /tmp/artemis-control-plane-local-project-connect-view.json; then
+  echo "scripts/artemis-control-plane-local-project-connect-view.sh connected provider auth" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-control-plane-local-project-connect-view.json; then
+  echo "scripts/artemis-control-plane-local-project-connect-view.sh allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": false' /tmp/artemis-control-plane-local-project-connect-view.json; then
+  echo "scripts/artemis-control-plane-local-project-connect-view.sh started agents" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-control-plane-local-project-connect-view.json; then
+  echo "scripts/artemis-control-plane-local-project-connect-view.sh executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-control-plane-local-project-connect-view.json; then
+  echo "scripts/artemis-control-plane-local-project-connect-view.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-control-plane-local-project-connect-view/CONTROL_PLANE_LOCAL_PROJECT_CONNECT_VIEW.md; then
+  echo "scripts/artemis-control-plane-local-project-connect-view.sh did not write local project connect view documentation artifact" >&2
   exit 1
 fi
 

@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-20T13:12:22Z",
+  "source": "scripts/artemis-control-plane-local-project-connect-view.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_control_plane_local_project_connect_view_ready",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-20T13:12:22Z",
+      "producer": {
+        "adapter": "control_plane",
+        "name": "scripts/artemis-control-plane-local-project-connect-view.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-088",
+        "task_id": "tkt-088",
+        "title": "ARTEMIS Control Plane Local Project Connect View",
+        "exec_pack": "docs/exec-packs/done/TKT-088-artemis-control-plane-local-project-connect-view.md",
+        "artifact_root": "artifacts/artemis-control-plane-local-project-connect-view/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "project_connect",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-control-plane-local-project-connect-view/run-01",
+        "status_path": "artifacts/artemis-control-plane-local-project-connect-view/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-control-plane-local-project-connect-view/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-control-plane-local-project-connect-view/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-control-plane-local-project-connect-view/run-01/control-plane-local-project-connect-view.json",
+          "artifacts/artemis-control-plane-local-project-connect-view/run-01/CONTROL_PLANE_LOCAL_PROJECT_CONNECT_VIEW.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-088"
+      },
+      "payload": {
+        "control_plane_local_project_connect_view_ready": true,
+        "providers_rendered": 3,
+        "terminal_project_access_required": true,
+        "browser_filesystem_access_allowed": false,
+        "provider_auth_connected": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-089 - External Project Registration Contract"
+      }
+    }
+  ]
+}

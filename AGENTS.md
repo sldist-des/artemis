@@ -89,6 +89,7 @@ scripts/artemis-portal-project-selector.sh --json
 scripts/artemis-portal-local-project-connect.sh --project . --json
 scripts/artemis-portal-runtime-gateway.sh --json
 scripts/artemis-portal-runtime-gateway-service.sh --json
+scripts/artemis-control-plane-local-project-connect-view.sh --json
 scripts/artemis-control-plane-runtime-gateway-view.sh --json
 scripts/github-readiness.sh
 sh -n scripts/bootstrap-artemis.sh

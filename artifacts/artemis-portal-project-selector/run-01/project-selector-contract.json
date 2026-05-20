@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-20T12:52:38Z",
+  "overall": "project_selector_ready",
+  "project_selector_ready": true,
+  "secret_values_recorded": false,
+  "runtime_auth_executed": false,
+  "worktree_created": false,
+  "branch_changed": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-087 - Control Plane Project Selector View",
+  "missing_files": [],
+  "selector_contract": {
+    "purpose": "Select the active project context before any Runtime Gateway operator, workspace session or provider-backed launch.",
+    "state": "read_only_contract",
+    "selected_project_id": "artemis_method_kit",
+    "current_project_is_artemis_method_repo": true,
+    "external_projects_registered": 0,
+    "project_selection_mutated": false,
+    "runtime_execution_allowed": false,
+    "project_record_schema": {
+      "required_fields": [
+        "project_id",
+        "display_name",
+        "project_kind",
+        "root_path",
+        "repo_root",
+        "git_branch",
+        "git_remote",
+        "agents_contract",
+        "control_plane_path",
+        "artifact_root",
+        "task_source",
+        "validation_commands",
+        "workspace_policy_id",
+        "default_budget_policy_id",
+        "default_human_gate_policy_id",
+        "allowed_operator_ids",
+        "forbidden_paths",
+        "selection_state",
+        "trust_level",
+        "human_confirmation_required_for_runtime"
+      ],
+      "forbidden_fields": [
+        "plaintext_secret",
+        "raw_access_token",
+        "raw_refresh_token",
+        "private_key_material",
+        "session_cookie",
+        "ssh_private_key",
+        "provider_billing_secret",
+        "git_remote_token"
+      ]
+    },
+    "state_model": [
+      "unregistered",
+      "discovered",
+      "registered_read_only",
+      "selected_read_only",
+      "waiting_for_human_confirmation",
+      "ready_for_workspace_session",
+      "blocked",
+      "disabled"
+    ],
+    "selection_rules": [
+      "A project must have AGENTS.md or an equivalent agent contract before provider-backed runtime.",
+      "A project must have a detected Git root or an explicit non-Git project policy.",
+      "A project must declare validation commands before runtime launch.",
+      "External projects require human registration before they become selectable.",
+      "The selector must not infer worktree paths outside the selected project root.",
+      "The selector does not issue credential leases, approve budget, start operators or permit remote writes."
+    ],
+    "registered_projects": [
+      {
+        "project_id": "artemis_method_kit",
+        "display_name": "ARTEMIS Method Kit",
+        "project_kind": "method_kit_repository",
+        "root_path": ".",
+        "repo_root": "/srv/veri",
+        "git_branch": "main",
+        "git_remote": "https://github.com/sldist-des/artemis.git",
+        "agents_contract": "AGENTS.md",
+        "control_plane_path": "control-plane/index.html",
+        "artifact_root": "artifacts",
+        "task_source": "control-plane/tasks.json",
+        "validation_commands": [
+          "scripts/validate-artemis.sh",
+          "scripts/artemis-tasks.sh --output control-plane/tasks.json",
+          "git diff --check"
+        ],
+        "workspace_policy_id": "workspace:single-writer-worktree",
+        "default_budget_policy_id": "budget:frontier-engineering",
+        "default_human_gate_policy_id": "human-gate:runtime-and-remote-write",
+        "allowed_operator_ids": [
+          "codex_app_server",
+          "claude_code",
+          "antigravity_cli"
+        ],
+        "forbidden_paths": [
+          ".env",
+          ".env.*",
+          "secrets/",
+          "private/",
+          ".git/config",
+          ".git/hooks"
+        ],
+        "selection_state": "selected_read_only",
+        "trust_level": "local_repository_known",
+        "human_confirmation_required_for_runtime": true,
+        "runtime_execution_allowed": false,
+        "remote_writes_allowed": false
+      }
+    ],
+    "human_explanation": [
+      "Este painel esta olhando para o ARTEMIS Method Kit.",
+      "Nenhum projeto externo foi selecionado ainda.",
+      "Antes de rodar Codex, Claude ou outro operador em um produto real, esse produto precisa ser cadastrado e confirmado."
+    ]
+  },
+  "selected_project": {
+    "project_id": "artemis_method_kit",
+    "display_name": "ARTEMIS Method Kit",
+    "project_kind": "method_kit_repository",
+    "root_path": ".",
+    "repo_root": "/srv/veri",
+    "git_branch": "main",
+    "git_remote": "https://github.com/sldist-des/artemis.git",
+    "agents_contract": "AGENTS.md",
+    "control_plane_path": "control-plane/index.html",
+    "artifact_root": "artifacts",
+    "task_source": "control-plane/tasks.json",
+    "validation_commands": [
+      "scripts/validate-artemis.sh",
+      "scripts/artemis-tasks.sh --output control-plane/tasks.json",
+      "git diff --check"
+    ],
+    "workspace_policy_id": "workspace:single-writer-worktree",
+    "default_budget_policy_id": "budget:frontier-engineering",
+    "default_human_gate_policy_id": "human-gate:runtime-and-remote-write",
+    "allowed_operator_ids": [
+      "codex_app_server",
+      "claude_code",
+      "antigravity_cli"
+    ],
+    "forbidden_paths": [
+      ".env",
+      ".env.*",
+      "secrets/",
+      "private/",
+      ".git/config",
+      ".git/hooks"
+    ],
+    "selection_state": "selected_read_only",
+    "trust_level": "local_repository_known",
+    "human_confirmation_required_for_runtime": true,
+    "runtime_execution_allowed": false,
+    "remote_writes_allowed": false
+  },
+  "checks": [
+    {
+      "id": "runtime_gateway_service_ready",
+      "status": "passed",
+      "detail": "Project Selector consumes the read-only Runtime Gateway Service contract."
+    },
+    {
+      "id": "local_project_contract_present",
+      "status": "passed",
+      "detail": "Current local ARTEMIS project has agent contract and task source."
+    },
+    {
+      "id": "git_root_detected",
+      "status": "passed",
+      "detail": "Git root is recorded for the selected local project."
+    },
+    {
+      "id": "operators_bound_to_project",
+      "status": "passed",
+      "detail": "Registered Runtime Gateway operators are visible but not executable for the selected project."
+    },
+    {
+      "id": "external_projects_not_inferred",
+      "status": "passed",
+      "detail": "The selector does not scan or register arbitrary server projects."
+    },
+    {
+      "id": "runtime_still_blocked",
+      "status": "passed",
+      "detail": "Project selection does not grant runtime execution."
+    },
+    {
+      "id": "no_runtime_side_effects",
+      "status": "passed",
+      "detail": "No worktree, provider auth, agent launch, token spend, command execution or remote mutation happened."
+    }
+  ]
+}

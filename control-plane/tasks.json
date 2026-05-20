@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T12:40:40Z",
+  "generated_at": "2026-05-20T12:52:50Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1033,6 +1033,18 @@
       "summary": "O primeiro modo do Control Plane deve mostrar uma faixa clara de operadores:",
       "exec_pack": "docs/exec-packs/done/TKT-085-artemis-control-plane-runtime-gateway-view.md",
       "evidence": "artifacts/artemis-control-plane-runtime-gateway-view/run-01/control-plane-runtime-gateway-view.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-086",
+      "ticket": "TKT-086",
+      "title": "ARTEMIS Portal Project Selector Contract",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O ARTEMIS passa a registrar explicitamente que o Control Plane atual esta",
+      "exec_pack": "docs/exec-packs/done/TKT-086-artemis-portal-project-selector.md",
+      "evidence": "artifacts/artemis-portal-project-selector/run-01/project-selector-contract.json",
       "tags": ["exec-pack", "done"]
     }
   ]

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T12:40:49Z",
+  "generated_at": "2026-05-20T12:52:50Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-20T12:40:49Z",
+      "generated_at": "2026-05-20T12:52:50Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -74,7 +74,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-20T12:40:49Z",
+      "generated_at": "2026-05-20T12:52:50Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -161,7 +161,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-20T12:40:49Z",
+      "generated_at": "2026-05-20T12:52:50Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -254,7 +254,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-20T12:40:49Z",
+      "generated_at": "2026-05-20T12:52:50Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -6644,6 +6644,61 @@
         "secret_values_recorded": false,
         "remote_state_mutated": false,
         "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_project_selector_contract_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-20T12:52:38Z",
+      "producer": {
+        "adapter": "portal_project_selector",
+        "name": "scripts/artemis-portal-project-selector.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-086",
+        "task_id": "tkt-086",
+        "title": "ARTEMIS Portal Project Selector Contract",
+        "exec_pack": "docs/exec-packs/done/TKT-086-artemis-portal-project-selector.md",
+        "artifact_root": "artifacts/artemis-portal-project-selector/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "context",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-project-selector/run-01",
+        "status_path": "artifacts/artemis-portal-project-selector/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-project-selector/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-project-selector/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-project-selector/run-01/project-selector-contract.json",
+          "artifacts/artemis-portal-project-selector/run-01/PROJECT_SELECTOR.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-086"
+      },
+      "payload": {
+        "project_selector_ready": true,
+        "selected_project_id": "artemis_method_kit",
+        "external_projects_registered": 0,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-087 - Control Plane Project Selector View"
       }
     },
     {

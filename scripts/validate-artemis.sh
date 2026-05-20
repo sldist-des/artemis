@@ -51,6 +51,7 @@ docs/portal/ARTEMIS_PORTAL_AGENT_CONVERSATION.md
 docs/portal/ARTEMIS_PORTAL_TASK_CONTROL_SURFACE.md
 docs/portal/ARTEMIS_PORTAL_VALIDATION_EVIDENCE_SURFACE.md
 docs/portal/ARTEMIS_PORTAL_HUMAN_ACCEPTANCE_SURFACE.md
+docs/portal/ARTEMIS_PORTAL_PROJECT_SELECTOR.md
 docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY.md
 docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY_SERVICE.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
@@ -131,6 +132,7 @@ scripts/artemis-portal-agent-conversation.sh
 scripts/artemis-portal-task-control-surface.sh
 scripts/artemis-portal-validation-evidence-surface.sh
 scripts/artemis-portal-human-acceptance-surface.sh
+scripts/artemis-portal-project-selector.sh
 scripts/artemis-portal-runtime-gateway.sh
 scripts/artemis-portal-runtime-gateway-service.sh
 scripts/artemis-control-plane-runtime-gateway-view.sh
@@ -249,6 +251,7 @@ sh -n scripts/artemis-portal-agent-conversation.sh
 sh -n scripts/artemis-portal-task-control-surface.sh
 sh -n scripts/artemis-portal-validation-evidence-surface.sh
 sh -n scripts/artemis-portal-human-acceptance-surface.sh
+sh -n scripts/artemis-portal-project-selector.sh
 sh -n scripts/artemis-portal-runtime-gateway.sh
 sh -n scripts/artemis-portal-runtime-gateway-service.sh
 sh -n scripts/artemis-control-plane-runtime-gateway-view.sh
@@ -707,6 +710,55 @@ if ! grep -q '"tokens_spent": 0' /tmp/artemis-control-plane-runtime-gateway-view
 fi
 if ! test -f /tmp/artemis-control-plane-runtime-gateway-view/CONTROL_PLANE_RUNTIME_GATEWAY_VIEW.md; then
   echo "scripts/artemis-control-plane-runtime-gateway-view.sh did not write runtime gateway view documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-portal-project-selector.sh --artifact-root /tmp/artemis-portal-project-selector --json >/tmp/artemis-portal-project-selector.json
+if ! grep -q '"overall": "project_selector_ready"' /tmp/artemis-portal-project-selector.json; then
+  echo "scripts/artemis-portal-project-selector.sh did not report project_selector_ready" >&2
+  exit 1
+fi
+if ! grep -q '"selected_project_id": "artemis_method_kit"' /tmp/artemis-portal-project-selector.json; then
+  echo "scripts/artemis-portal-project-selector.sh did not select the ARTEMIS local project" >&2
+  exit 1
+fi
+if ! grep -q '"external_projects_registered": 0' /tmp/artemis-portal-project-selector.json; then
+  echo "scripts/artemis-portal-project-selector.sh registered external projects unexpectedly" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-portal-project-selector.json; then
+  echo "scripts/artemis-portal-project-selector.sh allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"codex_app_server"' /tmp/artemis-portal-project-selector.json; then
+  echo "scripts/artemis-portal-project-selector.sh did not bind Codex app-server" >&2
+  exit 1
+fi
+if ! grep -q '"claude_code"' /tmp/artemis-portal-project-selector.json; then
+  echo "scripts/artemis-portal-project-selector.sh did not bind Claude Code" >&2
+  exit 1
+fi
+if ! grep -q '"antigravity_cli"' /tmp/artemis-portal-project-selector.json; then
+  echo "scripts/artemis-portal-project-selector.sh did not bind Antigravity CLI slot" >&2
+  exit 1
+fi
+if ! grep -q '"worktree_created": false' /tmp/artemis-portal-project-selector.json; then
+  echo "scripts/artemis-portal-project-selector.sh created a worktree" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": false' /tmp/artemis-portal-project-selector.json; then
+  echo "scripts/artemis-portal-project-selector.sh started agents" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-portal-project-selector.json; then
+  echo "scripts/artemis-portal-project-selector.sh executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-project-selector.json; then
+  echo "scripts/artemis-portal-project-selector.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-project-selector/PROJECT_SELECTOR.md; then
+  echo "scripts/artemis-portal-project-selector.sh did not write project selector documentation artifact" >&2
   exit 1
 fi
 

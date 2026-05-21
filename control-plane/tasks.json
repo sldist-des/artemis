@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T19:16:57Z",
+  "generated_at": "2026-05-21T19:34:35Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1381,6 +1381,18 @@
       "summary": "Toda execucao provider-backed precisa declarar capability role, binding de",
       "exec_pack": "docs/exec-packs/done/TKT-114-artemis-token-budget-policy.md",
       "evidence": "artifacts/artemis-token-budget-policy/run-01/model-token-budget-policy.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-115",
+      "ticket": "TKT-115",
+      "title": "ARTEMIS Model/API Documentation Radar",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O ARTEMIS passa a ter uma lista verificavel de fontes oficiais e de evidencias",
+      "exec_pack": "docs/exec-packs/done/TKT-115-artemis-model-api-documentation-radar.md",
+      "evidence": "artifacts/artemis-model-api-documentation-radar/run-01/model-api-documentation-radar.json",
       "tags": ["exec-pack", "done"]
     }
   ]

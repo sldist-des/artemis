@@ -68,6 +68,17 @@ MODES = {
         "exec_pack": "docs/exec-packs/done/TKT-114-artemis-token-budget-policy.md",
         "next_cut": "TKT-115 - Model/API Documentation Radar",
     },
+    "docs_radar": {
+        "ticket": "TKT-115",
+        "title": "ARTEMIS Model/API Documentation Radar",
+        "overall": "model_api_documentation_radar_ready",
+        "artifact": "model-api-documentation-radar.json",
+        "doc": "MODEL_API_DOCUMENTATION_RADAR.md",
+        "event_id": "evt_model_api_documentation_radar_ready",
+        "event_type": "model_governance.documentation_radar_ready",
+        "exec_pack": "docs/exec-packs/done/TKT-115-artemis-model-api-documentation-radar.md",
+        "next_cut": "TKT-116 - Model/API Change Intake",
+    },
 }
 
 
@@ -414,18 +425,154 @@ def build_budget(artifact_root):
     return payload
 
 
+def build_docs_radar(artifact_root):
+    meta = MODES["docs_radar"]
+    registry = read_json(REGISTRY_CONFIG, {})
+    migration = read_json("artifacts/artemis-model-migration-gate/run-01/model-migration-gate.json", {})
+    provider_source_catalog = {
+        "official_openai_codex_docs": {
+            "owner": "OpenAI",
+            "source_kind": "official_docs",
+            "url": "https://developers.openai.com/codex",
+            "scope": ["codex_cli", "codex_app_server", "subagents", "model_routing"],
+            "review_required": True,
+        },
+        "repo_AGENTS_model_contract": {
+            "owner": "ARTEMIS",
+            "source_kind": "repo_contract",
+            "url": "AGENTS.md",
+            "scope": ["repo_model_contract", "role_routing", "agent_defaults"],
+            "review_required": True,
+        },
+        "local_codex_cli_version": {
+            "owner": "local_runtime",
+            "source_kind": "local_probe",
+            "url": "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
+            "scope": ["cli_version"],
+            "review_required": True,
+        },
+        "official_claude_code_docs": {
+            "owner": "Anthropic",
+            "source_kind": "official_docs",
+            "url": "https://code.claude.com/docs",
+            "scope": ["claude_code_cli", "claude_code_sdk", "subagents"],
+            "review_required": True,
+        },
+        "local_claude_cli_version": {
+            "owner": "local_runtime",
+            "source_kind": "local_probe",
+            "url": "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
+            "scope": ["cli_version"],
+            "review_required": True,
+        },
+        "provider_sdk_release_notes": {
+            "owner": "provider",
+            "source_kind": "release_notes",
+            "url": "provider_official_release_notes",
+            "scope": ["sdk_changes", "deprecations", "pricing_or_limits"],
+            "review_required": True,
+        },
+        "official_antigravity_cli_docs": {
+            "owner": "Google",
+            "source_kind": "official_docs",
+            "url": "https://antigravity.google/docs/cli-using",
+            "scope": ["antigravity_cli", "agent_manager", "subagents"],
+            "review_required": True,
+        },
+        "local_antigravity_cli_version": {
+            "owner": "local_runtime",
+            "source_kind": "local_probe",
+            "url": "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
+            "scope": ["cli_version"],
+            "review_required": True,
+        },
+    }
+    provider_docs = []
+    source_ids_seen = set()
+    for provider in registry.get("providers", []):
+        source_ids = provider.get("refresh_sources", [])
+        source_ids_seen.update(source_ids)
+        provider_docs.append({
+            "provider_id": provider.get("provider_id"),
+            "provider_status": provider.get("status", "unknown"),
+            "required_sources": [
+                {
+                    "source_id": source_id,
+                    **provider_source_catalog.get(source_id, {
+                        "owner": "unknown",
+                        "source_kind": "unknown",
+                        "url": "unknown",
+                        "scope": [],
+                        "review_required": True,
+                    }),
+                    "last_reviewed_at": "",
+                    "review_state": "pending",
+                    "evidence_artifact": "",
+                }
+                for source_id in source_ids
+            ],
+        })
+    unknown_sources = sorted(source_ids_seen - set(provider_source_catalog))
+    payload = base_payload(meta, registry)
+    payload.update({
+        "documentation_radar_ready": True,
+        "docs_radar_state": "waiting_for_official_docs_review",
+        "external_fetch_executed": False,
+        "official_docs_reviewed": False,
+        "docs_current_confirmed": False,
+        "migration_allowed": False,
+        "default_model_change_allowed": False,
+        "unknown_refresh_sources": unknown_sources,
+        "required_source_count": sum(len(item["required_sources"]) for item in provider_docs),
+        "provider_documentation": provider_docs,
+        "review_policy": {
+            "max_age_days_before_migration": 14,
+            "official_docs_required": True,
+            "release_notes_required_when_sdk_or_cli_changes": True,
+            "local_probe_required": True,
+            "human_review_required": True,
+            "review_artifact_required": True,
+        },
+        "review_record_template": {
+            "provider_id": "",
+            "source_id": "",
+            "reviewed_by": "",
+            "reviewed_at": "",
+            "source_url": "",
+            "observed_change": "",
+            "impact": "unknown",
+            "migration_gate_recommendation": "hold",
+            "evidence_artifact": "",
+        },
+        "migration_gate_state": migration.get("migration_gate_state", "not_available"),
+    })
+    write_standard_artifacts(artifact_root, meta, payload, [
+        "## Radar State",
+        "",
+        "- Documentation radar state: `waiting_for_official_docs_review`",
+        "- External fetch executed: `false`",
+        "- Migration allowed: `false`",
+        "",
+        "## Required Sources",
+        "",
+        *[f"- `{source_id}`: {provider_source_catalog.get(source_id, {}).get('url', 'unknown')}" for source_id in sorted(source_ids_seen)],
+    ])
+    return payload
+
+
 BUILDERS = {
     "registry": build_registry,
     "probes": build_probes,
     "migration": build_migration,
     "evals": build_evals,
     "budget": build_budget,
+    "docs_radar": build_docs_radar,
 }
 
 
 def main(argv):
     if len(argv) != 4 or argv[1] not in BUILDERS:
-        print("usage: artemis_model_governance_common.py <registry|probes|migration|evals|budget> <artifact-root> <text|json>", file=sys.stderr)
+        print("usage: artemis_model_governance_common.py <registry|probes|migration|evals|budget|docs_radar> <artifact-root> <text|json>", file=sys.stderr)
         return 2
     mode = argv[1]
     artifact_root = Path(argv[2])

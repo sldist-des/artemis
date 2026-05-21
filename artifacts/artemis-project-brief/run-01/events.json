@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T19:18:17Z",
+  "generated_at": "2026-05-21T19:34:45Z",
   "source": "scripts/artemis-project-brief.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T19:18:17Z",
+      "generated_at": "2026-05-21T19:34:45Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -47,11 +47,11 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 115,
-          "tasks_done": 115,
-          "events_total": 98,
-          "nodes_total": 45,
-          "edges_total": 184,
+          "tasks_total": 116,
+          "tasks_done": 116,
+          "events_total": 99,
+          "nodes_total": 46,
+          "edges_total": 190,
           "validation_passed": 129,
           "validation_failed": 0,
           "human_gates": 2,
@@ -62,7 +62,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-115 - Model/API Documentation Radar"
+        "next_cut": "TKT-116 - Model/API Change Intake"
       }
     }
   ]

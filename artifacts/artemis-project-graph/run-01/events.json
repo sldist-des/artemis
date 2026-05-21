@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T19:18:10Z",
+  "generated_at": "2026-05-21T19:34:39Z",
   "source": "scripts/artemis-project-graph.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T19:18:10Z",
+      "generated_at": "2026-05-21T19:34:39Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -47,16 +47,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 115,
-          "tasks_done": 115,
+          "tasks_total": 116,
+          "tasks_done": 116,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 10,
-          "events_total": 98,
-          "nodes_total": 45,
-          "edges_total": 184,
-          "evidence_count": 115,
-          "exec_pack_count": 115,
+          "events_total": 99,
+          "nodes_total": 46,
+          "edges_total": 190,
+          "evidence_count": 116,
+          "exec_pack_count": 116,
           "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,
@@ -68,7 +68,7 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-115 - Model/API Documentation Radar"
+        "next_cut": "TKT-116 - Model/API Change Intake"
       }
     }
   ]

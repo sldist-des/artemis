@@ -170,6 +170,7 @@ scripts/artemis-provider-capability-probes.sh
 scripts/artemis-model-migration-gate.sh
 scripts/artemis-provider-operational-evals.sh
 scripts/artemis-token-budget-policy.sh
+scripts/artemis-model-docs-radar.sh
 scripts/artemis_model_governance_common.py
 scripts/artemis-portal-local-project-connect.sh
 scripts/artemis-portal-external-project-registration.sh
@@ -314,6 +315,7 @@ sh -n scripts/artemis-provider-capability-probes.sh
 sh -n scripts/artemis-model-migration-gate.sh
 sh -n scripts/artemis-provider-operational-evals.sh
 sh -n scripts/artemis-token-budget-policy.sh
+sh -n scripts/artemis-model-docs-radar.sh
 sh -n scripts/artemis-portal-local-project-connect.sh
 sh -n scripts/artemis-portal-external-project-registration.sh
 sh -n scripts/artemis-portal-runtime-gateway.sh
@@ -1764,6 +1766,47 @@ if ! grep -q '"ledger_required_before_runtime": true' /tmp/artemis-token-budget-
 fi
 if ! test -f /tmp/artemis-token-budget-policy/MODEL_TOKEN_BUDGET_POLICY.md; then
   echo "scripts/artemis-token-budget-policy.sh did not write token budget documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-model-docs-radar.sh --artifact-root /tmp/artemis-model-api-documentation-radar --json >/tmp/artemis-model-api-documentation-radar.json
+if ! grep -q '"overall": "model_api_documentation_radar_ready"' /tmp/artemis-model-api-documentation-radar.json; then
+  echo "scripts/artemis-model-docs-radar.sh did not report model_api_documentation_radar_ready" >&2
+  exit 1
+fi
+if ! grep -q '"docs_radar_state": "waiting_for_official_docs_review"' /tmp/artemis-model-api-documentation-radar.json; then
+  echo "scripts/artemis-model-docs-radar.sh did not wait for official docs review" >&2
+  exit 1
+fi
+if ! grep -q '"external_fetch_executed": false' /tmp/artemis-model-api-documentation-radar.json; then
+  echo "scripts/artemis-model-docs-radar.sh executed external fetch" >&2
+  exit 1
+fi
+if ! grep -q '"official_docs_reviewed": false' /tmp/artemis-model-api-documentation-radar.json; then
+  echo "scripts/artemis-model-docs-radar.sh claimed official docs review" >&2
+  exit 1
+fi
+if ! grep -q '"docs_current_confirmed": false' /tmp/artemis-model-api-documentation-radar.json; then
+  echo "scripts/artemis-model-docs-radar.sh claimed current docs confirmation" >&2
+  exit 1
+fi
+if ! grep -q '"migration_allowed": false' /tmp/artemis-model-api-documentation-radar.json; then
+  echo "scripts/artemis-model-docs-radar.sh allowed migration" >&2
+  exit 1
+fi
+if ! grep -q '"default_model_change_allowed": false' /tmp/artemis-model-api-documentation-radar.json; then
+  echo "scripts/artemis-model-docs-radar.sh allowed default model change" >&2
+  exit 1
+fi
+if ! grep -q '"provider_api_calls_executed": 0' /tmp/artemis-model-api-documentation-radar.json; then
+  echo "scripts/artemis-model-docs-radar.sh executed provider API calls" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-model-api-documentation-radar.json; then
+  echo "scripts/artemis-model-docs-radar.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-model-api-documentation-radar/MODEL_API_DOCUMENTATION_RADAR.md; then
+  echo "scripts/artemis-model-docs-radar.sh did not write docs radar documentation artifact" >&2
   exit 1
 fi
 scripts/artemis-control-plane-operational-decision-home.sh --artifact-root /tmp/artemis-control-plane-operational-decision-home --json >/tmp/artemis-control-plane-operational-decision-home.json

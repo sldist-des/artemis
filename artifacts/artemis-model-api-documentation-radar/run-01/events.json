@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T19:34:27Z",
+  "source": "scripts/artemis_model_governance_common.py",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_model_api_documentation_radar_ready",
+      "event_type": "model_governance.documentation_radar_ready",
+      "generated_at": "2026-05-21T19:34:27Z",
+      "producer": {
+        "adapter": "model_governance",
+        "name": "ARTEMIS Model/API Documentation Radar",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-115",
+        "task_id": "tkt-115",
+        "title": "ARTEMIS Model/API Documentation Radar",
+        "exec_pack": "docs/exec-packs/done/TKT-115-artemis-model-api-documentation-radar.md",
+        "artifact_root": "artifacts/artemis-model-api-documentation-radar/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "ready",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "model_api_documentation_radar_ready",
+        "reason": "Read-only governance artifact."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-model-api-documentation-radar/run-01",
+        "status_path": "artifacts/artemis-model-api-documentation-radar/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-model-api-documentation-radar/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-model-api-documentation-radar/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-model-api-documentation-radar/run-01/model-api-documentation-radar.json",
+          "artifacts/artemis-model-api-documentation-radar/run-01/MODEL_API_DOCUMENTATION_RADAR.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-115"
+      },
+      "payload": {
+        "overall": "model_api_documentation_radar_ready",
+        "providers_total": 3,
+        "capability_roles_total": 5,
+        "runtime_auth_executed": false,
+        "provider_api_calls_executed": 0,
+        "agents_started": false,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-116 - Model/API Change Intake"
+      }
+    }
+  ]
+}

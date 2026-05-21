@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T19:18:10Z",
+  "generated_at": "2026-05-21T19:34:39Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -43,19 +43,20 @@
     "provider_capability_probes": "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
     "model_migration_gate": "artifacts/artemis-model-migration-gate/run-01/model-migration-gate.json",
     "provider_operational_evals": "artifacts/artemis-provider-operational-evals/run-01/provider-operational-evals.json",
-    "model_token_budget_policy": "artifacts/artemis-token-budget-policy/run-01/model-token-budget-policy.json"
+    "model_token_budget_policy": "artifacts/artemis-token-budget-policy/run-01/model-token-budget-policy.json",
+    "model_api_documentation_radar": "artifacts/artemis-model-api-documentation-radar/run-01/model-api-documentation-radar.json"
   },
   "summary": {
-    "tasks_total": 115,
-    "tasks_done": 115,
+    "tasks_total": 116,
+    "tasks_done": 116,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 10,
-    "events_total": 98,
-    "nodes_total": 45,
-    "edges_total": 184,
-    "evidence_count": 115,
-    "exec_pack_count": 115,
+    "events_total": 99,
+    "nodes_total": 46,
+    "edges_total": 190,
+    "evidence_count": 116,
+    "exec_pack_count": 116,
     "validation_passed": 129,
     "validation_failed": 0,
     "validation_human_gate": 2,
@@ -68,17 +69,17 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 115
+    "done": 116
   },
   "risks": {
-    "medium": 96,
+    "medium": 97,
     "low": 4,
     "high": 15
   },
   "top_owners": [
     [
       "Codex executor",
-      32
+      33
     ],
     [
       "Architect",
@@ -120,11 +121,11 @@
   "top_tags": [
     [
       "exec-pack",
-      115
+      116
     ],
     [
       "done",
-      115
+      116
     ]
   ],
   "nodes": [
@@ -139,8 +140,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 115,
-      "done": 115,
+      "count": 116,
+      "done": 116,
       "human": 0
     },
     {
@@ -151,7 +152,7 @@
       "top": [
         [
           "Codex executor",
-          32
+          33
         ],
         [
           "Architect",
@@ -196,14 +197,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 115,
-      "exec_packs": 115
+      "task_evidence": 116,
+      "exec_packs": 116
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 98
+      "events": 99
     },
     {
       "id": "cost:budget",
@@ -674,6 +675,19 @@
       "hard_stop_required": true,
       "ledger_required_before_runtime": true,
       "next_cut": "TKT-115 - Model/API Documentation Radar"
+    },
+    {
+      "id": "model_governance:documentation_radar",
+      "type": "model_api_documentation_radar",
+      "label": "ARTEMIS Model/API Documentation Radar",
+      "status": "model_api_documentation_radar_ready",
+      "docs_radar_state": "waiting_for_official_docs_review",
+      "required_source_count": 8,
+      "external_fetch_executed": false,
+      "official_docs_reviewed": false,
+      "docs_current_confirmed": false,
+      "migration_allowed": false,
+      "next_cut": "TKT-116 - Model/API Change Intake"
     },
     {
       "id": "control_plane:view",
@@ -1449,6 +1463,26 @@
       "type": "blocks_runtime_without_budget"
     },
     {
+      "from": "model_governance:token_budget_policy",
+      "to": "model_governance:documentation_radar",
+      "type": "feeds_docs_radar"
+    },
+    {
+      "from": "model_governance:documentation_radar",
+      "to": "model_governance:migration_gate",
+      "type": "blocks_migration_without_docs_review"
+    },
+    {
+      "from": "model_governance:documentation_radar",
+      "to": "gate:human",
+      "type": "requires_docs_review_decision"
+    },
+    {
+      "from": "model_governance:documentation_radar",
+      "to": "validation:gate",
+      "type": "requires_review_evidence"
+    },
+    {
       "from": "model_governance:registry",
       "to": "event_log:timeline",
       "type": "records_model_registry"
@@ -1472,6 +1506,11 @@
       "from": "model_governance:token_budget_policy",
       "to": "event_log:timeline",
       "type": "records_budget_policy"
+    },
+    {
+      "from": "model_governance:documentation_radar",
+      "to": "event_log:timeline",
+      "type": "records_docs_radar"
     },
     {
       "from": "control_plane:view",
@@ -1602,6 +1641,11 @@
       "from": "control_plane:view",
       "to": "model_governance:token_budget_policy",
       "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "model_governance:documentation_radar",
+      "type": "shows"
     }
   ],
   "questions": [
@@ -1669,6 +1713,7 @@
         "model_governance:migration_gate",
         "model_governance:operational_evals",
         "model_governance:token_budget_policy",
+        "model_governance:documentation_radar",
         "cost:budget"
       ]
     }
@@ -1721,8 +1766,9 @@
     "model_migration_gate_input": "artemis_model_migration_gate",
     "provider_operational_evals_input": "artemis_provider_operational_evals",
     "model_token_budget_policy_input": "artemis_model_token_budget_policy",
+    "model_api_documentation_radar_input": "artemis_model_api_documentation_radar",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },
-  "next_cut": "TKT-115 - Model/API Documentation Radar"
+  "next_cut": "TKT-116 - Model/API Change Intake"
 }

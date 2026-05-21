@@ -24,6 +24,8 @@ um binding versionado que pode mudar quando houver evidencia.
   antes de promover modelo.
 - `scripts/artemis-token-budget-policy.sh` fixa limites de token/custo por
   classe de tarefa.
+- `scripts/artemis-model-docs-radar.sh` registra fontes oficiais, frescor
+  esperado e evidencia de revisao antes de migracoes.
 
 ## Invariantes
 
@@ -33,3 +35,5 @@ um binding versionado que pode mudar quando houver evidencia.
 - Toda execucao com gasto precisa de budget policy antes do runtime.
 - Nenhum script desta camada le secrets, autentica provider, inicia agentes,
   chama APIs, gasta tokens ou altera remoto.
+- O Documentation Radar nao faz fetch externo sozinho; ele exige revisao
+  explicita e artefato de evidencia antes de liberar um Change Intake.

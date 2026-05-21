@@ -166,6 +166,7 @@ provider_probes_payload = read_json(Path("artifacts/artemis-provider-capability-
 model_migration_gate_payload = read_json(Path("artifacts/artemis-model-migration-gate/run-01/model-migration-gate.json"), {"overall": "not_available", "next_cut": "unknown"})
 provider_operational_evals_payload = read_json(Path("artifacts/artemis-provider-operational-evals/run-01/provider-operational-evals.json"), {"eval_suite": [], "overall": "not_available", "next_cut": "unknown"})
 token_budget_policy_payload = read_json(Path("artifacts/artemis-token-budget-policy/run-01/model-token-budget-policy.json"), {"budget_classes": [], "overall": "not_available", "next_cut": "unknown"})
+model_docs_radar_payload = read_json(Path("artifacts/artemis-model-api-documentation-radar/run-01/model-api-documentation-radar.json"), {"provider_documentation": [], "overall": "not_available", "next_cut": "unknown"})
 
 tasks = tasks_payload.get("tasks", [])
 events = event_log_payload.get("events", [])
@@ -707,6 +708,19 @@ nodes = [
         "next_cut": token_budget_policy_payload.get("next_cut", "unknown"),
     },
     {
+        "id": "model_governance:documentation_radar",
+        "type": "model_api_documentation_radar",
+        "label": "ARTEMIS Model/API Documentation Radar",
+        "status": model_docs_radar_payload.get("overall", "not_available"),
+        "docs_radar_state": model_docs_radar_payload.get("docs_radar_state", "unknown"),
+        "required_source_count": model_docs_radar_payload.get("required_source_count", 0),
+        "external_fetch_executed": model_docs_radar_payload.get("external_fetch_executed", False),
+        "official_docs_reviewed": model_docs_radar_payload.get("official_docs_reviewed", False),
+        "docs_current_confirmed": model_docs_radar_payload.get("docs_current_confirmed", False),
+        "migration_allowed": model_docs_radar_payload.get("migration_allowed", False),
+        "next_cut": model_docs_radar_payload.get("next_cut", "unknown"),
+    },
+    {
         "id": "control_plane:view",
         "type": "view",
         "label": "Control Plane",
@@ -868,11 +882,16 @@ edges = [
     {"from": "model_governance:operational_evals", "to": "model_governance:token_budget_policy", "type": "feeds_budget_policy"},
     {"from": "model_governance:token_budget_policy", "to": "cost:budget", "type": "sets_model_token_limits"},
     {"from": "model_governance:token_budget_policy", "to": "runtime:launcher_execution_gate", "type": "blocks_runtime_without_budget"},
+    {"from": "model_governance:token_budget_policy", "to": "model_governance:documentation_radar", "type": "feeds_docs_radar"},
+    {"from": "model_governance:documentation_radar", "to": "model_governance:migration_gate", "type": "blocks_migration_without_docs_review"},
+    {"from": "model_governance:documentation_radar", "to": "gate:human", "type": "requires_docs_review_decision"},
+    {"from": "model_governance:documentation_radar", "to": "validation:gate", "type": "requires_review_evidence"},
     {"from": "model_governance:registry", "to": "event_log:timeline", "type": "records_model_registry"},
     {"from": "model_governance:provider_probes", "to": "event_log:timeline", "type": "records_provider_probe_state"},
     {"from": "model_governance:migration_gate", "to": "event_log:timeline", "type": "records_migration_gate"},
     {"from": "model_governance:operational_evals", "to": "event_log:timeline", "type": "records_eval_contract"},
     {"from": "model_governance:token_budget_policy", "to": "event_log:timeline", "type": "records_budget_policy"},
+    {"from": "model_governance:documentation_radar", "to": "event_log:timeline", "type": "records_docs_radar"},
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
@@ -899,6 +918,7 @@ edges = [
     {"from": "control_plane:view", "to": "model_governance:migration_gate", "type": "shows"},
     {"from": "control_plane:view", "to": "model_governance:operational_evals", "type": "shows"},
     {"from": "control_plane:view", "to": "model_governance:token_budget_policy", "type": "shows"},
+    {"from": "control_plane:view", "to": "model_governance:documentation_radar", "type": "shows"},
 ]
 
 questions = [
@@ -932,7 +952,7 @@ questions = [
     },
     {
         "question": "Qual modelo/API pode ser usado e com qual limite?",
-        "answer_source": ["model_governance:registry", "model_governance:provider_probes", "model_governance:migration_gate", "model_governance:operational_evals", "model_governance:token_budget_policy", "cost:budget"],
+        "answer_source": ["model_governance:registry", "model_governance:provider_probes", "model_governance:migration_gate", "model_governance:operational_evals", "model_governance:token_budget_policy", "model_governance:documentation_radar", "cost:budget"],
     },
 ]
 
@@ -1008,6 +1028,7 @@ payload = {
         "model_migration_gate": "artifacts/artemis-model-migration-gate/run-01/model-migration-gate.json",
         "provider_operational_evals": "artifacts/artemis-provider-operational-evals/run-01/provider-operational-evals.json",
         "model_token_budget_policy": "artifacts/artemis-token-budget-policy/run-01/model-token-budget-policy.json",
+        "model_api_documentation_radar": "artifacts/artemis-model-api-documentation-radar/run-01/model-api-documentation-radar.json",
     },
     "summary": summary,
     "states": dict(states),
@@ -1065,10 +1086,11 @@ payload = {
         "model_migration_gate_input": "artemis_model_migration_gate",
         "provider_operational_evals_input": "artemis_provider_operational_evals",
         "model_token_budget_policy_input": "artemis_model_token_budget_policy",
+        "model_api_documentation_radar_input": "artemis_model_api_documentation_radar",
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },
-    "next_cut": "TKT-115 - Model/API Documentation Radar",
+    "next_cut": "TKT-116 - Model/API Change Intake",
 }
 
 write_text(artifact_root / "project-graph.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T19:42:54Z",
+  "generated_at": "2026-05-21T19:49:11Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1405,6 +1405,18 @@
       "summary": "O metodo passa a diferenciar \"existe uma fonte a revisar\" de \"existe uma",
       "exec_pack": "docs/exec-packs/done/TKT-116-artemis-model-api-change-intake.md",
       "evidence": "artifacts/artemis-model-api-change-intake/run-01/model-api-change-intake.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-117",
+      "ticket": "TKT-117",
+      "title": "ARTEMIS Model/API Review Fixture",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "high",
+      "summary": "O metodo prova que uma solicitacao completa pode ser aceita para review em",
+      "exec_pack": "docs/exec-packs/done/TKT-117-artemis-model-api-review-fixture.md",
+      "evidence": "artifacts/artemis-model-api-review-fixture/run-01/model-api-review-fixture.json",
       "tags": ["exec-pack", "done"]
     }
   ]

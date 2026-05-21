@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "change_request_id": "fixture:model-api-change:codex-frontier",
+  "requested_by": "ARTEMIS synthetic fixture",
+  "requested_at": "2026-05-21T19:49:04Z",
+  "provider_id": "codex",
+  "capability_role": "frontier_reasoning",
+  "change_kind": "model_binding_update",
+  "current_binding": "repo_default_frontier",
+  "candidate_binding": "candidate_frontier_binding_fixture",
+  "reason": "Synthetic fixture validates change review intake shape.",
+  "official_docs_review_artifacts": [
+    "artifacts/artemis-model-api-review-fixture/run-01/synthetic-docs-review.fixture.json"
+  ],
+  "local_probe_artifact": "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
+  "operational_eval_artifact": "artifacts/artemis-provider-operational-evals/run-01/provider-operational-evals.json",
+  "budget_impact_artifact": "artifacts/artemis-token-budget-policy/run-01/model-token-budget-policy.json",
+  "rollback_plan": "Keep current binding; discard candidate fixture.",
+  "decision": "accepted_for_review",
+  "decision_options": [
+    "pending",
+    "accepted_for_review",
+    "rejected",
+    "deferred"
+  ],
+  "fixture_only": true
+}

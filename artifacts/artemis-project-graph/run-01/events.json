@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T19:43:00Z",
+  "generated_at": "2026-05-21T19:49:19Z",
   "source": "scripts/artemis-project-graph.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T19:43:00Z",
+      "generated_at": "2026-05-21T19:49:19Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -47,16 +47,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 117,
-          "tasks_done": 117,
+          "tasks_total": 118,
+          "tasks_done": 118,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 10,
-          "events_total": 100,
-          "nodes_total": 47,
-          "edges_total": 198,
-          "evidence_count": 117,
-          "exec_pack_count": 117,
+          "events_total": 101,
+          "nodes_total": 48,
+          "edges_total": 204,
+          "evidence_count": 118,
+          "exec_pack_count": 118,
           "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,
@@ -68,7 +68,7 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-117 - Model/API Review Fixture"
+        "next_cut": "TKT-118 - Model/API Review Gate"
       }
     }
   ]

@@ -90,6 +90,17 @@ MODES = {
         "exec_pack": "docs/exec-packs/done/TKT-116-artemis-model-api-change-intake.md",
         "next_cut": "TKT-117 - Model/API Review Fixture",
     },
+    "review_fixture": {
+        "ticket": "TKT-117",
+        "title": "ARTEMIS Model/API Review Fixture",
+        "overall": "model_api_review_fixture_ready",
+        "artifact": "model-api-review-fixture.json",
+        "doc": "MODEL_API_REVIEW_FIXTURE.md",
+        "event_id": "evt_model_api_review_fixture_ready",
+        "event_type": "model_governance.review_fixture_ready",
+        "exec_pack": "docs/exec-packs/done/TKT-117-artemis-model-api-review-fixture.md",
+        "next_cut": "TKT-118 - Model/API Review Gate",
+    },
 }
 
 
@@ -658,6 +669,145 @@ def build_change_intake(artifact_root):
     return payload
 
 
+def build_review_fixture(artifact_root):
+    meta = MODES["review_fixture"]
+    artifact_root.mkdir(parents=True, exist_ok=True)
+    registry = read_json(REGISTRY_CONFIG, {})
+    change_intake = read_json("artifacts/artemis-model-api-change-intake/run-01/model-api-change-intake.json", {})
+    request_template = change_intake.get("request_template", {})
+    synthetic_docs_review = {
+        "schema_version": 1,
+        "review_fixture_id": "fixture:model-api-review:codex-frontier",
+        "synthetic_fixture_only": True,
+        "provider_id": "codex",
+        "capability_role": "frontier_reasoning",
+        "reviewed_sources": [
+            {
+                "source_id": "official_openai_codex_docs",
+                "source_url": "https://developers.openai.com/codex",
+                "review_state": "fixture_reviewed",
+                "evidence_artifact": "artifacts/artemis-model-api-review-fixture/run-01/synthetic-docs-review.fixture.json",
+            },
+            {
+                "source_id": "repo_AGENTS_model_contract",
+                "source_url": "AGENTS.md",
+                "review_state": "fixture_reviewed",
+                "evidence_artifact": "artifacts/artemis-model-api-review-fixture/run-01/synthetic-docs-review.fixture.json",
+            },
+            {
+                "source_id": "local_codex_cli_version",
+                "source_url": "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
+                "review_state": "fixture_reviewed",
+                "evidence_artifact": "artifacts/artemis-model-api-review-fixture/run-01/synthetic-docs-review.fixture.json",
+            },
+        ],
+        "observed_change": "Synthetic fixture proves review evidence shape only.",
+        "impact": "fixture_only",
+        "migration_gate_recommendation": "hold",
+    }
+    synthetic_change_request = dict(request_template)
+    synthetic_change_request.update({
+        "change_request_id": "fixture:model-api-change:codex-frontier",
+        "requested_by": "ARTEMIS synthetic fixture",
+        "requested_at": now_utc(),
+        "provider_id": "codex",
+        "capability_role": "frontier_reasoning",
+        "change_kind": "model_binding_update",
+        "current_binding": "repo_default_frontier",
+        "candidate_binding": "candidate_frontier_binding_fixture",
+        "reason": "Synthetic fixture validates change review intake shape.",
+        "official_docs_review_artifacts": [
+            "artifacts/artemis-model-api-review-fixture/run-01/synthetic-docs-review.fixture.json"
+        ],
+        "local_probe_artifact": "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
+        "operational_eval_artifact": "artifacts/artemis-provider-operational-evals/run-01/provider-operational-evals.json",
+        "budget_impact_artifact": "artifacts/artemis-token-budget-policy/run-01/model-token-budget-policy.json",
+        "rollback_plan": "Keep current binding; discard candidate fixture.",
+        "decision": "accepted_for_review",
+        "fixture_only": True,
+    })
+    write_json(artifact_root / "synthetic-docs-review.fixture.json", synthetic_docs_review)
+    write_json(artifact_root / "model-api-change-request.fixture.json", synthetic_change_request)
+    required_fields = [
+        "change_request_id",
+        "requested_by",
+        "requested_at",
+        "provider_id",
+        "capability_role",
+        "change_kind",
+        "current_binding",
+        "candidate_binding",
+        "reason",
+        "official_docs_review_artifacts",
+        "local_probe_artifact",
+        "operational_eval_artifact",
+        "budget_impact_artifact",
+        "rollback_plan",
+        "decision",
+    ]
+    request_complete = all(bool(synthetic_change_request.get(field)) for field in required_fields)
+    review_sources_complete = all(bool(item.get("evidence_artifact")) for item in synthetic_docs_review["reviewed_sources"])
+    provider_valid = synthetic_change_request["provider_id"] in set(provider_ids(registry))
+    role_valid = synthetic_change_request["capability_role"] in {item.get("role_id") for item in registry.get("capability_roles", [])}
+    fixture_positive_path = all([
+        change_intake.get("overall") == "model_api_change_intake_ready",
+        change_intake.get("change_review_allowed") is False,
+        request_complete,
+        review_sources_complete,
+        provider_valid,
+        role_valid,
+        synthetic_change_request.get("decision") == "accepted_for_review",
+        synthetic_change_request.get("fixture_only") is True,
+    ])
+    payload = base_payload(meta, registry)
+    payload.update({
+        "review_fixture_ready": fixture_positive_path,
+        "synthetic_fixture_only": True,
+        "fixture_positive_path": fixture_positive_path,
+        "request_recorded": True,
+        "change_request_valid": fixture_positive_path,
+        "accepted_for_review_fixture": fixture_positive_path,
+        "real_review_recorded": False,
+        "change_review_allowed": False,
+        "migration_allowed": False,
+        "default_model_change_allowed": False,
+        "runtime_execution_allowed": False,
+        "spend_authorized": False,
+        "provider_id": synthetic_change_request["provider_id"],
+        "capability_role": synthetic_change_request["capability_role"],
+        "current_binding": synthetic_change_request["current_binding"],
+        "candidate_binding": synthetic_change_request["candidate_binding"],
+        "blockers": [
+            "synthetic_fixture_cannot_authorize_review",
+            "real_docs_review_not_recorded",
+            "real_human_change_decision_missing",
+            "migration_gate_not_approved",
+        ],
+        "synthetic_docs_review": synthetic_docs_review,
+        "synthetic_change_request": synthetic_change_request,
+        "fixture_rules": [
+            "A fixture can prove schema and positive path only.",
+            "Synthetic review evidence cannot approve a real model/API change.",
+            "No default binding, runtime, provider auth, token spend or remote state changes happen here.",
+            "A later Review Gate must separate fixture evidence from real review authority.",
+        ],
+    })
+    write_standard_artifacts(artifact_root, meta, payload, [
+        "## Fixture State",
+        "",
+        "- Synthetic fixture only: `true`",
+        f"- Fixture positive path: `{str(fixture_positive_path).lower()}`",
+        "- Accepted for review fixture: `true`",
+        "- Real review recorded: `false`",
+        "- Migration allowed: `false`",
+        "",
+        "## Blockers",
+        "",
+        *[f"- `{item}`" for item in payload["blockers"]],
+    ])
+    return payload
+
+
 BUILDERS = {
     "registry": build_registry,
     "probes": build_probes,
@@ -666,12 +816,13 @@ BUILDERS = {
     "budget": build_budget,
     "docs_radar": build_docs_radar,
     "change_intake": build_change_intake,
+    "review_fixture": build_review_fixture,
 }
 
 
 def main(argv):
     if len(argv) != 4 or argv[1] not in BUILDERS:
-        print("usage: artemis_model_governance_common.py <registry|probes|migration|evals|budget|docs_radar|change_intake> <artifact-root> <text|json>", file=sys.stderr)
+        print("usage: artemis_model_governance_common.py <registry|probes|migration|evals|budget|docs_radar|change_intake|review_fixture> <artifact-root> <text|json>", file=sys.stderr)
         return 2
     mode = argv[1]
     artifact_root = Path(argv[2])

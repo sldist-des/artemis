@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T19:43:00Z",
+  "generated_at": "2026-05-21T19:49:19Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-21T19:43:00Z",
+      "generated_at": "2026-05-21T19:49:19Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -74,7 +74,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T19:43:00Z",
+      "generated_at": "2026-05-21T19:49:19Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -161,7 +161,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T19:43:00Z",
+      "generated_at": "2026-05-21T19:49:19Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -254,7 +254,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-21T19:43:00Z",
+      "generated_at": "2026-05-21T19:49:19Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -1612,7 +1612,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T19:34:44Z",
+      "generated_at": "2026-05-21T19:43:07Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -1652,8 +1652,8 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 46,
-          "edges_rendered": 190,
+          "nodes_rendered": 47,
+          "edges_rendered": 198,
           "questions_rendered": 3,
           "invariants_rendered": 3,
           "validation_passed": 129,
@@ -1664,7 +1664,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-116 - Model/API Change Intake"
+        "next_cut": "TKT-117 - Model/API Review Fixture"
       }
     },
     {
@@ -4854,7 +4854,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T19:34:44Z",
+      "generated_at": "2026-05-21T19:43:07Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -4894,8 +4894,8 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 46,
-          "edges_rendered": 190,
+          "nodes_rendered": 47,
+          "edges_rendered": 198,
           "questions_rendered": 3,
           "invariants_rendered": 3,
           "validation_passed": 129,
@@ -4906,14 +4906,14 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-116 - Model/API Change Intake"
+        "next_cut": "TKT-117 - Model/API Review Fixture"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T19:34:45Z",
+      "generated_at": "2026-05-21T19:43:07Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -4953,11 +4953,11 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 116,
-          "tasks_done": 116,
-          "events_total": 99,
-          "nodes_total": 46,
-          "edges_total": 190,
+          "tasks_total": 117,
+          "tasks_done": 117,
+          "events_total": 100,
+          "nodes_total": 47,
+          "edges_total": 198,
           "validation_passed": 129,
           "validation_failed": 0,
           "human_gates": 2,
@@ -4968,7 +4968,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-116 - Model/API Change Intake"
+        "next_cut": "TKT-117 - Model/API Review Fixture"
       }
     },
     {
@@ -8522,6 +8522,62 @@
         "tokens_spent": 0,
         "remote_state_mutated": false,
         "next_cut": "TKT-117 - Model/API Review Fixture"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_model_api_review_fixture_ready",
+      "event_type": "model_governance.review_fixture_ready",
+      "generated_at": "2026-05-21T19:49:04Z",
+      "producer": {
+        "adapter": "model_governance",
+        "name": "ARTEMIS Model/API Review Fixture",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-117",
+        "task_id": "tkt-117",
+        "title": "ARTEMIS Model/API Review Fixture",
+        "exec_pack": "docs/exec-packs/done/TKT-117-artemis-model-api-review-fixture.md",
+        "artifact_root": "artifacts/artemis-model-api-review-fixture/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "ready",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "model_api_review_fixture_ready",
+        "reason": "Read-only governance artifact."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-model-api-review-fixture/run-01",
+        "status_path": "artifacts/artemis-model-api-review-fixture/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-model-api-review-fixture/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-model-api-review-fixture/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-model-api-review-fixture/run-01/model-api-review-fixture.json",
+          "artifacts/artemis-model-api-review-fixture/run-01/MODEL_API_REVIEW_FIXTURE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-117"
+      },
+      "payload": {
+        "overall": "model_api_review_fixture_ready",
+        "providers_total": 3,
+        "capability_roles_total": 5,
+        "runtime_auth_executed": false,
+        "provider_api_calls_executed": 0,
+        "agents_started": false,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-118 - Model/API Review Gate"
       }
     },
     {

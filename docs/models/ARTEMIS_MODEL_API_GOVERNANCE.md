@@ -28,6 +28,8 @@ um binding versionado que pode mudar quando houver evidencia.
   esperado e evidencia de revisao antes de migracoes.
 - `scripts/artemis-model-change-intake.sh` registra a solicitacao formal de
   mudanca depois do radar, ainda sem permitir migracao.
+- `scripts/artemis-model-review-fixture.sh` prova o caminho positivo de review
+  com fixture sintetica, ainda sem autoridade real.
 
 ## Invariantes
 
@@ -41,3 +43,5 @@ um binding versionado que pode mudar quando houver evidencia.
   explicita e artefato de evidencia antes de liberar um Change Intake.
 - O Change Intake registra intencao e evidencia exigida; ele nao altera binding
   de modelo, default, runtime ou budget.
+- A Review Fixture valida formato e encadeamento, mas nao substitui review
+  humano real nem libera migracao.

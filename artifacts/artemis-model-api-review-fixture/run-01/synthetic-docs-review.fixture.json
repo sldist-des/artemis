@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "review_fixture_id": "fixture:model-api-review:codex-frontier",
+  "synthetic_fixture_only": true,
+  "provider_id": "codex",
+  "capability_role": "frontier_reasoning",
+  "reviewed_sources": [
+    {
+      "source_id": "official_openai_codex_docs",
+      "source_url": "https://developers.openai.com/codex",
+      "review_state": "fixture_reviewed",
+      "evidence_artifact": "artifacts/artemis-model-api-review-fixture/run-01/synthetic-docs-review.fixture.json"
+    },
+    {
+      "source_id": "repo_AGENTS_model_contract",
+      "source_url": "AGENTS.md",
+      "review_state": "fixture_reviewed",
+      "evidence_artifact": "artifacts/artemis-model-api-review-fixture/run-01/synthetic-docs-review.fixture.json"
+    },
+    {
+      "source_id": "local_codex_cli_version",
+      "source_url": "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
+      "review_state": "fixture_reviewed",
+      "evidence_artifact": "artifacts/artemis-model-api-review-fixture/run-01/synthetic-docs-review.fixture.json"
+    }
+  ],
+  "observed_change": "Synthetic fixture proves review evidence shape only.",
+  "impact": "fixture_only",
+  "migration_gate_recommendation": "hold"
+}

@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T19:49:04Z",
+  "overall": "model_api_review_fixture_ready",
+  "state": "ready",
+  "providers_total": 3,
+  "capability_roles_total": 5,
+  "provider_ids": [
+    "codex",
+    "claude_code",
+    "antigravity_cli"
+  ],
+  "next_cut": "TKT-118 - Model/API Review Gate",
+  "invariants": [
+    "Model names are runtime bindings, not method authority.",
+    "Capability roles remain the routing contract.",
+    "Official docs refresh is required before default model/API changes.",
+    "Human Gate is required before changing default provider routing.",
+    "No provider auth, API call, runtime agent, token spend or remote mutation is allowed in this cut."
+  ],
+  "runtime_auth_executed": false,
+  "provider_api_calls_executed": 0,
+  "agents_started": false,
+  "provider_runtime_commands_executed": 0,
+  "tokens_spent": 0,
+  "secret_values_recorded": false,
+  "remote_state_mutated": false,
+  "review_fixture_ready": true,
+  "synthetic_fixture_only": true,
+  "fixture_positive_path": true,
+  "request_recorded": true,
+  "change_request_valid": true,
+  "accepted_for_review_fixture": true,
+  "real_review_recorded": false,
+  "change_review_allowed": false,
+  "migration_allowed": false,
+  "default_model_change_allowed": false,
+  "runtime_execution_allowed": false,
+  "spend_authorized": false,
+  "provider_id": "codex",
+  "capability_role": "frontier_reasoning",
+  "current_binding": "repo_default_frontier",
+  "candidate_binding": "candidate_frontier_binding_fixture",
+  "blockers": [
+    "synthetic_fixture_cannot_authorize_review",
+    "real_docs_review_not_recorded",
+    "real_human_change_decision_missing",
+    "migration_gate_not_approved"
+  ],
+  "synthetic_docs_review": {
+    "schema_version": 1,
+    "review_fixture_id": "fixture:model-api-review:codex-frontier",
+    "synthetic_fixture_only": true,
+    "provider_id": "codex",
+    "capability_role": "frontier_reasoning",
+    "reviewed_sources": [
+      {
+        "source_id": "official_openai_codex_docs",
+        "source_url": "https://developers.openai.com/codex",
+        "review_state": "fixture_reviewed",
+        "evidence_artifact": "artifacts/artemis-model-api-review-fixture/run-01/synthetic-docs-review.fixture.json"
+      },
+      {
+        "source_id": "repo_AGENTS_model_contract",
+        "source_url": "AGENTS.md",
+        "review_state": "fixture_reviewed",
+        "evidence_artifact": "artifacts/artemis-model-api-review-fixture/run-01/synthetic-docs-review.fixture.json"
+      },
+      {
+        "source_id": "local_codex_cli_version",
+        "source_url": "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
+        "review_state": "fixture_reviewed",
+        "evidence_artifact": "artifacts/artemis-model-api-review-fixture/run-01/synthetic-docs-review.fixture.json"
+      }
+    ],
+    "observed_change": "Synthetic fixture proves review evidence shape only.",
+    "impact": "fixture_only",
+    "migration_gate_recommendation": "hold"
+  },
+  "synthetic_change_request": {
+    "schema_version": 1,
+    "change_request_id": "fixture:model-api-change:codex-frontier",
+    "requested_by": "ARTEMIS synthetic fixture",
+    "requested_at": "2026-05-21T19:49:04Z",
+    "provider_id": "codex",
+    "capability_role": "frontier_reasoning",
+    "change_kind": "model_binding_update",
+    "current_binding": "repo_default_frontier",
+    "candidate_binding": "candidate_frontier_binding_fixture",
+    "reason": "Synthetic fixture validates change review intake shape.",
+    "official_docs_review_artifacts": [
+      "artifacts/artemis-model-api-review-fixture/run-01/synthetic-docs-review.fixture.json"
+    ],
+    "local_probe_artifact": "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
+    "operational_eval_artifact": "artifacts/artemis-provider-operational-evals/run-01/provider-operational-evals.json",
+    "budget_impact_artifact": "artifacts/artemis-token-budget-policy/run-01/model-token-budget-policy.json",
+    "rollback_plan": "Keep current binding; discard candidate fixture.",
+    "decision": "accepted_for_review",
+    "decision_options": [
+      "pending",
+      "accepted_for_review",
+      "rejected",
+      "deferred"
+    ],
+    "fixture_only": true
+  },
+  "fixture_rules": [
+    "A fixture can prove schema and positive path only.",
+    "Synthetic review evidence cannot approve a real model/API change.",
+    "No default binding, runtime, provider auth, token spend or remote state changes happen here.",
+    "A later Review Gate must separate fixture evidence from real review authority."
+  ]
+}

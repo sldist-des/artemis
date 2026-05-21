@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `47`.
-- Edges: `198`.
-- Tasks: `117`.
-- Events: `100`.
+- Nodes: `48`.
+- Edges: `204`.
+- Tasks: `118`.
+- Events: `101`.
 
 ## Nos
 
@@ -57,6 +57,7 @@
 - `model_governance:token_budget_policy` (model_token_budget_policy): ARTEMIS Token Budget Policy.
 - `model_governance:documentation_radar` (model_api_documentation_radar): ARTEMIS Model/API Documentation Radar.
 - `model_governance:change_intake` (model_api_change_intake): ARTEMIS Model/API Change Intake.
+- `model_governance:review_fixture` (model_api_review_fixture): ARTEMIS Model/API Review Fixture.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -224,6 +225,10 @@
 - `model_governance:change_intake` --requires_budget_impact--> `model_governance:token_budget_policy`.
 - `model_governance:change_intake` --requires_change_decision--> `gate:human`.
 - `model_governance:change_intake` --validates_change_request--> `validation:gate`.
+- `model_governance:change_intake` --feeds_review_fixture--> `model_governance:review_fixture`.
+- `model_governance:review_fixture` --does_not_authorize_migration--> `model_governance:migration_gate`.
+- `model_governance:review_fixture` --does_not_replace_real_review--> `gate:human`.
+- `model_governance:review_fixture` --validates_positive_path_fixture--> `validation:gate`.
 - `model_governance:registry` --records_model_registry--> `event_log:timeline`.
 - `model_governance:provider_probes` --records_provider_probe_state--> `event_log:timeline`.
 - `model_governance:migration_gate` --records_migration_gate--> `event_log:timeline`.
@@ -231,6 +236,7 @@
 - `model_governance:token_budget_policy` --records_budget_policy--> `event_log:timeline`.
 - `model_governance:documentation_radar` --records_docs_radar--> `event_log:timeline`.
 - `model_governance:change_intake` --records_change_intake--> `event_log:timeline`.
+- `model_governance:review_fixture` --records_review_fixture--> `event_log:timeline`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.
@@ -259,6 +265,7 @@
 - `control_plane:view` --shows--> `model_governance:token_budget_policy`.
 - `control_plane:view` --shows--> `model_governance:documentation_radar`.
 - `control_plane:view` --shows--> `model_governance:change_intake`.
+- `control_plane:view` --shows--> `model_governance:review_fixture`.
 
 ## Perguntas operacionais
 

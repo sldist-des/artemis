@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T19:43:07Z",
+  "generated_at": "2026-05-21T19:49:27Z",
   "source": "scripts/artemis-project-brief.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T19:43:07Z",
+      "generated_at": "2026-05-21T19:49:27Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -47,11 +47,11 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 117,
-          "tasks_done": 117,
-          "events_total": 100,
-          "nodes_total": 47,
-          "edges_total": 198,
+          "tasks_total": 118,
+          "tasks_done": 118,
+          "events_total": 101,
+          "nodes_total": 48,
+          "edges_total": 204,
           "validation_passed": 129,
           "validation_failed": 0,
           "human_gates": 2,
@@ -62,7 +62,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-117 - Model/API Review Fixture"
+        "next_cut": "TKT-118 - Model/API Review Gate"
       }
     }
   ]

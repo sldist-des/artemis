@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T19:43:00Z",
+  "generated_at": "2026-05-21T19:49:19Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -45,19 +45,20 @@
     "provider_operational_evals": "artifacts/artemis-provider-operational-evals/run-01/provider-operational-evals.json",
     "model_token_budget_policy": "artifacts/artemis-token-budget-policy/run-01/model-token-budget-policy.json",
     "model_api_documentation_radar": "artifacts/artemis-model-api-documentation-radar/run-01/model-api-documentation-radar.json",
-    "model_api_change_intake": "artifacts/artemis-model-api-change-intake/run-01/model-api-change-intake.json"
+    "model_api_change_intake": "artifacts/artemis-model-api-change-intake/run-01/model-api-change-intake.json",
+    "model_api_review_fixture": "artifacts/artemis-model-api-review-fixture/run-01/model-api-review-fixture.json"
   },
   "summary": {
-    "tasks_total": 117,
-    "tasks_done": 117,
+    "tasks_total": 118,
+    "tasks_done": 118,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 10,
-    "events_total": 100,
-    "nodes_total": 47,
-    "edges_total": 198,
-    "evidence_count": 117,
-    "exec_pack_count": 117,
+    "events_total": 101,
+    "nodes_total": 48,
+    "edges_total": 204,
+    "evidence_count": 118,
+    "exec_pack_count": 118,
     "validation_passed": 129,
     "validation_failed": 0,
     "validation_human_gate": 2,
@@ -70,17 +71,17 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 117
+    "done": 118
   },
   "risks": {
     "medium": 97,
     "low": 4,
-    "high": 16
+    "high": 17
   },
   "top_owners": [
     [
       "Codex executor",
-      34
+      35
     ],
     [
       "Architect",
@@ -122,11 +123,11 @@
   "top_tags": [
     [
       "exec-pack",
-      117
+      118
     ],
     [
       "done",
-      117
+      118
     ]
   ],
   "nodes": [
@@ -141,8 +142,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 117,
-      "done": 117,
+      "count": 118,
+      "done": 118,
       "human": 0
     },
     {
@@ -153,7 +154,7 @@
       "top": [
         [
           "Codex executor",
-          34
+          35
         ],
         [
           "Architect",
@@ -198,14 +199,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 117,
-      "exec_packs": 117
+      "task_evidence": 118,
+      "exec_packs": 118
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 100
+      "events": 101
     },
     {
       "id": "cost:budget",
@@ -703,6 +704,20 @@
       "runtime_execution_allowed": false,
       "tokens_spent": 0,
       "next_cut": "TKT-117 - Model/API Review Fixture"
+    },
+    {
+      "id": "model_governance:review_fixture",
+      "type": "model_api_review_fixture",
+      "label": "ARTEMIS Model/API Review Fixture",
+      "status": "model_api_review_fixture_ready",
+      "synthetic_fixture_only": true,
+      "fixture_positive_path": true,
+      "accepted_for_review_fixture": true,
+      "real_review_recorded": false,
+      "change_review_allowed": false,
+      "migration_allowed": false,
+      "tokens_spent": 0,
+      "next_cut": "TKT-118 - Model/API Review Gate"
     },
     {
       "id": "control_plane:view",
@@ -1528,6 +1543,26 @@
       "type": "validates_change_request"
     },
     {
+      "from": "model_governance:change_intake",
+      "to": "model_governance:review_fixture",
+      "type": "feeds_review_fixture"
+    },
+    {
+      "from": "model_governance:review_fixture",
+      "to": "model_governance:migration_gate",
+      "type": "does_not_authorize_migration"
+    },
+    {
+      "from": "model_governance:review_fixture",
+      "to": "gate:human",
+      "type": "does_not_replace_real_review"
+    },
+    {
+      "from": "model_governance:review_fixture",
+      "to": "validation:gate",
+      "type": "validates_positive_path_fixture"
+    },
+    {
       "from": "model_governance:registry",
       "to": "event_log:timeline",
       "type": "records_model_registry"
@@ -1561,6 +1596,11 @@
       "from": "model_governance:change_intake",
       "to": "event_log:timeline",
       "type": "records_change_intake"
+    },
+    {
+      "from": "model_governance:review_fixture",
+      "to": "event_log:timeline",
+      "type": "records_review_fixture"
     },
     {
       "from": "control_plane:view",
@@ -1701,6 +1741,11 @@
       "from": "control_plane:view",
       "to": "model_governance:change_intake",
       "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "model_governance:review_fixture",
+      "type": "shows"
     }
   ],
   "questions": [
@@ -1770,6 +1815,7 @@
         "model_governance:token_budget_policy",
         "model_governance:documentation_radar",
         "model_governance:change_intake",
+        "model_governance:review_fixture",
         "cost:budget"
       ]
     }
@@ -1824,8 +1870,9 @@
     "model_token_budget_policy_input": "artemis_model_token_budget_policy",
     "model_api_documentation_radar_input": "artemis_model_api_documentation_radar",
     "model_api_change_intake_input": "artemis_model_api_change_intake",
+    "model_api_review_fixture_input": "artemis_model_api_review_fixture",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },
-  "next_cut": "TKT-117 - Model/API Review Fixture"
+  "next_cut": "TKT-118 - Model/API Review Gate"
 }

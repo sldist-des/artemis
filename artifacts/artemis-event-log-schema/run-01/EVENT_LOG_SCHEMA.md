@@ -1,7 +1,7 @@
 # ARTEMIS EVENT LOG SCHEMA
 
 - Schema version: 1
-- Events: 102
+- Events: 103
 - Source: scripts/artemis-event-log.sh
 
 ## Event Types
@@ -99,6 +99,7 @@
 - `model_governance.change_intake_ready`: `evt_model_api_change_intake_ready` -> done
 - `model_governance.review_fixture_ready`: `evt_model_api_review_fixture_ready` -> done
 - `model_governance.review_gate_ready`: `evt_model_api_review_gate_ready` -> done
+- `model_governance.review_decision_intake_ready`: `evt_model_api_review_decision_intake_ready` -> done
 - `adapter.contract_recorded`: `evt_portal_local_project_connect_recorded` -> done
 - `adapter.contract_recorded`: `evt_portal_external_project_registration_recorded` -> done
 - `adapter.contract_recorded`: `evt_portal_runtime_gateway_contract_recorded` -> done

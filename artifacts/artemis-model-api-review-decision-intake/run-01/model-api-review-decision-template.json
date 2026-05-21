@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "review_decision_id": "",
+  "real_review_artifact": "",
+  "real_review_id": "",
+  "provider_id": "codex",
+  "capability_role": "frontier_reasoning",
+  "change_kind": "model_binding_update",
+  "current_binding": "repo_default_frontier",
+  "candidate_binding": "candidate_frontier_binding_fixture",
+  "decision": "pending",
+  "decision_options": [
+    "pending",
+    "approved_for_migration_gate",
+    "rejected",
+    "deferred"
+  ],
+  "decided_by": "",
+  "decided_at": "",
+  "rationale": "",
+  "accepted_official_docs_review_artifacts": [],
+  "official_docs_current_confirmed": false,
+  "accepted_local_probe_artifact": "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
+  "accepted_operational_eval_artifact": "artifacts/artemis-provider-operational-evals/run-01/provider-operational-evals.json",
+  "accepted_budget_impact_artifact": "artifacts/artemis-token-budget-policy/run-01/model-token-budget-policy.json",
+  "accepted_rollback_plan": "",
+  "constraints_acknowledged": [
+    "approval_only_feeds_later_migration_gate",
+    "approval_does_not_change_default_model",
+    "approval_does_not_start_runtime",
+    "approval_does_not_authenticate_provider",
+    "approval_does_not_spend_tokens",
+    "approval_does_not_mutate_remote_state"
+  ]
+}

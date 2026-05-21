@@ -174,6 +174,7 @@ scripts/artemis-model-docs-radar.sh
 scripts/artemis-model-change-intake.sh
 scripts/artemis-model-review-fixture.sh
 scripts/artemis-model-review-gate.sh
+scripts/artemis-model-review-decision-intake.sh
 scripts/artemis_model_governance_common.py
 scripts/artemis-portal-local-project-connect.sh
 scripts/artemis-portal-external-project-registration.sh
@@ -322,6 +323,7 @@ sh -n scripts/artemis-model-docs-radar.sh
 sh -n scripts/artemis-model-change-intake.sh
 sh -n scripts/artemis-model-review-fixture.sh
 sh -n scripts/artemis-model-review-gate.sh
+sh -n scripts/artemis-model-review-decision-intake.sh
 sh -n scripts/artemis-portal-local-project-connect.sh
 sh -n scripts/artemis-portal-external-project-registration.sh
 sh -n scripts/artemis-portal-runtime-gateway.sh
@@ -1980,6 +1982,67 @@ if ! test -f /tmp/artemis-model-api-review-gate/model-api-real-review-template.j
 fi
 if ! test -f /tmp/artemis-model-api-review-gate/MODEL_API_REVIEW_GATE.md; then
   echo "scripts/artemis-model-review-gate.sh did not write review gate documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-model-review-decision-intake.sh --artifact-root /tmp/artemis-model-api-review-decision-intake --json >/tmp/artemis-model-api-review-decision-intake.json
+if ! grep -q '"overall": "model_api_review_decision_intake_ready"' /tmp/artemis-model-api-review-decision-intake.json; then
+  echo "scripts/artemis-model-review-decision-intake.sh did not report model_api_review_decision_intake_ready" >&2
+  exit 1
+fi
+if ! grep -q '"review_decision_state": "pending"' /tmp/artemis-model-api-review-decision-intake.json; then
+  echo "scripts/artemis-model-review-decision-intake.sh did not preserve pending review decision state" >&2
+  exit 1
+fi
+if ! grep -q '"review_gate_ready": true' /tmp/artemis-model-api-review-decision-intake.json; then
+  echo "scripts/artemis-model-review-decision-intake.sh did not consume the ready review gate" >&2
+  exit 1
+fi
+if ! grep -q '"real_review_recorded": false' /tmp/artemis-model-api-review-decision-intake.json; then
+  echo "scripts/artemis-model-review-decision-intake.sh recorded real review unexpectedly" >&2
+  exit 1
+fi
+if ! grep -q '"real_review_decision_recorded": false' /tmp/artemis-model-api-review-decision-intake.json; then
+  echo "scripts/artemis-model-review-decision-intake.sh recorded real review decision unexpectedly" >&2
+  exit 1
+fi
+if ! grep -q '"approved_for_migration_gate": false' /tmp/artemis-model-api-review-decision-intake.json; then
+  echo "scripts/artemis-model-review-decision-intake.sh approved migration gate" >&2
+  exit 1
+fi
+if ! grep -q '"migration_allowed": false' /tmp/artemis-model-api-review-decision-intake.json; then
+  echo "scripts/artemis-model-review-decision-intake.sh allowed migration" >&2
+  exit 1
+fi
+if ! grep -q '"default_model_change_allowed": false' /tmp/artemis-model-api-review-decision-intake.json; then
+  echo "scripts/artemis-model-review-decision-intake.sh allowed default model change" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-model-api-review-decision-intake.json; then
+  echo "scripts/artemis-model-review-decision-intake.sh allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"spend_authorized": false' /tmp/artemis-model-api-review-decision-intake.json; then
+  echo "scripts/artemis-model-review-decision-intake.sh authorized spend" >&2
+  exit 1
+fi
+if ! grep -q '"provider_api_calls_executed": 0' /tmp/artemis-model-api-review-decision-intake.json; then
+  echo "scripts/artemis-model-review-decision-intake.sh executed provider API calls" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-model-api-review-decision-intake.json; then
+  echo "scripts/artemis-model-review-decision-intake.sh spent tokens" >&2
+  exit 1
+fi
+if ! grep -q '"remote_state_mutated": false' /tmp/artemis-model-api-review-decision-intake.json; then
+  echo "scripts/artemis-model-review-decision-intake.sh mutated remote state" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-model-api-review-decision-intake/model-api-review-decision-template.json; then
+  echo "scripts/artemis-model-review-decision-intake.sh did not write review decision template" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-model-api-review-decision-intake/MODEL_API_REVIEW_DECISION_INTAKE.md; then
+  echo "scripts/artemis-model-review-decision-intake.sh did not write review decision intake documentation artifact" >&2
   exit 1
 fi
 scripts/artemis-control-plane-operational-decision-home.sh --artifact-root /tmp/artemis-control-plane-operational-decision-home --json >/tmp/artemis-control-plane-operational-decision-home.json

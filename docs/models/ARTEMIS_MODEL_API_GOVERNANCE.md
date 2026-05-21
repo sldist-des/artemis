@@ -32,6 +32,8 @@ um binding versionado que pode mudar quando houver evidencia.
   com fixture sintetica, ainda sem autoridade real.
 - `scripts/artemis-model-review-gate.sh` separa fixture sintetica de review
   real e emite o template de review humano antes de qualquer decisao.
+- `scripts/artemis-model-review-decision-intake.sh` registra a superficie de
+  decisao humana sobre review real sem liberar migracao ou runtime.
 
 ## Invariantes
 
@@ -50,3 +52,6 @@ um binding versionado que pode mudar quando houver evidencia.
 - O Review Gate aceita a fixture apenas como evidencia de formato; review real,
   decision intake, migracao, default change, runtime e gasto continuam
   bloqueados ate artefato humano explicito.
+- O Review Decision Intake classifica a decisao como pendente por padrao; mesmo
+  uma aprovacao futura so pode alimentar um gate posterior, nao trocar modelos
+  diretamente.

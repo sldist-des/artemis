@@ -170,6 +170,7 @@ model_docs_radar_payload = read_json(Path("artifacts/artemis-model-api-documenta
 model_change_intake_payload = read_json(Path("artifacts/artemis-model-api-change-intake/run-01/model-api-change-intake.json"), {"overall": "not_available", "next_cut": "unknown"})
 model_review_fixture_payload = read_json(Path("artifacts/artemis-model-api-review-fixture/run-01/model-api-review-fixture.json"), {"overall": "not_available", "next_cut": "unknown"})
 model_review_gate_payload = read_json(Path("artifacts/artemis-model-api-review-gate/run-01/model-api-review-gate.json"), {"overall": "not_available", "next_cut": "unknown"})
+model_review_decision_intake_payload = read_json(Path("artifacts/artemis-model-api-review-decision-intake/run-01/model-api-review-decision-intake.json"), {"overall": "not_available", "next_cut": "unknown"})
 
 tasks = tasks_payload.get("tasks", [])
 events = event_log_payload.get("events", [])
@@ -766,6 +767,19 @@ nodes = [
         "next_cut": model_review_gate_payload.get("next_cut", "unknown"),
     },
     {
+        "id": "model_governance:review_decision_intake",
+        "type": "model_api_review_decision_intake",
+        "label": "ARTEMIS Model/API Review Decision Intake",
+        "status": model_review_decision_intake_payload.get("overall", "not_available"),
+        "review_decision_state": model_review_decision_intake_payload.get("review_decision_state", "unknown"),
+        "review_gate_ready": model_review_decision_intake_payload.get("review_gate_ready", False),
+        "real_review_decision_recorded": model_review_decision_intake_payload.get("real_review_decision_recorded", False),
+        "approved_for_migration_gate": model_review_decision_intake_payload.get("approved_for_migration_gate", False),
+        "migration_allowed": model_review_decision_intake_payload.get("migration_allowed", False),
+        "tokens_spent": model_review_decision_intake_payload.get("tokens_spent", 0),
+        "next_cut": model_review_decision_intake_payload.get("next_cut", "unknown"),
+    },
+    {
         "id": "control_plane:view",
         "type": "view",
         "label": "Control Plane",
@@ -945,6 +959,10 @@ edges = [
     {"from": "model_governance:review_gate", "to": "gate:human", "type": "requires_real_model_review"},
     {"from": "model_governance:review_gate", "to": "model_governance:migration_gate", "type": "blocks_migration_without_real_review"},
     {"from": "model_governance:review_gate", "to": "validation:gate", "type": "validates_review_boundary"},
+    {"from": "model_governance:review_gate", "to": "model_governance:review_decision_intake", "type": "feeds_review_decision_intake"},
+    {"from": "model_governance:review_decision_intake", "to": "gate:human", "type": "requires_review_decision"},
+    {"from": "model_governance:review_decision_intake", "to": "model_governance:migration_gate", "type": "blocks_migration_until_decision"},
+    {"from": "model_governance:review_decision_intake", "to": "validation:gate", "type": "validates_decision_boundary"},
     {"from": "model_governance:registry", "to": "event_log:timeline", "type": "records_model_registry"},
     {"from": "model_governance:provider_probes", "to": "event_log:timeline", "type": "records_provider_probe_state"},
     {"from": "model_governance:migration_gate", "to": "event_log:timeline", "type": "records_migration_gate"},
@@ -954,6 +972,7 @@ edges = [
     {"from": "model_governance:change_intake", "to": "event_log:timeline", "type": "records_change_intake"},
     {"from": "model_governance:review_fixture", "to": "event_log:timeline", "type": "records_review_fixture"},
     {"from": "model_governance:review_gate", "to": "event_log:timeline", "type": "records_review_gate"},
+    {"from": "model_governance:review_decision_intake", "to": "event_log:timeline", "type": "records_review_decision_intake"},
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
@@ -984,6 +1003,7 @@ edges = [
     {"from": "control_plane:view", "to": "model_governance:change_intake", "type": "shows"},
     {"from": "control_plane:view", "to": "model_governance:review_fixture", "type": "shows"},
     {"from": "control_plane:view", "to": "model_governance:review_gate", "type": "shows"},
+    {"from": "control_plane:view", "to": "model_governance:review_decision_intake", "type": "shows"},
 ]
 
 questions = [
@@ -1017,7 +1037,7 @@ questions = [
     },
     {
         "question": "Qual modelo/API pode ser usado e com qual limite?",
-        "answer_source": ["model_governance:registry", "model_governance:provider_probes", "model_governance:migration_gate", "model_governance:operational_evals", "model_governance:token_budget_policy", "model_governance:documentation_radar", "model_governance:change_intake", "model_governance:review_fixture", "model_governance:review_gate", "cost:budget"],
+        "answer_source": ["model_governance:registry", "model_governance:provider_probes", "model_governance:migration_gate", "model_governance:operational_evals", "model_governance:token_budget_policy", "model_governance:documentation_radar", "model_governance:change_intake", "model_governance:review_fixture", "model_governance:review_gate", "model_governance:review_decision_intake", "cost:budget"],
     },
 ]
 
@@ -1097,6 +1117,7 @@ payload = {
         "model_api_change_intake": "artifacts/artemis-model-api-change-intake/run-01/model-api-change-intake.json",
         "model_api_review_fixture": "artifacts/artemis-model-api-review-fixture/run-01/model-api-review-fixture.json",
         "model_api_review_gate": "artifacts/artemis-model-api-review-gate/run-01/model-api-review-gate.json",
+        "model_api_review_decision_intake": "artifacts/artemis-model-api-review-decision-intake/run-01/model-api-review-decision-intake.json",
     },
     "summary": summary,
     "states": dict(states),
@@ -1158,10 +1179,11 @@ payload = {
         "model_api_change_intake_input": "artemis_model_api_change_intake",
         "model_api_review_fixture_input": "artemis_model_api_review_fixture",
         "model_api_review_gate_input": "artemis_model_api_review_gate",
+        "model_api_review_decision_intake_input": "artemis_model_api_review_decision_intake",
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },
-    "next_cut": "TKT-119 - Model/API Review Decision Intake",
+    "next_cut": "TKT-120 - Model/API Review Decision Fixture",
 }
 
 write_text(artifact_root / "project-graph.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")

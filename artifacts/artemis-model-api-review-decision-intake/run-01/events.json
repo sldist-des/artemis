@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T20:03:50Z",
+  "source": "scripts/artemis_model_governance_common.py",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_model_api_review_decision_intake_ready",
+      "event_type": "model_governance.review_decision_intake_ready",
+      "generated_at": "2026-05-21T20:03:50Z",
+      "producer": {
+        "adapter": "model_governance",
+        "name": "ARTEMIS Model/API Review Decision Intake",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-119",
+        "task_id": "tkt-119",
+        "title": "ARTEMIS Model/API Review Decision Intake",
+        "exec_pack": "docs/exec-packs/done/TKT-119-artemis-model-api-review-decision-intake.md",
+        "artifact_root": "artifacts/artemis-model-api-review-decision-intake/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "ready",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "model_api_review_decision_intake_ready",
+        "reason": "Read-only governance artifact."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-model-api-review-decision-intake/run-01",
+        "status_path": "artifacts/artemis-model-api-review-decision-intake/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-model-api-review-decision-intake/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-model-api-review-decision-intake/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-model-api-review-decision-intake/run-01/model-api-review-decision-intake.json",
+          "artifacts/artemis-model-api-review-decision-intake/run-01/MODEL_API_REVIEW_DECISION_INTAKE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-119"
+      },
+      "payload": {
+        "overall": "model_api_review_decision_intake_ready",
+        "providers_total": 3,
+        "capability_roles_total": 5,
+        "runtime_auth_executed": false,
+        "provider_api_calls_executed": 0,
+        "agents_started": false,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-120 - Model/API Review Decision Fixture"
+      }
+    }
+  ]
+}

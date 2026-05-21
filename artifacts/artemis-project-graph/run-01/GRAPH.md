@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `49`.
-- Edges: `210`.
-- Tasks: `119`.
-- Events: `102`.
+- Nodes: `50`.
+- Edges: `216`.
+- Tasks: `120`.
+- Events: `103`.
 
 ## Nos
 
@@ -59,6 +59,7 @@
 - `model_governance:change_intake` (model_api_change_intake): ARTEMIS Model/API Change Intake.
 - `model_governance:review_fixture` (model_api_review_fixture): ARTEMIS Model/API Review Fixture.
 - `model_governance:review_gate` (model_api_review_gate): ARTEMIS Model/API Review Gate.
+- `model_governance:review_decision_intake` (model_api_review_decision_intake): ARTEMIS Model/API Review Decision Intake.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -234,6 +235,10 @@
 - `model_governance:review_gate` --requires_real_model_review--> `gate:human`.
 - `model_governance:review_gate` --blocks_migration_without_real_review--> `model_governance:migration_gate`.
 - `model_governance:review_gate` --validates_review_boundary--> `validation:gate`.
+- `model_governance:review_gate` --feeds_review_decision_intake--> `model_governance:review_decision_intake`.
+- `model_governance:review_decision_intake` --requires_review_decision--> `gate:human`.
+- `model_governance:review_decision_intake` --blocks_migration_until_decision--> `model_governance:migration_gate`.
+- `model_governance:review_decision_intake` --validates_decision_boundary--> `validation:gate`.
 - `model_governance:registry` --records_model_registry--> `event_log:timeline`.
 - `model_governance:provider_probes` --records_provider_probe_state--> `event_log:timeline`.
 - `model_governance:migration_gate` --records_migration_gate--> `event_log:timeline`.
@@ -243,6 +248,7 @@
 - `model_governance:change_intake` --records_change_intake--> `event_log:timeline`.
 - `model_governance:review_fixture` --records_review_fixture--> `event_log:timeline`.
 - `model_governance:review_gate` --records_review_gate--> `event_log:timeline`.
+- `model_governance:review_decision_intake` --records_review_decision_intake--> `event_log:timeline`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.
@@ -273,6 +279,7 @@
 - `control_plane:view` --shows--> `model_governance:change_intake`.
 - `control_plane:view` --shows--> `model_governance:review_fixture`.
 - `control_plane:view` --shows--> `model_governance:review_gate`.
+- `control_plane:view` --shows--> `model_governance:review_decision_intake`.
 
 ## Perguntas operacionais
 

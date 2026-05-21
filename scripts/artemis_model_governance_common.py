@@ -112,6 +112,17 @@ MODES = {
         "exec_pack": "docs/exec-packs/done/TKT-118-artemis-model-api-review-gate.md",
         "next_cut": "TKT-119 - Model/API Review Decision Intake",
     },
+    "review_decision_intake": {
+        "ticket": "TKT-119",
+        "title": "ARTEMIS Model/API Review Decision Intake",
+        "overall": "model_api_review_decision_intake_ready",
+        "artifact": "model-api-review-decision-intake.json",
+        "doc": "MODEL_API_REVIEW_DECISION_INTAKE.md",
+        "event_id": "evt_model_api_review_decision_intake_ready",
+        "event_type": "model_governance.review_decision_intake_ready",
+        "exec_pack": "docs/exec-packs/done/TKT-119-artemis-model-api-review-decision-intake.md",
+        "next_cut": "TKT-120 - Model/API Review Decision Fixture",
+    },
 }
 
 
@@ -927,6 +938,123 @@ def build_review_gate(artifact_root):
     return payload
 
 
+def build_review_decision_intake(artifact_root):
+    meta = MODES["review_decision_intake"]
+    artifact_root.mkdir(parents=True, exist_ok=True)
+    registry = read_json(REGISTRY_CONFIG, {})
+    review_gate = read_json("artifacts/artemis-model-api-review-gate/run-01/model-api-review-gate.json", {})
+    real_review_template = review_gate.get("real_review_template", {})
+
+    review_gate_ready = all([
+        review_gate.get("overall") == "model_api_review_gate_ready",
+        review_gate.get("review_gate_state") == "waiting_for_real_model_review",
+        review_gate.get("fixture_boundary_valid") is True,
+        review_gate.get("real_review_recorded") is False,
+        review_gate.get("review_decision_intake_allowed") is False,
+        review_gate.get("migration_allowed") is False,
+    ])
+    decision_template = {
+        "schema_version": 1,
+        "review_decision_id": "",
+        "real_review_artifact": "",
+        "real_review_id": real_review_template.get("real_review_id", ""),
+        "provider_id": real_review_template.get("provider_id", ""),
+        "capability_role": real_review_template.get("capability_role", ""),
+        "change_kind": real_review_template.get("change_kind", "model_binding_update"),
+        "current_binding": real_review_template.get("current_binding", ""),
+        "candidate_binding": real_review_template.get("candidate_binding", ""),
+        "decision": "pending",
+        "decision_options": ["pending", "approved_for_migration_gate", "rejected", "deferred"],
+        "decided_by": "",
+        "decided_at": "",
+        "rationale": "",
+        "accepted_official_docs_review_artifacts": [],
+        "official_docs_current_confirmed": False,
+        "accepted_local_probe_artifact": real_review_template.get("local_probe_artifact", ""),
+        "accepted_operational_eval_artifact": real_review_template.get("operational_eval_artifact", ""),
+        "accepted_budget_impact_artifact": real_review_template.get("budget_impact_artifact", ""),
+        "accepted_rollback_plan": "",
+        "constraints_acknowledged": [
+            "approval_only_feeds_later_migration_gate",
+            "approval_does_not_change_default_model",
+            "approval_does_not_start_runtime",
+            "approval_does_not_authenticate_provider",
+            "approval_does_not_spend_tokens",
+            "approval_does_not_mutate_remote_state",
+        ],
+    }
+    blockers = [
+        "real_review_artifact_missing",
+        "review_decision_missing",
+        "official_docs_currency_not_confirmed",
+        "operator_attestation_missing",
+        "migration_gate_not_reopened",
+    ]
+    payload = base_payload(meta, registry)
+    payload.update({
+        "state": "waiting_for_review_decision",
+        "review_decision_intake_ready": review_gate_ready,
+        "review_decision_state": "pending",
+        "review_gate_ready": review_gate_ready,
+        "real_review_recorded": False,
+        "real_review_decision_recorded": False,
+        "decision_recorded": False,
+        "decision_valid": False,
+        "approved_for_migration_gate": False,
+        "rejected": False,
+        "deferred": False,
+        "migration_allowed": False,
+        "default_model_change_allowed": False,
+        "runtime_execution_allowed": False,
+        "spend_authorized": False,
+        "provider_id": decision_template["provider_id"],
+        "capability_role": decision_template["capability_role"],
+        "current_binding": decision_template["current_binding"],
+        "candidate_binding": decision_template["candidate_binding"],
+        "decision_template": decision_template,
+        "required_decision_fields": [
+            "review_decision_id",
+            "real_review_artifact",
+            "real_review_id",
+            "provider_id",
+            "capability_role",
+            "decision",
+            "decided_by",
+            "decided_at",
+            "rationale",
+            "accepted_official_docs_review_artifacts",
+            "official_docs_current_confirmed",
+            "accepted_local_probe_artifact",
+            "accepted_operational_eval_artifact",
+            "accepted_budget_impact_artifact",
+            "accepted_rollback_plan",
+        ],
+        "blockers": blockers,
+        "intake_rules": [
+            "Pending means no real review decision has been recorded yet.",
+            "Approved only unlocks a later migration gate; it never changes defaults by itself.",
+            "Rejected and deferred decisions keep the candidate binding inactive.",
+            "Invalid or missing decisions block migration until corrected.",
+            "No provider auth, runtime, API call, token spend or remote mutation happens here.",
+        ],
+    })
+    write_json(artifact_root / "model-api-review-decision-template.json", decision_template)
+    write_standard_artifacts(artifact_root, meta, payload, [
+        "## Decision Intake State",
+        "",
+        "- Review decision state: `pending`",
+        f"- Review gate ready: `{str(review_gate_ready).lower()}`",
+        "- Real review decision recorded: `false`",
+        "- Approved for migration gate: `false`",
+        "- Migration allowed: `false`",
+        "",
+        "## Blockers",
+        "",
+        *[f"- `{item}`" for item in blockers],
+    ])
+    return payload
+
+
 BUILDERS = {
     "registry": build_registry,
     "probes": build_probes,
@@ -937,12 +1065,13 @@ BUILDERS = {
     "change_intake": build_change_intake,
     "review_fixture": build_review_fixture,
     "review_gate": build_review_gate,
+    "review_decision_intake": build_review_decision_intake,
 }
 
 
 def main(argv):
     if len(argv) != 4 or argv[1] not in BUILDERS:
-        print("usage: artemis_model_governance_common.py <registry|probes|migration|evals|budget|docs_radar|change_intake|review_fixture|review_gate> <artifact-root> <text|json>", file=sys.stderr)
+        print("usage: artemis_model_governance_common.py <registry|probes|migration|evals|budget|docs_radar|change_intake|review_fixture|review_gate|review_decision_intake> <artifact-root> <text|json>", file=sys.stderr)
         return 2
     mode = argv[1]
     artifact_root = Path(argv[2])

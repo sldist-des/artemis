@@ -345,6 +345,7 @@ scripts/artemis-model-docs-radar.sh --artifact-root artifacts/artemis-model-api-
 scripts/artemis-model-change-intake.sh --artifact-root artifacts/artemis-model-api-change-intake/run-01
 scripts/artemis-model-review-fixture.sh --artifact-root artifacts/artemis-model-api-review-fixture/run-01
 scripts/artemis-model-review-gate.sh --artifact-root artifacts/artemis-model-api-review-gate/run-01
+scripts/artemis-model-review-decision-intake.sh --artifact-root artifacts/artemis-model-api-review-decision-intake/run-01
 docs/portal/ARTEMIS_PORTAL_LOCAL_PROJECT_CONNECT.md
 scripts/artemis-portal-local-project-connect.sh --project . --artifact-root artifacts/artemis-portal-local-project-connect/run-01
 docs/portal/ARTEMIS_PORTAL_EXTERNAL_PROJECT_REGISTRATION.md

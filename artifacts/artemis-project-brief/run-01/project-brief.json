@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T19:58:42Z",
+  "generated_at": "2026-05-21T20:04:18Z",
   "source": "scripts/artemis-project-brief.sh",
   "mode": "read_only_human_project_brief",
   "overall": "human_project_brief_ready",
@@ -18,11 +18,11 @@
     "claude_code"
   ],
   "summary": {
-    "tasks_total": 119,
-    "tasks_done": 119,
-    "events_total": 102,
-    "nodes_total": 49,
-    "edges_total": 210,
+    "tasks_total": 120,
+    "tasks_done": 120,
+    "events_total": 103,
+    "nodes_total": 50,
+    "edges_total": 216,
     "validation_passed": 129,
     "validation_failed": 0,
     "human_gates": 2,
@@ -37,9 +37,9 @@
     "headline": "ARTEMIS Symphony em linguagem de projeto",
     "status": "O ARTEMIS Symphony esta pronto como sistema local supervisionado: ele organiza tarefas, evidencia, validacao, memoria e limites antes de qualquer execucao automatica.",
     "ready": [
-      "119 de 119 Exec Packs estao concluidos e versionados.",
+      "120 de 120 Exec Packs estao concluidos e versionados.",
       "O Validation Gate registra 129 checks aprovados e 0 falhas tecnicas.",
-      "O Project Graph conecta 49 nos e 210 relacoes entre tarefas, agentes, gates, memoria, custos e evidencias.",
+      "O Project Graph conecta 50 nos e 216 relacoes entre tarefas, agentes, gates, memoria, custos e evidencias.",
       "A Memory Zone tem 3 zonas para contexto humano-AI versionado em Git."
     ],
     "human_attention": [
@@ -78,5 +78,5 @@
     "renderProjectBrief",
     "loadProjectBriefSource"
   ],
-  "next_cut": "TKT-119 - Model/API Review Decision Intake"
+  "next_cut": "TKT-120 - Model/API Review Decision Fixture"
 }

@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T18:02:49Z",
+  "source": "scripts/artemis-portal-project-registry-registration-approval-package.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_project_registry_registration_approval_package_ready",
+      "event_type": "human_gate.registration_approval_package_ready",
+      "generated_at": "2026-05-21T18:02:49Z",
+      "producer": {
+        "adapter": "portal_project_registry",
+        "name": "scripts/artemis-portal-project-registry-registration-approval-package.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-106",
+        "task_id": "tkt-106",
+        "title": "ARTEMIS Project Registry Registration Human Approval Package",
+        "exec_pack": "docs/exec-packs/done/TKT-106-artemis-project-registry-registration-approval-package.md",
+        "artifact_root": "artifacts/artemis-portal-project-registry-registration-approval-package/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "registration_dry_run",
+        "to": "human_gate",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "human",
+        "status": "waiting_for_human_approval",
+        "reason": "Registry write requires a real human decision package before approval intake.",
+        "options": [
+          "approved",
+          "rejected",
+          "deferred"
+        ]
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-project-registry-registration-approval-package/run-01",
+        "status_path": "artifacts/artemis-portal-project-registry-registration-approval-package/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-project-registry-registration-approval-package/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-project-registry-registration-approval-package/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-project-registry-registration-approval-package/run-01/project-registry-registration-approval-package.json",
+          "artifacts/artemis-portal-project-registry-registration-approval-package/run-01/project-registry-registration-human-decision-template.json",
+          "artifacts/artemis-portal-project-registry-registration-approval-package/run-01/PROJECT_REGISTRY_REGISTRATION_APPROVAL_PACKAGE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-106"
+      },
+      "payload": {
+        "project_registry_registration_approval_package_ready": true,
+        "candidate_project_id": "veri_d55ae65706",
+        "approval_state": "waiting_for_human_approval",
+        "human_decision_recorded": false,
+        "registration_execution_allowed": false,
+        "candidate_registration_allowed": false,
+        "registry_write_allowed": false,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-107 - Project Registry Registration Approval Intake"
+      }
+    }
+  ]
+}

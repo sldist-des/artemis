@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "candidate_project_id": "veri_d55ae65706",
+  "decision": "pending",
+  "decided_by": "",
+  "decided_at": "",
+  "approval_scope": "project_registry_registration_write",
+  "accepted_write_target": "future_project_registry",
+  "accepted_registry_write_draft": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/registry-write-draft.json",
+  "accepted_diff_preview": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/registry-diff-preview.md",
+  "accepted_rollback_plan": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/registry-rollback-plan.md",
+  "accepted_validation_commands": [
+    "python3 -m json.tool artifacts/artemis-portal-project-registry-registration-dry-run/run-01/registry-write-draft.json",
+    "python3 -m json.tool artifacts/artemis-portal-project-registry-registration-dry-run/run-01/project-registry-registration-dry-run.json",
+    "scripts/validate-artemis.sh"
+  ],
+  "rationale": "",
+  "decision_options": [
+    "approved",
+    "rejected",
+    "deferred"
+  ],
+  "acknowledged_constraints": [
+    "approval_allows_future_write_gate_only",
+    "approval_does_not_switch_project",
+    "approval_does_not_start_runtime",
+    "approval_does_not_authenticate_provider",
+    "approval_does_not_write_remote",
+    "post_write_review_required_before_project_selection"
+  ]
+}

@@ -58,6 +58,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 - `docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_PLAN.md`
 - `docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_EXECUTION_GATE.md`
 - `docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_DRY_RUN.md`
+- `docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_APPROVAL_PACKAGE.md`
 - `docs/portal/ARTEMIS_PORTAL_LOCAL_PROJECT_CONNECT.md`
 - `docs/portal/ARTEMIS_PORTAL_EXTERNAL_PROJECT_REGISTRATION.md`
 - `docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY.md`
@@ -109,6 +110,7 @@ scripts/artemis-portal-project-registry-approved-decision-fixture.sh --json
 scripts/artemis-portal-project-registry-registration-plan.sh --json
 scripts/artemis-portal-project-registry-registration-execution-gate.sh --json
 scripts/artemis-portal-project-registry-registration-dry-run.sh --json
+scripts/artemis-portal-project-registry-registration-approval-package.sh --json
 scripts/artemis-portal-local-project-connect.sh --project . --json
 scripts/artemis-portal-external-project-registration.sh --json
 scripts/artemis-portal-runtime-gateway.sh --json

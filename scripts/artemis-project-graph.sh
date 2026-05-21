@@ -155,6 +155,7 @@ portal_human_acceptance_payload = read_json(Path("artifacts/artemis-portal-human
 subagent_router_payload = read_json(Path("artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json"), {"provider_profiles": [], "socratic_gate": [], "safety_invariants": {}, "overall": "not_available", "next_cut": "unknown"})
 subagent_config_generator_payload = read_json(Path("artifacts/artemis-subagent-config-generator/run-01/subagent-config-generator.json"), {"preview_files": [], "install_gate": {}, "safety_invariants": {}, "overall": "not_available", "next_cut": "unknown"})
 project_registry_dry_run_payload = read_json(Path("artifacts/artemis-portal-project-registry-registration-dry-run/run-01/project-registry-registration-dry-run.json"), {"dry_run_contract": {}, "overall": "not_available", "next_cut": "unknown"})
+project_registry_approval_package_payload = read_json(Path("artifacts/artemis-portal-project-registry-registration-approval-package/run-01/project-registry-registration-approval-package.json"), {"approval_package": {}, "overall": "not_available", "next_cut": "unknown"})
 
 tasks = tasks_payload.get("tasks", [])
 events = event_log_payload.get("events", [])
@@ -571,6 +572,22 @@ nodes = [
         "next_cut": project_registry_dry_run_payload.get("next_cut", "unknown"),
     },
     {
+        "id": "registry:registration_approval_package",
+        "type": "project_registry_registration_approval_package",
+        "label": "ARTEMIS Project Registry Registration Approval Package",
+        "status": project_registry_approval_package_payload.get("overall", "not_available"),
+        "candidate_project_id": project_registry_approval_package_payload.get("candidate_project_id", "unknown"),
+        "approval_state": project_registry_approval_package_payload.get("approval_state", "unknown"),
+        "human_decision_recorded": project_registry_approval_package_payload.get("human_decision_recorded", False),
+        "draft_record_count": project_registry_approval_package_payload.get("approval_package", {}).get("draft_record_count", 0),
+        "registry_write_allowed": project_registry_approval_package_payload.get("registry_write_allowed", False),
+        "project_switching_allowed": project_registry_approval_package_payload.get("project_switching_allowed", False),
+        "runtime_execution_allowed": project_registry_approval_package_payload.get("runtime_execution_allowed", False),
+        "commands_executed": project_registry_approval_package_payload.get("commands_executed", 0),
+        "tokens_spent": project_registry_approval_package_payload.get("tokens_spent", 0),
+        "next_cut": project_registry_approval_package_payload.get("next_cut", "unknown"),
+    },
+    {
         "id": "control_plane:view",
         "type": "view",
         "label": "Control Plane",
@@ -705,6 +722,10 @@ edges = [
     {"from": "registry:registration_dry_run", "to": "validation:gate", "type": "validates_draft_records"},
     {"from": "registry:registration_dry_run", "to": "event_log:timeline", "type": "records_dry_run"},
     {"from": "registry:registration_dry_run", "to": "artifact:evidence", "type": "produces_diff_and_rollback"},
+    {"from": "registry:registration_dry_run", "to": "registry:registration_approval_package", "type": "feeds_human_decision_package"},
+    {"from": "registry:registration_approval_package", "to": "gate:human", "type": "waits_for_human_decision"},
+    {"from": "registry:registration_approval_package", "to": "validation:gate", "type": "validates_decision_template"},
+    {"from": "registry:registration_approval_package", "to": "event_log:timeline", "type": "records_approval_package"},
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
@@ -722,6 +743,7 @@ edges = [
     {"from": "control_plane:view", "to": "orchestration:subagent_router", "type": "shows"},
     {"from": "control_plane:view", "to": "orchestration:subagent_config_generator", "type": "shows"},
     {"from": "control_plane:view", "to": "registry:registration_dry_run", "type": "shows"},
+    {"from": "control_plane:view", "to": "registry:registration_approval_package", "type": "shows"},
 ]
 
 questions = [
@@ -751,7 +773,7 @@ questions = [
     },
     {
         "question": "O que seria escrito no Project Registry?",
-        "answer_source": ["registry:registration_dry_run", "artifact:evidence", "gate:human"],
+        "answer_source": ["registry:registration_dry_run", "registry:registration_approval_package", "artifact:evidence", "gate:human"],
     },
 ]
 
@@ -818,6 +840,7 @@ payload = {
         "subagent_socratic_router": "artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json",
         "subagent_config_generator": "artifacts/artemis-subagent-config-generator/run-01/subagent-config-generator.json",
         "project_registry_registration_dry_run": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/project-registry-registration-dry-run.json",
+        "project_registry_registration_approval_package": "artifacts/artemis-portal-project-registry-registration-approval-package/run-01/project-registry-registration-approval-package.json",
     },
     "summary": summary,
     "states": dict(states),
@@ -866,6 +889,7 @@ payload = {
         "subagent_router_input": "artemis_subagent_socratic_router",
         "subagent_config_generator_input": "artemis_subagent_config_generator",
         "project_registry_registration_dry_run_input": "artemis_project_registry_registration_dry_run",
+        "project_registry_registration_approval_package_input": "artemis_project_registry_registration_approval_package",
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },

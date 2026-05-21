@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `36`.
-- Edges: `143`.
-- Tasks: `106`.
-- Events: `89`.
+- Nodes: `37`.
+- Edges: `148`.
+- Tasks: `107`.
+- Events: `90`.
 
 ## Nos
 
@@ -46,6 +46,7 @@
 - `orchestration:subagent_router` (subagent_router): ARTEMIS Subagent Socratic Router.
 - `orchestration:subagent_config_generator` (subagent_config_generator): ARTEMIS Subagent Config Generator.
 - `registry:registration_dry_run` (project_registry_registration_dry_run): ARTEMIS Project Registry Registration Dry Run.
+- `registry:registration_approval_package` (project_registry_registration_approval_package): ARTEMIS Project Registry Registration Approval Package.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -176,6 +177,10 @@
 - `registry:registration_dry_run` --validates_draft_records--> `validation:gate`.
 - `registry:registration_dry_run` --records_dry_run--> `event_log:timeline`.
 - `registry:registration_dry_run` --produces_diff_and_rollback--> `artifact:evidence`.
+- `registry:registration_dry_run` --feeds_human_decision_package--> `registry:registration_approval_package`.
+- `registry:registration_approval_package` --waits_for_human_decision--> `gate:human`.
+- `registry:registration_approval_package` --validates_decision_template--> `validation:gate`.
+- `registry:registration_approval_package` --records_approval_package--> `event_log:timeline`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.
@@ -193,6 +198,7 @@
 - `control_plane:view` --shows--> `orchestration:subagent_router`.
 - `control_plane:view` --shows--> `orchestration:subagent_config_generator`.
 - `control_plane:view` --shows--> `registry:registration_dry_run`.
+- `control_plane:view` --shows--> `registry:registration_approval_package`.
 
 ## Perguntas operacionais
 

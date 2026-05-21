@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T17:53:30Z",
+  "generated_at": "2026-05-21T18:03:33Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1273,6 +1273,18 @@
       "summary": "O metodo passa a mostrar exatamente quais registros seriam escritos no registry",
       "exec_pack": "docs/exec-packs/done/TKT-105-artemis-project-registry-registration-dry-run.md",
       "evidence": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/project-registry-registration-dry-run.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-106",
+      "ticket": "TKT-106",
+      "title": "ARTEMIS Project Registry Registration Human Approval Package",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O metodo passa a ter um pacote claro para o humano revisar: rascunho de escrita,",
+      "exec_pack": "docs/exec-packs/done/TKT-106-artemis-project-registry-registration-approval-package.md",
+      "evidence": "artifacts/artemis-portal-project-registry-registration-approval-package/run-01/project-registry-registration-approval-package.json",
       "tags": ["exec-pack", "done"]
     }
   ]

@@ -61,6 +61,7 @@ docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_DECISION_INTAKE.md
 docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_GATE.md
 docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_APPROVED_DECISION_FIXTURE.md
 docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_PLAN.md
+docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_EXECUTION_GATE.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/control-plane/ARTEMIS_CONTROL_PLANE_PROJECT_REGISTRY_HOME_STATE.md
 docs/control-plane/ARTEMIS_CONTROL_PLANE_OPERATIONAL_DECISION_HOME.md
@@ -147,6 +148,7 @@ scripts/artemis-portal-project-registry-decision-intake.sh
 scripts/artemis-portal-project-registry-registration-gate.sh
 scripts/artemis-portal-project-registry-approved-decision-fixture.sh
 scripts/artemis-portal-project-registry-registration-plan.sh
+scripts/artemis-portal-project-registry-registration-execution-gate.sh
 scripts/artemis-portal-local-project-connect.sh
 scripts/artemis-portal-external-project-registration.sh
 scripts/artemis-portal-runtime-gateway.sh
@@ -277,6 +279,7 @@ sh -n scripts/artemis-portal-project-registry-decision-intake.sh
 sh -n scripts/artemis-portal-project-registry-registration-gate.sh
 sh -n scripts/artemis-portal-project-registry-approved-decision-fixture.sh
 sh -n scripts/artemis-portal-project-registry-registration-plan.sh
+sh -n scripts/artemis-portal-project-registry-registration-execution-gate.sh
 sh -n scripts/artemis-portal-local-project-connect.sh
 sh -n scripts/artemis-portal-external-project-registration.sh
 sh -n scripts/artemis-portal-runtime-gateway.sh
@@ -1211,6 +1214,59 @@ if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-project-registry-registrati
 fi
 if ! test -f /tmp/artemis-portal-project-registry-registration-plan/PROJECT_REGISTRY_REGISTRATION_PLAN.md; then
   echo "scripts/artemis-portal-project-registry-registration-plan.sh did not write registration plan documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-portal-project-registry-registration-execution-gate.sh --artifact-root /tmp/artemis-portal-project-registry-registration-execution-gate --registration-plan /tmp/artemis-portal-project-registry-registration-plan/project-registry-registration-plan.json --json >/tmp/artemis-portal-project-registry-registration-execution-gate.json
+if ! grep -q '"overall": "project_registry_registration_execution_gate_ready"' /tmp/artemis-portal-project-registry-registration-execution-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-execution-gate.sh did not report project_registry_registration_execution_gate_ready" >&2
+  exit 1
+fi
+if ! grep -q '"gate_state": "waiting_for_real_human_execution_approval"' /tmp/artemis-portal-project-registry-registration-execution-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-execution-gate.sh did not wait for real human approval" >&2
+  exit 1
+fi
+if ! grep -q '"real_human_approval_recorded": false' /tmp/artemis-portal-project-registry-registration-execution-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-execution-gate.sh recorded real human approval unexpectedly" >&2
+  exit 1
+fi
+if ! grep -q '"registration_execution_allowed": false' /tmp/artemis-portal-project-registry-registration-execution-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-execution-gate.sh allowed registration execution" >&2
+  exit 1
+fi
+if ! grep -q '"registry_write_allowed": false' /tmp/artemis-portal-project-registry-registration-execution-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-execution-gate.sh allowed registry write" >&2
+  exit 1
+fi
+if ! grep -q '"candidate_registration_allowed": false' /tmp/artemis-portal-project-registry-registration-execution-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-execution-gate.sh allowed candidate registration" >&2
+  exit 1
+fi
+if ! grep -q '"project_switching_allowed": false' /tmp/artemis-portal-project-registry-registration-execution-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-execution-gate.sh allowed project switching" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-portal-project-registry-registration-execution-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-execution-gate.sh allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": false' /tmp/artemis-portal-project-registry-registration-execution-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-execution-gate.sh started agents" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-portal-project-registry-registration-execution-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-execution-gate.sh executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-project-registry-registration-execution-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-execution-gate.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-project-registry-registration-execution-gate/project-registry-registration-execution-approval-template.json; then
+  echo "scripts/artemis-portal-project-registry-registration-execution-gate.sh did not write approval template artifact" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-project-registry-registration-execution-gate/PROJECT_REGISTRY_REGISTRATION_EXECUTION_GATE.md; then
+  echo "scripts/artemis-portal-project-registry-registration-execution-gate.sh did not write registration execution gate documentation artifact" >&2
   exit 1
 fi
 scripts/artemis-control-plane-operational-decision-home.sh --artifact-root /tmp/artemis-control-plane-operational-decision-home --json >/tmp/artemis-control-plane-operational-decision-home.json

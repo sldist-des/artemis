@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T12:44:57Z",
+  "generated_at": "2026-05-21T16:35:25Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -34,16 +34,16 @@
     "portal_human_acceptance_surface": "artifacts/artemis-portal-human-acceptance-surface/run-01/human-acceptance-surface-contract.json"
   },
   "summary": {
-    "tasks_total": 102,
-    "tasks_done": 102,
+    "tasks_total": 103,
+    "tasks_done": 103,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 10,
     "events_total": 73,
     "nodes_total": 33,
     "edges_total": 127,
-    "evidence_count": 102,
-    "exec_pack_count": 102,
+    "evidence_count": 103,
+    "exec_pack_count": 103,
     "validation_passed": 129,
     "validation_failed": 0,
     "validation_human_gate": 2,
@@ -56,10 +56,10 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 102
+    "done": 103
   },
   "risks": {
-    "medium": 87,
+    "medium": 88,
     "low": 4,
     "high": 11
   },
@@ -74,7 +74,7 @@
     ],
     [
       "Codex executor",
-      19
+      20
     ],
     [
       "Context Curator",
@@ -108,11 +108,11 @@
   "top_tags": [
     [
       "exec-pack",
-      102
+      103
     ],
     [
       "done",
-      102
+      103
     ]
   ],
   "nodes": [
@@ -127,8 +127,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 102,
-      "done": 102,
+      "count": 103,
+      "done": 103,
       "human": 0
     },
     {
@@ -147,7 +147,7 @@
         ],
         [
           "Codex executor",
-          19
+          20
         ],
         [
           "Context Curator",
@@ -184,8 +184,8 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 102,
-      "exec_packs": 102
+      "task_evidence": 103,
+      "exec_packs": 103
     },
     {
       "id": "event_log:timeline",

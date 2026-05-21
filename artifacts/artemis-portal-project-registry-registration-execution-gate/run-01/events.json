@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T16:34:59Z",
+  "source": "scripts/artemis-portal-project-registry-registration-execution-gate.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_project_registry_registration_execution_gate_ready",
+      "event_type": "human_gate.registration_execution_gate",
+      "generated_at": "2026-05-21T16:34:59Z",
+      "producer": {
+        "adapter": "portal_project_registry",
+        "name": "scripts/artemis-portal-project-registry-registration-execution-gate.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-102",
+        "task_id": "tkt-102",
+        "title": "ARTEMIS Project Registry Registration Execution Gate",
+        "exec_pack": "docs/exec-packs/done/TKT-102-artemis-project-registry-registration-execution-gate.md",
+        "artifact_root": "artifacts/artemis-portal-project-registry-registration-execution-gate/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "registration_plan",
+        "to": "human_gate",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "human",
+        "status": "waiting_for_real_human_execution_approval",
+        "reason": "Registry write execution requires real human approval and execution evidence.",
+        "options": [
+          "provide real approval package",
+          "keep registration blocked"
+        ]
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-project-registry-registration-execution-gate/run-01",
+        "status_path": "artifacts/artemis-portal-project-registry-registration-execution-gate/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-project-registry-registration-execution-gate/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-project-registry-registration-execution-gate/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-project-registry-registration-execution-gate/run-01/project-registry-registration-execution-gate.json",
+          "artifacts/artemis-portal-project-registry-registration-execution-gate/run-01/PROJECT_REGISTRY_REGISTRATION_EXECUTION_GATE.md",
+          "artifacts/artemis-portal-project-registry-registration-execution-gate/run-01/project-registry-registration-execution-approval-template.json"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-102"
+      },
+      "payload": {
+        "project_registry_registration_execution_gate_ready": true,
+        "candidate_project_id": "veri_d55ae65706",
+        "gate_state": "waiting_for_real_human_execution_approval",
+        "real_human_approval_recorded": false,
+        "registration_execution_allowed": false,
+        "candidate_registration_allowed": false,
+        "registry_write_allowed": false,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-103 - Project Registry Registration Dry Run"
+      }
+    }
+  ]
+}

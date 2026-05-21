@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "candidate_project_id": "veri_d55ae65706",
+  "decision": "pending",
+  "approved_by": "",
+  "approved_at": "",
+  "approval_scope": "project_registry_registration_execution",
+  "write_target": "",
+  "diff_preview_path": "",
+  "rollback_plan_path": "",
+  "validation_commands": [],
+  "rationale": "",
+  "acknowledged_constraints": [
+    "approval_writes_registry_only_after_explicit_gate",
+    "approval_does_not_switch_project",
+    "approval_does_not_start_runtime",
+    "approval_does_not_authenticate_provider",
+    "approval_does_not_write_remote"
+  ]
+}

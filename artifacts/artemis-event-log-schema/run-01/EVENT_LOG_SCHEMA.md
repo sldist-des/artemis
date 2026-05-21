@@ -1,7 +1,7 @@
 # ARTEMIS EVENT LOG SCHEMA
 
 - Schema version: 1
-- Events: 85
+- Events: 86
 - Source: scripts/artemis-event-log.sh
 
 ## Event Types
@@ -82,6 +82,7 @@
 - `human_gate.waiting`: `evt_project_registry_registration_gate_ready` -> human_gate
 - `human_gate.fixture_validated`: `evt_project_registry_approved_decision_fixture_ready` -> validation_passed
 - `human_gate.registration_plan`: `evt_project_registry_registration_plan_ready` -> planning_ready
+- `human_gate.registration_execution_gate`: `evt_project_registry_registration_execution_gate_ready` -> human_gate
 - `adapter.contract_recorded`: `evt_portal_local_project_connect_recorded` -> done
 - `adapter.contract_recorded`: `evt_portal_external_project_registration_recorded` -> done
 - `adapter.contract_recorded`: `evt_portal_runtime_gateway_contract_recorded` -> done

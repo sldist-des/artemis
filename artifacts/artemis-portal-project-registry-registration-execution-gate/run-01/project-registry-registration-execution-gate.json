@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T16:34:59Z",
+  "overall": "project_registry_registration_execution_gate_ready",
+  "project_registry_registration_execution_gate_ready": true,
+  "candidate_project_id": "veri_d55ae65706",
+  "gate_state": "waiting_for_real_human_execution_approval",
+  "real_human_approval_recorded": false,
+  "registration_execution_allowed": false,
+  "candidate_registration_allowed": false,
+  "registry_write_allowed": false,
+  "project_switching_allowed": false,
+  "runtime_execution_allowed": false,
+  "provider_auth_connected": false,
+  "runtime_auth_executed": false,
+  "worktree_created": false,
+  "branch_changed": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-103 - Project Registry Registration Dry Run",
+  "missing_files": [],
+  "execution_gate_contract": {
+    "purpose": "Require real human authority and execution evidence before any project registry write.",
+    "state": "registration_execution_gate",
+    "gate_state": "waiting_for_real_human_execution_approval",
+    "candidate_project_id": "veri_d55ae65706",
+    "registration_plan": "artifacts/artemis-portal-project-registry-registration-plan/run-01/project-registry-registration-plan.json",
+    "approval_source": "artifacts/artemis-portal-project-registry-registration-execution-gate/run-01/project-registry-registration-execution-approval-template.json",
+    "real_human_approval_recorded": false,
+    "execution_preconditions": {
+      "registration_plan_ready": true,
+      "plan_state_ready": true,
+      "candidate_known": true,
+      "real_human_approval_recorded": false,
+      "write_target_declared": false,
+      "diff_preview_declared": false,
+      "rollback_plan_declared": false,
+      "validation_commands_declared": false,
+      "project_switching_blocked": true,
+      "runtime_blocked": true
+    },
+    "blockers": [
+      "real_human_execution_approval_missing",
+      "write_target_missing",
+      "diff_preview_missing",
+      "rollback_plan_missing",
+      "validation_commands_missing"
+    ],
+    "registration_execution_allowed": false,
+    "candidate_registration_allowed": false,
+    "registry_write_allowed": false,
+    "project_switching_allowed": false,
+    "runtime_execution_allowed": false,
+    "provider_auth_connected": false,
+    "worktree_created": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "planned_records": [
+      {
+        "record": "registry.project",
+        "candidate_project_id": "veri_d55ae65706",
+        "write_allowed_in_this_cut": false,
+        "required_gate": "real_human_owner_approval"
+      },
+      {
+        "record": "registry.audit",
+        "candidate_project_id": "veri_d55ae65706",
+        "write_allowed_in_this_cut": false,
+        "required_gate": "registration_execution_gate"
+      },
+      {
+        "record": "selector.entry",
+        "candidate_project_id": "veri_d55ae65706",
+        "write_allowed_in_this_cut": false,
+        "required_gate": "post_registration_review"
+      }
+    ],
+    "gate_rules": [
+      "A synthetic fixture can never authorize registry writes.",
+      "Registry write execution needs real human approval with scope, target, diff preview, rollback plan and validations.",
+      "This gate may prepare a future dry-run, but it does not write the registry.",
+      "Project switching and runtime remain blocked even after this execution gate is satisfied.",
+      "No provider auth, worktree, command execution, token spend or remote mutation happens here."
+    ]
+  },
+  "checks": [
+    {
+      "id": "registration_plan_ready",
+      "status": "passed",
+      "detail": "Execution Gate consumes the Registration Plan."
+    },
+    {
+      "id": "execution_waits_for_real_human_approval",
+      "status": "passed",
+      "detail": "Execution remains blocked without real human approval."
+    },
+    {
+      "id": "approval_template_written",
+      "status": "passed",
+      "detail": "A fillable approval template is available."
+    },
+    {
+      "id": "registry_write_still_blocked",
+      "status": "passed",
+      "detail": "The gate does not write registry records."
+    },
+    {
+      "id": "candidate_registration_still_blocked",
+      "status": "passed",
+      "detail": "The gate does not register the candidate."
+    },
+    {
+      "id": "project_switching_still_blocked",
+      "status": "passed",
+      "detail": "The gate does not switch active project."
+    },
+    {
+      "id": "runtime_still_blocked",
+      "status": "passed",
+      "detail": "The gate does not permit runtime execution."
+    },
+    {
+      "id": "no_runtime_side_effects",
+      "status": "passed",
+      "detail": "No provider auth, worktree, agent, command, token spend or remote mutation happened."
+    }
+  ]
+}

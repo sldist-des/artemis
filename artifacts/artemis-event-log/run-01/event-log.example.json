@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T12:52:50Z",
+  "generated_at": "2026-05-21T17:22:01Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-20T12:52:50Z",
+      "generated_at": "2026-05-21T17:22:01Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -74,7 +74,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-20T12:52:50Z",
+      "generated_at": "2026-05-21T17:22:01Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -161,7 +161,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-20T12:52:50Z",
+      "generated_at": "2026-05-21T17:22:01Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -254,7 +254,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-20T12:52:50Z",
+      "generated_at": "2026-05-21T17:22:01Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -1544,7 +1544,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:35:25Z",
+      "generated_at": "2026-05-21T17:20:30Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -1584,16 +1584,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 83,
-          "tasks_done": 83,
+          "tasks_total": 104,
+          "tasks_done": 104,
           "tasks_human": 0,
           "tasks_ready": 0,
-          "owners_total": 9,
-          "events_total": 69,
-          "nodes_total": 33,
-          "edges_total": 127,
-          "evidence_count": 83,
-          "exec_pack_count": 83,
+          "owners_total": 10,
+          "events_total": 87,
+          "nodes_total": 34,
+          "edges_total": 133,
+          "evidence_count": 104,
+          "exec_pack_count": 104,
           "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,
@@ -1612,7 +1612,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:35:25Z",
+      "generated_at": "2026-05-21T17:20:39Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -1652,8 +1652,8 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 33,
-          "edges_rendered": 127,
+          "nodes_rendered": 34,
+          "edges_rendered": 133,
           "questions_rendered": 3,
           "invariants_rendered": 3,
           "validation_passed": 129,
@@ -4786,7 +4786,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:35:25Z",
+      "generated_at": "2026-05-21T17:20:30Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -4826,16 +4826,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 83,
-          "tasks_done": 83,
+          "tasks_total": 104,
+          "tasks_done": 104,
           "tasks_human": 0,
           "tasks_ready": 0,
-          "owners_total": 9,
-          "events_total": 69,
-          "nodes_total": 33,
-          "edges_total": 127,
-          "evidence_count": 83,
-          "exec_pack_count": 83,
+          "owners_total": 10,
+          "events_total": 87,
+          "nodes_total": 34,
+          "edges_total": 133,
+          "evidence_count": 104,
+          "exec_pack_count": 104,
           "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,
@@ -4854,7 +4854,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:35:25Z",
+      "generated_at": "2026-05-21T17:20:39Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -4894,8 +4894,8 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 33,
-          "edges_rendered": 127,
+          "nodes_rendered": 34,
+          "edges_rendered": 133,
           "questions_rendered": 3,
           "invariants_rendered": 3,
           "validation_passed": 129,
@@ -4913,7 +4913,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-15T17:35:25Z",
+      "generated_at": "2026-05-21T17:20:44Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -4953,11 +4953,11 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 83,
-          "tasks_done": 83,
-          "events_total": 69,
-          "nodes_total": 33,
-          "edges_total": 127,
+          "tasks_total": 104,
+          "tasks_done": 104,
+          "events_total": 87,
+          "nodes_total": 34,
+          "edges_total": 133,
           "validation_passed": 129,
           "validation_failed": 0,
           "human_gates": 2,
@@ -6009,6 +6009,424 @@
     },
     {
       "schema_version": 1,
+      "event_id": "evt_artemis_subagent_socratic_router_ready",
+      "event_type": "orchestration.subagent_router_ready",
+      "generated_at": "2026-05-21T17:18:54Z",
+      "producer": {
+        "name": "scripts/artemis-subagent-socratic-router.sh",
+        "kind": "script",
+        "version": "1"
+      },
+      "subject": {
+        "ticket": "TKT-103",
+        "task_id": "tkt-103",
+        "title": "ARTEMIS Subagent Socratic Router",
+        "exec_pack": "docs/exec-packs/done/TKT-103-artemis-subagent-socratic-router.md",
+        "artifact_root": "artifacts/artemis-subagent-socratic-router/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "done",
+        "reason": "ARTEMIS can now decide when and how to route subagents across Codex, Claude Code and Antigravity CLI without launching them."
+      },
+      "gate": {
+        "kind": "validation",
+        "status": "passed",
+        "required": true,
+        "checks": [
+          {
+            "id": "official_sources_declared",
+            "passed": true,
+            "evidence": [
+              "https://developers.openai.com/codex/subagents",
+              "https://code.claude.com/docs/en/sub-agents",
+              "https://antigravity.google/docs/cli-using"
+            ]
+          },
+          {
+            "id": "all_three_providers_mapped",
+            "passed": true,
+            "evidence": [
+              "codex",
+              "claude_code",
+              "antigravity_cli"
+            ]
+          },
+          {
+            "id": "socratic_gate_declared",
+            "passed": true,
+            "evidence": "9 questions"
+          },
+          {
+            "id": "safety_invariants_declared",
+            "passed": true,
+            "evidence": {
+              "runtime_subagents_started": false,
+              "provider_messages_sent": 0,
+              "provider_auth_performed": false,
+              "provider_configs_written": false,
+              "commands_executed_by_provider": 0,
+              "tokens_spent": 0,
+              "remote_state_mutated": false,
+              "secrets_read": false,
+              "secrets_written": false,
+              "single_writer_required": true,
+              "human_gate_required_for_inherited_scopes": true,
+              "validation_required_before_done": true
+            }
+          },
+          {
+            "id": "human_gate_for_antigravity_inherited_scopes",
+            "passed": true,
+            "evidence": "Antigravity profile blocks broad inherited scopes behind Human Gate."
+          }
+        ]
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-subagent-socratic-router/run-01",
+        "status_path": "artifacts/artemis-subagent-socratic-router/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-subagent-socratic-router/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-subagent-socratic-router/run-01/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-103",
+        "router": "artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json",
+        "codex_docs": "https://developers.openai.com/codex/subagents",
+        "claude_code_docs": "https://code.claude.com/docs/en/sub-agents",
+        "antigravity_cli_docs": "https://antigravity.google/docs/cli-using"
+      },
+      "payload": {
+        "schema_version": 1,
+        "generated_at": "2026-05-21T17:18:54Z",
+        "source": "scripts/artemis-subagent-socratic-router.sh",
+        "mode": "contract_only_no_runtime",
+        "overall": "subagent_socratic_router_ready",
+        "reason": "ARTEMIS can now decide when and how to route subagents across Codex, Claude Code and Antigravity CLI without launching them.",
+        "ticket": "TKT-103",
+        "artifact_root": "artifacts/artemis-subagent-socratic-router/run-01",
+        "provider_sources": [
+          {
+            "provider_id": "codex",
+            "official_doc": "https://developers.openai.com/codex/subagents",
+            "verified_at": "2026-05-21",
+            "observed_contract": [
+              "project subagents live under .codex/agents/",
+              "user subagents live under ~/.codex/agents/",
+              "subagents use TOML fields such as name, description, prompt and optional tools",
+              "explicit invocation can reference the agent by name"
+            ]
+          },
+          {
+            "provider_id": "claude_code",
+            "official_doc": "https://code.claude.com/docs/en/sub-agents",
+            "verified_at": "2026-05-21",
+            "observed_contract": [
+              "project subagents live under .claude/agents/",
+              "user subagents live under ~/.claude/agents/",
+              "subagents are Markdown files with YAML frontmatter",
+              "Claude can delegate proactively from descriptions and can be invoked explicitly"
+            ]
+          },
+          {
+            "provider_id": "antigravity_cli",
+            "official_doc": "https://antigravity.google/docs/cli-using",
+            "related_doc": "https://antigravity.google/docs/subagents",
+            "verified_at": "2026-05-21",
+            "observed_contract": [
+              "Antigravity CLI exposes subagent-oriented workflows",
+              "subagents can be long-running or asynchronous",
+              "subagents inherit parent scopes and permissions",
+              "ARTEMIS must treat inherited scopes as a human-gated risk"
+            ]
+          }
+        ],
+        "socratic_gate": [
+          {
+            "id": "intent",
+            "question": "What is the single outcome the subagent must produce?",
+            "blocks_launch_if_empty": true,
+            "required_evidence": "one-sentence outcome and artifact name"
+          },
+          {
+            "id": "necessity",
+            "question": "Why is a subagent better than doing the task in the current session?",
+            "blocks_launch_if_empty": true,
+            "required_evidence": "parallelism, isolation, specialist capability or latency reason"
+          },
+          {
+            "id": "bounded_scope",
+            "question": "What exact files, directories or APIs may the subagent touch?",
+            "blocks_launch_if_empty": true,
+            "required_evidence": "read scope, write scope and forbidden scope"
+          },
+          {
+            "id": "independence",
+            "question": "Can this task run without depending on another active writer?",
+            "blocks_launch_if_false": true,
+            "required_evidence": "dependency statement and worktree ownership"
+          },
+          {
+            "id": "provider_fit",
+            "question": "Which provider fits the task shape and why?",
+            "blocks_launch_if_empty": true,
+            "required_evidence": "provider id, model policy and rejection of unsuitable providers"
+          },
+          {
+            "id": "validation",
+            "question": "What validation proves the subagent result is acceptable?",
+            "blocks_launch_if_empty": true,
+            "required_evidence": "commands, expected outputs and artifact checks"
+          },
+          {
+            "id": "budget",
+            "question": "What token, time and concurrency limits apply?",
+            "blocks_launch_if_empty": true,
+            "required_evidence": "budget policy, max duration and stop condition"
+          },
+          {
+            "id": "human_gate",
+            "question": "Could this touch secrets, remote state, auth, money, production or inherited broad scopes?",
+            "blocks_launch_if_true_without_approval": true,
+            "required_evidence": "approval id or explicit dry-run/no-side-effect proof"
+          },
+          {
+            "id": "handoff",
+            "question": "What should the subagent hand back if it succeeds, fails or gets blocked?",
+            "blocks_launch_if_empty": true,
+            "required_evidence": "STATUS, VALIDATION, HANDOFF and blocker escalation format"
+          }
+        ],
+        "provider_profiles": [
+          {
+            "provider_id": "codex",
+            "display_name": "Codex subagents",
+            "config_surface": ".codex/agents/*.toml or ~/.codex/agents/*.toml",
+            "runtime_surface": "Codex native subagents and Codex terminal/app-server lanes",
+            "best_for": [
+              "complex implementation",
+              "code review",
+              "test strategy",
+              "architecture and verification",
+              "longer reasoning with strict repo evidence"
+            ],
+            "avoid_for": [
+              "unclear goals",
+              "tasks without validation",
+              "multiple writers on the same worktree"
+            ],
+            "artemis_launch_rule": "Use for high-value engineering slices after Socratic Gate passes and write ownership is explicit.",
+            "required_config_fields": [
+              "name",
+              "description",
+              "prompt"
+            ],
+            "optional_config_fields": [
+              "tools"
+            ],
+            "default_human_gate": "remote-write-and-high-risk"
+          },
+          {
+            "provider_id": "claude_code",
+            "display_name": "Claude Code subagents",
+            "config_surface": ".claude/agents/*.md or ~/.claude/agents/*.md",
+            "runtime_surface": "Claude Code subagents and SDK/headless lanes",
+            "best_for": [
+              "repository mapping",
+              "framework orientation",
+              "medium bounded implementation",
+              "documentation and handoff drafting",
+              "fast exploration before Codex executes a larger slice"
+            ],
+            "avoid_for": [
+              "very long tasks without checkpoints",
+              "ambiguous multi-stage ownership",
+              "unbounded repository rewrites"
+            ],
+            "artemis_launch_rule": "Use for short-to-medium specialist slices with frequent checkpoints and exact handoff expectations.",
+            "required_config_fields": [
+              "name",
+              "description"
+            ],
+            "optional_config_fields": [
+              "tools",
+              "model",
+              "color"
+            ],
+            "default_human_gate": "remote-write-and-high-risk"
+          },
+          {
+            "provider_id": "antigravity_cli",
+            "display_name": "Antigravity CLI subagents",
+            "config_surface": "antigravity CLI subagent definition surface",
+            "runtime_surface": "Antigravity CLI long-running/asynchronous agent lanes",
+            "best_for": [
+              "background exploration",
+              "isolated long-running checks",
+              "asynchronous validation lanes",
+              "provider-specific experiments behind dry-run gates"
+            ],
+            "avoid_for": [
+              "tasks with broad inherited permissions",
+              "secret-bearing workflows",
+              "remote writes without explicit human gate",
+              "production-adjacent automation"
+            ],
+            "artemis_launch_rule": "Use only after inherited scopes are displayed and approved; default to dry-run until permissions are narrow.",
+            "required_config_fields": [
+              "name",
+              "task",
+              "scope"
+            ],
+            "optional_config_fields": [
+              "timeout",
+              "approval_policy"
+            ],
+            "default_human_gate": "inherited-scope-and-async-runtime"
+          }
+        ],
+        "routing_rules": [
+          {
+            "rule_id": "no_clear_outcome_no_subagent",
+            "if": "intent question is unanswered",
+            "then": "do not launch; ask the human or refine the Exec Pack"
+          },
+          {
+            "rule_id": "single_writer",
+            "if": "the task can write files",
+            "then": "assign exactly one writer and one worktree before launch"
+          },
+          {
+            "rule_id": "codex_for_deep_engineering",
+            "if": "task is complex, multi-file, validation-heavy or architectural",
+            "then": "prefer Codex subagent or Codex terminal owner"
+          },
+          {
+            "rule_id": "claude_for_mapping_and_medium_slices",
+            "if": "task is repository mapping, language orientation or bounded medium implementation",
+            "then": "prefer Claude Code subagent with short checkpoint"
+          },
+          {
+            "rule_id": "antigravity_for_async_isolated_lanes",
+            "if": "task is asynchronous, long-running or provider-specific experiment",
+            "then": "prefer Antigravity only with inherited-scope review and dry-run gate"
+          },
+          {
+            "rule_id": "human_gate_for_risk",
+            "if": "task touches auth, secrets, remote state, production, money, broad permissions or push",
+            "then": "block launch until a recorded human decision exists"
+          },
+          {
+            "rule_id": "validation_before_done",
+            "if": "subagent returns changes or claims completion",
+            "then": "run validation gate and capture evidence before Done Ledger"
+          }
+        ],
+        "launch_contract": {
+          "minimum_fields": [
+            "task_id",
+            "exec_pack",
+            "outcome",
+            "provider_id",
+            "subagent_profile",
+            "read_scope",
+            "write_scope",
+            "forbidden_scope",
+            "budget_policy",
+            "timeout_minutes",
+            "validation_commands",
+            "handoff_artifacts",
+            "human_gate_policy"
+          ],
+          "handoff_artifacts": [
+            "STATUS.md",
+            "VALIDATION.md",
+            "HANDOFF.md",
+            "events.json"
+          ],
+          "blocked_until_next_cut": [
+            "generate concrete .codex/agents/*.toml files",
+            "generate concrete .claude/agents/*.md files",
+            "generate Antigravity subagent definitions",
+            "start provider runtimes from the portal",
+            "send prompts to provider agents"
+          ]
+        },
+        "safety_invariants": {
+          "runtime_subagents_started": false,
+          "provider_messages_sent": 0,
+          "provider_auth_performed": false,
+          "provider_configs_written": false,
+          "commands_executed_by_provider": 0,
+          "tokens_spent": 0,
+          "remote_state_mutated": false,
+          "secrets_read": false,
+          "secrets_written": false,
+          "single_writer_required": true,
+          "human_gate_required_for_inherited_scopes": true,
+          "validation_required_before_done": true
+        },
+        "checks": [
+          {
+            "id": "official_sources_declared",
+            "passed": true,
+            "evidence": [
+              "https://developers.openai.com/codex/subagents",
+              "https://code.claude.com/docs/en/sub-agents",
+              "https://antigravity.google/docs/cli-using"
+            ]
+          },
+          {
+            "id": "all_three_providers_mapped",
+            "passed": true,
+            "evidence": [
+              "codex",
+              "claude_code",
+              "antigravity_cli"
+            ]
+          },
+          {
+            "id": "socratic_gate_declared",
+            "passed": true,
+            "evidence": "9 questions"
+          },
+          {
+            "id": "safety_invariants_declared",
+            "passed": true,
+            "evidence": {
+              "runtime_subagents_started": false,
+              "provider_messages_sent": 0,
+              "provider_auth_performed": false,
+              "provider_configs_written": false,
+              "commands_executed_by_provider": 0,
+              "tokens_spent": 0,
+              "remote_state_mutated": false,
+              "secrets_read": false,
+              "secrets_written": false,
+              "single_writer_required": true,
+              "human_gate_required_for_inherited_scopes": true,
+              "validation_required_before_done": true
+            }
+          },
+          {
+            "id": "human_gate_for_antigravity_inherited_scopes",
+            "passed": true,
+            "evidence": "Antigravity profile blocks broad inherited scopes behind Human Gate."
+          }
+        ],
+        "next_cut": {
+          "ticket": "TKT-104",
+          "title": "ARTEMIS Subagent Config Generator Dry Run",
+          "goal": "Generate preview-only Codex, Claude Code and Antigravity subagent config artifacts from this router contract without writing runtime configs."
+        }
+      }
+    },
+    {
+      "schema_version": 1,
       "event_id": "evt_portal_auth_plan_recorded",
       "event_type": "adapter.contract_recorded",
       "generated_at": "2026-05-12T13:29:48Z",
@@ -6650,7 +7068,7 @@
       "schema_version": 1,
       "event_id": "evt_portal_project_selector_contract_recorded",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-20T12:52:38Z",
+      "generated_at": "2026-05-20T13:02:49Z",
       "producer": {
         "adapter": "portal_project_selector",
         "name": "scripts/artemis-portal-project-selector.sh",
@@ -6698,7 +7116,579 @@
         "commands_executed": 0,
         "tokens_spent": 0,
         "remote_state_mutated": false,
-        "next_cut": "TKT-087 - Control Plane Project Selector View"
+        "next_cut": "TKT-088 - Control Plane Local Project Connect View"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_project_selector_registry_intake_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-20T14:52:20Z",
+      "producer": {
+        "adapter": "portal_project_selector",
+        "name": "scripts/artemis-portal-project-selector-registry-intake.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-094",
+        "task_id": "tkt-094",
+        "title": "ARTEMIS Portal Project Selector Registry Intake",
+        "exec_pack": "docs/exec-packs/done/TKT-094-artemis-portal-project-selector-registry-intake.md",
+        "artifact_root": "artifacts/artemis-portal-project-selector-registry-intake/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "registry_intake",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-project-selector-registry-intake/run-01",
+        "status_path": "artifacts/artemis-portal-project-selector-registry-intake/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-project-selector-registry-intake/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-project-selector-registry-intake/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-project-selector-registry-intake/run-01/project-selector-registry-intake.json",
+          "artifacts/artemis-portal-project-selector-registry-intake/run-01/PROJECT_SELECTOR_REGISTRY_INTAKE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-094"
+      },
+      "payload": {
+        "project_selector_registry_intake_ready": true,
+        "selected_project_id": "artemis_method_kit",
+        "candidate_count": 1,
+        "external_projects_registered": 0,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-095 - Control Plane Project Registry Home State"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_project_registry_human_review_gate_ready",
+      "event_type": "human_gate.waiting",
+      "generated_at": "2026-05-20T20:05:33Z",
+      "producer": {
+        "adapter": "portal_project_registry",
+        "name": "scripts/artemis-portal-project-registry-human-review-gate.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-096",
+        "task_id": "tkt-096",
+        "title": "ARTEMIS Project Registry Human Review Gate",
+        "exec_pack": "docs/exec-packs/done/TKT-096-artemis-project-registry-human-review-gate.md",
+        "artifact_root": "artifacts/artemis-portal-project-registry-human-review-gate/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "registry_intake",
+        "to": "human_gate",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "human",
+        "status": "waiting_for_human_decision",
+        "reason": "Candidate project requires explicit owner review before registration.",
+        "options": [
+          "approved",
+          "rejected",
+          "deferred"
+        ]
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-project-registry-human-review-gate/run-01",
+        "status_path": "artifacts/artemis-portal-project-registry-human-review-gate/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-project-registry-human-review-gate/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-project-registry-human-review-gate/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-project-registry-human-review-gate/run-01/project-registry-human-review-gate.json",
+          "artifacts/artemis-portal-project-registry-human-review-gate/run-01/PROJECT_REGISTRY_HUMAN_REVIEW_GATE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-096"
+      },
+      "payload": {
+        "project_registry_human_review_gate_ready": true,
+        "review_state": "waiting_for_human_decision",
+        "candidate_count": 1,
+        "pending_candidate_count": 1,
+        "human_decision_required": true,
+        "human_decision_recorded": false,
+        "candidate_registration_allowed": false,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-097 - Project Registry Decision Intake"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_project_registry_decision_intake_ready",
+      "event_type": "human_gate.decision_intake",
+      "generated_at": "2026-05-21T12:39:31Z",
+      "producer": {
+        "adapter": "portal_project_registry",
+        "name": "scripts/artemis-portal-project-registry-decision-intake.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-097",
+        "task_id": "tkt-097",
+        "title": "ARTEMIS Project Registry Decision Intake",
+        "exec_pack": "docs/exec-packs/done/TKT-097-artemis-project-registry-decision-intake.md",
+        "artifact_root": "artifacts/artemis-portal-project-registry-decision-intake/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "human_review_gate",
+        "to": "human_gate",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "human",
+        "status": "pending",
+        "reason": "A project registry decision must be provided by the human owner.",
+        "options": [
+          "approved",
+          "rejected",
+          "deferred"
+        ]
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-project-registry-decision-intake/run-01",
+        "status_path": "artifacts/artemis-portal-project-registry-decision-intake/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-project-registry-decision-intake/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-project-registry-decision-intake/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-project-registry-decision-intake/run-01/project-registry-decision-intake.json",
+          "artifacts/artemis-portal-project-registry-decision-intake/run-01/project-registry-decision-template.json",
+          "artifacts/artemis-portal-project-registry-decision-intake/run-01/PROJECT_REGISTRY_DECISION_INTAKE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-097"
+      },
+      "payload": {
+        "project_registry_decision_intake_ready": true,
+        "decision_state": "pending",
+        "human_decision_required": true,
+        "human_decision_recorded": false,
+        "approved_for_registration_gate": false,
+        "candidate_registration_allowed": false,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-099 - Project Registry Registration Gate"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_project_registry_registration_gate_ready",
+      "event_type": "human_gate.waiting",
+      "generated_at": "2026-05-21T12:39:31Z",
+      "producer": {
+        "adapter": "portal_project_registry",
+        "name": "scripts/artemis-portal-project-registry-registration-gate.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-099",
+        "task_id": "tkt-099",
+        "title": "ARTEMIS Project Registry Registration Gate",
+        "exec_pack": "docs/exec-packs/done/TKT-099-artemis-project-registry-registration-gate.md",
+        "artifact_root": "artifacts/artemis-portal-project-registry-registration-gate/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "decision_intake",
+        "to": "human_gate",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "human",
+        "status": "waiting_for_valid_human_decision",
+        "reason": "Candidate registration requires a recorded approved human decision.",
+        "options": [
+          "provide approved decision",
+          "reject candidate",
+          "defer candidate"
+        ]
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-project-registry-registration-gate/run-01",
+        "status_path": "artifacts/artemis-portal-project-registry-registration-gate/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-project-registry-registration-gate/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-project-registry-registration-gate/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-project-registry-registration-gate/run-01/project-registry-registration-gate.json",
+          "artifacts/artemis-portal-project-registry-registration-gate/run-01/PROJECT_REGISTRY_REGISTRATION_GATE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-099"
+      },
+      "payload": {
+        "project_registry_registration_gate_ready": true,
+        "gate_state": "waiting_for_valid_human_decision",
+        "decision_state": "pending",
+        "human_decision_recorded": false,
+        "candidate_registration_allowed": false,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-100 - Project Registry Approved Decision Fixture"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_project_registry_approved_decision_fixture_ready",
+      "event_type": "human_gate.fixture_validated",
+      "generated_at": "2026-05-21T12:39:31Z",
+      "producer": {
+        "adapter": "portal_project_registry",
+        "name": "scripts/artemis-portal-project-registry-approved-decision-fixture.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-100",
+        "task_id": "tkt-100",
+        "title": "ARTEMIS Project Registry Approved Decision Fixture",
+        "exec_pack": "docs/exec-packs/done/TKT-100-artemis-project-registry-approved-decision-fixture.md",
+        "artifact_root": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "registration_gate",
+        "to": "validation_passed",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "validation",
+        "status": "ready_for_registration_plan",
+        "reason": "Synthetic approved fixture proves the next registration planning state without execution.",
+        "options": [
+          "prepare registration plan",
+          "keep pending default state"
+        ]
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01",
+        "status_path": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/project-registry-approved-decision-fixture.json",
+          "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/PROJECT_REGISTRY_APPROVED_DECISION_FIXTURE.md",
+          "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/project-registry-approved-decision.fixture.json",
+          "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/decision-intake/project-registry-decision-intake.json",
+          "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/registration-gate/project-registry-registration-gate.json"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-100"
+      },
+      "payload": {
+        "project_registry_approved_decision_fixture_ready": true,
+        "candidate_project_id": "veri_d55ae65706",
+        "decision_state": "recorded",
+        "gate_state": "ready_for_registration_plan",
+        "registration_plan_allowed": true,
+        "candidate_registration_allowed": false,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-101 - Project Registry Registration Plan"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_project_registry_registration_plan_ready",
+      "event_type": "human_gate.registration_plan",
+      "generated_at": "2026-05-21T12:44:39Z",
+      "producer": {
+        "adapter": "portal_project_registry",
+        "name": "scripts/artemis-portal-project-registry-registration-plan.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-101",
+        "task_id": "tkt-101",
+        "title": "ARTEMIS Project Registry Registration Plan",
+        "exec_pack": "docs/exec-packs/done/TKT-101-artemis-project-registry-registration-plan.md",
+        "artifact_root": "artifacts/artemis-portal-project-registry-registration-plan/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "approved_decision_fixture",
+        "to": "planning_ready",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "human",
+        "status": "ready_for_registration_execution_gate",
+        "reason": "Registration planning is ready, but execution requires a future explicit gate.",
+        "options": [
+          "prepare registration execution gate",
+          "keep plan read-only"
+        ]
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-project-registry-registration-plan/run-01",
+        "status_path": "artifacts/artemis-portal-project-registry-registration-plan/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-project-registry-registration-plan/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-project-registry-registration-plan/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-project-registry-registration-plan/run-01/project-registry-registration-plan.json",
+          "artifacts/artemis-portal-project-registry-registration-plan/run-01/PROJECT_REGISTRY_REGISTRATION_PLAN.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-101"
+      },
+      "payload": {
+        "project_registry_registration_plan_ready": true,
+        "candidate_project_id": "veri_d55ae65706",
+        "plan_state": "ready_for_registration_execution_gate",
+        "registration_plan_ready": true,
+        "registration_execution_allowed": false,
+        "candidate_registration_allowed": false,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-102 - Project Registry Registration Execution Gate"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_project_registry_registration_execution_gate_ready",
+      "event_type": "human_gate.registration_execution_gate",
+      "generated_at": "2026-05-21T17:21:56Z",
+      "producer": {
+        "adapter": "portal_project_registry",
+        "name": "scripts/artemis-portal-project-registry-registration-execution-gate.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-102",
+        "task_id": "tkt-102",
+        "title": "ARTEMIS Project Registry Registration Execution Gate",
+        "exec_pack": "docs/exec-packs/done/TKT-102-artemis-project-registry-registration-execution-gate.md",
+        "artifact_root": "artifacts/artemis-portal-project-registry-registration-execution-gate/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "registration_plan",
+        "to": "human_gate",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "human",
+        "status": "waiting_for_real_human_execution_approval",
+        "reason": "Registry write execution requires real human approval and execution evidence.",
+        "options": [
+          "provide real approval package",
+          "keep registration blocked"
+        ]
+      },
+      "severity": "warning",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-project-registry-registration-execution-gate/run-01",
+        "status_path": "artifacts/artemis-portal-project-registry-registration-execution-gate/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-project-registry-registration-execution-gate/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-project-registry-registration-execution-gate/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-project-registry-registration-execution-gate/run-01/project-registry-registration-execution-gate.json",
+          "artifacts/artemis-portal-project-registry-registration-execution-gate/run-01/PROJECT_REGISTRY_REGISTRATION_EXECUTION_GATE.md",
+          "artifacts/artemis-portal-project-registry-registration-execution-gate/run-01/project-registry-registration-execution-approval-template.json"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-102"
+      },
+      "payload": {
+        "project_registry_registration_execution_gate_ready": true,
+        "candidate_project_id": "veri_d55ae65706",
+        "gate_state": "waiting_for_real_human_execution_approval",
+        "real_human_approval_recorded": false,
+        "registration_execution_allowed": false,
+        "candidate_registration_allowed": false,
+        "registry_write_allowed": false,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-105 - Project Registry Registration Dry Run"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_local_project_connect_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-20T13:01:28Z",
+      "producer": {
+        "adapter": "portal_local_project_connect",
+        "name": "scripts/artemis-portal-local-project-connect.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-087",
+        "task_id": "tkt-087",
+        "title": "ARTEMIS Portal Local Project Connect",
+        "exec_pack": "docs/exec-packs/done/TKT-087-artemis-portal-local-project-connect.md",
+        "artifact_root": "artifacts/artemis-portal-local-project-connect/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "project_selector",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-local-project-connect/run-01",
+        "status_path": "artifacts/artemis-portal-local-project-connect/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-local-project-connect/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-local-project-connect/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-local-project-connect/run-01/local-project-connect.json",
+          "artifacts/artemis-portal-local-project-connect/run-01/LOCAL_PROJECT_CONNECT.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-087"
+      },
+      "payload": {
+        "local_project_connect_ready": true,
+        "project_path": "/srv/veri",
+        "repo_root": "/srv/veri",
+        "provider_ids": [
+          "codex",
+          "claude_code",
+          "antigravity_cli"
+        ],
+        "provider_auth_connected": false,
+        "terminal_project_access_required": true,
+        "browser_filesystem_access_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-088 - Control Plane Local Project Connect View"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_portal_external_project_registration_recorded",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-20T13:18:10Z",
+      "producer": {
+        "adapter": "portal_external_project_registration",
+        "name": "scripts/artemis-portal-external-project-registration.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-089",
+        "task_id": "tkt-089",
+        "title": "ARTEMIS Portal External Project Registration",
+        "exec_pack": "docs/exec-packs/done/TKT-089-artemis-portal-external-project-registration.md",
+        "artifact_root": "artifacts/artemis-portal-external-project-registration/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "terminal_connect",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-external-project-registration/run-01",
+        "status_path": "artifacts/artemis-portal-external-project-registration/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-external-project-registration/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-external-project-registration/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-external-project-registration/run-01/external-project-registration.json",
+          "artifacts/artemis-portal-external-project-registration/run-01/EXTERNAL_PROJECT_REGISTRATION.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-089"
+      },
+      "payload": {
+        "external_project_registration_ready": true,
+        "candidate_project_id": "veri_d55ae65706",
+        "external_projects_registered": 0,
+        "project_switching_allowed": false,
+        "server_scan_allowed": false,
+        "browser_filesystem_access_allowed": false,
+        "provider_auth_connected": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-090 - Control Plane External Project Registration View"
       }
     },
     {
@@ -6816,9 +7806,123 @@
     },
     {
       "schema_version": 1,
+      "event_id": "evt_control_plane_external_project_registration_view_ready",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-20T14:41:08Z",
+      "producer": {
+        "adapter": "control_plane",
+        "name": "scripts/artemis-control-plane-external-project-registration-view.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-090",
+        "task_id": "tkt-090",
+        "title": "ARTEMIS Control Plane External Project Registration View",
+        "exec_pack": "docs/exec-packs/done/TKT-090-artemis-control-plane-external-project-registration-view.md",
+        "artifact_root": "artifacts/artemis-control-plane-external-project-registration-view/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "external_project_registration",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-control-plane-external-project-registration-view/run-01",
+        "status_path": "artifacts/artemis-control-plane-external-project-registration-view/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-control-plane-external-project-registration-view/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-control-plane-external-project-registration-view/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-control-plane-external-project-registration-view/run-01/control-plane-external-project-registration-view.json",
+          "artifacts/artemis-control-plane-external-project-registration-view/run-01/CONTROL_PLANE_EXTERNAL_PROJECT_REGISTRATION_VIEW.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-090"
+      },
+      "payload": {
+        "control_plane_external_project_registration_view_ready": true,
+        "candidate_count": 1,
+        "external_projects_registered": 0,
+        "project_switching_allowed": false,
+        "provider_auth_connected": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-094 - Project Selector Registry Intake"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_control_plane_local_project_connect_view_ready",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-20T14:41:08Z",
+      "producer": {
+        "adapter": "control_plane",
+        "name": "scripts/artemis-control-plane-local-project-connect-view.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-088",
+        "task_id": "tkt-088",
+        "title": "ARTEMIS Control Plane Local Project Connect View",
+        "exec_pack": "docs/exec-packs/done/TKT-088-artemis-control-plane-local-project-connect-view.md",
+        "artifact_root": "artifacts/artemis-control-plane-local-project-connect-view/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "project_connect",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-control-plane-local-project-connect-view/run-01",
+        "status_path": "artifacts/artemis-control-plane-local-project-connect-view/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-control-plane-local-project-connect-view/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-control-plane-local-project-connect-view/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-control-plane-local-project-connect-view/run-01/control-plane-local-project-connect-view.json",
+          "artifacts/artemis-control-plane-local-project-connect-view/run-01/CONTROL_PLANE_LOCAL_PROJECT_CONNECT_VIEW.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-088"
+      },
+      "payload": {
+        "control_plane_local_project_connect_view_ready": true,
+        "providers_rendered": 3,
+        "terminal_project_access_required": true,
+        "browser_filesystem_access_allowed": false,
+        "provider_auth_connected": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-089 - External Project Registration Contract"
+      }
+    },
+    {
+      "schema_version": 1,
       "event_id": "evt_control_plane_runtime_gateway_view_ready",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-20T12:40:40Z",
+      "generated_at": "2026-05-20T14:41:08Z",
       "producer": {
         "adapter": "control_plane",
         "name": "scripts/artemis-control-plane-runtime-gateway-view.sh",
@@ -6866,6 +7970,121 @@
         "tokens_spent": 0,
         "remote_state_mutated": false,
         "next_cut": "TKT-086 - Runtime Gateway Project Selector Contract"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_control_plane_project_registry_home_state_ready",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-20T17:44:20Z",
+      "producer": {
+        "adapter": "control_plane",
+        "name": "scripts/artemis-control-plane-project-registry-home-state.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-095",
+        "task_id": "tkt-095",
+        "title": "ARTEMIS Control Plane Project Registry Home State",
+        "exec_pack": "docs/exec-packs/done/TKT-095-artemis-control-plane-project-registry-home-state.md",
+        "artifact_root": "artifacts/artemis-control-plane-project-registry-home-state/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "registry_intake",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-control-plane-project-registry-home-state/run-01",
+        "status_path": "artifacts/artemis-control-plane-project-registry-home-state/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-control-plane-project-registry-home-state/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-control-plane-project-registry-home-state/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-control-plane-project-registry-home-state/run-01/control-plane-project-registry-home-state.json",
+          "artifacts/artemis-control-plane-project-registry-home-state/run-01/CONTROL_PLANE_PROJECT_REGISTRY_HOME_STATE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-095"
+      },
+      "payload": {
+        "control_plane_project_registry_home_state_ready": true,
+        "selected_project_id": "artemis_method_kit",
+        "candidate_count": 1,
+        "technical_surface_primary": false,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-096 - Project Registry Human Review Gate"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_control_plane_operational_decision_home_ready",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-21T12:26:33Z",
+      "producer": {
+        "adapter": "control_plane",
+        "name": "scripts/artemis-control-plane-operational-decision-home.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-098",
+        "task_id": "tkt-098",
+        "title": "ARTEMIS Control Plane Operational Decision Home",
+        "exec_pack": "docs/exec-packs/done/TKT-098-artemis-control-plane-operational-decision-home.md",
+        "artifact_root": "artifacts/artemis-control-plane-operational-decision-home/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "decision_intake",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-control-plane-operational-decision-home/run-01",
+        "status_path": "artifacts/artemis-control-plane-operational-decision-home/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-control-plane-operational-decision-home/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-control-plane-operational-decision-home/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-control-plane-operational-decision-home/run-01/control-plane-operational-decision-home.json",
+          "artifacts/artemis-control-plane-operational-decision-home/run-01/CONTROL_PLANE_OPERATIONAL_DECISION_HOME.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-098"
+      },
+      "payload": {
+        "control_plane_operational_decision_home_ready": true,
+        "decision_state": "pending",
+        "next_action": "fill_human_decision_template",
+        "human_decision_recorded": false,
+        "candidate_registration_allowed": false,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-099 - Project Registry Registration Gate"
       }
     }
   ]

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T16:35:25Z",
+  "generated_at": "2026-05-21T17:22:10Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -31,19 +31,20 @@
     "portal_agent_conversation": "artifacts/artemis-portal-agent-conversation/run-01/agent-conversation-contract.json",
     "portal_task_control_surface": "artifacts/artemis-portal-task-control-surface/run-01/task-control-surface-contract.json",
     "portal_validation_evidence_surface": "artifacts/artemis-portal-validation-evidence-surface/run-01/validation-evidence-surface-contract.json",
-    "portal_human_acceptance_surface": "artifacts/artemis-portal-human-acceptance-surface/run-01/human-acceptance-surface-contract.json"
+    "portal_human_acceptance_surface": "artifacts/artemis-portal-human-acceptance-surface/run-01/human-acceptance-surface-contract.json",
+    "subagent_socratic_router": "artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json"
   },
   "summary": {
-    "tasks_total": 103,
-    "tasks_done": 103,
+    "tasks_total": 104,
+    "tasks_done": 104,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 10,
-    "events_total": 73,
-    "nodes_total": 33,
-    "edges_total": 127,
-    "evidence_count": 103,
-    "exec_pack_count": 103,
+    "events_total": 87,
+    "nodes_total": 34,
+    "edges_total": 133,
+    "evidence_count": 104,
+    "exec_pack_count": 104,
     "validation_passed": 129,
     "validation_failed": 0,
     "validation_human_gate": 2,
@@ -56,12 +57,12 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 103
+    "done": 104
   },
   "risks": {
     "medium": 88,
     "low": 4,
-    "high": 11
+    "high": 12
   },
   "top_owners": [
     [
@@ -74,7 +75,7 @@
     ],
     [
       "Codex executor",
-      20
+      21
     ],
     [
       "Context Curator",
@@ -108,11 +109,11 @@
   "top_tags": [
     [
       "exec-pack",
-      103
+      104
     ],
     [
       "done",
-      103
+      104
     ]
   ],
   "nodes": [
@@ -127,8 +128,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 103,
-      "done": 103,
+      "count": 104,
+      "done": 104,
       "human": 0
     },
     {
@@ -147,7 +148,7 @@
         ],
         [
           "Codex executor",
-          20
+          21
         ],
         [
           "Context Curator",
@@ -184,14 +185,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 103,
-      "exec_packs": 103
+      "task_evidence": 104,
+      "exec_packs": 104
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 73
+      "events": 87
     },
     {
       "id": "cost:budget",
@@ -497,6 +498,18 @@
       "tokens_spent": 0,
       "remote_state_mutated": false,
       "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
+    },
+    {
+      "id": "orchestration:subagent_router",
+      "type": "subagent_router",
+      "label": "ARTEMIS Subagent Socratic Router",
+      "status": "subagent_socratic_router_ready",
+      "providers": 3,
+      "socratic_questions": 9,
+      "runtime_subagents_started": false,
+      "provider_messages_sent": 0,
+      "tokens_spent": 0,
+      "next_cut": "ARTEMIS Subagent Config Generator Dry Run"
     },
     {
       "id": "control_plane:view",
@@ -1072,6 +1085,31 @@
       "type": "records_acceptance_surface_contract"
     },
     {
+      "from": "portal:agent_registry",
+      "to": "orchestration:subagent_router",
+      "type": "provides_provider_catalog"
+    },
+    {
+      "from": "orchestration:subagent_router",
+      "to": "gate:human",
+      "type": "requires_sensitive_launch_gate"
+    },
+    {
+      "from": "orchestration:subagent_router",
+      "to": "cost:budget",
+      "type": "requires_budget_policy"
+    },
+    {
+      "from": "orchestration:subagent_router",
+      "to": "validation:gate",
+      "type": "requires_validation_before_done"
+    },
+    {
+      "from": "orchestration:subagent_router",
+      "to": "event_log:timeline",
+      "type": "records_router_contract"
+    },
+    {
       "from": "control_plane:view",
       "to": "project:artemis",
       "type": "observes"
@@ -1140,6 +1178,11 @@
       "from": "control_plane:view",
       "to": "portal:human_acceptance_surface",
       "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "orchestration:subagent_router",
+      "type": "shows"
     }
   ],
   "questions": [
@@ -1176,6 +1219,14 @@
       "question": "Qual custo ou runtime foi ativado?",
       "answer_source": [
         "cost:budget"
+      ]
+    },
+    {
+      "question": "Qual subagente usar e com qual limite?",
+      "answer_source": [
+        "orchestration:subagent_router",
+        "cost:budget",
+        "validation:gate"
       ]
     }
   ],
@@ -1215,6 +1266,7 @@
     "portal_task_control_surface_input": "artemis_portal_task_control_surface",
     "portal_validation_evidence_surface_input": "artemis_portal_validation_evidence_surface",
     "portal_human_acceptance_surface_input": "artemis_portal_human_acceptance_surface",
+    "subagent_router_input": "artemis_subagent_socratic_router",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },

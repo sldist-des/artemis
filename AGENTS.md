@@ -63,6 +63,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 - `docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY_SERVICE.md`
 - `docs/control-plane/ARTEMIS_CONTROL_PLANE_PROJECT_REGISTRY_HOME_STATE.md`
 - `docs/control-plane/ARTEMIS_CONTROL_PLANE_OPERATIONAL_DECISION_HOME.md`
+- `docs/agents/ARTEMIS_SUBAGENT_SOCRATIC_ROUTER.md`
 - Exec Pack ativo em `docs/exec-packs/active/`
 
 ## Comandos canonicos
@@ -84,6 +85,7 @@ scripts/artemis-agent-runtime-post-execution-validation-gate.sh --json
 scripts/artemis-agent-runtime-completion-handoff.sh --json
 scripts/artemis-agent-runtime-completion-review-gate.sh --json
 scripts/artemis-agent-runtime-done-ledger.sh --json
+scripts/artemis-subagent-socratic-router.sh --json
 scripts/artemis-portal-auth-plan.sh --json
 scripts/artemis-portal-credential-vault.sh --json
 scripts/artemis-portal-agent-registry.sh --json

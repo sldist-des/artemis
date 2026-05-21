@@ -1,7 +1,7 @@
 # ARTEMIS EVENT LOG SCHEMA
 
 - Schema version: 1
-- Events: 73
+- Events: 87
 - Source: scripts/artemis-event-log.sh
 
 ## Event Types
@@ -64,6 +64,7 @@
 - `handoff.recorded`: `evt_tkt-068_agent_runtime_completion_handoff` -> human_gate
 - `approval.requested`: `evt_tkt-069_agent_runtime_completion_review_gate` -> human_gate
 - `human_gate.opened`: `evt_tkt-070_agent_runtime_done_ledger` -> human_gate
+- `orchestration.subagent_router_ready`: `evt_artemis_subagent_socratic_router_ready` -> done
 - `adapter.contract_recorded`: `evt_portal_auth_plan_recorded` -> done
 - `adapter.contract_recorded`: `evt_portal_credential_vault_contract_recorded` -> done
 - `adapter.contract_recorded`: `evt_portal_agent_registry_contract_recorded` -> done
@@ -76,9 +77,22 @@
 - `adapter.contract_recorded`: `evt_portal_validation_evidence_surface_contract_recorded` -> done
 - `adapter.contract_recorded`: `evt_portal_human_acceptance_surface_contract_recorded` -> done
 - `adapter.contract_recorded`: `evt_portal_project_selector_contract_recorded` -> done
+- `adapter.contract_recorded`: `evt_portal_project_selector_registry_intake_recorded` -> done
+- `human_gate.waiting`: `evt_project_registry_human_review_gate_ready` -> human_gate
+- `human_gate.decision_intake`: `evt_project_registry_decision_intake_ready` -> human_gate
+- `human_gate.waiting`: `evt_project_registry_registration_gate_ready` -> human_gate
+- `human_gate.fixture_validated`: `evt_project_registry_approved_decision_fixture_ready` -> validation_passed
+- `human_gate.registration_plan`: `evt_project_registry_registration_plan_ready` -> planning_ready
+- `human_gate.registration_execution_gate`: `evt_project_registry_registration_execution_gate_ready` -> human_gate
+- `adapter.contract_recorded`: `evt_portal_local_project_connect_recorded` -> done
+- `adapter.contract_recorded`: `evt_portal_external_project_registration_recorded` -> done
 - `adapter.contract_recorded`: `evt_portal_runtime_gateway_contract_recorded` -> done
 - `adapter.contract_recorded`: `evt_portal_runtime_gateway_service_contract_recorded` -> done
+- `adapter.contract_recorded`: `evt_control_plane_external_project_registration_view_ready` -> done
+- `adapter.contract_recorded`: `evt_control_plane_local_project_connect_view_ready` -> done
 - `adapter.contract_recorded`: `evt_control_plane_runtime_gateway_view_ready` -> done
+- `adapter.contract_recorded`: `evt_control_plane_project_registry_home_state_ready` -> done
+- `adapter.contract_recorded`: `evt_control_plane_operational_decision_home_ready` -> done
 
 ## Invariants
 

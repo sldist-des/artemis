@@ -12,7 +12,7 @@
 - Agents started: `false`
 - Commands executed: `0`
 - Tokens spent: `0`
-- Next cut: `TKT-103 - Project Registry Registration Dry Run`
+- Next cut: `TKT-105 - Project Registry Registration Dry Run`
 
 ## Blockers
 

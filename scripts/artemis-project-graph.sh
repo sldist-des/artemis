@@ -152,6 +152,7 @@ portal_agent_conversation_payload = read_json(Path("artifacts/artemis-portal-age
 portal_task_control_payload = read_json(Path("artifacts/artemis-portal-task-control-surface/run-01/task-control-surface-contract.json"), {"task_control_contract": {}, "sample_task_control": {}, "overall": "not_available"})
 portal_validation_evidence_payload = read_json(Path("artifacts/artemis-portal-validation-evidence-surface/run-01/validation-evidence-surface-contract.json"), {"validation_evidence_contract": {}, "sample_evidence": {}, "overall": "not_available"})
 portal_human_acceptance_payload = read_json(Path("artifacts/artemis-portal-human-acceptance-surface/run-01/human-acceptance-surface-contract.json"), {"human_acceptance_contract": {}, "sample_acceptance": {}, "overall": "not_available"})
+subagent_router_payload = read_json(Path("artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json"), {"provider_profiles": [], "socratic_gate": [], "safety_invariants": {}, "overall": "not_available", "next_cut": "unknown"})
 
 tasks = tasks_payload.get("tasks", [])
 events = event_log_payload.get("events", [])
@@ -528,6 +529,18 @@ nodes = [
         "next_cut": portal_human_acceptance_payload.get("next_cut", "unknown"),
     },
     {
+        "id": "orchestration:subagent_router",
+        "type": "subagent_router",
+        "label": "ARTEMIS Subagent Socratic Router",
+        "status": subagent_router_payload.get("overall", "not_available"),
+        "providers": len(subagent_router_payload.get("provider_profiles", [])),
+        "socratic_questions": len(subagent_router_payload.get("socratic_gate", [])),
+        "runtime_subagents_started": subagent_router_payload.get("safety_invariants", {}).get("runtime_subagents_started", False),
+        "provider_messages_sent": subagent_router_payload.get("safety_invariants", {}).get("provider_messages_sent", 0),
+        "tokens_spent": subagent_router_payload.get("safety_invariants", {}).get("tokens_spent", 0),
+        "next_cut": subagent_router_payload.get("next_cut", {}).get("title", "unknown") if isinstance(subagent_router_payload.get("next_cut"), dict) else subagent_router_payload.get("next_cut", "unknown"),
+    },
+    {
         "id": "control_plane:view",
         "type": "view",
         "label": "Control Plane",
@@ -649,6 +662,11 @@ edges = [
     {"from": "portal:human_acceptance_surface", "to": "runtime:completion_review_gate", "type": "checks_completion_review"},
     {"from": "portal:human_acceptance_surface", "to": "runtime:done_ledger", "type": "blocks_done_ledger_without_acceptance"},
     {"from": "portal:human_acceptance_surface", "to": "event_log:timeline", "type": "records_acceptance_surface_contract"},
+    {"from": "portal:agent_registry", "to": "orchestration:subagent_router", "type": "provides_provider_catalog"},
+    {"from": "orchestration:subagent_router", "to": "gate:human", "type": "requires_sensitive_launch_gate"},
+    {"from": "orchestration:subagent_router", "to": "cost:budget", "type": "requires_budget_policy"},
+    {"from": "orchestration:subagent_router", "to": "validation:gate", "type": "requires_validation_before_done"},
+    {"from": "orchestration:subagent_router", "to": "event_log:timeline", "type": "records_router_contract"},
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
@@ -663,6 +681,7 @@ edges = [
     {"from": "control_plane:view", "to": "portal:task_control_surface", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:validation_evidence_surface", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:human_acceptance_surface", "type": "shows"},
+    {"from": "control_plane:view", "to": "orchestration:subagent_router", "type": "shows"},
 ]
 
 questions = [
@@ -685,6 +704,10 @@ questions = [
     {
         "question": "Qual custo ou runtime foi ativado?",
         "answer_source": ["cost:budget"],
+    },
+    {
+        "question": "Qual subagente usar e com qual limite?",
+        "answer_source": ["orchestration:subagent_router", "cost:budget", "validation:gate"],
     },
 ]
 
@@ -748,6 +771,7 @@ payload = {
         "portal_task_control_surface": "artifacts/artemis-portal-task-control-surface/run-01/task-control-surface-contract.json",
         "portal_validation_evidence_surface": "artifacts/artemis-portal-validation-evidence-surface/run-01/validation-evidence-surface-contract.json",
         "portal_human_acceptance_surface": "artifacts/artemis-portal-human-acceptance-surface/run-01/human-acceptance-surface-contract.json",
+        "subagent_socratic_router": "artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json",
     },
     "summary": summary,
     "states": dict(states),
@@ -793,6 +817,7 @@ payload = {
         "portal_task_control_surface_input": "artemis_portal_task_control_surface",
         "portal_validation_evidence_surface_input": "artemis_portal_validation_evidence_surface",
         "portal_human_acceptance_surface_input": "artemis_portal_human_acceptance_surface",
+        "subagent_router_input": "artemis_subagent_socratic_router",
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },

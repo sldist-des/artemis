@@ -68,6 +68,7 @@ docs/control-plane/ARTEMIS_CONTROL_PLANE_OPERATIONAL_DECISION_HOME.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
 docs/agents/CAPABILITY_REGISTRY.md
+docs/agents/ARTEMIS_SUBAGENT_SOCRATIC_ROUTER.md
 docs/agents/TOOL_POLICY.md
 docs/agents/HANDOFF_PROTOCOL.md
 docs/control-plane/artemis-control-plane.md
@@ -131,6 +132,7 @@ scripts/artemis-agent-runtime-post-execution-validation-gate.sh
 scripts/artemis-agent-runtime-completion-handoff.sh
 scripts/artemis-agent-runtime-completion-review-gate.sh
 scripts/artemis-agent-runtime-done-ledger.sh
+scripts/artemis-subagent-socratic-router.sh
 scripts/artemis-portal-auth-plan.sh
 scripts/artemis-portal-credential-vault.sh
 scripts/artemis-portal-agent-registry.sh
@@ -262,6 +264,7 @@ sh -n scripts/artemis-agent-runtime-post-execution-validation-gate.sh
 sh -n scripts/artemis-agent-runtime-completion-handoff.sh
 sh -n scripts/artemis-agent-runtime-completion-review-gate.sh
 sh -n scripts/artemis-agent-runtime-done-ledger.sh
+sh -n scripts/artemis-subagent-socratic-router.sh
 sh -n scripts/artemis-portal-auth-plan.sh
 sh -n scripts/artemis-portal-credential-vault.sh
 sh -n scripts/artemis-portal-agent-registry.sh
@@ -317,6 +320,40 @@ fi
 scripts/artemis-integrations.sh --project /tmp/artemis-target --agent codex --format json >/tmp/artemis-integrations.json
 if ! grep -q '"agent": "codex"' /tmp/artemis-integrations.json; then
   echo "scripts/artemis-integrations.sh did not emit JSON integration metadata" >&2
+  exit 1
+fi
+
+scripts/artemis-subagent-socratic-router.sh --artifact-root /tmp/artemis-subagent-socratic-router --json >/tmp/artemis-subagent-socratic-router.json
+if ! grep -q '"overall": "subagent_socratic_router_ready"' /tmp/artemis-subagent-socratic-router.json; then
+  echo "scripts/artemis-subagent-socratic-router.sh did not report subagent_socratic_router_ready" >&2
+  exit 1
+fi
+if ! grep -q '"provider_id": "codex"' /tmp/artemis-subagent-socratic-router.json; then
+  echo "scripts/artemis-subagent-socratic-router.sh did not map Codex" >&2
+  exit 1
+fi
+if ! grep -q '"provider_id": "claude_code"' /tmp/artemis-subagent-socratic-router.json; then
+  echo "scripts/artemis-subagent-socratic-router.sh did not map Claude Code" >&2
+  exit 1
+fi
+if ! grep -q '"provider_id": "antigravity_cli"' /tmp/artemis-subagent-socratic-router.json; then
+  echo "scripts/artemis-subagent-socratic-router.sh did not map Antigravity CLI" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_subagents_started": false' /tmp/artemis-subagent-socratic-router.json; then
+  echo "scripts/artemis-subagent-socratic-router.sh started runtime subagents" >&2
+  exit 1
+fi
+if ! grep -q '"provider_messages_sent": 0' /tmp/artemis-subagent-socratic-router.json; then
+  echo "scripts/artemis-subagent-socratic-router.sh sent provider messages" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-subagent-socratic-router.json; then
+  echo "scripts/artemis-subagent-socratic-router.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-subagent-socratic-router/SUBAGENT_SOCRATIC_ROUTER.md; then
+  echo "scripts/artemis-subagent-socratic-router.sh did not write router documentation artifact" >&2
   exit 1
 fi
 

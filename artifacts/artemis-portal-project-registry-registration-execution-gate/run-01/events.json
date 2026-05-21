@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T16:34:59Z",
+  "generated_at": "2026-05-21T17:21:56Z",
   "source": "scripts/artemis-portal-project-registry-registration-execution-gate.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_project_registry_registration_execution_gate_ready",
       "event_type": "human_gate.registration_execution_gate",
-      "generated_at": "2026-05-21T16:34:59Z",
+      "generated_at": "2026-05-21T17:21:56Z",
       "producer": {
         "adapter": "portal_project_registry",
         "name": "scripts/artemis-portal-project-registry-registration-execution-gate.sh",
@@ -66,7 +66,7 @@
         "commands_executed": 0,
         "tokens_spent": 0,
         "remote_state_mutated": false,
-        "next_cut": "TKT-103 - Project Registry Registration Dry Run"
+        "next_cut": "TKT-105 - Project Registry Registration Dry Run"
       }
     }
   ]

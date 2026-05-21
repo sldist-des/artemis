@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T16:34:59Z",
+  "generated_at": "2026-05-21T17:21:56Z",
   "overall": "project_registry_registration_execution_gate_ready",
   "project_registry_registration_execution_gate_ready": true,
   "candidate_project_id": "veri_d55ae65706",
@@ -19,7 +19,7 @@
   "commands_executed": 0,
   "tokens_spent": 0,
   "remote_state_mutated": false,
-  "next_cut": "TKT-103 - Project Registry Registration Dry Run",
+  "next_cut": "TKT-105 - Project Registry Registration Dry Run",
   "missing_files": [],
   "execution_gate_contract": {
     "purpose": "Require real human authority and execution evidence before any project registry write.",

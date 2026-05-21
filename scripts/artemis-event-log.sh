@@ -225,6 +225,7 @@ for events_path in [
     Path("artifacts/artemis-agent-runtime-completion-handoff/run-01/events.json"),
     Path("artifacts/artemis-agent-runtime-completion-review-gate/run-01/events.json"),
     Path("artifacts/artemis-agent-runtime-done-ledger/run-01/events.json"),
+    Path("artifacts/artemis-subagent-socratic-router/run-01/events.json"),
     Path("artifacts/artemis-portal-auth-plan/run-01/events.json"),
     Path("artifacts/artemis-portal-credential-vault/run-01/events.json"),
     Path("artifacts/artemis-portal-agent-registry/run-01/events.json"),

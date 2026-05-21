@@ -1,0 +1,425 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T17:18:54Z",
+  "source": "scripts/artemis-subagent-socratic-router.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_artemis_subagent_socratic_router_ready",
+      "event_type": "orchestration.subagent_router_ready",
+      "generated_at": "2026-05-21T17:18:54Z",
+      "producer": {
+        "name": "scripts/artemis-subagent-socratic-router.sh",
+        "kind": "script",
+        "version": "1"
+      },
+      "subject": {
+        "ticket": "TKT-103",
+        "task_id": "tkt-103",
+        "title": "ARTEMIS Subagent Socratic Router",
+        "exec_pack": "docs/exec-packs/done/TKT-103-artemis-subagent-socratic-router.md",
+        "artifact_root": "artifacts/artemis-subagent-socratic-router/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "done",
+        "reason": "ARTEMIS can now decide when and how to route subagents across Codex, Claude Code and Antigravity CLI without launching them."
+      },
+      "gate": {
+        "kind": "validation",
+        "status": "passed",
+        "required": true,
+        "checks": [
+          {
+            "id": "official_sources_declared",
+            "passed": true,
+            "evidence": [
+              "https://developers.openai.com/codex/subagents",
+              "https://code.claude.com/docs/en/sub-agents",
+              "https://antigravity.google/docs/cli-using"
+            ]
+          },
+          {
+            "id": "all_three_providers_mapped",
+            "passed": true,
+            "evidence": [
+              "codex",
+              "claude_code",
+              "antigravity_cli"
+            ]
+          },
+          {
+            "id": "socratic_gate_declared",
+            "passed": true,
+            "evidence": "9 questions"
+          },
+          {
+            "id": "safety_invariants_declared",
+            "passed": true,
+            "evidence": {
+              "runtime_subagents_started": false,
+              "provider_messages_sent": 0,
+              "provider_auth_performed": false,
+              "provider_configs_written": false,
+              "commands_executed_by_provider": 0,
+              "tokens_spent": 0,
+              "remote_state_mutated": false,
+              "secrets_read": false,
+              "secrets_written": false,
+              "single_writer_required": true,
+              "human_gate_required_for_inherited_scopes": true,
+              "validation_required_before_done": true
+            }
+          },
+          {
+            "id": "human_gate_for_antigravity_inherited_scopes",
+            "passed": true,
+            "evidence": "Antigravity profile blocks broad inherited scopes behind Human Gate."
+          }
+        ]
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-subagent-socratic-router/run-01",
+        "status_path": "artifacts/artemis-subagent-socratic-router/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-subagent-socratic-router/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-subagent-socratic-router/run-01/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-103",
+        "router": "artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json",
+        "codex_docs": "https://developers.openai.com/codex/subagents",
+        "claude_code_docs": "https://code.claude.com/docs/en/sub-agents",
+        "antigravity_cli_docs": "https://antigravity.google/docs/cli-using"
+      },
+      "payload": {
+        "schema_version": 1,
+        "generated_at": "2026-05-21T17:18:54Z",
+        "source": "scripts/artemis-subagent-socratic-router.sh",
+        "mode": "contract_only_no_runtime",
+        "overall": "subagent_socratic_router_ready",
+        "reason": "ARTEMIS can now decide when and how to route subagents across Codex, Claude Code and Antigravity CLI without launching them.",
+        "ticket": "TKT-103",
+        "artifact_root": "artifacts/artemis-subagent-socratic-router/run-01",
+        "provider_sources": [
+          {
+            "provider_id": "codex",
+            "official_doc": "https://developers.openai.com/codex/subagents",
+            "verified_at": "2026-05-21",
+            "observed_contract": [
+              "project subagents live under .codex/agents/",
+              "user subagents live under ~/.codex/agents/",
+              "subagents use TOML fields such as name, description, prompt and optional tools",
+              "explicit invocation can reference the agent by name"
+            ]
+          },
+          {
+            "provider_id": "claude_code",
+            "official_doc": "https://code.claude.com/docs/en/sub-agents",
+            "verified_at": "2026-05-21",
+            "observed_contract": [
+              "project subagents live under .claude/agents/",
+              "user subagents live under ~/.claude/agents/",
+              "subagents are Markdown files with YAML frontmatter",
+              "Claude can delegate proactively from descriptions and can be invoked explicitly"
+            ]
+          },
+          {
+            "provider_id": "antigravity_cli",
+            "official_doc": "https://antigravity.google/docs/cli-using",
+            "related_doc": "https://antigravity.google/docs/subagents",
+            "verified_at": "2026-05-21",
+            "observed_contract": [
+              "Antigravity CLI exposes subagent-oriented workflows",
+              "subagents can be long-running or asynchronous",
+              "subagents inherit parent scopes and permissions",
+              "ARTEMIS must treat inherited scopes as a human-gated risk"
+            ]
+          }
+        ],
+        "socratic_gate": [
+          {
+            "id": "intent",
+            "question": "What is the single outcome the subagent must produce?",
+            "blocks_launch_if_empty": true,
+            "required_evidence": "one-sentence outcome and artifact name"
+          },
+          {
+            "id": "necessity",
+            "question": "Why is a subagent better than doing the task in the current session?",
+            "blocks_launch_if_empty": true,
+            "required_evidence": "parallelism, isolation, specialist capability or latency reason"
+          },
+          {
+            "id": "bounded_scope",
+            "question": "What exact files, directories or APIs may the subagent touch?",
+            "blocks_launch_if_empty": true,
+            "required_evidence": "read scope, write scope and forbidden scope"
+          },
+          {
+            "id": "independence",
+            "question": "Can this task run without depending on another active writer?",
+            "blocks_launch_if_false": true,
+            "required_evidence": "dependency statement and worktree ownership"
+          },
+          {
+            "id": "provider_fit",
+            "question": "Which provider fits the task shape and why?",
+            "blocks_launch_if_empty": true,
+            "required_evidence": "provider id, model policy and rejection of unsuitable providers"
+          },
+          {
+            "id": "validation",
+            "question": "What validation proves the subagent result is acceptable?",
+            "blocks_launch_if_empty": true,
+            "required_evidence": "commands, expected outputs and artifact checks"
+          },
+          {
+            "id": "budget",
+            "question": "What token, time and concurrency limits apply?",
+            "blocks_launch_if_empty": true,
+            "required_evidence": "budget policy, max duration and stop condition"
+          },
+          {
+            "id": "human_gate",
+            "question": "Could this touch secrets, remote state, auth, money, production or inherited broad scopes?",
+            "blocks_launch_if_true_without_approval": true,
+            "required_evidence": "approval id or explicit dry-run/no-side-effect proof"
+          },
+          {
+            "id": "handoff",
+            "question": "What should the subagent hand back if it succeeds, fails or gets blocked?",
+            "blocks_launch_if_empty": true,
+            "required_evidence": "STATUS, VALIDATION, HANDOFF and blocker escalation format"
+          }
+        ],
+        "provider_profiles": [
+          {
+            "provider_id": "codex",
+            "display_name": "Codex subagents",
+            "config_surface": ".codex/agents/*.toml or ~/.codex/agents/*.toml",
+            "runtime_surface": "Codex native subagents and Codex terminal/app-server lanes",
+            "best_for": [
+              "complex implementation",
+              "code review",
+              "test strategy",
+              "architecture and verification",
+              "longer reasoning with strict repo evidence"
+            ],
+            "avoid_for": [
+              "unclear goals",
+              "tasks without validation",
+              "multiple writers on the same worktree"
+            ],
+            "artemis_launch_rule": "Use for high-value engineering slices after Socratic Gate passes and write ownership is explicit.",
+            "required_config_fields": [
+              "name",
+              "description",
+              "prompt"
+            ],
+            "optional_config_fields": [
+              "tools"
+            ],
+            "default_human_gate": "remote-write-and-high-risk"
+          },
+          {
+            "provider_id": "claude_code",
+            "display_name": "Claude Code subagents",
+            "config_surface": ".claude/agents/*.md or ~/.claude/agents/*.md",
+            "runtime_surface": "Claude Code subagents and SDK/headless lanes",
+            "best_for": [
+              "repository mapping",
+              "framework orientation",
+              "medium bounded implementation",
+              "documentation and handoff drafting",
+              "fast exploration before Codex executes a larger slice"
+            ],
+            "avoid_for": [
+              "very long tasks without checkpoints",
+              "ambiguous multi-stage ownership",
+              "unbounded repository rewrites"
+            ],
+            "artemis_launch_rule": "Use for short-to-medium specialist slices with frequent checkpoints and exact handoff expectations.",
+            "required_config_fields": [
+              "name",
+              "description"
+            ],
+            "optional_config_fields": [
+              "tools",
+              "model",
+              "color"
+            ],
+            "default_human_gate": "remote-write-and-high-risk"
+          },
+          {
+            "provider_id": "antigravity_cli",
+            "display_name": "Antigravity CLI subagents",
+            "config_surface": "antigravity CLI subagent definition surface",
+            "runtime_surface": "Antigravity CLI long-running/asynchronous agent lanes",
+            "best_for": [
+              "background exploration",
+              "isolated long-running checks",
+              "asynchronous validation lanes",
+              "provider-specific experiments behind dry-run gates"
+            ],
+            "avoid_for": [
+              "tasks with broad inherited permissions",
+              "secret-bearing workflows",
+              "remote writes without explicit human gate",
+              "production-adjacent automation"
+            ],
+            "artemis_launch_rule": "Use only after inherited scopes are displayed and approved; default to dry-run until permissions are narrow.",
+            "required_config_fields": [
+              "name",
+              "task",
+              "scope"
+            ],
+            "optional_config_fields": [
+              "timeout",
+              "approval_policy"
+            ],
+            "default_human_gate": "inherited-scope-and-async-runtime"
+          }
+        ],
+        "routing_rules": [
+          {
+            "rule_id": "no_clear_outcome_no_subagent",
+            "if": "intent question is unanswered",
+            "then": "do not launch; ask the human or refine the Exec Pack"
+          },
+          {
+            "rule_id": "single_writer",
+            "if": "the task can write files",
+            "then": "assign exactly one writer and one worktree before launch"
+          },
+          {
+            "rule_id": "codex_for_deep_engineering",
+            "if": "task is complex, multi-file, validation-heavy or architectural",
+            "then": "prefer Codex subagent or Codex terminal owner"
+          },
+          {
+            "rule_id": "claude_for_mapping_and_medium_slices",
+            "if": "task is repository mapping, language orientation or bounded medium implementation",
+            "then": "prefer Claude Code subagent with short checkpoint"
+          },
+          {
+            "rule_id": "antigravity_for_async_isolated_lanes",
+            "if": "task is asynchronous, long-running or provider-specific experiment",
+            "then": "prefer Antigravity only with inherited-scope review and dry-run gate"
+          },
+          {
+            "rule_id": "human_gate_for_risk",
+            "if": "task touches auth, secrets, remote state, production, money, broad permissions or push",
+            "then": "block launch until a recorded human decision exists"
+          },
+          {
+            "rule_id": "validation_before_done",
+            "if": "subagent returns changes or claims completion",
+            "then": "run validation gate and capture evidence before Done Ledger"
+          }
+        ],
+        "launch_contract": {
+          "minimum_fields": [
+            "task_id",
+            "exec_pack",
+            "outcome",
+            "provider_id",
+            "subagent_profile",
+            "read_scope",
+            "write_scope",
+            "forbidden_scope",
+            "budget_policy",
+            "timeout_minutes",
+            "validation_commands",
+            "handoff_artifacts",
+            "human_gate_policy"
+          ],
+          "handoff_artifacts": [
+            "STATUS.md",
+            "VALIDATION.md",
+            "HANDOFF.md",
+            "events.json"
+          ],
+          "blocked_until_next_cut": [
+            "generate concrete .codex/agents/*.toml files",
+            "generate concrete .claude/agents/*.md files",
+            "generate Antigravity subagent definitions",
+            "start provider runtimes from the portal",
+            "send prompts to provider agents"
+          ]
+        },
+        "safety_invariants": {
+          "runtime_subagents_started": false,
+          "provider_messages_sent": 0,
+          "provider_auth_performed": false,
+          "provider_configs_written": false,
+          "commands_executed_by_provider": 0,
+          "tokens_spent": 0,
+          "remote_state_mutated": false,
+          "secrets_read": false,
+          "secrets_written": false,
+          "single_writer_required": true,
+          "human_gate_required_for_inherited_scopes": true,
+          "validation_required_before_done": true
+        },
+        "checks": [
+          {
+            "id": "official_sources_declared",
+            "passed": true,
+            "evidence": [
+              "https://developers.openai.com/codex/subagents",
+              "https://code.claude.com/docs/en/sub-agents",
+              "https://antigravity.google/docs/cli-using"
+            ]
+          },
+          {
+            "id": "all_three_providers_mapped",
+            "passed": true,
+            "evidence": [
+              "codex",
+              "claude_code",
+              "antigravity_cli"
+            ]
+          },
+          {
+            "id": "socratic_gate_declared",
+            "passed": true,
+            "evidence": "9 questions"
+          },
+          {
+            "id": "safety_invariants_declared",
+            "passed": true,
+            "evidence": {
+              "runtime_subagents_started": false,
+              "provider_messages_sent": 0,
+              "provider_auth_performed": false,
+              "provider_configs_written": false,
+              "commands_executed_by_provider": 0,
+              "tokens_spent": 0,
+              "remote_state_mutated": false,
+              "secrets_read": false,
+              "secrets_written": false,
+              "single_writer_required": true,
+              "human_gate_required_for_inherited_scopes": true,
+              "validation_required_before_done": true
+            }
+          },
+          {
+            "id": "human_gate_for_antigravity_inherited_scopes",
+            "passed": true,
+            "evidence": "Antigravity profile blocks broad inherited scopes behind Human Gate."
+          }
+        ],
+        "next_cut": {
+          "ticket": "TKT-104",
+          "title": "ARTEMIS Subagent Config Generator Dry Run",
+          "goal": "Generate preview-only Codex, Claude Code and Antigravity subagent config artifacts from this router contract without writing runtime configs."
+        }
+      }
+    }
+  ]
+}

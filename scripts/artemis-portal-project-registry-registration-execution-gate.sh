@@ -267,7 +267,7 @@ payload = {
     "commands_executed": 0,
     "tokens_spent": 0,
     "remote_state_mutated": False,
-    "next_cut": "TKT-103 - Project Registry Registration Dry Run",
+    "next_cut": "TKT-105 - Project Registry Registration Dry Run",
     "missing_files": missing_files,
     "execution_gate_contract": execution_gate_contract,
     "checks": checks,

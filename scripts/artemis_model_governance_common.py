@@ -101,6 +101,17 @@ MODES = {
         "exec_pack": "docs/exec-packs/done/TKT-117-artemis-model-api-review-fixture.md",
         "next_cut": "TKT-118 - Model/API Review Gate",
     },
+    "review_gate": {
+        "ticket": "TKT-118",
+        "title": "ARTEMIS Model/API Review Gate",
+        "overall": "model_api_review_gate_ready",
+        "artifact": "model-api-review-gate.json",
+        "doc": "MODEL_API_REVIEW_GATE.md",
+        "event_id": "evt_model_api_review_gate_ready",
+        "event_type": "model_governance.review_gate_ready",
+        "exec_pack": "docs/exec-packs/done/TKT-118-artemis-model-api-review-gate.md",
+        "next_cut": "TKT-119 - Model/API Review Decision Intake",
+    },
 }
 
 
@@ -808,6 +819,114 @@ def build_review_fixture(artifact_root):
     return payload
 
 
+def build_review_gate(artifact_root):
+    meta = MODES["review_gate"]
+    artifact_root.mkdir(parents=True, exist_ok=True)
+    registry = read_json(REGISTRY_CONFIG, {})
+    review_fixture = read_json("artifacts/artemis-model-api-review-fixture/run-01/model-api-review-fixture.json", {})
+    synthetic_request = review_fixture.get("synthetic_change_request", {})
+
+    fixture_boundary_valid = all([
+        review_fixture.get("overall") == "model_api_review_fixture_ready",
+        review_fixture.get("synthetic_fixture_only") is True,
+        review_fixture.get("fixture_positive_path") is True,
+        review_fixture.get("accepted_for_review_fixture") is True,
+        review_fixture.get("real_review_recorded") is False,
+        review_fixture.get("change_review_allowed") is False,
+        review_fixture.get("migration_allowed") is False,
+    ])
+    real_review_template = {
+        "schema_version": 1,
+        "real_review_id": "",
+        "reviewed_by": "",
+        "reviewed_at": "",
+        "change_request_artifact": "",
+        "provider_id": synthetic_request.get("provider_id", ""),
+        "capability_role": synthetic_request.get("capability_role", ""),
+        "change_kind": synthetic_request.get("change_kind", "model_binding_update"),
+        "current_binding": synthetic_request.get("current_binding", ""),
+        "candidate_binding": synthetic_request.get("candidate_binding", ""),
+        "official_docs_review_artifacts": [],
+        "official_docs_current_confirmed": False,
+        "source_assertions": [
+            {
+                "source_id": "",
+                "source_url": "",
+                "reviewed_at": "",
+                "observed_change": "",
+                "impact": "unknown",
+                "evidence_artifact": "",
+            }
+        ],
+        "local_probe_artifact": synthetic_request.get("local_probe_artifact", ""),
+        "local_probe_verified": False,
+        "operational_eval_artifact": synthetic_request.get("operational_eval_artifact", ""),
+        "operational_eval_verified": False,
+        "budget_impact_artifact": synthetic_request.get("budget_impact_artifact", ""),
+        "budget_impact_verified": False,
+        "rollback_plan": "",
+        "rollback_plan_verified": False,
+        "security_or_policy_findings": [],
+        "recommendation": "pending",
+        "decision": "pending",
+        "decision_options": ["pending", "approved_for_decision_intake", "rejected", "deferred"],
+        "reviewer_attestation": "",
+    }
+    blockers = [
+        "real_model_api_review_not_recorded",
+        "official_docs_currency_not_confirmed",
+        "review_owner_attestation_missing",
+        "budget_impact_not_verified",
+        "operational_eval_not_verified",
+        "migration_gate_not_approved",
+    ]
+    payload = base_payload(meta, registry)
+    payload.update({
+        "state": "waiting_for_real_model_review",
+        "review_gate_ready": fixture_boundary_valid,
+        "review_gate_state": "waiting_for_real_model_review",
+        "fixture_boundary_valid": fixture_boundary_valid,
+        "synthetic_fixture_only": review_fixture.get("synthetic_fixture_only", False),
+        "accepted_for_review_fixture": review_fixture.get("accepted_for_review_fixture", False),
+        "real_review_template_ready": True,
+        "real_review_recorded": False,
+        "real_review_valid": False,
+        "change_review_allowed": False,
+        "review_decision_intake_allowed": False,
+        "migration_allowed": False,
+        "default_model_change_allowed": False,
+        "runtime_execution_allowed": False,
+        "spend_authorized": False,
+        "provider_id": synthetic_request.get("provider_id", ""),
+        "capability_role": synthetic_request.get("capability_role", ""),
+        "current_binding": synthetic_request.get("current_binding", ""),
+        "candidate_binding": synthetic_request.get("candidate_binding", ""),
+        "real_review_template": real_review_template,
+        "blockers": blockers,
+        "review_gate_rules": [
+            "Synthetic fixture evidence can only prove shape and boundary behavior.",
+            "A real model/API review requires human-owned evidence from official docs and local probes.",
+            "Review Decision Intake remains blocked until a real review artifact is recorded.",
+            "Migration, default model changes, runtime execution and token spend remain blocked.",
+        ],
+    })
+    write_json(artifact_root / "model-api-real-review-template.json", real_review_template)
+    write_standard_artifacts(artifact_root, meta, payload, [
+        "## Review Gate State",
+        "",
+        "- Review gate state: `waiting_for_real_model_review`",
+        f"- Fixture boundary valid: `{str(fixture_boundary_valid).lower()}`",
+        "- Real review recorded: `false`",
+        "- Review decision intake allowed: `false`",
+        "- Migration allowed: `false`",
+        "",
+        "## Blockers",
+        "",
+        *[f"- `{item}`" for item in blockers],
+    ])
+    return payload
+
+
 BUILDERS = {
     "registry": build_registry,
     "probes": build_probes,
@@ -817,12 +936,13 @@ BUILDERS = {
     "docs_radar": build_docs_radar,
     "change_intake": build_change_intake,
     "review_fixture": build_review_fixture,
+    "review_gate": build_review_gate,
 }
 
 
 def main(argv):
     if len(argv) != 4 or argv[1] not in BUILDERS:
-        print("usage: artemis_model_governance_common.py <registry|probes|migration|evals|budget|docs_radar|change_intake|review_fixture> <artifact-root> <text|json>", file=sys.stderr)
+        print("usage: artemis_model_governance_common.py <registry|probes|migration|evals|budget|docs_radar|change_intake|review_fixture|review_gate> <artifact-root> <text|json>", file=sys.stderr)
         return 2
     mode = argv[1]
     artifact_root = Path(argv[2])

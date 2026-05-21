@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T19:58:10Z",
+  "overall": "model_api_review_gate_ready",
+  "state": "waiting_for_real_model_review",
+  "providers_total": 3,
+  "capability_roles_total": 5,
+  "provider_ids": [
+    "codex",
+    "claude_code",
+    "antigravity_cli"
+  ],
+  "next_cut": "TKT-119 - Model/API Review Decision Intake",
+  "invariants": [
+    "Model names are runtime bindings, not method authority.",
+    "Capability roles remain the routing contract.",
+    "Official docs refresh is required before default model/API changes.",
+    "Human Gate is required before changing default provider routing.",
+    "No provider auth, API call, runtime agent, token spend or remote mutation is allowed in this cut."
+  ],
+  "runtime_auth_executed": false,
+  "provider_api_calls_executed": 0,
+  "agents_started": false,
+  "provider_runtime_commands_executed": 0,
+  "tokens_spent": 0,
+  "secret_values_recorded": false,
+  "remote_state_mutated": false,
+  "review_gate_ready": true,
+  "review_gate_state": "waiting_for_real_model_review",
+  "fixture_boundary_valid": true,
+  "synthetic_fixture_only": true,
+  "accepted_for_review_fixture": true,
+  "real_review_template_ready": true,
+  "real_review_recorded": false,
+  "real_review_valid": false,
+  "change_review_allowed": false,
+  "review_decision_intake_allowed": false,
+  "migration_allowed": false,
+  "default_model_change_allowed": false,
+  "runtime_execution_allowed": false,
+  "spend_authorized": false,
+  "provider_id": "codex",
+  "capability_role": "frontier_reasoning",
+  "current_binding": "repo_default_frontier",
+  "candidate_binding": "candidate_frontier_binding_fixture",
+  "real_review_template": {
+    "schema_version": 1,
+    "real_review_id": "",
+    "reviewed_by": "",
+    "reviewed_at": "",
+    "change_request_artifact": "",
+    "provider_id": "codex",
+    "capability_role": "frontier_reasoning",
+    "change_kind": "model_binding_update",
+    "current_binding": "repo_default_frontier",
+    "candidate_binding": "candidate_frontier_binding_fixture",
+    "official_docs_review_artifacts": [],
+    "official_docs_current_confirmed": false,
+    "source_assertions": [
+      {
+        "source_id": "",
+        "source_url": "",
+        "reviewed_at": "",
+        "observed_change": "",
+        "impact": "unknown",
+        "evidence_artifact": ""
+      }
+    ],
+    "local_probe_artifact": "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
+    "local_probe_verified": false,
+    "operational_eval_artifact": "artifacts/artemis-provider-operational-evals/run-01/provider-operational-evals.json",
+    "operational_eval_verified": false,
+    "budget_impact_artifact": "artifacts/artemis-token-budget-policy/run-01/model-token-budget-policy.json",
+    "budget_impact_verified": false,
+    "rollback_plan": "",
+    "rollback_plan_verified": false,
+    "security_or_policy_findings": [],
+    "recommendation": "pending",
+    "decision": "pending",
+    "decision_options": [
+      "pending",
+      "approved_for_decision_intake",
+      "rejected",
+      "deferred"
+    ],
+    "reviewer_attestation": ""
+  },
+  "blockers": [
+    "real_model_api_review_not_recorded",
+    "official_docs_currency_not_confirmed",
+    "review_owner_attestation_missing",
+    "budget_impact_not_verified",
+    "operational_eval_not_verified",
+    "migration_gate_not_approved"
+  ],
+  "review_gate_rules": [
+    "Synthetic fixture evidence can only prove shape and boundary behavior.",
+    "A real model/API review requires human-owned evidence from official docs and local probes.",
+    "Review Decision Intake remains blocked until a real review artifact is recorded.",
+    "Migration, default model changes, runtime execution and token spend remain blocked."
+  ]
+}

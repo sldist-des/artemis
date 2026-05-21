@@ -30,6 +30,8 @@ um binding versionado que pode mudar quando houver evidencia.
   mudanca depois do radar, ainda sem permitir migracao.
 - `scripts/artemis-model-review-fixture.sh` prova o caminho positivo de review
   com fixture sintetica, ainda sem autoridade real.
+- `scripts/artemis-model-review-gate.sh` separa fixture sintetica de review
+  real e emite o template de review humano antes de qualquer decisao.
 
 ## Invariantes
 
@@ -45,3 +47,6 @@ um binding versionado que pode mudar quando houver evidencia.
   de modelo, default, runtime ou budget.
 - A Review Fixture valida formato e encadeamento, mas nao substitui review
   humano real nem libera migracao.
+- O Review Gate aceita a fixture apenas como evidencia de formato; review real,
+  decision intake, migracao, default change, runtime e gasto continuam
+  bloqueados ate artefato humano explicito.

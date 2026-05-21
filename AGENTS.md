@@ -126,6 +126,7 @@ scripts/artemis-token-budget-policy.sh --json
 scripts/artemis-model-docs-radar.sh --json
 scripts/artemis-model-change-intake.sh --json
 scripts/artemis-model-review-fixture.sh --json
+scripts/artemis-model-review-gate.sh --json
 scripts/artemis-portal-local-project-connect.sh --project . --json
 scripts/artemis-portal-external-project-registration.sh --json
 scripts/artemis-portal-runtime-gateway.sh --json

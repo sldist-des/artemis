@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `48`.
-- Edges: `204`.
-- Tasks: `118`.
-- Events: `101`.
+- Nodes: `49`.
+- Edges: `210`.
+- Tasks: `119`.
+- Events: `102`.
 
 ## Nos
 
@@ -58,6 +58,7 @@
 - `model_governance:documentation_radar` (model_api_documentation_radar): ARTEMIS Model/API Documentation Radar.
 - `model_governance:change_intake` (model_api_change_intake): ARTEMIS Model/API Change Intake.
 - `model_governance:review_fixture` (model_api_review_fixture): ARTEMIS Model/API Review Fixture.
+- `model_governance:review_gate` (model_api_review_gate): ARTEMIS Model/API Review Gate.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -229,6 +230,10 @@
 - `model_governance:review_fixture` --does_not_authorize_migration--> `model_governance:migration_gate`.
 - `model_governance:review_fixture` --does_not_replace_real_review--> `gate:human`.
 - `model_governance:review_fixture` --validates_positive_path_fixture--> `validation:gate`.
+- `model_governance:review_fixture` --feeds_real_review_gate--> `model_governance:review_gate`.
+- `model_governance:review_gate` --requires_real_model_review--> `gate:human`.
+- `model_governance:review_gate` --blocks_migration_without_real_review--> `model_governance:migration_gate`.
+- `model_governance:review_gate` --validates_review_boundary--> `validation:gate`.
 - `model_governance:registry` --records_model_registry--> `event_log:timeline`.
 - `model_governance:provider_probes` --records_provider_probe_state--> `event_log:timeline`.
 - `model_governance:migration_gate` --records_migration_gate--> `event_log:timeline`.
@@ -237,6 +242,7 @@
 - `model_governance:documentation_radar` --records_docs_radar--> `event_log:timeline`.
 - `model_governance:change_intake` --records_change_intake--> `event_log:timeline`.
 - `model_governance:review_fixture` --records_review_fixture--> `event_log:timeline`.
+- `model_governance:review_gate` --records_review_gate--> `event_log:timeline`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.
@@ -266,6 +272,7 @@
 - `control_plane:view` --shows--> `model_governance:documentation_radar`.
 - `control_plane:view` --shows--> `model_governance:change_intake`.
 - `control_plane:view` --shows--> `model_governance:review_fixture`.
+- `control_plane:view` --shows--> `model_governance:review_gate`.
 
 ## Perguntas operacionais
 

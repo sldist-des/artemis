@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "real_review_id": "",
+  "reviewed_by": "",
+  "reviewed_at": "",
+  "change_request_artifact": "",
+  "provider_id": "codex",
+  "capability_role": "frontier_reasoning",
+  "change_kind": "model_binding_update",
+  "current_binding": "repo_default_frontier",
+  "candidate_binding": "candidate_frontier_binding_fixture",
+  "official_docs_review_artifacts": [],
+  "official_docs_current_confirmed": false,
+  "source_assertions": [
+    {
+      "source_id": "",
+      "source_url": "",
+      "reviewed_at": "",
+      "observed_change": "",
+      "impact": "unknown",
+      "evidence_artifact": ""
+    }
+  ],
+  "local_probe_artifact": "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
+  "local_probe_verified": false,
+  "operational_eval_artifact": "artifacts/artemis-provider-operational-evals/run-01/provider-operational-evals.json",
+  "operational_eval_verified": false,
+  "budget_impact_artifact": "artifacts/artemis-token-budget-policy/run-01/model-token-budget-policy.json",
+  "budget_impact_verified": false,
+  "rollback_plan": "",
+  "rollback_plan_verified": false,
+  "security_or_policy_findings": [],
+  "recommendation": "pending",
+  "decision": "pending",
+  "decision_options": [
+    "pending",
+    "approved_for_decision_intake",
+    "rejected",
+    "deferred"
+  ],
+  "reviewer_attestation": ""
+}

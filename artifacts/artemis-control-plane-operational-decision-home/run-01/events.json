@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T12:09:06Z",
+  "source": "scripts/artemis-control-plane-operational-decision-home.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_control_plane_operational_decision_home_ready",
+      "event_type": "adapter.contract_recorded",
+      "generated_at": "2026-05-21T12:09:06Z",
+      "producer": {
+        "adapter": "control_plane",
+        "name": "scripts/artemis-control-plane-operational-decision-home.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-098",
+        "task_id": "tkt-098",
+        "title": "ARTEMIS Control Plane Operational Decision Home",
+        "exec_pack": "docs/exec-packs/done/TKT-098-artemis-control-plane-operational-decision-home.md",
+        "artifact_root": "artifacts/artemis-control-plane-operational-decision-home/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "decision_intake",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable"
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-control-plane-operational-decision-home/run-01",
+        "status_path": "artifacts/artemis-control-plane-operational-decision-home/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-control-plane-operational-decision-home/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-control-plane-operational-decision-home/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-control-plane-operational-decision-home/run-01/control-plane-operational-decision-home.json",
+          "artifacts/artemis-control-plane-operational-decision-home/run-01/CONTROL_PLANE_OPERATIONAL_DECISION_HOME.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-098"
+      },
+      "payload": {
+        "control_plane_operational_decision_home_ready": true,
+        "decision_state": "pending",
+        "next_action": "fill_human_decision_template",
+        "human_decision_recorded": false,
+        "candidate_registration_allowed": false,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-099 - Project Registry Registration Gate"
+      }
+    }
+  ]
+}

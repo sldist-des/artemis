@@ -2256,6 +2256,44 @@
       color: var(--panel);
     }
 
+    .decision-brief {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: minmax(190px, .8fr) minmax(260px, 1.2fr) minmax(220px, 1fr);
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .decision-brief-item {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: color-mix(in srgb, var(--panel) 82%, #efe8d8);
+      padding: 10px 12px;
+      min-width: 0;
+    }
+
+    .decision-brief-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .decision-brief-item strong,
+    .decision-brief-item a {
+      display: block;
+      margin-top: 5px;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.25;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
     .operations-overview {
       display: grid;
       grid-template-columns: minmax(190px, .34fr) minmax(0, 1fr);
@@ -2402,6 +2440,10 @@
         grid-template-columns: 1fr;
       }
 
+      .decision-brief {
+        grid-template-columns: 1fr;
+      }
+
       .operations-header {
         padding: 16px;
       }
@@ -2446,8 +2488,22 @@
         </div>
         <div class="plain-actions" aria-label="Atalhos principais">
           <a href="../artifacts/artemis-project-brief/run-01/PROJECT_BRIEF.md">Resumo</a>
-          <a href="../artifacts/artemis-control-plane-project-registry-home-state/run-01/VALIDATION.md">Validacao</a>
-          <a href="../artifacts/artemis-control-plane-project-registry-home-state/run-01/HANDOFF.md">Handoff</a>
+          <a href="../artifacts/artemis-control-plane-operational-decision-home/run-01/VALIDATION.md">Validacao</a>
+          <a href="../artifacts/artemis-control-plane-operational-decision-home/run-01/HANDOFF.md">Handoff</a>
+        </div>
+        <div class="decision-brief" aria-label="Proxima acao operacional">
+          <div class="decision-brief-item">
+            <span>Proxima acao</span>
+            <strong id="decision-brief-action">Preencher decisao humana</strong>
+          </div>
+          <div class="decision-brief-item">
+            <span>Arquivo</span>
+            <a id="decision-brief-file" href="../artifacts/artemis-portal-project-registry-decision-intake/run-01/project-registry-decision-template.json">project-registry-decision-template.json</a>
+          </div>
+          <div class="decision-brief-item">
+            <span>Bloqueio</span>
+            <strong id="decision-brief-blockers">registro, troca e runtime bloqueados</strong>
+          </div>
         </div>
       </div>
 
@@ -4182,6 +4238,9 @@
     const plainStateListNode = document.querySelector("#plain-state-list");
     const plainHumanListNode = document.querySelector("#plain-human-list");
     const plainActionListNode = document.querySelector("#plain-action-list");
+    const decisionBriefActionNode = document.querySelector("#decision-brief-action");
+    const decisionBriefFileNode = document.querySelector("#decision-brief-file");
+    const decisionBriefBlockersNode = document.querySelector("#decision-brief-blockers");
     const runtimeGatewaySummaryNode = document.querySelector("#operation-runtime-summary");
     const runtimeGatewayStateNode = document.querySelector("#operation-runtime-state");
     const runtimeGatewayTitleNode = document.querySelector("#operation-runtime-title");
@@ -5770,6 +5829,15 @@
         externalRegistrationStateNode.textContent = "pendente";
         externalRegistrationTitleNode.textContent = "Decisao pendente";
       }
+      plainNextNode.textContent = decisionState === "pending" ? "decisao" : "registro";
+      decisionBriefActionNode.textContent = decisionState === "pending"
+        ? "Preencher decisao humana"
+        : decisionState === "invalid"
+          ? "Corrigir arquivo de decisao"
+          : "Revisar gate de registro";
+      decisionBriefFileNode.textContent = "project-registry-decision-template.json";
+      decisionBriefFileNode.href = "../artifacts/artemis-portal-project-registry-decision-intake/run-01/project-registry-decision-template.json";
+      decisionBriefBlockersNode.textContent = "registro, troca e runtime bloqueados";
       externalRegistrationCandidatesNode.textContent = contract.candidate_project_id ? "1" : "0";
       externalRegistrationRegisteredNode.textContent = "0";
       externalRegistrationSwitchingNode.textContent = contract.project_switching_allowed ? "sim" : "nao";

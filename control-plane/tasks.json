@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T11:57:41Z",
+  "generated_at": "2026-05-21T12:09:19Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1177,6 +1177,18 @@
       "summary": "O metodo passa a ter um ponto claro para receber uma decisao humana, mas o",
       "exec_pack": "docs/exec-packs/done/TKT-097-artemis-project-registry-decision-intake.md",
       "evidence": "artifacts/artemis-portal-project-registry-decision-intake/run-01/project-registry-decision-intake.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-098",
+      "ticket": "TKT-098",
+      "title": "ARTEMIS Control Plane Operational Decision Home",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "A primeira tela mostra que a decisao esta pendente, aponta para o template de",
+      "exec_pack": "docs/exec-packs/done/TKT-098-artemis-control-plane-operational-decision-home.md",
+      "evidence": "artifacts/artemis-control-plane-operational-decision-home/run-01/control-plane-operational-decision-home.json",
       "tags": ["exec-pack", "done"]
     }
   ]

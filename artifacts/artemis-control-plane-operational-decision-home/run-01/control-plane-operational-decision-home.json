@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T12:09:06Z",
+  "overall": "control_plane_operational_decision_home_ready",
+  "control_plane_operational_decision_home_ready": true,
+  "decision_state": "pending",
+  "next_action": "fill_human_decision_template",
+  "decision_template": "artifacts/artemis-portal-project-registry-decision-intake/run-01/project-registry-decision-template.json",
+  "human_decision_recorded": false,
+  "candidate_registration_allowed": false,
+  "project_switching_allowed": false,
+  "runtime_execution_allowed": false,
+  "provider_auth_connected": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-099 - Project Registry Registration Gate",
+  "missing_files": [],
+  "home_contract": {
+    "control_plane": "control-plane/index.html",
+    "decision_intake": "artifacts/artemis-portal-project-registry-decision-intake/run-01/project-registry-decision-intake.json",
+    "surface": "operational_decision_home",
+    "primary_state": "Decisao pendente",
+    "primary_action": "Preencher decisao humana",
+    "primary_artifact": "artifacts/artemis-portal-project-registry-decision-intake/run-01/project-registry-decision-template.json",
+    "visible_blockers": [
+      "registro",
+      "troca de projeto",
+      "runtime"
+    ]
+  },
+  "checks": [
+    {
+      "id": "decision_intake_ready",
+      "status": "passed",
+      "detail": "Operational home consumes Project Registry Decision Intake."
+    },
+    {
+      "id": "decision_pending_visible",
+      "status": "passed",
+      "detail": "Home can show pending decision state."
+    },
+    {
+      "id": "next_action_visible",
+      "status": "passed",
+      "detail": "Home exposes the immediate operational next action."
+    },
+    {
+      "id": "decision_template_linked",
+      "status": "passed",
+      "detail": "Home links to the fillable decision template artifact."
+    },
+    {
+      "id": "blockers_visible",
+      "status": "passed",
+      "detail": "Home exposes the blocking operational constraints."
+    },
+    {
+      "id": "control_plane_tokens_present",
+      "status": "passed",
+      "detail": "Control Plane contains operational decision home tokens."
+    },
+    {
+      "id": "project_switching_still_blocked",
+      "status": "passed",
+      "detail": "Operational home does not allow project switching."
+    },
+    {
+      "id": "runtime_still_blocked",
+      "status": "passed",
+      "detail": "Operational home does not allow runtime execution."
+    },
+    {
+      "id": "no_runtime_side_effects",
+      "status": "passed",
+      "detail": "No agents, commands or tokens are produced by the operational home."
+    }
+  ]
+}

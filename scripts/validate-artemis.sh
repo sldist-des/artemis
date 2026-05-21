@@ -60,6 +60,7 @@ docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_HUMAN_REVIEW_GATE.md
 docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_DECISION_INTAKE.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/control-plane/ARTEMIS_CONTROL_PLANE_PROJECT_REGISTRY_HOME_STATE.md
+docs/control-plane/ARTEMIS_CONTROL_PLANE_OPERATIONAL_DECISION_HOME.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
 docs/agents/CAPABILITY_REGISTRY.md
@@ -148,6 +149,7 @@ scripts/artemis-control-plane-external-project-registration-view.sh
 scripts/artemis-control-plane-local-project-connect-view.sh
 scripts/artemis-control-plane-runtime-gateway-view.sh
 scripts/artemis-control-plane-project-registry-home-state.sh
+scripts/artemis-control-plane-operational-decision-home.sh
 scripts/artemis-approved-workspace-cleanup.sh
 scripts/artemis-workspace-runtime-handoff.sh
 scripts/artemis-runner.sh
@@ -274,6 +276,7 @@ sh -n scripts/artemis-control-plane-external-project-registration-view.sh
 sh -n scripts/artemis-control-plane-local-project-connect-view.sh
 sh -n scripts/artemis-control-plane-runtime-gateway-view.sh
 sh -n scripts/artemis-control-plane-project-registry-home-state.sh
+sh -n scripts/artemis-control-plane-operational-decision-home.sh
 sh -n scripts/artemis-approved-workspace-cleanup.sh
 sh -n scripts/artemis-workspace-runtime-handoff.sh
 sh -n scripts/artemis-runner.sh
@@ -1060,6 +1063,47 @@ if ! test -f /tmp/artemis-portal-project-registry-decision-intake/project-regist
 fi
 if ! test -f /tmp/artemis-portal-project-registry-decision-intake/PROJECT_REGISTRY_DECISION_INTAKE.md; then
   echo "scripts/artemis-portal-project-registry-decision-intake.sh did not write decision intake documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-control-plane-operational-decision-home.sh --artifact-root /tmp/artemis-control-plane-operational-decision-home --json >/tmp/artemis-control-plane-operational-decision-home.json
+if ! grep -q '"overall": "control_plane_operational_decision_home_ready"' /tmp/artemis-control-plane-operational-decision-home.json; then
+  echo "scripts/artemis-control-plane-operational-decision-home.sh did not report control_plane_operational_decision_home_ready" >&2
+  exit 1
+fi
+if ! grep -q '"decision_state": "pending"' /tmp/artemis-control-plane-operational-decision-home.json; then
+  echo "scripts/artemis-control-plane-operational-decision-home.sh did not preserve pending decision state" >&2
+  exit 1
+fi
+if ! grep -q '"next_action": "fill_human_decision_template"' /tmp/artemis-control-plane-operational-decision-home.json; then
+  echo "scripts/artemis-control-plane-operational-decision-home.sh did not expose the fill decision next action" >&2
+  exit 1
+fi
+if ! grep -q '"human_decision_recorded": false' /tmp/artemis-control-plane-operational-decision-home.json; then
+  echo "scripts/artemis-control-plane-operational-decision-home.sh recorded a human decision unexpectedly" >&2
+  exit 1
+fi
+if ! grep -q '"candidate_registration_allowed": false' /tmp/artemis-control-plane-operational-decision-home.json; then
+  echo "scripts/artemis-control-plane-operational-decision-home.sh allowed candidate registration" >&2
+  exit 1
+fi
+if ! grep -q '"project_switching_allowed": false' /tmp/artemis-control-plane-operational-decision-home.json; then
+  echo "scripts/artemis-control-plane-operational-decision-home.sh allowed project switching" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-control-plane-operational-decision-home.json; then
+  echo "scripts/artemis-control-plane-operational-decision-home.sh allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-control-plane-operational-decision-home.json; then
+  echo "scripts/artemis-control-plane-operational-decision-home.sh executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-control-plane-operational-decision-home.json; then
+  echo "scripts/artemis-control-plane-operational-decision-home.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-control-plane-operational-decision-home/CONTROL_PLANE_OPERATIONAL_DECISION_HOME.md; then
+  echo "scripts/artemis-control-plane-operational-decision-home.sh did not write operational decision home documentation artifact" >&2
   exit 1
 fi
 scripts/artemis-control-plane-external-project-registration-view.sh --artifact-root /tmp/artemis-control-plane-external-project-registration-view --json >/tmp/artemis-control-plane-external-project-registration-view.json

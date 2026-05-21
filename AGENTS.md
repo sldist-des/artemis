@@ -58,6 +58,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 - `docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY.md`
 - `docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY_SERVICE.md`
 - `docs/control-plane/ARTEMIS_CONTROL_PLANE_PROJECT_REGISTRY_HOME_STATE.md`
+- `docs/control-plane/ARTEMIS_CONTROL_PLANE_OPERATIONAL_DECISION_HOME.md`
 - Exec Pack ativo em `docs/exec-packs/active/`
 
 ## Comandos canonicos
@@ -102,6 +103,7 @@ scripts/artemis-control-plane-external-project-registration-view.sh --json
 scripts/artemis-control-plane-local-project-connect-view.sh --json
 scripts/artemis-control-plane-runtime-gateway-view.sh --json
 scripts/artemis-control-plane-project-registry-home-state.sh --json
+scripts/artemis-control-plane-operational-decision-home.sh --json
 scripts/github-readiness.sh
 sh -n scripts/bootstrap-artemis.sh
 git status --branch --short --ignored

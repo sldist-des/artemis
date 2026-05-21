@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T12:26:33Z",
+  "overall": "project_registry_registration_gate_ready",
+  "project_registry_registration_gate_ready": true,
+  "gate_state": "waiting_for_valid_human_decision",
+  "decision_state": "pending",
+  "human_decision_recorded": false,
+  "approved_for_registration_gate": false,
+  "candidate_registration_allowed": false,
+  "project_switching_allowed": false,
+  "runtime_execution_allowed": false,
+  "provider_auth_connected": false,
+  "runtime_auth_executed": false,
+  "worktree_created": false,
+  "branch_changed": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-100 - Project Registry Approved Decision Fixture",
+  "missing_files": [],
+  "registration_contract": {
+    "purpose": "Gate candidate registration behind validated human approval before any operational project change.",
+    "state": "registration_gate",
+    "gate_state": "waiting_for_valid_human_decision",
+    "candidate_project_id": "veri_d55ae65706",
+    "decision_state": "pending",
+    "decision_recorded": false,
+    "approved_for_registration_gate": false,
+    "registration_preconditions": {
+      "decision_intake_ready": true,
+      "decision_recorded": false,
+      "decision_approved": false,
+      "candidate_known": true,
+      "runtime_blocked": true,
+      "project_switching_blocked": true
+    },
+    "blockers": [
+      "human_decision_not_recorded"
+    ],
+    "candidate_registration_allowed": false,
+    "project_switching_allowed": false,
+    "runtime_execution_allowed": false,
+    "provider_auth_connected": false,
+    "worktree_created": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "registration_rules": [
+      "Registration requires a recorded approved human decision.",
+      "This gate may mark a candidate ready for a future registration plan, but never registers it.",
+      "Registration remains blocked while the decision is pending, invalid, rejected or deferred.",
+      "Project switching and runtime remain blocked even after registration gate readiness.",
+      "No provider auth, worktree, command execution, token spend or remote mutation happens here."
+    ]
+  },
+  "checks": [
+    {
+      "id": "decision_intake_ready",
+      "status": "passed",
+      "detail": "Registration Gate consumes the Project Registry Decision Intake."
+    },
+    {
+      "id": "registration_blocked_until_approved_decision",
+      "status": "passed",
+      "detail": "Registration remains blocked while the human decision is pending."
+    },
+    {
+      "id": "control_plane_can_render_registration_gate",
+      "status": "passed",
+      "detail": "Control Plane contains registration gate source, loader and renderer."
+    },
+    {
+      "id": "candidate_registration_still_blocked",
+      "status": "passed",
+      "detail": "This gate does not register the candidate."
+    },
+    {
+      "id": "project_switching_still_blocked",
+      "status": "passed",
+      "detail": "This gate does not switch active project."
+    },
+    {
+      "id": "runtime_still_blocked",
+      "status": "passed",
+      "detail": "This gate does not permit runtime execution."
+    },
+    {
+      "id": "no_runtime_side_effects",
+      "status": "passed",
+      "detail": "No provider auth, worktree, agent, command, token spend or remote mutation happened."
+    }
+  ]
+}

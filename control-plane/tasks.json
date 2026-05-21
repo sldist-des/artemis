@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T12:09:19Z",
+  "generated_at": "2026-05-21T12:26:41Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1189,6 +1189,18 @@
       "summary": "A primeira tela mostra que a decisao esta pendente, aponta para o template de",
       "exec_pack": "docs/exec-packs/done/TKT-098-artemis-control-plane-operational-decision-home.md",
       "evidence": "artifacts/artemis-control-plane-operational-decision-home/run-01/control-plane-operational-decision-home.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-099",
+      "ticket": "TKT-099",
+      "title": "ARTEMIS Project Registry Registration Gate",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O metodo passa a ter um gate explicito entre decisao humana e registro de",
+      "exec_pack": "docs/exec-packs/done/TKT-099-artemis-project-registry-registration-gate.md",
+      "evidence": "artifacts/artemis-portal-project-registry-registration-gate/run-01/project-registry-registration-gate.json",
       "tags": ["exec-pack", "done"]
     }
   ]

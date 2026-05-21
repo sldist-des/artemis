@@ -6,8 +6,8 @@
 - Reason: Project Operations Graph contract is ready.
 - Nodes: `33`.
 - Edges: `127`.
-- Tasks: `99`.
-- Events: `82`.
+- Tasks: `100`.
+- Events: `83`.
 
 ## Nos
 

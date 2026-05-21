@@ -317,6 +317,8 @@ docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_HUMAN_REVIEW_GATE.md
 scripts/artemis-portal-project-registry-human-review-gate.sh --artifact-root artifacts/artemis-portal-project-registry-human-review-gate/run-01
 docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_DECISION_INTAKE.md
 scripts/artemis-portal-project-registry-decision-intake.sh --artifact-root artifacts/artemis-portal-project-registry-decision-intake/run-01
+docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_GATE.md
+scripts/artemis-portal-project-registry-registration-gate.sh --artifact-root artifacts/artemis-portal-project-registry-registration-gate/run-01
 docs/portal/ARTEMIS_PORTAL_LOCAL_PROJECT_CONNECT.md
 scripts/artemis-portal-local-project-connect.sh --project . --artifact-root artifacts/artemis-portal-local-project-connect/run-01
 docs/portal/ARTEMIS_PORTAL_EXTERNAL_PROJECT_REGISTRATION.md

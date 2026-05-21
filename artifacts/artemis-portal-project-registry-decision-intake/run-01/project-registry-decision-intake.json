@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T11:57:31Z",
+  "generated_at": "2026-05-21T12:26:25Z",
   "overall": "project_registry_decision_intake_ready",
   "project_registry_decision_intake_ready": true,
   "decision_state": "pending",
@@ -18,7 +18,7 @@
   "commands_executed": 0,
   "tokens_spent": 0,
   "remote_state_mutated": false,
-  "next_cut": "TKT-098 - Project Registry Registration Gate",
+  "next_cut": "TKT-099 - Project Registry Registration Gate",
   "missing_files": [],
   "decision_contract": {
     "purpose": "Classify a human project-registry decision before registration can be considered.",

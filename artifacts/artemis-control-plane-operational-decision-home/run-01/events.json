@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T12:09:06Z",
+  "generated_at": "2026-05-21T12:26:33Z",
   "source": "scripts/artemis-control-plane-operational-decision-home.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_control_plane_operational_decision_home_ready",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T12:09:06Z",
+      "generated_at": "2026-05-21T12:26:33Z",
       "producer": {
         "adapter": "control_plane",
         "name": "scripts/artemis-control-plane-operational-decision-home.sh",

@@ -3083,6 +3083,7 @@
     const projectSelectorRegistryIntakeSourceUrl = "../artifacts/artemis-portal-project-selector-registry-intake/run-01/project-selector-registry-intake.json";
     const projectRegistryHumanReviewGateSourceUrl = "../artifacts/artemis-portal-project-registry-human-review-gate/run-01/project-registry-human-review-gate.json";
     const projectRegistryDecisionIntakeSourceUrl = "../artifacts/artemis-portal-project-registry-decision-intake/run-01/project-registry-decision-intake.json";
+    const projectRegistryRegistrationGateSourceUrl = "../artifacts/artemis-portal-project-registry-registration-gate/run-01/project-registry-registration-gate.json";
     const runtimeGatewayServiceSourceUrl = "../artifacts/artemis-portal-runtime-gateway-service/run-01/runtime-gateway-service.json";
 
     const columns = [
@@ -5846,6 +5847,26 @@
       runtimeGatewayPanelCanStartNode.textContent = contract.runtime_execution_allowed ? "sim" : "nao";
     }
 
+    function renderProjectRegistryRegistrationGate(model) {
+      const contract = model.registration_contract || {};
+      const gateState = contract.gate_state || model.gate_state || "waiting_for_valid_human_decision";
+
+      if (gateState === "ready_for_registration_plan") {
+        decisionBriefBlockersNode.textContent = "registro ainda exige plano separado";
+        externalRegistrationTitleNode.textContent = "Registro aguardando plano";
+        externalRegistrationStateNode.textContent = "registro";
+      } else {
+        decisionBriefBlockersNode.textContent = "decisao pendente bloqueia registro, troca e runtime";
+        externalRegistrationTitleNode.textContent = "Registro bloqueado por decisao";
+        externalRegistrationStateNode.textContent = "bloqueado";
+      }
+      externalRegistrationRegisteredNode.textContent = "0";
+      externalRegistrationSwitchingNode.textContent = contract.project_switching_allowed ? "sim" : "nao";
+      runtimeGatewayStateNode.textContent = contract.runtime_execution_allowed ? "liberado" : "bloqueado";
+      runtimeGatewayTitleNode.textContent = contract.runtime_execution_allowed ? "Runtime liberado" : "Runtime bloqueado";
+      runtimeGatewayPanelCanStartNode.textContent = contract.runtime_execution_allowed ? "sim" : "nao";
+    }
+
     function normalizeCard(item) {
       const states = new Set(columns.map((column) => column.id));
       const state = states.has(item.state) ? item.state : "ready";
@@ -6903,6 +6924,18 @@
       }
     }
 
+    async function loadProjectRegistryRegistrationGateSource() {
+      try {
+        const response = await fetch(projectRegistryRegistrationGateSourceUrl, { cache: "no-store" });
+        if (!response.ok) return null;
+        const payload = await response.json();
+        if (!payload.registration_contract) return null;
+        return payload;
+      } catch {
+        return null;
+      }
+    }
+
     async function loadEventSource() {
       try {
         const response = await fetch(eventSourceUrl, { cache: "no-store" });
@@ -7140,6 +7173,8 @@
       if (loadedProjectRegistryHumanReviewGate) renderProjectRegistryHumanReviewGate(loadedProjectRegistryHumanReviewGate);
       const loadedProjectRegistryDecisionIntake = await loadProjectRegistryDecisionIntakeSource();
       if (loadedProjectRegistryDecisionIntake) renderProjectRegistryDecisionIntake(loadedProjectRegistryDecisionIntake);
+      const loadedProjectRegistryRegistrationGate = await loadProjectRegistryRegistrationGateSource();
+      if (loadedProjectRegistryRegistrationGate) renderProjectRegistryRegistrationGate(loadedProjectRegistryRegistrationGate);
       const loadedEvents = await loadEventSource();
       renderTimeline(loadedEvents || seedEvents);
     }

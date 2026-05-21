@@ -12,7 +12,7 @@
 - Commands executed: `0`
 - Tokens spent: `0`
 - Template: `artifacts/artemis-portal-project-registry-decision-intake/run-01/project-registry-decision-template.json`
-- Next cut: `TKT-098 - Project Registry Registration Gate`
+- Next cut: `TKT-099 - Project Registry Registration Gate`
 
 ## Required Fields
 

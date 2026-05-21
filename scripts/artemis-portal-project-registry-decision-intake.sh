@@ -265,7 +265,7 @@ payload = {
     "commands_executed": 0,
     "tokens_spent": 0,
     "remote_state_mutated": False,
-    "next_cut": "TKT-098 - Project Registry Registration Gate",
+    "next_cut": "TKT-099 - Project Registry Registration Gate",
     "missing_files": missing_files,
     "decision_contract": decision_contract,
     "checks": checks,

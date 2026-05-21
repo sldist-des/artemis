@@ -53,6 +53,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 - `docs/portal/ARTEMIS_PORTAL_PROJECT_SELECTOR_REGISTRY_INTAKE.md`
 - `docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_HUMAN_REVIEW_GATE.md`
 - `docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_DECISION_INTAKE.md`
+- `docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_GATE.md`
 - `docs/portal/ARTEMIS_PORTAL_LOCAL_PROJECT_CONNECT.md`
 - `docs/portal/ARTEMIS_PORTAL_EXTERNAL_PROJECT_REGISTRATION.md`
 - `docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY.md`
@@ -95,6 +96,7 @@ scripts/artemis-portal-project-selector.sh --json
 scripts/artemis-portal-project-selector-registry-intake.sh --json
 scripts/artemis-portal-project-registry-human-review-gate.sh --json
 scripts/artemis-portal-project-registry-decision-intake.sh --json
+scripts/artemis-portal-project-registry-registration-gate.sh --json
 scripts/artemis-portal-local-project-connect.sh --project . --json
 scripts/artemis-portal-external-project-registration.sh --json
 scripts/artemis-portal-runtime-gateway.sh --json

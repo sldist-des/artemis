@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T17:36:10Z",
+  "source": "scripts/artemis-subagent-config-generator.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_artemis_subagent_config_preview_ready",
+      "event_type": "orchestration.subagent_config_preview_ready",
+      "generated_at": "2026-05-21T17:36:10Z",
+      "producer": {
+        "name": "scripts/artemis-subagent-config-generator.sh",
+        "kind": "script",
+        "version": "1"
+      },
+      "subject": {
+        "ticket": "TKT-104",
+        "task_id": "tkt-104",
+        "title": "ARTEMIS Subagent Config Generator Dry Run",
+        "exec_pack": "docs/exec-packs/done/TKT-104-artemis-subagent-config-generator.md",
+        "artifact_root": "artifacts/artemis-subagent-config-generator/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "router_ready",
+        "to": "done",
+        "reason": "ARTEMIS generated provider-specific subagent config previews without installing runtime configs."
+      },
+      "gate": {
+        "kind": "validation",
+        "status": "passed",
+        "required": true,
+        "checks": [
+          {
+            "id": "router_contract_available",
+            "passed": true,
+            "evidence": "artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json"
+          },
+          {
+            "id": "all_three_providers_available",
+            "passed": true,
+            "evidence": [
+              "antigravity_cli",
+              "claude_code",
+              "codex"
+            ]
+          },
+          {
+            "id": "socratic_gate_available",
+            "passed": true,
+            "evidence": "9 questions"
+          },
+          {
+            "id": "codex_preview_valid_toml",
+            "passed": true,
+            "evidence": "artifacts/artemis-subagent-config-generator/run-01/preview/.codex/agents/artemis-codex-architect-verifier.toml"
+          },
+          {
+            "id": "claude_preview_has_frontmatter",
+            "passed": true,
+            "evidence": "artifacts/artemis-subagent-config-generator/run-01/preview/.claude/agents/artemis-claude-repo-mapper.md"
+          },
+          {
+            "id": "antigravity_preview_valid_json",
+            "passed": true,
+            "evidence": "artifacts/artemis-subagent-config-generator/run-01/preview/antigravity/artemis-antigravity-async-validator.json"
+          },
+          {
+            "id": "runtime_paths_untouched",
+            "passed": true,
+            "evidence": "No project runtime subagent config path was written."
+          },
+          {
+            "id": "no_runtime_side_effects",
+            "passed": true,
+            "evidence": {
+              "runtime_configs_written": false,
+              "preview_configs_written": true,
+              "runtime_subagents_started": false,
+              "provider_messages_sent": 0,
+              "provider_auth_performed": false,
+              "commands_executed_by_provider": 0,
+              "tokens_spent": 0,
+              "remote_state_mutated": false,
+              "secrets_read": false,
+              "secrets_written": false,
+              "real_runtime_paths_written": false,
+              "human_gate_required_before_install": true
+            }
+          }
+        ]
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-subagent-config-generator/run-01",
+        "status_path": "artifacts/artemis-subagent-config-generator/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-subagent-config-generator/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-subagent-config-generator/run-01/HANDOFF.md",
+        "logs": []
+      },
+      "links": {
+        "correlation_id": "tkt-104",
+        "generator": "artifacts/artemis-subagent-config-generator/run-01/subagent-config-generator.json",
+        "router": "artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json"
+      },
+      "payload": {
+        "schema_version": 1,
+        "generated_at": "2026-05-21T17:36:10Z",
+        "source": "scripts/artemis-subagent-config-generator.sh",
+        "mode": "preview_only_no_runtime_install",
+        "overall": "subagent_config_preview_ready",
+        "reason": "ARTEMIS generated provider-specific subagent config previews without installing runtime configs.",
+        "ticket": "TKT-104",
+        "artifact_root": "artifacts/artemis-subagent-config-generator/run-01",
+        "router_contract": "artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json",
+        "preview_root": "artifacts/artemis-subagent-config-generator/run-01/preview",
+        "preview_files": [
+          {
+            "provider_id": "codex",
+            "format": "toml",
+            "runtime_target": ".codex/agents/artemis-codex-architect-verifier.toml",
+            "preview_path": "artifacts/artemis-subagent-config-generator/run-01/preview/.codex/agents/artemis-codex-architect-verifier.toml"
+          },
+          {
+            "provider_id": "claude_code",
+            "format": "markdown_yaml_frontmatter",
+            "runtime_target": ".claude/agents/artemis-claude-repo-mapper.md",
+            "preview_path": "artifacts/artemis-subagent-config-generator/run-01/preview/.claude/agents/artemis-claude-repo-mapper.md"
+          },
+          {
+            "provider_id": "antigravity_cli",
+            "format": "json",
+            "runtime_target": "antigravity subagent definition",
+            "preview_path": "artifacts/artemis-subagent-config-generator/run-01/preview/antigravity/artemis-antigravity-async-validator.json"
+          }
+        ],
+        "install_gate": {
+          "state": "preview_ready_install_blocked",
+          "required_before_install": [
+            "human accepts generated preview",
+            "project path is selected",
+            "worktree ownership is assigned",
+            "provider auth policy is active",
+            "budget policy is active",
+            "validation commands are declared",
+            "rollback/delete plan for generated configs is declared"
+          ],
+          "blocked_runtime_paths": [
+            ".codex/agents/artemis-codex-architect-verifier.toml",
+            ".claude/agents/artemis-claude-repo-mapper.md",
+            "Antigravity runtime subagent definition"
+          ]
+        },
+        "safety_invariants": {
+          "runtime_configs_written": false,
+          "preview_configs_written": true,
+          "runtime_subagents_started": false,
+          "provider_messages_sent": 0,
+          "provider_auth_performed": false,
+          "commands_executed_by_provider": 0,
+          "tokens_spent": 0,
+          "remote_state_mutated": false,
+          "secrets_read": false,
+          "secrets_written": false,
+          "real_runtime_paths_written": false,
+          "human_gate_required_before_install": true
+        },
+        "checks": [
+          {
+            "id": "router_contract_available",
+            "passed": true,
+            "evidence": "artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json"
+          },
+          {
+            "id": "all_three_providers_available",
+            "passed": true,
+            "evidence": [
+              "antigravity_cli",
+              "claude_code",
+              "codex"
+            ]
+          },
+          {
+            "id": "socratic_gate_available",
+            "passed": true,
+            "evidence": "9 questions"
+          },
+          {
+            "id": "codex_preview_valid_toml",
+            "passed": true,
+            "evidence": "artifacts/artemis-subagent-config-generator/run-01/preview/.codex/agents/artemis-codex-architect-verifier.toml"
+          },
+          {
+            "id": "claude_preview_has_frontmatter",
+            "passed": true,
+            "evidence": "artifacts/artemis-subagent-config-generator/run-01/preview/.claude/agents/artemis-claude-repo-mapper.md"
+          },
+          {
+            "id": "antigravity_preview_valid_json",
+            "passed": true,
+            "evidence": "artifacts/artemis-subagent-config-generator/run-01/preview/antigravity/artemis-antigravity-async-validator.json"
+          },
+          {
+            "id": "runtime_paths_untouched",
+            "passed": true,
+            "evidence": "No project runtime subagent config path was written."
+          },
+          {
+            "id": "no_runtime_side_effects",
+            "passed": true,
+            "evidence": {
+              "runtime_configs_written": false,
+              "preview_configs_written": true,
+              "runtime_subagents_started": false,
+              "provider_messages_sent": 0,
+              "provider_auth_performed": false,
+              "commands_executed_by_provider": 0,
+              "tokens_spent": 0,
+              "remote_state_mutated": false,
+              "secrets_read": false,
+              "secrets_written": false,
+              "real_runtime_paths_written": false,
+              "human_gate_required_before_install": true
+            }
+          }
+        ],
+        "next_cut": {
+          "ticket": "TKT-105",
+          "title": "Project Registry Registration Dry Run",
+          "goal": "Return to the project registry lane and prove the planned registry write as dry-run only."
+        }
+      }
+    }
+  ]
+}

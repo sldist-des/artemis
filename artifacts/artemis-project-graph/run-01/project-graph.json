@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T17:22:10Z",
+  "generated_at": "2026-05-21T17:37:01Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -32,19 +32,20 @@
     "portal_task_control_surface": "artifacts/artemis-portal-task-control-surface/run-01/task-control-surface-contract.json",
     "portal_validation_evidence_surface": "artifacts/artemis-portal-validation-evidence-surface/run-01/validation-evidence-surface-contract.json",
     "portal_human_acceptance_surface": "artifacts/artemis-portal-human-acceptance-surface/run-01/human-acceptance-surface-contract.json",
-    "subagent_socratic_router": "artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json"
+    "subagent_socratic_router": "artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json",
+    "subagent_config_generator": "artifacts/artemis-subagent-config-generator/run-01/subagent-config-generator.json"
   },
   "summary": {
-    "tasks_total": 104,
-    "tasks_done": 104,
+    "tasks_total": 105,
+    "tasks_done": 105,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 10,
-    "events_total": 87,
-    "nodes_total": 34,
-    "edges_total": 133,
-    "evidence_count": 104,
-    "exec_pack_count": 104,
+    "events_total": 88,
+    "nodes_total": 35,
+    "edges_total": 138,
+    "evidence_count": 105,
+    "exec_pack_count": 105,
     "validation_passed": 129,
     "validation_failed": 0,
     "validation_human_gate": 2,
@@ -57,12 +58,12 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 104
+    "done": 105
   },
   "risks": {
     "medium": 88,
     "low": 4,
-    "high": 12
+    "high": 13
   },
   "top_owners": [
     [
@@ -75,7 +76,7 @@
     ],
     [
       "Codex executor",
-      21
+      22
     ],
     [
       "Context Curator",
@@ -109,11 +110,11 @@
   "top_tags": [
     [
       "exec-pack",
-      104
+      105
     ],
     [
       "done",
-      104
+      105
     ]
   ],
   "nodes": [
@@ -128,8 +129,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 104,
-      "done": 104,
+      "count": 105,
+      "done": 105,
       "human": 0
     },
     {
@@ -148,7 +149,7 @@
         ],
         [
           "Codex executor",
-          21
+          22
         ],
         [
           "Context Curator",
@@ -185,14 +186,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 104,
-      "exec_packs": 104
+      "task_evidence": 105,
+      "exec_packs": 105
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 87
+      "events": 88
     },
     {
       "id": "cost:budget",
@@ -510,6 +511,19 @@
       "provider_messages_sent": 0,
       "tokens_spent": 0,
       "next_cut": "ARTEMIS Subagent Config Generator Dry Run"
+    },
+    {
+      "id": "orchestration:subagent_config_generator",
+      "type": "subagent_config_generator",
+      "label": "ARTEMIS Subagent Config Generator",
+      "status": "subagent_config_preview_ready",
+      "preview_files": 3,
+      "install_state": "preview_ready_install_blocked",
+      "runtime_configs_written": false,
+      "runtime_subagents_started": false,
+      "provider_messages_sent": 0,
+      "tokens_spent": 0,
+      "next_cut": "Project Registry Registration Dry Run"
     },
     {
       "id": "control_plane:view",
@@ -1110,6 +1124,26 @@
       "type": "records_router_contract"
     },
     {
+      "from": "orchestration:subagent_router",
+      "to": "orchestration:subagent_config_generator",
+      "type": "feeds_preview_generation"
+    },
+    {
+      "from": "orchestration:subagent_config_generator",
+      "to": "gate:human",
+      "type": "blocks_install_without_acceptance"
+    },
+    {
+      "from": "orchestration:subagent_config_generator",
+      "to": "validation:gate",
+      "type": "validates_preview_formats"
+    },
+    {
+      "from": "orchestration:subagent_config_generator",
+      "to": "event_log:timeline",
+      "type": "records_preview_contract"
+    },
+    {
       "from": "control_plane:view",
       "to": "project:artemis",
       "type": "observes"
@@ -1183,6 +1217,11 @@
       "from": "control_plane:view",
       "to": "orchestration:subagent_router",
       "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "orchestration:subagent_config_generator",
+      "type": "shows"
     }
   ],
   "questions": [
@@ -1225,6 +1264,7 @@
       "question": "Qual subagente usar e com qual limite?",
       "answer_source": [
         "orchestration:subagent_router",
+        "orchestration:subagent_config_generator",
         "cost:budget",
         "validation:gate"
       ]
@@ -1267,6 +1307,7 @@
     "portal_validation_evidence_surface_input": "artemis_portal_validation_evidence_surface",
     "portal_human_acceptance_surface_input": "artemis_portal_human_acceptance_surface",
     "subagent_router_input": "artemis_subagent_socratic_router",
+    "subagent_config_generator_input": "artemis_subagent_config_generator",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },

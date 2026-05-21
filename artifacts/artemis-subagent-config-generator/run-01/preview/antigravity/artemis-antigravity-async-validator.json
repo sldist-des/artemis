@@ -1,0 +1,42 @@
+{
+  "name": "artemis-antigravity-async-validator",
+  "provider_id": "antigravity_cli",
+  "mode": "preview_only_not_installable",
+  "description": "Use only after ARTEMIS Socratic Gate and inherited-scope Human Gate pass for isolated async validation lanes.",
+  "task": "Run an isolated async validation or exploration lane and return evidence only.",
+  "scope": {
+    "read": [
+      "assigned Exec Pack",
+      "assigned artifact paths",
+      "declared validation inputs"
+    ],
+    "write": [
+      "assigned artifact root only"
+    ],
+    "forbidden": [
+      "secrets",
+      "auth",
+      "remote state",
+      "production",
+      "push",
+      "deploy",
+      "undeclared paths"
+    ]
+  },
+  "approval_policy": {
+    "requires_human_gate_for_inherited_scopes": true,
+    "default_launch_state": "blocked_until_approved",
+    "dry_run_first": true
+  },
+  "handoff": [
+    "STATUS.md",
+    "VALIDATION.md",
+    "HANDOFF.md",
+    "events.json"
+  ],
+  "budget": {
+    "max_duration_minutes": 45,
+    "tokens_must_be_preapproved": true,
+    "stop_on_scope_drift": true
+  }
+}

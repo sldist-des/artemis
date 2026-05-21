@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T17:19:06Z",
+  "generated_at": "2026-05-21T17:36:52Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1249,6 +1249,18 @@
       "summary": "O metodo passa a ter um router provider-aware, baseado em perguntas",
       "exec_pack": "docs/exec-packs/done/TKT-103-artemis-subagent-socratic-router.md",
       "evidence": "artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-104",
+      "ticket": "TKT-104",
+      "title": "ARTEMIS Subagent Config Generator Dry Run",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "high",
+      "summary": "O metodo passa a conseguir visualizar como ficariam os subagentes de cada",
+      "exec_pack": "docs/exec-packs/done/TKT-104-artemis-subagent-config-generator.md",
+      "evidence": "artifacts/artemis-subagent-config-generator/run-01/subagent-config-generator.json",
       "tags": ["exec-pack", "done"]
     }
   ]

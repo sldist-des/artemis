@@ -1,7 +1,7 @@
 # ARTEMIS EVENT LOG SCHEMA
 
 - Schema version: 1
-- Events: 87
+- Events: 88
 - Source: scripts/artemis-event-log.sh
 
 ## Event Types
@@ -65,6 +65,7 @@
 - `approval.requested`: `evt_tkt-069_agent_runtime_completion_review_gate` -> human_gate
 - `human_gate.opened`: `evt_tkt-070_agent_runtime_done_ledger` -> human_gate
 - `orchestration.subagent_router_ready`: `evt_artemis_subagent_socratic_router_ready` -> done
+- `orchestration.subagent_config_preview_ready`: `evt_artemis_subagent_config_preview_ready` -> done
 - `adapter.contract_recorded`: `evt_portal_auth_plan_recorded` -> done
 - `adapter.contract_recorded`: `evt_portal_credential_vault_contract_recorded` -> done
 - `adapter.contract_recorded`: `evt_portal_agent_registry_contract_recorded` -> done

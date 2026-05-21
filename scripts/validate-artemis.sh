@@ -69,6 +69,7 @@ docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
 docs/agents/CAPABILITY_REGISTRY.md
 docs/agents/ARTEMIS_SUBAGENT_SOCRATIC_ROUTER.md
+docs/agents/ARTEMIS_SUBAGENT_CONFIG_GENERATOR.md
 docs/agents/TOOL_POLICY.md
 docs/agents/HANDOFF_PROTOCOL.md
 docs/control-plane/artemis-control-plane.md
@@ -133,6 +134,7 @@ scripts/artemis-agent-runtime-completion-handoff.sh
 scripts/artemis-agent-runtime-completion-review-gate.sh
 scripts/artemis-agent-runtime-done-ledger.sh
 scripts/artemis-subagent-socratic-router.sh
+scripts/artemis-subagent-config-generator.sh
 scripts/artemis-portal-auth-plan.sh
 scripts/artemis-portal-credential-vault.sh
 scripts/artemis-portal-agent-registry.sh
@@ -265,6 +267,7 @@ sh -n scripts/artemis-agent-runtime-completion-handoff.sh
 sh -n scripts/artemis-agent-runtime-completion-review-gate.sh
 sh -n scripts/artemis-agent-runtime-done-ledger.sh
 sh -n scripts/artemis-subagent-socratic-router.sh
+sh -n scripts/artemis-subagent-config-generator.sh
 sh -n scripts/artemis-portal-auth-plan.sh
 sh -n scripts/artemis-portal-credential-vault.sh
 sh -n scripts/artemis-portal-agent-registry.sh
@@ -354,6 +357,48 @@ if ! grep -q '"tokens_spent": 0' /tmp/artemis-subagent-socratic-router.json; the
 fi
 if ! test -f /tmp/artemis-subagent-socratic-router/SUBAGENT_SOCRATIC_ROUTER.md; then
   echo "scripts/artemis-subagent-socratic-router.sh did not write router documentation artifact" >&2
+  exit 1
+fi
+
+scripts/artemis-subagent-config-generator.sh --artifact-root /tmp/artemis-subagent-config-generator --json >/tmp/artemis-subagent-config-generator.json
+if ! grep -q '"overall": "subagent_config_preview_ready"' /tmp/artemis-subagent-config-generator.json; then
+  echo "scripts/artemis-subagent-config-generator.sh did not report subagent_config_preview_ready" >&2
+  exit 1
+fi
+if ! grep -q '"provider_id": "codex"' /tmp/artemis-subagent-config-generator.json; then
+  echo "scripts/artemis-subagent-config-generator.sh did not generate Codex preview metadata" >&2
+  exit 1
+fi
+if ! grep -q '"provider_id": "claude_code"' /tmp/artemis-subagent-config-generator.json; then
+  echo "scripts/artemis-subagent-config-generator.sh did not generate Claude Code preview metadata" >&2
+  exit 1
+fi
+if ! grep -q '"provider_id": "antigravity_cli"' /tmp/artemis-subagent-config-generator.json; then
+  echo "scripts/artemis-subagent-config-generator.sh did not generate Antigravity CLI preview metadata" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_configs_written": false' /tmp/artemis-subagent-config-generator.json; then
+  echo "scripts/artemis-subagent-config-generator.sh wrote runtime configs" >&2
+  exit 1
+fi
+if ! grep -q '"provider_messages_sent": 0' /tmp/artemis-subagent-config-generator.json; then
+  echo "scripts/artemis-subagent-config-generator.sh sent provider messages" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-subagent-config-generator.json; then
+  echo "scripts/artemis-subagent-config-generator.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-subagent-config-generator/preview/.codex/agents/artemis-codex-architect-verifier.toml; then
+  echo "scripts/artemis-subagent-config-generator.sh did not write Codex preview" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-subagent-config-generator/preview/.claude/agents/artemis-claude-repo-mapper.md; then
+  echo "scripts/artemis-subagent-config-generator.sh did not write Claude Code preview" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-subagent-config-generator/preview/antigravity/artemis-antigravity-async-validator.json; then
+  echo "scripts/artemis-subagent-config-generator.sh did not write Antigravity CLI preview" >&2
   exit 1
 fi
 

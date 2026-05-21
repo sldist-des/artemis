@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `34`.
-- Edges: `133`.
-- Tasks: `104`.
-- Events: `87`.
+- Nodes: `35`.
+- Edges: `138`.
+- Tasks: `105`.
+- Events: `88`.
 
 ## Nos
 
@@ -44,6 +44,7 @@
 - `portal:validation_evidence_surface` (portal_validation_evidence_surface): ARTEMIS Portal Validation Evidence Surface.
 - `portal:human_acceptance_surface` (portal_human_acceptance_surface): ARTEMIS Portal Human Acceptance Surface.
 - `orchestration:subagent_router` (subagent_router): ARTEMIS Subagent Socratic Router.
+- `orchestration:subagent_config_generator` (subagent_config_generator): ARTEMIS Subagent Config Generator.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -166,6 +167,10 @@
 - `orchestration:subagent_router` --requires_budget_policy--> `cost:budget`.
 - `orchestration:subagent_router` --requires_validation_before_done--> `validation:gate`.
 - `orchestration:subagent_router` --records_router_contract--> `event_log:timeline`.
+- `orchestration:subagent_router` --feeds_preview_generation--> `orchestration:subagent_config_generator`.
+- `orchestration:subagent_config_generator` --blocks_install_without_acceptance--> `gate:human`.
+- `orchestration:subagent_config_generator` --validates_preview_formats--> `validation:gate`.
+- `orchestration:subagent_config_generator` --records_preview_contract--> `event_log:timeline`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.
@@ -181,6 +186,7 @@
 - `control_plane:view` --shows--> `portal:validation_evidence_surface`.
 - `control_plane:view` --shows--> `portal:human_acceptance_surface`.
 - `control_plane:view` --shows--> `orchestration:subagent_router`.
+- `control_plane:view` --shows--> `orchestration:subagent_config_generator`.
 
 ## Perguntas operacionais
 

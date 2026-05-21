@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T12:26:25Z",
+  "generated_at": "2026-05-21T12:39:31Z",
   "overall": "project_registry_decision_intake_ready",
   "project_registry_decision_intake_ready": true,
   "decision_state": "pending",
@@ -78,9 +78,9 @@
       "detail": "Decision payload was classified."
     },
     {
-      "id": "pending_without_side_effects",
+      "id": "decision_intake_without_side_effects",
       "status": "passed",
-      "detail": "Default intake stays pending until a human decision file exists."
+      "detail": "Decision Intake may classify pending or recorded decisions without operational side effects."
     },
     {
       "id": "control_plane_can_render_decision_state",

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T12:26:33Z",
+  "generated_at": "2026-05-21T12:39:31Z",
   "source": "scripts/artemis-portal-project-registry-registration-gate.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_project_registry_registration_gate_ready",
       "event_type": "human_gate.waiting",
-      "generated_at": "2026-05-21T12:26:33Z",
+      "generated_at": "2026-05-21T12:39:31Z",
       "producer": {
         "adapter": "portal_project_registry",
         "name": "scripts/artemis-portal-project-registry-registration-gate.sh",

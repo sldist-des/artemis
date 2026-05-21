@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T12:39:31Z",
+  "source": "scripts/artemis-portal-project-registry-registration-gate.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_project_registry_registration_gate_ready",
+      "event_type": "human_gate.waiting",
+      "generated_at": "2026-05-21T12:39:31Z",
+      "producer": {
+        "adapter": "portal_project_registry",
+        "name": "scripts/artemis-portal-project-registry-registration-gate.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-099",
+        "task_id": "tkt-099",
+        "title": "ARTEMIS Project Registry Registration Gate",
+        "exec_pack": "docs/exec-packs/done/TKT-099-artemis-project-registry-registration-gate.md",
+        "artifact_root": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/registration-gate"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "decision_intake",
+        "to": "human_gate",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "human",
+        "status": "ready_for_registration_plan",
+        "reason": "Candidate registration requires a recorded approved human decision.",
+        "options": [
+          "provide approved decision",
+          "reject candidate",
+          "defer candidate"
+        ]
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/registration-gate",
+        "status_path": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/registration-gate/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/registration-gate/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/registration-gate/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/registration-gate/project-registry-registration-gate.json",
+          "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/registration-gate/PROJECT_REGISTRY_REGISTRATION_GATE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-099"
+      },
+      "payload": {
+        "project_registry_registration_gate_ready": true,
+        "gate_state": "ready_for_registration_plan",
+        "decision_state": "recorded",
+        "human_decision_recorded": true,
+        "candidate_registration_allowed": false,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-100 - Project Registry Approved Decision Fixture"
+      }
+    }
+  ]
+}

@@ -35,7 +35,7 @@
 - `human_review_gate_ready`: passed - Decision Intake consumes the Human Review Gate.
 - `decision_template_written`: passed - A fillable pending decision template is available.
 - `decision_state_classified`: passed - Decision payload was classified.
-- `pending_without_side_effects`: passed - Default intake stays pending until a human decision file exists.
+- `decision_intake_without_side_effects`: passed - Decision Intake may classify pending or recorded decisions without operational side effects.
 - `control_plane_can_render_decision_state`: passed - Control Plane contains the decision intake source, loader and renderer.
 - `project_switching_still_blocked`: passed - Decision Intake does not switch active project.
 - `runtime_still_blocked`: passed - Decision Intake does not permit runtime execution.

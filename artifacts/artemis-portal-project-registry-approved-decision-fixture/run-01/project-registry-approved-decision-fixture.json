@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T12:39:31Z",
+  "overall": "project_registry_approved_decision_fixture_ready",
+  "project_registry_approved_decision_fixture_ready": true,
+  "candidate_project_id": "veri_d55ae65706",
+  "decision_state": "recorded",
+  "human_decision_recorded": true,
+  "approved_for_registration_gate": true,
+  "gate_state": "ready_for_registration_plan",
+  "registration_plan_allowed": true,
+  "candidate_registration_allowed": false,
+  "project_switching_allowed": false,
+  "runtime_execution_allowed": false,
+  "provider_auth_connected": false,
+  "runtime_auth_executed": false,
+  "worktree_created": false,
+  "branch_changed": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-101 - Project Registry Registration Plan",
+  "missing_files": [],
+  "fixture_contract": {
+    "purpose": "Prove the approved decision path without registering or switching projects.",
+    "state": "approved_decision_fixture",
+    "candidate_project_id": "veri_d55ae65706",
+    "decision_fixture": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/project-registry-approved-decision.fixture.json",
+    "decision_intake_artifact_root": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/decision-intake",
+    "registration_gate_artifact_root": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/registration-gate",
+    "decision_state": "recorded",
+    "gate_state": "ready_for_registration_plan",
+    "registration_plan_allowed": true,
+    "candidate_registration_allowed": false,
+    "project_switching_allowed": false,
+    "runtime_execution_allowed": false,
+    "provider_auth_connected": false,
+    "worktree_created": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "rules": [
+      "The fixture is synthetic evidence, not a real owner approval.",
+      "Approved decision means a later registration plan may be prepared.",
+      "Approved decision still does not register the project.",
+      "Project switching, runtime, provider auth, command execution, token spend and remote writes remain blocked."
+    ]
+  },
+  "decision_intake": {
+    "schema_version": 1,
+    "generated_at": "2026-05-21T12:39:31Z",
+    "overall": "project_registry_decision_intake_ready",
+    "project_registry_decision_intake_ready": true,
+    "decision_state": "recorded",
+    "human_decision_required": true,
+    "human_decision_recorded": true,
+    "approved_for_registration_gate": true,
+    "candidate_registration_allowed": false,
+    "project_switching_allowed": false,
+    "runtime_execution_allowed": false,
+    "provider_auth_connected": false,
+    "runtime_auth_executed": false,
+    "worktree_created": false,
+    "branch_changed": false,
+    "agents_started": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "remote_state_mutated": false,
+    "next_cut": "TKT-099 - Project Registry Registration Gate",
+    "missing_files": [],
+    "decision_contract": {
+      "purpose": "Classify a human project-registry decision before registration can be considered.",
+      "state": "decision_intake",
+      "decision_state": "recorded",
+      "decision_source": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/project-registry-approved-decision.fixture.json",
+      "template_path": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/decision-intake/project-registry-decision-template.json",
+      "candidate_project_id": "veri_d55ae65706",
+      "candidate_known": true,
+      "decision": "approved",
+      "decision_recorded": true,
+      "approved_for_registration_gate": true,
+      "rejected": false,
+      "deferred": false,
+      "required_fields_present": true,
+      "timestamp_valid": true,
+      "decision_options": [
+        "approved",
+        "rejected",
+        "deferred"
+      ],
+      "required_decision_fields": [
+        "candidate_project_id",
+        "decision",
+        "decided_by",
+        "decided_at",
+        "rationale"
+      ],
+      "candidate_registration_allowed": false,
+      "project_switching_allowed": false,
+      "runtime_execution_allowed": false,
+      "provider_auth_connected": false,
+      "commands_executed": 0,
+      "tokens_spent": 0,
+      "intake_rules": [
+        "Pending means no owner decision has been recorded yet.",
+        "Approved only unlocks a later registration gate; it does not register or switch projects.",
+        "Rejected and deferred decisions remain non-selectable.",
+        "Invalid decisions block the next gate until corrected.",
+        "No provider auth, runtime, command execution, token spend or remote mutation happens here."
+      ]
+    },
+    "checks": [
+      {
+        "id": "human_review_gate_ready",
+        "status": "passed",
+        "detail": "Decision Intake consumes the Human Review Gate."
+      },
+      {
+        "id": "decision_template_written",
+        "status": "passed",
+        "detail": "A fillable pending decision template is available."
+      },
+      {
+        "id": "decision_state_classified",
+        "status": "passed",
+        "detail": "Decision payload was classified."
+      },
+      {
+        "id": "decision_intake_without_side_effects",
+        "status": "passed",
+        "detail": "Decision Intake may classify pending or recorded decisions without operational side effects."
+      },
+      {
+        "id": "control_plane_can_render_decision_state",
+        "status": "passed",
+        "detail": "Control Plane contains the decision intake source, loader and renderer."
+      },
+      {
+        "id": "project_switching_still_blocked",
+        "status": "passed",
+        "detail": "Decision Intake does not switch active project."
+      },
+      {
+        "id": "runtime_still_blocked",
+        "status": "passed",
+        "detail": "Decision Intake does not permit runtime execution."
+      },
+      {
+        "id": "no_runtime_side_effects",
+        "status": "passed",
+        "detail": "No provider auth, agent, command, token spend or remote mutation happened."
+      }
+    ]
+  },
+  "registration_gate": {
+    "schema_version": 1,
+    "generated_at": "2026-05-21T12:39:31Z",
+    "overall": "project_registry_registration_gate_ready",
+    "project_registry_registration_gate_ready": true,
+    "gate_state": "ready_for_registration_plan",
+    "decision_state": "recorded",
+    "human_decision_recorded": true,
+    "approved_for_registration_gate": true,
+    "candidate_registration_allowed": false,
+    "project_switching_allowed": false,
+    "runtime_execution_allowed": false,
+    "provider_auth_connected": false,
+    "runtime_auth_executed": false,
+    "worktree_created": false,
+    "branch_changed": false,
+    "agents_started": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "remote_state_mutated": false,
+    "next_cut": "TKT-100 - Project Registry Approved Decision Fixture",
+    "missing_files": [],
+    "registration_contract": {
+      "purpose": "Gate candidate registration behind validated human approval before any operational project change.",
+      "state": "registration_gate",
+      "gate_state": "ready_for_registration_plan",
+      "candidate_project_id": "veri_d55ae65706",
+      "decision_state": "recorded",
+      "decision_recorded": true,
+      "approved_for_registration_gate": true,
+      "registration_preconditions": {
+        "decision_intake_ready": true,
+        "decision_recorded": true,
+        "decision_approved": true,
+        "candidate_known": true,
+        "runtime_blocked": true,
+        "project_switching_blocked": true
+      },
+      "blockers": [],
+      "candidate_registration_allowed": false,
+      "project_switching_allowed": false,
+      "runtime_execution_allowed": false,
+      "provider_auth_connected": false,
+      "worktree_created": false,
+      "commands_executed": 0,
+      "tokens_spent": 0,
+      "registration_rules": [
+        "Registration requires a recorded approved human decision.",
+        "This gate may mark a candidate ready for a future registration plan, but never registers it.",
+        "Registration remains blocked while the decision is pending, invalid, rejected or deferred.",
+        "Project switching and runtime remain blocked even after registration gate readiness.",
+        "No provider auth, worktree, command execution, token spend or remote mutation happens here."
+      ]
+    },
+    "checks": [
+      {
+        "id": "decision_intake_ready",
+        "status": "passed",
+        "detail": "Registration Gate consumes the Project Registry Decision Intake."
+      },
+      {
+        "id": "registration_gate_state_classified",
+        "status": "passed",
+        "detail": "Registration Gate classifies pending decisions as waiting and approved decisions as ready for planning."
+      },
+      {
+        "id": "control_plane_can_render_registration_gate",
+        "status": "passed",
+        "detail": "Control Plane contains registration gate source, loader and renderer."
+      },
+      {
+        "id": "candidate_registration_still_blocked",
+        "status": "passed",
+        "detail": "This gate does not register the candidate."
+      },
+      {
+        "id": "project_switching_still_blocked",
+        "status": "passed",
+        "detail": "This gate does not switch active project."
+      },
+      {
+        "id": "runtime_still_blocked",
+        "status": "passed",
+        "detail": "This gate does not permit runtime execution."
+      },
+      {
+        "id": "no_runtime_side_effects",
+        "status": "passed",
+        "detail": "No provider auth, worktree, agent, command, token spend or remote mutation happened."
+      }
+    ]
+  },
+  "checks": [
+    {
+      "id": "candidate_available",
+      "status": "passed",
+      "detail": "Fixture uses a candidate from the Human Review Gate."
+    },
+    {
+      "id": "approved_fixture_written",
+      "status": "passed",
+      "detail": "Approved decision fixture was written."
+    },
+    {
+      "id": "decision_intake_recorded_approval",
+      "status": "passed",
+      "detail": "Decision Intake classified the fixture as recorded and approved."
+    },
+    {
+      "id": "registration_gate_positive_path_ready",
+      "status": "passed",
+      "detail": "Registration Gate reached the positive planning state."
+    },
+    {
+      "id": "candidate_registration_still_blocked",
+      "status": "passed",
+      "detail": "The fixture does not register the candidate."
+    },
+    {
+      "id": "project_switching_still_blocked",
+      "status": "passed",
+      "detail": "The fixture does not switch projects."
+    },
+    {
+      "id": "runtime_still_blocked",
+      "status": "passed",
+      "detail": "The fixture does not allow runtime execution."
+    },
+    {
+      "id": "no_runtime_side_effects",
+      "status": "passed",
+      "detail": "No provider auth, worktree, agent command, token spend or remote mutation happened."
+    }
+  ]
+}

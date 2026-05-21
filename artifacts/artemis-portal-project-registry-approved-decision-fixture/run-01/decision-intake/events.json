@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T12:39:31Z",
+  "source": "scripts/artemis-portal-project-registry-decision-intake.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_project_registry_decision_intake_ready",
+      "event_type": "human_gate.decision_intake",
+      "generated_at": "2026-05-21T12:39:31Z",
+      "producer": {
+        "adapter": "portal_project_registry",
+        "name": "scripts/artemis-portal-project-registry-decision-intake.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-097",
+        "task_id": "tkt-097",
+        "title": "ARTEMIS Project Registry Decision Intake",
+        "exec_pack": "docs/exec-packs/done/TKT-097-artemis-project-registry-decision-intake.md",
+        "artifact_root": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/decision-intake"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "human_review_gate",
+        "to": "human_gate",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "human",
+        "status": "recorded",
+        "reason": "A project registry decision must be provided by the human owner.",
+        "options": [
+          "approved",
+          "rejected",
+          "deferred"
+        ]
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/decision-intake",
+        "status_path": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/decision-intake/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/decision-intake/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/decision-intake/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/decision-intake/project-registry-decision-intake.json",
+          "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/decision-intake/project-registry-decision-template.json",
+          "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/decision-intake/PROJECT_REGISTRY_DECISION_INTAKE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-097"
+      },
+      "payload": {
+        "project_registry_decision_intake_ready": true,
+        "decision_state": "recorded",
+        "human_decision_required": true,
+        "human_decision_recorded": true,
+        "approved_for_registration_gate": true,
+        "candidate_registration_allowed": false,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-099 - Project Registry Registration Gate"
+      }
+    }
+  ]
+}

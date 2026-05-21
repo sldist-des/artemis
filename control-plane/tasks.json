@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T12:26:41Z",
+  "generated_at": "2026-05-21T12:39:35Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1201,6 +1201,18 @@
       "summary": "O metodo passa a ter um gate explicito entre decisao humana e registro de",
       "exec_pack": "docs/exec-packs/done/TKT-099-artemis-project-registry-registration-gate.md",
       "evidence": "artifacts/artemis-portal-project-registry-registration-gate/run-01/project-registry-registration-gate.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-100",
+      "ticket": "TKT-100",
+      "title": "ARTEMIS Project Registry Approved Decision Fixture",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O metodo prova que uma decisao `approved` registrada pelo intake desbloqueia",
+      "exec_pack": "docs/exec-packs/done/TKT-100-artemis-project-registry-approved-decision-fixture.md",
+      "evidence": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/project-registry-approved-decision-fixture.json",
       "tags": ["exec-pack", "done"]
     }
   ]

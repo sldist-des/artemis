@@ -216,9 +216,9 @@ checks = [
         "detail": "Decision payload was classified.",
     },
     {
-        "id": "pending_without_side_effects",
-        "status": "passed" if decision_state == "pending" and not decision_recorded else "failed",
-        "detail": "Default intake stays pending until a human decision file exists.",
+        "id": "decision_intake_without_side_effects",
+        "status": "passed" if decision_state in {"pending", "recorded"} else "failed",
+        "detail": "Decision Intake may classify pending or recorded decisions without operational side effects.",
     },
     {
         "id": "control_plane_can_render_decision_state",

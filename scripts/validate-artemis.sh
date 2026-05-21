@@ -59,6 +59,7 @@ docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY_SERVICE.md
 docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_HUMAN_REVIEW_GATE.md
 docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_DECISION_INTAKE.md
 docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_GATE.md
+docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_APPROVED_DECISION_FIXTURE.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/control-plane/ARTEMIS_CONTROL_PLANE_PROJECT_REGISTRY_HOME_STATE.md
 docs/control-plane/ARTEMIS_CONTROL_PLANE_OPERATIONAL_DECISION_HOME.md
@@ -143,6 +144,7 @@ scripts/artemis-portal-project-selector.sh
 scripts/artemis-portal-project-registry-human-review-gate.sh
 scripts/artemis-portal-project-registry-decision-intake.sh
 scripts/artemis-portal-project-registry-registration-gate.sh
+scripts/artemis-portal-project-registry-approved-decision-fixture.sh
 scripts/artemis-portal-local-project-connect.sh
 scripts/artemis-portal-external-project-registration.sh
 scripts/artemis-portal-runtime-gateway.sh
@@ -271,6 +273,7 @@ sh -n scripts/artemis-portal-project-selector.sh
 sh -n scripts/artemis-portal-project-registry-human-review-gate.sh
 sh -n scripts/artemis-portal-project-registry-decision-intake.sh
 sh -n scripts/artemis-portal-project-registry-registration-gate.sh
+sh -n scripts/artemis-portal-project-registry-approved-decision-fixture.sh
 sh -n scripts/artemis-portal-local-project-connect.sh
 sh -n scripts/artemis-portal-external-project-registration.sh
 sh -n scripts/artemis-portal-runtime-gateway.sh
@@ -1111,6 +1114,55 @@ if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-project-registry-registrati
 fi
 if ! test -f /tmp/artemis-portal-project-registry-registration-gate/PROJECT_REGISTRY_REGISTRATION_GATE.md; then
   echo "scripts/artemis-portal-project-registry-registration-gate.sh did not write registration gate documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-portal-project-registry-approved-decision-fixture.sh --artifact-root /tmp/artemis-portal-project-registry-approved-decision-fixture --json >/tmp/artemis-portal-project-registry-approved-decision-fixture.json
+if ! grep -q '"overall": "project_registry_approved_decision_fixture_ready"' /tmp/artemis-portal-project-registry-approved-decision-fixture.json; then
+  echo "scripts/artemis-portal-project-registry-approved-decision-fixture.sh did not report project_registry_approved_decision_fixture_ready" >&2
+  exit 1
+fi
+if ! grep -q '"decision_state": "recorded"' /tmp/artemis-portal-project-registry-approved-decision-fixture.json; then
+  echo "scripts/artemis-portal-project-registry-approved-decision-fixture.sh did not record the approved decision fixture" >&2
+  exit 1
+fi
+if ! grep -q '"approved_for_registration_gate": true' /tmp/artemis-portal-project-registry-approved-decision-fixture.json; then
+  echo "scripts/artemis-portal-project-registry-approved-decision-fixture.sh did not approve the registration gate path" >&2
+  exit 1
+fi
+if ! grep -q '"gate_state": "ready_for_registration_plan"' /tmp/artemis-portal-project-registry-approved-decision-fixture.json; then
+  echo "scripts/artemis-portal-project-registry-approved-decision-fixture.sh did not reach ready_for_registration_plan" >&2
+  exit 1
+fi
+if ! grep -q '"registration_plan_allowed": true' /tmp/artemis-portal-project-registry-approved-decision-fixture.json; then
+  echo "scripts/artemis-portal-project-registry-approved-decision-fixture.sh did not allow registration planning" >&2
+  exit 1
+fi
+if ! grep -q '"candidate_registration_allowed": false' /tmp/artemis-portal-project-registry-approved-decision-fixture.json; then
+  echo "scripts/artemis-portal-project-registry-approved-decision-fixture.sh allowed candidate registration" >&2
+  exit 1
+fi
+if ! grep -q '"project_switching_allowed": false' /tmp/artemis-portal-project-registry-approved-decision-fixture.json; then
+  echo "scripts/artemis-portal-project-registry-approved-decision-fixture.sh allowed project switching" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-portal-project-registry-approved-decision-fixture.json; then
+  echo "scripts/artemis-portal-project-registry-approved-decision-fixture.sh allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": false' /tmp/artemis-portal-project-registry-approved-decision-fixture.json; then
+  echo "scripts/artemis-portal-project-registry-approved-decision-fixture.sh started agents" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-portal-project-registry-approved-decision-fixture.json; then
+  echo "scripts/artemis-portal-project-registry-approved-decision-fixture.sh executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-project-registry-approved-decision-fixture.json; then
+  echo "scripts/artemis-portal-project-registry-approved-decision-fixture.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-project-registry-approved-decision-fixture/PROJECT_REGISTRY_APPROVED_DECISION_FIXTURE.md; then
+  echo "scripts/artemis-portal-project-registry-approved-decision-fixture.sh did not write approved decision fixture documentation artifact" >&2
   exit 1
 fi
 scripts/artemis-control-plane-operational-decision-home.sh --artifact-root /tmp/artemis-control-plane-operational-decision-home --json >/tmp/artemis-control-plane-operational-decision-home.json

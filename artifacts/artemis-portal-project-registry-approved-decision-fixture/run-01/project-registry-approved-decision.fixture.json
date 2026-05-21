@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "candidate_project_id": "veri_d55ae65706",
+  "decision": "approved",
+  "decided_by": "artemis-fixture-owner",
+  "decided_at": "2026-05-21T12:39:31Z",
+  "rationale": "Fixture proves the approved decision path without operational side effects.",
+  "constraints_acknowledged": [
+    "approval_does_not_register_project",
+    "approval_does_not_switch_project",
+    "approval_does_not_start_runtime",
+    "approval_does_not_authenticate_provider",
+    "approval_does_not_write_remote"
+  ],
+  "fixture_only": true
+}

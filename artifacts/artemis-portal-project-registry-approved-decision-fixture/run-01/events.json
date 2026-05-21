@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T12:39:31Z",
+  "source": "scripts/artemis-portal-project-registry-approved-decision-fixture.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_project_registry_approved_decision_fixture_ready",
+      "event_type": "human_gate.fixture_validated",
+      "generated_at": "2026-05-21T12:39:31Z",
+      "producer": {
+        "adapter": "portal_project_registry",
+        "name": "scripts/artemis-portal-project-registry-approved-decision-fixture.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-100",
+        "task_id": "tkt-100",
+        "title": "ARTEMIS Project Registry Approved Decision Fixture",
+        "exec_pack": "docs/exec-packs/done/TKT-100-artemis-project-registry-approved-decision-fixture.md",
+        "artifact_root": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "registration_gate",
+        "to": "validation_passed",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "validation",
+        "status": "ready_for_registration_plan",
+        "reason": "Synthetic approved fixture proves the next registration planning state without execution.",
+        "options": [
+          "prepare registration plan",
+          "keep pending default state"
+        ]
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01",
+        "status_path": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/project-registry-approved-decision-fixture.json",
+          "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/PROJECT_REGISTRY_APPROVED_DECISION_FIXTURE.md",
+          "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/project-registry-approved-decision.fixture.json",
+          "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/decision-intake/project-registry-decision-intake.json",
+          "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/registration-gate/project-registry-registration-gate.json"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-100"
+      },
+      "payload": {
+        "project_registry_approved_decision_fixture_ready": true,
+        "candidate_project_id": "veri_d55ae65706",
+        "decision_state": "recorded",
+        "gate_state": "ready_for_registration_plan",
+        "registration_plan_allowed": true,
+        "candidate_registration_allowed": false,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-101 - Project Registry Registration Plan"
+      }
+    }
+  ]
+}

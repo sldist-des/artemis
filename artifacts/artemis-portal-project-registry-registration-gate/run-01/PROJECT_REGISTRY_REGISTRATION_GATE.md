@@ -29,7 +29,7 @@
 ## Checks
 
 - `decision_intake_ready`: passed - Registration Gate consumes the Project Registry Decision Intake.
-- `registration_blocked_until_approved_decision`: passed - Registration remains blocked while the human decision is pending.
+- `registration_gate_state_classified`: passed - Registration Gate classifies pending decisions as waiting and approved decisions as ready for planning.
 - `control_plane_can_render_registration_gate`: passed - Control Plane contains registration gate source, loader and renderer.
 - `candidate_registration_still_blocked`: passed - This gate does not register the candidate.
 - `project_switching_still_blocked`: passed - This gate does not switch active project.

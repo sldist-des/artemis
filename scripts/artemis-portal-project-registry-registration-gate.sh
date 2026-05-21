@@ -150,9 +150,12 @@ checks = [
         "detail": "Registration Gate consumes the Project Registry Decision Intake.",
     },
     {
-        "id": "registration_blocked_until_approved_decision",
-        "status": "passed" if decision_state == "pending" and not registration_gate_ready and "human_decision_not_recorded" in blockers else "failed",
-        "detail": "Registration remains blocked while the human decision is pending.",
+        "id": "registration_gate_state_classified",
+        "status": "passed" if (
+            (gate_state == "waiting_for_valid_human_decision" and not registration_gate_ready)
+            or (gate_state == "ready_for_registration_plan" and registration_gate_ready)
+        ) else "failed",
+        "detail": "Registration Gate classifies pending decisions as waiting and approved decisions as ready for planning.",
     },
     {
         "id": "control_plane_can_render_registration_gate",
@@ -278,7 +281,7 @@ for check in checks:
         "",
         "TKT-099 records the registration gate for Project Registry candidates.",
         "",
-        "The gate is structurally ready, but candidate registration remains blocked while the human decision is pending.",
+        "The gate is structurally ready. A pending decision keeps registration waiting; an approved decision only allows a later registration plan and still does not register, switch project or start runtime.",
     ]) + "\n",
     encoding="utf-8",
 )
@@ -323,7 +326,7 @@ events = event_log(
                 "reason": "Candidate registration requires a recorded approved human decision.",
                 "options": ["provide approved decision", "reject candidate", "defer candidate"],
             },
-            severity="warning",
+            severity="info" if gate_state == "ready_for_registration_plan" else "warning",
             logs=[
                 str(artifact_root / "project-registry-registration-gate.json"),
                 str(artifact_root / "PROJECT_REGISTRY_REGISTRATION_GATE.md"),

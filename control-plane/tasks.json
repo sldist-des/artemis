@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T12:39:35Z",
+  "generated_at": "2026-05-21T12:44:50Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1213,6 +1213,18 @@
       "summary": "O metodo prova que uma decisao `approved` registrada pelo intake desbloqueia",
       "exec_pack": "docs/exec-packs/done/TKT-100-artemis-project-registry-approved-decision-fixture.md",
       "evidence": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/project-registry-approved-decision-fixture.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-101",
+      "ticket": "TKT-101",
+      "title": "ARTEMIS Project Registry Registration Plan",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O metodo passa a ter um plano claro para registro futuro, com registros",
+      "exec_pack": "docs/exec-packs/done/TKT-101-artemis-project-registry-registration-plan.md",
+      "evidence": "artifacts/artemis-portal-project-registry-registration-plan/run-01/project-registry-registration-plan.json",
       "tags": ["exec-pack", "done"]
     }
   ]

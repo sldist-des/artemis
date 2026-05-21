@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T12:39:35Z",
+  "generated_at": "2026-05-21T12:44:50Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-21T12:39:35Z",
+      "generated_at": "2026-05-21T12:44:50Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -74,7 +74,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T12:39:35Z",
+      "generated_at": "2026-05-21T12:44:50Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -161,7 +161,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T12:39:35Z",
+      "generated_at": "2026-05-21T12:44:50Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -254,7 +254,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-21T12:39:35Z",
+      "generated_at": "2026-05-21T12:44:50Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -1544,7 +1544,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T12:26:58Z",
+      "generated_at": "2026-05-21T12:39:42Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -1584,16 +1584,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 100,
-          "tasks_done": 100,
+          "tasks_total": 101,
+          "tasks_done": 101,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 10,
-          "events_total": 83,
+          "events_total": 73,
           "nodes_total": 33,
           "edges_total": 127,
-          "evidence_count": 100,
-          "exec_pack_count": 100,
+          "evidence_count": 101,
+          "exec_pack_count": 101,
           "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,
@@ -1612,7 +1612,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T12:27:06Z",
+      "generated_at": "2026-05-21T12:39:42Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -4786,7 +4786,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T12:26:58Z",
+      "generated_at": "2026-05-21T12:39:42Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -4826,16 +4826,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 100,
-          "tasks_done": 100,
+          "tasks_total": 101,
+          "tasks_done": 101,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 10,
-          "events_total": 83,
+          "events_total": 73,
           "nodes_total": 33,
           "edges_total": 127,
-          "evidence_count": 100,
-          "exec_pack_count": 100,
+          "evidence_count": 101,
+          "exec_pack_count": 101,
           "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,
@@ -4854,7 +4854,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T12:27:06Z",
+      "generated_at": "2026-05-21T12:39:42Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -4913,7 +4913,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T12:27:06Z",
+      "generated_at": "2026-05-21T12:39:42Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -4953,9 +4953,9 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 100,
-          "tasks_done": 100,
-          "events_total": 83,
+          "tasks_total": 101,
+          "tasks_done": 101,
+          "events_total": 73,
           "nodes_total": 33,
           "edges_total": 127,
           "validation_passed": 129,
@@ -7019,6 +7019,70 @@
         "tokens_spent": 0,
         "remote_state_mutated": false,
         "next_cut": "TKT-101 - Project Registry Registration Plan"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_project_registry_registration_plan_ready",
+      "event_type": "human_gate.registration_plan",
+      "generated_at": "2026-05-21T12:44:39Z",
+      "producer": {
+        "adapter": "portal_project_registry",
+        "name": "scripts/artemis-portal-project-registry-registration-plan.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-101",
+        "task_id": "tkt-101",
+        "title": "ARTEMIS Project Registry Registration Plan",
+        "exec_pack": "docs/exec-packs/done/TKT-101-artemis-project-registry-registration-plan.md",
+        "artifact_root": "artifacts/artemis-portal-project-registry-registration-plan/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "approved_decision_fixture",
+        "to": "planning_ready",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "human",
+        "status": "ready_for_registration_execution_gate",
+        "reason": "Registration planning is ready, but execution requires a future explicit gate.",
+        "options": [
+          "prepare registration execution gate",
+          "keep plan read-only"
+        ]
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-project-registry-registration-plan/run-01",
+        "status_path": "artifacts/artemis-portal-project-registry-registration-plan/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-project-registry-registration-plan/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-project-registry-registration-plan/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-project-registry-registration-plan/run-01/project-registry-registration-plan.json",
+          "artifacts/artemis-portal-project-registry-registration-plan/run-01/PROJECT_REGISTRY_REGISTRATION_PLAN.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-101"
+      },
+      "payload": {
+        "project_registry_registration_plan_ready": true,
+        "candidate_project_id": "veri_d55ae65706",
+        "plan_state": "ready_for_registration_execution_gate",
+        "registration_plan_ready": true,
+        "registration_execution_allowed": false,
+        "candidate_registration_allowed": false,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-102 - Project Registry Registration Execution Gate"
       }
     },
     {

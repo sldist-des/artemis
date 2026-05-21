@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T12:44:39Z",
+  "overall": "project_registry_registration_plan_ready",
+  "project_registry_registration_plan_ready": true,
+  "candidate_project_id": "veri_d55ae65706",
+  "plan_state": "ready_for_registration_execution_gate",
+  "registration_plan_ready": true,
+  "registration_execution_allowed": false,
+  "candidate_registration_allowed": false,
+  "project_switching_allowed": false,
+  "runtime_execution_allowed": false,
+  "provider_auth_connected": false,
+  "runtime_auth_executed": false,
+  "worktree_created": false,
+  "branch_changed": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-102 - Project Registry Registration Execution Gate",
+  "missing_files": [],
+  "plan_preconditions": {
+    "approved_decision_fixture_ready": true,
+    "decision_recorded": true,
+    "approved_for_registration_gate": true,
+    "registration_gate_ready_for_plan": true,
+    "candidate_known": true,
+    "candidate_registration_still_blocked": true,
+    "project_switching_still_blocked": true,
+    "runtime_still_blocked": true
+  },
+  "registration_contract_source": {
+    "purpose": "Gate candidate registration behind validated human approval before any operational project change.",
+    "state": "registration_gate",
+    "gate_state": "ready_for_registration_plan",
+    "candidate_project_id": "veri_d55ae65706",
+    "decision_state": "recorded",
+    "decision_recorded": true,
+    "approved_for_registration_gate": true,
+    "registration_preconditions": {
+      "decision_intake_ready": true,
+      "decision_recorded": true,
+      "decision_approved": true,
+      "candidate_known": true,
+      "runtime_blocked": true,
+      "project_switching_blocked": true
+    },
+    "blockers": [],
+    "candidate_registration_allowed": false,
+    "project_switching_allowed": false,
+    "runtime_execution_allowed": false,
+    "provider_auth_connected": false,
+    "worktree_created": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "registration_rules": [
+      "Registration requires a recorded approved human decision.",
+      "This gate may mark a candidate ready for a future registration plan, but never registers it.",
+      "Registration remains blocked while the decision is pending, invalid, rejected or deferred.",
+      "Project switching and runtime remain blocked even after registration gate readiness.",
+      "No provider auth, worktree, command execution, token spend or remote mutation happens here."
+    ]
+  },
+  "registration_plan_contract": {
+    "purpose": "Turn an approved registration gate state into a bounded plan for a future registration execution gate.",
+    "state": "registration_plan",
+    "plan_state": "ready_for_registration_execution_gate",
+    "candidate_project_id": "veri_d55ae65706",
+    "approved_decision_fixture": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/project-registry-approved-decision-fixture.json",
+    "source_registration_gate": "artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/registration-gate",
+    "registration_plan_ready": true,
+    "registration_execution_allowed": false,
+    "candidate_registration_allowed": false,
+    "project_switching_allowed": false,
+    "runtime_execution_allowed": false,
+    "provider_auth_connected": false,
+    "worktree_created": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "planned_records": [
+      {
+        "record": "registry.project",
+        "candidate_project_id": "veri_d55ae65706",
+        "write_allowed_in_this_cut": false,
+        "required_gate": "real_human_owner_approval"
+      },
+      {
+        "record": "registry.audit",
+        "candidate_project_id": "veri_d55ae65706",
+        "write_allowed_in_this_cut": false,
+        "required_gate": "registration_execution_gate"
+      },
+      {
+        "record": "selector.entry",
+        "candidate_project_id": "veri_d55ae65706",
+        "write_allowed_in_this_cut": false,
+        "required_gate": "post_registration_review"
+      }
+    ],
+    "plan_steps": [
+      {
+        "step": "revalidate_source_fixture",
+        "description": "Confirm the approved path is evidence-only and still has no side effects.",
+        "execution_allowed": false
+      },
+      {
+        "step": "prepare_registry_record",
+        "description": "Prepare a registry record draft for the candidate project.",
+        "execution_allowed": false
+      },
+      {
+        "step": "prepare_audit_record",
+        "description": "Prepare an audit entry linking decision, gate and future registration authority.",
+        "execution_allowed": false
+      },
+      {
+        "step": "open_registration_execution_gate",
+        "description": "Require a future gate before any write to registry artifacts.",
+        "execution_allowed": false
+      }
+    ],
+    "execution_gate_requirements": [
+      "Real human owner approval, not synthetic fixture.",
+      "Explicit registry write target.",
+      "Diff preview before write.",
+      "Rollback plan before write.",
+      "Validation command list before write.",
+      "Post-write review gate before project selection."
+    ],
+    "registration_rules": [
+      "A registration plan is not registration.",
+      "Synthetic fixtures can prove flow shape but cannot authorize real writes.",
+      "Registration execution requires a later explicit gate.",
+      "Project switching and runtime remain blocked after planning.",
+      "No provider auth, worktree, command execution, token spend or remote mutation happens here."
+    ]
+  },
+  "checks": [
+    {
+      "id": "approved_fixture_ready",
+      "status": "passed",
+      "detail": "Registration Plan consumes the approved decision fixture."
+    },
+    {
+      "id": "registration_gate_ready_for_plan",
+      "status": "passed",
+      "detail": "Source gate is ready for registration planning."
+    },
+    {
+      "id": "candidate_known",
+      "status": "passed",
+      "detail": "Plan targets a known candidate project id."
+    },
+    {
+      "id": "planned_records_are_non_writing",
+      "status": "passed",
+      "detail": "Planned records are declarative only in this cut."
+    },
+    {
+      "id": "execution_gate_required",
+      "status": "passed",
+      "detail": "Execution remains behind a later registration execution gate."
+    },
+    {
+      "id": "candidate_registration_still_blocked",
+      "status": "passed",
+      "detail": "Plan does not register the candidate."
+    },
+    {
+      "id": "project_switching_still_blocked",
+      "status": "passed",
+      "detail": "Plan does not switch active project."
+    },
+    {
+      "id": "runtime_still_blocked",
+      "status": "passed",
+      "detail": "Plan does not permit runtime execution."
+    },
+    {
+      "id": "no_runtime_side_effects",
+      "status": "passed",
+      "detail": "No provider auth, worktree, agent, command, token spend or remote mutation happened."
+    }
+  ]
+}

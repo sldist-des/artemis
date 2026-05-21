@@ -242,6 +242,7 @@ for events_path in [
     Path("artifacts/artemis-portal-project-registry-decision-intake/run-01/events.json"),
     Path("artifacts/artemis-portal-project-registry-registration-gate/run-01/events.json"),
     Path("artifacts/artemis-portal-project-registry-approved-decision-fixture/run-01/events.json"),
+    Path("artifacts/artemis-portal-project-registry-registration-plan/run-01/events.json"),
     Path("artifacts/artemis-portal-local-project-connect/run-01/events.json"),
     Path("artifacts/artemis-portal-external-project-registration/run-01/events.json"),
     Path("artifacts/artemis-portal-runtime-gateway/run-01/events.json"),

@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T17:52:42Z",
+  "mode": "dry_run_only",
+  "registry_write_allowed": false,
+  "candidate_registration_allowed": false,
+  "project_switching_allowed": false,
+  "runtime_execution_allowed": false,
+  "records_to_write_if_later_approved": [
+    {
+      "schema_version": 1,
+      "record_kind": "registry.project",
+      "candidate_project_id": "veri_d55ae65706",
+      "project_id": "veri_d55ae65706",
+      "display_name": "veri",
+      "repo_root": "/srv/veri",
+      "registry_state": "registered_pending_selection_review",
+      "selection_state": "not_selected",
+      "project_switching_allowed": false,
+      "runtime_execution_allowed": false,
+      "provider_auth_connected": false,
+      "registered_by": "dry_run_preview_only",
+      "registered_at": "2026-05-21T17:52:42Z",
+      "source_decision": "synthetic_approved_fixture_plus_execution_gate",
+      "source_plan": "artifacts/artemis-portal-project-registry-registration-plan/run-01/project-registry-registration-plan.json",
+      "source_execution_gate": "artifacts/artemis-portal-project-registry-registration-execution-gate/run-01/project-registry-registration-execution-gate.json",
+      "notes": [
+        "Dry-run record only; not written to registry.",
+        "Real registry write still needs human approval, write target, diff preview, rollback plan and validation commands."
+      ]
+    },
+    {
+      "schema_version": 1,
+      "record_kind": "registry.audit",
+      "candidate_project_id": "veri_d55ae65706",
+      "event": "registration_dry_run_prepared",
+      "generated_at": "2026-05-21T17:52:42Z",
+      "write_performed": false,
+      "project_switch_performed": false,
+      "runtime_started": false,
+      "evidence": [
+        "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/registry-write-draft.json",
+        "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/registry-diff-preview.md",
+        "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/registry-rollback-plan.md"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "record_kind": "selector.entry",
+      "candidate_project_id": "veri_d55ae65706",
+      "project_id": "veri_d55ae65706",
+      "display_name": "veri",
+      "repo_root": "/srv/veri",
+      "selection_state": "not_selectable_until_post_registration_review",
+      "project_switching_allowed": false,
+      "runtime_execution_allowed": false
+    }
+  ]
+}

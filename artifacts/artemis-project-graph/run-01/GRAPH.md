@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `35`.
-- Edges: `138`.
-- Tasks: `105`.
-- Events: `88`.
+- Nodes: `36`.
+- Edges: `143`.
+- Tasks: `106`.
+- Events: `89`.
 
 ## Nos
 
@@ -45,6 +45,7 @@
 - `portal:human_acceptance_surface` (portal_human_acceptance_surface): ARTEMIS Portal Human Acceptance Surface.
 - `orchestration:subagent_router` (subagent_router): ARTEMIS Subagent Socratic Router.
 - `orchestration:subagent_config_generator` (subagent_config_generator): ARTEMIS Subagent Config Generator.
+- `registry:registration_dry_run` (project_registry_registration_dry_run): ARTEMIS Project Registry Registration Dry Run.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -171,6 +172,10 @@
 - `orchestration:subagent_config_generator` --blocks_install_without_acceptance--> `gate:human`.
 - `orchestration:subagent_config_generator` --validates_preview_formats--> `validation:gate`.
 - `orchestration:subagent_config_generator` --records_preview_contract--> `event_log:timeline`.
+- `registry:registration_dry_run` --awaits_future_approval--> `gate:human`.
+- `registry:registration_dry_run` --validates_draft_records--> `validation:gate`.
+- `registry:registration_dry_run` --records_dry_run--> `event_log:timeline`.
+- `registry:registration_dry_run` --produces_diff_and_rollback--> `artifact:evidence`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.
@@ -187,6 +192,7 @@
 - `control_plane:view` --shows--> `portal:human_acceptance_surface`.
 - `control_plane:view` --shows--> `orchestration:subagent_router`.
 - `control_plane:view` --shows--> `orchestration:subagent_config_generator`.
+- `control_plane:view` --shows--> `registry:registration_dry_run`.
 
 ## Perguntas operacionais
 
@@ -196,3 +202,4 @@
 - Qual contexto e seguro para agentes?
 - Qual custo ou runtime foi ativado?
 - Qual subagente usar e com qual limite?
+- O que seria escrito no Project Registry?

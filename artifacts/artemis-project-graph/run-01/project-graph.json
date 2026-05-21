@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T17:37:01Z",
+  "generated_at": "2026-05-21T17:53:40Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -33,19 +33,20 @@
     "portal_validation_evidence_surface": "artifacts/artemis-portal-validation-evidence-surface/run-01/validation-evidence-surface-contract.json",
     "portal_human_acceptance_surface": "artifacts/artemis-portal-human-acceptance-surface/run-01/human-acceptance-surface-contract.json",
     "subagent_socratic_router": "artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json",
-    "subagent_config_generator": "artifacts/artemis-subagent-config-generator/run-01/subagent-config-generator.json"
+    "subagent_config_generator": "artifacts/artemis-subagent-config-generator/run-01/subagent-config-generator.json",
+    "project_registry_registration_dry_run": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/project-registry-registration-dry-run.json"
   },
   "summary": {
-    "tasks_total": 105,
-    "tasks_done": 105,
+    "tasks_total": 106,
+    "tasks_done": 106,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 10,
-    "events_total": 88,
-    "nodes_total": 35,
-    "edges_total": 138,
-    "evidence_count": 105,
-    "exec_pack_count": 105,
+    "events_total": 89,
+    "nodes_total": 36,
+    "edges_total": 143,
+    "evidence_count": 106,
+    "exec_pack_count": 106,
     "validation_passed": 129,
     "validation_failed": 0,
     "validation_human_gate": 2,
@@ -58,10 +59,10 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 105
+    "done": 106
   },
   "risks": {
-    "medium": 88,
+    "medium": 89,
     "low": 4,
     "high": 13
   },
@@ -76,7 +77,7 @@
     ],
     [
       "Codex executor",
-      22
+      23
     ],
     [
       "Context Curator",
@@ -110,11 +111,11 @@
   "top_tags": [
     [
       "exec-pack",
-      105
+      106
     ],
     [
       "done",
-      105
+      106
     ]
   ],
   "nodes": [
@@ -129,8 +130,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 105,
-      "done": 105,
+      "count": 106,
+      "done": 106,
       "human": 0
     },
     {
@@ -149,7 +150,7 @@
         ],
         [
           "Codex executor",
-          22
+          23
         ],
         [
           "Context Curator",
@@ -186,14 +187,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 105,
-      "exec_packs": 105
+      "task_evidence": 106,
+      "exec_packs": 106
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 88
+      "events": 89
     },
     {
       "id": "cost:budget",
@@ -524,6 +525,21 @@
       "provider_messages_sent": 0,
       "tokens_spent": 0,
       "next_cut": "Project Registry Registration Dry Run"
+    },
+    {
+      "id": "registry:registration_dry_run",
+      "type": "project_registry_registration_dry_run",
+      "label": "ARTEMIS Project Registry Registration Dry Run",
+      "status": "project_registry_registration_dry_run_ready",
+      "candidate_project_id": "veri_d55ae65706",
+      "dry_run_state": "ready_for_human_review",
+      "draft_record_count": 3,
+      "registry_write_allowed": false,
+      "project_switching_allowed": false,
+      "runtime_execution_allowed": false,
+      "commands_executed": 0,
+      "tokens_spent": 0,
+      "next_cut": "TKT-106 - Project Registry Registration Human Approval Package"
     },
     {
       "id": "control_plane:view",
@@ -1144,6 +1160,26 @@
       "type": "records_preview_contract"
     },
     {
+      "from": "registry:registration_dry_run",
+      "to": "gate:human",
+      "type": "awaits_future_approval"
+    },
+    {
+      "from": "registry:registration_dry_run",
+      "to": "validation:gate",
+      "type": "validates_draft_records"
+    },
+    {
+      "from": "registry:registration_dry_run",
+      "to": "event_log:timeline",
+      "type": "records_dry_run"
+    },
+    {
+      "from": "registry:registration_dry_run",
+      "to": "artifact:evidence",
+      "type": "produces_diff_and_rollback"
+    },
+    {
       "from": "control_plane:view",
       "to": "project:artemis",
       "type": "observes"
@@ -1222,6 +1258,11 @@
       "from": "control_plane:view",
       "to": "orchestration:subagent_config_generator",
       "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "registry:registration_dry_run",
+      "type": "shows"
     }
   ],
   "questions": [
@@ -1268,6 +1309,14 @@
         "cost:budget",
         "validation:gate"
       ]
+    },
+    {
+      "question": "O que seria escrito no Project Registry?",
+      "answer_source": [
+        "registry:registration_dry_run",
+        "artifact:evidence",
+        "gate:human"
+      ]
     }
   ],
   "invariants": [
@@ -1308,6 +1357,7 @@
     "portal_human_acceptance_surface_input": "artemis_portal_human_acceptance_surface",
     "subagent_router_input": "artemis_subagent_socratic_router",
     "subagent_config_generator_input": "artemis_subagent_config_generator",
+    "project_registry_registration_dry_run_input": "artemis_project_registry_registration_dry_run",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T17:36:52Z",
+  "generated_at": "2026-05-21T17:53:30Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1261,6 +1261,18 @@
       "summary": "O metodo passa a conseguir visualizar como ficariam os subagentes de cada",
       "exec_pack": "docs/exec-packs/done/TKT-104-artemis-subagent-config-generator.md",
       "evidence": "artifacts/artemis-subagent-config-generator/run-01/subagent-config-generator.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-105",
+      "ticket": "TKT-105",
+      "title": "ARTEMIS Project Registry Registration Dry Run",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O metodo passa a mostrar exatamente quais registros seriam escritos no registry",
+      "exec_pack": "docs/exec-packs/done/TKT-105-artemis-project-registry-registration-dry-run.md",
+      "evidence": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/project-registry-registration-dry-run.json",
       "tags": ["exec-pack", "done"]
     }
   ]

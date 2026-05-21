@@ -62,6 +62,7 @@ docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_GATE.md
 docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_APPROVED_DECISION_FIXTURE.md
 docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_PLAN.md
 docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_EXECUTION_GATE.md
+docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_DRY_RUN.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/control-plane/ARTEMIS_CONTROL_PLANE_PROJECT_REGISTRY_HOME_STATE.md
 docs/control-plane/ARTEMIS_CONTROL_PLANE_OPERATIONAL_DECISION_HOME.md
@@ -153,6 +154,7 @@ scripts/artemis-portal-project-registry-registration-gate.sh
 scripts/artemis-portal-project-registry-approved-decision-fixture.sh
 scripts/artemis-portal-project-registry-registration-plan.sh
 scripts/artemis-portal-project-registry-registration-execution-gate.sh
+scripts/artemis-portal-project-registry-registration-dry-run.sh
 scripts/artemis-portal-local-project-connect.sh
 scripts/artemis-portal-external-project-registration.sh
 scripts/artemis-portal-runtime-gateway.sh
@@ -286,6 +288,7 @@ sh -n scripts/artemis-portal-project-registry-registration-gate.sh
 sh -n scripts/artemis-portal-project-registry-approved-decision-fixture.sh
 sh -n scripts/artemis-portal-project-registry-registration-plan.sh
 sh -n scripts/artemis-portal-project-registry-registration-execution-gate.sh
+sh -n scripts/artemis-portal-project-registry-registration-dry-run.sh
 sh -n scripts/artemis-portal-local-project-connect.sh
 sh -n scripts/artemis-portal-external-project-registration.sh
 sh -n scripts/artemis-portal-runtime-gateway.sh
@@ -1349,6 +1352,51 @@ if ! test -f /tmp/artemis-portal-project-registry-registration-execution-gate/pr
 fi
 if ! test -f /tmp/artemis-portal-project-registry-registration-execution-gate/PROJECT_REGISTRY_REGISTRATION_EXECUTION_GATE.md; then
   echo "scripts/artemis-portal-project-registry-registration-execution-gate.sh did not write registration execution gate documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-portal-project-registry-registration-dry-run.sh --artifact-root /tmp/artemis-portal-project-registry-registration-dry-run --registration-plan /tmp/artemis-portal-project-registry-registration-plan/project-registry-registration-plan.json --execution-gate /tmp/artemis-portal-project-registry-registration-execution-gate/project-registry-registration-execution-gate.json --json >/tmp/artemis-portal-project-registry-registration-dry-run.json
+if ! grep -q '"overall": "project_registry_registration_dry_run_ready"' /tmp/artemis-portal-project-registry-registration-dry-run.json; then
+  echo "scripts/artemis-portal-project-registry-registration-dry-run.sh did not report project_registry_registration_dry_run_ready" >&2
+  exit 1
+fi
+if ! grep -q '"dry_run_state": "ready_for_human_review"' /tmp/artemis-portal-project-registry-registration-dry-run.json; then
+  echo "scripts/artemis-portal-project-registry-registration-dry-run.sh did not reach ready_for_human_review" >&2
+  exit 1
+fi
+if ! grep -q '"registry_write_allowed": false' /tmp/artemis-portal-project-registry-registration-dry-run.json; then
+  echo "scripts/artemis-portal-project-registry-registration-dry-run.sh allowed registry write" >&2
+  exit 1
+fi
+if ! grep -q '"candidate_registration_allowed": false' /tmp/artemis-portal-project-registry-registration-dry-run.json; then
+  echo "scripts/artemis-portal-project-registry-registration-dry-run.sh allowed candidate registration" >&2
+  exit 1
+fi
+if ! grep -q '"project_switching_allowed": false' /tmp/artemis-portal-project-registry-registration-dry-run.json; then
+  echo "scripts/artemis-portal-project-registry-registration-dry-run.sh allowed project switching" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-portal-project-registry-registration-dry-run.json; then
+  echo "scripts/artemis-portal-project-registry-registration-dry-run.sh allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-portal-project-registry-registration-dry-run.json; then
+  echo "scripts/artemis-portal-project-registry-registration-dry-run.sh executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-project-registry-registration-dry-run.json; then
+  echo "scripts/artemis-portal-project-registry-registration-dry-run.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-project-registry-registration-dry-run/registry-write-draft.json; then
+  echo "scripts/artemis-portal-project-registry-registration-dry-run.sh did not write registry draft artifact" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-project-registry-registration-dry-run/registry-diff-preview.md; then
+  echo "scripts/artemis-portal-project-registry-registration-dry-run.sh did not write diff preview artifact" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-project-registry-registration-dry-run/registry-rollback-plan.md; then
+  echo "scripts/artemis-portal-project-registry-registration-dry-run.sh did not write rollback plan artifact" >&2
   exit 1
 fi
 scripts/artemis-control-plane-operational-decision-home.sh --artifact-root /tmp/artemis-control-plane-operational-decision-home --json >/tmp/artemis-control-plane-operational-decision-home.json

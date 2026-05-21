@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T18:26:48Z",
+  "generated_at": "2026-05-21T18:38:19Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -37,19 +37,20 @@
     "project_registry_registration_dry_run": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/project-registry-registration-dry-run.json",
     "project_registry_registration_approval_package": "artifacts/artemis-portal-project-registry-registration-approval-package/run-01/project-registry-registration-approval-package.json",
     "project_registry_registration_approval_intake": "artifacts/artemis-portal-project-registry-registration-approval-intake/run-01/project-registry-registration-approval-intake.json",
-    "project_registry_registration_approved_write_fixture": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/project-registry-registration-approved-write-fixture.json"
+    "project_registry_registration_approved_write_fixture": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/project-registry-registration-approved-write-fixture.json",
+    "project_registry_registration_write_gate": "artifacts/artemis-portal-project-registry-registration-write-gate/run-01/project-registry-registration-write-gate.json"
   },
   "summary": {
-    "tasks_total": 109,
-    "tasks_done": 109,
+    "tasks_total": 110,
+    "tasks_done": 110,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 10,
-    "events_total": 92,
-    "nodes_total": 39,
-    "edges_total": 158,
-    "evidence_count": 109,
-    "exec_pack_count": 109,
+    "events_total": 93,
+    "nodes_total": 40,
+    "edges_total": 163,
+    "evidence_count": 110,
+    "exec_pack_count": 110,
     "validation_passed": 129,
     "validation_failed": 0,
     "validation_human_gate": 2,
@@ -62,10 +63,10 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 109
+    "done": 110
   },
   "risks": {
-    "medium": 92,
+    "medium": 93,
     "low": 4,
     "high": 13
   },
@@ -75,11 +76,11 @@
       31
     ],
     [
-      "Codex",
-      26
+      "Codex executor",
+      27
     ],
     [
-      "Codex executor",
+      "Codex",
       26
     ],
     [
@@ -114,11 +115,11 @@
   "top_tags": [
     [
       "exec-pack",
-      109
+      110
     ],
     [
       "done",
-      109
+      110
     ]
   ],
   "nodes": [
@@ -133,8 +134,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 109,
-      "done": 109,
+      "count": 110,
+      "done": 110,
       "human": 0
     },
     {
@@ -148,11 +149,11 @@
           31
         ],
         [
-          "Codex",
-          26
+          "Codex executor",
+          27
         ],
         [
-          "Codex executor",
+          "Codex",
           26
         ],
         [
@@ -190,14 +191,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 109,
-      "exec_packs": 109
+      "task_evidence": 110,
+      "exec_packs": 110
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 92
+      "events": 93
     },
     {
       "id": "cost:budget",
@@ -592,6 +593,23 @@
       "commands_executed": 0,
       "tokens_spent": 0,
       "next_cut": "TKT-109 - Project Registry Registration Write Gate"
+    },
+    {
+      "id": "registry:registration_write_gate",
+      "type": "project_registry_registration_write_gate",
+      "label": "ARTEMIS Project Registry Registration Write Gate",
+      "status": "project_registry_registration_write_gate_ready",
+      "candidate_project_id": "veri_d55ae65706",
+      "write_gate_state": "waiting_for_real_human_write_approval",
+      "real_write_approval_recorded": false,
+      "write_execution_planning_allowed": false,
+      "synthetic_fixture_only": true,
+      "registry_write_allowed": false,
+      "project_switching_allowed": false,
+      "runtime_execution_allowed": false,
+      "commands_executed": 0,
+      "tokens_spent": 0,
+      "next_cut": "TKT-110 - Project Registry Registration Supervised Write Plan"
     },
     {
       "id": "control_plane:view",
@@ -1292,6 +1310,26 @@
       "type": "does_not_replace_real_approval"
     },
     {
+      "from": "registry:registration_approved_write_fixture",
+      "to": "registry:registration_write_gate",
+      "type": "feeds_real_write_gate"
+    },
+    {
+      "from": "registry:registration_write_gate",
+      "to": "gate:human",
+      "type": "requires_real_write_approval"
+    },
+    {
+      "from": "registry:registration_write_gate",
+      "to": "validation:gate",
+      "type": "validates_write_boundary"
+    },
+    {
+      "from": "registry:registration_write_gate",
+      "to": "event_log:timeline",
+      "type": "records_write_gate"
+    },
+    {
       "from": "control_plane:view",
       "to": "project:artemis",
       "type": "observes"
@@ -1390,6 +1428,11 @@
       "from": "control_plane:view",
       "to": "registry:registration_approved_write_fixture",
       "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "registry:registration_write_gate",
+      "type": "shows"
     }
   ],
   "questions": [
@@ -1444,6 +1487,7 @@
         "registry:registration_approval_package",
         "registry:registration_approval_intake",
         "registry:registration_approved_write_fixture",
+        "registry:registration_write_gate",
         "artifact:evidence",
         "gate:human"
       ]
@@ -1491,6 +1535,7 @@
     "project_registry_registration_approval_package_input": "artemis_project_registry_registration_approval_package",
     "project_registry_registration_approval_intake_input": "artemis_project_registry_registration_approval_intake",
     "project_registry_registration_approved_write_fixture_input": "artemis_project_registry_registration_approved_write_fixture",
+    "project_registry_registration_write_gate_input": "artemis_project_registry_registration_write_gate",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },

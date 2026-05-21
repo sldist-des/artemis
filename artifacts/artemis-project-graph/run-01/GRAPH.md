@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `39`.
-- Edges: `158`.
-- Tasks: `109`.
-- Events: `92`.
+- Nodes: `40`.
+- Edges: `163`.
+- Tasks: `110`.
+- Events: `93`.
 
 ## Nos
 
@@ -49,6 +49,7 @@
 - `registry:registration_approval_package` (project_registry_registration_approval_package): ARTEMIS Project Registry Registration Approval Package.
 - `registry:registration_approval_intake` (project_registry_registration_approval_intake): ARTEMIS Project Registry Registration Approval Intake.
 - `registry:registration_approved_write_fixture` (project_registry_registration_approved_write_fixture): ARTEMIS Project Registry Registration Approved Write Fixture.
+- `registry:registration_write_gate` (project_registry_registration_write_gate): ARTEMIS Project Registry Registration Write Gate.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -191,6 +192,10 @@
 - `registry:registration_approved_write_fixture` --validates_positive_path--> `validation:gate`.
 - `registry:registration_approved_write_fixture` --records_approved_write_fixture--> `event_log:timeline`.
 - `registry:registration_approved_write_fixture` --does_not_replace_real_approval--> `gate:human`.
+- `registry:registration_approved_write_fixture` --feeds_real_write_gate--> `registry:registration_write_gate`.
+- `registry:registration_write_gate` --requires_real_write_approval--> `gate:human`.
+- `registry:registration_write_gate` --validates_write_boundary--> `validation:gate`.
+- `registry:registration_write_gate` --records_write_gate--> `event_log:timeline`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.
@@ -211,6 +216,7 @@
 - `control_plane:view` --shows--> `registry:registration_approval_package`.
 - `control_plane:view` --shows--> `registry:registration_approval_intake`.
 - `control_plane:view` --shows--> `registry:registration_approved_write_fixture`.
+- `control_plane:view` --shows--> `registry:registration_write_gate`.
 
 ## Perguntas operacionais
 

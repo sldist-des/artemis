@@ -66,6 +66,7 @@ docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_DRY_RUN.md
 docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_APPROVAL_PACKAGE.md
 docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_APPROVAL_INTAKE.md
 docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_APPROVED_WRITE_FIXTURE.md
+docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_WRITE_GATE.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/control-plane/ARTEMIS_CONTROL_PLANE_PROJECT_REGISTRY_HOME_STATE.md
 docs/control-plane/ARTEMIS_CONTROL_PLANE_OPERATIONAL_DECISION_HOME.md
@@ -161,6 +162,7 @@ scripts/artemis-portal-project-registry-registration-dry-run.sh
 scripts/artemis-portal-project-registry-registration-approval-package.sh
 scripts/artemis-portal-project-registry-registration-approval-intake.sh
 scripts/artemis-portal-project-registry-registration-approved-write-fixture.sh
+scripts/artemis-portal-project-registry-registration-write-gate.sh
 scripts/artemis-portal-local-project-connect.sh
 scripts/artemis-portal-external-project-registration.sh
 scripts/artemis-portal-runtime-gateway.sh
@@ -298,6 +300,7 @@ sh -n scripts/artemis-portal-project-registry-registration-dry-run.sh
 sh -n scripts/artemis-portal-project-registry-registration-approval-package.sh
 sh -n scripts/artemis-portal-project-registry-registration-approval-intake.sh
 sh -n scripts/artemis-portal-project-registry-registration-approved-write-fixture.sh
+sh -n scripts/artemis-portal-project-registry-registration-write-gate.sh
 sh -n scripts/artemis-portal-local-project-connect.sh
 sh -n scripts/artemis-portal-external-project-registration.sh
 sh -n scripts/artemis-portal-runtime-gateway.sh
@@ -1565,6 +1568,59 @@ if ! test -f /tmp/artemis-portal-project-registry-registration-approved-write-fi
 fi
 if ! test -f /tmp/artemis-portal-project-registry-registration-approved-write-fixture/PROJECT_REGISTRY_REGISTRATION_APPROVED_WRITE_FIXTURE.md; then
   echo "scripts/artemis-portal-project-registry-registration-approved-write-fixture.sh did not write approved write fixture documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-portal-project-registry-registration-write-gate.sh --artifact-root /tmp/artemis-portal-project-registry-registration-write-gate --approved-write-fixture /tmp/artemis-portal-project-registry-registration-approved-write-fixture/project-registry-registration-approved-write-fixture.json --json >/tmp/artemis-portal-project-registry-registration-write-gate.json
+if ! grep -q '"overall": "project_registry_registration_write_gate_ready"' /tmp/artemis-portal-project-registry-registration-write-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-write-gate.sh did not report project_registry_registration_write_gate_ready" >&2
+  exit 1
+fi
+if ! grep -q '"write_gate_state": "waiting_for_real_human_write_approval"' /tmp/artemis-portal-project-registry-registration-write-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-write-gate.sh did not wait for real human write approval" >&2
+  exit 1
+fi
+if ! grep -q '"real_write_approval_recorded": false' /tmp/artemis-portal-project-registry-registration-write-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-write-gate.sh recorded real write approval" >&2
+  exit 1
+fi
+if ! grep -q '"write_execution_planning_allowed": false' /tmp/artemis-portal-project-registry-registration-write-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-write-gate.sh allowed write execution planning" >&2
+  exit 1
+fi
+if ! grep -q '"synthetic_fixture_only": true' /tmp/artemis-portal-project-registry-registration-write-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-write-gate.sh did not preserve synthetic fixture boundary" >&2
+  exit 1
+fi
+if ! grep -q '"registry_write_allowed": false' /tmp/artemis-portal-project-registry-registration-write-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-write-gate.sh allowed registry write" >&2
+  exit 1
+fi
+if ! grep -q '"candidate_registration_allowed": false' /tmp/artemis-portal-project-registry-registration-write-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-write-gate.sh allowed candidate registration" >&2
+  exit 1
+fi
+if ! grep -q '"project_switching_allowed": false' /tmp/artemis-portal-project-registry-registration-write-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-write-gate.sh allowed project switching" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-portal-project-registry-registration-write-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-write-gate.sh allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"commands_executed": 0' /tmp/artemis-portal-project-registry-registration-write-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-write-gate.sh executed commands" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-portal-project-registry-registration-write-gate.json; then
+  echo "scripts/artemis-portal-project-registry-registration-write-gate.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-project-registry-registration-write-gate/project-registry-registration-write-approval-template.json; then
+  echo "scripts/artemis-portal-project-registry-registration-write-gate.sh did not write real write approval template" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-portal-project-registry-registration-write-gate/PROJECT_REGISTRY_REGISTRATION_WRITE_GATE.md; then
+  echo "scripts/artemis-portal-project-registry-registration-write-gate.sh did not write write gate documentation artifact" >&2
   exit 1
 fi
 scripts/artemis-control-plane-operational-decision-home.sh --artifact-root /tmp/artemis-control-plane-operational-decision-home --json >/tmp/artemis-control-plane-operational-decision-home.json

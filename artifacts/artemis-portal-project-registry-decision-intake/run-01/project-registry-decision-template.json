@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "candidate_project_id": "veri_d55ae65706",
+  "decision": "pending",
+  "decided_by": "",
+  "decided_at": "",
+  "rationale": "",
+  "constraints_acknowledged": [
+    "approval_does_not_switch_project",
+    "approval_does_not_start_runtime",
+    "approval_does_not_authenticate_provider",
+    "approval_does_not_write_remote"
+  ]
+}

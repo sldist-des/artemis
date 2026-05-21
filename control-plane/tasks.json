@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T20:05:40Z",
+  "generated_at": "2026-05-21T11:57:41Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1165,6 +1165,18 @@
       "summary": "O candidato fica claramente aguardando decisao humana, com schema minimo de",
       "exec_pack": "docs/exec-packs/done/TKT-096-artemis-project-registry-human-review-gate.md",
       "evidence": "artifacts/artemis-portal-project-registry-human-review-gate/run-01/project-registry-human-review-gate.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-097",
+      "ticket": "TKT-097",
+      "title": "ARTEMIS Project Registry Decision Intake",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O metodo passa a ter um ponto claro para receber uma decisao humana, mas o",
+      "exec_pack": "docs/exec-packs/done/TKT-097-artemis-project-registry-decision-intake.md",
+      "evidence": "artifacts/artemis-portal-project-registry-decision-intake/run-01/project-registry-decision-intake.json",
       "tags": ["exec-pack", "done"]
     }
   ]

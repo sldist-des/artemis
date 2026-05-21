@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T11:57:31Z",
+  "overall": "project_registry_decision_intake_ready",
+  "project_registry_decision_intake_ready": true,
+  "decision_state": "pending",
+  "human_decision_required": true,
+  "human_decision_recorded": false,
+  "approved_for_registration_gate": false,
+  "candidate_registration_allowed": false,
+  "project_switching_allowed": false,
+  "runtime_execution_allowed": false,
+  "provider_auth_connected": false,
+  "runtime_auth_executed": false,
+  "worktree_created": false,
+  "branch_changed": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-098 - Project Registry Registration Gate",
+  "missing_files": [],
+  "decision_contract": {
+    "purpose": "Classify a human project-registry decision before registration can be considered.",
+    "state": "decision_intake",
+    "decision_state": "pending",
+    "decision_source": "artifacts/artemis-portal-project-registry-decision-intake/run-01/project-registry-decision-template.json",
+    "template_path": "artifacts/artemis-portal-project-registry-decision-intake/run-01/project-registry-decision-template.json",
+    "candidate_project_id": "veri_d55ae65706",
+    "candidate_known": true,
+    "decision": "pending",
+    "decision_recorded": false,
+    "approved_for_registration_gate": false,
+    "rejected": false,
+    "deferred": false,
+    "required_fields_present": true,
+    "timestamp_valid": true,
+    "decision_options": [
+      "approved",
+      "rejected",
+      "deferred"
+    ],
+    "required_decision_fields": [
+      "candidate_project_id",
+      "decision",
+      "decided_by",
+      "decided_at",
+      "rationale"
+    ],
+    "candidate_registration_allowed": false,
+    "project_switching_allowed": false,
+    "runtime_execution_allowed": false,
+    "provider_auth_connected": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "intake_rules": [
+      "Pending means no owner decision has been recorded yet.",
+      "Approved only unlocks a later registration gate; it does not register or switch projects.",
+      "Rejected and deferred decisions remain non-selectable.",
+      "Invalid decisions block the next gate until corrected.",
+      "No provider auth, runtime, command execution, token spend or remote mutation happens here."
+    ]
+  },
+  "checks": [
+    {
+      "id": "human_review_gate_ready",
+      "status": "passed",
+      "detail": "Decision Intake consumes the Human Review Gate."
+    },
+    {
+      "id": "decision_template_written",
+      "status": "passed",
+      "detail": "A fillable pending decision template is available."
+    },
+    {
+      "id": "decision_state_classified",
+      "status": "passed",
+      "detail": "Decision payload was classified."
+    },
+    {
+      "id": "pending_without_side_effects",
+      "status": "passed",
+      "detail": "Default intake stays pending until a human decision file exists."
+    },
+    {
+      "id": "control_plane_can_render_decision_state",
+      "status": "passed",
+      "detail": "Control Plane contains the decision intake source, loader and renderer."
+    },
+    {
+      "id": "project_switching_still_blocked",
+      "status": "passed",
+      "detail": "Decision Intake does not switch active project."
+    },
+    {
+      "id": "runtime_still_blocked",
+      "status": "passed",
+      "detail": "Decision Intake does not permit runtime execution."
+    },
+    {
+      "id": "no_runtime_side_effects",
+      "status": "passed",
+      "detail": "No provider auth, agent, command, token spend or remote mutation happened."
+    }
+  ]
+}

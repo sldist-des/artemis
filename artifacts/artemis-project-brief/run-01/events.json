@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-20T20:05:57Z",
+  "generated_at": "2026-05-21T11:58:04Z",
   "source": "scripts/artemis-project-brief.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-20T20:05:57Z",
+      "generated_at": "2026-05-21T11:58:04Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -47,9 +47,9 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 97,
-          "tasks_done": 97,
-          "events_total": 80,
+          "tasks_total": 98,
+          "tasks_done": 98,
+          "events_total": 81,
           "nodes_total": 33,
           "edges_total": 127,
           "validation_passed": 129,

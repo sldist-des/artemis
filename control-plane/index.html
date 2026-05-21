@@ -3026,6 +3026,7 @@
     const externalProjectRegistrationSourceUrl = "../artifacts/artemis-portal-external-project-registration/run-01/external-project-registration.json";
     const projectSelectorRegistryIntakeSourceUrl = "../artifacts/artemis-portal-project-selector-registry-intake/run-01/project-selector-registry-intake.json";
     const projectRegistryHumanReviewGateSourceUrl = "../artifacts/artemis-portal-project-registry-human-review-gate/run-01/project-registry-human-review-gate.json";
+    const projectRegistryDecisionIntakeSourceUrl = "../artifacts/artemis-portal-project-registry-decision-intake/run-01/project-registry-decision-intake.json";
     const runtimeGatewayServiceSourceUrl = "../artifacts/artemis-portal-runtime-gateway-service/run-01/runtime-gateway-service.json";
 
     const columns = [
@@ -5752,6 +5753,31 @@
       runtimeGatewayPanelCanStartNode.textContent = contract.runtime_execution_allowed ? "sim" : "nao";
     }
 
+    function renderProjectRegistryDecisionIntake(model) {
+      const contract = model.decision_contract || {};
+      const decisionState = contract.decision_state || model.decision_state || "pending";
+
+      if (decisionState === "recorded") {
+        plainStatusCopyNode.textContent = "Projeto selecionado. Decisao registrada. Runtime bloqueado.";
+        externalRegistrationStateNode.textContent = "decisao";
+        externalRegistrationTitleNode.textContent = "Decisao registrada";
+      } else if (decisionState === "invalid") {
+        plainStatusCopyNode.textContent = "Projeto selecionado. Decisao invalida. Runtime bloqueado.";
+        externalRegistrationStateNode.textContent = "invalida";
+        externalRegistrationTitleNode.textContent = "Decisao invalida";
+      } else {
+        plainStatusCopyNode.textContent = "Projeto selecionado. Decisao pendente. Runtime bloqueado.";
+        externalRegistrationStateNode.textContent = "pendente";
+        externalRegistrationTitleNode.textContent = "Decisao pendente";
+      }
+      externalRegistrationCandidatesNode.textContent = contract.candidate_project_id ? "1" : "0";
+      externalRegistrationRegisteredNode.textContent = "0";
+      externalRegistrationSwitchingNode.textContent = contract.project_switching_allowed ? "sim" : "nao";
+      runtimeGatewayStateNode.textContent = contract.runtime_execution_allowed ? "liberado" : "bloqueado";
+      runtimeGatewayTitleNode.textContent = contract.runtime_execution_allowed ? "Runtime liberado" : "Runtime bloqueado";
+      runtimeGatewayPanelCanStartNode.textContent = contract.runtime_execution_allowed ? "sim" : "nao";
+    }
+
     function normalizeCard(item) {
       const states = new Set(columns.map((column) => column.id));
       const state = states.has(item.state) ? item.state : "ready";
@@ -6797,6 +6823,18 @@
       }
     }
 
+    async function loadProjectRegistryDecisionIntakeSource() {
+      try {
+        const response = await fetch(projectRegistryDecisionIntakeSourceUrl, { cache: "no-store" });
+        if (!response.ok) return null;
+        const payload = await response.json();
+        if (!payload.decision_contract) return null;
+        return payload;
+      } catch {
+        return null;
+      }
+    }
+
     async function loadEventSource() {
       try {
         const response = await fetch(eventSourceUrl, { cache: "no-store" });
@@ -7032,6 +7070,8 @@
       if (loadedProjectSelectorRegistryIntake) renderProjectSelectorRegistryIntake(loadedProjectSelectorRegistryIntake);
       const loadedProjectRegistryHumanReviewGate = await loadProjectRegistryHumanReviewGateSource();
       if (loadedProjectRegistryHumanReviewGate) renderProjectRegistryHumanReviewGate(loadedProjectRegistryHumanReviewGate);
+      const loadedProjectRegistryDecisionIntake = await loadProjectRegistryDecisionIntakeSource();
+      if (loadedProjectRegistryDecisionIntake) renderProjectRegistryDecisionIntake(loadedProjectRegistryDecisionIntake);
       const loadedEvents = await loadEventSource();
       renderTimeline(loadedEvents || seedEvents);
     }

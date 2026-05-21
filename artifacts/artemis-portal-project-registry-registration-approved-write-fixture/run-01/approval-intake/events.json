@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T18:26:24Z",
+  "source": "scripts/artemis-portal-project-registry-registration-approval-intake.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_project_registry_registration_approval_intake_ready",
+      "event_type": "human_gate.registration_approval_intake",
+      "generated_at": "2026-05-21T18:26:24Z",
+      "producer": {
+        "adapter": "portal_project_registry",
+        "name": "scripts/artemis-portal-project-registry-registration-approval-intake.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-107",
+        "task_id": "tkt-107",
+        "title": "ARTEMIS Project Registry Registration Approval Intake",
+        "exec_pack": "docs/exec-packs/done/TKT-107-artemis-project-registry-registration-approval-intake.md",
+        "artifact_root": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/approval-intake"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "registration_approval_package",
+        "to": "human_gate",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "human",
+        "status": "approved_for_registry_write_gate",
+        "reason": "A human registration approval decision must be validated before a future registry write gate.",
+        "options": [
+          "approved",
+          "rejected",
+          "deferred"
+        ]
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/approval-intake",
+        "status_path": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/approval-intake/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/approval-intake/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/approval-intake/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/approval-intake/project-registry-registration-approval-intake.json",
+          "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/approval-intake/project-registry-registration-decision-received.json",
+          "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/approval-intake/PROJECT_REGISTRY_REGISTRATION_APPROVAL_INTAKE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-107"
+      },
+      "payload": {
+        "project_registry_registration_approval_intake_ready": true,
+        "candidate_project_id": "veri_d55ae65706",
+        "approval_state": "approved_for_registry_write_gate",
+        "human_decision_required": true,
+        "human_decision_recorded": true,
+        "approved_for_registry_write_gate": true,
+        "registration_execution_allowed": false,
+        "candidate_registration_allowed": false,
+        "registry_write_allowed": false,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-108 - Project Registry Registration Approved Write Fixture"
+      }
+    }
+  ]
+}

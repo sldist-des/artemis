@@ -157,6 +157,7 @@ subagent_config_generator_payload = read_json(Path("artifacts/artemis-subagent-c
 project_registry_dry_run_payload = read_json(Path("artifacts/artemis-portal-project-registry-registration-dry-run/run-01/project-registry-registration-dry-run.json"), {"dry_run_contract": {}, "overall": "not_available", "next_cut": "unknown"})
 project_registry_approval_package_payload = read_json(Path("artifacts/artemis-portal-project-registry-registration-approval-package/run-01/project-registry-registration-approval-package.json"), {"approval_package": {}, "overall": "not_available", "next_cut": "unknown"})
 project_registry_approval_intake_payload = read_json(Path("artifacts/artemis-portal-project-registry-registration-approval-intake/run-01/project-registry-registration-approval-intake.json"), {"intake_contract": {}, "overall": "not_available", "next_cut": "unknown"})
+project_registry_approved_write_fixture_payload = read_json(Path("artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/project-registry-registration-approved-write-fixture.json"), {"fixture_contract": {}, "overall": "not_available", "next_cut": "unknown"})
 
 tasks = tasks_payload.get("tasks", [])
 events = event_log_payload.get("events", [])
@@ -605,6 +606,23 @@ nodes = [
         "next_cut": project_registry_approval_intake_payload.get("next_cut", "unknown"),
     },
     {
+        "id": "registry:registration_approved_write_fixture",
+        "type": "project_registry_registration_approved_write_fixture",
+        "label": "ARTEMIS Project Registry Registration Approved Write Fixture",
+        "status": project_registry_approved_write_fixture_payload.get("overall", "not_available"),
+        "candidate_project_id": project_registry_approved_write_fixture_payload.get("candidate_project_id", "unknown"),
+        "approval_state": project_registry_approved_write_fixture_payload.get("approval_state", "unknown"),
+        "approved_for_registry_write_gate": project_registry_approved_write_fixture_payload.get("approved_for_registry_write_gate", False),
+        "write_gate_planning_allowed": project_registry_approved_write_fixture_payload.get("write_gate_planning_allowed", False),
+        "synthetic_fixture_only": project_registry_approved_write_fixture_payload.get("synthetic_fixture_only", False),
+        "registry_write_allowed": project_registry_approved_write_fixture_payload.get("registry_write_allowed", False),
+        "project_switching_allowed": project_registry_approved_write_fixture_payload.get("project_switching_allowed", False),
+        "runtime_execution_allowed": project_registry_approved_write_fixture_payload.get("runtime_execution_allowed", False),
+        "commands_executed": project_registry_approved_write_fixture_payload.get("commands_executed", 0),
+        "tokens_spent": project_registry_approved_write_fixture_payload.get("tokens_spent", 0),
+        "next_cut": project_registry_approved_write_fixture_payload.get("next_cut", "unknown"),
+    },
+    {
         "id": "control_plane:view",
         "type": "view",
         "label": "Control Plane",
@@ -747,6 +765,10 @@ edges = [
     {"from": "registry:registration_approval_intake", "to": "gate:human", "type": "preserves_or_records_human_decision"},
     {"from": "registry:registration_approval_intake", "to": "validation:gate", "type": "validates_decision_evidence"},
     {"from": "registry:registration_approval_intake", "to": "event_log:timeline", "type": "records_approval_intake"},
+    {"from": "registry:registration_approval_intake", "to": "registry:registration_approved_write_fixture", "type": "proves_positive_path_with_fixture"},
+    {"from": "registry:registration_approved_write_fixture", "to": "validation:gate", "type": "validates_positive_path"},
+    {"from": "registry:registration_approved_write_fixture", "to": "event_log:timeline", "type": "records_approved_write_fixture"},
+    {"from": "registry:registration_approved_write_fixture", "to": "gate:human", "type": "does_not_replace_real_approval"},
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
@@ -766,6 +788,7 @@ edges = [
     {"from": "control_plane:view", "to": "registry:registration_dry_run", "type": "shows"},
     {"from": "control_plane:view", "to": "registry:registration_approval_package", "type": "shows"},
     {"from": "control_plane:view", "to": "registry:registration_approval_intake", "type": "shows"},
+    {"from": "control_plane:view", "to": "registry:registration_approved_write_fixture", "type": "shows"},
 ]
 
 questions = [
@@ -795,7 +818,7 @@ questions = [
     },
     {
         "question": "O que seria escrito no Project Registry?",
-        "answer_source": ["registry:registration_dry_run", "registry:registration_approval_package", "registry:registration_approval_intake", "artifact:evidence", "gate:human"],
+        "answer_source": ["registry:registration_dry_run", "registry:registration_approval_package", "registry:registration_approval_intake", "registry:registration_approved_write_fixture", "artifact:evidence", "gate:human"],
     },
 ]
 
@@ -864,6 +887,7 @@ payload = {
         "project_registry_registration_dry_run": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/project-registry-registration-dry-run.json",
         "project_registry_registration_approval_package": "artifacts/artemis-portal-project-registry-registration-approval-package/run-01/project-registry-registration-approval-package.json",
         "project_registry_registration_approval_intake": "artifacts/artemis-portal-project-registry-registration-approval-intake/run-01/project-registry-registration-approval-intake.json",
+        "project_registry_registration_approved_write_fixture": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/project-registry-registration-approved-write-fixture.json",
     },
     "summary": summary,
     "states": dict(states),
@@ -914,6 +938,7 @@ payload = {
         "project_registry_registration_dry_run_input": "artemis_project_registry_registration_dry_run",
         "project_registry_registration_approval_package_input": "artemis_project_registry_registration_approval_package",
         "project_registry_registration_approval_intake_input": "artemis_project_registry_registration_approval_intake",
+        "project_registry_registration_approved_write_fixture_input": "artemis_project_registry_registration_approved_write_fixture",
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },

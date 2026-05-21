@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "candidate_project_id": "veri_d55ae65706",
+  "decision": "approved",
+  "decided_by": "artemis-fixture-owner",
+  "decided_at": "2026-05-21T18:26:24Z",
+  "approval_scope": "project_registry_registration_write",
+  "accepted_write_target": "future_project_registry",
+  "accepted_registry_write_draft": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/registry-write-draft.json",
+  "accepted_diff_preview": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/registry-diff-preview.md",
+  "accepted_rollback_plan": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/registry-rollback-plan.md",
+  "accepted_validation_commands": [
+    "python3 -m json.tool artifacts/artemis-portal-project-registry-registration-dry-run/run-01/registry-write-draft.json",
+    "python3 -m json.tool artifacts/artemis-portal-project-registry-registration-dry-run/run-01/project-registry-registration-dry-run.json",
+    "scripts/validate-artemis.sh"
+  ],
+  "rationale": "Fixture proves the approved write-gate path without registry write side effects.",
+  "decision_options": [
+    "approved",
+    "rejected",
+    "deferred"
+  ],
+  "acknowledged_constraints": [
+    "fixture_is_not_real_human_approval",
+    "approval_allows_future_write_gate_only",
+    "approval_does_not_write_registry",
+    "approval_does_not_register_candidate",
+    "approval_does_not_switch_project",
+    "approval_does_not_start_runtime",
+    "approval_does_not_authenticate_provider",
+    "approval_does_not_write_remote"
+  ],
+  "fixture_only": true
+}

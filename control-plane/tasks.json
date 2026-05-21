@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T18:11:35Z",
+  "generated_at": "2026-05-21T18:26:37Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1297,6 +1297,18 @@
       "summary": "O metodo passa a distinguir `pending`, `approved`, `rejected`, `deferred` e",
       "exec_pack": "docs/exec-packs/done/TKT-107-artemis-project-registry-registration-approval-intake.md",
       "evidence": "artifacts/artemis-portal-project-registry-registration-approval-intake/run-01/project-registry-registration-approval-intake.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-108",
+      "ticket": "TKT-108",
+      "title": "ARTEMIS Project Registry Registration Approved Write Fixture",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O metodo passa a ter evidencia de que uma decisao aprovada bem formada chega em",
+      "exec_pack": "docs/exec-packs/done/TKT-108-artemis-project-registry-registration-approved-write-fixture.md",
+      "evidence": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/project-registry-registration-approved-write-fixture.json",
       "tags": ["exec-pack", "done"]
     }
   ]

@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `38`.
-- Edges: `153`.
-- Tasks: `108`.
-- Events: `91`.
+- Nodes: `39`.
+- Edges: `158`.
+- Tasks: `109`.
+- Events: `92`.
 
 ## Nos
 
@@ -48,6 +48,7 @@
 - `registry:registration_dry_run` (project_registry_registration_dry_run): ARTEMIS Project Registry Registration Dry Run.
 - `registry:registration_approval_package` (project_registry_registration_approval_package): ARTEMIS Project Registry Registration Approval Package.
 - `registry:registration_approval_intake` (project_registry_registration_approval_intake): ARTEMIS Project Registry Registration Approval Intake.
+- `registry:registration_approved_write_fixture` (project_registry_registration_approved_write_fixture): ARTEMIS Project Registry Registration Approved Write Fixture.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -186,6 +187,10 @@
 - `registry:registration_approval_intake` --preserves_or_records_human_decision--> `gate:human`.
 - `registry:registration_approval_intake` --validates_decision_evidence--> `validation:gate`.
 - `registry:registration_approval_intake` --records_approval_intake--> `event_log:timeline`.
+- `registry:registration_approval_intake` --proves_positive_path_with_fixture--> `registry:registration_approved_write_fixture`.
+- `registry:registration_approved_write_fixture` --validates_positive_path--> `validation:gate`.
+- `registry:registration_approved_write_fixture` --records_approved_write_fixture--> `event_log:timeline`.
+- `registry:registration_approved_write_fixture` --does_not_replace_real_approval--> `gate:human`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.
@@ -205,6 +210,7 @@
 - `control_plane:view` --shows--> `registry:registration_dry_run`.
 - `control_plane:view` --shows--> `registry:registration_approval_package`.
 - `control_plane:view` --shows--> `registry:registration_approval_intake`.
+- `control_plane:view` --shows--> `registry:registration_approved_write_fixture`.
 
 ## Perguntas operacionais
 

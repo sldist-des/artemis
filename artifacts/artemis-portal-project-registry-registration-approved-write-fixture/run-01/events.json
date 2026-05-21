@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T18:26:24Z",
+  "source": "scripts/artemis-portal-project-registry-registration-approved-write-fixture.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_project_registry_registration_approved_write_fixture_ready",
+      "event_type": "fixture.registration_approved_write_path",
+      "generated_at": "2026-05-21T18:26:24Z",
+      "producer": {
+        "adapter": "portal_project_registry",
+        "name": "scripts/artemis-portal-project-registry-registration-approved-write-fixture.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-108",
+        "task_id": "tkt-108",
+        "title": "ARTEMIS Project Registry Registration Approved Write Fixture",
+        "exec_pack": "docs/exec-packs/done/TKT-108-artemis-project-registry-registration-approved-write-fixture.md",
+        "artifact_root": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "registration_approval_intake",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable",
+        "reason": "Synthetic fixture proves the approved path without granting real write authority."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01",
+        "status_path": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/project-registry-registration-approved-write-fixture.json",
+          "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/project-registry-registration-approved-write.fixture.json",
+          "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/PROJECT_REGISTRY_REGISTRATION_APPROVED_WRITE_FIXTURE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-108"
+      },
+      "payload": {
+        "project_registry_registration_approved_write_fixture_ready": true,
+        "candidate_project_id": "veri_d55ae65706",
+        "approval_state": "approved_for_registry_write_gate",
+        "human_decision_recorded": true,
+        "approved_for_registry_write_gate": true,
+        "write_gate_planning_allowed": true,
+        "synthetic_fixture_only": true,
+        "registration_execution_allowed": false,
+        "candidate_registration_allowed": false,
+        "registry_write_allowed": false,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-109 - Project Registry Registration Write Gate"
+      }
+    }
+  ]
+}

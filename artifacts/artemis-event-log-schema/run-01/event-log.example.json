@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T18:11:46Z",
+  "generated_at": "2026-05-21T18:26:45Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-21T18:11:46Z",
+      "generated_at": "2026-05-21T18:26:45Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -74,7 +74,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T18:11:46Z",
+      "generated_at": "2026-05-21T18:26:45Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -161,7 +161,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T18:11:46Z",
+      "generated_at": "2026-05-21T18:26:45Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -254,7 +254,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-21T18:11:46Z",
+      "generated_at": "2026-05-21T18:26:45Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -1544,7 +1544,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T18:03:43Z",
+      "generated_at": "2026-05-21T18:11:49Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -1584,16 +1584,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 107,
-          "tasks_done": 107,
+          "tasks_total": 108,
+          "tasks_done": 108,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 10,
-          "events_total": 90,
-          "nodes_total": 37,
-          "edges_total": 148,
-          "evidence_count": 107,
-          "exec_pack_count": 107,
+          "events_total": 91,
+          "nodes_total": 38,
+          "edges_total": 153,
+          "evidence_count": 108,
+          "exec_pack_count": 108,
           "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,
@@ -1612,7 +1612,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T18:03:43Z",
+      "generated_at": "2026-05-21T18:11:53Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -1652,8 +1652,8 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 37,
-          "edges_rendered": 148,
+          "nodes_rendered": 38,
+          "edges_rendered": 153,
           "questions_rendered": 3,
           "invariants_rendered": 3,
           "validation_passed": 129,
@@ -4786,7 +4786,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T18:03:43Z",
+      "generated_at": "2026-05-21T18:11:49Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -4826,16 +4826,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 107,
-          "tasks_done": 107,
+          "tasks_total": 108,
+          "tasks_done": 108,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 10,
-          "events_total": 90,
-          "nodes_total": 37,
-          "edges_total": 148,
-          "evidence_count": 107,
-          "exec_pack_count": 107,
+          "events_total": 91,
+          "nodes_total": 38,
+          "edges_total": 153,
+          "evidence_count": 108,
+          "exec_pack_count": 108,
           "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,
@@ -4854,7 +4854,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T18:03:43Z",
+      "generated_at": "2026-05-21T18:11:53Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -4894,8 +4894,8 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 37,
-          "edges_rendered": 148,
+          "nodes_rendered": 38,
+          "edges_rendered": 153,
           "questions_rendered": 3,
           "invariants_rendered": 3,
           "validation_passed": 129,
@@ -4913,7 +4913,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T18:03:47Z",
+      "generated_at": "2026-05-21T18:11:56Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -4953,11 +4953,11 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 107,
-          "tasks_done": 107,
-          "events_total": 90,
-          "nodes_total": 37,
-          "edges_total": 148,
+          "tasks_total": 108,
+          "tasks_done": 108,
+          "events_total": 91,
+          "nodes_total": 38,
+          "edges_total": 153,
           "validation_passed": 129,
           "validation_failed": 0,
           "human_gates": 2,
@@ -7996,6 +7996,71 @@
         "tokens_spent": 0,
         "remote_state_mutated": false,
         "next_cut": "TKT-108 - Project Registry Registration Approved Write Fixture"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_project_registry_registration_approved_write_fixture_ready",
+      "event_type": "fixture.registration_approved_write_path",
+      "generated_at": "2026-05-21T18:26:24Z",
+      "producer": {
+        "adapter": "portal_project_registry",
+        "name": "scripts/artemis-portal-project-registry-registration-approved-write-fixture.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-108",
+        "task_id": "tkt-108",
+        "title": "ARTEMIS Project Registry Registration Approved Write Fixture",
+        "exec_pack": "docs/exec-packs/done/TKT-108-artemis-project-registry-registration-approved-write-fixture.md",
+        "artifact_root": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "registration_approval_intake",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "not_applicable",
+        "reason": "Synthetic fixture proves the approved path without granting real write authority."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01",
+        "status_path": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/project-registry-registration-approved-write-fixture.json",
+          "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/project-registry-registration-approved-write.fixture.json",
+          "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/PROJECT_REGISTRY_REGISTRATION_APPROVED_WRITE_FIXTURE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-108"
+      },
+      "payload": {
+        "project_registry_registration_approved_write_fixture_ready": true,
+        "candidate_project_id": "veri_d55ae65706",
+        "approval_state": "approved_for_registry_write_gate",
+        "human_decision_recorded": true,
+        "approved_for_registry_write_gate": true,
+        "write_gate_planning_allowed": true,
+        "synthetic_fixture_only": true,
+        "registration_execution_allowed": false,
+        "candidate_registration_allowed": false,
+        "registry_write_allowed": false,
+        "project_switching_allowed": false,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-109 - Project Registry Registration Write Gate"
       }
     },
     {

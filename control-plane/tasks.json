@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T18:03:33Z",
+  "generated_at": "2026-05-21T18:11:35Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1285,6 +1285,18 @@
       "summary": "O metodo passa a ter um pacote claro para o humano revisar: rascunho de escrita,",
       "exec_pack": "docs/exec-packs/done/TKT-106-artemis-project-registry-registration-approval-package.md",
       "evidence": "artifacts/artemis-portal-project-registry-registration-approval-package/run-01/project-registry-registration-approval-package.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-107",
+      "ticket": "TKT-107",
+      "title": "ARTEMIS Project Registry Registration Approval Intake",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O metodo passa a distinguir `pending`, `approved`, `rejected`, `deferred` e",
+      "exec_pack": "docs/exec-packs/done/TKT-107-artemis-project-registry-registration-approval-intake.md",
+      "evidence": "artifacts/artemis-portal-project-registry-registration-approval-intake/run-01/project-registry-registration-approval-intake.json",
       "tags": ["exec-pack", "done"]
     }
   ]

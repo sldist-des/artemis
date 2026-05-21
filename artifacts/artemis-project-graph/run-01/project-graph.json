@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T18:03:43Z",
+  "generated_at": "2026-05-21T18:11:49Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -35,19 +35,20 @@
     "subagent_socratic_router": "artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json",
     "subagent_config_generator": "artifacts/artemis-subagent-config-generator/run-01/subagent-config-generator.json",
     "project_registry_registration_dry_run": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/project-registry-registration-dry-run.json",
-    "project_registry_registration_approval_package": "artifacts/artemis-portal-project-registry-registration-approval-package/run-01/project-registry-registration-approval-package.json"
+    "project_registry_registration_approval_package": "artifacts/artemis-portal-project-registry-registration-approval-package/run-01/project-registry-registration-approval-package.json",
+    "project_registry_registration_approval_intake": "artifacts/artemis-portal-project-registry-registration-approval-intake/run-01/project-registry-registration-approval-intake.json"
   },
   "summary": {
-    "tasks_total": 107,
-    "tasks_done": 107,
+    "tasks_total": 108,
+    "tasks_done": 108,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 10,
-    "events_total": 90,
-    "nodes_total": 37,
-    "edges_total": 148,
-    "evidence_count": 107,
-    "exec_pack_count": 107,
+    "events_total": 91,
+    "nodes_total": 38,
+    "edges_total": 153,
+    "evidence_count": 108,
+    "exec_pack_count": 108,
     "validation_passed": 129,
     "validation_failed": 0,
     "validation_human_gate": 2,
@@ -60,10 +61,10 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 107
+    "done": 108
   },
   "risks": {
-    "medium": 90,
+    "medium": 91,
     "low": 4,
     "high": 13
   },
@@ -78,7 +79,7 @@
     ],
     [
       "Codex executor",
-      24
+      25
     ],
     [
       "Context Curator",
@@ -112,11 +113,11 @@
   "top_tags": [
     [
       "exec-pack",
-      107
+      108
     ],
     [
       "done",
-      107
+      108
     ]
   ],
   "nodes": [
@@ -131,8 +132,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 107,
-      "done": 107,
+      "count": 108,
+      "done": 108,
       "human": 0
     },
     {
@@ -151,7 +152,7 @@
         ],
         [
           "Codex executor",
-          24
+          25
         ],
         [
           "Context Curator",
@@ -188,14 +189,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 107,
-      "exec_packs": 107
+      "task_evidence": 108,
+      "exec_packs": 108
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 90
+      "events": 91
     },
     {
       "id": "cost:budget",
@@ -557,6 +558,22 @@
       "commands_executed": 0,
       "tokens_spent": 0,
       "next_cut": "TKT-107 - Project Registry Registration Approval Intake"
+    },
+    {
+      "id": "registry:registration_approval_intake",
+      "type": "project_registry_registration_approval_intake",
+      "label": "ARTEMIS Project Registry Registration Approval Intake",
+      "status": "project_registry_registration_approval_intake_ready",
+      "candidate_project_id": "veri_d55ae65706",
+      "approval_state": "pending",
+      "human_decision_recorded": false,
+      "approved_for_registry_write_gate": false,
+      "registry_write_allowed": false,
+      "project_switching_allowed": false,
+      "runtime_execution_allowed": false,
+      "commands_executed": 0,
+      "tokens_spent": 0,
+      "next_cut": "TKT-108 - Project Registry Registration Approved Write Fixture"
     },
     {
       "id": "control_plane:view",
@@ -1217,6 +1234,26 @@
       "type": "records_approval_package"
     },
     {
+      "from": "registry:registration_approval_package",
+      "to": "registry:registration_approval_intake",
+      "type": "feeds_decision_intake"
+    },
+    {
+      "from": "registry:registration_approval_intake",
+      "to": "gate:human",
+      "type": "preserves_or_records_human_decision"
+    },
+    {
+      "from": "registry:registration_approval_intake",
+      "to": "validation:gate",
+      "type": "validates_decision_evidence"
+    },
+    {
+      "from": "registry:registration_approval_intake",
+      "to": "event_log:timeline",
+      "type": "records_approval_intake"
+    },
+    {
       "from": "control_plane:view",
       "to": "project:artemis",
       "type": "observes"
@@ -1305,6 +1342,11 @@
       "from": "control_plane:view",
       "to": "registry:registration_approval_package",
       "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "registry:registration_approval_intake",
+      "type": "shows"
     }
   ],
   "questions": [
@@ -1357,6 +1399,7 @@
       "answer_source": [
         "registry:registration_dry_run",
         "registry:registration_approval_package",
+        "registry:registration_approval_intake",
         "artifact:evidence",
         "gate:human"
       ]
@@ -1402,6 +1445,7 @@
     "subagent_config_generator_input": "artemis_subagent_config_generator",
     "project_registry_registration_dry_run_input": "artemis_project_registry_registration_dry_run",
     "project_registry_registration_approval_package_input": "artemis_project_registry_registration_approval_package",
+    "project_registry_registration_approval_intake_input": "artemis_project_registry_registration_approval_intake",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },

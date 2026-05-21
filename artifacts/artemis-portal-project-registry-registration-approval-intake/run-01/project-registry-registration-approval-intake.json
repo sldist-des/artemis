@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T18:11:22Z",
+  "overall": "project_registry_registration_approval_intake_ready",
+  "project_registry_registration_approval_intake_ready": true,
+  "candidate_project_id": "veri_d55ae65706",
+  "approval_state": "pending",
+  "human_decision_required": true,
+  "human_decision_recorded": false,
+  "approved_for_registry_write_gate": false,
+  "registration_execution_allowed": false,
+  "candidate_registration_allowed": false,
+  "registry_write_allowed": false,
+  "project_switching_allowed": false,
+  "runtime_execution_allowed": false,
+  "provider_auth_connected": false,
+  "runtime_auth_executed": false,
+  "worktree_created": false,
+  "branch_changed": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "next_cut": "TKT-108 - Project Registry Registration Approved Write Fixture",
+  "missing_files": [],
+  "intake_contract": {
+    "purpose": "Classify a human approval decision for a future Project Registry write gate.",
+    "state": "registration_approval_intake",
+    "approval_state": "pending",
+    "decision_source": "artifacts/artemis-portal-project-registry-registration-approval-package/run-01/project-registry-registration-human-decision-template.json",
+    "candidate_project_id": "veri_d55ae65706",
+    "package_candidate_project_id": "veri_d55ae65706",
+    "candidate_matches_package": true,
+    "decision": "pending",
+    "human_decision_recorded": false,
+    "approved_for_registry_write_gate": false,
+    "rejected": false,
+    "deferred": false,
+    "required_fields_present": true,
+    "timestamp_valid": true,
+    "accepted_paths_match": true,
+    "validation_commands_match": true,
+    "approval_scope_valid": true,
+    "accepted_write_target_valid": true,
+    "accepted_registry_write_draft": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/registry-write-draft.json",
+    "accepted_diff_preview": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/registry-diff-preview.md",
+    "accepted_rollback_plan": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/registry-rollback-plan.md",
+    "expected_validation_commands": [
+      "python3 -m json.tool artifacts/artemis-portal-project-registry-registration-dry-run/run-01/registry-write-draft.json",
+      "python3 -m json.tool artifacts/artemis-portal-project-registry-registration-dry-run/run-01/project-registry-registration-dry-run.json",
+      "scripts/validate-artemis.sh"
+    ],
+    "accepted_validation_commands": [
+      "python3 -m json.tool artifacts/artemis-portal-project-registry-registration-dry-run/run-01/registry-write-draft.json",
+      "python3 -m json.tool artifacts/artemis-portal-project-registry-registration-dry-run/run-01/project-registry-registration-dry-run.json",
+      "scripts/validate-artemis.sh"
+    ],
+    "decision_options": [
+      "approved",
+      "rejected",
+      "deferred"
+    ],
+    "required_decision_fields": [
+      "candidate_project_id",
+      "decision",
+      "decided_by",
+      "decided_at",
+      "approval_scope",
+      "accepted_write_target",
+      "accepted_registry_write_draft",
+      "accepted_diff_preview",
+      "accepted_rollback_plan",
+      "accepted_validation_commands",
+      "rationale"
+    ],
+    "registration_execution_allowed": false,
+    "candidate_registration_allowed": false,
+    "registry_write_allowed": false,
+    "project_switching_allowed": false,
+    "runtime_execution_allowed": false,
+    "provider_auth_connected": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "rules": [
+      "Pending means no owner decision has been recorded yet.",
+      "Approved only unlocks a later write gate; it does not write registry records.",
+      "Rejected and deferred decisions keep the candidate unregistered.",
+      "Invalid decisions block the next gate until corrected.",
+      "No provider auth, worktree, runtime, command execution, token spend or remote mutation happens here."
+    ]
+  },
+  "approval_package": {
+    "schema_version": 1,
+    "generated_at": "2026-05-21T18:02:49Z",
+    "overall": "project_registry_registration_approval_package_ready",
+    "project_registry_registration_approval_package_ready": true,
+    "candidate_project_id": "veri_d55ae65706",
+    "approval_state": "waiting_for_human_approval",
+    "human_decision_recorded": false,
+    "registration_execution_allowed": false,
+    "candidate_registration_allowed": false,
+    "registry_write_allowed": false,
+    "project_switching_allowed": false,
+    "runtime_execution_allowed": false,
+    "provider_auth_connected": false,
+    "runtime_auth_executed": false,
+    "worktree_created": false,
+    "branch_changed": false,
+    "agents_started": false,
+    "commands_executed": 0,
+    "tokens_spent": 0,
+    "remote_state_mutated": false,
+    "next_cut": "TKT-107 - Project Registry Registration Approval Intake",
+    "missing_files": [],
+    "approval_package": {
+      "purpose": "Ask a human to accept, reject or defer the Project Registry registration dry-run.",
+      "state": "registration_approval_package",
+      "approval_state": "waiting_for_human_approval",
+      "candidate_project_id": "veri_d55ae65706",
+      "dry_run": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/project-registry-registration-dry-run.json",
+      "registry_write_draft": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/registry-write-draft.json",
+      "diff_preview": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/registry-diff-preview.md",
+      "rollback_plan": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/registry-rollback-plan.md",
+      "draft_record_count": 3,
+      "decision_template": "artifacts/artemis-portal-project-registry-registration-approval-package/run-01/project-registry-registration-human-decision-template.json",
+      "required_human_fields": [
+        "candidate_project_id",
+        "decision",
+        "decided_by",
+        "decided_at",
+        "approval_scope",
+        "accepted_write_target",
+        "accepted_registry_write_draft",
+        "accepted_diff_preview",
+        "accepted_rollback_plan",
+        "accepted_validation_commands",
+        "rationale"
+      ],
+      "decision_options": [
+        "approved",
+        "rejected",
+        "deferred"
+      ],
+      "human_decision_recorded": false,
+      "registration_execution_allowed": false,
+      "candidate_registration_allowed": false,
+      "registry_write_allowed": false,
+      "project_switching_allowed": false,
+      "runtime_execution_allowed": false,
+      "provider_auth_connected": false,
+      "worktree_created": false,
+      "commands_executed": 0,
+      "tokens_spent": 0,
+      "remote_state_mutated": false,
+      "next_gate_requirements": [
+        "decision template filled by real human",
+        "decision is approved, rejected or deferred",
+        "timestamp is valid",
+        "accepted paths match this package",
+        "accepted validation commands are present",
+        "post-approval intake validates the package before any write"
+      ]
+    },
+    "checks": [
+      {
+        "id": "dry_run_ready",
+        "status": "passed",
+        "detail": "Approval package consumes the registration dry-run."
+      },
+      {
+        "id": "draft_records_available",
+        "status": "passed",
+        "detail": "Registry write draft contains the proposed records."
+      },
+      {
+        "id": "diff_preview_available",
+        "status": "passed",
+        "detail": "Diff preview is present and explicitly non-writing."
+      },
+      {
+        "id": "rollback_plan_available",
+        "status": "passed",
+        "detail": "Rollback plan is present and explicitly non-executing."
+      },
+      {
+        "id": "decision_template_written",
+        "status": "passed",
+        "detail": "A fillable human decision template is available."
+      },
+      {
+        "id": "approval_not_recorded",
+        "status": "passed",
+        "detail": "Package does not synthesize human approval."
+      },
+      {
+        "id": "registry_write_still_blocked",
+        "status": "passed",
+        "detail": "Package does not write registry records or register the candidate."
+      },
+      {
+        "id": "runtime_still_blocked",
+        "status": "passed",
+        "detail": "Package does not permit runtime execution."
+      },
+      {
+        "id": "no_runtime_side_effects",
+        "status": "passed",
+        "detail": "No provider auth, worktree, agent, command, token spend or remote mutation happened."
+      }
+    ]
+  },
+  "checks": [
+    {
+      "id": "approval_package_ready",
+      "status": "passed",
+      "detail": "Approval Intake consumes the registration approval package."
+    },
+    {
+      "id": "decision_classified",
+      "status": "passed",
+      "detail": "Decision payload was classified."
+    },
+    {
+      "id": "pending_keeps_write_blocked",
+      "status": "passed",
+      "detail": "Approval Intake does not write registry records."
+    },
+    {
+      "id": "paths_bound_to_package",
+      "status": "passed",
+      "detail": "Non-pending decisions must accept the package paths."
+    },
+    {
+      "id": "validation_commands_bound_to_package",
+      "status": "passed",
+      "detail": "Non-pending decisions must accept the package validation commands."
+    },
+    {
+      "id": "project_switching_still_blocked",
+      "status": "passed",
+      "detail": "Approval Intake does not switch active project."
+    },
+    {
+      "id": "runtime_still_blocked",
+      "status": "passed",
+      "detail": "Approval Intake does not permit runtime execution."
+    },
+    {
+      "id": "no_runtime_side_effects",
+      "status": "passed",
+      "detail": "No provider auth, worktree, agent, command, token spend or remote mutation happened."
+    }
+  ]
+}

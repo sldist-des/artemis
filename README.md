@@ -329,6 +329,8 @@ docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_DRY_RUN.md
 scripts/artemis-portal-project-registry-registration-dry-run.sh --artifact-root artifacts/artemis-portal-project-registry-registration-dry-run/run-01
 docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_APPROVAL_PACKAGE.md
 scripts/artemis-portal-project-registry-registration-approval-package.sh --artifact-root artifacts/artemis-portal-project-registry-registration-approval-package/run-01
+docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_APPROVAL_INTAKE.md
+scripts/artemis-portal-project-registry-registration-approval-intake.sh --artifact-root artifacts/artemis-portal-project-registry-registration-approval-intake/run-01
 docs/portal/ARTEMIS_PORTAL_LOCAL_PROJECT_CONNECT.md
 scripts/artemis-portal-local-project-connect.sh --project . --artifact-root artifacts/artemis-portal-local-project-connect/run-01
 docs/portal/ARTEMIS_PORTAL_EXTERNAL_PROJECT_REGISTRATION.md

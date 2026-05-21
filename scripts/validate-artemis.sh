@@ -171,6 +171,7 @@ scripts/artemis-model-migration-gate.sh
 scripts/artemis-provider-operational-evals.sh
 scripts/artemis-token-budget-policy.sh
 scripts/artemis-model-docs-radar.sh
+scripts/artemis-model-change-intake.sh
 scripts/artemis_model_governance_common.py
 scripts/artemis-portal-local-project-connect.sh
 scripts/artemis-portal-external-project-registration.sh
@@ -316,6 +317,7 @@ sh -n scripts/artemis-model-migration-gate.sh
 sh -n scripts/artemis-provider-operational-evals.sh
 sh -n scripts/artemis-token-budget-policy.sh
 sh -n scripts/artemis-model-docs-radar.sh
+sh -n scripts/artemis-model-change-intake.sh
 sh -n scripts/artemis-portal-local-project-connect.sh
 sh -n scripts/artemis-portal-external-project-registration.sh
 sh -n scripts/artemis-portal-runtime-gateway.sh
@@ -1807,6 +1809,55 @@ if ! grep -q '"tokens_spent": 0' /tmp/artemis-model-api-documentation-radar.json
 fi
 if ! test -f /tmp/artemis-model-api-documentation-radar/MODEL_API_DOCUMENTATION_RADAR.md; then
   echo "scripts/artemis-model-docs-radar.sh did not write docs radar documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-model-change-intake.sh --artifact-root /tmp/artemis-model-api-change-intake --json >/tmp/artemis-model-api-change-intake.json
+if ! grep -q '"overall": "model_api_change_intake_ready"' /tmp/artemis-model-api-change-intake.json; then
+  echo "scripts/artemis-model-change-intake.sh did not report model_api_change_intake_ready" >&2
+  exit 1
+fi
+if ! grep -q '"change_intake_state": "waiting_for_docs_review_evidence"' /tmp/artemis-model-api-change-intake.json; then
+  echo "scripts/artemis-model-change-intake.sh did not wait for docs review evidence" >&2
+  exit 1
+fi
+if ! grep -q '"request_recorded": false' /tmp/artemis-model-api-change-intake.json; then
+  echo "scripts/artemis-model-change-intake.sh recorded a request unexpectedly" >&2
+  exit 1
+fi
+if ! grep -q '"change_review_allowed": false' /tmp/artemis-model-api-change-intake.json; then
+  echo "scripts/artemis-model-change-intake.sh allowed change review" >&2
+  exit 1
+fi
+if ! grep -q '"migration_allowed": false' /tmp/artemis-model-api-change-intake.json; then
+  echo "scripts/artemis-model-change-intake.sh allowed migration" >&2
+  exit 1
+fi
+if ! grep -q '"default_model_change_allowed": false' /tmp/artemis-model-api-change-intake.json; then
+  echo "scripts/artemis-model-change-intake.sh allowed default model change" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-model-api-change-intake.json; then
+  echo "scripts/artemis-model-change-intake.sh allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"spend_authorized": false' /tmp/artemis-model-api-change-intake.json; then
+  echo "scripts/artemis-model-change-intake.sh authorized spend" >&2
+  exit 1
+fi
+if ! grep -q '"provider_api_calls_executed": 0' /tmp/artemis-model-api-change-intake.json; then
+  echo "scripts/artemis-model-change-intake.sh executed provider API calls" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-model-api-change-intake.json; then
+  echo "scripts/artemis-model-change-intake.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-model-api-change-intake/model-api-change-request-template.json; then
+  echo "scripts/artemis-model-change-intake.sh did not write change request template" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-model-api-change-intake/MODEL_API_CHANGE_INTAKE.md; then
+  echo "scripts/artemis-model-change-intake.sh did not write change intake documentation artifact" >&2
   exit 1
 fi
 scripts/artemis-control-plane-operational-decision-home.sh --artifact-root /tmp/artemis-control-plane-operational-decision-home --json >/tmp/artemis-control-plane-operational-decision-home.json

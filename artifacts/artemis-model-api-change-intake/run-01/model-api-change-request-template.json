@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "change_request_id": "",
+  "requested_by": "",
+  "requested_at": "",
+  "provider_id": "",
+  "capability_role": "",
+  "change_kind": "model_binding_update",
+  "current_binding": "",
+  "candidate_binding": "",
+  "reason": "",
+  "official_docs_review_artifacts": [],
+  "local_probe_artifact": "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
+  "operational_eval_artifact": "",
+  "budget_impact_artifact": "",
+  "rollback_plan": "",
+  "decision": "pending",
+  "decision_options": [
+    "pending",
+    "accepted_for_review",
+    "rejected",
+    "deferred"
+  ]
+}

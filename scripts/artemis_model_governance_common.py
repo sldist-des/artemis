@@ -79,6 +79,17 @@ MODES = {
         "exec_pack": "docs/exec-packs/done/TKT-115-artemis-model-api-documentation-radar.md",
         "next_cut": "TKT-116 - Model/API Change Intake",
     },
+    "change_intake": {
+        "ticket": "TKT-116",
+        "title": "ARTEMIS Model/API Change Intake",
+        "overall": "model_api_change_intake_ready",
+        "artifact": "model-api-change-intake.json",
+        "doc": "MODEL_API_CHANGE_INTAKE.md",
+        "event_id": "evt_model_api_change_intake_ready",
+        "event_type": "model_governance.change_intake_ready",
+        "exec_pack": "docs/exec-packs/done/TKT-116-artemis-model-api-change-intake.md",
+        "next_cut": "TKT-117 - Model/API Review Fixture",
+    },
 }
 
 
@@ -560,6 +571,93 @@ def build_docs_radar(artifact_root):
     return payload
 
 
+def build_change_intake(artifact_root):
+    meta = MODES["change_intake"]
+    artifact_root.mkdir(parents=True, exist_ok=True)
+    registry = read_json(REGISTRY_CONFIG, {})
+    docs_radar = read_json("artifacts/artemis-model-api-documentation-radar/run-01/model-api-documentation-radar.json", {})
+    provider_ids_set = set(provider_ids(registry))
+    capability_roles = {item.get("role_id") for item in registry.get("capability_roles", [])}
+    docs_ready_for_intake = (
+        docs_radar.get("overall") == "model_api_documentation_radar_ready"
+        and docs_radar.get("docs_radar_state") == "waiting_for_official_docs_review"
+        and docs_radar.get("external_fetch_executed") is False
+        and docs_radar.get("migration_allowed") is False
+    )
+    request_template = {
+        "schema_version": 1,
+        "change_request_id": "",
+        "requested_by": "",
+        "requested_at": "",
+        "provider_id": "",
+        "capability_role": "",
+        "change_kind": "model_binding_update",
+        "current_binding": "",
+        "candidate_binding": "",
+        "reason": "",
+        "official_docs_review_artifacts": [],
+        "local_probe_artifact": "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
+        "operational_eval_artifact": "",
+        "budget_impact_artifact": "",
+        "rollback_plan": "",
+        "decision": "pending",
+        "decision_options": ["pending", "accepted_for_review", "rejected", "deferred"],
+    }
+    blockers = [
+        "official_docs_review_not_recorded",
+        "operational_evals_not_executed",
+        "budget_impact_not_recorded",
+        "human_change_decision_missing",
+    ]
+    payload = base_payload(meta, registry)
+    payload.update({
+        "change_intake_ready": True,
+        "change_intake_state": "waiting_for_docs_review_evidence",
+        "docs_radar_ready": docs_ready_for_intake,
+        "docs_current_confirmed": docs_radar.get("docs_current_confirmed", False),
+        "official_docs_reviewed": docs_radar.get("official_docs_reviewed", False),
+        "request_recorded": False,
+        "change_request_valid": False,
+        "change_review_allowed": False,
+        "migration_allowed": False,
+        "default_model_change_allowed": False,
+        "runtime_execution_allowed": False,
+        "spend_authorized": False,
+        "provider_ids_allowed": sorted(provider_ids_set),
+        "capability_roles_allowed": sorted(role for role in capability_roles if role),
+        "request_template": request_template,
+        "blockers": blockers,
+        "required_evidence": [
+            "official_docs_review_artifacts",
+            "local_probe_artifact",
+            "operational_eval_artifact",
+            "budget_impact_artifact",
+            "rollback_plan",
+            "human_change_decision",
+        ],
+        "intake_rules": [
+            "A change request can enter review only after official docs review evidence exists.",
+            "Provider and capability role must exist in the model registry.",
+            "Operational eval and budget impact evidence are mandatory before migration gate approval.",
+            "This intake records intent only; it never changes defaults or runtime bindings.",
+        ],
+    })
+    write_json(artifact_root / "model-api-change-request-template.json", request_template)
+    write_standard_artifacts(artifact_root, meta, payload, [
+        "## Intake State",
+        "",
+        "- Change intake state: `waiting_for_docs_review_evidence`",
+        "- Request recorded: `false`",
+        "- Change review allowed: `false`",
+        "- Migration allowed: `false`",
+        "",
+        "## Blockers",
+        "",
+        *[f"- `{item}`" for item in blockers],
+    ])
+    return payload
+
+
 BUILDERS = {
     "registry": build_registry,
     "probes": build_probes,
@@ -567,12 +665,13 @@ BUILDERS = {
     "evals": build_evals,
     "budget": build_budget,
     "docs_radar": build_docs_radar,
+    "change_intake": build_change_intake,
 }
 
 
 def main(argv):
     if len(argv) != 4 or argv[1] not in BUILDERS:
-        print("usage: artemis_model_governance_common.py <registry|probes|migration|evals|budget|docs_radar> <artifact-root> <text|json>", file=sys.stderr)
+        print("usage: artemis_model_governance_common.py <registry|probes|migration|evals|budget|docs_radar|change_intake> <artifact-root> <text|json>", file=sys.stderr)
         return 2
     mode = argv[1]
     artifact_root = Path(argv[2])

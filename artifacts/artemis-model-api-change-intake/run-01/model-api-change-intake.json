@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T19:42:45Z",
+  "overall": "model_api_change_intake_ready",
+  "state": "ready",
+  "providers_total": 3,
+  "capability_roles_total": 5,
+  "provider_ids": [
+    "codex",
+    "claude_code",
+    "antigravity_cli"
+  ],
+  "next_cut": "TKT-117 - Model/API Review Fixture",
+  "invariants": [
+    "Model names are runtime bindings, not method authority.",
+    "Capability roles remain the routing contract.",
+    "Official docs refresh is required before default model/API changes.",
+    "Human Gate is required before changing default provider routing.",
+    "No provider auth, API call, runtime agent, token spend or remote mutation is allowed in this cut."
+  ],
+  "runtime_auth_executed": false,
+  "provider_api_calls_executed": 0,
+  "agents_started": false,
+  "provider_runtime_commands_executed": 0,
+  "tokens_spent": 0,
+  "secret_values_recorded": false,
+  "remote_state_mutated": false,
+  "change_intake_ready": true,
+  "change_intake_state": "waiting_for_docs_review_evidence",
+  "docs_radar_ready": true,
+  "docs_current_confirmed": false,
+  "official_docs_reviewed": false,
+  "request_recorded": false,
+  "change_request_valid": false,
+  "change_review_allowed": false,
+  "migration_allowed": false,
+  "default_model_change_allowed": false,
+  "runtime_execution_allowed": false,
+  "spend_authorized": false,
+  "provider_ids_allowed": [
+    "antigravity_cli",
+    "claude_code",
+    "codex"
+  ],
+  "capability_roles_allowed": [
+    "async_orchestrator",
+    "fast_code_explorer",
+    "frontier_reasoning",
+    "standard_code_worker",
+    "verifier"
+  ],
+  "request_template": {
+    "schema_version": 1,
+    "change_request_id": "",
+    "requested_by": "",
+    "requested_at": "",
+    "provider_id": "",
+    "capability_role": "",
+    "change_kind": "model_binding_update",
+    "current_binding": "",
+    "candidate_binding": "",
+    "reason": "",
+    "official_docs_review_artifacts": [],
+    "local_probe_artifact": "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
+    "operational_eval_artifact": "",
+    "budget_impact_artifact": "",
+    "rollback_plan": "",
+    "decision": "pending",
+    "decision_options": [
+      "pending",
+      "accepted_for_review",
+      "rejected",
+      "deferred"
+    ]
+  },
+  "blockers": [
+    "official_docs_review_not_recorded",
+    "operational_evals_not_executed",
+    "budget_impact_not_recorded",
+    "human_change_decision_missing"
+  ],
+  "required_evidence": [
+    "official_docs_review_artifacts",
+    "local_probe_artifact",
+    "operational_eval_artifact",
+    "budget_impact_artifact",
+    "rollback_plan",
+    "human_change_decision"
+  ],
+  "intake_rules": [
+    "A change request can enter review only after official docs review evidence exists.",
+    "Provider and capability role must exist in the model registry.",
+    "Operational eval and budget impact evidence are mandatory before migration gate approval.",
+    "This intake records intent only; it never changes defaults or runtime bindings."
+  ]
+}

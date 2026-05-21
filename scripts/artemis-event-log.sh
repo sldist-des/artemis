@@ -257,6 +257,7 @@ for events_path in [
     Path("artifacts/artemis-provider-operational-evals/run-01/events.json"),
     Path("artifacts/artemis-token-budget-policy/run-01/events.json"),
     Path("artifacts/artemis-model-api-documentation-radar/run-01/events.json"),
+    Path("artifacts/artemis-model-api-change-intake/run-01/events.json"),
     Path("artifacts/artemis-portal-local-project-connect/run-01/events.json"),
     Path("artifacts/artemis-portal-external-project-registration/run-01/events.json"),
     Path("artifacts/artemis-portal-runtime-gateway/run-01/events.json"),

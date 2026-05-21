@@ -26,6 +26,8 @@ um binding versionado que pode mudar quando houver evidencia.
   classe de tarefa.
 - `scripts/artemis-model-docs-radar.sh` registra fontes oficiais, frescor
   esperado e evidencia de revisao antes de migracoes.
+- `scripts/artemis-model-change-intake.sh` registra a solicitacao formal de
+  mudanca depois do radar, ainda sem permitir migracao.
 
 ## Invariantes
 
@@ -37,3 +39,5 @@ um binding versionado que pode mudar quando houver evidencia.
   chama APIs, gasta tokens ou altera remoto.
 - O Documentation Radar nao faz fetch externo sozinho; ele exige revisao
   explicita e artefato de evidencia antes de liberar um Change Intake.
+- O Change Intake registra intencao e evidencia exigida; ele nao altera binding
+  de modelo, default, runtime ou budget.

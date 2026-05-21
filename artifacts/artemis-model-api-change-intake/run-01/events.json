@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T19:42:45Z",
+  "source": "scripts/artemis_model_governance_common.py",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_model_api_change_intake_ready",
+      "event_type": "model_governance.change_intake_ready",
+      "generated_at": "2026-05-21T19:42:45Z",
+      "producer": {
+        "adapter": "model_governance",
+        "name": "ARTEMIS Model/API Change Intake",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-116",
+        "task_id": "tkt-116",
+        "title": "ARTEMIS Model/API Change Intake",
+        "exec_pack": "docs/exec-packs/done/TKT-116-artemis-model-api-change-intake.md",
+        "artifact_root": "artifacts/artemis-model-api-change-intake/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "ready",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "model_api_change_intake_ready",
+        "reason": "Read-only governance artifact."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-model-api-change-intake/run-01",
+        "status_path": "artifacts/artemis-model-api-change-intake/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-model-api-change-intake/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-model-api-change-intake/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-model-api-change-intake/run-01/model-api-change-intake.json",
+          "artifacts/artemis-model-api-change-intake/run-01/MODEL_API_CHANGE_INTAKE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-116"
+      },
+      "payload": {
+        "overall": "model_api_change_intake_ready",
+        "providers_total": 3,
+        "capability_roles_total": 5,
+        "runtime_auth_executed": false,
+        "provider_api_calls_executed": 0,
+        "agents_started": false,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-117 - Model/API Review Fixture"
+      }
+    }
+  ]
+}

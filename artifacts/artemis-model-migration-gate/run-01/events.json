@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T19:16:34Z",
+  "source": "scripts/artemis_model_governance_common.py",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_model_migration_gate_ready",
+      "event_type": "model_governance.migration_gate_ready",
+      "generated_at": "2026-05-21T19:16:34Z",
+      "producer": {
+        "adapter": "model_governance",
+        "name": "ARTEMIS Model Migration Gate",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-112",
+        "task_id": "tkt-112",
+        "title": "ARTEMIS Model Migration Gate",
+        "exec_pack": "docs/exec-packs/done/TKT-112-artemis-model-migration-gate.md",
+        "artifact_root": "artifacts/artemis-model-migration-gate/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "ready",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "model_migration_gate_ready",
+        "reason": "Read-only governance artifact."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-model-migration-gate/run-01",
+        "status_path": "artifacts/artemis-model-migration-gate/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-model-migration-gate/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-model-migration-gate/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-model-migration-gate/run-01/model-migration-gate.json",
+          "artifacts/artemis-model-migration-gate/run-01/MODEL_MIGRATION_GATE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-112"
+      },
+      "payload": {
+        "overall": "model_migration_gate_ready",
+        "providers_total": 3,
+        "capability_roles_total": 5,
+        "runtime_auth_executed": false,
+        "provider_api_calls_executed": 0,
+        "agents_started": false,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-113 - Provider Operational Evals"
+      }
+    }
+  ]
+}

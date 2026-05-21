@@ -12,6 +12,7 @@ ARTEMIS_WORKFLOW.md
 ARTEMIS_APPLY.md
 ARTEMIS_INTEGRATIONS.md
 .impeccable.md
+config/artemis-model-registry.json
 docs/symphony/ARTEMIS_SYMPHONY_SPEC.md
 docs/symphony/ARTEMIS_SYMPHONY_KERNEL.md
 docs/symphony/ARTEMIS_SYMPHONY_BRIDGE.md
@@ -67,6 +68,7 @@ docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_APPROVAL_PACKAGE.md
 docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_APPROVAL_INTAKE.md
 docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_APPROVED_WRITE_FIXTURE.md
 docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_WRITE_GATE.md
+docs/models/ARTEMIS_MODEL_API_GOVERNANCE.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/control-plane/ARTEMIS_CONTROL_PLANE_PROJECT_REGISTRY_HOME_STATE.md
 docs/control-plane/ARTEMIS_CONTROL_PLANE_OPERATIONAL_DECISION_HOME.md
@@ -163,6 +165,12 @@ scripts/artemis-portal-project-registry-registration-approval-package.sh
 scripts/artemis-portal-project-registry-registration-approval-intake.sh
 scripts/artemis-portal-project-registry-registration-approved-write-fixture.sh
 scripts/artemis-portal-project-registry-registration-write-gate.sh
+scripts/artemis-model-registry.sh
+scripts/artemis-provider-capability-probes.sh
+scripts/artemis-model-migration-gate.sh
+scripts/artemis-provider-operational-evals.sh
+scripts/artemis-token-budget-policy.sh
+scripts/artemis_model_governance_common.py
 scripts/artemis-portal-local-project-connect.sh
 scripts/artemis-portal-external-project-registration.sh
 scripts/artemis-portal-runtime-gateway.sh
@@ -301,6 +309,11 @@ sh -n scripts/artemis-portal-project-registry-registration-approval-package.sh
 sh -n scripts/artemis-portal-project-registry-registration-approval-intake.sh
 sh -n scripts/artemis-portal-project-registry-registration-approved-write-fixture.sh
 sh -n scripts/artemis-portal-project-registry-registration-write-gate.sh
+sh -n scripts/artemis-model-registry.sh
+sh -n scripts/artemis-provider-capability-probes.sh
+sh -n scripts/artemis-model-migration-gate.sh
+sh -n scripts/artemis-provider-operational-evals.sh
+sh -n scripts/artemis-token-budget-policy.sh
 sh -n scripts/artemis-portal-local-project-connect.sh
 sh -n scripts/artemis-portal-external-project-registration.sh
 sh -n scripts/artemis-portal-runtime-gateway.sh
@@ -1621,6 +1634,136 @@ if ! test -f /tmp/artemis-portal-project-registry-registration-write-gate/projec
 fi
 if ! test -f /tmp/artemis-portal-project-registry-registration-write-gate/PROJECT_REGISTRY_REGISTRATION_WRITE_GATE.md; then
   echo "scripts/artemis-portal-project-registry-registration-write-gate.sh did not write write gate documentation artifact" >&2
+  exit 1
+fi
+python3 -m json.tool config/artemis-model-registry.json >/tmp/artemis-model-registry-config.formatted.json
+scripts/artemis-model-registry.sh --artifact-root /tmp/artemis-model-api-governance-registry --json >/tmp/artemis-model-api-governance-registry.json
+if ! grep -q '"overall": "model_api_governance_registry_ready"' /tmp/artemis-model-api-governance-registry.json; then
+  echo "scripts/artemis-model-registry.sh did not report model_api_governance_registry_ready" >&2
+  exit 1
+fi
+if ! grep -q '"routing_unit": "capability_role"' /tmp/artemis-model-api-governance-registry.json; then
+  echo "scripts/artemis-model-registry.sh did not preserve capability-role routing" >&2
+  exit 1
+fi
+if ! grep -q '"provider_id": "codex"' /tmp/artemis-model-api-governance-registry.json; then
+  echo "scripts/artemis-model-registry.sh did not include Codex provider" >&2
+  exit 1
+fi
+if ! grep -q '"provider_id": "claude_code"' /tmp/artemis-model-api-governance-registry.json; then
+  echo "scripts/artemis-model-registry.sh did not include Claude Code provider" >&2
+  exit 1
+fi
+if ! grep -q '"provider_id": "antigravity_cli"' /tmp/artemis-model-api-governance-registry.json; then
+  echo "scripts/artemis-model-registry.sh did not include Antigravity CLI provider" >&2
+  exit 1
+fi
+if ! grep -q '"provider_api_calls_executed": 0' /tmp/artemis-model-api-governance-registry.json; then
+  echo "scripts/artemis-model-registry.sh executed provider API calls" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-model-api-governance-registry.json; then
+  echo "scripts/artemis-model-registry.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-model-api-governance-registry/MODEL_API_GOVERNANCE_REGISTRY.md; then
+  echo "scripts/artemis-model-registry.sh did not write governance registry documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-provider-capability-probes.sh --artifact-root /tmp/artemis-provider-capability-probes --json >/tmp/artemis-provider-capability-probes.json
+if ! grep -q '"overall": "provider_capability_probes_ready"' /tmp/artemis-provider-capability-probes.json; then
+  echo "scripts/artemis-provider-capability-probes.sh did not report provider_capability_probes_ready" >&2
+  exit 1
+fi
+if ! grep -q '"auth_required": false' /tmp/artemis-provider-capability-probes.json; then
+  echo "scripts/artemis-provider-capability-probes.sh required auth" >&2
+  exit 1
+fi
+if ! grep -q '"api_required": false' /tmp/artemis-provider-capability-probes.json; then
+  echo "scripts/artemis-provider-capability-probes.sh required API" >&2
+  exit 1
+fi
+if ! grep -q '"provider_api_calls_executed": 0' /tmp/artemis-provider-capability-probes.json; then
+  echo "scripts/artemis-provider-capability-probes.sh executed provider API calls" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-provider-capability-probes.json; then
+  echo "scripts/artemis-provider-capability-probes.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-provider-capability-probes/PROVIDER_CAPABILITY_PROBES.md; then
+  echo "scripts/artemis-provider-capability-probes.sh did not write provider probes documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-model-migration-gate.sh --artifact-root /tmp/artemis-model-migration-gate --json >/tmp/artemis-model-migration-gate.json
+if ! grep -q '"overall": "model_migration_gate_ready"' /tmp/artemis-model-migration-gate.json; then
+  echo "scripts/artemis-model-migration-gate.sh did not report model_migration_gate_ready" >&2
+  exit 1
+fi
+if ! grep -q '"migration_gate_state": "waiting_for_external_model_review"' /tmp/artemis-model-migration-gate.json; then
+  echo "scripts/artemis-model-migration-gate.sh did not wait for external model review" >&2
+  exit 1
+fi
+if ! grep -q '"migration_allowed": false' /tmp/artemis-model-migration-gate.json; then
+  echo "scripts/artemis-model-migration-gate.sh allowed migration" >&2
+  exit 1
+fi
+if ! grep -q '"default_model_change_allowed": false' /tmp/artemis-model-migration-gate.json; then
+  echo "scripts/artemis-model-migration-gate.sh allowed default model change" >&2
+  exit 1
+fi
+if ! grep -q '"external_docs_refresh_required": true' /tmp/artemis-model-migration-gate.json; then
+  echo "scripts/artemis-model-migration-gate.sh did not require external docs refresh" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-model-migration-gate/MODEL_MIGRATION_GATE.md; then
+  echo "scripts/artemis-model-migration-gate.sh did not write migration gate documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-provider-operational-evals.sh --artifact-root /tmp/artemis-provider-operational-evals --json >/tmp/artemis-provider-operational-evals.json
+if ! grep -q '"overall": "provider_operational_evals_ready"' /tmp/artemis-provider-operational-evals.json; then
+  echo "scripts/artemis-provider-operational-evals.sh did not report provider_operational_evals_ready" >&2
+  exit 1
+fi
+if ! grep -q '"evals_runtime_executed": false' /tmp/artemis-provider-operational-evals.json; then
+  echo "scripts/artemis-provider-operational-evals.sh executed runtime evals" >&2
+  exit 1
+fi
+if ! grep -q '"evals_total": 6' /tmp/artemis-provider-operational-evals.json; then
+  echo "scripts/artemis-provider-operational-evals.sh did not define the expected eval suite" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-provider-operational-evals.json; then
+  echo "scripts/artemis-provider-operational-evals.sh spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-provider-operational-evals/PROVIDER_OPERATIONAL_EVALS.md; then
+  echo "scripts/artemis-provider-operational-evals.sh did not write eval documentation artifact" >&2
+  exit 1
+fi
+scripts/artemis-token-budget-policy.sh --artifact-root /tmp/artemis-token-budget-policy --json >/tmp/artemis-token-budget-policy.json
+if ! grep -q '"overall": "model_token_budget_policy_ready"' /tmp/artemis-token-budget-policy.json; then
+  echo "scripts/artemis-token-budget-policy.sh did not report model_token_budget_policy_ready" >&2
+  exit 1
+fi
+if ! grep -q '"spend_authorized": false' /tmp/artemis-token-budget-policy.json; then
+  echo "scripts/artemis-token-budget-policy.sh authorized spend" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-token-budget-policy.json; then
+  echo "scripts/artemis-token-budget-policy.sh allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"hard_stop_required": true' /tmp/artemis-token-budget-policy.json; then
+  echo "scripts/artemis-token-budget-policy.sh did not require hard stop" >&2
+  exit 1
+fi
+if ! grep -q '"ledger_required_before_runtime": true' /tmp/artemis-token-budget-policy.json; then
+  echo "scripts/artemis-token-budget-policy.sh did not require ledger before runtime" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-token-budget-policy/MODEL_TOKEN_BUDGET_POLICY.md; then
+  echo "scripts/artemis-token-budget-policy.sh did not write token budget documentation artifact" >&2
   exit 1
 fi
 scripts/artemis-control-plane-operational-decision-home.sh --artifact-root /tmp/artemis-control-plane-operational-decision-home --json >/tmp/artemis-control-plane-operational-decision-home.json

@@ -2,8 +2,8 @@
 
 - Overall: `project_graph_view_ready`
 - Reason: Project Graph View renders the read-only graph in the Control Plane.
-- Nodes rendered: `40`
-- Edges rendered: `163`
+- Nodes rendered: `45`
+- Edges rendered: `184`
 - Questions rendered: `3`
 - Invariants rendered: `3`
 - Dependencies installed: `0`

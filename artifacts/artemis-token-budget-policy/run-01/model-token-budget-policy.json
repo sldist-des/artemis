@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T19:16:41Z",
+  "overall": "model_token_budget_policy_ready",
+  "state": "ready",
+  "providers_total": 3,
+  "capability_roles_total": 5,
+  "provider_ids": [
+    "codex",
+    "claude_code",
+    "antigravity_cli"
+  ],
+  "next_cut": "TKT-115 - Model/API Documentation Radar",
+  "invariants": [
+    "Model names are runtime bindings, not method authority.",
+    "Capability roles remain the routing contract.",
+    "Official docs refresh is required before default model/API changes.",
+    "Human Gate is required before changing default provider routing.",
+    "No provider auth, API call, runtime agent, token spend or remote mutation is allowed in this cut."
+  ],
+  "runtime_auth_executed": false,
+  "provider_api_calls_executed": 0,
+  "agents_started": false,
+  "provider_runtime_commands_executed": 0,
+  "tokens_spent": 0,
+  "secret_values_recorded": false,
+  "remote_state_mutated": false,
+  "token_budget_policy_ready": true,
+  "budget_classes": [
+    {
+      "budget_class": "fast_probe",
+      "max_agents": 1,
+      "max_wall_time_minutes": 20,
+      "max_total_tokens": 50000,
+      "human_gate_above_cost_units": 5
+    },
+    {
+      "budget_class": "verification_slice",
+      "max_agents": 2,
+      "max_wall_time_minutes": 45,
+      "max_total_tokens": 150000,
+      "human_gate_above_cost_units": 10
+    },
+    {
+      "budget_class": "standard_slice",
+      "max_agents": 2,
+      "max_wall_time_minutes": 90,
+      "max_total_tokens": 250000,
+      "human_gate_above_cost_units": 20
+    },
+    {
+      "budget_class": "frontier_guarded",
+      "max_agents": 2,
+      "max_wall_time_minutes": 180,
+      "max_total_tokens": 420000,
+      "human_gate_above_cost_units": 40
+    },
+    {
+      "budget_class": "supervised_async",
+      "max_agents": 4,
+      "max_wall_time_minutes": 240,
+      "max_total_tokens": 600000,
+      "human_gate_above_cost_units": 25
+    }
+  ],
+  "spend_authorized": false,
+  "runtime_execution_allowed": false,
+  "hard_stop_required": true,
+  "ledger_required_before_runtime": true,
+  "evals_total": 6,
+  "policy_rule": "Every provider-backed run must bind capability_role -> provider binding -> budget_class before runtime launch."
+}

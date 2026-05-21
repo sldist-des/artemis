@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `40`.
-- Edges: `163`.
-- Tasks: `110`.
-- Events: `93`.
+- Nodes: `45`.
+- Edges: `184`.
+- Tasks: `115`.
+- Events: `98`.
 
 ## Nos
 
@@ -50,6 +50,11 @@
 - `registry:registration_approval_intake` (project_registry_registration_approval_intake): ARTEMIS Project Registry Registration Approval Intake.
 - `registry:registration_approved_write_fixture` (project_registry_registration_approved_write_fixture): ARTEMIS Project Registry Registration Approved Write Fixture.
 - `registry:registration_write_gate` (project_registry_registration_write_gate): ARTEMIS Project Registry Registration Write Gate.
+- `model_governance:registry` (model_api_governance_registry): ARTEMIS Model/API Governance Registry.
+- `model_governance:provider_probes` (provider_capability_probes): ARTEMIS Provider Capability Probes.
+- `model_governance:migration_gate` (model_migration_gate): ARTEMIS Model Migration Gate.
+- `model_governance:operational_evals` (provider_operational_evals): ARTEMIS Provider Operational Evals.
+- `model_governance:token_budget_policy` (model_token_budget_policy): ARTEMIS Token Budget Policy.
 - `control_plane:view` (view): Control Plane.
 
 ## Arestas
@@ -196,6 +201,22 @@
 - `registry:registration_write_gate` --requires_real_write_approval--> `gate:human`.
 - `registry:registration_write_gate` --validates_write_boundary--> `validation:gate`.
 - `registry:registration_write_gate` --records_write_gate--> `event_log:timeline`.
+- `model_governance:registry` --governs_provider_bindings--> `portal:agent_registry`.
+- `model_governance:registry` --defines_capability_roles--> `orchestration:subagent_router`.
+- `model_governance:registry` --binds_budget_classes--> `cost:budget`.
+- `model_governance:registry` --feeds_provider_probes--> `model_governance:provider_probes`.
+- `model_governance:provider_probes` --feeds_migration_gate--> `model_governance:migration_gate`.
+- `model_governance:migration_gate` --requires_model_change_decision--> `gate:human`.
+- `model_governance:migration_gate` --requires_evals_before_promotion--> `model_governance:operational_evals`.
+- `model_governance:operational_evals` --declares_provider_eval_evidence--> `validation:gate`.
+- `model_governance:operational_evals` --feeds_budget_policy--> `model_governance:token_budget_policy`.
+- `model_governance:token_budget_policy` --sets_model_token_limits--> `cost:budget`.
+- `model_governance:token_budget_policy` --blocks_runtime_without_budget--> `runtime:launcher_execution_gate`.
+- `model_governance:registry` --records_model_registry--> `event_log:timeline`.
+- `model_governance:provider_probes` --records_provider_probe_state--> `event_log:timeline`.
+- `model_governance:migration_gate` --records_migration_gate--> `event_log:timeline`.
+- `model_governance:operational_evals` --records_eval_contract--> `event_log:timeline`.
+- `model_governance:token_budget_policy` --records_budget_policy--> `event_log:timeline`.
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.
@@ -217,6 +238,11 @@
 - `control_plane:view` --shows--> `registry:registration_approval_intake`.
 - `control_plane:view` --shows--> `registry:registration_approved_write_fixture`.
 - `control_plane:view` --shows--> `registry:registration_write_gate`.
+- `control_plane:view` --shows--> `model_governance:registry`.
+- `control_plane:view` --shows--> `model_governance:provider_probes`.
+- `control_plane:view` --shows--> `model_governance:migration_gate`.
+- `control_plane:view` --shows--> `model_governance:operational_evals`.
+- `control_plane:view` --shows--> `model_governance:token_budget_policy`.
 
 ## Perguntas operacionais
 
@@ -227,3 +253,4 @@
 - Qual custo ou runtime foi ativado?
 - Qual subagente usar e com qual limite?
 - O que seria escrito no Project Registry?
+- Qual modelo/API pode ser usado e com qual limite?

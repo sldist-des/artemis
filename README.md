@@ -335,6 +335,12 @@ docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_APPROVED_WRITE_FIXTURE.
 scripts/artemis-portal-project-registry-registration-approved-write-fixture.sh --artifact-root artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01
 docs/portal/ARTEMIS_PORTAL_PROJECT_REGISTRY_REGISTRATION_WRITE_GATE.md
 scripts/artemis-portal-project-registry-registration-write-gate.sh --artifact-root artifacts/artemis-portal-project-registry-registration-write-gate/run-01
+docs/models/ARTEMIS_MODEL_API_GOVERNANCE.md
+scripts/artemis-model-registry.sh --artifact-root artifacts/artemis-model-api-governance-registry/run-01
+scripts/artemis-provider-capability-probes.sh --artifact-root artifacts/artemis-provider-capability-probes/run-01
+scripts/artemis-model-migration-gate.sh --artifact-root artifacts/artemis-model-migration-gate/run-01
+scripts/artemis-provider-operational-evals.sh --artifact-root artifacts/artemis-provider-operational-evals/run-01
+scripts/artemis-token-budget-policy.sh --artifact-root artifacts/artemis-token-budget-policy/run-01
 docs/portal/ARTEMIS_PORTAL_LOCAL_PROJECT_CONNECT.md
 scripts/artemis-portal-local-project-connect.sh --project . --artifact-root artifacts/artemis-portal-local-project-connect/run-01
 docs/portal/ARTEMIS_PORTAL_EXTERNAL_PROJECT_REGISTRATION.md

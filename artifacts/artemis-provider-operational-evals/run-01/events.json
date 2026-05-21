@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T19:16:38Z",
+  "source": "scripts/artemis_model_governance_common.py",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_provider_operational_evals_ready",
+      "event_type": "model_governance.operational_evals_ready",
+      "generated_at": "2026-05-21T19:16:38Z",
+      "producer": {
+        "adapter": "model_governance",
+        "name": "ARTEMIS Provider Operational Evals",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-113",
+        "task_id": "tkt-113",
+        "title": "ARTEMIS Provider Operational Evals",
+        "exec_pack": "docs/exec-packs/done/TKT-113-artemis-provider-operational-evals.md",
+        "artifact_root": "artifacts/artemis-provider-operational-evals/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "ready",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "provider_operational_evals_ready",
+        "reason": "Read-only governance artifact."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-provider-operational-evals/run-01",
+        "status_path": "artifacts/artemis-provider-operational-evals/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-provider-operational-evals/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-provider-operational-evals/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-provider-operational-evals/run-01/provider-operational-evals.json",
+          "artifacts/artemis-provider-operational-evals/run-01/PROVIDER_OPERATIONAL_EVALS.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-113"
+      },
+      "payload": {
+        "overall": "provider_operational_evals_ready",
+        "providers_total": 3,
+        "capability_roles_total": 5,
+        "runtime_auth_executed": false,
+        "provider_api_calls_executed": 0,
+        "agents_started": false,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-114 - Token Budget Policy"
+      }
+    }
+  ]
+}

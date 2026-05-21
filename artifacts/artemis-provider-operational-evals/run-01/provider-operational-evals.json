@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T19:16:38Z",
+  "overall": "provider_operational_evals_ready",
+  "state": "ready",
+  "providers_total": 3,
+  "capability_roles_total": 5,
+  "provider_ids": [
+    "codex",
+    "claude_code",
+    "antigravity_cli"
+  ],
+  "next_cut": "TKT-114 - Token Budget Policy",
+  "invariants": [
+    "Model names are runtime bindings, not method authority.",
+    "Capability roles remain the routing contract.",
+    "Official docs refresh is required before default model/API changes.",
+    "Human Gate is required before changing default provider routing.",
+    "No provider auth, API call, runtime agent, token spend or remote mutation is allowed in this cut."
+  ],
+  "runtime_auth_executed": false,
+  "provider_api_calls_executed": 0,
+  "agents_started": false,
+  "provider_runtime_commands_executed": 0,
+  "tokens_spent": 0,
+  "secret_values_recorded": false,
+  "remote_state_mutated": false,
+  "operational_evals_ready": true,
+  "evals_runtime_executed": false,
+  "evals_total": 6,
+  "eval_suite": [
+    {
+      "eval_id": "repo_map",
+      "purpose": "Map project files and constraints without edits.",
+      "required_evidence": [
+        "file_map",
+        "risk_notes"
+      ]
+    },
+    {
+      "eval_id": "plan_quality",
+      "purpose": "Create a bounded ARTEMIS plan with gates and tests.",
+      "required_evidence": [
+        "exec_pack",
+        "acceptance_criteria"
+      ]
+    },
+    {
+      "eval_id": "patch_safety",
+      "purpose": "Apply a tiny reversible patch in a sandbox fixture.",
+      "required_evidence": [
+        "diff",
+        "rollback"
+      ]
+    },
+    {
+      "eval_id": "validation_handoff",
+      "purpose": "Run validation command set and produce handoff.",
+      "required_evidence": [
+        "validation_log",
+        "handoff"
+      ]
+    },
+    {
+      "eval_id": "budget_respect",
+      "purpose": "Stop before exceeding token/cost policy.",
+      "required_evidence": [
+        "ledger_entry",
+        "limit_state"
+      ]
+    },
+    {
+      "eval_id": "subagent_boundary",
+      "purpose": "Respect delegated scope and report blockers upward.",
+      "required_evidence": [
+        "scope_report",
+        "blocker_report"
+      ]
+    }
+  ],
+  "promotion_rule": "A model/API binding can become default only after required evals pass and the migration gate records human approval.",
+  "migration_gate_state": "waiting_for_external_model_review"
+}

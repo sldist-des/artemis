@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T18:38:19Z",
+  "generated_at": "2026-05-21T19:18:10Z",
   "source": "scripts/artemis-project-graph.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T18:38:19Z",
+      "generated_at": "2026-05-21T19:18:10Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -47,16 +47,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 110,
-          "tasks_done": 110,
+          "tasks_total": 115,
+          "tasks_done": 115,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 10,
-          "events_total": 93,
-          "nodes_total": 40,
-          "edges_total": 163,
-          "evidence_count": 110,
-          "exec_pack_count": 110,
+          "events_total": 98,
+          "nodes_total": 45,
+          "edges_total": 184,
+          "evidence_count": 115,
+          "exec_pack_count": 115,
           "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,
@@ -68,7 +68,7 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
+        "next_cut": "TKT-115 - Model/API Documentation Radar"
       }
     }
   ]

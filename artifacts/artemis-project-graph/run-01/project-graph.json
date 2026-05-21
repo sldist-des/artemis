@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T18:38:19Z",
+  "generated_at": "2026-05-21T19:18:10Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -38,19 +38,24 @@
     "project_registry_registration_approval_package": "artifacts/artemis-portal-project-registry-registration-approval-package/run-01/project-registry-registration-approval-package.json",
     "project_registry_registration_approval_intake": "artifacts/artemis-portal-project-registry-registration-approval-intake/run-01/project-registry-registration-approval-intake.json",
     "project_registry_registration_approved_write_fixture": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/project-registry-registration-approved-write-fixture.json",
-    "project_registry_registration_write_gate": "artifacts/artemis-portal-project-registry-registration-write-gate/run-01/project-registry-registration-write-gate.json"
+    "project_registry_registration_write_gate": "artifacts/artemis-portal-project-registry-registration-write-gate/run-01/project-registry-registration-write-gate.json",
+    "model_api_governance_registry": "artifacts/artemis-model-api-governance-registry/run-01/model-api-governance-registry.json",
+    "provider_capability_probes": "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
+    "model_migration_gate": "artifacts/artemis-model-migration-gate/run-01/model-migration-gate.json",
+    "provider_operational_evals": "artifacts/artemis-provider-operational-evals/run-01/provider-operational-evals.json",
+    "model_token_budget_policy": "artifacts/artemis-token-budget-policy/run-01/model-token-budget-policy.json"
   },
   "summary": {
-    "tasks_total": 110,
-    "tasks_done": 110,
+    "tasks_total": 115,
+    "tasks_done": 115,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 10,
-    "events_total": 93,
-    "nodes_total": 40,
-    "edges_total": 163,
-    "evidence_count": 110,
-    "exec_pack_count": 110,
+    "events_total": 98,
+    "nodes_total": 45,
+    "edges_total": 184,
+    "evidence_count": 115,
+    "exec_pack_count": 115,
     "validation_passed": 129,
     "validation_failed": 0,
     "validation_human_gate": 2,
@@ -63,21 +68,21 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 110
+    "done": 115
   },
   "risks": {
-    "medium": 93,
+    "medium": 96,
     "low": 4,
-    "high": 13
+    "high": 15
   },
   "top_owners": [
     [
-      "Architect",
-      31
+      "Codex executor",
+      32
     ],
     [
-      "Codex executor",
-      27
+      "Architect",
+      31
     ],
     [
       "Codex",
@@ -115,11 +120,11 @@
   "top_tags": [
     [
       "exec-pack",
-      110
+      115
     ],
     [
       "done",
-      110
+      115
     ]
   ],
   "nodes": [
@@ -134,8 +139,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 110,
-      "done": 110,
+      "count": 115,
+      "done": 115,
       "human": 0
     },
     {
@@ -145,12 +150,12 @@
       "count": 10,
       "top": [
         [
-          "Architect",
-          31
+          "Codex executor",
+          32
         ],
         [
-          "Codex executor",
-          27
+          "Architect",
+          31
         ],
         [
           "Codex",
@@ -191,14 +196,14 @@
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 110,
-      "exec_packs": 110
+      "task_evidence": 115,
+      "exec_packs": 115
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 93
+      "events": 98
     },
     {
       "id": "cost:budget",
@@ -610,6 +615,65 @@
       "commands_executed": 0,
       "tokens_spent": 0,
       "next_cut": "TKT-110 - Project Registry Registration Supervised Write Plan"
+    },
+    {
+      "id": "model_governance:registry",
+      "type": "model_api_governance_registry",
+      "label": "ARTEMIS Model/API Governance Registry",
+      "status": "model_api_governance_registry_ready",
+      "providers": 3,
+      "capability_roles": 5,
+      "runtime_auth_executed": false,
+      "provider_api_calls_executed": 0,
+      "tokens_spent": 0,
+      "next_cut": "TKT-111 - Provider Capability Probes"
+    },
+    {
+      "id": "model_governance:provider_probes",
+      "type": "provider_capability_probes",
+      "label": "ARTEMIS Provider Capability Probes",
+      "status": "provider_capability_probes_ready",
+      "probes": 3,
+      "local_version_probe_count": 3,
+      "auth_required": false,
+      "api_required": false,
+      "provider_api_calls_executed": 0,
+      "tokens_spent": 0,
+      "next_cut": "TKT-112 - Model Migration Gate"
+    },
+    {
+      "id": "model_governance:migration_gate",
+      "type": "model_migration_gate",
+      "label": "ARTEMIS Model Migration Gate",
+      "status": "model_migration_gate_ready",
+      "migration_gate_state": "waiting_for_external_model_review",
+      "migration_allowed": false,
+      "default_model_change_allowed": false,
+      "external_docs_refresh_required": true,
+      "human_decision_required": true,
+      "next_cut": "TKT-113 - Provider Operational Evals"
+    },
+    {
+      "id": "model_governance:operational_evals",
+      "type": "provider_operational_evals",
+      "label": "ARTEMIS Provider Operational Evals",
+      "status": "provider_operational_evals_ready",
+      "evals_total": 6,
+      "evals_runtime_executed": false,
+      "tokens_spent": 0,
+      "next_cut": "TKT-114 - Token Budget Policy"
+    },
+    {
+      "id": "model_governance:token_budget_policy",
+      "type": "model_token_budget_policy",
+      "label": "ARTEMIS Token Budget Policy",
+      "status": "model_token_budget_policy_ready",
+      "budget_classes": 5,
+      "spend_authorized": false,
+      "runtime_execution_allowed": false,
+      "hard_stop_required": true,
+      "ledger_required_before_runtime": true,
+      "next_cut": "TKT-115 - Model/API Documentation Radar"
     },
     {
       "id": "control_plane:view",
@@ -1330,6 +1394,86 @@
       "type": "records_write_gate"
     },
     {
+      "from": "model_governance:registry",
+      "to": "portal:agent_registry",
+      "type": "governs_provider_bindings"
+    },
+    {
+      "from": "model_governance:registry",
+      "to": "orchestration:subagent_router",
+      "type": "defines_capability_roles"
+    },
+    {
+      "from": "model_governance:registry",
+      "to": "cost:budget",
+      "type": "binds_budget_classes"
+    },
+    {
+      "from": "model_governance:registry",
+      "to": "model_governance:provider_probes",
+      "type": "feeds_provider_probes"
+    },
+    {
+      "from": "model_governance:provider_probes",
+      "to": "model_governance:migration_gate",
+      "type": "feeds_migration_gate"
+    },
+    {
+      "from": "model_governance:migration_gate",
+      "to": "gate:human",
+      "type": "requires_model_change_decision"
+    },
+    {
+      "from": "model_governance:migration_gate",
+      "to": "model_governance:operational_evals",
+      "type": "requires_evals_before_promotion"
+    },
+    {
+      "from": "model_governance:operational_evals",
+      "to": "validation:gate",
+      "type": "declares_provider_eval_evidence"
+    },
+    {
+      "from": "model_governance:operational_evals",
+      "to": "model_governance:token_budget_policy",
+      "type": "feeds_budget_policy"
+    },
+    {
+      "from": "model_governance:token_budget_policy",
+      "to": "cost:budget",
+      "type": "sets_model_token_limits"
+    },
+    {
+      "from": "model_governance:token_budget_policy",
+      "to": "runtime:launcher_execution_gate",
+      "type": "blocks_runtime_without_budget"
+    },
+    {
+      "from": "model_governance:registry",
+      "to": "event_log:timeline",
+      "type": "records_model_registry"
+    },
+    {
+      "from": "model_governance:provider_probes",
+      "to": "event_log:timeline",
+      "type": "records_provider_probe_state"
+    },
+    {
+      "from": "model_governance:migration_gate",
+      "to": "event_log:timeline",
+      "type": "records_migration_gate"
+    },
+    {
+      "from": "model_governance:operational_evals",
+      "to": "event_log:timeline",
+      "type": "records_eval_contract"
+    },
+    {
+      "from": "model_governance:token_budget_policy",
+      "to": "event_log:timeline",
+      "type": "records_budget_policy"
+    },
+    {
       "from": "control_plane:view",
       "to": "project:artemis",
       "type": "observes"
@@ -1433,6 +1577,31 @@
       "from": "control_plane:view",
       "to": "registry:registration_write_gate",
       "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "model_governance:registry",
+      "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "model_governance:provider_probes",
+      "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "model_governance:migration_gate",
+      "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "model_governance:operational_evals",
+      "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
+      "to": "model_governance:token_budget_policy",
+      "type": "shows"
     }
   ],
   "questions": [
@@ -1491,6 +1660,17 @@
         "artifact:evidence",
         "gate:human"
       ]
+    },
+    {
+      "question": "Qual modelo/API pode ser usado e com qual limite?",
+      "answer_source": [
+        "model_governance:registry",
+        "model_governance:provider_probes",
+        "model_governance:migration_gate",
+        "model_governance:operational_evals",
+        "model_governance:token_budget_policy",
+        "cost:budget"
+      ]
     }
   ],
   "invariants": [
@@ -1536,8 +1716,13 @@
     "project_registry_registration_approval_intake_input": "artemis_project_registry_registration_approval_intake",
     "project_registry_registration_approved_write_fixture_input": "artemis_project_registry_registration_approved_write_fixture",
     "project_registry_registration_write_gate_input": "artemis_project_registry_registration_write_gate",
+    "model_api_governance_registry_input": "artemis_model_api_governance_registry",
+    "provider_capability_probes_input": "artemis_provider_capability_probes",
+    "model_migration_gate_input": "artemis_model_migration_gate",
+    "provider_operational_evals_input": "artemis_provider_operational_evals",
+    "model_token_budget_policy_input": "artemis_model_token_budget_policy",
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },
-  "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
+  "next_cut": "TKT-115 - Model/API Documentation Radar"
 }

@@ -189,7 +189,7 @@ payload = {
     "missing_tokens": missing_tokens,
     "missing_files": missing_files,
     "required_tokens": required_tokens,
-    "next_cut": "NONE - ARTEMIS Portal supervised control spine complete",
+    "next_cut": graph.get("next_cut", "NONE - ARTEMIS Portal supervised control spine complete"),
 }
 
 brief_ready = (

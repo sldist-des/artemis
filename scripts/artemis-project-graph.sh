@@ -116,6 +116,8 @@ required_files = [
     Path("docs/symphony/ARTEMIS_SYMPHONY_PROJECT_GRAPH.md"),
     Path("docs/symphony/ARTEMIS_SYMPHONY_SPEC.md"),
     Path("docs/memory/ARTEMIS_MEMORY_ZONE.md"),
+    Path("docs/models/ARTEMIS_MODEL_API_GOVERNANCE.md"),
+    Path("config/artemis-model-registry.json"),
     Path("AGENTS.md"),
     Path("ARTEMIS_WORKFLOW.md"),
     tasks_path,
@@ -159,6 +161,11 @@ project_registry_approval_package_payload = read_json(Path("artifacts/artemis-po
 project_registry_approval_intake_payload = read_json(Path("artifacts/artemis-portal-project-registry-registration-approval-intake/run-01/project-registry-registration-approval-intake.json"), {"intake_contract": {}, "overall": "not_available", "next_cut": "unknown"})
 project_registry_approved_write_fixture_payload = read_json(Path("artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/project-registry-registration-approved-write-fixture.json"), {"fixture_contract": {}, "overall": "not_available", "next_cut": "unknown"})
 project_registry_write_gate_payload = read_json(Path("artifacts/artemis-portal-project-registry-registration-write-gate/run-01/project-registry-registration-write-gate.json"), {"write_gate_contract": {}, "overall": "not_available", "next_cut": "unknown"})
+model_registry_payload = read_json(Path("artifacts/artemis-model-api-governance-registry/run-01/model-api-governance-registry.json"), {"providers": [], "capability_roles": [], "overall": "not_available", "next_cut": "unknown"})
+provider_probes_payload = read_json(Path("artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json"), {"provider_probes": [], "overall": "not_available", "next_cut": "unknown"})
+model_migration_gate_payload = read_json(Path("artifacts/artemis-model-migration-gate/run-01/model-migration-gate.json"), {"overall": "not_available", "next_cut": "unknown"})
+provider_operational_evals_payload = read_json(Path("artifacts/artemis-provider-operational-evals/run-01/provider-operational-evals.json"), {"eval_suite": [], "overall": "not_available", "next_cut": "unknown"})
+token_budget_policy_payload = read_json(Path("artifacts/artemis-token-budget-policy/run-01/model-token-budget-policy.json"), {"budget_classes": [], "overall": "not_available", "next_cut": "unknown"})
 
 tasks = tasks_payload.get("tasks", [])
 events = event_log_payload.get("events", [])
@@ -641,6 +648,65 @@ nodes = [
         "next_cut": project_registry_write_gate_payload.get("next_cut", "unknown"),
     },
     {
+        "id": "model_governance:registry",
+        "type": "model_api_governance_registry",
+        "label": "ARTEMIS Model/API Governance Registry",
+        "status": model_registry_payload.get("overall", "not_available"),
+        "providers": model_registry_payload.get("providers_total", len(model_registry_payload.get("providers", []))),
+        "capability_roles": model_registry_payload.get("capability_roles_total", len(model_registry_payload.get("capability_roles", []))),
+        "runtime_auth_executed": model_registry_payload.get("runtime_auth_executed", False),
+        "provider_api_calls_executed": model_registry_payload.get("provider_api_calls_executed", 0),
+        "tokens_spent": model_registry_payload.get("tokens_spent", 0),
+        "next_cut": model_registry_payload.get("next_cut", "unknown"),
+    },
+    {
+        "id": "model_governance:provider_probes",
+        "type": "provider_capability_probes",
+        "label": "ARTEMIS Provider Capability Probes",
+        "status": provider_probes_payload.get("overall", "not_available"),
+        "probes": len(provider_probes_payload.get("provider_probes", [])),
+        "local_version_probe_count": provider_probes_payload.get("local_version_probe_count", 0),
+        "auth_required": provider_probes_payload.get("auth_required", False),
+        "api_required": provider_probes_payload.get("api_required", False),
+        "provider_api_calls_executed": provider_probes_payload.get("provider_api_calls_executed", 0),
+        "tokens_spent": provider_probes_payload.get("tokens_spent", 0),
+        "next_cut": provider_probes_payload.get("next_cut", "unknown"),
+    },
+    {
+        "id": "model_governance:migration_gate",
+        "type": "model_migration_gate",
+        "label": "ARTEMIS Model Migration Gate",
+        "status": model_migration_gate_payload.get("overall", "not_available"),
+        "migration_gate_state": model_migration_gate_payload.get("migration_gate_state", "unknown"),
+        "migration_allowed": model_migration_gate_payload.get("migration_allowed", False),
+        "default_model_change_allowed": model_migration_gate_payload.get("default_model_change_allowed", False),
+        "external_docs_refresh_required": model_migration_gate_payload.get("external_docs_refresh_required", False),
+        "human_decision_required": model_migration_gate_payload.get("human_decision_required", False),
+        "next_cut": model_migration_gate_payload.get("next_cut", "unknown"),
+    },
+    {
+        "id": "model_governance:operational_evals",
+        "type": "provider_operational_evals",
+        "label": "ARTEMIS Provider Operational Evals",
+        "status": provider_operational_evals_payload.get("overall", "not_available"),
+        "evals_total": provider_operational_evals_payload.get("evals_total", len(provider_operational_evals_payload.get("eval_suite", []))),
+        "evals_runtime_executed": provider_operational_evals_payload.get("evals_runtime_executed", False),
+        "tokens_spent": provider_operational_evals_payload.get("tokens_spent", 0),
+        "next_cut": provider_operational_evals_payload.get("next_cut", "unknown"),
+    },
+    {
+        "id": "model_governance:token_budget_policy",
+        "type": "model_token_budget_policy",
+        "label": "ARTEMIS Token Budget Policy",
+        "status": token_budget_policy_payload.get("overall", "not_available"),
+        "budget_classes": len(token_budget_policy_payload.get("budget_classes", [])),
+        "spend_authorized": token_budget_policy_payload.get("spend_authorized", False),
+        "runtime_execution_allowed": token_budget_policy_payload.get("runtime_execution_allowed", False),
+        "hard_stop_required": token_budget_policy_payload.get("hard_stop_required", False),
+        "ledger_required_before_runtime": token_budget_policy_payload.get("ledger_required_before_runtime", False),
+        "next_cut": token_budget_policy_payload.get("next_cut", "unknown"),
+    },
+    {
         "id": "control_plane:view",
         "type": "view",
         "label": "Control Plane",
@@ -791,6 +857,22 @@ edges = [
     {"from": "registry:registration_write_gate", "to": "gate:human", "type": "requires_real_write_approval"},
     {"from": "registry:registration_write_gate", "to": "validation:gate", "type": "validates_write_boundary"},
     {"from": "registry:registration_write_gate", "to": "event_log:timeline", "type": "records_write_gate"},
+    {"from": "model_governance:registry", "to": "portal:agent_registry", "type": "governs_provider_bindings"},
+    {"from": "model_governance:registry", "to": "orchestration:subagent_router", "type": "defines_capability_roles"},
+    {"from": "model_governance:registry", "to": "cost:budget", "type": "binds_budget_classes"},
+    {"from": "model_governance:registry", "to": "model_governance:provider_probes", "type": "feeds_provider_probes"},
+    {"from": "model_governance:provider_probes", "to": "model_governance:migration_gate", "type": "feeds_migration_gate"},
+    {"from": "model_governance:migration_gate", "to": "gate:human", "type": "requires_model_change_decision"},
+    {"from": "model_governance:migration_gate", "to": "model_governance:operational_evals", "type": "requires_evals_before_promotion"},
+    {"from": "model_governance:operational_evals", "to": "validation:gate", "type": "declares_provider_eval_evidence"},
+    {"from": "model_governance:operational_evals", "to": "model_governance:token_budget_policy", "type": "feeds_budget_policy"},
+    {"from": "model_governance:token_budget_policy", "to": "cost:budget", "type": "sets_model_token_limits"},
+    {"from": "model_governance:token_budget_policy", "to": "runtime:launcher_execution_gate", "type": "blocks_runtime_without_budget"},
+    {"from": "model_governance:registry", "to": "event_log:timeline", "type": "records_model_registry"},
+    {"from": "model_governance:provider_probes", "to": "event_log:timeline", "type": "records_provider_probe_state"},
+    {"from": "model_governance:migration_gate", "to": "event_log:timeline", "type": "records_migration_gate"},
+    {"from": "model_governance:operational_evals", "to": "event_log:timeline", "type": "records_eval_contract"},
+    {"from": "model_governance:token_budget_policy", "to": "event_log:timeline", "type": "records_budget_policy"},
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
@@ -812,6 +894,11 @@ edges = [
     {"from": "control_plane:view", "to": "registry:registration_approval_intake", "type": "shows"},
     {"from": "control_plane:view", "to": "registry:registration_approved_write_fixture", "type": "shows"},
     {"from": "control_plane:view", "to": "registry:registration_write_gate", "type": "shows"},
+    {"from": "control_plane:view", "to": "model_governance:registry", "type": "shows"},
+    {"from": "control_plane:view", "to": "model_governance:provider_probes", "type": "shows"},
+    {"from": "control_plane:view", "to": "model_governance:migration_gate", "type": "shows"},
+    {"from": "control_plane:view", "to": "model_governance:operational_evals", "type": "shows"},
+    {"from": "control_plane:view", "to": "model_governance:token_budget_policy", "type": "shows"},
 ]
 
 questions = [
@@ -842,6 +929,10 @@ questions = [
     {
         "question": "O que seria escrito no Project Registry?",
         "answer_source": ["registry:registration_dry_run", "registry:registration_approval_package", "registry:registration_approval_intake", "registry:registration_approved_write_fixture", "registry:registration_write_gate", "artifact:evidence", "gate:human"],
+    },
+    {
+        "question": "Qual modelo/API pode ser usado e com qual limite?",
+        "answer_source": ["model_governance:registry", "model_governance:provider_probes", "model_governance:migration_gate", "model_governance:operational_evals", "model_governance:token_budget_policy", "cost:budget"],
     },
 ]
 
@@ -912,6 +1003,11 @@ payload = {
         "project_registry_registration_approval_intake": "artifacts/artemis-portal-project-registry-registration-approval-intake/run-01/project-registry-registration-approval-intake.json",
         "project_registry_registration_approved_write_fixture": "artifacts/artemis-portal-project-registry-registration-approved-write-fixture/run-01/project-registry-registration-approved-write-fixture.json",
         "project_registry_registration_write_gate": "artifacts/artemis-portal-project-registry-registration-write-gate/run-01/project-registry-registration-write-gate.json",
+        "model_api_governance_registry": "artifacts/artemis-model-api-governance-registry/run-01/model-api-governance-registry.json",
+        "provider_capability_probes": "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
+        "model_migration_gate": "artifacts/artemis-model-migration-gate/run-01/model-migration-gate.json",
+        "provider_operational_evals": "artifacts/artemis-provider-operational-evals/run-01/provider-operational-evals.json",
+        "model_token_budget_policy": "artifacts/artemis-token-budget-policy/run-01/model-token-budget-policy.json",
     },
     "summary": summary,
     "states": dict(states),
@@ -964,10 +1060,15 @@ payload = {
         "project_registry_registration_approval_intake_input": "artemis_project_registry_registration_approval_intake",
         "project_registry_registration_approved_write_fixture_input": "artemis_project_registry_registration_approved_write_fixture",
         "project_registry_registration_write_gate_input": "artemis_project_registry_registration_write_gate",
+        "model_api_governance_registry_input": "artemis_model_api_governance_registry",
+        "provider_capability_probes_input": "artemis_provider_capability_probes",
+        "model_migration_gate_input": "artemis_model_migration_gate",
+        "provider_operational_evals_input": "artemis_provider_operational_evals",
+        "model_token_budget_policy_input": "artemis_model_token_budget_policy",
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },
-    "next_cut": "NONE - ARTEMIS Portal supervised control spine complete",
+    "next_cut": "TKT-115 - Model/API Documentation Radar",
 }
 
 write_text(artifact_root / "project-graph.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")

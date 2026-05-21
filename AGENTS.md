@@ -68,6 +68,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 - `docs/portal/ARTEMIS_PORTAL_RUNTIME_GATEWAY_SERVICE.md`
 - `docs/control-plane/ARTEMIS_CONTROL_PLANE_PROJECT_REGISTRY_HOME_STATE.md`
 - `docs/control-plane/ARTEMIS_CONTROL_PLANE_OPERATIONAL_DECISION_HOME.md`
+- `docs/models/ARTEMIS_MODEL_API_GOVERNANCE.md`
 - `docs/agents/ARTEMIS_SUBAGENT_SOCRATIC_ROUTER.md`
 - `docs/agents/ARTEMIS_SUBAGENT_CONFIG_GENERATOR.md`
 - Exec Pack ativo em `docs/exec-packs/active/`
@@ -117,6 +118,11 @@ scripts/artemis-portal-project-registry-registration-approval-package.sh --json
 scripts/artemis-portal-project-registry-registration-approval-intake.sh --json
 scripts/artemis-portal-project-registry-registration-approved-write-fixture.sh --json
 scripts/artemis-portal-project-registry-registration-write-gate.sh --json
+scripts/artemis-model-registry.sh --json
+scripts/artemis-provider-capability-probes.sh --json
+scripts/artemis-model-migration-gate.sh --json
+scripts/artemis-provider-operational-evals.sh --json
+scripts/artemis-token-budget-policy.sh --json
 scripts/artemis-portal-local-project-connect.sh --project . --json
 scripts/artemis-portal-external-project-registration.sh --json
 scripts/artemis-portal-runtime-gateway.sh --json

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T18:38:15Z",
+  "generated_at": "2026-05-21T19:18:06Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-21T18:38:15Z",
+      "generated_at": "2026-05-21T19:18:06Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -74,7 +74,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T18:38:15Z",
+      "generated_at": "2026-05-21T19:18:06Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -161,7 +161,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T18:38:15Z",
+      "generated_at": "2026-05-21T19:18:06Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -254,7 +254,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-21T18:38:15Z",
+      "generated_at": "2026-05-21T19:18:06Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -1544,7 +1544,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T18:26:48Z",
+      "generated_at": "2026-05-21T19:17:09Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -1584,16 +1584,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 109,
-          "tasks_done": 109,
+          "tasks_total": 115,
+          "tasks_done": 115,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 10,
-          "events_total": 92,
-          "nodes_total": 39,
-          "edges_total": 158,
-          "evidence_count": 109,
-          "exec_pack_count": 109,
+          "events_total": 98,
+          "nodes_total": 45,
+          "edges_total": 184,
+          "evidence_count": 115,
+          "exec_pack_count": 115,
           "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,
@@ -1605,14 +1605,14 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
+        "next_cut": "TKT-115 - Model/API Documentation Radar"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T18:26:53Z",
+      "generated_at": "2026-05-21T19:17:57Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -1652,8 +1652,8 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 39,
-          "edges_rendered": 158,
+          "nodes_rendered": 45,
+          "edges_rendered": 184,
           "questions_rendered": 3,
           "invariants_rendered": 3,
           "validation_passed": 129,
@@ -1664,7 +1664,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
+        "next_cut": "TKT-115 - Model/API Documentation Radar"
       }
     },
     {
@@ -4786,7 +4786,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T18:26:48Z",
+      "generated_at": "2026-05-21T19:17:09Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -4826,16 +4826,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 109,
-          "tasks_done": 109,
+          "tasks_total": 115,
+          "tasks_done": 115,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 10,
-          "events_total": 92,
-          "nodes_total": 39,
-          "edges_total": 158,
-          "evidence_count": 109,
-          "exec_pack_count": 109,
+          "events_total": 98,
+          "nodes_total": 45,
+          "edges_total": 184,
+          "evidence_count": 115,
+          "exec_pack_count": 115,
           "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,
@@ -4847,14 +4847,14 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
+        "next_cut": "TKT-115 - Model/API Documentation Radar"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T18:26:53Z",
+      "generated_at": "2026-05-21T19:17:57Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -4894,8 +4894,8 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 39,
-          "edges_rendered": 158,
+          "nodes_rendered": 45,
+          "edges_rendered": 184,
           "questions_rendered": 3,
           "invariants_rendered": 3,
           "validation_passed": 129,
@@ -4906,14 +4906,14 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
+        "next_cut": "TKT-115 - Model/API Documentation Radar"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T18:26:59Z",
+      "generated_at": "2026-05-21T19:17:57Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -4953,11 +4953,11 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 109,
-          "tasks_done": 109,
-          "events_total": 92,
-          "nodes_total": 39,
-          "edges_total": 158,
+          "tasks_total": 115,
+          "tasks_done": 115,
+          "events_total": 98,
+          "nodes_total": 45,
+          "edges_total": 184,
           "validation_passed": 129,
           "validation_failed": 0,
           "human_gates": 2,
@@ -4968,7 +4968,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
+        "next_cut": "TKT-115 - Model/API Documentation Radar"
       }
     },
     {
@@ -8130,6 +8130,286 @@
         "tokens_spent": 0,
         "remote_state_mutated": false,
         "next_cut": "TKT-110 - Project Registry Registration Supervised Write Plan"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_model_api_governance_registry_ready",
+      "event_type": "model_governance.registry_ready",
+      "generated_at": "2026-05-21T19:16:05Z",
+      "producer": {
+        "adapter": "model_governance",
+        "name": "ARTEMIS Model/API Governance Registry",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-110",
+        "task_id": "tkt-110",
+        "title": "ARTEMIS Model/API Governance Registry",
+        "exec_pack": "docs/exec-packs/done/TKT-110-artemis-model-api-governance-registry.md",
+        "artifact_root": "artifacts/artemis-model-api-governance-registry/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "ready",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "model_api_governance_registry_ready",
+        "reason": "Read-only governance artifact."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-model-api-governance-registry/run-01",
+        "status_path": "artifacts/artemis-model-api-governance-registry/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-model-api-governance-registry/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-model-api-governance-registry/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-model-api-governance-registry/run-01/model-api-governance-registry.json",
+          "artifacts/artemis-model-api-governance-registry/run-01/MODEL_API_GOVERNANCE_REGISTRY.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-110"
+      },
+      "payload": {
+        "overall": "model_api_governance_registry_ready",
+        "providers_total": 3,
+        "capability_roles_total": 5,
+        "runtime_auth_executed": false,
+        "provider_api_calls_executed": 0,
+        "agents_started": false,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-111 - Provider Capability Probes"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_provider_capability_probes_ready",
+      "event_type": "model_governance.capability_probes_ready",
+      "generated_at": "2026-05-21T19:16:30Z",
+      "producer": {
+        "adapter": "model_governance",
+        "name": "ARTEMIS Provider Capability Probes",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-111",
+        "task_id": "tkt-111",
+        "title": "ARTEMIS Provider Capability Probes",
+        "exec_pack": "docs/exec-packs/done/TKT-111-artemis-provider-capability-probes.md",
+        "artifact_root": "artifacts/artemis-provider-capability-probes/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "ready",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "provider_capability_probes_ready",
+        "reason": "Read-only governance artifact."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-provider-capability-probes/run-01",
+        "status_path": "artifacts/artemis-provider-capability-probes/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-provider-capability-probes/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-provider-capability-probes/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
+          "artifacts/artemis-provider-capability-probes/run-01/PROVIDER_CAPABILITY_PROBES.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-111"
+      },
+      "payload": {
+        "overall": "provider_capability_probes_ready",
+        "providers_total": 3,
+        "capability_roles_total": 5,
+        "runtime_auth_executed": false,
+        "provider_api_calls_executed": 0,
+        "agents_started": false,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-112 - Model Migration Gate"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_model_migration_gate_ready",
+      "event_type": "model_governance.migration_gate_ready",
+      "generated_at": "2026-05-21T19:16:34Z",
+      "producer": {
+        "adapter": "model_governance",
+        "name": "ARTEMIS Model Migration Gate",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-112",
+        "task_id": "tkt-112",
+        "title": "ARTEMIS Model Migration Gate",
+        "exec_pack": "docs/exec-packs/done/TKT-112-artemis-model-migration-gate.md",
+        "artifact_root": "artifacts/artemis-model-migration-gate/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "ready",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "model_migration_gate_ready",
+        "reason": "Read-only governance artifact."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-model-migration-gate/run-01",
+        "status_path": "artifacts/artemis-model-migration-gate/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-model-migration-gate/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-model-migration-gate/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-model-migration-gate/run-01/model-migration-gate.json",
+          "artifacts/artemis-model-migration-gate/run-01/MODEL_MIGRATION_GATE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-112"
+      },
+      "payload": {
+        "overall": "model_migration_gate_ready",
+        "providers_total": 3,
+        "capability_roles_total": 5,
+        "runtime_auth_executed": false,
+        "provider_api_calls_executed": 0,
+        "agents_started": false,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-113 - Provider Operational Evals"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_provider_operational_evals_ready",
+      "event_type": "model_governance.operational_evals_ready",
+      "generated_at": "2026-05-21T19:16:38Z",
+      "producer": {
+        "adapter": "model_governance",
+        "name": "ARTEMIS Provider Operational Evals",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-113",
+        "task_id": "tkt-113",
+        "title": "ARTEMIS Provider Operational Evals",
+        "exec_pack": "docs/exec-packs/done/TKT-113-artemis-provider-operational-evals.md",
+        "artifact_root": "artifacts/artemis-provider-operational-evals/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "ready",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "provider_operational_evals_ready",
+        "reason": "Read-only governance artifact."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-provider-operational-evals/run-01",
+        "status_path": "artifacts/artemis-provider-operational-evals/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-provider-operational-evals/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-provider-operational-evals/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-provider-operational-evals/run-01/provider-operational-evals.json",
+          "artifacts/artemis-provider-operational-evals/run-01/PROVIDER_OPERATIONAL_EVALS.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-113"
+      },
+      "payload": {
+        "overall": "provider_operational_evals_ready",
+        "providers_total": 3,
+        "capability_roles_total": 5,
+        "runtime_auth_executed": false,
+        "provider_api_calls_executed": 0,
+        "agents_started": false,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-114 - Token Budget Policy"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_model_token_budget_policy_ready",
+      "event_type": "model_governance.token_budget_policy_ready",
+      "generated_at": "2026-05-21T19:16:41Z",
+      "producer": {
+        "adapter": "model_governance",
+        "name": "ARTEMIS Token Budget Policy",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-114",
+        "task_id": "tkt-114",
+        "title": "ARTEMIS Token Budget Policy",
+        "exec_pack": "docs/exec-packs/done/TKT-114-artemis-token-budget-policy.md",
+        "artifact_root": "artifacts/artemis-token-budget-policy/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "ready",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "none",
+        "status": "model_token_budget_policy_ready",
+        "reason": "Read-only governance artifact."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-token-budget-policy/run-01",
+        "status_path": "artifacts/artemis-token-budget-policy/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-token-budget-policy/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-token-budget-policy/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-token-budget-policy/run-01/model-token-budget-policy.json",
+          "artifacts/artemis-token-budget-policy/run-01/MODEL_TOKEN_BUDGET_POLICY.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-114"
+      },
+      "payload": {
+        "overall": "model_token_budget_policy_ready",
+        "providers_total": 3,
+        "capability_roles_total": 5,
+        "runtime_auth_executed": false,
+        "provider_api_calls_executed": 0,
+        "agents_started": false,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-115 - Model/API Documentation Radar"
       }
     },
     {

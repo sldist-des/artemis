@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T18:38:06Z",
+  "generated_at": "2026-05-21T19:16:57Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1321,6 +1321,66 @@
       "summary": "O metodo passa a ter uma trava explicita entre \"o caminho aprovado funciona\" e",
       "exec_pack": "docs/exec-packs/done/TKT-109-artemis-project-registry-registration-write-gate.md",
       "evidence": "artifacts/artemis-portal-project-registry-registration-write-gate/run-01/project-registry-registration-write-gate.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-110",
+      "ticket": "TKT-110",
+      "title": "ARTEMIS Model/API Governance Registry",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O metodo passa a rotear por `capability_role`, nao por nome fixo de modelo.",
+      "exec_pack": "docs/exec-packs/done/TKT-110-artemis-model-api-governance-registry.md",
+      "evidence": "artifacts/artemis-model-api-governance-registry/run-01/model-api-governance-registry.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-111",
+      "ticket": "TKT-111",
+      "title": "ARTEMIS Provider Capability Probes",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O metodo consegue distinguir provider instalado, provider ausente e provider",
+      "exec_pack": "docs/exec-packs/done/TKT-111-artemis-provider-capability-probes.md",
+      "evidence": "artifacts/artemis-provider-capability-probes/run-01/provider-capability-probes.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-112",
+      "ticket": "TKT-112",
+      "title": "ARTEMIS Model Migration Gate",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "high",
+      "summary": "Atualizacoes de modelos e APIs deixam de ser alteracoes ad hoc e passam a ser",
+      "exec_pack": "docs/exec-packs/done/TKT-112-artemis-model-migration-gate.md",
+      "evidence": "artifacts/artemis-model-migration-gate/run-01/model-migration-gate.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-113",
+      "ticket": "TKT-113",
+      "title": "ARTEMIS Provider Operational Evals",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O ARTEMIS passa a validar comportamento pratico de modelo/API antes de confiar",
+      "exec_pack": "docs/exec-packs/done/TKT-113-artemis-provider-operational-evals.md",
+      "evidence": "artifacts/artemis-provider-operational-evals/run-01/provider-operational-evals.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-114",
+      "ticket": "TKT-114",
+      "title": "ARTEMIS Token Budget Policy",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "high",
+      "summary": "Toda execucao provider-backed precisa declarar capability role, binding de",
+      "exec_pack": "docs/exec-packs/done/TKT-114-artemis-token-budget-policy.md",
+      "evidence": "artifacts/artemis-token-budget-policy/run-01/model-token-budget-policy.json",
       "tags": ["exec-pack", "done"]
     }
   ]

@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T19:16:30Z",
+  "overall": "provider_capability_probes_ready",
+  "state": "ready",
+  "providers_total": 3,
+  "capability_roles_total": 5,
+  "provider_ids": [
+    "codex",
+    "claude_code",
+    "antigravity_cli"
+  ],
+  "next_cut": "TKT-112 - Model Migration Gate",
+  "invariants": [
+    "Model names are runtime bindings, not method authority.",
+    "Capability roles remain the routing contract.",
+    "Official docs refresh is required before default model/API changes.",
+    "Human Gate is required before changing default provider routing.",
+    "No provider auth, API call, runtime agent, token spend or remote mutation is allowed in this cut."
+  ],
+  "runtime_auth_executed": false,
+  "provider_api_calls_executed": 0,
+  "agents_started": false,
+  "provider_runtime_commands_executed": 0,
+  "tokens_spent": 0,
+  "secret_values_recorded": false,
+  "remote_state_mutated": false,
+  "capability_probes_ready": true,
+  "local_version_probe_count": 3,
+  "provider_probes": [
+    {
+      "provider_id": "codex",
+      "status": "detected",
+      "selected_command": "codex",
+      "version": "codex-cli 0.132.0",
+      "results": [
+        {
+          "command": "codex",
+          "installed": true,
+          "path": "/usr/bin/codex",
+          "version_probe_status": "ok",
+          "returncode": 0,
+          "version": "codex-cli 0.132.0"
+        }
+      ],
+      "supports": {
+        "subagents": true,
+        "app_server": true,
+        "tool_calls": true,
+        "local_workspace": true,
+        "mobile_control": true
+      },
+      "capability_bindings": {
+        "frontier_reasoning": "repo_default_frontier",
+        "fast_code_explorer": "repo_default_spark",
+        "standard_code_worker": "repo_default_standard",
+        "verifier": "repo_default_verifier",
+        "async_orchestrator": "codex_app_server_supervised"
+      }
+    },
+    {
+      "provider_id": "claude_code",
+      "status": "detected",
+      "selected_command": "claude",
+      "version": "2.1.139 (Claude Code)",
+      "results": [
+        {
+          "command": "claude",
+          "installed": true,
+          "path": "/root/.local/bin/claude",
+          "version_probe_status": "ok",
+          "returncode": 0,
+          "version": "2.1.139 (Claude Code)"
+        }
+      ],
+      "supports": {
+        "subagents": true,
+        "app_server": false,
+        "tool_calls": true,
+        "local_workspace": true,
+        "mobile_control": false
+      },
+      "capability_bindings": {
+        "frontier_reasoning": "provider_high_reasoning",
+        "fast_code_explorer": "provider_fast_repo_mapper",
+        "standard_code_worker": "provider_standard_code_worker",
+        "verifier": "provider_verifier",
+        "async_orchestrator": "claude_code_sdk_supervised"
+      }
+    },
+    {
+      "provider_id": "antigravity_cli",
+      "status": "detected",
+      "selected_command": "agy",
+      "version": "1.0.0",
+      "results": [
+        {
+          "command": "agy",
+          "installed": true,
+          "path": "/root/.local/bin/agy",
+          "version_probe_status": "ok",
+          "returncode": 0,
+          "version": "1.0.0"
+        },
+        {
+          "command": "antigravity",
+          "installed": false,
+          "version_probe_status": "not_found",
+          "version": ""
+        }
+      ],
+      "supports": {
+        "subagents": true,
+        "app_server": false,
+        "tool_calls": true,
+        "local_workspace": true,
+        "mobile_control": false
+      },
+      "capability_bindings": {
+        "frontier_reasoning": "provider_high_reasoning",
+        "fast_code_explorer": "provider_fast_cli",
+        "standard_code_worker": "provider_standard_cli_worker",
+        "verifier": "provider_cli_verifier",
+        "async_orchestrator": "antigravity_supervised_cli"
+      }
+    }
+  ],
+  "auth_required": false,
+  "api_required": false
+}

@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-21T19:16:05Z",
+  "overall": "model_api_governance_registry_ready",
+  "state": "ready",
+  "providers_total": 3,
+  "capability_roles_total": 5,
+  "provider_ids": [
+    "codex",
+    "claude_code",
+    "antigravity_cli"
+  ],
+  "next_cut": "TKT-111 - Provider Capability Probes",
+  "invariants": [
+    "Model names are runtime bindings, not method authority.",
+    "Capability roles remain the routing contract.",
+    "Official docs refresh is required before default model/API changes.",
+    "Human Gate is required before changing default provider routing.",
+    "No provider auth, API call, runtime agent, token spend or remote mutation is allowed in this cut."
+  ],
+  "runtime_auth_executed": false,
+  "provider_api_calls_executed": 0,
+  "agents_started": false,
+  "provider_runtime_commands_executed": 0,
+  "tokens_spent": 0,
+  "secret_values_recorded": false,
+  "remote_state_mutated": false,
+  "registry_ready": true,
+  "registry_config": "config/artemis-model-registry.json",
+  "policy": {
+    "routing_unit": "capability_role",
+    "model_names_are_runtime_bindings": true,
+    "external_docs_required_before_model_change": true,
+    "human_gate_required_for_default_change": true,
+    "runtime_api_calls_allowed": false,
+    "secret_values_allowed": false
+  },
+  "capability_roles": [
+    {
+      "role_id": "frontier_reasoning",
+      "purpose": "Architecture, critical planning, high-risk code review and final synthesis.",
+      "required_traits": [
+        "deep_reasoning",
+        "large_context",
+        "tool_discipline",
+        "handoff_quality"
+      ],
+      "default_budget_class": "frontier_guarded"
+    },
+    {
+      "role_id": "fast_code_explorer",
+      "purpose": "Repository mapping, file discovery, symbol search and short synthesis.",
+      "required_traits": [
+        "low_latency",
+        "repo_navigation",
+        "low_cost"
+      ],
+      "default_budget_class": "fast_probe"
+    },
+    {
+      "role_id": "standard_code_worker",
+      "purpose": "Bounded implementation slices with tests and handoff evidence.",
+      "required_traits": [
+        "code_editing",
+        "test_awareness",
+        "medium_context"
+      ],
+      "default_budget_class": "standard_slice"
+    },
+    {
+      "role_id": "verifier",
+      "purpose": "Independent validation, regression checks, evidence review and done criteria.",
+      "required_traits": [
+        "skeptical_review",
+        "test_focus",
+        "low_mutation"
+      ],
+      "default_budget_class": "verification_slice"
+    },
+    {
+      "role_id": "async_orchestrator",
+      "purpose": "Supervised long-running orchestration only after explicit human and budget gates.",
+      "required_traits": [
+        "session_state",
+        "structured_handoff",
+        "interruptibility"
+      ],
+      "default_budget_class": "supervised_async"
+    }
+  ],
+  "providers": [
+    {
+      "provider_id": "codex",
+      "label": "Codex",
+      "runtime_kind": "cli_and_app_server",
+      "auth_surface": "codex_account_or_app_server_session",
+      "status": "active",
+      "local_probe": {
+        "command_candidates": [
+          "codex"
+        ],
+        "version_args": [
+          "--version"
+        ]
+      },
+      "capability_bindings": {
+        "frontier_reasoning": "repo_default_frontier",
+        "fast_code_explorer": "repo_default_spark",
+        "standard_code_worker": "repo_default_standard",
+        "verifier": "repo_default_verifier",
+        "async_orchestrator": "codex_app_server_supervised"
+      },
+      "supports": {
+        "subagents": true,
+        "app_server": true,
+        "tool_calls": true,
+        "local_workspace": true,
+        "mobile_control": true
+      },
+      "refresh_sources": [
+        "official_openai_codex_docs",
+        "repo_AGENTS_model_contract",
+        "local_codex_cli_version"
+      ]
+    },
+    {
+      "provider_id": "claude_code",
+      "label": "Claude Code",
+      "runtime_kind": "cli_and_sdk",
+      "auth_surface": "claude_code_account_or_sdk_credentials",
+      "status": "active",
+      "local_probe": {
+        "command_candidates": [
+          "claude"
+        ],
+        "version_args": [
+          "--version"
+        ]
+      },
+      "capability_bindings": {
+        "frontier_reasoning": "provider_high_reasoning",
+        "fast_code_explorer": "provider_fast_repo_mapper",
+        "standard_code_worker": "provider_standard_code_worker",
+        "verifier": "provider_verifier",
+        "async_orchestrator": "claude_code_sdk_supervised"
+      },
+      "supports": {
+        "subagents": true,
+        "app_server": false,
+        "tool_calls": true,
+        "local_workspace": true,
+        "mobile_control": false
+      },
+      "refresh_sources": [
+        "official_claude_code_docs",
+        "local_claude_cli_version",
+        "provider_sdk_release_notes"
+      ]
+    },
+    {
+      "provider_id": "antigravity_cli",
+      "label": "Antigravity CLI",
+      "runtime_kind": "cli",
+      "auth_surface": "antigravity_account_or_local_cli_auth",
+      "status": "experimental",
+      "local_probe": {
+        "command_candidates": [
+          "agy",
+          "antigravity"
+        ],
+        "version_args": [
+          "--version"
+        ]
+      },
+      "capability_bindings": {
+        "frontier_reasoning": "provider_high_reasoning",
+        "fast_code_explorer": "provider_fast_cli",
+        "standard_code_worker": "provider_standard_cli_worker",
+        "verifier": "provider_cli_verifier",
+        "async_orchestrator": "antigravity_supervised_cli"
+      },
+      "supports": {
+        "subagents": true,
+        "app_server": false,
+        "tool_calls": true,
+        "local_workspace": true,
+        "mobile_control": false
+      },
+      "refresh_sources": [
+        "official_antigravity_cli_docs",
+        "local_antigravity_cli_version"
+      ]
+    }
+  ],
+  "migration_rules": [
+    "Do not change a default model binding from release notes alone.",
+    "Refresh official provider docs before any model/API migration decision.",
+    "Run local capability probes before changing provider routing.",
+    "Run ARTEMIS operational evals before making a model the default.",
+    "Record cost and token budget impact before allowing runtime spend.",
+    "Keep deprecated models usable only as explicit fallback until removal is approved."
+  ],
+  "missing_files": []
+}

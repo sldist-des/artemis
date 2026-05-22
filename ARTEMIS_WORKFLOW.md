@@ -188,6 +188,11 @@ termos, premissas, autoridade, evidencia ou conclusao puderem ficar ambiguos.
 O agente deve separar observacao, inferencia, decisao, compromisso e execucao.
 Perguntas ao humano devem ser curtas, com opcoes distintas e impacto pratico.
 
+Quando a ambiguidade ja estiver identificada, aplique
+`scripts/artemis-socratic-application-gate.sh --json` para escolher uma rota
+unica antes de agir: seguir com suposicao explicita, buscar evidencia local,
+perguntar ao humano, dividir o corte ou bloquear ate existir autoridade.
+
 Antes de iniciar qualquer runner, simule a decisao de dispatch:
 
 ```bash

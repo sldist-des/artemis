@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-22T14:45:33Z",
+  "generated_at": "2026-05-22T16:07:21Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1453,6 +1453,18 @@
       "summary": "O metodo passa a ter um gate de clareza antes de plano, delegacao, runtime,",
       "exec_pack": "docs/exec-packs/done/TKT-120-artemis-socratic-logic.md",
       "evidence": "artifacts/artemis-socratic-logic/run-01/socratic-logic.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-121",
+      "ticket": "TKT-121",
+      "title": "ARTEMIS Socratic Application Gate",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "medium",
+      "summary": "O metodo deve declarar quando o agente pode seguir com suposicao explicita,",
+      "exec_pack": "docs/exec-packs/done/TKT-121-artemis-socratic-application-gate.md",
+      "evidence": "artifacts/artemis-socratic-application-gate/run-01/socratic-application-gate.json",
       "tags": ["exec-pack", "done"]
     }
   ]

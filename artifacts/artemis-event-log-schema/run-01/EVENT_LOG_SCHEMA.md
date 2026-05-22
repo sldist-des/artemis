@@ -1,7 +1,7 @@
 # ARTEMIS EVENT LOG SCHEMA
 
 - Schema version: 1
-- Events: 104
+- Events: 105
 - Source: scripts/artemis-event-log.sh
 
 ## Event Types
@@ -52,6 +52,7 @@
 - `adapter.contract_recorded`: `evt_tkt-056_project_brief` -> done
 - `adapter.contract_recorded`: `evt_tkt-057_guided_collaboration` -> done
 - `method.socratic_logic_ready`: `evt_artemis_socratic_logic_ready` -> done
+- `method.socratic_application_gate_ready`: `evt_artemis_socratic_application_gate_ready` -> done
 - `adapter.contract_recorded`: `evt_tkt-058_agent_launch_contract` -> done
 - `runner.attempt_planned`: `evt_tkt-059_agent_runtime_dry_run` -> done
 - `approval.requested`: `evt_tkt-060_agent_runtime_approval_gate` -> human_gate

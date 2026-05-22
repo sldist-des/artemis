@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-22T14:45:42Z",
+  "generated_at": "2026-05-22T16:07:31Z",
   "source": "scripts/artemis-project-graph.sh",
   "mode": "read_only_project_graph_contract",
   "overall": "project_graph_ready",
@@ -33,6 +33,7 @@
     "portal_validation_evidence_surface": "artifacts/artemis-portal-validation-evidence-surface/run-01/validation-evidence-surface-contract.json",
     "portal_human_acceptance_surface": "artifacts/artemis-portal-human-acceptance-surface/run-01/human-acceptance-surface-contract.json",
     "socratic_logic": "artifacts/artemis-socratic-logic/run-01/socratic-logic.json",
+    "socratic_application_gate": "artifacts/artemis-socratic-application-gate/run-01/socratic-application-gate.json",
     "subagent_socratic_router": "artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json",
     "subagent_config_generator": "artifacts/artemis-subagent-config-generator/run-01/subagent-config-generator.json",
     "project_registry_registration_dry_run": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/project-registry-registration-dry-run.json",
@@ -52,16 +53,16 @@
     "model_api_review_decision_intake": "artifacts/artemis-model-api-review-decision-intake/run-01/model-api-review-decision-intake.json"
   },
   "summary": {
-    "tasks_total": 121,
-    "tasks_done": 121,
+    "tasks_total": 122,
+    "tasks_done": 122,
     "tasks_human": 0,
     "tasks_ready": 0,
     "owners_total": 10,
-    "events_total": 104,
-    "nodes_total": 51,
-    "edges_total": 223,
-    "evidence_count": 121,
-    "exec_pack_count": 121,
+    "events_total": 105,
+    "nodes_total": 52,
+    "edges_total": 229,
+    "evidence_count": 122,
+    "exec_pack_count": 122,
     "validation_passed": 129,
     "validation_failed": 0,
     "validation_human_gate": 2,
@@ -74,17 +75,17 @@
     "runner_auto_execution_allowed": false
   },
   "states": {
-    "done": 121
+    "done": 122
   },
   "risks": {
-    "medium": 97,
+    "medium": 98,
     "low": 4,
     "high": 20
   },
   "top_owners": [
     [
       "Codex executor",
-      38
+      39
     ],
     [
       "Architect",
@@ -126,11 +127,11 @@
   "top_tags": [
     [
       "exec-pack",
-      121
+      122
     ],
     [
       "done",
-      121
+      122
     ]
   ],
   "nodes": [
@@ -145,8 +146,8 @@
       "id": "task_set:exec_packs",
       "type": "task_set",
       "label": "Exec Packs",
-      "count": 121,
-      "done": 121,
+      "count": 122,
+      "done": 122,
       "human": 0
     },
     {
@@ -157,7 +158,7 @@
       "top": [
         [
           "Codex executor",
-          38
+          39
         ],
         [
           "Architect",
@@ -211,17 +212,29 @@
       "next_cut": "TKT-121 - Socratic Logic Application Gate"
     },
     {
+      "id": "method:socratic_application_gate",
+      "type": "method_gate",
+      "label": "ARTEMIS Socratic Application Gate",
+      "status": "socratic_application_gate_ready",
+      "application_stages": 6,
+      "routes": 5,
+      "contexts": 6,
+      "runtime_execution_allowed": false,
+      "tokens_spent": 0,
+      "next_cut": "TKT-122 - Socratic Gate Control Plane View"
+    },
+    {
       "id": "artifact:evidence",
       "type": "artifact_set",
       "label": "Artifacts and evidence",
-      "task_evidence": 121,
-      "exec_packs": 121
+      "task_evidence": 122,
+      "exec_packs": 122
     },
     {
       "id": "event_log:timeline",
       "type": "event_log",
       "label": "Canonical event timeline",
-      "events": 104
+      "events": 105
     },
     {
       "id": "cost:budget",
@@ -808,6 +821,31 @@
       "from": "project:artemis",
       "to": "method:socratic_logic",
       "type": "clarifies"
+    },
+    {
+      "from": "method:socratic_logic",
+      "to": "method:socratic_application_gate",
+      "type": "feeds"
+    },
+    {
+      "from": "method:socratic_application_gate",
+      "to": "task_set:exec_packs",
+      "type": "chooses_route_before_work"
+    },
+    {
+      "from": "method:socratic_application_gate",
+      "to": "gate:human",
+      "type": "asks_bounded_question_when_needed"
+    },
+    {
+      "from": "method:socratic_application_gate",
+      "to": "validation:gate",
+      "type": "routes_to_local_evidence"
+    },
+    {
+      "from": "method:socratic_application_gate",
+      "to": "event_log:timeline",
+      "type": "records_application_gate"
     },
     {
       "from": "method:socratic_logic",
@@ -1746,6 +1784,11 @@
     },
     {
       "from": "control_plane:view",
+      "to": "method:socratic_application_gate",
+      "type": "shows"
+    },
+    {
+      "from": "control_plane:view",
       "to": "portal:auth_plan",
       "type": "shows"
     },
@@ -1913,6 +1956,7 @@
       "answer_source": [
         "memory:zone",
         "method:socratic_logic",
+        "method:socratic_application_gate",
         "artifact:evidence"
       ]
     },
@@ -1920,6 +1964,7 @@
       "question": "O que esta ambiguo, distinto ou pendente de decisao?",
       "answer_source": [
         "method:socratic_logic",
+        "method:socratic_application_gate",
         "gate:human",
         "validation:gate"
       ]
@@ -2005,6 +2050,7 @@
     "portal_validation_evidence_surface_input": "artemis_portal_validation_evidence_surface",
     "portal_human_acceptance_surface_input": "artemis_portal_human_acceptance_surface",
     "socratic_logic_input": "artemis_socratic_logic",
+    "socratic_application_gate_input": "artemis_socratic_application_gate",
     "subagent_router_input": "artemis_subagent_socratic_router",
     "subagent_config_generator_input": "artemis_subagent_config_generator",
     "project_registry_registration_dry_run_input": "artemis_project_registry_registration_dry_run",
@@ -2025,5 +2071,5 @@
     "control_plane_role": "observational_graph_consumer",
     "runtime_policy": "no_runtime_without_explicit_human_gate"
   },
-  "next_cut": "TKT-121 - Socratic Logic Application Gate"
+  "next_cut": "TKT-122 - Socratic Gate Control Plane View"
 }

@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-22T16:07:10Z",
+  "source": "scripts/artemis-socratic-application-gate.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_artemis_socratic_application_gate_ready",
+      "event_type": "method.socratic_application_gate_ready",
+      "generated_at": "2026-05-22T16:07:10Z",
+      "producer": {
+        "adapter": "method",
+        "name": "scripts/artemis-socratic-application-gate.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-121",
+        "task_id": "tkt-121",
+        "title": "ARTEMIS Socratic Application Gate",
+        "exec_pack": "docs/exec-packs/done/TKT-121-artemis-socratic-application-gate.md",
+        "artifact_root": "artifacts/artemis-socratic-application-gate/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "method",
+        "status": "socratic_application_gate_ready",
+        "reason": "Socratic application routes declared."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-socratic-application-gate/run-01",
+        "status_path": "artifacts/artemis-socratic-application-gate/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-socratic-application-gate/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-socratic-application-gate/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-socratic-application-gate/run-01/socratic-application-gate.json",
+          "artifacts/artemis-socratic-application-gate/run-01/SOCRATIC_APPLICATION_GATE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-121"
+      },
+      "payload": {
+        "overall": "socratic_application_gate_ready",
+        "socratic_logic_status": "artemis_socratic_logic_ready",
+        "application_stages": 6,
+        "routes": 5,
+        "contexts": 6,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-122 - Socratic Gate Control Plane View"
+      }
+    }
+  ]
+}

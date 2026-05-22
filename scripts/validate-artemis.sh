@@ -73,6 +73,7 @@ docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/control-plane/ARTEMIS_CONTROL_PLANE_PROJECT_REGISTRY_HOME_STATE.md
 docs/control-plane/ARTEMIS_CONTROL_PLANE_OPERATIONAL_DECISION_HOME.md
 docs/principles/ARTEMIS_SOCRATIC_LOGIC.md
+docs/principles/ARTEMIS_SOCRATIC_APPLICATION_GATE.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
 docs/agents/CAPABILITY_REGISTRY.md
@@ -129,6 +130,7 @@ scripts/artemis-project-graph-view.sh
 scripts/artemis-project-brief.sh
 scripts/artemis-guided-collaboration.sh
 scripts/artemis-socratic-logic.sh
+scripts/artemis-socratic-application-gate.sh
 scripts/artemis-agent-launch-contract.sh
 scripts/artemis-agent-runtime-dry-run.sh
 scripts/artemis-agent-runtime-approval-gate.sh
@@ -279,6 +281,7 @@ sh -n scripts/artemis-project-graph-view.sh
 sh -n scripts/artemis-project-brief.sh
 sh -n scripts/artemis-guided-collaboration.sh
 sh -n scripts/artemis-socratic-logic.sh
+sh -n scripts/artemis-socratic-application-gate.sh
 sh -n scripts/artemis-agent-launch-contract.sh
 sh -n scripts/artemis-agent-runtime-dry-run.sh
 sh -n scripts/artemis-agent-runtime-approval-gate.sh
@@ -3402,6 +3405,55 @@ if ! test -f /tmp/artemis-socratic-logic/SOCRATIC_LOGIC.md; then
 fi
 if ! grep -q '"event_type": "method.socratic_logic_ready"' /tmp/artemis-socratic-logic/events.json; then
   echo "scripts/artemis-socratic-logic.sh did not emit canonical events" >&2
+  exit 1
+fi
+scripts/artemis-socratic-application-gate.sh --artifact-root /tmp/artemis-socratic-application-gate --json >/tmp/artemis-socratic-application-gate.json
+if ! grep -q '"overall": "socratic_application_gate_ready"' /tmp/artemis-socratic-application-gate.json; then
+  echo "scripts/artemis-socratic-application-gate.sh did not report socratic_application_gate_ready" >&2
+  exit 1
+fi
+if ! grep -q '"application_gate_ready": true' /tmp/artemis-socratic-application-gate.json; then
+  echo "scripts/artemis-socratic-application-gate.sh did not mark application gate ready" >&2
+  exit 1
+fi
+if ! grep -q '"route_id": "ask_human_one_question"' /tmp/artemis-socratic-application-gate.json; then
+  echo "scripts/artemis-socratic-application-gate.sh did not include human question route" >&2
+  exit 1
+fi
+if ! grep -q '"route_id": "gather_local_evidence"' /tmp/artemis-socratic-application-gate.json; then
+  echo "scripts/artemis-socratic-application-gate.sh did not include local evidence route" >&2
+  exit 1
+fi
+if ! grep -q '"route_id": "block_until_authority_exists"' /tmp/artemis-socratic-application-gate.json; then
+  echo "scripts/artemis-socratic-application-gate.sh did not include authority block route" >&2
+  exit 1
+fi
+if ! grep -q '"id": "human_question_is_bounded"' /tmp/artemis-socratic-application-gate.json; then
+  echo "scripts/artemis-socratic-application-gate.sh did not validate bounded human questions" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-socratic-application-gate.json; then
+  echo "ARTEMIS Socratic Application Gate allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": false' /tmp/artemis-socratic-application-gate.json; then
+  echo "ARTEMIS Socratic Application Gate started agents" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-socratic-application-gate.json; then
+  echo "ARTEMIS Socratic Application Gate spent tokens" >&2
+  exit 1
+fi
+if ! grep -q '"remote_state_mutated": false' /tmp/artemis-socratic-application-gate.json; then
+  echo "ARTEMIS Socratic Application Gate mutated remote state" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-socratic-application-gate/SOCRATIC_APPLICATION_GATE.md; then
+  echo "scripts/artemis-socratic-application-gate.sh did not write application gate documentation artifact" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "method.socratic_application_gate_ready"' /tmp/artemis-socratic-application-gate/events.json; then
+  echo "scripts/artemis-socratic-application-gate.sh did not emit canonical events" >&2
   exit 1
 fi
 scripts/artemis-agent-launch-contract.sh --artifact-root /tmp/artemis-agent-launch-contract --json >/tmp/artemis-agent-launch-contract.json

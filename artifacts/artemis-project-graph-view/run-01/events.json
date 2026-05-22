@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-22T14:47:09Z",
+  "generated_at": "2026-05-22T16:07:36Z",
   "source": "scripts/artemis-project-graph-view.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-22T14:47:09Z",
+      "generated_at": "2026-05-22T16:07:36Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -47,8 +47,8 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 51,
-          "edges_rendered": 223,
+          "nodes_rendered": 52,
+          "edges_rendered": 229,
           "questions_rendered": 3,
           "invariants_rendered": 3,
           "validation_passed": 129,
@@ -59,7 +59,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-121 - Socratic Logic Application Gate"
+        "next_cut": "TKT-122 - Socratic Gate Control Plane View"
       }
     }
   ]

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-22T16:07:10Z",
+  "source": "scripts/artemis-socratic-application-gate.sh",
+  "mode": "gate_only_no_runtime",
+  "overall": "socratic_application_gate_ready",
+  "ticket": "TKT-121",
+  "artifact_root": "artifacts/artemis-socratic-application-gate/run-01",
+  "socratic_logic_input": "artifacts/artemis-socratic-logic/run-01/socratic-logic.json",
+  "socratic_logic_status": "artemis_socratic_logic_ready",
+  "application_gate_ready": true,
+  "application_stages": [
+    {
+      "id": "classify_task",
+      "question": "Esta tarefa e observacao, inferencia, decisao, compromisso ou execucao?",
+      "route_if_unclear": "ask_human_or_block"
+    },
+    {
+      "id": "define_terms",
+      "question": "Algum termo central pode significar duas coisas diferentes neste contexto?",
+      "route_if_unclear": "ask_human"
+    },
+    {
+      "id": "separate_authority",
+      "question": "A autoridade vem de Git, Exec Pack, artifact, Validation Gate, Human Gate ou documento canonico?",
+      "route_if_unclear": "ask_human"
+    },
+    {
+      "id": "bind_evidence",
+      "question": "Qual comando, artifact ou fonte local prova a conclusao?",
+      "route_if_unclear": "gather_evidence"
+    },
+    {
+      "id": "choose_route",
+      "question": "O proximo passo pode seguir localmente, precisa de evidencia, precisa do humano, deve dividir corte ou deve bloquear?",
+      "route_if_unclear": "block_until_route_is_distinct"
+    },
+    {
+      "id": "record_handoff",
+      "question": "O handoff declara estado, evidencia, limites e proximo corte sem misturar conclusao com desejo?",
+      "route_if_unclear": "rewrite_handoff"
+    }
+  ],
+  "routes": [
+    {
+      "route_id": "proceed_with_explicit_assumption",
+      "meaning": "Prosseguir sem perguntar quando a acao e local, reversivel, coberta por contrato existente e a suposicao nao muda risco.",
+      "requires": [
+        "assumption recorded",
+        "evidence command or artifact named",
+        "no authority conflict",
+        "no secrets, auth, remote, production or spend"
+      ]
+    },
+    {
+      "route_id": "gather_local_evidence",
+      "meaning": "Rodar verificacao local segura quando a duvida pode ser resolvida por arquivo, script, artifact ou teste.",
+      "requires": [
+        "safe command",
+        "expected output",
+        "failure interpretation",
+        "no remote write"
+      ]
+    },
+    {
+      "route_id": "ask_human_one_question",
+      "meaning": "Perguntar ao humano quando a resposta muda escopo, risco, autoridade, custo, permissao, producao ou resultado.",
+      "requires": [
+        "one clear question",
+        "two or three distinct options",
+        "impact per option",
+        "recommended option only when evidence supports it"
+      ]
+    },
+    {
+      "route_id": "split_into_next_cut",
+      "meaning": "Separar a tarefa quando ha mais de um resultado final, mais de um escritor, ou validacoes independentes demais.",
+      "requires": [
+        "current cut objective kept single",
+        "new ticket name",
+        "blocked dependency recorded"
+      ]
+    },
+    {
+      "route_id": "block_until_authority_exists",
+      "meaning": "Bloquear quando ha category error, autoridade ausente, conclusao sem evidencia ou acao sensivel sem Human Gate.",
+      "requires": [
+        "blocking reason",
+        "missing authority or evidence",
+        "safe reentry condition"
+      ]
+    }
+  ],
+  "application_matrix": [
+    {
+      "context": "planning",
+      "apply_before": "exec pack or implementation plan is treated as approved",
+      "default_route": "gather_local_evidence",
+      "human_gate_when": "scope, owner, risk or acceptance criteria are ambiguous"
+    },
+    {
+      "context": "code_edit",
+      "apply_before": "editing files when term, authority or validation may change implementation",
+      "default_route": "proceed_with_explicit_assumption",
+      "human_gate_when": "edit would touch secrets, auth, production, remote state or broad permissions"
+    },
+    {
+      "context": "delegation",
+      "apply_before": "launching Codex, Claude Code or Antigravity subagent lanes",
+      "default_route": "ask_human_one_question",
+      "human_gate_when": "inherited scope, token budget, async runtime or write ownership is unclear"
+    },
+    {
+      "context": "runtime",
+      "apply_before": "starting app-server, provider runtime, bridge, queue or daemon",
+      "default_route": "block_until_authority_exists",
+      "human_gate_when": "always for real auth, cost, remote state or production-adjacent runtime"
+    },
+    {
+      "context": "review",
+      "apply_before": "declaring done, accepting review or closing a validation loop",
+      "default_route": "gather_local_evidence",
+      "human_gate_when": "technical validation is being confused with human acceptance"
+    },
+    {
+      "context": "handoff",
+      "apply_before": "final response, Done Ledger or transfer to another agent",
+      "default_route": "proceed_with_explicit_assumption",
+      "human_gate_when": "next action needs authority that the current agent does not have"
+    }
+  ],
+  "human_question_template": {
+    "shape": "one_question_with_distinct_options",
+    "question": "Qual caminho devo seguir para resolver a ambiguidade X?",
+    "options": [
+      {
+        "id": "recommended",
+        "label": "Usar evidencia local",
+        "impact": "mais rapido, sem autoridade nova, depende de validacao local"
+      },
+      {
+        "id": "human_decision",
+        "label": "Decisao humana",
+        "impact": "mais seguro quando muda escopo, custo, permissao ou aceite"
+      },
+      {
+        "id": "split_cut",
+        "label": "Separar corte",
+        "impact": "reduz risco quando ha dois resultados ou dependencias distintas"
+      }
+    ],
+    "must_not_include": [
+      "opcoes sobrepostas",
+      "pergunta dupla",
+      "termo indefinido",
+      "recomendacao sem evidencia"
+    ]
+  },
+  "sample_evaluations": [
+    {
+      "input": "Atualizar documento local com contrato ja aprovado.",
+      "detected_ambiguity": [],
+      "route": "proceed_with_explicit_assumption",
+      "reason": "local, reversivel, coberto por contrato e validavel por diff."
+    },
+    {
+      "input": "Conectar provider real com auth e gastar tokens para rodar agentes.",
+      "detected_ambiguity": [
+        "authority",
+        "budget",
+        "runtime"
+      ],
+      "route": "ask_human_one_question",
+      "reason": "auth, custo e runtime real exigem decisao humana explicita."
+    },
+    {
+      "input": "Declarar tarefa pronta porque o painel parece verde.",
+      "detected_ambiguity": [
+        "category_error",
+        "conclusion_without_evidence"
+      ],
+      "route": "gather_local_evidence",
+      "reason": "painel e observacional; conclusao precisa de artifact, gate ou comando."
+    }
+  ],
+  "runtime_execution_allowed": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "missing_files": [],
+  "checks": [
+    {
+      "id": "socratic_logic_available",
+      "passed": true,
+      "evidence": "artifacts/artemis-socratic-logic/run-01/socratic-logic.json"
+    },
+    {
+      "id": "application_stages_declared",
+      "passed": true,
+      "evidence": "6 stages"
+    },
+    {
+      "id": "routes_are_distinct",
+      "passed": true,
+      "evidence": "5 routes"
+    },
+    {
+      "id": "contexts_are_mapped",
+      "passed": true,
+      "evidence": "6 contexts"
+    },
+    {
+      "id": "human_question_is_bounded",
+      "passed": true,
+      "evidence": "3 options"
+    },
+    {
+      "id": "no_runtime_side_effects",
+      "passed": true,
+      "evidence": "gate-only artifact"
+    }
+  ],
+  "next_cut": "TKT-122 - Socratic Gate Control Plane View"
+}

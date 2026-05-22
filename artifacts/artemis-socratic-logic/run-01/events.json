@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-22T14:45:21Z",
+  "source": "scripts/artemis-socratic-logic.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_artemis_socratic_logic_ready",
+      "event_type": "method.socratic_logic_ready",
+      "generated_at": "2026-05-22T14:45:21Z",
+      "producer": {
+        "adapter": "method",
+        "name": "scripts/artemis-socratic-logic.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-120",
+        "task_id": "tkt-120",
+        "title": "ARTEMIS Socratic Logic",
+        "exec_pack": "docs/exec-packs/done/TKT-120-artemis-socratic-logic.md",
+        "artifact_root": "artifacts/artemis-socratic-logic/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "method",
+        "status": "artemis_socratic_logic_ready",
+        "reason": "Socratic logic contract declared."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-socratic-logic/run-01",
+        "status_path": "artifacts/artemis-socratic-logic/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-socratic-logic/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-socratic-logic/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-socratic-logic/run-01/socratic-logic.json",
+          "artifacts/artemis-socratic-logic/run-01/SOCRATIC_LOGIC.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-120"
+      },
+      "payload": {
+        "overall": "artemis_socratic_logic_ready",
+        "clarity_questions": 9,
+        "ambiguity_gates": 5,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-121 - Socratic Logic Application Gate"
+      }
+    }
+  ]
+}

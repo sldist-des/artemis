@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `50`.
-- Edges: `216`.
-- Tasks: `120`.
-- Events: `103`.
+- Nodes: `51`.
+- Edges: `223`.
+- Tasks: `121`.
+- Events: `104`.
 
 ## Nos
 
@@ -17,6 +17,7 @@
 - `gate:human` (gate): Human Gates.
 - `validation:gate` (validation): Validation Gate.
 - `memory:zone` (memory): Human-AI Memory Zone.
+- `method:socratic_logic` (method_gate): ARTEMIS Socratic Logic.
 - `artifact:evidence` (artifact_set): Artifacts and evidence.
 - `event_log:timeline` (event_log): Canonical event timeline.
 - `cost:budget` (cost_guard): Token and runtime budget.
@@ -71,6 +72,12 @@
 - `validation:gate` --verifies--> `task_set:exec_packs`.
 - `memory:zone` --provides_context--> `task_set:exec_packs`.
 - `memory:zone` --summarizes_history--> `event_log:timeline`.
+- `project:artemis` --clarifies--> `method:socratic_logic`.
+- `method:socratic_logic` --clarifies_intent--> `task_set:exec_packs`.
+- `method:socratic_logic` --shapes_questions--> `gate:human`.
+- `method:socratic_logic` --requires_evidence_for_conclusions--> `validation:gate`.
+- `method:socratic_logic` --governs_ambiguity_before_delegation--> `orchestration:subagent_router`.
+- `method:socratic_logic` --records_socratic_logic--> `event_log:timeline`.
 - `event_log:timeline` --records--> `artifact:evidence`.
 - `cost:budget` --constrains_runtime--> `agent_roles:owners`.
 - `runtime:dry_run` --declares_budget--> `cost:budget`.
@@ -252,6 +259,7 @@
 - `control_plane:view` --observes--> `project:artemis`.
 - `control_plane:view` --shows--> `validation:gate`.
 - `control_plane:view` --shows--> `memory:zone`.
+- `control_plane:view` --shows--> `method:socratic_logic`.
 - `control_plane:view` --shows--> `portal:auth_plan`.
 - `control_plane:view` --shows--> `portal:credential_vault`.
 - `control_plane:view` --shows--> `portal:agent_registry`.
@@ -287,6 +295,7 @@
 - Quem esta responsavel pelo que?
 - O que depende de decisao humana?
 - Qual contexto e seguro para agentes?
+- O que esta ambiguo, distinto ou pendente de decisao?
 - Qual custo ou runtime foi ativado?
 - Qual subagente usar e com qual limite?
 - O que seria escrito no Project Registry?

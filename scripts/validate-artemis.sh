@@ -72,6 +72,7 @@ docs/models/ARTEMIS_MODEL_API_GOVERNANCE.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/control-plane/ARTEMIS_CONTROL_PLANE_PROJECT_REGISTRY_HOME_STATE.md
 docs/control-plane/ARTEMIS_CONTROL_PLANE_OPERATIONAL_DECISION_HOME.md
+docs/principles/ARTEMIS_SOCRATIC_LOGIC.md
 docs/invariants/core.md
 docs/agents/AGENT_REGISTRY.md
 docs/agents/CAPABILITY_REGISTRY.md
@@ -127,6 +128,7 @@ scripts/artemis-project-graph.sh
 scripts/artemis-project-graph-view.sh
 scripts/artemis-project-brief.sh
 scripts/artemis-guided-collaboration.sh
+scripts/artemis-socratic-logic.sh
 scripts/artemis-agent-launch-contract.sh
 scripts/artemis-agent-runtime-dry-run.sh
 scripts/artemis-agent-runtime-approval-gate.sh
@@ -276,6 +278,7 @@ sh -n scripts/artemis-project-graph.sh
 sh -n scripts/artemis-project-graph-view.sh
 sh -n scripts/artemis-project-brief.sh
 sh -n scripts/artemis-guided-collaboration.sh
+sh -n scripts/artemis-socratic-logic.sh
 sh -n scripts/artemis-agent-launch-contract.sh
 sh -n scripts/artemis-agent-runtime-dry-run.sh
 sh -n scripts/artemis-agent-runtime-approval-gate.sh
@@ -3354,6 +3357,51 @@ if ! grep -q '"commands_executed": 0' /tmp/artemis-guided-collaboration.json; th
 fi
 if ! grep -q '"event_type": "adapter.contract_recorded"' /tmp/artemis-guided-collaboration/events.json; then
   echo "scripts/artemis-guided-collaboration.sh did not emit canonical events" >&2
+  exit 1
+fi
+scripts/artemis-socratic-logic.sh --artifact-root /tmp/artemis-socratic-logic --json >/tmp/artemis-socratic-logic.json
+if ! grep -q '"overall": "artemis_socratic_logic_ready"' /tmp/artemis-socratic-logic.json; then
+  echo "scripts/artemis-socratic-logic.sh did not report artemis_socratic_logic_ready" >&2
+  exit 1
+fi
+if ! grep -q '"socratic_logic_ready": true' /tmp/artemis-socratic-logic.json; then
+  echo "scripts/artemis-socratic-logic.sh did not mark socratic logic ready" >&2
+  exit 1
+fi
+if ! grep -q '"id": "terms"' /tmp/artemis-socratic-logic.json; then
+  echo "scripts/artemis-socratic-logic.sh did not include terms question" >&2
+  exit 1
+fi
+if ! grep -q '"id": "distinctions"' /tmp/artemis-socratic-logic.json; then
+  echo "scripts/artemis-socratic-logic.sh did not include distinctions question" >&2
+  exit 1
+fi
+if ! grep -q '"gate_id": "category_error"' /tmp/artemis-socratic-logic.json; then
+  echo "scripts/artemis-socratic-logic.sh did not include category error ambiguity gate" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-socratic-logic.json; then
+  echo "ARTEMIS Socratic Logic allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"agents_started": false' /tmp/artemis-socratic-logic.json; then
+  echo "ARTEMIS Socratic Logic started agents" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-socratic-logic.json; then
+  echo "ARTEMIS Socratic Logic spent tokens" >&2
+  exit 1
+fi
+if ! grep -q '"remote_state_mutated": false' /tmp/artemis-socratic-logic.json; then
+  echo "ARTEMIS Socratic Logic mutated remote state" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-socratic-logic/SOCRATIC_LOGIC.md; then
+  echo "scripts/artemis-socratic-logic.sh did not write socratic logic documentation artifact" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "method.socratic_logic_ready"' /tmp/artemis-socratic-logic/events.json; then
+  echo "scripts/artemis-socratic-logic.sh did not emit canonical events" >&2
   exit 1
 fi
 scripts/artemis-agent-launch-contract.sh --artifact-root /tmp/artemis-agent-launch-contract --json >/tmp/artemis-agent-launch-contract.json

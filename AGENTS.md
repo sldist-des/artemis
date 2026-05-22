@@ -69,6 +69,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 - `docs/control-plane/ARTEMIS_CONTROL_PLANE_PROJECT_REGISTRY_HOME_STATE.md`
 - `docs/control-plane/ARTEMIS_CONTROL_PLANE_OPERATIONAL_DECISION_HOME.md`
 - `docs/models/ARTEMIS_MODEL_API_GOVERNANCE.md`
+- `docs/principles/ARTEMIS_SOCRATIC_LOGIC.md`
 - `docs/agents/ARTEMIS_SUBAGENT_SOCRATIC_ROUTER.md`
 - `docs/agents/ARTEMIS_SUBAGENT_CONFIG_GENERATOR.md`
 - Exec Pack ativo em `docs/exec-packs/active/`
@@ -79,6 +80,7 @@ Este arquivo e a fonte canonica de orientacao operacional para agentes.
 scripts/validate-artemis.sh
 scripts/artemis-integrations.sh --project . --agent both
 scripts/artemis-guided-collaboration.sh --json
+scripts/artemis-socratic-logic.sh --json
 scripts/artemis-agent-launch-contract.sh --json
 scripts/artemis-agent-runtime-dry-run.sh --json
 scripts/artemis-agent-runtime-approval-gate.sh --json

@@ -212,6 +212,7 @@ for events_path in [
     Path("artifacts/artemis-project-graph-view/run-01/events.json"),
     Path("artifacts/artemis-project-brief/run-01/events.json"),
     Path("artifacts/artemis-guided-collaboration/run-01/events.json"),
+    Path("artifacts/artemis-socratic-logic/run-01/events.json"),
     Path("artifacts/artemis-agent-launch-contract/run-01/events.json"),
     Path("artifacts/artemis-agent-runtime-dry-run/run-01/events.json"),
     Path("artifacts/artemis-agent-runtime-approval-gate/run-01/events.json"),

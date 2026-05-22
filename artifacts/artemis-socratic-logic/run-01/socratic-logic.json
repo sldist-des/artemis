@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-22T14:45:21Z",
+  "source": "scripts/artemis-socratic-logic.sh",
+  "mode": "contract_only_no_runtime",
+  "overall": "artemis_socratic_logic_ready",
+  "ticket": "TKT-120",
+  "artifact_root": "artifacts/artemis-socratic-logic/run-01",
+  "socratic_logic_ready": true,
+  "clarity_questions": [
+    {
+      "id": "objective",
+      "question": "Qual resultado unico esta sendo buscado agora?",
+      "blocks_if_empty": true,
+      "required_answer_shape": "uma frase com artefato ou estado final verificavel"
+    },
+    {
+      "id": "terms",
+      "question": "Quais termos podem ter mais de um sentido nesta tarefa?",
+      "blocks_if_undefined_terms": true,
+      "required_answer_shape": "termo, significado usado e significado rejeitado"
+    },
+    {
+      "id": "premises",
+      "question": "Quais premissas estamos usando como verdade e de onde elas vieram?",
+      "blocks_if_unverifiable": true,
+      "required_answer_shape": "premissa, fonte local ou decisao humana"
+    },
+    {
+      "id": "distinctions",
+      "question": "O que precisa ficar distinto para nao misturar conceitos?",
+      "blocks_if_collapsed": true,
+      "required_answer_shape": "par conceitual e criterio de separacao"
+    },
+    {
+      "id": "authority",
+      "question": "Quem ou qual artefato tem autoridade para decidir isto?",
+      "blocks_if_missing_authority": true,
+      "required_answer_shape": "git, Exec Pack, Validation Gate, Human Gate ou documento canonico"
+    },
+    {
+      "id": "evidence",
+      "question": "Que evidencia provaria que a conclusao e correta?",
+      "blocks_if_empty": true,
+      "required_answer_shape": "comando, arquivo, gate ou artifact verificavel"
+    },
+    {
+      "id": "counterexample",
+      "question": "Que fato faria a conclusao cair?",
+      "blocks_if_unanswered_for_high_risk": true,
+      "required_answer_shape": "contraexemplo, risco ou condicao de reversao"
+    },
+    {
+      "id": "decision",
+      "question": "A proxima acao e observacao, inferencia, decisao ou execucao?",
+      "blocks_if_category_mixed": true,
+      "required_answer_shape": "uma categoria e o motivo"
+    },
+    {
+      "id": "handoff",
+      "question": "Como a resposta sera entregue sem deixar ambiguidade para humano ou agente?",
+      "blocks_if_empty": true,
+      "required_answer_shape": "estado, evidencia, limites e proximo passo"
+    }
+  ],
+  "argument_contract": {
+    "minimum_fields": [
+      "objective",
+      "defined_terms",
+      "premises",
+      "distinctions",
+      "evidence",
+      "inference",
+      "conclusion",
+      "confidence",
+      "counterexample",
+      "next_action"
+    ],
+    "conclusion_ladder": [
+      {
+        "level": "observation",
+        "meaning": "fato visto em arquivo, comando ou artifact"
+      },
+      {
+        "level": "inference",
+        "meaning": "interpretacao derivada de observacoes"
+      },
+      {
+        "level": "decision",
+        "meaning": "escolha com autoridade explicita"
+      },
+      {
+        "level": "commitment",
+        "meaning": "promessa operacional registrada em Exec Pack ou gate"
+      },
+      {
+        "level": "execution",
+        "meaning": "mudanca aplicada e validada"
+      }
+    ],
+    "forbidden_collapses": [
+      "tratar hipotese como fato",
+      "tratar preferencia como requisito",
+      "tratar fixture como autorizacao real",
+      "tratar template pendente como decisao",
+      "tratar validacao tecnica como aceite humano",
+      "tratar painel observacional como fonte canonica"
+    ]
+  },
+  "question_policy": {
+    "ask_when": [
+      "a resposta muda escopo, risco, custo, autoridade ou arquivo de escrita",
+      "um termo central tem dois sentidos plausiveis",
+      "a conclusao depende de informacao que nao existe no repositorio",
+      "a acao pode tocar secrets, auth, remoto, producao, dinheiro ou permissao ampla"
+    ],
+    "do_not_ask_when": [
+      "a proxima acao e local, reversivel e coberta por contrato existente",
+      "a lacuna pode virar suposicao declarada sem afetar risco",
+      "a validacao local pode resolver a duvida com comando seguro"
+    ],
+    "question_shape": {
+      "one_question_default": true,
+      "must_include": [
+        "termo_ambiguo",
+        "opcoes_distintas",
+        "impacto_da_escolha"
+      ],
+      "max_options": 3,
+      "avoid": [
+        "perguntas vagas",
+        "multiplas perguntas numa frase",
+        "opcoes sobrepostas"
+      ]
+    }
+  },
+  "ambiguity_gates": [
+    {
+      "gate_id": "undefined_term",
+      "detects": "termo central sem definicao operacional",
+      "action": "definir termo ou perguntar ao humano antes de executar"
+    },
+    {
+      "gate_id": "mixed_authority",
+      "detects": "duas fontes de autoridade competindo",
+      "action": "priorizar hierarquia ARTEMIS e registrar a decisao"
+    },
+    {
+      "gate_id": "multi_outcome",
+      "detects": "mais de um resultado final no mesmo corte",
+      "action": "dividir em cortes ou escolher um objetivo unico"
+    },
+    {
+      "gate_id": "conclusion_without_evidence",
+      "detects": "conclusao sem comando, artifact, fonte ou decisao",
+      "action": "bloquear handoff ate existir evidencia"
+    },
+    {
+      "gate_id": "category_error",
+      "detects": "observacao, inferencia, decisao e execucao misturadas",
+      "action": "reescrever no conclusion_ladder antes de prosseguir"
+    }
+  ],
+  "agent_rules": [
+    {
+      "agent": "codex",
+      "rule": "Use a logica socratica antes de editar codigo quando escopo, termo, autoridade ou validacao puderem mudar o resultado."
+    },
+    {
+      "agent": "claude_code",
+      "rule": "Use perguntas curtas para mapear diretorio, linguagem, limites e handoff antes de tarefas medias."
+    },
+    {
+      "agent": "antigravity_cli",
+      "rule": "Exija escopo, permissao herdada, budget e Human Gate antes de qualquer lane assincrona ou ampla."
+    },
+    {
+      "agent": "human_collaborator",
+      "rule": "Receba perguntas com opcoes distintas e impacto claro, sem jargao tecnico quando uma decisao humana for necessaria."
+    }
+  ],
+  "runtime_execution_allowed": false,
+  "agents_started": false,
+  "commands_executed": 0,
+  "tokens_spent": 0,
+  "remote_state_mutated": false,
+  "missing_files": [],
+  "checks": [
+    {
+      "id": "clarity_questions_declared",
+      "passed": true,
+      "evidence": "9 questions"
+    },
+    {
+      "id": "argument_contract_declared",
+      "passed": true,
+      "evidence": "argument minimum fields"
+    },
+    {
+      "id": "ambiguity_gates_declared",
+      "passed": true,
+      "evidence": "5 gates"
+    },
+    {
+      "id": "question_policy_declared",
+      "passed": true,
+      "evidence": "one-question default"
+    },
+    {
+      "id": "no_runtime_side_effects",
+      "passed": true,
+      "evidence": "contract-only artifact"
+    }
+  ],
+  "next_cut": "TKT-121 - Socratic Logic Application Gate"
+}

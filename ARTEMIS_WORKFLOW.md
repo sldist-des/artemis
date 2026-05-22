@@ -179,6 +179,15 @@ scripts/artemis-tasks.sh --output control-plane/tasks.json
 
 Esse script le Exec Packs de `docs/exec-packs/active/` e `docs/exec-packs/done/` sem alterar os arquivos de origem. O Control Plane pode consumir `control-plane/tasks.json` quando servido por HTTP e deve tratar qualquer movimento manual como visualizacao temporaria.
 
+## Logica Socratica
+
+Antes de plano, delegacao, runtime, review, decisao humana ou handoff, use
+`scripts/artemis-socratic-logic.sh --json` como contrato de clareza quando
+termos, premissas, autoridade, evidencia ou conclusao puderem ficar ambiguos.
+
+O agente deve separar observacao, inferencia, decisao, compromisso e execucao.
+Perguntas ao humano devem ser curtas, com opcoes distintas e impacto pratico.
+
 Antes de iniciar qualquer runner, simule a decisao de dispatch:
 
 ```bash

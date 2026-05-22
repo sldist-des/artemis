@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T20:04:11Z",
+  "generated_at": "2026-05-22T14:45:42Z",
   "source": "scripts/artemis-project-graph.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T20:04:11Z",
+      "generated_at": "2026-05-22T14:45:42Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -47,16 +47,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 120,
-          "tasks_done": 120,
+          "tasks_total": 121,
+          "tasks_done": 121,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 10,
-          "events_total": 103,
-          "nodes_total": 50,
-          "edges_total": 216,
-          "evidence_count": 120,
-          "exec_pack_count": 120,
+          "events_total": 104,
+          "nodes_total": 51,
+          "edges_total": 223,
+          "evidence_count": 121,
+          "exec_pack_count": 121,
           "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,
@@ -68,7 +68,7 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-120 - Model/API Review Decision Fixture"
+        "next_cut": "TKT-121 - Socratic Logic Application Gate"
       }
     }
   ]

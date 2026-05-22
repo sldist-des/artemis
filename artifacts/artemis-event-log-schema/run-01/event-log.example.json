@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T20:04:07Z",
+  "generated_at": "2026-05-22T14:45:33Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-21T20:04:07Z",
+      "generated_at": "2026-05-22T14:45:33Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -74,7 +74,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T20:04:07Z",
+      "generated_at": "2026-05-22T14:45:33Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -161,7 +161,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T20:04:07Z",
+      "generated_at": "2026-05-22T14:45:33Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -254,7 +254,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-21T20:04:07Z",
+      "generated_at": "2026-05-22T14:45:33Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -1544,7 +1544,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T19:58:36Z",
+      "generated_at": "2026-05-21T20:04:11Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -1584,16 +1584,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 119,
-          "tasks_done": 119,
+          "tasks_total": 120,
+          "tasks_done": 120,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 10,
-          "events_total": 102,
-          "nodes_total": 49,
-          "edges_total": 210,
-          "evidence_count": 119,
-          "exec_pack_count": 119,
+          "events_total": 103,
+          "nodes_total": 50,
+          "edges_total": 216,
+          "evidence_count": 120,
+          "exec_pack_count": 120,
           "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,
@@ -1605,14 +1605,14 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-119 - Model/API Review Decision Intake"
+        "next_cut": "TKT-120 - Model/API Review Decision Fixture"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T19:58:39Z",
+      "generated_at": "2026-05-21T20:04:15Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -1652,8 +1652,8 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 49,
-          "edges_rendered": 210,
+          "nodes_rendered": 50,
+          "edges_rendered": 216,
           "questions_rendered": 3,
           "invariants_rendered": 3,
           "validation_passed": 129,
@@ -1664,7 +1664,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-119 - Model/API Review Decision Intake"
+        "next_cut": "TKT-120 - Model/API Review Decision Fixture"
       }
     },
     {
@@ -4786,7 +4786,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T19:58:36Z",
+      "generated_at": "2026-05-21T20:04:11Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -4826,16 +4826,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 119,
-          "tasks_done": 119,
+          "tasks_total": 120,
+          "tasks_done": 120,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 10,
-          "events_total": 102,
-          "nodes_total": 49,
-          "edges_total": 210,
-          "evidence_count": 119,
-          "exec_pack_count": 119,
+          "events_total": 103,
+          "nodes_total": 50,
+          "edges_total": 216,
+          "evidence_count": 120,
+          "exec_pack_count": 120,
           "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,
@@ -4847,14 +4847,14 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-119 - Model/API Review Decision Intake"
+        "next_cut": "TKT-120 - Model/API Review Decision Fixture"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T19:58:39Z",
+      "generated_at": "2026-05-21T20:04:15Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -4894,8 +4894,8 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 49,
-          "edges_rendered": 210,
+          "nodes_rendered": 50,
+          "edges_rendered": 216,
           "questions_rendered": 3,
           "invariants_rendered": 3,
           "validation_passed": 129,
@@ -4906,14 +4906,14 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-119 - Model/API Review Decision Intake"
+        "next_cut": "TKT-120 - Model/API Review Decision Fixture"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-21T19:58:42Z",
+      "generated_at": "2026-05-21T20:04:18Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -4953,11 +4953,11 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 119,
-          "tasks_done": 119,
-          "events_total": 102,
-          "nodes_total": 49,
-          "edges_total": 210,
+          "tasks_total": 120,
+          "tasks_done": 120,
+          "events_total": 103,
+          "nodes_total": 50,
+          "edges_total": 216,
           "validation_passed": 129,
           "validation_failed": 0,
           "human_gates": 2,
@@ -4968,7 +4968,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-119 - Model/API Review Decision Intake"
+        "next_cut": "TKT-120 - Model/API Review Decision Fixture"
       }
     },
     {
@@ -5034,6 +5034,62 @@
           "source_of_truth_changed": false
         },
         "next_cut": "NONE - ARTEMIS Portal supervised control spine complete"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_artemis_socratic_logic_ready",
+      "event_type": "method.socratic_logic_ready",
+      "generated_at": "2026-05-22T14:45:21Z",
+      "producer": {
+        "adapter": "method",
+        "name": "scripts/artemis-socratic-logic.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-120",
+        "task_id": "tkt-120",
+        "title": "ARTEMIS Socratic Logic",
+        "exec_pack": "docs/exec-packs/done/TKT-120-artemis-socratic-logic.md",
+        "artifact_root": "artifacts/artemis-socratic-logic/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "method",
+        "status": "artemis_socratic_logic_ready",
+        "reason": "Socratic logic contract declared."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-socratic-logic/run-01",
+        "status_path": "artifacts/artemis-socratic-logic/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-socratic-logic/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-socratic-logic/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-socratic-logic/run-01/socratic-logic.json",
+          "artifacts/artemis-socratic-logic/run-01/SOCRATIC_LOGIC.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-120"
+      },
+      "payload": {
+        "overall": "artemis_socratic_logic_ready",
+        "clarity_questions": 9,
+        "ambiguity_gates": 5,
+        "runtime_execution_allowed": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-121 - Socratic Logic Application Gate"
       }
     },
     {

@@ -154,6 +154,7 @@ portal_agent_conversation_payload = read_json(Path("artifacts/artemis-portal-age
 portal_task_control_payload = read_json(Path("artifacts/artemis-portal-task-control-surface/run-01/task-control-surface-contract.json"), {"task_control_contract": {}, "sample_task_control": {}, "overall": "not_available"})
 portal_validation_evidence_payload = read_json(Path("artifacts/artemis-portal-validation-evidence-surface/run-01/validation-evidence-surface-contract.json"), {"validation_evidence_contract": {}, "sample_evidence": {}, "overall": "not_available"})
 portal_human_acceptance_payload = read_json(Path("artifacts/artemis-portal-human-acceptance-surface/run-01/human-acceptance-surface-contract.json"), {"human_acceptance_contract": {}, "sample_acceptance": {}, "overall": "not_available"})
+socratic_logic_payload = read_json(Path("artifacts/artemis-socratic-logic/run-01/socratic-logic.json"), {"clarity_questions": [], "ambiguity_gates": [], "argument_contract": {}, "overall": "not_available", "next_cut": "unknown"})
 subagent_router_payload = read_json(Path("artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json"), {"provider_profiles": [], "socratic_gate": [], "safety_invariants": {}, "overall": "not_available", "next_cut": "unknown"})
 subagent_config_generator_payload = read_json(Path("artifacts/artemis-subagent-config-generator/run-01/subagent-config-generator.json"), {"preview_files": [], "install_gate": {}, "safety_invariants": {}, "overall": "not_available", "next_cut": "unknown"})
 project_registry_dry_run_payload = read_json(Path("artifacts/artemis-portal-project-registry-registration-dry-run/run-01/project-registry-registration-dry-run.json"), {"dry_run_contract": {}, "overall": "not_available", "next_cut": "unknown"})
@@ -227,6 +228,18 @@ nodes = [
         "label": "Human-AI Memory Zone",
         "zones": memory_summary.get("zones_total", len(memory_payload.get("zones", []))),
         "source_of_truth": "markdown_git_artifacts",
+    },
+    {
+        "id": "method:socratic_logic",
+        "type": "method_gate",
+        "label": "ARTEMIS Socratic Logic",
+        "status": socratic_logic_payload.get("overall", "not_available"),
+        "clarity_questions": len(socratic_logic_payload.get("clarity_questions", [])),
+        "ambiguity_gates": len(socratic_logic_payload.get("ambiguity_gates", [])),
+        "argument_fields": len(socratic_logic_payload.get("argument_contract", {}).get("minimum_fields", [])),
+        "runtime_execution_allowed": socratic_logic_payload.get("runtime_execution_allowed", False),
+        "tokens_spent": socratic_logic_payload.get("tokens_spent", 0),
+        "next_cut": socratic_logic_payload.get("next_cut", "unknown"),
     },
     {
         "id": "artifact:evidence",
@@ -795,6 +808,12 @@ edges = [
     {"from": "validation:gate", "to": "task_set:exec_packs", "type": "verifies"},
     {"from": "memory:zone", "to": "task_set:exec_packs", "type": "provides_context"},
     {"from": "memory:zone", "to": "event_log:timeline", "type": "summarizes_history"},
+    {"from": "project:artemis", "to": "method:socratic_logic", "type": "clarifies"},
+    {"from": "method:socratic_logic", "to": "task_set:exec_packs", "type": "clarifies_intent"},
+    {"from": "method:socratic_logic", "to": "gate:human", "type": "shapes_questions"},
+    {"from": "method:socratic_logic", "to": "validation:gate", "type": "requires_evidence_for_conclusions"},
+    {"from": "method:socratic_logic", "to": "orchestration:subagent_router", "type": "governs_ambiguity_before_delegation"},
+    {"from": "method:socratic_logic", "to": "event_log:timeline", "type": "records_socratic_logic"},
     {"from": "event_log:timeline", "to": "artifact:evidence", "type": "records"},
     {"from": "cost:budget", "to": "agent_roles:owners", "type": "constrains_runtime"},
     {"from": "runtime:dry_run", "to": "cost:budget", "type": "declares_budget"},
@@ -976,6 +995,7 @@ edges = [
     {"from": "control_plane:view", "to": "project:artemis", "type": "observes"},
     {"from": "control_plane:view", "to": "validation:gate", "type": "shows"},
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
+    {"from": "control_plane:view", "to": "method:socratic_logic", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:auth_plan", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:credential_vault", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:agent_registry", "type": "shows"},
@@ -1021,7 +1041,11 @@ questions = [
     },
     {
         "question": "Qual contexto e seguro para agentes?",
-        "answer_source": ["memory:zone", "artifact:evidence"],
+        "answer_source": ["memory:zone", "method:socratic_logic", "artifact:evidence"],
+    },
+    {
+        "question": "O que esta ambiguo, distinto ou pendente de decisao?",
+        "answer_source": ["method:socratic_logic", "gate:human", "validation:gate"],
     },
     {
         "question": "Qual custo ou runtime foi ativado?",
@@ -1101,6 +1125,7 @@ payload = {
         "portal_task_control_surface": "artifacts/artemis-portal-task-control-surface/run-01/task-control-surface-contract.json",
         "portal_validation_evidence_surface": "artifacts/artemis-portal-validation-evidence-surface/run-01/validation-evidence-surface-contract.json",
         "portal_human_acceptance_surface": "artifacts/artemis-portal-human-acceptance-surface/run-01/human-acceptance-surface-contract.json",
+        "socratic_logic": "artifacts/artemis-socratic-logic/run-01/socratic-logic.json",
         "subagent_socratic_router": "artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json",
         "subagent_config_generator": "artifacts/artemis-subagent-config-generator/run-01/subagent-config-generator.json",
         "project_registry_registration_dry_run": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/project-registry-registration-dry-run.json",
@@ -1163,6 +1188,7 @@ payload = {
         "portal_task_control_surface_input": "artemis_portal_task_control_surface",
         "portal_validation_evidence_surface_input": "artemis_portal_validation_evidence_surface",
         "portal_human_acceptance_surface_input": "artemis_portal_human_acceptance_surface",
+        "socratic_logic_input": "artemis_socratic_logic",
         "subagent_router_input": "artemis_subagent_socratic_router",
         "subagent_config_generator_input": "artemis_subagent_config_generator",
         "project_registry_registration_dry_run_input": "artemis_project_registry_registration_dry_run",
@@ -1183,7 +1209,7 @@ payload = {
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },
-    "next_cut": "TKT-120 - Model/API Review Decision Fixture",
+    "next_cut": "TKT-121 - Socratic Logic Application Gate",
 }
 
 write_text(artifact_root / "project-graph.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")

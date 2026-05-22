@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T20:04:15Z",
+  "generated_at": "2026-05-22T14:47:09Z",
   "source": "scripts/artemis-project-graph-view.sh",
   "mode": "read_only_control_plane_view_contract",
   "overall": "project_graph_view_ready",
@@ -11,8 +11,8 @@
     "control_plane": "control-plane/index.html"
   },
   "summary": {
-    "nodes_rendered": 50,
-    "edges_rendered": 216,
+    "nodes_rendered": 51,
+    "edges_rendered": 223,
     "questions_rendered": 3,
     "invariants_rendered": 3,
     "validation_passed": 129,
@@ -39,5 +39,5 @@
     "No graph database, canvas engine, frontend framework or runtime is introduced.",
     "Human Gates, Validation Gate, Event Log, Exec Packs and git remain authoritative."
   ],
-  "next_cut": "TKT-120 - Model/API Review Decision Fixture"
+  "next_cut": "TKT-121 - Socratic Logic Application Gate"
 }

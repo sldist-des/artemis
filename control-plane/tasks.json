@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-21T20:03:58Z",
+  "generated_at": "2026-05-22T14:45:33Z",
   "source": "scripts/artemis-tasks.sh",
   "tasks": [
     {
@@ -1441,6 +1441,18 @@
       "summary": "O metodo mostra quais campos uma decisao real precisa conter e classifica o",
       "exec_pack": "docs/exec-packs/done/TKT-119-artemis-model-api-review-decision-intake.md",
       "evidence": "artifacts/artemis-model-api-review-decision-intake/run-01/model-api-review-decision-intake.json",
+      "tags": ["exec-pack", "done"]
+    },
+    {
+      "id": "tkt-120",
+      "ticket": "TKT-120",
+      "title": "ARTEMIS Socratic Logic",
+      "state": "done",
+      "owner": "Codex executor",
+      "risk": "high",
+      "summary": "O metodo passa a ter um gate de clareza antes de plano, delegacao, runtime,",
+      "exec_pack": "docs/exec-packs/done/TKT-120-artemis-socratic-logic.md",
+      "evidence": "artifacts/artemis-socratic-logic/run-01/socratic-logic.json",
       "tags": ["exec-pack", "done"]
     }
   ]

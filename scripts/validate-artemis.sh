@@ -72,6 +72,7 @@ docs/models/ARTEMIS_MODEL_API_GOVERNANCE.md
 docs/memory/ARTEMIS_MEMORY_ZONE.md
 docs/control-plane/ARTEMIS_CONTROL_PLANE_PROJECT_REGISTRY_HOME_STATE.md
 docs/control-plane/ARTEMIS_CONTROL_PLANE_OPERATIONAL_DECISION_HOME.md
+docs/references/ARTEMIS_OPERATOR_REFERENCE_INTAKE.md
 docs/principles/ARTEMIS_SOCRATIC_LOGIC.md
 docs/principles/ARTEMIS_SOCRATIC_APPLICATION_GATE.md
 docs/invariants/core.md
@@ -131,6 +132,7 @@ scripts/artemis-project-brief.sh
 scripts/artemis-guided-collaboration.sh
 scripts/artemis-socratic-logic.sh
 scripts/artemis-socratic-application-gate.sh
+scripts/artemis-operator-reference-intake.sh
 scripts/artemis-agent-launch-contract.sh
 scripts/artemis-agent-runtime-dry-run.sh
 scripts/artemis-agent-runtime-approval-gate.sh
@@ -282,6 +284,7 @@ sh -n scripts/artemis-project-brief.sh
 sh -n scripts/artemis-guided-collaboration.sh
 sh -n scripts/artemis-socratic-logic.sh
 sh -n scripts/artemis-socratic-application-gate.sh
+sh -n scripts/artemis-operator-reference-intake.sh
 sh -n scripts/artemis-agent-launch-contract.sh
 sh -n scripts/artemis-agent-runtime-dry-run.sh
 sh -n scripts/artemis-agent-runtime-approval-gate.sh
@@ -3454,6 +3457,59 @@ if ! test -f /tmp/artemis-socratic-application-gate/SOCRATIC_APPLICATION_GATE.md
 fi
 if ! grep -q '"event_type": "method.socratic_application_gate_ready"' /tmp/artemis-socratic-application-gate/events.json; then
   echo "scripts/artemis-socratic-application-gate.sh did not emit canonical events" >&2
+  exit 1
+fi
+scripts/artemis-operator-reference-intake.sh --artifact-root /tmp/artemis-operator-reference-intake --json >/tmp/artemis-operator-reference-intake.json
+if ! grep -q '"overall": "operator_reference_intake_ready"' /tmp/artemis-operator-reference-intake.json; then
+  echo "scripts/artemis-operator-reference-intake.sh did not report operator_reference_intake_ready" >&2
+  exit 1
+fi
+if ! grep -q '"id": "ecc"' /tmp/artemis-operator-reference-intake.json; then
+  echo "scripts/artemis-operator-reference-intake.sh did not record ECC reference" >&2
+  exit 1
+fi
+if ! grep -q '"id": "gstack"' /tmp/artemis-operator-reference-intake.json; then
+  echo "scripts/artemis-operator-reference-intake.sh did not record gstack reference" >&2
+  exit 1
+fi
+if ! grep -q '"license": "MIT"' /tmp/artemis-operator-reference-intake.json; then
+  echo "scripts/artemis-operator-reference-intake.sh did not record MIT licenses" >&2
+  exit 1
+fi
+if ! grep -q '"capability_id": "operator_capability_registry"' /tmp/artemis-operator-reference-intake.json; then
+  echo "scripts/artemis-operator-reference-intake.sh did not map operator capability registry" >&2
+  exit 1
+fi
+if ! grep -q '"path": "vendor_ecc_or_gstack"' /tmp/artemis-operator-reference-intake.json; then
+  echo "scripts/artemis-operator-reference-intake.sh did not reject vendoring" >&2
+  exit 1
+fi
+if ! grep -q '"external_installers_executed": 0' /tmp/artemis-operator-reference-intake.json; then
+  echo "ARTEMIS Operator Reference Intake executed external installers" >&2
+  exit 1
+fi
+if ! grep -q '"external_code_copied": false' /tmp/artemis-operator-reference-intake.json; then
+  echo "ARTEMIS Operator Reference Intake copied external code" >&2
+  exit 1
+fi
+if ! grep -q '"hooks_enabled": false' /tmp/artemis-operator-reference-intake.json; then
+  echo "ARTEMIS Operator Reference Intake enabled hooks" >&2
+  exit 1
+fi
+if ! grep -q '"runtime_execution_allowed": false' /tmp/artemis-operator-reference-intake.json; then
+  echo "ARTEMIS Operator Reference Intake allowed runtime execution" >&2
+  exit 1
+fi
+if ! grep -q '"tokens_spent": 0' /tmp/artemis-operator-reference-intake.json; then
+  echo "ARTEMIS Operator Reference Intake spent tokens" >&2
+  exit 1
+fi
+if ! test -f /tmp/artemis-operator-reference-intake/OPERATOR_REFERENCE_INTAKE.md; then
+  echo "scripts/artemis-operator-reference-intake.sh did not write operator reference documentation artifact" >&2
+  exit 1
+fi
+if ! grep -q '"event_type": "method.operator_reference_intake_ready"' /tmp/artemis-operator-reference-intake/events.json; then
+  echo "scripts/artemis-operator-reference-intake.sh did not emit canonical events" >&2
   exit 1
 fi
 scripts/artemis-agent-launch-contract.sh --artifact-root /tmp/artemis-agent-launch-contract --json >/tmp/artemis-agent-launch-contract.json

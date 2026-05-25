@@ -4,10 +4,10 @@
 
 - Overall: `project_graph_ready`.
 - Reason: Project Operations Graph contract is ready.
-- Nodes: `52`.
-- Edges: `229`.
-- Tasks: `122`.
-- Events: `105`.
+- Nodes: `53`.
+- Edges: `236`.
+- Tasks: `123`.
+- Events: `106`.
 
 ## Nos
 
@@ -19,6 +19,7 @@
 - `memory:zone` (memory): Human-AI Memory Zone.
 - `method:socratic_logic` (method_gate): ARTEMIS Socratic Logic.
 - `method:socratic_application_gate` (method_gate): ARTEMIS Socratic Application Gate.
+- `method:operator_reference_intake` (reference_intake): ARTEMIS Operator Reference Intake.
 - `artifact:evidence` (artifact_set): Artifacts and evidence.
 - `event_log:timeline` (event_log): Canonical event timeline.
 - `cost:budget` (cost_guard): Token and runtime budget.
@@ -76,6 +77,12 @@
 - `project:artemis` --clarifies--> `method:socratic_logic`.
 - `method:socratic_logic` --feeds--> `method:socratic_application_gate`.
 - `method:socratic_application_gate` --chooses_route_before_work--> `task_set:exec_packs`.
+- `method:socratic_application_gate` --routes_external_reference_before_adoption--> `method:operator_reference_intake`.
+- `method:operator_reference_intake` --creates_future_operator_cuts--> `task_set:exec_packs`.
+- `method:operator_reference_intake` --blocks_install_without_approval--> `gate:human`.
+- `method:operator_reference_intake` --requires_reference_validation--> `validation:gate`.
+- `method:operator_reference_intake` --records_reference_intake--> `event_log:timeline`.
+- `method:operator_reference_intake` --informs_operator_provider_fit--> `orchestration:subagent_router`.
 - `method:socratic_application_gate` --asks_bounded_question_when_needed--> `gate:human`.
 - `method:socratic_application_gate` --routes_to_local_evidence--> `validation:gate`.
 - `method:socratic_application_gate` --records_application_gate--> `event_log:timeline`.
@@ -267,6 +274,7 @@
 - `control_plane:view` --shows--> `memory:zone`.
 - `control_plane:view` --shows--> `method:socratic_logic`.
 - `control_plane:view` --shows--> `method:socratic_application_gate`.
+- `control_plane:view` --shows--> `method:operator_reference_intake`.
 - `control_plane:view` --shows--> `portal:auth_plan`.
 - `control_plane:view` --shows--> `portal:credential_vault`.
 - `control_plane:view` --shows--> `portal:agent_registry`.
@@ -303,6 +311,7 @@
 - O que depende de decisao humana?
 - Qual contexto e seguro para agentes?
 - O que esta ambiguo, distinto ou pendente de decisao?
+- Quais referencias externas podem virar capacidades ARTEMIS?
 - Qual custo ou runtime foi ativado?
 - Qual subagente usar e com qual limite?
 - O que seria escrito no Project Registry?

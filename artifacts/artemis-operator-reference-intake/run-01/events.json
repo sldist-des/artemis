@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-25T11:36:37Z",
+  "source": "scripts/artemis-operator-reference-intake.sh",
+  "events": [
+    {
+      "schema_version": 1,
+      "event_id": "evt_artemis_operator_reference_intake_ready",
+      "event_type": "method.operator_reference_intake_ready",
+      "generated_at": "2026-05-25T11:36:37Z",
+      "producer": {
+        "adapter": "method",
+        "name": "scripts/artemis-operator-reference-intake.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-122",
+        "task_id": "tkt-122",
+        "title": "ARTEMIS Operator Reference Intake",
+        "exec_pack": "docs/exec-packs/done/TKT-122-artemis-operator-reference-intake.md",
+        "artifact_root": "artifacts/artemis-operator-reference-intake/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "method",
+        "status": "operator_reference_intake_ready",
+        "reason": "External operator references mapped without vendorization."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-operator-reference-intake/run-01",
+        "status_path": "artifacts/artemis-operator-reference-intake/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-operator-reference-intake/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-operator-reference-intake/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-operator-reference-intake/run-01/operator-reference-intake.json",
+          "artifacts/artemis-operator-reference-intake/run-01/OPERATOR_REFERENCE_INTAKE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-122"
+      },
+      "payload": {
+        "overall": "operator_reference_intake_ready",
+        "references": [
+          "ecc",
+          "gstack"
+        ],
+        "capabilities": 5,
+        "licenses": [
+          "MIT"
+        ],
+        "runtime_execution_allowed": false,
+        "external_installers_executed": 0,
+        "external_code_copied": false,
+        "hooks_enabled": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-123 - ARTEMIS Operator Capability Registry"
+      }
+    }
+  ]
+}

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-22T16:07:28Z",
+  "generated_at": "2026-05-25T11:36:53Z",
   "source": "scripts/artemis-event-log.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-013_github_issues_readiness",
       "event_type": "runner.readiness_checked",
-      "generated_at": "2026-05-22T16:07:28Z",
+      "generated_at": "2026-05-25T11:36:53Z",
       "producer": {
         "adapter": "github_issues",
         "name": "scripts/artemis-github-issues.sh",
@@ -74,7 +74,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-014_codex_app_server_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-22T16:07:28Z",
+      "generated_at": "2026-05-25T11:36:53Z",
       "producer": {
         "adapter": "codex_app_server",
         "name": "scripts/artemis-codex-app-server.sh",
@@ -161,7 +161,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-015_claude_code_contract",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-22T16:07:28Z",
+      "generated_at": "2026-05-25T11:36:53Z",
       "producer": {
         "adapter": "claude_code",
         "name": "scripts/artemis-claude-code.sh",
@@ -254,7 +254,7 @@
       "schema_version": 1,
       "event_id": "evt_validation_gate_current",
       "event_type": "validation.completed",
-      "generated_at": "2026-05-22T16:07:28Z",
+      "generated_at": "2026-05-25T11:36:53Z",
       "producer": {
         "adapter": "validation_gate",
         "name": "scripts/artemis-validation-gate.sh",
@@ -1544,7 +1544,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-22T14:45:42Z",
+      "generated_at": "2026-05-22T16:07:31Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -1584,16 +1584,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 121,
-          "tasks_done": 121,
+          "tasks_total": 122,
+          "tasks_done": 122,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 10,
-          "events_total": 104,
-          "nodes_total": 51,
-          "edges_total": 223,
-          "evidence_count": 121,
-          "exec_pack_count": 121,
+          "events_total": 105,
+          "nodes_total": 52,
+          "edges_total": 229,
+          "evidence_count": 122,
+          "exec_pack_count": 122,
           "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,
@@ -1605,14 +1605,14 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-121 - Socratic Logic Application Gate"
+        "next_cut": "TKT-122 - Socratic Gate Control Plane View"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-22T14:47:09Z",
+      "generated_at": "2026-05-22T16:07:36Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -1652,8 +1652,8 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 51,
-          "edges_rendered": 223,
+          "nodes_rendered": 52,
+          "edges_rendered": 229,
           "questions_rendered": 3,
           "invariants_rendered": 3,
           "validation_passed": 129,
@@ -1664,7 +1664,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-121 - Socratic Logic Application Gate"
+        "next_cut": "TKT-122 - Socratic Gate Control Plane View"
       }
     },
     {
@@ -4786,7 +4786,7 @@
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-22T14:45:42Z",
+      "generated_at": "2026-05-22T16:07:31Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -4826,16 +4826,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 121,
-          "tasks_done": 121,
+          "tasks_total": 122,
+          "tasks_done": 122,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 10,
-          "events_total": 104,
-          "nodes_total": 51,
-          "edges_total": 223,
-          "evidence_count": 121,
-          "exec_pack_count": 121,
+          "events_total": 105,
+          "nodes_total": 52,
+          "edges_total": 229,
+          "evidence_count": 122,
+          "exec_pack_count": 122,
           "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,
@@ -4847,14 +4847,14 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-121 - Socratic Logic Application Gate"
+        "next_cut": "TKT-122 - Socratic Gate Control Plane View"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-055_project_graph_view",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-22T14:47:09Z",
+      "generated_at": "2026-05-22T16:07:36Z",
       "producer": {
         "adapter": "project_graph_view",
         "name": "scripts/artemis-project-graph-view.sh",
@@ -4894,8 +4894,8 @@
         "overall": "project_graph_view_ready",
         "reason": "Project Graph View renders the read-only graph in the Control Plane.",
         "summary": {
-          "nodes_rendered": 51,
-          "edges_rendered": 223,
+          "nodes_rendered": 52,
+          "edges_rendered": 229,
           "questions_rendered": 3,
           "invariants_rendered": 3,
           "validation_passed": 129,
@@ -4906,14 +4906,14 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-121 - Socratic Logic Application Gate"
+        "next_cut": "TKT-122 - Socratic Gate Control Plane View"
       }
     },
     {
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-22T14:47:11Z",
+      "generated_at": "2026-05-22T16:07:39Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -4953,11 +4953,11 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 121,
-          "tasks_done": 121,
-          "events_total": 104,
-          "nodes_total": 51,
-          "edges_total": 223,
+          "tasks_total": 122,
+          "tasks_done": 122,
+          "events_total": 105,
+          "nodes_total": 52,
+          "edges_total": 229,
           "validation_passed": 129,
           "validation_failed": 0,
           "human_gates": 2,
@@ -4968,7 +4968,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-121 - Socratic Logic Application Gate"
+        "next_cut": "TKT-122 - Socratic Gate Control Plane View"
       }
     },
     {
@@ -5096,7 +5096,7 @@
       "schema_version": 1,
       "event_id": "evt_artemis_socratic_application_gate_ready",
       "event_type": "method.socratic_application_gate_ready",
-      "generated_at": "2026-05-22T16:07:10Z",
+      "generated_at": "2026-05-25T11:36:37Z",
       "producer": {
         "adapter": "method",
         "name": "scripts/artemis-socratic-application-gate.sh",
@@ -5147,7 +5147,72 @@
         "commands_executed": 0,
         "tokens_spent": 0,
         "remote_state_mutated": false,
-        "next_cut": "TKT-122 - Socratic Gate Control Plane View"
+        "next_cut": "TKT-122 - External Operator Reference Intake"
+      }
+    },
+    {
+      "schema_version": 1,
+      "event_id": "evt_artemis_operator_reference_intake_ready",
+      "event_type": "method.operator_reference_intake_ready",
+      "generated_at": "2026-05-25T11:36:37Z",
+      "producer": {
+        "adapter": "method",
+        "name": "scripts/artemis-operator-reference-intake.sh",
+        "mode": "read_only"
+      },
+      "subject": {
+        "ticket": "TKT-122",
+        "task_id": "tkt-122",
+        "title": "ARTEMIS Operator Reference Intake",
+        "exec_pack": "docs/exec-packs/done/TKT-122-artemis-operator-reference-intake.md",
+        "artifact_root": "artifacts/artemis-operator-reference-intake/run-01"
+      },
+      "runner": {
+        "kind": "none"
+      },
+      "state": {
+        "from": "planned",
+        "to": "done",
+        "reason": ""
+      },
+      "gate": {
+        "kind": "method",
+        "status": "operator_reference_intake_ready",
+        "reason": "External operator references mapped without vendorization."
+      },
+      "severity": "info",
+      "evidence": {
+        "artifact_path": "artifacts/artemis-operator-reference-intake/run-01",
+        "status_path": "artifacts/artemis-operator-reference-intake/run-01/STATUS.md",
+        "validation_path": "artifacts/artemis-operator-reference-intake/run-01/VALIDATION.md",
+        "handoff_path": "artifacts/artemis-operator-reference-intake/run-01/HANDOFF.md",
+        "logs": [
+          "artifacts/artemis-operator-reference-intake/run-01/operator-reference-intake.json",
+          "artifacts/artemis-operator-reference-intake/run-01/OPERATOR_REFERENCE_INTAKE.md"
+        ]
+      },
+      "links": {
+        "correlation_id": "tkt-122"
+      },
+      "payload": {
+        "overall": "operator_reference_intake_ready",
+        "references": [
+          "ecc",
+          "gstack"
+        ],
+        "capabilities": 5,
+        "licenses": [
+          "MIT"
+        ],
+        "runtime_execution_allowed": false,
+        "external_installers_executed": 0,
+        "external_code_copied": false,
+        "hooks_enabled": false,
+        "agents_started": false,
+        "commands_executed": 0,
+        "tokens_spent": 0,
+        "remote_state_mutated": false,
+        "next_cut": "TKT-123 - ARTEMIS Operator Capability Registry"
       }
     },
     {

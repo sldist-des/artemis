@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-22T16:07:39Z",
+  "generated_at": "2026-05-25T11:37:17Z",
   "source": "scripts/artemis-project-brief.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-056_project_brief",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-22T16:07:39Z",
+      "generated_at": "2026-05-25T11:37:17Z",
       "producer": {
         "adapter": "project_brief",
         "name": "scripts/artemis-project-brief.sh",
@@ -47,11 +47,11 @@
         "overall": "human_project_brief_ready",
         "reason": "Human-readable Project Brief was derived from the Project Operations Graph.",
         "summary": {
-          "tasks_total": 122,
-          "tasks_done": 122,
-          "events_total": 105,
-          "nodes_total": 52,
-          "edges_total": 229,
+          "tasks_total": 123,
+          "tasks_done": 123,
+          "events_total": 106,
+          "nodes_total": 53,
+          "edges_total": 236,
           "validation_passed": 129,
           "validation_failed": 0,
           "human_gates": 2,
@@ -62,7 +62,7 @@
           "remote_writes_allowed": false,
           "source_of_truth_changed": false
         },
-        "next_cut": "TKT-122 - Socratic Gate Control Plane View"
+        "next_cut": "TKT-123 - ARTEMIS Operator Capability Registry"
       }
     }
   ]

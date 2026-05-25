@@ -193,6 +193,17 @@ Quando a ambiguidade ja estiver identificada, aplique
 unica antes de agir: seguir com suposicao explicita, buscar evidencia local,
 perguntar ao humano, dividir o corte ou bloquear ate existir autoridade.
 
+## Referencias Externas de Operadores
+
+Antes de absorver ideias de sistemas externos como ECC ou gstack, use
+`scripts/artemis-operator-reference-intake.sh --json`. O intake registra fonte,
+licenca, capacidade, risco, decisao de adocao e caminhos rejeitados.
+
+Referencias externas podem inspirar contratos ARTEMIS, mas nao autorizam copiar
+codigo, prompts, assets, marcas, instaladores, hooks ou configuracoes. Qualquer
+uso real futuro precisa de preview, rollback, validacao e Human Gate quando
+tocar runtime, auth, secrets, custo, browser, hooks, MCP, shell amplo ou remoto.
+
 Antes de iniciar qualquer runner, simule a decisao de dispatch:
 
 ```bash

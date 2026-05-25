@@ -117,6 +117,7 @@ required_files = [
     Path("docs/symphony/ARTEMIS_SYMPHONY_SPEC.md"),
     Path("docs/memory/ARTEMIS_MEMORY_ZONE.md"),
     Path("docs/models/ARTEMIS_MODEL_API_GOVERNANCE.md"),
+    Path("docs/references/ARTEMIS_OPERATOR_REFERENCE_INTAKE.md"),
     Path("docs/principles/ARTEMIS_SOCRATIC_APPLICATION_GATE.md"),
     Path("config/artemis-model-registry.json"),
     Path("AGENTS.md"),
@@ -126,6 +127,7 @@ required_files = [
     memory_zone_path,
     validation_gate_path,
     Path("artifacts/artemis-socratic-application-gate/run-01/socratic-application-gate.json"),
+    Path("artifacts/artemis-operator-reference-intake/run-01/operator-reference-intake.json"),
 ]
 missing_files = [str(path) for path in required_files if not path.is_file()]
 
@@ -158,6 +160,7 @@ portal_validation_evidence_payload = read_json(Path("artifacts/artemis-portal-va
 portal_human_acceptance_payload = read_json(Path("artifacts/artemis-portal-human-acceptance-surface/run-01/human-acceptance-surface-contract.json"), {"human_acceptance_contract": {}, "sample_acceptance": {}, "overall": "not_available"})
 socratic_logic_payload = read_json(Path("artifacts/artemis-socratic-logic/run-01/socratic-logic.json"), {"clarity_questions": [], "ambiguity_gates": [], "argument_contract": {}, "overall": "not_available", "next_cut": "unknown"})
 socratic_application_gate_payload = read_json(Path("artifacts/artemis-socratic-application-gate/run-01/socratic-application-gate.json"), {"application_stages": [], "routes": [], "application_matrix": [], "overall": "not_available", "next_cut": "unknown"})
+operator_reference_intake_payload = read_json(Path("artifacts/artemis-operator-reference-intake/run-01/operator-reference-intake.json"), {"reference_sources": [], "capability_map": [], "rejected_paths": [], "overall": "not_available", "next_cut": "unknown"})
 subagent_router_payload = read_json(Path("artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json"), {"provider_profiles": [], "socratic_gate": [], "safety_invariants": {}, "overall": "not_available", "next_cut": "unknown"})
 subagent_config_generator_payload = read_json(Path("artifacts/artemis-subagent-config-generator/run-01/subagent-config-generator.json"), {"preview_files": [], "install_gate": {}, "safety_invariants": {}, "overall": "not_available", "next_cut": "unknown"})
 project_registry_dry_run_payload = read_json(Path("artifacts/artemis-portal-project-registry-registration-dry-run/run-01/project-registry-registration-dry-run.json"), {"dry_run_contract": {}, "overall": "not_available", "next_cut": "unknown"})
@@ -255,6 +258,21 @@ nodes = [
         "runtime_execution_allowed": socratic_application_gate_payload.get("runtime_execution_allowed", False),
         "tokens_spent": socratic_application_gate_payload.get("tokens_spent", 0),
         "next_cut": socratic_application_gate_payload.get("next_cut", "unknown"),
+    },
+    {
+        "id": "method:operator_reference_intake",
+        "type": "reference_intake",
+        "label": "ARTEMIS Operator Reference Intake",
+        "status": operator_reference_intake_payload.get("overall", "not_available"),
+        "references": len(operator_reference_intake_payload.get("reference_sources", [])),
+        "capabilities": len(operator_reference_intake_payload.get("capability_map", [])),
+        "rejected_paths": len(operator_reference_intake_payload.get("rejected_paths", [])),
+        "external_installers_executed": operator_reference_intake_payload.get("external_installers_executed", 0),
+        "external_code_copied": operator_reference_intake_payload.get("external_code_copied", False),
+        "hooks_enabled": operator_reference_intake_payload.get("hooks_enabled", False),
+        "runtime_execution_allowed": operator_reference_intake_payload.get("runtime_execution_allowed", False),
+        "tokens_spent": operator_reference_intake_payload.get("tokens_spent", 0),
+        "next_cut": operator_reference_intake_payload.get("next_cut", "unknown"),
     },
     {
         "id": "artifact:evidence",
@@ -826,6 +844,12 @@ edges = [
     {"from": "project:artemis", "to": "method:socratic_logic", "type": "clarifies"},
     {"from": "method:socratic_logic", "to": "method:socratic_application_gate", "type": "feeds"},
     {"from": "method:socratic_application_gate", "to": "task_set:exec_packs", "type": "chooses_route_before_work"},
+    {"from": "method:socratic_application_gate", "to": "method:operator_reference_intake", "type": "routes_external_reference_before_adoption"},
+    {"from": "method:operator_reference_intake", "to": "task_set:exec_packs", "type": "creates_future_operator_cuts"},
+    {"from": "method:operator_reference_intake", "to": "gate:human", "type": "blocks_install_without_approval"},
+    {"from": "method:operator_reference_intake", "to": "validation:gate", "type": "requires_reference_validation"},
+    {"from": "method:operator_reference_intake", "to": "event_log:timeline", "type": "records_reference_intake"},
+    {"from": "method:operator_reference_intake", "to": "orchestration:subagent_router", "type": "informs_operator_provider_fit"},
     {"from": "method:socratic_application_gate", "to": "gate:human", "type": "asks_bounded_question_when_needed"},
     {"from": "method:socratic_application_gate", "to": "validation:gate", "type": "routes_to_local_evidence"},
     {"from": "method:socratic_application_gate", "to": "event_log:timeline", "type": "records_application_gate"},
@@ -1017,6 +1041,7 @@ edges = [
     {"from": "control_plane:view", "to": "memory:zone", "type": "shows"},
     {"from": "control_plane:view", "to": "method:socratic_logic", "type": "shows"},
     {"from": "control_plane:view", "to": "method:socratic_application_gate", "type": "shows"},
+    {"from": "control_plane:view", "to": "method:operator_reference_intake", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:auth_plan", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:credential_vault", "type": "shows"},
     {"from": "control_plane:view", "to": "portal:agent_registry", "type": "shows"},
@@ -1067,6 +1092,10 @@ questions = [
     {
         "question": "O que esta ambiguo, distinto ou pendente de decisao?",
         "answer_source": ["method:socratic_logic", "method:socratic_application_gate", "gate:human", "validation:gate"],
+    },
+    {
+        "question": "Quais referencias externas podem virar capacidades ARTEMIS?",
+        "answer_source": ["method:operator_reference_intake", "method:socratic_application_gate", "gate:human", "validation:gate"],
     },
     {
         "question": "Qual custo ou runtime foi ativado?",
@@ -1148,6 +1177,7 @@ payload = {
         "portal_human_acceptance_surface": "artifacts/artemis-portal-human-acceptance-surface/run-01/human-acceptance-surface-contract.json",
         "socratic_logic": "artifacts/artemis-socratic-logic/run-01/socratic-logic.json",
         "socratic_application_gate": "artifacts/artemis-socratic-application-gate/run-01/socratic-application-gate.json",
+        "operator_reference_intake": "artifacts/artemis-operator-reference-intake/run-01/operator-reference-intake.json",
         "subagent_socratic_router": "artifacts/artemis-subagent-socratic-router/run-01/subagent-socratic-router.json",
         "subagent_config_generator": "artifacts/artemis-subagent-config-generator/run-01/subagent-config-generator.json",
         "project_registry_registration_dry_run": "artifacts/artemis-portal-project-registry-registration-dry-run/run-01/project-registry-registration-dry-run.json",
@@ -1212,6 +1242,7 @@ payload = {
         "portal_human_acceptance_surface_input": "artemis_portal_human_acceptance_surface",
         "socratic_logic_input": "artemis_socratic_logic",
         "socratic_application_gate_input": "artemis_socratic_application_gate",
+        "operator_reference_intake_input": "artemis_operator_reference_intake",
         "subagent_router_input": "artemis_subagent_socratic_router",
         "subagent_config_generator_input": "artemis_subagent_config_generator",
         "project_registry_registration_dry_run_input": "artemis_project_registry_registration_dry_run",
@@ -1232,7 +1263,7 @@ payload = {
         "control_plane_role": "observational_graph_consumer",
         "runtime_policy": "no_runtime_without_explicit_human_gate",
     },
-    "next_cut": "TKT-122 - Socratic Gate Control Plane View",
+    "next_cut": "TKT-123 - ARTEMIS Operator Capability Registry",
 }
 
 write_text(artifact_root / "project-graph.json", json.dumps(payload, ensure_ascii=False, indent=2) + "\n")

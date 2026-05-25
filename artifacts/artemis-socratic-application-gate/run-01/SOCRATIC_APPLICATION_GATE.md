@@ -8,7 +8,7 @@
 - Runtime execution allowed: `false`
 - Agents started: `false`
 - Tokens spent: `0`
-- Next cut: `TKT-122 - Socratic Gate Control Plane View`
+- Next cut: `TKT-122 - External Operator Reference Intake`
 
 ## Routes
 

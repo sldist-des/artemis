@@ -350,6 +350,8 @@ docs/principles/ARTEMIS_SOCRATIC_LOGIC.md
 scripts/artemis-socratic-logic.sh --artifact-root artifacts/artemis-socratic-logic/run-01
 docs/principles/ARTEMIS_SOCRATIC_APPLICATION_GATE.md
 scripts/artemis-socratic-application-gate.sh --artifact-root artifacts/artemis-socratic-application-gate/run-01
+docs/references/ARTEMIS_OPERATOR_REFERENCE_INTAKE.md
+scripts/artemis-operator-reference-intake.sh --artifact-root artifacts/artemis-operator-reference-intake/run-01
 docs/portal/ARTEMIS_PORTAL_LOCAL_PROJECT_CONNECT.md
 scripts/artemis-portal-local-project-connect.sh --project . --artifact-root artifacts/artemis-portal-local-project-connect/run-01
 docs/portal/ARTEMIS_PORTAL_EXTERNAL_PROJECT_REGISTRATION.md

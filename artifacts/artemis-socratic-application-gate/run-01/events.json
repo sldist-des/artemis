@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-22T16:07:10Z",
+  "generated_at": "2026-05-25T11:36:37Z",
   "source": "scripts/artemis-socratic-application-gate.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_artemis_socratic_application_gate_ready",
       "event_type": "method.socratic_application_gate_ready",
-      "generated_at": "2026-05-22T16:07:10Z",
+      "generated_at": "2026-05-25T11:36:37Z",
       "producer": {
         "adapter": "method",
         "name": "scripts/artemis-socratic-application-gate.sh",
@@ -58,7 +58,7 @@
         "commands_executed": 0,
         "tokens_spent": 0,
         "remote_state_mutated": false,
-        "next_cut": "TKT-122 - Socratic Gate Control Plane View"
+        "next_cut": "TKT-122 - External Operator Reference Intake"
       }
     }
   ]

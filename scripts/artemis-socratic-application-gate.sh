@@ -291,7 +291,7 @@ payload = {
     "remote_state_mutated": False,
     "missing_files": missing_files,
     "checks": checks,
-    "next_cut": "TKT-122 - Socratic Gate Control Plane View",
+    "next_cut": "TKT-122 - External Operator Reference Intake",
 }
 
 (artifact_root / "socratic-application-gate.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-22T16:07:31Z",
+  "generated_at": "2026-05-25T11:37:05Z",
   "source": "scripts/artemis-project-graph.sh",
   "events": [
     {
       "schema_version": 1,
       "event_id": "evt_tkt-054_project_graph",
       "event_type": "adapter.contract_recorded",
-      "generated_at": "2026-05-22T16:07:31Z",
+      "generated_at": "2026-05-25T11:37:05Z",
       "producer": {
         "adapter": "project_graph",
         "name": "scripts/artemis-project-graph.sh",
@@ -47,16 +47,16 @@
         "overall": "project_graph_ready",
         "reason": "Project Operations Graph contract is ready.",
         "summary": {
-          "tasks_total": 122,
-          "tasks_done": 122,
+          "tasks_total": 123,
+          "tasks_done": 123,
           "tasks_human": 0,
           "tasks_ready": 0,
           "owners_total": 10,
-          "events_total": 105,
-          "nodes_total": 52,
-          "edges_total": 229,
-          "evidence_count": 122,
-          "exec_pack_count": 122,
+          "events_total": 106,
+          "nodes_total": 53,
+          "edges_total": 236,
+          "evidence_count": 123,
+          "exec_pack_count": 123,
           "validation_passed": 129,
           "validation_failed": 0,
           "validation_human_gate": 2,
@@ -68,7 +68,7 @@
           "remote_writes_allowed": false,
           "runner_auto_execution_allowed": false
         },
-        "next_cut": "TKT-122 - Socratic Gate Control Plane View"
+        "next_cut": "TKT-123 - ARTEMIS Operator Capability Registry"
       }
     }
   ]
